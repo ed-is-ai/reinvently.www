@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock — Reinvently</title>
+  <meta name="description" content="A practical guide to choosing the right enterprise AI platform in 2026: Microsoft Copilot Studio, Azure AI Foundry, or AWS Bedrock."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">19 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise</div>
+  <h1>Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock: Choosing the Right AI Platform for Your Organisation</h1>
+  <p class="summary">Three platforms, three different layers of the AI stack. Here's how to decide which one — or which combination — is right for your team.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>As organisations move from experimenting with AI to building production systems, one question keeps coming up: which platform do we build on? For most enterprise teams, the shortlist comes down to three: <strong>Microsoft Copilot Studio</strong>, <strong>Azure AI Foundry</strong>, and <strong>AWS Bedrock</strong>.</p>
+
+    <p>These are not direct competitors in the way that coding tools are. They sit at different layers of the AI stack, serve different buyers, and solve different problems. Choosing the right one — or the right combination — depends on where your team sits, what you already use, and how much control you need.</p>
+
+    <hr/>
+
+    <h2>Microsoft Copilot Studio — AI for Business Users</h2>
+
+    <p>Copilot Studio is Microsoft's low-code platform for building conversational AI agents. It is designed to be accessible to business analysts, IT generalists and power users who want to deploy AI without writing substantial code.</p>
+
+    <p>Out of the box, it connects deeply to Microsoft 365, Teams, SharePoint and Dynamics — making it the fastest route to AI-powered workflows for organisations already in the Microsoft ecosystem. Building a customer service bot, an internal HR assistant or an automated document Q&A system can be done in hours rather than weeks.</p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Fastest time to value for Microsoft 365 organisations</li>
+      <li>No-code / low-code interface — accessible to non-developers</li>
+      <li>Native integration with Teams, SharePoint, Dynamics and Power Platform</li>
+      <li>Built-in connectors to hundreds of enterprise systems</li>
+      <li>Microsoft-managed security and compliance</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Limited customisation for complex, bespoke AI logic</li>
+      <li>Less suitable for teams that need fine-grained model control</li>
+      <li>Can become expensive at scale through per-message pricing</li>
+      <li>Not the right tool if you need to move beyond Microsoft's ecosystem</li>
+    </ul>
+
+    <p><strong>Best for:</strong> Business teams, HR, customer service, and organisations wanting rapid AI deployment within Microsoft 365.</p>
+    <p><strong>Pricing:</strong> From $200/month per tenant + per-message consumption costs</p>
+
+    <hr/>
+
+    <h2>Azure AI Foundry — The Enterprise Development Platform</h2>
+
+    <p>Azure AI Foundry (formerly Azure AI Studio) is Microsoft's platform for professional developers building production-grade AI applications. Where Copilot Studio handles the "last mile" of deployment, Foundry handles the engineering: model selection, fine-tuning, evaluation, RAG pipelines, and integration with enterprise data.</p>
+
+    <p>It gives development teams access to a broad model catalogue — including Azure OpenAI (GPT-4o, o3), Meta Llama, Mistral and others — through a unified API. Crucially, it pairs model access with tooling for responsible AI: evaluation frameworks, content safety filters, prompt flow orchestration and monitoring.</p>
+
+    <p>Foundry and Copilot Studio are designed to be complementary. A common enterprise pattern is to use Foundry to build and evaluate the underlying AI logic, then surface it through Copilot Studio for business users.</p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Full control over model selection, fine-tuning and evaluation</li>
+      <li>Strong RAG (Retrieval-Augmented Generation) tooling</li>
+      <li>Integrated prompt flow for complex, multi-step agent pipelines</li>
+      <li>Enterprise compliance: SOC 2, ISO 27001, GDPR, government clouds</li>
+      <li>Works alongside Copilot Studio for end-to-end solutions</li>
+      <li>Access to Azure OpenAI with private, dedicated capacity</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Steeper learning curve — requires developer expertise</li>
+      <li>Cost complexity: billed across multiple underlying Azure services</li>
+      <li>Overkill for straightforward conversational AI use cases</li>
+      <li>Azure lock-in for infrastructure</li>
+    </ul>
+
+    <p><strong>Best for:</strong> Engineering teams building custom AI applications, RAG systems, or fine-tuned models within an Azure environment.</p>
+    <p><strong>Pricing:</strong> Consumption-based across Azure OpenAI, Azure AI Search and compute — no flat licence fee</p>
+
+    <hr/>
+
+    <h2>AWS Bedrock — Multi-Model Flexibility at Scale</h2>
+
+    <p>AWS Bedrock is Amazon's managed foundation model service. Rather than offering a single AI experience, it provides a single API through which developers can access a wide range of models — including Anthropic's Claude, Meta's Llama, Amazon's Titan, Cohere, Mistral and others — and plug them directly into AWS infrastructure.</p>
+
+    <p>Bedrock's strength is flexibility and scale. It does not prescribe a development approach or a preferred model. It gives teams a clean, consistent interface for experimenting with different models, switching between them, and running large-scale inference workloads alongside existing AWS services like S3, Lambda, and RDS.</p>
+
+    <p>For organisations whose applications already live on AWS, Bedrock removes the friction of integrating AI into existing architectures. It also offers Agents for Bedrock — a managed agent framework — and Knowledge Bases for RAG, making it increasingly competitive with Azure Foundry on capability.</p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Widest model choice in a single API — including Claude, Llama, Titan and more</li>
+      <li>Deep, friction-free integration with existing AWS infrastructure</li>
+      <li>Strong for large-scale inference and high-throughput workloads</li>
+      <li>Agents for Bedrock and Knowledge Bases bring agentic and RAG capability</li>
+      <li>No vendor lock-in to a single model provider</li>
+      <li>Enterprise security: VPC support, PrivateLink, encryption, compliance certifications</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>No equivalent to Copilot Studio's low-code business user interface</li>
+      <li>Less opinionated — teams must make more architectural decisions themselves</li>
+      <li>Evaluation and monitoring tooling less mature than Azure Foundry</li>
+      <li>Less natural fit for Microsoft-centric organisations</li>
+    </ul>
+
+    <p><strong>Best for:</strong> AWS-native engineering teams, organisations that want model flexibility, and anyone running large-scale AI workloads on existing AWS infrastructure.</p>
+    <p><strong>Pricing:</strong> Per-token consumption pricing per model — varies significantly by model choice</p>
+
+    <hr/>
+
+    <h2>Head-to-Head Summary</h2>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;"></th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Copilot Studio</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Azure AI Foundry</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">AWS Bedrock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Primary user</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Business user</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Developer</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Developer</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Technical depth</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low-code</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Full-code</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Full-code</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Best ecosystem</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Microsoft 365</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Azure</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">AWS</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Model choice</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Limited (OpenAI)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Broad (Azure catalogue)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Widest (multi-vendor)</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">RAG / Agents</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Basic</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Advanced</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Advanced</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Enterprise ready</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Yes</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Yes</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Yes</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Pricing model</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per tenant + message</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Consumption</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per token</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr/>
+
+    <h2>Which Should Your Organisation Choose?</h2>
+
+    <p><strong>If your team lives in Microsoft 365:</strong> Start with Copilot Studio. You can deploy useful AI agents in days, not months, without needing a development team.</p>
+
+    <p><strong>If you are building custom AI applications on Azure:</strong> Azure AI Foundry gives you the control, evaluation tooling and compliance posture that production systems require. Use it alongside Copilot Studio for the best of both worlds.</p>
+
+    <p><strong>If your infrastructure is on AWS:</strong> Bedrock is the natural choice. Its multi-model flexibility and deep AWS integration make it the most pragmatic path for teams already invested in the AWS ecosystem.</p>
+
+    <p><strong>If you are undecided:</strong> The honest answer is that many large organisations use all three — Copilot Studio for business automation, Foundry or Bedrock for custom application development, and whichever cloud they already have a commercial relationship with for infrastructure.</p>
+
+    <p>AI platform choice is increasingly less about capability differences and more about ecosystem fit, team skills, and commercial relationships. Start where your team already is.</p>
+
+    <hr/>
+
+    <p><em>Not sure which AI platform is right for your organisation? <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Talk to Reinvently.</a></em></p>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
