@@ -680,4 +680,18 @@ if ('serviceWorker' in navigator) {
 <script src="js/ceph-p3-01_website-builder-data-prod_static_widgets_UX.4.51.22.js" crossorigin></script>
 <script src="js/blobby_go_558bf111-ac00-4bc6-bc31-8aae375f3151_gpub_ad2d5015d04c71c9_script.js" crossorigin></script>
 
+<script>
+(function () {
+  function removeAiroBadge() {
+    document.querySelectorAll('div, section, aside').forEach(function (el) {
+      if (el.children.length < 5 && el.textContent.includes('GoDaddy Airo')) {
+        el.style.display = 'none';
+      }
+    });
+  }
+  var observer = new MutationObserver(removeAiroBadge);
+  observer.observe(document.body, { childList: true, subtree: true });
+  window.addEventListener('load', removeAiroBadge);
+})();
+</script>
 </body></html>
