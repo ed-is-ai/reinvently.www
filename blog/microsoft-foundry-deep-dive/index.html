@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Microsoft Foundry: A Deep Dive — Reinvently</title>
+  <meta name="description" content="A comprehensive technical and strategic deep dive into Microsoft Foundry — the enterprise AI platform redefining how organisations build, deploy and govern AI at scale."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">18 February 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; Microsoft</div>
+  <h1>Microsoft Foundry: A Deep Dive into the Enterprise AI Platform Redefining How Organisations Build with AI</h1>
+  <p class="summary">Microsoft Foundry is not a single product — it is an end-to-end factory for designing, building, evaluating, deploying and governing AI at scale. Here is everything you need to know.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>Microsoft Foundry is the most ambitious enterprise AI platform currently available. It is not a single product — it is an end-to-end factory for designing, building, evaluating, deploying and governing AI applications and agents at scale. Understanding it properly requires understanding both what it is and how its pieces fit together.</p>
+
+    <p>This post is a comprehensive technical and strategic deep dive. Whether you are an architect evaluating enterprise AI platforms, an engineering lead planning your AI roadmap, or a technology director trying to understand what Microsoft's AI strategy means for your organisation, this is the guide.</p>
+
+    <hr/>
+
+    <h2>What Is Microsoft Foundry?</h2>
+
+    <p>Microsoft Foundry — formerly Azure AI Studio, then Azure AI Foundry — was rebranded in November 2025 as part of Microsoft Ignite. The name change was not cosmetic. It reflected a deliberate repositioning of the platform as the <strong>third pillar of Microsoft's enterprise cloud</strong>, sitting alongside Microsoft 365 and Microsoft Fabric.</p>
+
+    <p>The clearest way to understand Foundry's place in the ecosystem is this: Microsoft 365 is where knowledge workers use AI. Fabric is where data teams build analytical AI. <strong>Foundry is where developers and architects build, deploy and govern production AI applications and agents.</strong></p>
+
+    <p>It is, in Microsoft's own words, an "AI app and agent factory" — a unified workspace that takes you from model selection all the way through to production monitoring, with enterprise security, compliance and governance throughout.</p>
+
+    <hr/>
+
+    <h2>The Architecture</h2>
+
+    <h3>The Control Plane</h3>
+
+    <p>Foundry's architecture is built around a <strong>Control Plane</strong> — a centralised gateway through which all AI traffic routes. Rather than having disparate model endpoints, evaluation tools and agent runtimes operating independently, the Foundry Gateway acts as the single point of:</p>
+
+    <ul>
+      <li><strong>Identity and security</strong> — Entra ID (Azure Active Directory) RBAC, managed identity, and private networking</li>
+      <li><strong>Dynamic routing</strong> — traffic can be directed across model deployments, regions and providers</li>
+      <li><strong>Observability</strong> — all requests, completions, token usage and trace data are aggregated in one place, feeding into Azure Monitor</li>
+    </ul>
+
+    <p>This means that from day one of a Foundry deployment, you have production-grade observability and security — not as something bolted on later, but as a structural property of the platform.</p>
+
+    <h3>Projects and Hubs</h3>
+
+    <p>Foundry organises work into <strong>Hubs</strong> (shared infrastructure resources for a team or organisation) and <strong>Projects</strong> (individual AI applications or workstreams within a hub). A hub manages shared assets: model deployments, connections to data sources, compute resources and governance policies. Projects inherit from the hub but can have their own configurations.</p>
+
+    <p>This structure maps cleanly onto enterprise team organisation: a hub per business unit or platform team, with projects for individual applications or agents.</p>
+
+    <hr/>
+
+    <h2>The Model Ecosystem</h2>
+
+    <p>One of Foundry's most significant advantages is the breadth of its model catalogue. This is not just Azure OpenAI — it is one of the most comprehensive collections of frontier models available in a single enterprise platform.</p>
+
+    <h3>OpenAI Models</h3>
+    <ul>
+      <li><strong>GPT-5.2</strong> — generally available on Foundry, built for multi-step problem solving, long-context understanding and agentic tool-calling</li>
+      <li><strong>GPT-4o and variants</strong> — the workhorse models for most production applications</li>
+      <li><strong>o3 and o3-mini</strong> — advanced reasoning models for complex analytical tasks</li>
+      <li><strong>GPT-image-1.5</strong> — image generation at 4× the speed of previous generations</li>
+      <li><strong>Sora 2</strong> — video generation, now in public preview</li>
+    </ul>
+
+    <h3>Anthropic Models</h3>
+    <p>Foundry now offers the full Claude family — <strong>Haiku 4.5, Sonnet 4.5 and Opus 4.1</strong> — making Azure one of the only enterprise platforms with both OpenAI and Anthropic frontier models in a single, governed environment. This matters because different models have different strengths, and production applications often benefit from routing different tasks to different models.</p>
+
+    <h3>Open and Third-Party Models</h3>
+    <ul>
+      <li><strong>Meta Llama</strong> — multiple versions, available for fine-tuning and private deployment</li>
+      <li><strong>Mistral</strong> — strong for European data residency requirements</li>
+      <li><strong>Kimi-K2 Thinking</strong> — with a 256K context window, suitable for very long document analysis</li>
+      <li><strong>Cohere, JAIS, and others</strong> — specialist models for specific use cases</li>
+    </ul>
+
+    <p>The model catalogue is updated continuously. Foundry's model comparison tooling lets teams benchmark models against their own datasets and evaluation criteria before committing to a deployment.</p>
+
+    <hr/>
+
+    <h2>Core Capabilities</h2>
+
+    <h3>1. Foundry Agent Service</h3>
+
+    <p>The Foundry Agent Service is the platform's answer to production-grade autonomous agents. Released to general availability in early 2026, it provides a fully managed runtime for deploying AI agents with:</p>
+
+    <ul>
+      <li><strong>Hosted Agents</strong> — fully managed agent execution with no infrastructure to maintain</li>
+      <li><strong>Multi-Agent Workflows</strong> — orchestrate multiple specialised agents working in parallel on complex tasks such as employee onboarding, financial approvals or contract analysis</li>
+      <li><strong>Tool integrations</strong> — the Foundry Tools tab provides a single entry point for connecting agents to over <strong>1,400 business systems</strong>, including Microsoft 365, Dynamics, SAP, Salesforce and custom APIs</li>
+      <li><strong>Enterprise security</strong> — private networking, Entra RBAC, and full tracing built in from the start</li>
+    </ul>
+
+    <p>Multi-agent workflows represent a meaningful shift in what is possible. Rather than a single agent attempting to do everything, Foundry enables architectures where a coordinating agent delegates subtasks to specialist agents — one for data retrieval, one for analysis, one for communication — and aggregates the results.</p>
+
+    <h3>2. Foundry IQ (Retrieval-Augmented Generation)</h3>
+
+    <p>Foundry IQ integrates Azure AI Search to give agents and applications RAG-powered access to enterprise data sources. Rather than relying on a model's training data, Foundry IQ enables agents to query internal documents, databases, SharePoint libraries, and structured data stores in real time.</p>
+
+    <p>The platform handles chunking, embedding, indexing and retrieval — with configurable search strategies (semantic, hybrid, keyword) and relevance tuning. For most enterprise applications, this is the capability that makes AI genuinely useful: connecting models to your organisation's actual knowledge.</p>
+
+    <h3>3. Deep Research Agent</h3>
+
+    <p>The Deep Research Agent — currently in public preview — uses OpenAI's o3-deep-research model to automate complex, multi-step web and knowledge base research. Rather than returning a single answer, it plans a research strategy, executes multiple searches, synthesises findings and produces structured reports with citations.</p>
+
+    <p>For use cases such as competitive analysis, regulatory research, due diligence and technical investigation, this represents a significant productivity multiplier.</p>
+
+    <h3>4. Prompt Flow</h3>
+
+    <p>Prompt Flow is Foundry's visual orchestration tool for building complex AI pipelines. It allows teams to:</p>
+
+    <ul>
+      <li>Chain together LLM calls, retrieval steps, code execution and external API calls</li>
+      <li>Visualise the full execution graph of an AI application</li>
+      <li>Debug individual nodes in a pipeline</li>
+      <li>Version and deploy flows as managed endpoints</li>
+    </ul>
+
+    <p>Prompt Flow is particularly valuable for teams building multi-step applications — customer service agents that retrieve context before responding, document processing pipelines, or research workflows — where the logic is too complex to express as a single prompt.</p>
+
+    <h3>5. Evaluation Framework</h3>
+
+    <p>Evaluation is one of Foundry's strongest differentiators. The platform provides a comprehensive, continuous evaluation framework covering:</p>
+
+    <p><strong>Quality metrics</strong> — groundedness, coherence, fluency, relevance, and similarity, measured automatically against test datasets.</p>
+
+    <p><strong>Safety metrics</strong> — detection of harmful content, bias, policy violations and prompt injection, using Microsoft's responsible AI evaluators.</p>
+
+    <p><strong>Custom evaluators</strong> — teams can define their own evaluation logic using code or LLM-as-judge approaches, making the framework adaptable to domain-specific quality requirements.</p>
+
+    <p><strong>Continuous production monitoring</strong> — evaluation runs not just at development time but continuously in production, with results piped into Azure Monitor and alerting. This means quality regressions in deployed applications are detected automatically rather than discovered through user complaints.</p>
+
+    <h3>6. Responsible AI</h3>
+
+    <p>Responsible AI is built into Foundry as a first-class capability, not an afterthought:</p>
+
+    <ul>
+      <li><strong>Content Safety</strong> — Azure AI Content Safety filters are available at every model endpoint, with configurable severity thresholds per category (hate speech, violence, self-harm, sexual content)</li>
+      <li><strong>Groundedness detection</strong> — identifies when a model generates responses not supported by the retrieved context</li>
+      <li><strong>Safety system messages</strong> — templates for common responsible AI configurations that teams can apply consistently across deployments</li>
+      <li><strong>Fairness and inclusiveness assessments</strong> — evaluation metrics specifically designed to surface bias in model outputs</li>
+    </ul>
+
+    <p>For regulated industries — financial services, healthcare, government — these capabilities are not nice-to-haves. They are prerequisites for production deployment.</p>
+
+    <hr/>
+
+    <h2>Enterprise Security and Governance</h2>
+
+    <p>Foundry's enterprise security posture is mature:</p>
+
+    <ul>
+      <li><strong>Private networking</strong> — deployments can be fully isolated within a private virtual network, with no public internet exposure</li>
+      <li><strong>Customer-managed keys</strong> — encryption at rest using keys held in Azure Key Vault</li>
+      <li><strong>Entra ID RBAC</strong> — fine-grained role-based access control across hubs, projects, model deployments and data connections</li>
+      <li><strong>Audit logging</strong> — all API calls, model invocations and configuration changes are logged to Azure Monitor</li>
+      <li><strong>Data residency</strong> — regional deployments with data residency guarantees for GDPR and other regulatory requirements</li>
+      <li><strong>Compliance certifications</strong> — SOC 2, ISO 27001, HIPAA, FedRAMP (government cloud)</li>
+    </ul>
+
+    <hr/>
+
+    <h2>Pricing</h2>
+
+    <p>Foundry's pricing is consumption-based — the platform itself carries no flat licence fee. Costs accumulate across the underlying services consumed:</p>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Component</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Pricing Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Model inference (Azure OpenAI)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per input/output token, varies by model</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Model inference (third-party)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per token, varies by model</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Azure AI Search (for RAG)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per search unit + storage</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Foundry Agent Service (hosted)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per agent-hour</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Compute (for fine-tuning)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per GPU-hour</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Storage</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Per GB per month</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The consumption model means costs scale with usage — low in development, higher in production. The main risk is <strong>token cost unpredictability</strong> for applications with variable usage patterns. Foundry's built-in token monitoring and budget alerts help manage this, but teams should model costs carefully before production launch.</p>
+
+    <hr/>
+
+    <h2>When Foundry Is — and Is Not — the Right Choice</h2>
+
+    <p><strong>Foundry is the right choice when:</strong></p>
+    <ul>
+      <li>Your organisation is already on Azure or Microsoft 365</li>
+      <li>You need enterprise compliance certifications out of the box</li>
+      <li>You are building multi-agent or RAG-based applications</li>
+      <li>You want continuous quality evaluation in production</li>
+      <li>You need access to both OpenAI and Anthropic models in a governed environment</li>
+      <li>You are in a regulated industry where responsible AI tooling is mandatory</li>
+    </ul>
+
+    <p><strong>Foundry may not be the right choice when:</strong></p>
+    <ul>
+      <li>You are AWS-native and do not want to add an Azure dependency (consider Bedrock)</li>
+      <li>You need a no-code interface for business users (consider Copilot Studio)</li>
+      <li>You are prototyping quickly and do not yet need enterprise governance</li>
+      <li>Your team lacks Azure expertise and the learning curve is prohibitive</li>
+    </ul>
+
+    <hr/>
+
+    <h2>Getting Started</h2>
+
+    <p>The fastest path into Foundry for most teams:</p>
+
+    <ol>
+      <li><strong>Create a Foundry Hub</strong> in the Azure portal — this takes minutes and requires only an Azure subscription</li>
+      <li><strong>Deploy a model</strong> — start with GPT-4o or Claude Sonnet for most use cases</li>
+      <li><strong>Build a Prompt Flow</strong> — start with a simple RAG flow connecting to a document store</li>
+      <li><strong>Add evaluation</strong> — run the built-in quality evaluators against a test dataset before going to production</li>
+      <li><strong>Graduate to agents</strong> — once the core pipeline is solid, explore the Foundry Agent Service for autonomous workflows</li>
+    </ol>
+
+    <p>Microsoft's <a href="https://learn.microsoft.com/en-us/azure/foundry/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">documentation on learn.microsoft.com</a> is comprehensive, and the Foundry codelabs provide structured hands-on paths for common use cases.</p>
+
+    <hr/>
+
+    <h2>The Bottom Line</h2>
+
+    <p>Microsoft Foundry is the most complete enterprise AI platform currently available. Its combination of model breadth, agent capabilities, evaluation rigour, responsible AI tooling and Azure-native security makes it a compelling default choice for organisations building AI in an Azure environment.</p>
+
+    <p>It is not the simplest platform — Copilot Studio is faster to get started with for business users, and AWS Bedrock may be more natural for AWS-native teams. But for organisations that need to go deep — building production-grade AI applications with genuine governance, observability and safety — Foundry has more to offer than any comparable platform.</p>
+
+    <p>The organisations that invest in understanding it now will be building on a platform that Microsoft is clearly committed to, increasingly capable, and strategically central to the entire Microsoft cloud ecosystem.</p>
+
+    <hr/>
+
+    <p><em>Planning an AI platform evaluation or architecture for your organisation? <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Talk to Reinvently.</a></em></p>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
