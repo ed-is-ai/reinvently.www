@@ -1,0 +1,23 @@
+# Reinvently
+
+> Reinvently is a UK-based AI and web development consultancy helping organisations transform ideas into impactful AI solutions. Founded by Ed Yau.
+
+Reinvently works with businesses, enterprises, charities and public sector organisations to identify, design and deploy AI applications that deliver measurable value. Services span AI strategy, solution architecture, web development and training.
+
+## Blog
+
+Reinvently publishes practical, in-depth articles on AI adoption, tools and strategy for business and technology audiences.
+
+- [RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?](https://reinvently.co.uk/blog/rag-vs-graphrag/) — 12 April 2026
+- [Claude Mythos: Anthropic's Most Powerful Model Yet](https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/) — 19 April 2026
+- [Copilot Studio vs Azure AI Foundry vs AWS Bedrock](https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/) — 5 April 2026
+- [The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade](https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/) — 14 March 2026
+- [GitHub Copilot vs Google Antigravity vs Claude Code](https://reinvently.co.uk/blog/github-copilot-vs-google-antigravity-vs-claude-code/) — 7 March 2026
+- [Microsoft Foundry: A Deep Dive](https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/) — 18 February 2026
+- [Generative AI Adoption by Industry: Use Cases, Data and What Comes Next](https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/) — 22 January 2026
+- [The Rise of AI in Web Development](https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/) — 12 November 2025
+
+## Contact
+
+Website: https://reinvently.co.uk
+Contact form: https://reinvently.co.uk/#contact
