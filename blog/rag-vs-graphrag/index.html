@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application? — Reinvently</title>
+  <meta name="description" content="Retrieval-augmented generation transformed enterprise AI. Now GraphRAG is challenging the assumptions it was built on. Here is what you need to know."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">12 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Software Engineering</div>
+  <h1>RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?</h1>
+  <p class="summary">Retrieval-augmented generation transformed enterprise AI. Now GraphRAG is challenging the assumptions it was built on. Here is what you need to know.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>Retrieval-augmented generation — RAG — has become the default architecture for enterprise AI applications that need to work with private or proprietary knowledge. Rather than relying solely on a model's training data, RAG retrieves relevant documents at query time and passes them to the model as context. The results are more accurate, more current and more trustworthy than pure generation.</p>
+
+    <p>But RAG has limits. And Microsoft's GraphRAG — released as open source in 2024 and now widely adopted — was designed to address them.</p>
+
+    <p>This post explains both architectures clearly, compares them honestly, and helps you decide which is right for your use case.</p>
+
+    <hr/>
+
+    <h2>What is RAG?</h2>
+
+    <p>Standard RAG works in two stages.</p>
+
+    <p>First, at indexing time, your documents are chunked into segments, passed through an embedding model, and stored as vectors in a vector database (Pinecone, Weaviate, pgvector and others are commonly used).</p>
+
+    <p>At query time, the user's question is embedded using the same model, and the database returns the most semantically similar chunks. Those chunks are injected into the prompt as context, and the language model generates an answer grounded in the retrieved material.</p>
+
+    <p>It is elegant, fast and well-understood. RAG is the right architecture for a large proportion of enterprise knowledge retrieval problems — and it is relatively straightforward to build.</p>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Fast to implement and iterate on</li>
+      <li>Works well for document search and question-answering over large corpora</li>
+      <li>Scales well with document volume</li>
+      <li>Retrieval quality is easy to evaluate and improve</li>
+      <li>Wide ecosystem of tools, frameworks (LangChain, LlamaIndex) and managed services</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Retrieves chunks, not concepts — misses connections between pieces of information spread across multiple documents</li>
+      <li>Poor at answering questions that require synthesising information from many sources simultaneously</li>
+      <li>Loses structural and relational context between entities</li>
+      <li>"Needle in a haystack" retrieval depends heavily on the quality of the query embedding</li>
+    </ul>
+
+    <hr/>
+
+    <h2>What is GraphRAG?</h2>
+
+    <p>GraphRAG, developed by Microsoft Research and released as an open-source project in mid-2024, takes a fundamentally different approach. Rather than chunking documents and embedding them directly, it first extracts a <strong>knowledge graph</strong> from the source corpus.</p>
+
+    <p>During indexing, a language model reads through your documents and extracts entities — people, organisations, concepts, events — and the relationships between them. These are stored as a graph (nodes and edges) alongside community summaries that describe clusters of related entities.</p>
+
+    <p>At query time, GraphRAG can operate in two modes:</p>
+
+    <ul>
+      <li><strong>Local search</strong> — traverses the graph from entities relevant to the query, pulling in their relationships and associated source text</li>
+      <li><strong>Global search</strong> — generates answers by reasoning over the community summaries, enabling queries that require synthesising information across the entire corpus</li>
+    </ul>
+
+    <h3>Strengths</h3>
+    <ul>
+      <li>Excels at complex, multi-hop questions that require connecting information across documents</li>
+      <li>Preserves relationships and context that vector search discards</li>
+      <li>Global search enables genuine corpus-wide synthesis — "What are the main themes across all our research?" becomes answerable</li>
+      <li>Reduces hallucination on relational queries</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Significantly more expensive to index — LLM calls required to extract the graph</li>
+      <li>Indexing is slower — not suitable for rapidly changing document sets without incremental graph updates</li>
+      <li>More complex to deploy and maintain</li>
+      <li>Overkill for simple question-answering use cases</li>
+      <li>Graph quality depends on the accuracy of the extraction model</li>
+    </ul>
+
+    <hr/>
+
+    <h2>Head-to-Head Summary</h2>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;"></th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Standard RAG</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">GraphRAG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Best for</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Document Q&amp;A, search</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Complex reasoning, synthesis</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Indexing cost</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">High</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Query speed</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Fast</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Slower (global search)</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Multi-hop queries</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Weak</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Strong</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Corpus-wide synthesis</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Poor</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Excellent</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Setup complexity</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low–Medium</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Medium–High</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Ecosystem maturity</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Very mature</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Maturing rapidly</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr/>
+
+    <h2>Which Should You Choose?</h2>
+
+    <p><strong>Choose standard RAG if:</strong> your users need to find specific information within documents, your document set changes frequently, or you are building a knowledge base, internal search tool or document Q&amp;A system. RAG is the right default for the majority of enterprise knowledge retrieval problems.</p>
+
+    <p><strong>Choose GraphRAG if:</strong> your use case requires reasoning across many documents simultaneously, users ask questions like "what is the relationship between X and Y?" or "summarise the key themes across our research", or you are working with a relatively stable corpus — technical documentation, research archives, regulatory libraries.</p>
+
+    <p><strong>Consider a hybrid approach if:</strong> your application needs both fast local retrieval and deeper synthesis. This is increasingly the production pattern — GraphRAG for complex analytical queries, standard RAG for specific document lookups, with a router deciding which path to use at query time.</p>
+
+    <hr/>
+
+    <h2>The Practical Reality</h2>
+
+    <p>GraphRAG is not a replacement for standard RAG — it is an upgrade for a specific class of problem. Most enterprise applications start with standard RAG and encounter its limits only when users begin asking questions that require connecting information across many documents.</p>
+
+    <p>The signal to watch for is users rephrasing the same question multiple times, or adding qualifiers like "based on everything you know" — this is usually a sign that the retrieval architecture is not giving the model what it needs to answer well.</p>
+
+    <p>When you hit that ceiling, GraphRAG is worth the additional complexity.</p>
+
+    <hr/>
+
+    <p><em>Reinvently helps organisations design and implement retrieval architectures that match their actual use case. <a href="/#contact" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Get in touch.</a></em></p>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
