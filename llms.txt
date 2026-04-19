@@ -2,7 +2,7 @@
 
 > Reinvently is a UK-based AI solutions consultancy helping organisations transform ideas into impactful AI solutions. Founded by Ed Yau (https://uk.linkedin.com/in/edmond-yau)
 
-Reinvently works with businesses, enterprises, charities and public sector organisations to identify, design and deploy AI applications that deliver measurable value. Services span AI strategy, solution architecture, web development and training.
+Reinvently works with businesses, enterprises, charities and public sector organisations to identify, design and deploy AI applications that deliver measurable value. Services span AI strategy, solution architecture and training.
 
 ## Services
 
