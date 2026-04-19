@@ -1,15 +1,17 @@
 # Reinvently
 
-> Reinvently is a UK-based AI and web development consultancy helping organisations transform ideas into impactful AI solutions. Founded by Ed Yau.
+> Reinvently is a UK-based AI solutions consultancy helping organisations transform ideas into impactful AI solutions. Founded by Ed Yau (https://uk.linkedin.com/in/edmond-yau)
 
 Reinvently works with businesses, enterprises, charities and public sector organisations to identify, design and deploy AI applications that deliver measurable value. Services span AI strategy, solution architecture, web development and training.
 
+## Services
+
+AI strategy and roadmapping, AI solution architecture, web development, AI training and implementation, enterprise AI adoption.
+
 ## Blog
 
-Reinvently publishes practical, in-depth articles on AI adoption, tools and strategy for business and technology audiences.
-
-- [RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?](https://reinvently.co.uk/blog/rag-vs-graphrag/) — 12 April 2026
 - [Claude Mythos: Anthropic's Most Powerful Model Yet](https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/) — 19 April 2026
+- [RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?](https://reinvently.co.uk/blog/rag-vs-graphrag/) — 12 April 2026
 - [Copilot Studio vs Azure AI Foundry vs AWS Bedrock](https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/) — 5 April 2026
 - [The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade](https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/) — 14 March 2026
 - [GitHub Copilot vs Google Antigravity vs Claude Code](https://reinvently.co.uk/blog/github-copilot-vs-google-antigravity-vs-claude-code/) — 7 March 2026
@@ -20,4 +22,5 @@ Reinvently publishes practical, in-depth articles on AI adoption, tools and stra
 ## Contact
 
 Website: https://reinvently.co.uk
-Contact form: https://reinvently.co.uk/#contact
+Contact: https://reinvently.co.uk/#contact
+LinkedIn: https://uk.linkedin.com/in/edmond-yau
