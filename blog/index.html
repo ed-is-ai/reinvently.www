@@ -4,8 +4,51 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Blog — Reinvently</title>
-  <meta name="description" content="Insights on AI, web development and transforming ideas into impactful solutions."/>
+  <meta name="description" content="Insights and analysis on AI adoption, UK policy, enterprise tools and the companies shaping artificial intelligence."/>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/"/>
+  <meta property="og:title" content="Blog — Reinvently"/>
+  <meta property="og:description" content="Insights and analysis on AI adoption, UK policy, enterprise tools and the companies shaping artificial intelligence."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Blog — Reinvently"/>
+  <meta name="twitter:description" content="Insights and analysis on AI adoption, UK policy, enterprise tools and the companies shaping artificial intelligence."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
   <link rel="stylesheet" href="blog.css"/>
+  <style>
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgb(150,150,150);
+      background: transparent;
+      border: 1px solid #1b1b1b;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .filter-btn:hover {
+      color: rgb(226,226,226);
+      border-color: #444;
+    }
+    .filter-btn.active {
+      color: #fff;
+      border-color: rgb(150,150,150);
+    }
+    .post-card.hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -23,9 +66,17 @@
 </header>
 
 <main class="container">
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="enterprise">Enterprise Adoption</button>
+    <button class="filter-btn" data-filter="tools">Tools &amp; Platforms</button>
+    <button class="filter-btn" data-filter="uk-ecosystem">UK Ecosystem</button>
+  </div>
+
   <div class="blog-grid">
 
-    <a class="post-card" href="/blog/global-ai-adoption-attitudes/">
+    <a class="post-card" href="/blog/global-ai-adoption-attitudes/" data-tags="enterprise">
       <div class="post-card-body">
         <div class="post-meta">20 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; Global</div>
         <h2>Global AI Adoption: How Different Countries Are Embracing Artificial Intelligence</h2>
@@ -34,61 +85,7 @@
       </div>
     </a>
 
-    <a class="post-card" href="/blog/generative-ai-adoption-by-industry/">
-      <div class="post-card-body">
-        <div class="post-meta">22 January 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise</div>
-        <h2>Generative AI Adoption by Industry: Use Cases, Data and What Comes Next</h2>
-        <p>A sector-by-sector breakdown of where generative AI is actually being used — from financial services and healthcare to charities and education.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/uk-government-ai-institutes/">
-      <div class="post-card-body">
-        <div class="post-meta">10 February 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Policy &nbsp;·&nbsp; UK</div>
-        <h2>The UK's Public AI Infrastructure: Government Institutes Shaping the National AI Ecosystem</h2>
-        <p>Behind the UK's AI startups and research labs sits a layer of publicly funded institutions most people rarely encounter — from the Alan Turing Institute to the AI Security Institute.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/microsoft-foundry-deep-dive/">
-      <div class="post-card-body">
-        <div class="post-meta">18 February 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; Microsoft</div>
-        <h2>Microsoft Foundry: A Deep Dive</h2>
-        <p>A comprehensive technical and strategic guide to the enterprise AI platform redefining how organisations build, deploy and govern AI at scale.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/uk-ai-skills-gap-education-opportunity/">
-      <div class="post-card-body">
-        <div class="post-meta">14 March 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Education</div>
-        <h2>The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade</h2>
-        <p>73% of UK workers have received no formal AI training. Here's where the opportunity lies — and where to start.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/top-10-uk-ai-companies/">
-      <div class="post-card-body">
-        <div class="post-meta">13 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; UK</div>
-        <h2>The Top 10 UK Companies Leading on AI</h2>
-        <p>From Google DeepMind to Quantexa, the UK's AI ecosystem is deeper than most people realise. Here are the ten companies defining it.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/rag-vs-graphrag/">
-      <div class="post-card-body">
-        <div class="post-meta">12 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Software Engineering</div>
-        <h2>RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?</h2>
-        <p>Retrieval-augmented generation transformed enterprise AI. Now GraphRAG is challenging the assumptions it was built on.</p>
-        <span class="read-more">Read more</span>
-      </div>
-    </a>
-
-    <a class="post-card" href="/blog/claude-mythos-anthropic-opportunity-for-companies/">
+    <a class="post-card" href="/blog/claude-mythos-anthropic-opportunity-for-companies/" data-tags="enterprise">
       <div class="post-card-body">
         <div class="post-meta">19 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Cybersecurity</div>
         <h2>Claude Mythos: Anthropic's Most Powerful Model Yet</h2>
@@ -97,7 +94,25 @@
       </div>
     </a>
 
-    <a class="post-card" href="/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/">
+    <a class="post-card" href="/blog/top-10-uk-ai-companies/" data-tags="uk-ecosystem">
+      <div class="post-card-body">
+        <div class="post-meta">13 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; UK</div>
+        <h2>The Top 10 UK Companies Leading on AI</h2>
+        <p>From Google DeepMind to Quantexa, the UK's AI ecosystem is deeper than most people realise. Here are the ten companies defining it.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/rag-vs-graphrag/" data-tags="tools">
+      <div class="post-card-body">
+        <div class="post-meta">12 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Software Engineering</div>
+        <h2>RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?</h2>
+        <p>Retrieval-augmented generation transformed enterprise AI. Now GraphRAG is challenging the assumptions it was built on.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/" data-tags="tools">
       <div class="post-card-body">
         <div class="post-meta">5 April 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise</div>
         <h2>Copilot Studio vs Azure AI Foundry vs AWS Bedrock</h2>
@@ -106,7 +121,16 @@
       </div>
     </a>
 
-    <a class="post-card" href="/blog/github-copilot-vs-google-antigravity-vs-claude-code/">
+    <a class="post-card" href="/blog/uk-ai-skills-gap-education-opportunity/" data-tags="uk-ecosystem">
+      <div class="post-card-body">
+        <div class="post-meta">14 March 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Education</div>
+        <h2>The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade</h2>
+        <p>73% of UK workers have received no formal AI training. Here's where the opportunity lies — and where to start.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/github-copilot-vs-google-antigravity-vs-claude-code/" data-tags="tools">
       <div class="post-card-body">
         <div class="post-meta">7 March 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Software Engineering</div>
         <h2>GitHub Copilot vs Google Antigravity vs Claude Code</h2>
@@ -115,7 +139,34 @@
       </div>
     </a>
 
-    <a class="post-card" href="/blog/the-rise-of-ai-in-web-development/">
+    <a class="post-card" href="/blog/uk-government-ai-institutes/" data-tags="uk-ecosystem">
+      <div class="post-card-body">
+        <div class="post-meta">10 February 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Policy &nbsp;·&nbsp; UK</div>
+        <h2>The UK's Public AI Infrastructure: Government Institutes Shaping the National AI Ecosystem</h2>
+        <p>Behind the UK's AI startups and research labs sits a layer of publicly funded institutions most people rarely encounter — from the Alan Turing Institute to the AI Security Institute.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/microsoft-foundry-deep-dive/" data-tags="tools">
+      <div class="post-card-body">
+        <div class="post-meta">18 February 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; Microsoft</div>
+        <h2>Microsoft Foundry: A Deep Dive</h2>
+        <p>A comprehensive technical and strategic guide to the enterprise AI platform redefining how organisations build, deploy and govern AI at scale.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/generative-ai-adoption-by-industry/" data-tags="enterprise">
+      <div class="post-card-body">
+        <div class="post-meta">22 January 2026 &nbsp;·&nbsp; AI &nbsp;·&nbsp; Enterprise</div>
+        <h2>Generative AI Adoption by Industry: Use Cases, Data and What Comes Next</h2>
+        <p>A sector-by-sector breakdown of where generative AI is actually being used — from financial services and healthcare to charities and education.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
+    <a class="post-card" href="/blog/the-rise-of-ai-in-web-development/" data-tags="enterprise">
       <div class="post-card-body">
         <div class="post-meta">12 November 2025 &nbsp;·&nbsp; AI</div>
         <h2>The Rise of AI in Web Development</h2>
@@ -130,6 +181,33 @@
 <footer class="footer">
   <p>&copy; 2026 Reinvently. All rights reserved.</p>
 </footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.post-card');
+
+  function applyFilter(filter) {
+    buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const show = filter === 'all' || tags.split(' ').includes(filter);
+      card.classList.toggle('hidden', !show);
+    });
+    if (filter === 'all') {
+      history.replaceState(null, '', globalThis.location.pathname);
+    } else {
+      history.replaceState(null, '', '#' + filter);
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+  });
+
+  // Apply filter from URL hash on load
+  const hash = globalThis.location.hash.slice(1);
+  if (hash) applyFilter(hash);
+</script>
 
 </body>
 </html>
