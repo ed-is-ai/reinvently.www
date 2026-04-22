@@ -658,7 +658,7 @@ if ('serviceWorker' in navigator) {
 .hfb{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);background:transparent;border:1px solid #1b1b1b;padding:9px 20px;cursor:pointer;transition:border-color 0.15s,color 0.15s;}
 .hfb:hover{color:rgb(226,226,226);border-color:#444;}
 .hfb.active{color:#fff;border-color:rgb(150,150,150);}
-.hc-hidden{display:none;}
+.hc-hidden{display:none !important;}
 </style>
 <section style="background:#000;padding:64px 48px;border-top:1px solid #1b1b1b;">
   <div style="max-width:900px;margin:0 auto;">
@@ -671,7 +671,7 @@ if ('serviceWorker' in navigator) {
       <button class="hfb active" data-filter="all">All</button>
       <button class="hfb" data-filter="enterprise">Enterprise Adoption</button>
       <button class="hfb" data-filter="tools">Technology Strategy</button>
-      <button class="hfb" data-filter="uk-ecosystem">UK Ecosystem</button>
+      <button class="hfb" data-filter="uk-ecosystem">UK AI News</button>
     </div>
     <div id="home-blog-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px;">
       <a href="/blog/global-ai-adoption-attitudes/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
