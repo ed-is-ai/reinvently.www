@@ -30,35 +30,113 @@ Reinvently is a UK AI strategy and implementation consultancy. The blog is read 
 
 ---
 
-## Article Structure
+## Article Structures
 
-### Opening (no heading, before first `<hr/>`)
+Choose the structure that best fits the topic. Do not default to the same one every time — vary across posts so the blog does not feel formulaic.
 
-Two to four paragraphs. The job of the opening is to:
-1. Identify a tension, pattern, or surprising fact that the reader will recognise or find arresting.
-2. Frame the problem or question the post will answer.
-3. Signal why this matters specifically to enterprise technology decision-makers.
+---
 
-Do not begin with "In today's fast-paced..." or any variation. Begin with something concrete — a number, a scene, a named event, a contradiction.
+### Structure A: The Explainer (for new technology or concepts)
 
-### Sections (`<h2>` headings, separated by `<hr/>`)
+Best for: protocol announcements, new model releases, feature launches the reader needs to understand before they can evaluate.
 
-Three to five main sections. Each section should:
-- Have a heading that tells the reader what they will learn, not just what the section covers. Prefer "Why This Changes Enterprise AI Architecture" over "Background".
-- Open with a paragraph that states the section's main point.
-- Use `<h3>` for subsections when a section covers multiple distinct items (e.g. "Use cases with strongest ROI", "Sectors lagging behind").
-- End with the reader closer to a decision or action, not just better informed.
+1. **Opening** — A concrete hook: what changed, when, and why a busy executive should care. Two to three paragraphs.
+2. **What it is / how it works** — Clear, jargon-free explanation. Use an analogy if helpful. Avoid over-technicalising.
+3. **Why it matters for enterprise** — The "so what" section. Explicit translation from technical fact to business implication.
+4. **What changes about how you make decisions** — Practical consequences: procurement, architecture, governance, team structure.
+5. **What to do now** — Three to five concrete steps, bold-lead list format.
+6. **CTA**
 
-### Practical close (before the CTA `<hr/>`)
+---
 
-The last substantive section should be explicitly action-oriented. Titles like "What to Do Now", "What This Means for Your Platform Decisions", or "Five Questions to Ask Before Your Next AI Investment". This section uses a numbered or bulleted list of concrete steps, each with a bolded lead term followed by a period, then the explanation.
+### Structure B: The Evidence Review (for research findings, survey data, market analysis)
+
+Best for: adoption surveys, ROI studies, sector analyses, benchmark reports.
+
+1. **Opening** — Lead with the most arresting data point. Frame the tension between the headline number and what it means in practice.
+2. **What the data says** — Summarise the research with named sources. Do not paraphrase vaguely — quote specific figures and attribute them precisely.
+3. **What it does not say** — Acknowledge limitations, counterpoints, or what the data cannot tell us. This builds credibility.
+4. **What separates the leaders from the laggards** — The actionable insight extracted from the evidence.
+5. **A framework for decision-makers** — A structured set of questions, criteria, or steps derived from the evidence. Can be a numbered list or `<h3>`-led subsections.
+6. **CTA**
+
+---
+
+### Structure C: The Policy Brief (for regulation, government announcements, legal developments)
+
+Best for: ICO guidance, parliamentary inquiries, government investment programmes, regulatory consultations.
+
+1. **Opening** — Name the development, date it, and explain in plain terms what changed. Assume the reader has not read the source document.
+2. **What was actually announced / decided** — Factual summary. Bullet list if multiple distinct elements. No editorialising yet.
+3. **Who it affects and how** — Segment by organisation type, sector, or role where relevant. Use `<h3>` for each segment if the implications differ significantly.
+4. **What "compliance" actually looks like** — Practical translation: not "you must ensure meaningful human involvement" but "this means your CV-screening tool needs a human reviewer who can see the underlying data, not just the AI's output."
+5. **What to do before this becomes enforcement** — Audit steps and preparation checklist.
+6. **CTA**
+
+---
+
+### Structure D: The Contrarian Take (for challenging received wisdom or reframing a debate)
+
+Best for: "the real reason X is failing", "why everyone is thinking about Y wrong", sceptical takes on hype.
+
+1. **Opening** — State the conventional wisdom clearly, then signal you are going to challenge it. Do not bury the lede.
+2. **Why the conventional view is understandable** — Steel-man the position you are pushing back on. This signals intellectual honesty and makes the argument more persuasive.
+3. **What the evidence actually shows** — The counter-argument, with named evidence.
+4. **The more useful frame** — Offer a replacement mental model, not just a critique of the existing one.
+5. **Implications if you adopt this frame** — Concrete consequences for decisions, priorities, or strategy.
+6. **CTA**
+
+---
+
+### Structure E: The Decision Guide (for "should we do X?" questions)
+
+Best for: platform comparisons, build-vs-buy decisions, vendor evaluation, "is this the right time?" questions.
+
+1. **Opening** — Frame the decision. Who is making it, what are the stakes, why is it genuinely difficult.
+2. **What you are really choosing between** — Clarify the decision space. Often the stated question ("should we use X or Y?") conceals a more fundamental question ("are we optimising for speed or control?").
+3. **The case for each option** — `<h3>` per option. Evidence-led, honest about downsides.
+4. **The factors that should drive your decision** — Not a recommendation, but a framework: "if A is true for your organisation, lean toward X; if B, lean toward Y."
+5. **Common mistakes** — Two to three things organisations get wrong when making this decision.
+6. **CTA**
+
+---
+
+### All structures share these rules for opening and sections:
+
+**Opening:** Do not begin with "In today's fast-paced..." or any variation. Begin with something concrete — a number, a scene, a named event, a named contradiction. Two to four paragraphs before the first `<hr/>`.
+
+**Section headings (`<h2>`):** Tell the reader what they will learn, not just what the section covers. Prefer "Why This Changes Enterprise AI Architecture" over "Background". Prefer "The Three Reasons Deployments Fail" over "Challenges".
+
+**Each section:** Opens with a paragraph that states the main point. Uses `<h3>` for subsections when covering multiple distinct items. Ends with the reader closer to a decision, not just better informed.
 
 ### CTA (final paragraph, after last `<hr/>`)
 
-One sentence in `<em>` tags. Pattern: "Reinvently [does X]. If you [situation], [talk to / get in touch with] Reinvently." Link the final phrase to `/` using inline style `style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;"`. Example:
+One short italic paragraph. It should feel like a natural continuation of the post — a quiet offer, not a sales pitch. The goal is to give a reader who found the post useful a frictionless way to continue the conversation. It must not sound like an advert.
 
+**Rules:**
+- Do not use "leading", "cutting-edge", "best-in-class", or any superlative about Reinvently.
+- Do not promise outcomes ("we'll help you achieve X", "transform your AI strategy").
+- Do not use the word "leverage".
+- The sentence should read as if written by a thoughtful person, not a marketing team.
+- Vary the phrasing across posts — do not use the same sentence structure every time.
+
+**The link** goes to `/` with inline style `style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;"`.
+
+**Tones to rotate between:**
+
+*Contextual offer* — connects directly to the post's subject:
 ```html
-<p><em>Reinvently helps organisations design enterprise AI strategies that are built to last. If you are thinking through your agentic AI architecture, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">talk to Reinvently</a>.</em></p>
+<p><em>If you are working through what agentic AI governance looks like in practice, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is worth a conversation.</em></p>
+```
+
+*Understated credential* — states what Reinvently does without overselling:
+```html
+<p><em>Reinvently works with UK organisations on the strategy and implementation side of AI adoption — the parts that determine whether a deployment actually delivers. <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Get in touch</a> if that is useful.</em></p>
+```
+
+*Reader-first* — frames the offer around the reader's situation, not Reinvently's services:
+```html
+<p><em>Most of the organisations we speak to are somewhere in the middle of this — past the pilot stage but not yet seeing the returns they expected. If that sounds familiar, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">we are happy to talk it through</a>.</em></p>
 ```
 
 ---
