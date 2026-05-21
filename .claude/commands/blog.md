@@ -184,6 +184,57 @@ These patterns appear consistently across Reinvently posts and should be used de
 
 ---
 
+## Avoiding AI Writing Patterns
+
+These are the most recognisable tells of AI-generated text. Treat this list as a hard blacklist — if any of these appear in a draft, rewrite the sentence.
+
+### Banned words and phrases
+
+Never use these words in Reinvently posts:
+
+**Significance inflation:** "pivotal", "testament to", "stands as", "indelible mark", "milestone", "landmark", "game-changer", "transformative" (unless quoting someone else using it ironically)
+
+**Vague intensifiers:** "crucial", "vital", "key" (as a standalone adjective — "key takeaway", "key challenge"), "essential" (when not literally meaning required for survival)
+
+**AI-era filler:** "delve", "delve into", "intricate", "meticulous", "groundbreaking", "cutting-edge", "state-of-the-art", "robust" (in the sense of "strong"), "leverage" (as a verb)
+
+**Marketing register:** "vibrant", "nestled", "showcasing", "fostering", "commitment to", "rich heritage", "tapestry", "dynamic", "bespoke" (unless literally meaning made-to-measure)
+
+**Hollow transition words:** "Additionally," at the start of a paragraph, "Furthermore,", "Moreover," — these pad word count and signal AI. Use them only mid-sentence when they add genuine meaning.
+
+**Copula avoidance:** Do not replace "is" or "are" with "serves as", "marks", "represents", "features", "boasts", or "maintains" just to avoid repeating a verb. If something *is* something, say it is.
+
+### Banned sentence structures
+
+**"Not just X, but Y"** — Almost always padding. Either X is sufficient or it is not. Cut the hedge.
+> ❌ "This is not just a technical change, but a fundamental shift in how enterprises think about AI."
+> ✅ "This changes how enterprises think about AI."
+
+**"It is worth noting that..."** — If it is worth noting, note it. Do not announce that you are noting it.
+
+**The rule of three for its own sake** — "fast, reliable, and scalable" / "clear, concise, and actionable" — only use three-part constructions when the three parts are genuinely distinct and all necessary.
+
+**Unearned significance openers** — Do not begin a section by announcing that something is significant, important, or worth paying attention to. Demonstrate significance; do not declare it.
+> ❌ "This is a significant development for enterprise technology leaders."
+> ✅ [State what it actually changes, specifically.]
+
+**Vague future optimism** — Do not end sections with "as AI continues to evolve...", "in the coming months and years...", or "the future looks promising for...". End with something specific or do not speculate.
+
+**"Sparked debate" / "generated discussion"** — Name the debate and the specific parties to it, or remove the claim.
+
+### Structural patterns to avoid
+
+- Do not open every section with a sentence that restates the section heading in different words.
+- Do not use bold text for every instance of a key term — bold is for things the reader must not miss, not for decoration or the appearance of structure.
+- Do not use `<h3>` subsections for every section — reserve them for sections genuinely covering multiple distinct sub-topics. A single h3 under an h2 is almost always unnecessary.
+- The "challenges and opportunities" section structure — listing obstacles and then pivoting to vague optimism — reads as AI-generated boilerplate. Replace it with a specific, evidenced analysis of what actually makes something difficult and what specifically reduces that difficulty.
+
+### On em dashes
+
+The blog uses em dashes (—) for genuine parenthetical asides. Do not use them as a mechanical habit. A paragraph with more than one em dash pair is a sign of over-reliance. If you find yourself reaching for an em dash, check whether a comma, a full stop, or a colon would be more precise.
+
+---
+
 ## HTML Template
 
 Use this structure exactly. Replace `{SLUG}`, `{TITLE}`, `{DESCRIPTION}`, `{DATE_DISPLAY}`, `{DATE_ISO}`, `{CATEGORY_DISPLAY}`, `{DATA_TAGS}`, `{SUMMARY}`, and `{KEYWORDS}` as appropriate.
