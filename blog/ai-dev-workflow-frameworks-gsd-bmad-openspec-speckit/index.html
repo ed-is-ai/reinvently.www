@@ -72,101 +72,6 @@
 
     <hr/>
 
-    <h2>The Case for Each Framework</h2>
-
-    <div style="overflow-x:auto;margin:24px 0 40px;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
-        <thead>
-          <tr>
-            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;"></th>
-            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">GSD</th>
-            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">BMAD</th>
-            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">OpenSpec</th>
-            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">GitHub Spec Kit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;font-weight:500;">Approach</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Context management + atomic task execution</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Full agile team simulation via 12+ specialised AI agents</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Change documentation with explicit delta markers</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Cross-agent workflow standardisation (Spec → Plan → Tasks → Implement)</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;font-weight:500;">Tool dependency</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Claude Code only</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Tool-agnostic</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Tool-agnostic</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">29 named integrations (Copilot, Cursor, Claude Code, Gemini, others)</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;font-weight:500;">Best for</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Complex builds on Claude Code where context quality is the priority</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Greenfield product development with experienced teams</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Brownfield systems; regulated industries; change approval workflows</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Mixed AI tool environments; enterprise-wide standardisation</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;font-weight:500;">API cost</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Moderate (subagent spawning per task)</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">High — $800–$2,000+/developer/month; peak $3,200 on Claude Opus</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Low (no additional model calls)</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Low (no additional model calls)</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;font-weight:500;">Governance fit</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefacts produced as a by-product</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Strong — comprehensive docs suit SOC 2 / HIPAA / EU AI Act audit trails</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefact is the primary output; explicit change record by design</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefacts as by-product; integrates with Jira and Azure DevOps</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>GSD: Maximum execution rigour for Claude Code environments</h3>
-
-    <p>GSD — Get Stuff Done — is a specification and execution framework built entirely on Claude Code's native capabilities: slash commands, CLAUDE.md files, hooks, and agent spawning. Its core argument is that AI output quality degrades as context windows fill. GSD's own documentation describes the pattern: at 50 percent context, Claude starts cutting corners; at 70 percent, hallucinations and forgotten requirements become common. The solution is aggressive atomicity.</p>
-
-    <p>Each plan is broken into tasks sized to occupy roughly 50 percent of a fresh context window. GSD then spawns isolated subagents for each task, so task 50 in a project gets the same model quality as task one. The workflow spans six commands: project initialisation, phase discussion, phase planning, parallel execution, verification, and milestone archiving. Each produces structured artefacts — PLAN.md, SPEC.md, VERIFY.md — that accumulate into a coherent record of the project.</p>
-
-    <p>The constraints are clear. GSD is Claude Code-specific. It does not port to GitHub Copilot, Cursor, or Gemini CLI. Teams running mixed AI coding environments will find it creates a two-tier workflow. The structured artefact generation also adds ceremony that is proportionate on complex multi-phase projects and disproportionate on small feature work.</p>
-
-    <p>For enterprise teams standardised on Claude Code who are building substantial applications, GSD offers the most rigorous execution pipeline of any framework in this comparison.</p>
-
-    <h3>BMAD: Full agile team simulation for greenfield builds</h3>
-
-    <p>BMAD — <a href="https://github.com/bmad-code-org/BMAD-METHOD" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Breakthrough Method for Agile AI-Driven Development</a> — is the most architecturally ambitious framework in this space. Where other frameworks augment a single developer's workflow, BMAD simulates an entire agile software team using 12 or more specialised AI agents: Business Analyst, Product Manager, Architect, UX Designer, Scrum Master, Developer, QA Engineer, Technical Writer, and others. Each agent operates from a defined persona with specific responsibilities, handoff protocols, and review gates.</p>
-
-    <p>The appeal for enterprise is that BMAD mirrors organisational structures that large development teams already use. Projects managed through it produce the full set of artefacts one would expect from a staffed programme: requirements documents, architecture specifications, test strategies, and release notes — all generated and reviewed through structured agent interactions. For organisations that need a development process AI can participate in rather than replace, BMAD provides the scaffolding.</p>
-
-    <p>The cost is real and measurable. <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 benchmark testing</a> found BMAD averages roughly 31,600 tokens per workflow run, with large projects consuming 230 million tokens per week. That translates to monthly API costs of $800 to more than $2,000 per developer — with peak observed spend of $3,200 on Claude Opus. The same benchmarks show the overhead is not just financial: a comparable CRM dashboard build takes 12 minutes under OpenSpec, 90 minutes under Spec Kit, and 5.5 hours under BMAD. The thoroughness that makes BMAD valuable on complex greenfield builds is the same property that makes it expensive on anything smaller. BMAD also carries the steepest learning curve of the four frameworks, and its effectiveness depends on teams actually following the agent workflow rather than bypassing it when time pressure builds — a pattern that undermines the entire premise.</p>
-
-    <p>BMAD is best suited to new product development where the full lifecycle overhead pays for itself in structured output and where the development team is experienced enough to maintain the workflow under pressure.</p>
-
-    <h3>OpenSpec: Brownfield change management with an audit trail</h3>
-
-    <p><a href="https://github.com/Fission-AI/OpenSpec" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenSpec</a> occupies a narrower position than the others. Rather than orchestrating the full development lifecycle, it addresses one specific failure mode: changes to existing systems that are poorly documented, making it difficult to understand what changed, why, and what the intended state was before and after. Its proposal-centred workflow uses delta markers — ADDED, MODIFIED, REMOVED — to track precisely what each change introduces relative to the current system state.</p>
-
-    <p>The openspec/ directory structure separates stable current-state documentation from active proposals. Each proposal carries its own proposal.md, tasks.md, and delta specifications. Changes require documentation before implementation begins. OpenSpec is also tool-agnostic: it does not require a specific AI coding assistant and imposes less process overhead than BMAD or GSD.</p>
-
-    <p>For organisations with formal change approval processes — regulated industries, public sector bodies, or teams where architecture review boards must sign off on technical modifications — that audit trail is not optional. It is what enables the AI coding workflow to exist within governance constraints. OpenSpec is the only framework in this comparison designed with that requirement explicitly in mind.</p>
-
-    <p>The limitation is scope. OpenSpec does not address context management, agent orchestration, or quality gates beyond documentation. Teams using it will need a separate execution approach for the implementation work itself — typically Spec Kit or a tool-specific workflow alongside it.</p>
-
-    <h3>GitHub Spec Kit: Cross-agent standardisation at scale</h3>
-
-    <p><a href="https://github.com/github/spec-kit" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub's Spec Kit</a>, open-sourced in late 2025, reached more than 90,000 GitHub stars and over 8,000 forks by May 2026, making it the most widely adopted framework in this comparison by that measure. It implements a four-phase workflow — Spec, Plan, Tasks, Implement — through slash commands that work across 29 named AI coding agent integrations, including Claude Code, GitHub Copilot, Cursor, Windsurf, and Gemini CLI, with a generic option covering others.</p>
-
-    <p>The positioning is deliberately broad. Spec Kit is not the deepest framework for any single AI tool, but it is the only one that works the same way regardless of which tool a team is using. For organisations running mixed AI coding environments — which describes most large enterprises with varied team preferences or evolving procurement relationships — that portability is the primary differentiator. A standard specification format that travels across tools means the governance and review process does not need to change when a team switches assistants.</p>
-
-    <p>A growing ecosystem of 70 or more community extensions adds integrations with Jira, Azure DevOps, and GitHub Issues, along with quality gates for security, testing, and specification drift detection. GitHub's direct involvement provides reasonable confidence in long-term maintenance — a consideration that matters when a framework is being embedded into development standards across a large organisation.</p>
-
-    <p>The trade-off is depth. Cross-agent compatibility requires Spec Kit to operate at a level of abstraction that tool-specific frameworks exceed. Teams using Claude Code exclusively will find GSD more rigorous. Teams with complex greenfield builds will find BMAD more structured. Spec Kit earns its position for environments where standardisation across tools and teams matters more than optimisation for any single one.</p>
-
-    <hr/>
-
     <h2>When to Use Which Framework</h2>
 
     <p>The variables that matter most when choosing a spec-driven framework are not feature lists. They are team size, project type, and compliance requirements. The matrix below — drawn from <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 practitioner analysis</a> — maps the most common scenarios to a recommended starting point.</p>
@@ -269,7 +174,7 @@
 
     <hr/>
 
-    <p><em>If you are working through how AI coding workflows fit within your development governance — particularly the interaction between spec-driven approaches and existing change management processes — <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is worth a conversation.</em></p>
+    <p><em>If you are working on optimising your SDLC — particularly how to incorporate spec-driven approaches and agentic coding tools into your existing teams and processes — <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is worth a conversation.</em></p>
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
