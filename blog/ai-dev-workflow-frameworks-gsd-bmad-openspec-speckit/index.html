@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework — Reinvently</title>
+  <meta name="description" content="Four spec-driven AI development frameworks — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each solve a different problem. Here is how to choose the right one for your organisation."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/"/>
+  <meta property="og:title" content="GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework"/>
+  <meta property="og:description" content="Four spec-driven AI development frameworks — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each solve a different problem. Here is how to choose the right one for your organisation."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework"/>
+  <meta name="twitter:description" content="Four spec-driven AI development frameworks — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each solve a different problem. Here is how to choose the right one for your organisation."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework",
+    "description": "Four spec-driven AI development frameworks — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each solve a different problem. Here is how to choose the right one for your organisation.",
+    "datePublished": "2026-05-30",
+    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "url": "https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/",
+    "inLanguage": "en-GB",
+    "keywords": ["GSD framework", "BMAD method", "OpenSpec", "GitHub Spec Kit", "spec-driven development", "AI coding workflow", "enterprise AI development", "agentic coding"]
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">30 May 2026 &nbsp;·&nbsp; Technology Strategy</div>
+  <h1>GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</h1>
+  <p class="summary">Four spec-driven AI development frameworks have emerged as the serious options for structured AI coding. They share a starting principle — define what to build before you build it — and diverge sharply on everything else.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>GitHub Spec Kit crossed 90,000 GitHub stars within six months of its open-source release in late 2025. BMAD-METHOD has been adopted by engineering teams at Amazon, Google, and Shopify. GSD, built natively for Claude Code, is described by its practitioners as the most rigorous execution framework available. Yet most development teams using AI coding tools are prompting ad hoc, without a structured workflow of any kind.</p>
+
+    <p>That gap is closing, and the decision about how to close it has become a genuine architectural choice. A new category — spec-driven development — has emerged from the failure modes of unstructured AI coding: agents that produce plausible code that drifts from intent, hallucinates APIs, and degrades in quality as projects grow. The four frameworks compared here — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each claim to solve that problem. They do not solve it in the same way, and the differences determine which one is right for a given organisation.</p>
+
+    <hr/>
+
+    <h2>What You Are Really Choosing Between</h2>
+
+    <p>The question "which framework should we use?" usually conceals a more fundamental one: where in the development process does your biggest quality risk sit? The answer should drive the choice — not feature lists.</p>
+
+    <p>Spec-driven development is not a single thing. It is a family of approaches that share one principle but diverge sharply in scope, ceremony, and what they optimise for. GSD is primarily a context management system. BMAD is a full-lifecycle agent orchestration platform. OpenSpec is a change documentation standard. GitHub Spec Kit is a cross-agent workflow normalisation tool. Choosing without understanding that distinction leads to either over-engineering — deploying BMAD to write a microservice — or under-engineering — using Spec Kit for a twelve-month brownfield migration with audit requirements.</p>
+
+    <p>The choice also carries commitment. These frameworks shape how specifications are written, how implementation tasks are broken down, and what artefacts are produced. Switching mid-project is expensive. The right time to make this decision is before the first sprint, not after the third.</p>
+
+    <hr/>
+
+    <h2>The Case for Each Framework</h2>
+
+    <h3>GSD: Maximum execution rigour for Claude Code environments</h3>
+
+    <p>GSD — Get Stuff Done — is a specification and execution framework built entirely on Claude Code's native capabilities: slash commands, CLAUDE.md files, hooks, and agent spawning. Its core argument is that AI output quality degrades as context windows fill. GSD's own documentation describes the pattern: at 50 percent context, Claude starts cutting corners; at 70 percent, hallucinations and forgotten requirements become common. The solution is aggressive atomicity.</p>
+
+    <p>Each plan is broken into tasks sized to occupy roughly 50 percent of a fresh context window. GSD then spawns isolated subagents for each task, so task 50 in a project gets the same model quality as task one. The workflow spans six commands: project initialisation, phase discussion, phase planning, parallel execution, verification, and milestone archiving. Each produces structured artefacts — PLAN.md, SPEC.md, VERIFY.md — that accumulate into a coherent record of the project.</p>
+
+    <p>The constraints are clear. GSD is Claude Code-specific. It does not port to GitHub Copilot, Cursor, or Gemini CLI. Teams running mixed AI coding environments will find it creates a two-tier workflow. The structured artefact generation also adds ceremony that is proportionate on complex multi-phase projects and disproportionate on small feature work.</p>
+
+    <p>For enterprise teams standardised on Claude Code who are building substantial applications, GSD offers the most rigorous execution pipeline of any framework in this comparison.</p>
+
+    <h3>BMAD: Full agile team simulation for greenfield builds</h3>
+
+    <p>BMAD — Breakthrough Method for Agile AI-Driven Development — is the most architecturally ambitious framework in this space. Where other frameworks augment a single developer's workflow, BMAD simulates an entire agile software team using 12 or more specialised AI agents: Business Analyst, Product Manager, Architect, UX Designer, Scrum Master, Developer, QA Engineer, Technical Writer, and others. Each agent operates from a defined persona with specific responsibilities, handoff protocols, and review gates.</p>
+
+    <p>The appeal for enterprise is that BMAD mirrors organisational structures that large development teams already use. Projects managed through it produce the full set of artefacts one would expect from a staffed programme: requirements documents, architecture specifications, test strategies, and release notes — all generated and reviewed through structured agent interactions. For organisations that need a development process AI can participate in rather than replace, BMAD provides the scaffolding.</p>
+
+    <p>The cost is real. Practitioner estimates place BMAD at $2,000 or more per developer per month in API spend on large projects — roughly £1,600 at current rates. Reenbit's 2026 comparison of the leading SDD frameworks identified BMAD as "the most expensive to run" in the category by a significant margin. For small or medium-scale work, that overhead is difficult to justify. BMAD also carries the steepest learning curve of the four frameworks, and its effectiveness depends on teams actually following the agent workflow rather than bypassing it when time pressure builds — a pattern that undermines the entire premise.</p>
+
+    <p>BMAD is best suited to new product development where the full lifecycle overhead pays for itself in structured output and where the development team is experienced enough to maintain the workflow under pressure.</p>
+
+    <h3>OpenSpec: Brownfield change management with an audit trail</h3>
+
+    <p>OpenSpec occupies a narrower position than the others. Rather than orchestrating the full development lifecycle, it addresses one specific failure mode: changes to existing systems that are poorly documented, making it difficult to understand what changed, why, and what the intended state was before and after. Its proposal-centred workflow uses delta markers — ADDED, MODIFIED, REMOVED — to track precisely what each change introduces relative to the current system state.</p>
+
+    <p>The openspec/ directory structure separates stable current-state documentation from active proposals. Each proposal carries its own proposal.md, tasks.md, and delta specifications. Changes require documentation before implementation begins. OpenSpec is also tool-agnostic: it does not require a specific AI coding assistant and imposes less process overhead than BMAD or GSD.</p>
+
+    <p>For organisations with formal change approval processes — regulated industries, public sector bodies, or teams where architecture review boards must sign off on technical modifications — that audit trail is not optional. It is what enables the AI coding workflow to exist within governance constraints. OpenSpec is the only framework in this comparison designed with that requirement explicitly in mind.</p>
+
+    <p>The limitation is scope. OpenSpec does not address context management, agent orchestration, or quality gates beyond documentation. Teams using it will need a separate execution approach for the implementation work itself — typically Spec Kit or a tool-specific workflow alongside it.</p>
+
+    <h3>GitHub Spec Kit: Cross-agent standardisation at scale</h3>
+
+    <p>GitHub's Spec Kit, open-sourced in late 2025, reached more than 90,000 GitHub stars and over 8,000 forks by May 2026, making it the most widely adopted framework in this comparison by that measure. It implements a four-phase workflow — Spec, Plan, Tasks, Implement — through slash commands that work across 29 named AI coding agent integrations, including Claude Code, GitHub Copilot, Cursor, Windsurf, and Gemini CLI, with a generic option covering others.</p>
+
+    <p>The positioning is deliberately broad. Spec Kit is not the deepest framework for any single AI tool, but it is the only one that works the same way regardless of which tool a team is using. For organisations running mixed AI coding environments — which describes most large enterprises with varied team preferences or evolving procurement relationships — that portability is the primary differentiator. A standard specification format that travels across tools means the governance and review process does not need to change when a team switches assistants.</p>
+
+    <p>A growing ecosystem of 70 or more community extensions adds integrations with Jira, Azure DevOps, and GitHub Issues, along with quality gates for security, testing, and specification drift detection. GitHub's direct involvement provides reasonable confidence in long-term maintenance — a consideration that matters when a framework is being embedded into development standards across a large organisation.</p>
+
+    <p>The trade-off is depth. Cross-agent compatibility requires Spec Kit to operate at a level of abstraction that tool-specific frameworks exceed. Teams using Claude Code exclusively will find GSD more rigorous. Teams with complex greenfield builds will find BMAD more structured. Spec Kit earns its position for environments where standardisation across tools and teams matters more than optimisation for any single one.</p>
+
+    <hr/>
+
+    <h2>The Factors That Should Drive Your Decision</h2>
+
+    <p>The most useful lens is not feature comparison but organisational fit. Five factors are most commonly decisive.</p>
+
+    <p><strong>AI tooling standardisation.</strong> If your organisation has standardised on a single AI coding assistant, choose the framework optimised for it. GSD is the strongest option for Claude Code environments; similar tool-specific frameworks exist for others. If your teams use multiple AI tools — or if that is likely to change within the next 12 months — Spec Kit's cross-agent portability is the more practical choice. Migrating from a tool-specific framework to a cross-agent one mid-project is a significant disruption.</p>
+
+    <p><strong>Greenfield versus brownfield.</strong> New product development benefits from the structured lifecycle management that BMAD provides. Existing system maintenance and incremental feature development are better served by OpenSpec (where change documentation is a priority) or Spec Kit (where execution simplicity matters more). GSD handles both reasonably well when the team is using Claude Code, though its planning overhead is easier to justify on complex multi-phase work than on routine maintenance.</p>
+
+    <p><strong>Governance requirements.</strong> If your organisation operates under change approval processes, audit obligations, or regulatory requirements that demand documented change records, OpenSpec's delta specification approach is the only framework designed with that requirement explicitly in mind. The others produce artefacts as a by-product of their workflow; OpenSpec treats the artefact as the primary output. That distinction matters when a change approval board needs to review what an AI-assisted implementation will actually change.</p>
+
+    <p><strong>API cost tolerance.</strong> BMAD's multi-agent orchestration can reach £1,600 or more per developer per month in API costs on large projects. GSD's subagent spawning carries meaningful API usage as well. OpenSpec and Spec Kit are the most economical options because they add structure without increasing model call frequency. At enterprise scale, the difference in running costs is material and should be part of the procurement analysis.</p>
+
+    <p><strong>Team maturity.</strong> BMAD's complexity rewards experienced engineering teams who will maintain the workflow under delivery pressure rather than route around it. Spec Kit's lower ceremony makes it more accessible to teams earlier in their AI adoption journey, or to mixed-experience teams where not everyone has deep AI tooling familiarity. GSD requires meaningful investment in understanding Claude Code's architecture; teams new to it face a setup overhead before the productivity benefits materialise.</p>
+
+    <hr/>
+
+    <h2>Three Mistakes Organisations Make When Choosing</h2>
+
+    <p><strong>Choosing on features rather than failure modes.</strong> The four frameworks look similar in summary: they all involve specifications, plans, and structured AI interaction. The differences emerge when you map them to your actual failure modes. A team whose biggest problem is context degradation mid-project benefits from GSD. A team whose biggest problem is undocumented changes to a legacy system benefits from OpenSpec. Deploying BMAD because it is the most fully featured — without that analysis — typically results in teams abandoning the workflow within weeks because the overhead is not proportionate to the problem being solved.</p>
+
+    <p><strong>Treating adoption as a tooling task rather than a process change.</strong> Installing Spec Kit takes minutes. Using it — writing specifications before implementation, maintaining them as the project evolves, reviewing them before code is generated — requires a change in how developers work. The frameworks that fail in enterprise environments almost always fail because adoption was treated as a technical task (install, configure) rather than a behavioural one (establish new habits, enforce at review gates, measure compliance). The governance wrapper around the framework matters as much as the framework itself.</p>
+
+    <p><strong>Deploying without piloting.</strong> All four frameworks are free and open source. The cost of a structured two-week pilot on a bounded project — one team, one feature set, honest assessment of fit — is low. The cost of deploying organisation-wide and discovering six months in that the framework does not fit the governance structure or team working style is considerably higher. The pilot does not need to be formal; it needs to produce an honest answer to the question of whether the framework reduces the specific quality problems your team actually has.</p>
+
+    <hr/>
+
+    <p><em>If you are working through how AI coding workflows fit within your development governance — particularly the interaction between spec-driven approaches and existing change management processes — <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is worth a conversation.</em></p>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
