@@ -25,9 +25,11 @@
     "headline": "GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework",
     "description": "Four spec-driven AI development frameworks — GSD, BMAD, OpenSpec, and GitHub Spec Kit — each solve a different problem. Here is how to choose the right one for your organisation.",
     "datePublished": "2026-05-30",
+    "dateModified": "2026-05-30",
     "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
     "url": "https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/"},
     "inLanguage": "en-GB",
     "keywords": ["GSD framework", "BMAD method", "OpenSpec", "GitHub Spec Kit", "spec-driven development", "AI coding workflow", "enterprise AI development", "agentic coding"]
   }
@@ -108,15 +110,15 @@
           <tr>
             <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;white-space:nowrap;">API cost</td>
             <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Moderate (subagent spawning per task)</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">High — $2,000+/developer/month on large projects</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">High — $800–$2,000+/developer/month; peak $3,200 on Claude Opus</td>
             <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Low (no additional model calls)</td>
             <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Low (no additional model calls)</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;white-space:nowrap;">Governance fit</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefacts produced as a by-product</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefacts produced as a by-product</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefact is the primary output; explicit audit trail by design</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Strong — comprehensive docs suit SOC 2 / HIPAA / EU AI Act audit trails</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefact is the primary output; explicit change record by design</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Artefacts as by-product; integrates with Jira and Azure DevOps</td>
           </tr>
         </tbody>
@@ -139,7 +141,7 @@
 
     <p>The appeal for enterprise is that BMAD mirrors organisational structures that large development teams already use. Projects managed through it produce the full set of artefacts one would expect from a staffed programme: requirements documents, architecture specifications, test strategies, and release notes — all generated and reviewed through structured agent interactions. For organisations that need a development process AI can participate in rather than replace, BMAD provides the scaffolding.</p>
 
-    <p>The cost is real. On large projects, BMAD's API spend can reach $2,000 or more per developer per month — roughly £1,600 at current rates. <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 comparison of the leading SDD frameworks</a> independently places BMAD as "the most expensive to run" in the category by a significant margin. For small or medium-scale work, that overhead is difficult to justify. BMAD also carries the steepest learning curve of the four frameworks, and its effectiveness depends on teams actually following the agent workflow rather than bypassing it when time pressure builds — a pattern that undermines the entire premise.</p>
+    <p>The cost is real and measurable. <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 benchmark testing</a> found BMAD averages roughly 31,600 tokens per workflow run, with large projects consuming 230 million tokens per week. That translates to monthly API costs of $800 to more than $2,000 per developer — with peak observed spend of $3,200 on Claude Opus. The same benchmarks show the overhead is not just financial: a comparable CRM dashboard build takes 12 minutes under OpenSpec, 90 minutes under Spec Kit, and 5.5 hours under BMAD. The thoroughness that makes BMAD valuable on complex greenfield builds is the same property that makes it expensive on anything smaller. BMAD also carries the steepest learning curve of the four frameworks, and its effectiveness depends on teams actually following the agent workflow rather than bypassing it when time pressure builds — a pattern that undermines the entire premise.</p>
 
     <p>BMAD is best suited to new product development where the full lifecycle overhead pays for itself in structured output and where the development team is experienced enough to maintain the workflow under pressure.</p>
 
@@ -165,19 +167,112 @@
 
     <hr/>
 
-    <h2>The Factors That Should Drive Your Decision</h2>
+    <h2>When to Use Which Framework</h2>
 
-    <p>The most useful lens is not feature comparison but organisational fit. Five factors are most commonly decisive.</p>
+    <p>The variables that matter most when choosing a spec-driven framework are not feature lists. They are team size, project type, and compliance requirements. The matrix below — drawn from <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 practitioner analysis</a> — maps the most common scenarios to a recommended starting point.</p>
 
-    <p><strong>AI tooling standardisation.</strong> If your organisation has standardised on a single AI coding assistant, choose the framework optimised for it. GSD is the strongest option for Claude Code environments; similar tool-specific frameworks exist for others. If your teams use multiple AI tools — or if that is likely to change within the next 12 months — Spec Kit's cross-agent portability is the more practical choice. Migrating from a tool-specific framework to a cross-agent one mid-project is a significant disruption.</p>
+    <div style="overflow-x:auto;margin:24px 0 32px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">Scenario</th>
+            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">Team size</th>
+            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">Project type</th>
+            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">Compliance</th>
+            <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #2a2a2a;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;">Framework</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Pre-PMF startup MVP</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">1–3</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Greenfield</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Low</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">OpenSpec or GSD</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Funded startup, scaling team</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">4–15</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Greenfield product</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Medium</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">GitHub Spec Kit</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Complex enterprise greenfield</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">10–15</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">New platform or major product</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Medium–High</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">BMAD</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Brownfield modernisation</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Legacy refactor</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Medium</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">OpenSpec + selective BMAD</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Regulated industry (FinTech, healthcare)</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Either</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">High — SOC 2, HIPAA, EU AI Act</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">BMAD</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">AWS-only environment, single IDE policy</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Greenfield</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">Kiro *</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Custom multi-agent pipeline</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Internal platform team</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Tooling build</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">High</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">Hermes *</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Solo developer, fast iteration</td>
+            <td style="padding:10px 14px;color:rgb(150,150,150);">1</td>
+            <td style="padding:10px 14px;color:rgb(150,150,150);">Anything small</td>
+            <td style="padding:10px 14px;color:rgb(150,150,150);">Low</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);font-weight:500;">GSD</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p><strong>Greenfield versus brownfield.</strong> New product development benefits from the structured lifecycle management that BMAD provides. Existing system maintenance and incremental feature development are better served by OpenSpec (where change documentation is a priority) or Spec Kit (where execution simplicity matters more). GSD handles both reasonably well when the team is using Claude Code, though its planning overhead is easier to justify on complex multi-phase work than on routine maintenance.</p>
+    <p style="font-size:13px;color:rgb(150,150,150);line-height:1.6;">* Kiro (AWS's embedded SDD IDE) and Hermes (a structured agent communication protocol for multi-agent handoffs) fall outside the four frameworks covered in depth in this post.</p>
 
-    <p><strong>Governance requirements.</strong> If your organisation operates under change approval processes, audit obligations, or regulatory requirements that demand documented change records, OpenSpec's delta specification approach is the only framework designed with that requirement explicitly in mind. The others produce artefacts as a by-product of their workflow; OpenSpec treats the artefact as the primary output. That distinction matters when a change approval board needs to review what an AI-assisted implementation will actually change.</p>
+    <hr/>
 
-    <p><strong>API cost tolerance.</strong> BMAD's multi-agent orchestration can reach £1,600 or more per developer per month in API costs on large projects. GSD's subagent spawning carries meaningful API usage as well. OpenSpec and Spec Kit are the most economical options because they add structure without increasing model call frequency. At enterprise scale, the difference in running costs is material and should be part of the procurement analysis.</p>
+    <h2>Five Questions That Determine the Right Framework</h2>
 
-    <p><strong>Team maturity.</strong> BMAD's complexity rewards experienced engineering teams who will maintain the workflow under delivery pressure rather than route around it. Spec Kit's lower ceremony makes it more accessible to teams earlier in their AI adoption journey, or to mixed-experience teams where not everyone has deep AI tooling familiarity. GSD requires meaningful investment in understanding Claude Code's architecture; teams new to it face a setup overhead before the productivity benefits materialise.</p>
+    <p>Framework features are the wrong starting point. The right starting point is your organisation's actual constraints. These five questions, answered honestly, surface the constraints that matter most.</p>
+
+    <p><strong>1. Greenfield or brownfield?</strong> Brownfield work tilts toward OpenSpec as the primary framework, with selective BMAD involvement for components being rebuilt from scratch. Greenfield opens up the full range: BMAD for complex new platforms, Spec Kit for teams that need cross-agent portability, GSD for Claude Code environments where execution rigour is the priority.</p>
+
+    <p><strong>2. What is your team size and structure?</strong> A solo developer or a small pair working at speed is better served by GSD or OpenSpec — both add structure without adding ceremony. A scaling team of four to 15, especially one that has recently hired its first product manager or architect, benefits from Spec Kit's standardised workflow that functions regardless of which AI tool each person uses. Multi-team enterprise environments with explicit role separation are where BMAD's agent personas — Business Analyst, Architect, QA Engineer — map onto real organisational structure rather than simulating one.</p>
+
+    <p><strong>3. What are your compliance requirements?</strong> Two distinct scenarios produce different answers. For internal governance — architecture review boards, change approval workflows, teams where a technical change must be documented before implementation — OpenSpec's delta specification approach is the right fit; it treats the change record as the primary output. For externally mandated compliance (SOC 2, HIPAA, EU AI Act, or the Colorado AI Act enforceable from June 2026), BMAD is the stronger choice. Its comprehensive agent-generated documentation — requirements, architecture decisions, test strategy, release notes — provides the kind of structured evidence trail that external auditors expect. OpenSpec documents what changed; BMAD documents why every decision was made and against what requirements.</p>
+
+    <p><strong>4. What is your API cost tolerance?</strong> BMAD's benchmark costs of $800 to more than $2,000 per developer per month make it a non-starter for many teams. If that range is beyond what the project budget supports, BMAD is off the table regardless of its other merits. OpenSpec and GSD carry the lowest API overhead — they add structure without increasing model call frequency. Spec Kit sits in the middle. Run the numbers before choosing, not after.</p>
+
+    <p><strong>5. How tied are you to a specific IDE or cloud provider?</strong> If your engineering environment is consolidating on AWS, Kiro deserves a serious look — it embeds the SDD methodology directly into the IDE, which removes adoption friction at the cost of flexibility. If teams use multiple AI coding tools, Spec Kit's 29 named integrations or BMAD V6's cross-platform compatibility with Claude Code, Cursor, Codex, Copilot, and Windsurf are the practical options. Pure Claude Code environments justify GSD. CLI-agnostic teams have the most freedom and should choose on the other four questions.</p>
+
+    <hr/>
+
+    <h2>How Organisations Move Between Frameworks</h2>
+
+    <p>Because spec-driven frameworks operate as methodologies rather than deeply coupled platforms, migration between them is rarely as disruptive as it sounds. The artefacts — requirements documents, specifications, task lists — are standard Markdown and JSON, and they port across tools without conversion. Several migration patterns recur consistently.</p>
+
+    <ul>
+      <li><strong>OpenSpec to BMAD.</strong> As a brownfield modernisation succeeds and the team begins building new features on top of the refactored system, OpenSpec's delta-only model can feel thin for greenfield work. The archived spec carries forward as input to the BMAD Architect agent's initial document — the transition is a promotion, not a restart.</li>
+      <li><strong>Spec Kit to BMAD.</strong> Common when a startup raises a Series A, hires its first dedicated product manager or solutions architect, and needs explicit role separation in the AI workflow. The Spec Kit specification format maps cleanly onto BMAD's master agent prompts.</li>
+      <li><strong>BMAD to GSD.</strong> When a complex BMAD project ships and the team enters maintenance mode, GSD's leaner execution loop is better suited to the bug-fix and small-feature cadence that follows. Teams should not keep running BMAD's full agent workflow on work that does not warrant it.</li>
+      <li><strong>Any framework to Kiro.</strong> If the engineering stack is consolidating on AWS, Kiro embeds the methodology in the IDE rather than requiring it to be set up separately. The trade-off is flexibility — Kiro is AWS-native and not designed for multi-cloud or multi-IDE environments.</li>
+    </ul>
 
     <hr/>
 
