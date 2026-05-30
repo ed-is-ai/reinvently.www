@@ -74,7 +74,7 @@
 
     <h2>When to Use Which Framework</h2>
 
-    <p>The variables that matter most when choosing a spec-driven framework are not feature lists. They are team size, project type, and compliance requirements. The matrix below — drawn from <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 practitioner analysis</a> — maps the most common scenarios to a recommended starting point.</p>
+    <p>The variables that matter most when choosing a spec-driven framework are not feature lists. They are team size, project type, and compliance requirements. The matrix below — drawn from Reenbit's 2026 practitioner analysis — maps the most common scenarios to a recommended starting point.</p>
 
     <div style="overflow-x:auto;margin:24px 0 32px;">
       <table style="width:100%;border-collapse:collapse;font-size:14px;">
@@ -138,7 +138,7 @@
 
     <h3>GSD: Maximum execution rigour for Claude Code environments</h3>
 
-    <p>GSD — Get Stuff Done — is a specification and execution framework built entirely on Claude Code's native capabilities: slash commands, CLAUDE.md files, hooks, and agent spawning. Its core argument is that AI output quality degrades as context windows fill. GSD's own documentation describes the pattern: at 50 percent context, Claude starts cutting corners; at 70 percent, hallucinations and forgotten requirements become common. The solution is aggressive atomicity.</p>
+    <p><a href="https://github.com/gsd-build/get-shit-done" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GSD</a> — Get Stuff Done — is a specification and execution framework built entirely on Claude Code's native capabilities: slash commands, CLAUDE.md files, hooks, and agent spawning. Its core argument is that AI output quality degrades as context windows fill. GSD's own documentation describes the pattern: at 50 percent context, Claude starts cutting corners; at 70 percent, hallucinations and forgotten requirements become common. The solution is aggressive atomicity.</p>
 
     <p>Each plan is broken into tasks sized to occupy roughly 50 percent of a fresh context window. GSD then spawns isolated subagents for each task, so task 50 in a project gets the same model quality as task one. The workflow spans six commands: project initialisation, phase discussion, phase planning, parallel execution, verification, and milestone archiving. Each produces structured artefacts — PLAN.md, SPEC.md, VERIFY.md — that accumulate into a coherent record of the project.</p>
 
@@ -152,7 +152,7 @@
 
     <p>The appeal for enterprise is that BMAD mirrors organisational structures that large development teams already use. Projects managed through it produce the full set of artefacts one would expect from a staffed programme: requirements documents, architecture specifications, test strategies, and release notes — all generated and reviewed through structured agent interactions. For organisations that need a development process AI can participate in rather than replace, BMAD provides the scaffolding.</p>
 
-    <p>The cost is real and measurable. <a href="https://reenbit.com/bmad-vs-spec-kit-vs-openspec-choosing-your-spec-driven-ai-framework/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reenbit's 2026 benchmark testing</a> found BMAD averages roughly 31,600 tokens per workflow run, with large projects consuming 230 million tokens per week. That translates to monthly API costs of $800 to more than $2,000 per developer — with peak observed spend of $3,200 on Claude Opus. The same benchmarks show the overhead is not just financial: a comparable CRM dashboard build takes 12 minutes under OpenSpec, 90 minutes under Spec Kit, and 5.5 hours under BMAD. The thoroughness that makes BMAD valuable on complex greenfield builds is the same property that makes it expensive on anything smaller.</p>
+    <p>The cost is real and measurable. Reenbit's 2026 benchmark testing found BMAD averages roughly 31,600 tokens per workflow run, with large projects consuming 230 million tokens per week. That translates to monthly API costs of $800 to more than $2,000 per developer — with peak observed spend of $3,200 on Claude Opus. The same benchmarks show the overhead is not just financial: a comparable CRM dashboard build takes 12 minutes under OpenSpec, 90 minutes under Spec Kit, and 5.5 hours under BMAD. The thoroughness that makes BMAD valuable on complex greenfield builds is the same property that makes it expensive on anything smaller.</p>
 
     <p>BMAD is best suited to new product development where the full lifecycle overhead pays for itself in structured output and where the development team is experienced enough to maintain the workflow under pressure.</p>
 
