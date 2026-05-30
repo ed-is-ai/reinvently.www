@@ -219,20 +219,6 @@
             <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">BMAD</td>
           </tr>
           <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">AWS-only environment, single IDE policy</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Greenfield</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Any</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">Kiro *</td>
-          </tr>
-          <tr>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);line-height:1.5;">Custom multi-agent pipeline</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Internal platform team</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">Tooling build</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(150,150,150);">High</td>
-            <td style="padding:10px 14px;border-bottom:1px solid #1b1b1b;color:rgb(226,226,226);font-weight:500;">Hermes *</td>
-          </tr>
-          <tr>
             <td style="padding:10px 14px;color:rgb(226,226,226);line-height:1.5;">Solo developer, fast iteration</td>
             <td style="padding:10px 14px;color:rgb(150,150,150);">1</td>
             <td style="padding:10px 14px;color:rgb(150,150,150);">Anything small</td>
@@ -242,8 +228,6 @@
         </tbody>
       </table>
     </div>
-
-    <p style="font-size:13px;color:rgb(150,150,150);line-height:1.6;">* Kiro (AWS's embedded SDD IDE) and Hermes (a structured agent communication protocol for multi-agent handoffs) fall outside the four frameworks covered in depth in this post.</p>
 
     <hr/>
 
@@ -259,7 +243,7 @@
 
     <p><strong>4. What is your API cost tolerance?</strong> BMAD's benchmark costs of $800 to more than $2,000 per developer per month make it a non-starter for many teams. If that range is beyond what the project budget supports, BMAD is off the table regardless of its other merits. OpenSpec and GSD carry the lowest API overhead — they add structure without increasing model call frequency. Spec Kit sits in the middle. Run the numbers before choosing, not after.</p>
 
-    <p><strong>5. How tied are you to a specific IDE or cloud provider?</strong> If your engineering environment is consolidating on AWS, Kiro deserves a serious look — it embeds the SDD methodology directly into the IDE, which removes adoption friction at the cost of flexibility. If teams use multiple AI coding tools, Spec Kit's 29 named integrations or BMAD V6's cross-platform compatibility with Claude Code, Cursor, Codex, Copilot, and Windsurf are the practical options. Pure Claude Code environments justify GSD. CLI-agnostic teams have the most freedom and should choose on the other four questions.</p>
+    <p><strong>5. How tied are you to a specific AI coding tool?</strong> GSD is the only framework in this comparison with a hard tool dependency — it requires Claude Code. If your teams use multiple AI coding assistants, or if that is likely to change, Spec Kit's 29 named integrations or BMAD V6's cross-platform compatibility with Claude Code, Cursor, Codex, Copilot, and Windsurf are the practical options. OpenSpec and the other non-GSD frameworks are CLI-agnostic and impose no tooling constraint.</p>
 
     <hr/>
 
