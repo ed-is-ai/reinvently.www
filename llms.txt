@@ -10,6 +10,7 @@ AI strategy and roadmapping, AI solution architecture, web development, AI train
 
 ## Blog
 
+- [GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework](https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/) — 30 May 2026
 - [Claude's Memory and Dream Features Are a Breakthrough That Will Accelerate Your AI Adoption Programme](https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/) — 21 May 2026
 - [GPT-5.5 and the Age of Autonomous Task Completion](https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/) — 21 May 2026
 - [UK AI Regulation Tightens: What the ICO Guidance and Parliament's Inquiry Mean for Employers](https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/) — 15 May 2026
