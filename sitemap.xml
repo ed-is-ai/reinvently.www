@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -117,5 +117,11 @@
     <lastmod>2025-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/tools/ai-cost-calculator/</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
