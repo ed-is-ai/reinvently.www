@@ -65,11 +65,14 @@ interface UserTypeProfile {
   opusPct: number;
 }
 
+// Calibrated against Cursor Teams rates so each profile hits the described monthly spend tier.
+// Daily Tab: ~$17.50/mo · Limited Agent: ~$23.60/mo (often within $20) ·
+// Daily Agent: ~$83.70/mo · Power user: ~$201.80/mo
 const USER_TYPES: UserTypeProfile[] = [
-  { id: "tab",     label: "Daily Tab users",      desc: "Always stay within $20",                    tasksPerDay: 5,  opusPct: 0.00 },
-  { id: "limited", label: "Limited Agent users",  desc: "Often stay within the included $20",        tasksPerDay: 10, opusPct: 0.03 },
-  { id: "daily",   label: "Daily Agent users",    desc: "Typically $60–$100/mo total usage",         tasksPerDay: 25, opusPct: 0.08 },
-  { id: "power",   label: "Power users",          desc: "Multiple agents / automation · $200+/mo",   tasksPerDay: 50, opusPct: 0.15 },
+  { id: "tab",     label: "Daily Tab users",     desc: "Always stay within $20",               tasksPerDay: 5,  opusPct: 0.00 },
+  { id: "limited", label: "Limited Agent users", desc: "Often stay within the included $20",   tasksPerDay: 5,  opusPct: 0.03 },
+  { id: "daily",   label: "Daily Agent users",   desc: "Typically $60–$100/mo total usage",    tasksPerDay: 10, opusPct: 0.08 },
+  { id: "power",   label: "Power users",         desc: "Multiple agents / automation · $200+", tasksPerDay: 16, opusPct: 0.15 },
 ];
 
 function deriveFromUserCounts(counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
@@ -158,6 +161,39 @@ const TOOLS: ToolDef[] = [
 ];
 
 // ── Calculation ───────────────────────────────────────────────────────────────
+
+interface UserTypeCost {
+  label: string;
+  count: number;
+  tokenCosts: number[]; // one entry per tool
+}
+
+interface BreakdownResult {
+  userTypeCosts: UserTypeCost[];
+  toolTotals: ToolResult[];
+}
+
+function calcByUserType(counts: number[], codebaseLines: number): BreakdownResult {
+  const userTypeCosts: UserTypeCost[] = USER_TYPES.map((ut, i) => ({
+    label: ut.label,
+    count: counts[i],
+    tokenCosts: TOOLS.map(tool =>
+      counts[i] === 0 ? 0 :
+      calcTool(tool, { engineers: counts[i], tasksPerDay: ut.tasksPerDay,
+                       workingDays: 22, opusPct: ut.opusPct, codebaseLines }).tokenTotal
+    ),
+  }));
+
+  const totalEngineers = counts.reduce((s, c) => s + c, 0);
+  const toolTotals: ToolResult[] = TOOLS.map((tool, ti) => {
+    const tokenTotal = userTypeCosts.reduce((sum, utc) => sum + utc.tokenCosts[ti], 0);
+    const baseCost   = tool.baseCost(totalEngineers);
+    const credits    = tool.includedCredits(totalEngineers);
+    return { tiers: [], tokenTotal, baseCost, credits, total: baseCost - credits + tokenTotal };
+  });
+
+  return { userTypeCosts, toolTotals };
+}
 
 // Input tokens scale with codebase size (log, anchored at 1M lines = 1.0×)
 function codebaseMultiplier(lines: number): number {
@@ -324,10 +360,7 @@ export function initCalculator(containerId: string): void {
       <p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#969696;margin:0 0 10px;">Team composition</p>
       ${USER_TYPES.map((ut, i) => `
         <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #222;">
-          <div>
-            <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
-            <br><span style="color:#555;font-size:11px;">${ut.desc}</span>
-          </div>
+          <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
           <div style="display:flex;align-items:center;gap:10px;">
             <button id="cc-${ut.id}-dec" style="background:#222;border:1px solid #333;color:#969696;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;border-radius:3px;">−</button>
             <span id="cc-${ut.id}-val" style="color:#e2e2e2;font-size:16px;font-weight:600;min-width:20px;text-align:center;">${DEFAULT_COUNTS[i]}</span>
@@ -338,9 +371,8 @@ export function initCalculator(containerId: string): void {
         ${initDerived.engineers} engineers &nbsp;·&nbsp; ${initDerived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(initDerived.opusPct)} Opus
       </p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+    <div style="margin-bottom:24px;">
       ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: CB_DEFAULT_POS, format: () => fmtLines(CB_DEFAULT_LINES), note: "Larger codebases require agents to read more files per task" })}
-      ${makeSlider({ id: "cc-opus", label: "Opus planning tasks", min: 0, max: 0.30, step: 0.01, value: initDerived.opusPct, format: pct, note: "Derived from team mix — adjust to override" })}
     </div>
 
     <div style="border-top:1px solid #2a2a2a;padding-top:24px;margin-bottom:20px;">
@@ -391,14 +423,16 @@ export function initCalculator(containerId: string): void {
     assumptionsEl.innerHTML = html;
   }
 
-  function buildResultsTable(results: ToolResult[], minTotal: number): string {
+  function buildResultsTable({ userTypeCosts, toolTotals }: BreakdownResult): string {
+    const minTotal = Math.min(...toolTotals.map(r => r.total));
+
     let html = `<div style="overflow-x:auto;margin-bottom:16px;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead><tr style="border-bottom:2px solid #2a2a2a;">
-          <th style="${thStyle("left")}">Type of task</th>`;
+          <th style="${thStyle("left")}">User type</th>`;
 
     TOOLS.forEach((tool, i) => {
-      const isWinner = results[i].total === minTotal;
+      const isWinner = toolTotals[i].total === minTotal;
       html += `<th style="${thStyle("right")}">
         <a href="${tool.pricingUrl}" target="_blank" rel="noopener" style="color:${tool.color};font-weight:600;text-decoration:none;border-bottom:1px solid ${tool.color}33;">${tool.name}</a>
         ${isWinner ? ' <span style="color:#f0ad4e;font-size:10px;">★</span>' : ''}
@@ -406,15 +440,17 @@ export function initCalculator(containerId: string): void {
     });
     html += `</tr></thead><tbody>`;
 
-    TIERS.forEach((tier, ti) => {
-      const bg = ti % 2 === 0 ? "#1e1e1e" : "#242424";
+    userTypeCosts.forEach((utc, i) => {
+      if (utc.count === 0) return;
+      const bg = i % 2 === 0 ? "#1e1e1e" : "#242424";
+      const ut = USER_TYPES[i];
       html += `<tr style="border-bottom:1px solid #2a2a2a;">
         <td style="${tdStyle("left", bg)}">
-          <span style="color:#e2e2e2;">${tier.label}</span>
-          <br><span style="color:#444;font-size:11px;">${tier.description} · ${TOOLS.map(t => t.rateLabels[ti]).join(" / ")}</span>
+          <span style="color:#e2e2e2;">${utc.count}× ${utc.label}</span>
+          <br><span style="color:#444;font-size:11px;">${ut.tasksPerDay} tasks/day · ${pct(ut.opusPct)} Opus</span>
         </td>`;
-      results.forEach(r => {
-        html += `<td style="${tdStyle("right", bg)}">${fmt(r.tiers[ti].tokenCost)}</td>`;
+      utc.tokenCosts.forEach(cost => {
+        html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`;
       });
       html += `</tr>`;
     });
@@ -422,11 +458,11 @@ export function initCalculator(containerId: string): void {
     const subtotalBg = "#1a1a1a";
     html += `<tr style="border-top:1px solid #444;">
       <td style="${tdStyle("left", subtotalBg)};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Token total</td>`;
-    results.forEach(r => { html += `<td style="${tdStyle("right", subtotalBg)};color:#555;">${fmt(r.tokenTotal)}</td>`; });
+    toolTotals.forEach(r => { html += `<td style="${tdStyle("right", subtotalBg)};color:#555;">${fmt(r.tokenTotal)}</td>`; });
     html += `</tr>`;
 
     html += `<tr><td style="${tdStyle("left", "#1e1e1e")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Plan / credits</td>`;
-    results.forEach((r, i) => {
+    toolTotals.forEach(r => {
       const platformFee = r.baseCost - r.credits;
       const note = platformFee > 0 ? `+${fmt(platformFee)} platform` : r.credits > 0 ? `−${fmt(r.credits)} credits` : "API billing only";
       html += `<td style="${tdStyle("right", "#1e1e1e")};color:#555;font-size:11px;">${note}</td>`;
@@ -434,7 +470,7 @@ export function initCalculator(containerId: string): void {
     html += `</tr>`;
 
     html += `<tr><td style="${tdStyle("left", "#111")};font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;">Total / month</td>`;
-    results.forEach((r, i) => {
+    toolTotals.forEach((r, i) => {
       const isWinner = r.total === minTotal;
       const c = isWinner ? "#f0ad4e" : TOOLS[i].color;
       html += `<td style="${tdStyle("right", "#111")};font-weight:700;font-size:16px;color:${c};">${fmt(r.total)}</td>`;
@@ -446,27 +482,20 @@ export function initCalculator(containerId: string): void {
   }
 
   function update(): void {
-    const results  = TOOLS.map(tool => calcTool(tool, inputs));
-    const minTotal = Math.min(...results.map(r => r.total));
-    renderBarChart(results, chartEl);
-    resultsEl.innerHTML = buildResultsTable(results, minTotal);
+    const breakdown = calcByUserType(userCounts, inputs.codebaseLines);
+    renderBarChart(breakdown.toolTotals, chartEl);
+    resultsEl.innerHTML = buildResultsTable(breakdown);
     renderAssumptions();
   }
 
   // ── Wire up user type +/− buttons ────────────────────────────────────────
   const summaryEl = root.querySelector<HTMLElement>("#cc-team-summary")!;
-  const opusSlider = root.querySelector<HTMLInputElement>("#cc-opus")!;
-  const opusValEl  = root.querySelector<HTMLElement>("#cc-opus-val")!;
 
   function syncFromCounts(): void {
     const derived = deriveFromUserCounts(userCounts);
     inputs.engineers   = derived.engineers;
     inputs.tasksPerDay = derived.tasksPerDay;
-    // Only update Opus from user type mix if it hasn't been manually overridden
-    // (we always sync it — user can re-adjust via slider)
     inputs.opusPct     = derived.opusPct;
-    opusSlider.value   = String(derived.opusPct);
-    opusValEl.textContent = pct(derived.opusPct);
     summaryEl.innerHTML =
       `${derived.engineers} engineer${derived.engineers !== 1 ? "s" : ""} &nbsp;·&nbsp; ${derived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(derived.opusPct)} Opus`;
     USER_TYPES.forEach((ut, i) => {
@@ -484,10 +513,8 @@ export function initCalculator(containerId: string): void {
     });
   });
 
-  // ── Wire up standard sliders ──────────────────────────────────────────────
-  const sliders: Array<{ id: string; key: keyof CalcInputs }> = [
-    { id: "cc-opus", key: "opusPct" },
-  ];
+  // ── Wire up standard sliders (codebase only — Opus is derived from user types) ──
+  const sliders: Array<{ id: string; key: keyof CalcInputs }> = [];
 
   sliders.forEach(({ id, key }) => {
     const slider = root.querySelector<HTMLInputElement>(`#${id}`)!;
