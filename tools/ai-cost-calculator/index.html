@@ -114,14 +114,14 @@
 
     <h2>How this model works</h2>
 
-    <p>The estimator gives a quick approximation of what your tooling budget should be. This has been benchmarked against real-world usage patterns, but mileage will vary.  Disclaimer: These are estimates based on publicly available pricing information, and individual codebases/ developer usage patterns will vary.</p>
+    <p>The estimator gives a quick approximation of what your tooling budget should be. This has been benchmarked against real-world usage patterns, but mileage will vary. These are estimates based on publicly available pricing information; individual codebase and developer usage patterns will vary.</p>
 
     <ul>
       <li><strong>Small bug fix</strong> (15k input / 1k output tokens) — quick edits, single-file fixes. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
       <li><strong>Minor change</strong> (35k / 3k) — multi-file edits, small refactors. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
       <li><strong>New feature</strong> (60k / 8k) — full feature implementation. All three use Sonnet (or Max Sonnet for Cursor).</li>
       <li><strong>Architectural refactor</strong> (100k / 12k) — cross-cutting changes, system-level work. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Planning </strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
+      <li><strong>Architecture (Opus)</strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
     </ul>
 
     <p>Input token counts are scaled by codebase size. The baseline values above correspond to a 1M-line codebase — roughly an agentic session reading 20–40 files per task. Generally, input tokens scale up and down with the codebase size, since we need to read more to get sufficient context for a safe change. Output tokens do not scale with codebase size.</p>
