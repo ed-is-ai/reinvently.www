@@ -55,6 +55,31 @@ interface ToolResult {
   total: number;
 }
 
+// ── User type profiles ───────────────────────────────────────────────────────
+
+interface UserTypeProfile {
+  id: string;
+  label: string;
+  desc: string;
+  tasksPerDay: number;
+  opusPct: number;
+}
+
+const USER_TYPES: UserTypeProfile[] = [
+  { id: "tab",     label: "Daily Tab users",      desc: "Always stay within $20",                    tasksPerDay: 5,  opusPct: 0.00 },
+  { id: "limited", label: "Limited Agent users",  desc: "Often stay within the included $20",        tasksPerDay: 10, opusPct: 0.03 },
+  { id: "daily",   label: "Daily Agent users",    desc: "Typically $60–$100/mo total usage",         tasksPerDay: 25, opusPct: 0.08 },
+  { id: "power",   label: "Power users",          desc: "Multiple agents / automation · $200+/mo",   tasksPerDay: 50, opusPct: 0.15 },
+];
+
+function deriveFromUserCounts(counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
+  const total = counts.reduce((s, c) => s + c, 0);
+  if (total === 0) return { engineers: 0, tasksPerDay: 0, opusPct: 0 };
+  const wTasks = USER_TYPES.reduce((s, t, i) => s + t.tasksPerDay * counts[i], 0) / total;
+  const wOpus  = USER_TYPES.reduce((s, t, i) => s + t.opusPct  * counts[i], 0) / total;
+  return { engineers: total, tasksPerDay: Math.round(wTasks), opusPct: +wOpus.toFixed(3) };
+}
+
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 // Log-scale slider constants for codebase size (10k–100M lines)
@@ -276,11 +301,16 @@ export function initCalculator(containerId: string): void {
   const root = document.getElementById(containerId);
   if (!root) return;
 
+  // Default user type counts: tab=2, limited=4, daily=3, power=1 → 10 engineers
+  const DEFAULT_COUNTS = [2, 4, 3, 1];
+  let userCounts = [...DEFAULT_COUNTS];
+
+  const initDerived = deriveFromUserCounts(DEFAULT_COUNTS);
   const defaultInputs: CalcInputs = {
-    engineers:     10,
-    tasksPerDay:   20,
+    engineers:     initDerived.engineers,
+    tasksPerDay:   initDerived.tasksPerDay,
     workingDays:   22,
-    opusPct:       0.10,
+    opusPct:       initDerived.opusPct,
     codebaseLines: CB_DEFAULT_LINES,
   };
 
@@ -290,13 +320,27 @@ export function initCalculator(containerId: string): void {
     <h2 style="font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:22px;color:#e2e2e2;margin:0 0 6px;">AI Coding Tool Cost Estimator</h2>
     <p style="color:#969696;font-size:14px;margin:0 0 28px;">Real-time cost comparison across GitHub Copilot, Claude Code, and Cursor. Adjust the inputs to match your team's usage pattern.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;">
-      ${makeSlider({ id: "cc-engineers", label: "Engineers", min: 1, max: 50, step: 1, value: defaultInputs.engineers, format: v => String(v) })}
-      ${makeSlider({ id: "cc-tasks", label: "Tasks / engineer / day", min: 5, max: 50, step: 1, value: defaultInputs.tasksPerDay, format: v => String(v) })}
+    <div style="margin-bottom:16px;">
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#969696;margin:0 0 10px;">Team composition</p>
+      ${USER_TYPES.map((ut, i) => `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #222;">
+          <div>
+            <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
+            <br><span style="color:#555;font-size:11px;">${ut.desc}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button id="cc-${ut.id}-dec" style="background:#222;border:1px solid #333;color:#969696;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;border-radius:3px;">−</button>
+            <span id="cc-${ut.id}-val" style="color:#e2e2e2;font-size:16px;font-weight:600;min-width:20px;text-align:center;">${DEFAULT_COUNTS[i]}</span>
+            <button id="cc-${ut.id}-inc" style="background:#222;border:1px solid #333;color:#969696;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;border-radius:3px;">+</button>
+          </div>
+        </div>`).join("")}
+      <p id="cc-team-summary" style="color:#555;font-size:11px;margin:10px 0 0;">
+        ${initDerived.engineers} engineers &nbsp;·&nbsp; ${initDerived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(initDerived.opusPct)} Opus
+      </p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
       ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: CB_DEFAULT_POS, format: () => fmtLines(CB_DEFAULT_LINES), note: "Larger codebases require agents to read more files per task" })}
-      ${makeSlider({ id: "cc-opus", label: "Opus planning tasks", min: 0, max: 0.30, step: 0.01, value: defaultInputs.opusPct, format: pct, note: "Share of tasks using Opus for design / architecture" })}
+      ${makeSlider({ id: "cc-opus", label: "Opus planning tasks", min: 0, max: 0.30, step: 0.01, value: initDerived.opusPct, format: pct, note: "Derived from team mix — adjust to override" })}
     </div>
 
     <div style="border-top:1px solid #2a2a2a;padding-top:24px;margin-bottom:20px;">
@@ -311,7 +355,7 @@ export function initCalculator(containerId: string): void {
     </details>
 
     <p style="margin:20px 0 0;font-size:11px;color:#444;">
-      Estimates only. Task mix: 35% small bug fixes / 30% minor changes / 20% new features / 15% architectural refactors + Opus planning %. Context per task: 15k–120k input tokens scaled by codebase size. Working days: ${defaultInputs.workingDays}/month.
+      Estimates only. User type counts drive engineers and average tasks/day. Codebase size and Opus % can be adjusted independently. Task mix: 35% small bug fixes / 30% minor changes / 20% new features / 15% architectural refactors. Working days: ${defaultInputs.workingDays}/month.
     </p>
   `;
 
@@ -409,11 +453,40 @@ export function initCalculator(containerId: string): void {
     renderAssumptions();
   }
 
+  // ── Wire up user type +/− buttons ────────────────────────────────────────
+  const summaryEl = root.querySelector<HTMLElement>("#cc-team-summary")!;
+  const opusSlider = root.querySelector<HTMLInputElement>("#cc-opus")!;
+  const opusValEl  = root.querySelector<HTMLElement>("#cc-opus-val")!;
+
+  function syncFromCounts(): void {
+    const derived = deriveFromUserCounts(userCounts);
+    inputs.engineers   = derived.engineers;
+    inputs.tasksPerDay = derived.tasksPerDay;
+    // Only update Opus from user type mix if it hasn't been manually overridden
+    // (we always sync it — user can re-adjust via slider)
+    inputs.opusPct     = derived.opusPct;
+    opusSlider.value   = String(derived.opusPct);
+    opusValEl.textContent = pct(derived.opusPct);
+    summaryEl.innerHTML =
+      `${derived.engineers} engineer${derived.engineers !== 1 ? "s" : ""} &nbsp;·&nbsp; ${derived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(derived.opusPct)} Opus`;
+    USER_TYPES.forEach((ut, i) => {
+      root.querySelector<HTMLElement>(`#cc-${ut.id}-val`)!.textContent = String(userCounts[i]);
+    });
+    update();
+  }
+
+  USER_TYPES.forEach((ut, i) => {
+    root!.querySelector(`#cc-${ut.id}-dec`)!.addEventListener("click", () => {
+      if (userCounts[i] > 0) { userCounts[i]--; syncFromCounts(); }
+    });
+    root!.querySelector(`#cc-${ut.id}-inc`)!.addEventListener("click", () => {
+      if (userCounts[i] < 20) { userCounts[i]++; syncFromCounts(); }
+    });
+  });
+
   // ── Wire up standard sliders ──────────────────────────────────────────────
   const sliders: Array<{ id: string; key: keyof CalcInputs }> = [
-    { id: "cc-engineers", key: "engineers"   },
-    { id: "cc-tasks",     key: "tasksPerDay" },
-    { id: "cc-opus",      key: "opusPct"     },
+    { id: "cc-opus", key: "opusPct" },
   ];
 
   sliders.forEach(({ id, key }) => {
