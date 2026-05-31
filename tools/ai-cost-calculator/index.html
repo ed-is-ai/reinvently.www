@@ -6,6 +6,16 @@
   <title>AI Coding Tool Cost Estimator — Reinvently</title>
   <meta name="description" content="Interactive cost estimator for GitHub Copilot, Claude Code, and Cursor. Model token-based billing, Opus planning costs, and Claude Code prompt caching to compare real monthly costs for your team."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
+  <style>
+    .tool-full-width {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .tool-full-width { padding: 24px 20px; }
+    }
+  </style>
   <link rel="canonical" href="https://reinvently.co.uk/tools/ai-cost-calculator/"/>
   <meta property="og:title" content="AI Coding Tool Cost Estimator — Copilot vs Claude Code vs Cursor"/>
   <meta property="og:description" content="Adjust team size, daily task volume, and Opus usage to compare real monthly costs for GitHub Copilot, Claude Code, and Cursor — based on June 2026 token pricing models."/>
@@ -94,15 +104,15 @@
 <header class="article-header">
   <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding &nbsp;·&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
   <h1>AI Coding Tool Cost Estimator</h1>
-  <p class="summary">Everyone's a bit worried about their token usage these days, as the all-you-can-eat allowances become less generous.  This tool helps to model the cost based on your team size, user skills, daily task volume, and Opus usage to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
+  <p class="summary">Everyone's a bit worried about their token usage these days, as the all-you-can-eat allowances become less generous.  This tool helps to model the cost based on your team size, types of users, to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
 </header>
+
+<div class="tool-full-width">
+  <div id="calculator"></div>
+</div>
 
 <main class="container">
   <article class="article-body">
-
-    <div id="calculator"></div>
-
-    <hr/>
 
     <h2>How this model works</h2>
 
@@ -120,12 +130,13 @@
 
     <p>These are estimates. Real costs depend on actual context sizes, session lengths, model routing decisions, and whether your team's usage stays within included credit pools. The model is intentionally transparent so you can adjust assumptions to match your team.</p>
 
-    <p>For a full discussion of other factors affecting choice of tool <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
+    <p>Cost should not be the only steer on tool choice.  For a full discussion of other factors affecting choice of tool <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
 
     <a class="back-link" href="/blog/">&#8592; Blog</a>
 
   </article>
 </main>
+
 
 <footer class="footer">
   <p>&copy; 2026 Reinvently. All rights reserved.</p>
