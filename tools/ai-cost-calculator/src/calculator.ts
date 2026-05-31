@@ -444,9 +444,7 @@ function renderCalculator(containerId: string, cfg: Config): void {
 
     html += `<tr><td style="${tdStyle("left", "#111")};font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;">Total / month</td>`;
     toolTotals.forEach((r, i) => {
-      const isWinner = r.total === minTotal;
-      const c = isWinner ? "#f0ad4e" : cfg.tools[i].color;
-      html += `<td style="${tdStyle("right", "#111")};font-weight:700;font-size:16px;color:${c};">${fmt(r.total)}</td>`;
+      html += `<td style="${tdStyle("right", "#111")};font-weight:700;font-size:16px;color:${cfg.tools[i].color};">${fmt(r.total)}</td>`;
     });
     html += `</tr></tbody></table></div>`;
 
