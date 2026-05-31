@@ -35,9 +35,10 @@ interface CalcInputs {
   tasksPerDay: number;
   workingDays: number;
   opusPct: number;        // 0..1
-  cacheHitRate: number;   // 0..1 — Claude Code only
   codebaseLines: number;  // 10_000 to 100_000_000
 }
+
+const CACHE_HIT_RATE = 0.40; // Claude Code prompt cache hit rate — fixed assumption
 
 interface TierCost {
   tasks: number;
@@ -156,7 +157,7 @@ function calcTierSplit(inputs: CalcInputs): number[] {
 }
 
 function calcTool(tool: ToolDef, inputs: CalcInputs): ToolResult {
-  const { engineers, tasksPerDay, workingDays, cacheHitRate, codebaseLines } = inputs;
+  const { engineers, tasksPerDay, workingDays, codebaseLines } = inputs;
   const totalTasks = engineers * tasksPerDay * workingDays;
   const split = calcTierSplit(inputs);
   const cbMult = codebaseMultiplier(codebaseLines);
@@ -171,8 +172,8 @@ function calcTool(tool: ToolDef, inputs: CalcInputs): ToolResult {
     let tokenCost: number;
 
     if (rate.cachedInput !== undefined && tool.id === "cc" && i > 0) {
-      const cachedIn = inputM * cacheHitRate * rate.cachedInput;
-      const freshIn  = inputM * (1 - cacheHitRate) * rate.input;
+      const cachedIn = inputM * CACHE_HIT_RATE * rate.cachedInput;
+      const freshIn  = inputM * (1 - CACHE_HIT_RATE) * rate.input;
       tokenCost = cachedIn + freshIn + outputM * rate.output;
     } else {
       tokenCost = inputM * rate.input + outputM * rate.output;
@@ -280,7 +281,6 @@ export function initCalculator(containerId: string): void {
     tasksPerDay:   20,
     workingDays:   22,
     opusPct:       0.10,
-    cacheHitRate:  0.40,
     codebaseLines: CB_DEFAULT_LINES,
   };
 
@@ -294,10 +294,9 @@ export function initCalculator(containerId: string): void {
       ${makeSlider({ id: "cc-engineers", label: "Engineers", min: 1, max: 50, step: 1, value: defaultInputs.engineers, format: v => String(v) })}
       ${makeSlider({ id: "cc-tasks", label: "Tasks / engineer / day", min: 5, max: 50, step: 1, value: defaultInputs.tasksPerDay, format: v => String(v) })}
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
       ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: CB_DEFAULT_POS, format: () => fmtLines(CB_DEFAULT_LINES), note: "Larger codebases require agents to read more files per task" })}
       ${makeSlider({ id: "cc-opus", label: "Opus planning tasks", min: 0, max: 0.30, step: 0.01, value: defaultInputs.opusPct, format: pct, note: "Share of tasks using Opus for design / architecture" })}
-      ${makeSlider({ id: "cc-cache", label: "Claude Code cache hit rate", min: 0, max: 0.80, step: 0.05, value: defaultInputs.cacheHitRate, format: pct, note: "Repeated file reads within a session billed at ~10% of standard rate" })}
     </div>
 
     <div style="border-top:1px solid #2a2a2a;padding-top:24px;margin-bottom:20px;">
@@ -412,10 +411,9 @@ export function initCalculator(containerId: string): void {
 
   // ── Wire up standard sliders ──────────────────────────────────────────────
   const sliders: Array<{ id: string; key: keyof CalcInputs }> = [
-    { id: "cc-engineers", key: "engineers"    },
-    { id: "cc-tasks",     key: "tasksPerDay"  },
-    { id: "cc-opus",      key: "opusPct"      },
-    { id: "cc-cache",     key: "cacheHitRate" },
+    { id: "cc-engineers", key: "engineers"   },
+    { id: "cc-tasks",     key: "tasksPerDay" },
+    { id: "cc-opus",      key: "opusPct"     },
   ];
 
   sliders.forEach(({ id, key }) => {

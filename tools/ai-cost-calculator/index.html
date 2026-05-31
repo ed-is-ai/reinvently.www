@@ -53,7 +53,7 @@
       },
       {
         "@type": "Question",
-        "name": "Why does Copilot show lower costs when Opus planning is high?",
+        "name": "How does agentic tool cost scale?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "GitHub Copilot currently offers Claude Opus at $5 per million input tokens, compared to $15 per million when accessing Opus directly via Anthropic's API or via Cursor. This is a Microsoft preferential rate at time of writing. Teams that use a frontier model for a significant share of planning and architecture work will see Copilot's total cost fall well below Claude Code or Cursor as a result."
@@ -61,18 +61,26 @@
       },
       {
         "@type": "Question",
-        "name": "What is the Claude Code prompt caching benefit?",
+        "name": "How much will Cursor cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Claude Code uses prompt caching aggressively within a session. Repeated reads of the same files are billed at approximately 10% of the standard input token rate — $0.30 per million tokens for Sonnet, versus $3.00 per million uncached. The cache hit rate slider defaults to 40%, which reflects typical agentic session behaviour. Higher values reduce Claude Code's estimated cost significantly."
+          "text": "Cursor Teams costs $40 per user per month, but only $20 of that is included credits — the other $20 is a platform access fee. For a team of 10 engineers, that is a $400 monthly floor regardless of usage. Above $200 in token consumption, overages are billed at standard model rates. At medium agentic usage without Opus planning, expect around $400–500 per month. With regular Opus use for architecture and planning, costs can reach $800–2,000 per month for a team of 10, since Cursor pays the full Opus API rate of $15 per million input tokens."
         }
       },
       {
         "@type": "Question",
-        "name": "Why does Cursor have a $400 floor?",
+        "name": "How much will GitHub Copilot cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cursor's Teams plan is $40 per user per month, but only $20 of that is included credits — the remaining $20 is a platform access fee. For a team of 10, that is $200 in credits and $200 in platform fees, making $400 the minimum monthly spend regardless of usage. Any token consumption above $200 is billed as overage at standard model rates."
+          "text": "GitHub Copilot Business costs $19 per user per month, which includes an equivalent amount in AI credits. For a team of 10, that is $190 per month base including $190 of credits. At light agentic usage the total stays at $190. At medium usage with a mix of GPT-4.1 and Sonnet, expect $370–660 per month. Copilot's biggest cost advantage is Opus: it currently offers Opus at $5 per million input tokens versus $15 direct — a Microsoft preferential rate at time of writing — making it materially cheaper than Claude Code or Cursor when frontier models are used regularly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much will Claude Code cost me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Claude Code uses pure API billing with no platform fee — costs depend entirely on usage. For a team of 10 engineers at medium-heavy agentic usage, expect roughly $600 per month with prompt caching. With regular Opus use for architecture and planning, costs rise to approximately $1,500 per month. Prompt caching is a meaningful advantage: repeated reads of the same files within a session are billed at $0.30 per million tokens rather than $3.00, reducing real-world costs well below the raw token calculation."
         }
       }
     ]
@@ -106,23 +114,21 @@
 
     <h2>How this model works</h2>
 
-    <p>The estimator divides tasks into four tiers based on complexity, each mapped to the most appropriate model for that tool. The Opus planning percentage determines what share of tasks use a frontier model; the remaining tasks are split proportionally across simple, medium, and complex tiers.</p>
+    <p>The estimator gives a quick approximation of what your tooling budget should be. This has been benchmarked against real-world usage patterns, but mileage will vary.  Disclaimer: These are estimates based on publicly available pricing information, and individual codebases/ developer usage patterns will vary.</p>
 
     <ul>
       <li><strong>Small bug fix</strong> (15k input / 1k output tokens) — quick edits, single-file fixes. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
       <li><strong>Minor change</strong> (35k / 3k) — multi-file edits, small refactors. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
       <li><strong>New feature</strong> (60k / 8k) — full feature implementation. All three use Sonnet (or Max Sonnet for Cursor).</li>
       <li><strong>Architectural refactor</strong> (100k / 12k) — cross-cutting changes, system-level work. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Architecture (Opus)</strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
+      <li><strong>Planning </strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
     </ul>
 
-    <p>Input token counts are scaled by codebase size. The baseline values above correspond to a 1M-line codebase — roughly an agentic session reading 20–40 files per task. At 10k lines the multiplier is approximately 0.4×; at 100M lines it reaches approximately 2.5×. Output tokens do not scale with codebase size.</p>
-
-    <p>Claude Code costs include prompt caching — repeated file reads within a session are billed at approximately 10% of the standard input rate. The cache hit rate slider controls how much of a reduction this produces. Cursor's $400/month floor (for 10 engineers) reflects the $20 platform fee per seat on top of the $20 in included credits.</p>
+    <p>Input token counts are scaled by codebase size. The baseline values above correspond to a 1M-line codebase — roughly an agentic session reading 20–40 files per task. Generally, input tokens scale up and down with the codebase size, since we need to read more to get sufficient context for a safe change. Output tokens do not scale with codebase size.</p>
 
     <p>These are estimates. Real costs depend on actual context sizes, session lengths, model routing decisions, and whether your team's usage stays within included credit pools. The model is intentionally transparent so you can adjust assumptions to match your team.</p>
 
-    <p>For a full discussion of the pricing model shift across all three tools, see <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
+    <p>For a full discussion of other factors affecting choice of tool <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
 
     <a class="back-link" href="/blog/">&#8592; Blog</a>
 
