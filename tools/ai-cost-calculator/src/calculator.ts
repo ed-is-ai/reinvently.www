@@ -447,10 +447,11 @@ export function initCalculator(containerId: string): void {
       if (utc.count === 0) return;
       const bg = i % 2 === 0 ? "#1e1e1e" : "#242424";
       const ut = USER_TYPES[i];
+      const totalTasks = utc.count * ut.tasksPerDay * 22;
       html += `<tr style="border-bottom:1px solid #2a2a2a;">
         <td style="${tdStyle("left", bg)}">
           <span style="color:#e2e2e2;">${utc.count}× ${utc.label}</span>
-          <br><span style="color:#444;font-size:11px;">${ut.tasksPerDay} tasks/day · ${pct(ut.opusPct)} Opus</span>
+          <br><span style="color:#444;font-size:11px;">${ut.tasksPerDay} tasks/day · ${totalTasks.toLocaleString()} tasks/mo · ${pct(ut.opusPct)} Opus</span>
         </td>`;
       utc.tokenCosts.forEach(cost => {
         html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`;
@@ -464,11 +465,18 @@ export function initCalculator(containerId: string): void {
     toolTotals.forEach(r => { html += `<td style="${tdStyle("right", subtotalBg)};color:#555;">${fmt(r.tokenTotal)}</td>`; });
     html += `</tr>`;
 
-    html += `<tr><td style="${tdStyle("left", "#1e1e1e")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Plan / credits</td>`;
-    toolTotals.forEach(r => {
-      const platformFee = r.baseCost - r.credits;
-      const note = platformFee > 0 ? `+${fmt(platformFee)} platform` : r.credits > 0 ? `−${fmt(r.credits)} credits` : "API billing only";
+    html += `<tr><td style="${tdStyle("left", "#1e1e1e")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Seat cost</td>`;
+    toolTotals.forEach((r, i) => {
+      const perSeat = TOOLS[i].baseCost(1);
+      const note = perSeat > 0 ? `${fmt(r.baseCost)} ($${perSeat}/seat)` : "No seat cost";
       html += `<td style="${tdStyle("right", "#1e1e1e")};color:#555;font-size:11px;">${note}</td>`;
+    });
+    html += `</tr>`;
+
+    html += `<tr><td style="${tdStyle("left", "#242424")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Included credits</td>`;
+    toolTotals.forEach(r => {
+      const note = r.credits > 0 ? `−${fmt(r.credits)}` : "—";
+      html += `<td style="${tdStyle("right", "#242424")};color:#555;font-size:11px;">${note}</td>`;
     });
     html += `</tr>`;
 
