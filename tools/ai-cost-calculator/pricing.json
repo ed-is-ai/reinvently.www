@@ -6,7 +6,7 @@
     {
       "id": "cc",
       "name": "Claude Code",
-      "color": "#4A90D9",
+      "color": "#E07B39",
       "pricingUrl": "https://claude.ai/pricing",
       "modelPricingUrl": "https://www.anthropic.com/pricing",
       "seatCostPerUser": 20,
@@ -22,7 +22,7 @@
     {
       "id": "cop",
       "name": "Copilot",
-      "color": "#E07B39",
+      "color": "#4A90D9",
       "pricingUrl": "https://github.com/features/copilot#pricing",
       "modelPricingUrl": "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
       "seatCostPerUser": 19,
@@ -38,7 +38,7 @@
     {
       "id": "cur",
       "name": "Cursor",
-      "color": "#5CB85C",
+      "color": "#8B5CF6",
       "pricingUrl": "https://cursor.com/pricing",
       "modelPricingUrl": "https://cursor.com/docs/models-and-pricing",
       "seatCostPerUser": 40,
