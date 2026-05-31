@@ -21,6 +21,8 @@ interface ToolDef {
   id: string;
   name: string;
   color: string;
+  pricingUrl: string;
+  modelPricingUrl: string;
   baseCost: (engineers: number) => number;
   includedCredits: (engineers: number) => number;
   rates: ModelRate[];  // one entry per TaskTier index
@@ -68,6 +70,8 @@ const TOOLS: ToolDef[] = [
     id: "cc",
     name: "Claude Code",
     color: "#4A90D9",
+    pricingUrl: "https://claude.ai/pricing",
+    modelPricingUrl: "https://www.anthropic.com/pricing",
     baseCost: () => 0,
     includedCredits: () => 0,
     rates: [
@@ -82,6 +86,8 @@ const TOOLS: ToolDef[] = [
     id: "cop",
     name: "Copilot",
     color: "#E07B39",
+    pricingUrl: "https://github.com/features/copilot#pricing",
+    modelPricingUrl: "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
     baseCost: (eng) => eng * 19,
     includedCredits: (eng) => eng * 19,
     rates: [
@@ -96,6 +102,8 @@ const TOOLS: ToolDef[] = [
     id: "cur",
     name: "Cursor",
     color: "#5CB85C",
+    pricingUrl: "https://cursor.com/pricing",
+    modelPricingUrl: "https://cursor.com/pricing",
     baseCost: (eng) => eng * 40,
     includedCredits: (eng) => eng * 20,  // $20 of the $40 is credits
     rates: [
@@ -360,13 +368,16 @@ export function initCalculator(containerId: string): void {
   let inputs = { ...defaultInputs };
 
   function renderAssumptions(): void {
+    const linkStyle = (color: string) => `color:${color};font-size:10px;text-decoration:none;border-bottom:1px solid ${color}55;`;
     let html = `<table style="width:100%;border-collapse:collapse;font-size:12px;">
       <thead><tr style="border-bottom:1px solid #2a2a2a;">
-        <th style="${thStyle("left")}">Tier</th>
-        <th style="${thStyle("right")}">Claude Code</th>
-        <th style="${thStyle("right")}">Copilot</th>
-        <th style="${thStyle("right")}">Cursor</th>
-      </tr></thead><tbody>`;
+        <th style="${thStyle("left")}">Tier</th>`;
+    TOOLS.forEach(t => {
+      html += `<th style="${thStyle("right")}">
+        <a href="${t.modelPricingUrl}" target="_blank" rel="noopener" style="${linkStyle(t.color)}">${t.name} rates ↗</a>
+      </th>`;
+    });
+    html += `</tr></thead><tbody>`;
     TIERS.forEach((tier, i) => {
       const bg = i % 2 === 0 ? "#1a1a1a" : "#1e1e1e";
       html += `<tr><td style="${tdStyle("left", bg)};color:#969696;">${tier.label}</td>`;
@@ -402,7 +413,10 @@ export function initCalculator(containerId: string): void {
 
     TOOLS.forEach((tool, i) => {
       const isWinner = results[i].total === minTotal;
-      html += `<th style="${thStyle("right")}"><span style="color:${tool.color};font-weight:600;">${tool.name}</span>${isWinner ? ' <span style="color:#f0ad4e;font-size:10px;">★</span>' : ''}</th>`;
+      html += `<th style="${thStyle("right")}">
+        <a href="${tool.pricingUrl}" target="_blank" rel="noopener" style="color:${tool.color};font-weight:600;text-decoration:none;border-bottom:1px solid ${tool.color}33;">${tool.name}</a>
+        ${isWinner ? ' <span style="color:#f0ad4e;font-size:10px;">★</span>' : ''}
+      </th>`;
     });
     html += `</tr></thead><tbody>`;
 
