@@ -13,7 +13,8 @@ interface ModelRate {
 
 interface TaskTier {
   label: string;
-  inputK: number;   // k tokens input per task
+  description: string;
+  inputK: number;   // k tokens input per task at 1M-line codebase baseline
   outputK: number;  // k tokens output per task
 }
 
@@ -33,8 +34,9 @@ interface CalcInputs {
   engineers: number;
   tasksPerDay: number;
   workingDays: number;
-  opusPct: number;      // 0..1
-  cacheHitRate: number; // 0..1 — Claude Code only
+  opusPct: number;        // 0..1
+  cacheHitRate: number;   // 0..1 — Claude Code only
+  codebaseLines: number;  // 10_000 to 100_000_000
 }
 
 interface TierCost {
@@ -54,16 +56,26 @@ interface ToolResult {
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
+// Log-scale slider constants for codebase size (10k–100M lines)
+const CB_LOG_MIN = Math.log10(10_000);        // 4
+const CB_LOG_MAX = Math.log10(100_000_000);   // 8
+const CB_DEFAULT_LINES = 1_000_000;
+// Raw slider position (0–100) for default 1M lines
+const CB_DEFAULT_POS = Math.round(
+  ((Math.log10(CB_DEFAULT_LINES) - CB_LOG_MIN) / (CB_LOG_MAX - CB_LOG_MIN)) * 100
+); // ≈ 50
+
 const TIERS: TaskTier[] = [
-  { label: "Simple",           inputK: 15, outputK: 1  },
-  { label: "Medium",           inputK: 35, outputK: 3  },
-  { label: "Complex",          inputK: 60, outputK: 8  },
-  { label: "Planning (Opus)",  inputK: 80, outputK: 10 },
+  { label: "Small bug fix",         description: "Quick edits, single-file fixes",          inputK: 15,  outputK: 1  },
+  { label: "Minor change",          description: "Multi-file edits, small refactors",        inputK: 35,  outputK: 3  },
+  { label: "New feature",           description: "Full feature implementation",              inputK: 60,  outputK: 8  },
+  { label: "Architectural refactor",description: "Cross-cutting changes, system-level work", inputK: 100, outputK: 12 },
+  { label: "Architecture (Opus)",   description: "Design sessions, planning",                inputK: 120, outputK: 15 },
 ];
 
-// Base split for non-Opus tasks: simple 40 / medium 35 / complex 15 (out of 90)
-const BASE_SPLIT = [40, 35, 15];
-const BASE_TOTAL = BASE_SPLIT.reduce((a, b) => a + b, 0); // 90
+// Non-Opus task split: bug fix 35 / minor 30 / feature 20 / arch refactor 15
+const BASE_SPLIT = [35, 30, 20, 15];
+const BASE_TOTAL = BASE_SPLIT.reduce((a, b) => a + b, 0); // 100
 
 const TOOLS: ToolDef[] = [
   {
@@ -75,12 +87,13 @@ const TOOLS: ToolDef[] = [
     baseCost: () => 0,
     includedCredits: () => 0,
     rates: [
-      { input: 1.00, output: 5.00 },                          // Simple — Haiku
-      { input: 3.00, output: 15.00, cachedInput: 0.30 },      // Medium — Sonnet
-      { input: 3.00, output: 15.00, cachedInput: 0.30 },      // Complex — Sonnet
-      { input: 15.00, output: 75.00, cachedInput: 0.50 },     // Planning — Opus
+      { input: 1.00,  output: 5.00  },                       // Small bug fix — Haiku
+      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // Minor change — Sonnet
+      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // New feature — Sonnet
+      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // Arch refactor — Sonnet
+      { input: 15.00, output: 75.00, cachedInput: 0.50 },    // Architecture — Opus
     ],
-    rateLabels: ["Haiku", "Sonnet", "Sonnet", "Opus (direct)"],
+    rateLabels: ["Haiku", "Sonnet", "Sonnet", "Sonnet", "Opus (direct)"],
   },
   {
     id: "cop",
@@ -91,12 +104,13 @@ const TOOLS: ToolDef[] = [
     baseCost: (eng) => eng * 19,
     includedCredits: (eng) => eng * 19,
     rates: [
-      { input: 0.25, output: 2.00 },   // Simple — GPT-5 mini
-      { input: 2.00, output: 8.00 },   // Medium — GPT-4.1
-      { input: 3.00, output: 15.00 },  // Complex — Sonnet
-      { input: 5.00, output: 25.00 },  // Planning — Opus via Copilot (discounted)
+      { input: 0.25, output: 2.00  },  // Small bug fix — GPT-5 mini
+      { input: 2.00, output: 8.00  },  // Minor change — GPT-4.1
+      { input: 3.00, output: 15.00 },  // New feature — Sonnet
+      { input: 3.00, output: 15.00 },  // Arch refactor — Sonnet
+      { input: 5.00, output: 25.00 },  // Architecture — Opus via Copilot (preferential)
     ],
-    rateLabels: ["GPT-5 mini", "GPT-4.1", "Sonnet", "Opus (preferential rate)"],
+    rateLabels: ["GPT-5 mini", "GPT-4.1", "Sonnet", "Sonnet", "Opus (preferential rate)"],
   },
   {
     id: "cur",
@@ -107,16 +121,27 @@ const TOOLS: ToolDef[] = [
     baseCost: (eng) => eng * 40,
     includedCredits: (eng) => eng * 20,  // $20 of the $40 is credits
     rates: [
-      { input: 1.25, output: 6.00 },   // Simple — Auto
-      { input: 1.25, output: 6.00 },   // Medium — Auto
-      { input: 3.00, output: 15.00 },  // Complex — Max Sonnet
-      { input: 15.00, output: 75.00 }, // Planning — Max Opus (full rate)
+      { input: 1.25,  output: 6.00  },  // Small bug fix — Auto
+      { input: 1.25,  output: 6.00  },  // Minor change — Auto
+      { input: 3.00,  output: 15.00 },  // New feature — Max Sonnet
+      { input: 3.00,  output: 15.00 },  // Arch refactor — Max Sonnet
+      { input: 15.00, output: 75.00 },  // Architecture — Max Opus (full rate)
     ],
-    rateLabels: ["Auto", "Auto", "Max Sonnet", "Max Opus (full rate)"],
+    rateLabels: ["Auto", "Auto", "Max Sonnet", "Max Sonnet", "Max Opus (full rate)"],
   },
 ];
 
 // ── Calculation ───────────────────────────────────────────────────────────────
+
+// Input tokens scale with codebase size (log, anchored at 1M lines = 1.0×)
+function codebaseMultiplier(lines: number): number {
+  return Math.pow(lines / 1_000_000, 0.2);
+}
+
+// Convert raw log-slider position (0–100) to line count
+function sliderToLines(pos: number): number {
+  return Math.round(Math.pow(10, CB_LOG_MIN + (pos / 100) * (CB_LOG_MAX - CB_LOG_MIN)));
+}
 
 function calcTierSplit(inputs: CalcInputs): number[] {
   const { opusPct } = inputs;
@@ -125,27 +150,29 @@ function calcTierSplit(inputs: CalcInputs): number[] {
     (BASE_SPLIT[0] / BASE_TOTAL) * remaining,
     (BASE_SPLIT[1] / BASE_TOTAL) * remaining,
     (BASE_SPLIT[2] / BASE_TOTAL) * remaining,
+    (BASE_SPLIT[3] / BASE_TOTAL) * remaining,
     opusPct,
   ];
 }
 
 function calcTool(tool: ToolDef, inputs: CalcInputs): ToolResult {
-  const { engineers, tasksPerDay, workingDays, cacheHitRate } = inputs;
+  const { engineers, tasksPerDay, workingDays, cacheHitRate, codebaseLines } = inputs;
   const totalTasks = engineers * tasksPerDay * workingDays;
   const split = calcTierSplit(inputs);
+  const cbMult = codebaseMultiplier(codebaseLines);
 
   const tiers: TierCost[] = TIERS.map((tier, i) => {
     const tasks = Math.round(totalTasks * split[i]);
-    const inputM = (tasks * tier.inputK) / 1000;
+    // Only input tokens scale with codebase size; output is fixed by task type
+    const inputM = (tasks * tier.inputK * cbMult) / 1000;
     const outputM = (tasks * tier.outputK) / 1000;
 
     const rate = tool.rates[i];
     let tokenCost: number;
 
-    // Apply caching for Claude Code tiers that have a cachedInput rate
     if (rate.cachedInput !== undefined && tool.id === "cc" && i > 0) {
       const cachedIn = inputM * cacheHitRate * rate.cachedInput;
-      const freshIn = inputM * (1 - cacheHitRate) * rate.input;
+      const freshIn  = inputM * (1 - cacheHitRate) * rate.input;
       tokenCost = cachedIn + freshIn + outputM * rate.output;
     } else {
       tokenCost = inputM * rate.input + outputM * rate.output;
@@ -155,10 +182,9 @@ function calcTool(tool: ToolDef, inputs: CalcInputs): ToolResult {
   });
 
   const tokenTotal = tiers.reduce((sum, t) => sum + t.tokenCost, 0);
-  const baseCost = tool.baseCost(engineers);
-  const credits = tool.includedCredits(engineers);
-  const overage = Math.max(0, tokenTotal - credits);
-  const total = baseCost - credits + tokenTotal; // simplifies to: platform_fee + token_total
+  const baseCost   = tool.baseCost(engineers);
+  const credits    = tool.includedCredits(engineers);
+  const total      = baseCost - credits + tokenTotal;
 
   return { tiers, tokenTotal, baseCost, credits, total };
 }
@@ -173,6 +199,22 @@ function pct(n: number): string {
   return Math.round(n * 100) + "%";
 }
 
+function fmtLines(n: number): string {
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M lines";
+  if (n >= 1_000)     return Math.round(n / 1_000) + "k lines";
+  return n + " lines";
+}
+
+// ── Styles ────────────────────────────────────────────────────────────────────
+
+function thStyle(align: string): string {
+  return `text-align:${align};padding:10px 14px;color:#969696;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;background:#111;`;
+}
+
+function tdStyle(align: string, bg: string): string {
+  return `text-align:${align};padding:10px 14px;background:${bg};vertical-align:middle;`;
+}
+
 // ── Render ────────────────────────────────────────────────────────────────────
 
 function renderBarChart(results: ToolResult[], container: HTMLElement): void {
@@ -182,114 +224,25 @@ function renderBarChart(results: ToolResult[], container: HTMLElement): void {
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;display:block;margin:0 auto;">`;
 
-  // Gridlines
   for (let i = 0; i <= 4; i++) {
     const y = 10 + (i / 4) * (H - 50);
     const val = Math.round(max * (1 - i / 4));
     svg += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2a2a2a" stroke-width="1"/>`;
-    svg += `<text x="2" y="${y - 3}" fill="#666" font-size="8" font-family="Montserrat,sans-serif">$${(val/1000).toFixed(1)}k</text>`;
+    svg += `<text x="2" y="${y - 3}" fill="#666" font-size="8" font-family="Montserrat,sans-serif">$${(val / 1000).toFixed(1)}k</text>`;
   }
 
   results.forEach((r, i) => {
     const tool = TOOLS[i];
-    const barH = max > 0 ? ((r.total / max) * (H - 50)) : 0;
+    const barH = max > 0 ? (r.total / max) * (H - 50) : 0;
     const x = startX + i * (barW + gap);
     const y = H - 38 - barH;
-
-    // Bar
     svg += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${tool.color}" rx="2" opacity="0.85"/>`;
-
-    // Value label
     svg += `<text x="${x + barW / 2}" y="${y - 5}" fill="${tool.color}" font-size="9" font-weight="bold" font-family="Montserrat,sans-serif" text-anchor="middle">${fmt(r.total)}</text>`;
-
-    // Tool name
     svg += `<text x="${x + barW / 2}" y="${H - 20}" fill="#969696" font-size="8" font-family="Montserrat,sans-serif" text-anchor="middle">${tool.name}</text>`;
   });
 
   svg += `</svg>`;
   container.innerHTML = svg;
-}
-
-function renderResults(results: ToolResult[], container: HTMLElement): void {
-  const minTotal = Math.min(...results.map(r => r.total));
-
-  // ── Table ──
-  let html = `<div style="overflow-x:auto;margin-bottom:24px;">
-    <table style="width:100%;border-collapse:collapse;font-size:13px;">
-      <thead>
-        <tr style="border-bottom:2px solid #2a2a2a;">
-          <th style="${thStyle("left")}">Tier</th>`;
-
-  TOOLS.forEach((tool, i) => {
-    const isWinner = results[i].total === minTotal;
-    html += `<th style="${thStyle("right")}"><span style="color:${tool.color};font-weight:600;">${tool.name}</span>${isWinner ? ' <span style="color:#f0ad4e;font-size:10px;">★</span>' : ''}</th>`;
-  });
-  html += `</tr></thead><tbody>`;
-
-  // Tier rows
-  TIERS.forEach((tier, ti) => {
-    const rowBg = ti % 2 === 0 ? "#1e1e1e" : "#242424";
-    html += `<tr style="border-bottom:1px solid #2a2a2a;">
-      <td style="${tdStyle("left", rowBg)}">
-        <span style="color:#e2e2e2;">${tier.label}</span>
-        <br><span style="color:#555;font-size:11px;">${TOOLS.map(t => t.rateLabels[ti]).join(" / ")}</span>
-      </td>`;
-    results.forEach((r) => {
-      html += `<td style="${tdStyle("right", rowBg)}">${fmt(r.tiers[ti].tokenCost)}</td>`;
-    });
-    html += `</tr>`;
-  });
-
-  // Token total
-  html += `<tr style="border-bottom:1px solid #333;border-top:1px solid #444;">
-    <td style="${tdStyle("left", "#1a1a1a")}"><span style="color:#969696;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Token total</span></td>`;
-  results.forEach(r => {
-    html += `<td style="${tdStyle("right", "#1a1a1a")};color:#969696;">${fmt(r.tokenTotal)}</td>`;
-  });
-  html += `</tr>`;
-
-  // Credits / adjustments
-  html += `<tr style="border-bottom:1px solid #2a2a2a;">
-    <td style="${tdStyle("left", "#1e1e1e")}"><span style="color:#969696;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Plan / credits</span></td>`;
-  results.forEach((r, i) => {
-    const tool = TOOLS[i];
-    const platformFee = r.baseCost - r.credits;
-    let note = "";
-    if (platformFee > 0) note = `+${fmt(platformFee)} platform`;
-    else if (r.credits > 0) note = `-${fmt(r.credits)} credits`;
-    else note = "API billing";
-    html += `<td style="${tdStyle("right", "#1e1e1e")};color:#666;font-size:11px;">${note}</td>`;
-  });
-  html += `</tr>`;
-
-  // Total
-  html += `<tr>
-    <td style="${tdStyle("left", "#111")};font-weight:700;color:#e2e2e2;font-size:14px;letter-spacing:1px;text-transform:uppercase;">Total / month</td>`;
-  results.forEach((r, i) => {
-    const isWinner = r.total === minTotal;
-    const color = isWinner ? "#f0ad4e" : TOOLS[i].color;
-    html += `<td style="${tdStyle("right", "#111")};font-weight:700;font-size:15px;color:${color};">${fmt(r.total)}</td>`;
-  });
-  html += `</tr></tbody></table></div>`;
-
-  // ── Breakdown note ──
-  html += `<p style="font-size:11px;color:#555;margin:0 0 16px;">
-    ★ lowest cost &nbsp;·&nbsp; Copilot Opus rate ($5/M) is currently ~⅓ of direct API price — Microsoft preferential rate at time of writing &nbsp;·&nbsp; Claude Code costs include prompt caching benefit
-  </p>`;
-
-  container.innerHTML = html;
-
-  // Bar chart
-  const chartDiv = container.querySelector<HTMLElement>("[data-chart]")!;
-  if (chartDiv) renderBarChart(results, chartDiv);
-}
-
-function thStyle(align: string): string {
-  return `text-align:${align};padding:10px 14px;color:#969696;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;background:#111;`;
-}
-
-function tdStyle(align: string, bg: string): string {
-  return `text-align:${align};padding:10px 14px;background:${bg};vertical-align:middle;`;
 }
 
 // ── Slider component ──────────────────────────────────────────────────────────
@@ -323,11 +276,12 @@ export function initCalculator(containerId: string): void {
   if (!root) return;
 
   const defaultInputs: CalcInputs = {
-    engineers: 10,
-    tasksPerDay: 20,
-    workingDays: 22,
-    opusPct: 0.10,
-    cacheHitRate: 0.40,
+    engineers:     10,
+    tasksPerDay:   20,
+    workingDays:   22,
+    opusPct:       0.10,
+    cacheHitRate:  0.40,
+    codebaseLines: CB_DEFAULT_LINES,
   };
 
   root.style.cssText = "background:#161616;border:1px solid #2a2a2a;padding:28px 28px 20px;font-family:'Georgia','Times New Roman',serif;color:#e2e2e2;";
@@ -340,7 +294,8 @@ export function initCalculator(containerId: string): void {
       ${makeSlider({ id: "cc-engineers", label: "Engineers", min: 1, max: 50, step: 1, value: defaultInputs.engineers, format: v => String(v) })}
       ${makeSlider({ id: "cc-tasks", label: "Tasks / engineer / day", min: 5, max: 50, step: 1, value: defaultInputs.tasksPerDay, format: v => String(v) })}
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+      ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: CB_DEFAULT_POS, format: () => fmtLines(CB_DEFAULT_LINES), note: "Larger codebases require agents to read more files per task" })}
       ${makeSlider({ id: "cc-opus", label: "Opus planning tasks", min: 0, max: 0.30, step: 0.01, value: defaultInputs.opusPct, format: pct, note: "Share of tasks using Opus for design / architecture" })}
       ${makeSlider({ id: "cc-cache", label: "Claude Code cache hit rate", min: 0, max: 0.80, step: 0.05, value: defaultInputs.cacheHitRate, format: pct, note: "Repeated file reads within a session billed at ~10% of standard rate" })}
     </div>
@@ -357,12 +312,12 @@ export function initCalculator(containerId: string): void {
     </details>
 
     <p style="margin:20px 0 0;font-size:11px;color:#444;">
-      Estimates only. Task mix: 40% simple / 35% medium / 15% complex + Opus planning %. Context per task: 15k–80k input tokens, 1k–10k output tokens. Working days: ${defaultInputs.workingDays}/month.
+      Estimates only. Task mix: 35% small bug fixes / 30% minor changes / 20% new features / 15% architectural refactors + Opus planning %. Context per task: 15k–120k input tokens scaled by codebase size. Working days: ${defaultInputs.workingDays}/month.
     </p>
   `;
 
-  const resultsEl = root.querySelector<HTMLElement>("#cc-results")!;
-  const chartEl = root.querySelector<HTMLElement>("#cc-chart")!;
+  const resultsEl     = root.querySelector<HTMLElement>("#cc-results")!;
+  const chartEl       = root.querySelector<HTMLElement>("#cc-chart")!;
   const assumptionsEl = root.querySelector<HTMLElement>("#cc-assumptions")!;
 
   let inputs = { ...defaultInputs };
@@ -371,7 +326,7 @@ export function initCalculator(containerId: string): void {
     const linkStyle = (color: string) => `color:${color};font-size:10px;text-decoration:none;border-bottom:1px solid ${color}55;`;
     let html = `<table style="width:100%;border-collapse:collapse;font-size:12px;">
       <thead><tr style="border-bottom:1px solid #2a2a2a;">
-        <th style="${thStyle("left")}">Tier</th>`;
+        <th style="${thStyle("left")}">Type of task</th>`;
     TOOLS.forEach(t => {
       html += `<th style="${thStyle("right")}">
         <a href="${t.modelPricingUrl}" target="_blank" rel="noopener" style="${linkStyle(t.color)}">${t.name} rates ↗</a>
@@ -380,7 +335,7 @@ export function initCalculator(containerId: string): void {
     html += `</tr></thead><tbody>`;
     TIERS.forEach((tier, i) => {
       const bg = i % 2 === 0 ? "#1a1a1a" : "#1e1e1e";
-      html += `<tr><td style="${tdStyle("left", bg)};color:#969696;">${tier.label}</td>`;
+      html += `<tr><td style="${tdStyle("left", bg)};color:#969696;">${tier.label}<br><span style="color:#555;font-size:10px;">${tier.description}</span></td>`;
       TOOLS.forEach(t => {
         const r = t.rates[i];
         const label = t.rateLabels[i];
@@ -393,23 +348,11 @@ export function initCalculator(containerId: string): void {
     assumptionsEl.innerHTML = html;
   }
 
-  function update(): void {
-    const results = TOOLS.map(tool => calcTool(tool, inputs));
-    const minTotal = Math.min(...results.map(r => r.total));
-
-    renderBarChart(results, chartEl);
-
-    const resultsHtml = buildResultsTable(results, minTotal);
-    resultsEl.innerHTML = resultsHtml;
-
-    renderAssumptions();
-  }
-
   function buildResultsTable(results: ToolResult[], minTotal: number): string {
     let html = `<div style="overflow-x:auto;margin-bottom:16px;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead><tr style="border-bottom:2px solid #2a2a2a;">
-          <th style="${thStyle("left")}">Tier</th>`;
+          <th style="${thStyle("left")}">Type of task</th>`;
 
     TOOLS.forEach((tool, i) => {
       const isWinner = results[i].total === minTotal;
@@ -425,7 +368,7 @@ export function initCalculator(containerId: string): void {
       html += `<tr style="border-bottom:1px solid #2a2a2a;">
         <td style="${tdStyle("left", bg)}">
           <span style="color:#e2e2e2;">${tier.label}</span>
-          <br><span style="color:#444;font-size:11px;">${TOOLS.map(t => t.rateLabels[ti]).join(" · ")}</span>
+          <br><span style="color:#444;font-size:11px;">${tier.description} · ${TOOLS.map(t => t.rateLabels[ti]).join(" / ")}</span>
         </td>`;
       results.forEach(r => {
         html += `<td style="${tdStyle("right", bg)}">${fmt(r.tiers[ti].tokenCost)}</td>`;
@@ -442,7 +385,7 @@ export function initCalculator(containerId: string): void {
     html += `<tr><td style="${tdStyle("left", "#1e1e1e")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Plan / credits</td>`;
     results.forEach((r, i) => {
       const platformFee = r.baseCost - r.credits;
-      let note = platformFee > 0 ? `+${fmt(platformFee)} platform` : r.credits > 0 ? `−${fmt(r.credits)} credits` : "API billing only";
+      const note = platformFee > 0 ? `+${fmt(platformFee)} platform` : r.credits > 0 ? `−${fmt(r.credits)} credits` : "API billing only";
       html += `<td style="${tdStyle("right", "#1e1e1e")};color:#555;font-size:11px;">${note}</td>`;
     });
     html += `</tr>`;
@@ -455,29 +398,48 @@ export function initCalculator(containerId: string): void {
     });
     html += `</tr></tbody></table></div>`;
 
-    html += `<p style="font-size:11px;color:#444;margin:0;">★ lowest cost at current settings &nbsp;·&nbsp; Copilot Opus rate is ~⅓ of direct API price &nbsp;·&nbsp; Claude Code costs reflect prompt caching</p>`;
+    html += `<p style="font-size:11px;color:#444;margin:0;">★ lowest cost at current settings &nbsp;·&nbsp; Copilot Opus rate is currently ~⅓ of direct API price — Microsoft preferential rate at time of writing &nbsp;·&nbsp; Claude Code costs reflect prompt caching</p>`;
     return html;
   }
 
-  // Wire up sliders
-  const sliders: Array<{ id: string; key: keyof CalcInputs; transform?: (v: number) => number }> = [
-    { id: "cc-engineers", key: "engineers" },
-    { id: "cc-tasks",     key: "tasksPerDay" },
-    { id: "cc-opus",      key: "opusPct" },
+  function update(): void {
+    const results  = TOOLS.map(tool => calcTool(tool, inputs));
+    const minTotal = Math.min(...results.map(r => r.total));
+    renderBarChart(results, chartEl);
+    resultsEl.innerHTML = buildResultsTable(results, minTotal);
+    renderAssumptions();
+  }
+
+  // ── Wire up standard sliders ──────────────────────────────────────────────
+  const sliders: Array<{ id: string; key: keyof CalcInputs }> = [
+    { id: "cc-engineers", key: "engineers"    },
+    { id: "cc-tasks",     key: "tasksPerDay"  },
+    { id: "cc-opus",      key: "opusPct"      },
     { id: "cc-cache",     key: "cacheHitRate" },
   ];
 
   sliders.forEach(({ id, key }) => {
     const slider = root.querySelector<HTMLInputElement>(`#${id}`)!;
     const valEl  = root.querySelector<HTMLElement>(`#${id}-val`)!;
-    const fmt_fn = key === "engineers" || key === "tasksPerDay" ? String : pct;
+    const fmtFn  = key === "engineers" || key === "tasksPerDay" ? String : pct;
 
     slider.addEventListener("input", () => {
       const v = parseFloat(slider.value);
       (inputs as Record<string, number>)[key] = v;
-      valEl.textContent = fmt_fn(v);
+      valEl.textContent = fmtFn(v);
       update();
     });
+  });
+
+  // ── Wire up log-scale codebase slider ────────────────────────────────────
+  const cbSlider = root.querySelector<HTMLInputElement>("#cc-codebase")!;
+  const cbValEl  = root.querySelector<HTMLElement>("#cc-codebase-val")!;
+
+  cbSlider.addEventListener("input", () => {
+    const lines = sliderToLines(parseFloat(cbSlider.value));
+    inputs.codebaseLines = lines;
+    cbValEl.textContent  = fmtLines(lines);
+    update();
   });
 
   // Initial render

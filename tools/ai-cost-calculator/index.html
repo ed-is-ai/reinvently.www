@@ -48,7 +48,7 @@
         "name": "How does the calculator estimate costs for each tool?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The calculator divides tasks into four tiers — simple, medium, complex, and planning (Opus) — each mapped to the most cost-effective model for that tool. Token consumption per task is estimated from typical context sizes at each tier. Costs are calculated from June 2026 published token rates: Copilot uses GPT-5 mini, GPT-4.1, Sonnet, and Opus at its preferential rate; Claude Code uses Haiku, Sonnet, and Opus at direct API rates with a prompt caching reduction; Cursor uses Auto mode for lighter tasks and Max mode for heavier ones."
+          "text": "The calculator divides tasks into five types — small bug fix, minor change, new feature, architectural refactor, and architecture planning (Opus) — each mapped to the most cost-effective model for that tool. Token consumption per task is estimated from typical context sizes at each level, scaled by codebase size. Costs are calculated from June 2026 published token rates: Copilot uses GPT-5 mini, GPT-4.1, Sonnet, and Opus at its preferential rate; Claude Code uses Haiku, Sonnet, and Opus at direct API rates with a prompt caching reduction; Cursor uses Auto mode for lighter tasks and Max mode for heavier ones."
         }
       },
       {
@@ -109,11 +109,14 @@
     <p>The estimator divides tasks into four tiers based on complexity, each mapped to the most appropriate model for that tool. The Opus planning percentage determines what share of tasks use a frontier model; the remaining tasks are split proportionally across simple, medium, and complex tiers.</p>
 
     <ul>
-      <li><strong>Simple</strong> (15k input / 1k output tokens) — quick edits, questions. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
-      <li><strong>Medium</strong> (35k / 3k) — bug fixes, feature additions. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
-      <li><strong>Complex</strong> (60k / 8k) — refactors, architecture. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Planning / Opus</strong> (80k / 10k) — design sessions, requirements. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
+      <li><strong>Small bug fix</strong> (15k input / 1k output tokens) — quick edits, single-file fixes. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
+      <li><strong>Minor change</strong> (35k / 3k) — multi-file edits, small refactors. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
+      <li><strong>New feature</strong> (60k / 8k) — full feature implementation. All three use Sonnet (or Max Sonnet for Cursor).</li>
+      <li><strong>Architectural refactor</strong> (100k / 12k) — cross-cutting changes, system-level work. All three use Sonnet (or Max Sonnet for Cursor).</li>
+      <li><strong>Architecture (Opus)</strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
     </ul>
+
+    <p>Input token counts are scaled by codebase size. The baseline values above correspond to a 1M-line codebase — roughly an agentic session reading 20–40 files per task. At 10k lines the multiplier is approximately 0.4×; at 100M lines it reaches approximately 2.5×. Output tokens do not scale with codebase size.</p>
 
     <p>Claude Code costs include prompt caching — repeated file reads within a session are billed at approximately 10% of the standard input rate. The cache hit rate slider controls how much of a reduction this produces. Cursor's $400/month floor (for 10 engineers) reflects the $20 platform fee per seat on top of the $20 in included credits.</p>
 
