@@ -9,7 +9,7 @@
       "color": "#4A90D9",
       "pricingUrl": "https://claude.ai/pricing",
       "modelPricingUrl": "https://www.anthropic.com/pricing",
-      "seatCostPerUser": 0,
+      "seatCostPerUser": 20,
       "creditsPerUser": 0,
       "rates": [
         { "label": "Haiku",        "input": 1.00, "output": 5.00                       },
