@@ -53,14 +53,6 @@
       },
       {
         "@type": "Question",
-        "name": "Why does Copilot cost less when Opus planning tasks are high?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GitHub Copilot Business costs $19 per user per month and includes that amount in AI credits, making the base cost for 10 engineers $190 per month. It currently offers Claude Opus at $5 per million input tokens — roughly one-third of the $15 per million charged when accessing Opus directly via Anthropic's API or via Cursor. This is a Microsoft preferential rate at time of writing. Teams that use a frontier model for a significant share of planning and architecture work will see Copilot's total cost fall well below Claude Code or Cursor as a result."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "How much will Cursor cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -72,7 +64,7 @@
         "name": "How much will GitHub Copilot cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "GitHub Copilot Business costs $19 per user per month, which includes an equivalent amount in AI credits. For a team of 10, that is $190 per month base including $190 of credits. At light agentic usage the total stays at $190. At medium usage with a mix of GPT-4.1 and Sonnet, expect $370–660 per month. Copilot's biggest cost advantage is Opus: it currently offers Opus at $5 per million input tokens versus $15 direct — a Microsoft preferential rate at time of writing — making it materially cheaper than Claude Code or Cursor when frontier models are used regularly."
+          "text": "GitHub Copilot Enterprise costs $39 per user per month, which includes an equivalent amount in AI credits. For a team of 10, that is $390 per month base including $390 of credits. At light agentic usage the total stays at $390. At medium usage with a mix of GPT-4.1 and Sonnet, expect $370–660 per month. Copilot's biggest cost advantage is Opus: it currently offers Opus at $5 per million input tokens versus $15 direct — a Microsoft preferential rate at time of writing — making it materially cheaper than Claude Code or Cursor when frontier models are used regularly."
         }
       },
       {
@@ -80,7 +72,7 @@
         "name": "How much will Claude Code cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Claude Code uses pure API billing with no platform fee — costs depend entirely on usage. At medium-heavy agentic usage, expect roughly $150 per developer per month. Claude Code makes aggressive use of prompt caching, which can help when working over the same areas of codebase repeatedly within a session. The estimator models this as a percentage reduction in input token costs, with a default value of 40% based on observed patterns. Teams that do a lot of iterative work in the same areas may see costs fall significantly below the estimator's baseline."
+          "text": "Claude Code Enterprise pricing is for larger teams.  There is a headline seat price, then the rest is based on API consumption. At medium-heavy agentic usage, expect roughly $150 per developer per month. Claude Code makes aggressive use of prompt caching, which can help when working over the same areas of codebase repeatedly within a session. The estimator models this as a percentage reduction in input token costs, with a default value of 40% based on observed patterns. Teams that do a lot of iterative work in the same areas may see costs fall significantly below the estimator's baseline."
         }
       }
     ]
@@ -102,7 +94,7 @@
 <header class="article-header">
   <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding &nbsp;·&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
   <h1>AI Coding Tool Cost Estimator</h1>
-  <p class="summary">Everyone's a bit worried about their token usage these days, as the all-you-can-eat allowances become less generous.  This tool helps to model the cost based on your team size, daily task volume, and Opus usage to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
+  <p class="summary">Everyone's a bit worried about their token usage these days, as the all-you-can-eat allowances become less generous.  This tool helps to model the cost based on your team size, user skills, daily task volume, and Opus usage to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
 </header>
 
 <main class="container">
