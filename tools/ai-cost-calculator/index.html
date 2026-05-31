@@ -80,7 +80,7 @@
         "name": "How much will Claude Code cost me?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Claude Code uses pure API billing with no platform fee — costs depend entirely on usage. At medium-heavy agentic usage, expect roughly $60 per developer per month with prompt caching applied. With regular Opus use for architecture and planning, that rises to approximately $150 per developer per month. Prompt caching is a meaningful advantage: repeated reads of the same files within a session are billed at $0.30 per million tokens rather than $3.00, reducing real-world costs well below the raw token calculation."
+          "text": "Claude Code uses pure API billing with no platform fee — costs depend entirely on usage. At medium-heavy agentic usage, expect roughly $150 per developer per month. Claude Code makes aggressive use of prompt caching, which can help when working over the same areas of codebase repeatedly within a session. The estimator models this as a percentage reduction in input token costs, with a default value of 40% based on observed patterns. Teams that do a lot of iterative work in the same areas may see costs fall significantly below the estimator's baseline."
         }
       }
     ]
