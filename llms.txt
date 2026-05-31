@@ -23,7 +23,7 @@ AI strategy and roadmapping, AI solution architecture, web development, AI train
 - [RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?](https://reinvently.co.uk/blog/rag-vs-graphrag/) — 12 April 2026
 - [Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock](https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/) — 5 April 2026
 - [The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade](https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/) — 14 March 2026
-- [GitHub Copilot vs Google Antigravity vs Claude Code](https://reinvently.co.uk/blog/github-copilot-vs-google-antigravity-vs-claude-code/) — 7 March 2026
+- [GitHub Copilot vs Claude Code vs Cursor](https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/) — 27 May 2026
 - [Microsoft Foundry: A Deep Dive](https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/) — 18 February 2026
 - [The UK's Public AI Infrastructure: Government Institutes Shaping the National AI Ecosystem](https://reinvently.co.uk/blog/uk-government-ai-institutes/) — 10 February 2026
 - [Generative AI Adoption by Industry: Use Cases, Data and What Comes Next](https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/) — 22 January 2026
