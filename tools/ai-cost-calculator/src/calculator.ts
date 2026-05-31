@@ -69,10 +69,10 @@ interface UserTypeProfile {
 // Daily Tab: ~$17.50/mo · Limited Agent: ~$23.60/mo (often within $20) ·
 // Daily Agent: ~$83.70/mo · Power user: ~$201.80/mo
 const USER_TYPES: UserTypeProfile[] = [
-  { id: "tab",     label: "Daily Tab users",     desc: "Always stay within $20",               tasksPerDay: 5,  opusPct: 0.00 },
-  { id: "limited", label: "Limited Agent users", desc: "Often stay within the included $20",   tasksPerDay: 5,  opusPct: 0.03 },
-  { id: "daily",   label: "Daily Agent users",   desc: "Typically $60–$100/mo total usage",    tasksPerDay: 10, opusPct: 0.08 },
-  { id: "power",   label: "Power users",         desc: "Multiple agents / automation · $200+", tasksPerDay: 16, opusPct: 0.15 },
+  { id: "tab",     label: "Basic users",          desc: "Single prompts",                          tasksPerDay: 5,  opusPct: 0 },
+  { id: "limited", label: "Light agentic users",  desc: "Light users who don't code all day",      tasksPerDay: 5,  opusPct: 0.03 },
+  { id: "daily",   label: "Full agentic users",   desc: "Full users who code all day",             tasksPerDay: 10, opusPct: 0.08 },
+  { id: "power",   label: "Power users",          desc: "Full agentic in autonomous mode",         tasksPerDay: 32, opusPct: 0.15 },
 ];
 
 function deriveFromUserCounts(counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
@@ -360,7 +360,10 @@ export function initCalculator(containerId: string): void {
       <p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#969696;margin:0 0 10px;">Team composition</p>
       ${USER_TYPES.map((ut, i) => `
         <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #222;">
-          <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
+          <div>
+            <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
+            <br><span style="color:#555;font-size:11px;">${ut.desc}</span>
+          </div>
           <div style="display:flex;align-items:center;gap:10px;">
             <button id="cc-${ut.id}-dec" style="background:#222;border:1px solid #333;color:#969696;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;border-radius:3px;">−</button>
             <span id="cc-${ut.id}-val" style="color:#e2e2e2;font-size:16px;font-weight:600;min-width:20px;text-align:center;">${DEFAULT_COUNTS[i]}</span>
