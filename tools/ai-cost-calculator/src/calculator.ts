@@ -195,7 +195,7 @@ function calcTool(cfg: Config, tool: ToolDef, inputs: CalcInputs): ToolResult {
   const tokenTotal = tiers.reduce((sum, t) => sum + t.tokenCost, 0);
   const baseCost   = tool.baseCost(engineers);
   const credits    = tool.includedCredits(engineers);
-  return { tiers, tokenTotal, baseCost, credits, total: baseCost - credits + tokenTotal };
+  return { tiers, tokenTotal, baseCost, credits, total: baseCost + Math.max(0, tokenTotal - credits) };
 }
 
 function deriveFromUserCounts(cfg: Config, counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
@@ -227,7 +227,7 @@ function calcByUserType(cfg: Config, counts: number[], codebaseLines: number): B
     const tokenTotal = userTypeCosts.reduce((sum, utc) => sum + utc.tokenCosts[ti], 0);
     const baseCost   = tool.baseCost(totalEngineers);
     const credits    = tool.includedCredits(totalEngineers);
-    return { tiers: [], tokenTotal, baseCost, credits, total: baseCost - credits + tokenTotal };
+    return { tiers: [], tokenTotal, baseCost, credits, total: baseCost + Math.max(0, tokenTotal - credits) };
   });
 
   return { userTypeCosts, toolTotals };
