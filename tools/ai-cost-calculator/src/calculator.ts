@@ -69,6 +69,7 @@ interface UserTypeCost {
   label: string;
   count: number;
   tokenCosts: number[];
+  totalCosts: number[];
 }
 
 interface BreakdownResult {
@@ -206,15 +207,20 @@ function deriveFromUserCounts(cfg: Config, counts: number[]): { engineers: numbe
 }
 
 function calcByUserType(cfg: Config, counts: number[], codebaseLines: number): BreakdownResult {
-  const userTypeCosts: UserTypeCost[] = cfg.userTypes.map((ut, i) => ({
-    label: ut.label,
-    count: counts[i],
-    tokenCosts: cfg.tools.map(tool =>
-      counts[i] === 0 ? 0 :
-      calcTool(cfg, tool, { engineers: counts[i], tasksPerDay: ut.tasksPerDay,
-                            workingDays: cfg.workingDays, opusPct: ut.opusPct, codebaseLines }).tokenTotal
-    ),
-  }));
+  const userTypeCosts: UserTypeCost[] = cfg.userTypes.map((ut, i) => {
+    const results = cfg.tools.map(tool =>
+      counts[i] === 0
+        ? { tokenTotal: 0, total: 0 }
+        : calcTool(cfg, tool, { engineers: counts[i], tasksPerDay: ut.tasksPerDay,
+                                workingDays: cfg.workingDays, opusPct: ut.opusPct, codebaseLines })
+    );
+    return {
+      label: ut.label,
+      count: counts[i],
+      tokenCosts: results.map(r => r.tokenTotal),
+      totalCosts: results.map(r => r.total),
+    };
+  });
 
   const totalEngineers = counts.reduce((s, c) => s + c, 0);
   const toolTotals: ToolResult[] = cfg.tools.map((tool, ti) => {
@@ -413,7 +419,7 @@ function renderCalculator(containerId: string, cfg: Config): void {
           <span style="color:#e2e2e2;">${utc.count}× ${utc.label}</span>
           <br><span style="color:#444;font-size:11px;">${ut.tasksPerDay} tasks/day · ${totalTasks.toLocaleString()} tasks/mo · ${pct(ut.opusPct)} Opus</span>
         </td>`;
-      utc.tokenCosts.forEach(cost => { html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`; });
+      utc.totalCosts.forEach(cost => { html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`; });
       html += `</tr>`;
     });
 
