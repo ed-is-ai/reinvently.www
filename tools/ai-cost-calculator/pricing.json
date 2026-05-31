@@ -57,7 +57,7 @@
     { "id": "tab",     "label": "Basic users",         "desc": "Single prompts",                       "tasksPerDay": 5,  "opusPct": 0    },
     { "id": "limited", "label": "Light agentic users", "desc": "Light users who only code for part of their day",   "tasksPerDay": 5,  "opusPct": 0.03 },
     { "id": "daily",   "label": "Full agentic users",  "desc": "Full users who code all day",          "tasksPerDay": 10, "opusPct": 0.08 },
-    { "id": "power",   "label": "Power users",         "desc": "Full agentic usage in autonomous mode, Ralph loop, parallel agents etc",      "tasksPerDay": 32, "opusPct": 0.15 }
+    { "id": "power",   "label": "Power users",         "desc": "Full agentic usage in autonomous mode, Ralph loop, parallel agents etc",      "tasksPerDay": 48, "opusPct": 0.15 }
   ],
 
   "taskTiers": [
