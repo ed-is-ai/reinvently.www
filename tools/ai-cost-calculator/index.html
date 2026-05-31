@@ -4,9 +4,80 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>AI Coding Tool Cost Estimator — Reinvently</title>
-  <meta name="description" content="Interactive cost estimator for GitHub Copilot, Claude Code, and Cursor. Adjust team size, tasks per day, and Opus usage to see real-time monthly cost comparisons."/>
+  <meta name="description" content="Interactive cost estimator for GitHub Copilot, Claude Code, and Cursor. Model token-based billing, Opus planning costs, and Claude Code prompt caching to compare real monthly costs for your team."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <link rel="canonical" href="https://reinvently.co.uk/tools/ai-cost-calculator/"/>
+  <meta property="og:title" content="AI Coding Tool Cost Estimator — Copilot vs Claude Code vs Cursor"/>
+  <meta property="og:description" content="Adjust team size, daily task volume, and Opus usage to compare real monthly costs for GitHub Copilot, Claude Code, and Cursor — based on June 2026 token pricing models."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://reinvently.co.uk/tools/ai-cost-calculator/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="AI Coding Tool Cost Estimator — Copilot vs Claude Code vs Cursor"/>
+  <meta name="twitter:description" content="Adjust team size, daily task volume, and Opus usage to compare real monthly costs for GitHub Copilot, Claude Code, and Cursor — based on June 2026 token pricing models."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Coding Tool Cost Estimator",
+    "description": "Interactive calculator comparing monthly costs for GitHub Copilot, Claude Code, and Cursor. Models token-based billing by task tier, Opus planning usage, and Claude Code prompt caching for teams of any size.",
+    "url": "https://reinvently.co.uk/tools/ai-cost-calculator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true,
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Technology Strategy Consultant", "worksFor": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "datePublished": "2026-05-31",
+    "dateModified": "2026-05-31",
+    "inLanguage": "en-GB",
+    "keywords": ["AI coding tool cost", "GitHub Copilot pricing", "Claude Code pricing", "Cursor pricing", "AI coding tool calculator", "token-based billing"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the calculator estimate costs for each tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator divides tasks into four tiers — simple, medium, complex, and planning (Opus) — each mapped to the most cost-effective model for that tool. Token consumption per task is estimated from typical context sizes at each tier. Costs are calculated from June 2026 published token rates: Copilot uses GPT-5 mini, GPT-4.1, Sonnet, and Opus at its preferential rate; Claude Code uses Haiku, Sonnet, and Opus at direct API rates with a prompt caching reduction; Cursor uses Auto mode for lighter tasks and Max mode for heavier ones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Copilot show lower costs when Opus planning is high?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GitHub Copilot currently offers Claude Opus at $5 per million input tokens, compared to $15 per million when accessing Opus directly via Anthropic's API or via Cursor. This is a Microsoft preferential rate at time of writing. Teams that use a frontier model for a significant share of planning and architecture work will see Copilot's total cost fall well below Claude Code or Cursor as a result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Claude Code prompt caching benefit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Claude Code uses prompt caching aggressively within a session. Repeated reads of the same files are billed at approximately 10% of the standard input token rate — $0.30 per million tokens for Sonnet, versus $3.00 per million uncached. The cache hit rate slider defaults to 40%, which reflects typical agentic session behaviour. Higher values reduce Claude Code's estimated cost significantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Cursor have a $400 floor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cursor's Teams plan is $40 per user per month, but only $20 of that is included credits — the remaining $20 is a platform access fee. For a team of 10, that is $200 in credits and $200 in platform fees, making $400 the minimum monthly spend regardless of usage. Any token consumption above $200 is billed as overage at standard model rates."
+        }
+      }
+    ]
+  }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
 </head>
@@ -21,15 +92,13 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding</div>
+  <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding &nbsp;·&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
   <h1>AI Coding Tool Cost Estimator</h1>
   <p class="summary">Adjust your team size, daily task volume, and Opus usage to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
-
-    <a class="back-link" href="/blog/">&#8592; All posts</a>
 
     <div id="calculator"></div>
 
@@ -50,13 +119,16 @@
 
     <p>These are estimates. Real costs depend on actual context sizes, session lengths, model routing decisions, and whether your team's usage stays within included credit pools. The model is intentionally transparent so you can adjust assumptions to match your team.</p>
 
-    <a class="back-link" href="/blog/">&#8592; All posts</a>
+    <p>For a full discussion of the pricing model shift across all three tools, see <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
+
+    <a class="back-link" href="/blog/">&#8592; Blog</a>
 
   </article>
 </main>
 
 <footer class="footer">
   <p>&copy; 2026 Reinvently. All rights reserved.</p>
+  <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently is a UK technology strategy consultancy helping engineering teams adopt AI tooling and modern development practices.</p>
 </footer>
 
 <script src="dist/calculator.js"></script>
