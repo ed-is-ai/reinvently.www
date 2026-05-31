@@ -65,7 +65,7 @@
     { "label": "Minor change",          "description": "Multi-file edits, small refactors",        "inputK": 35,  "outputK": 3  },
     { "label": "New feature",           "description": "Full feature implementation",              "inputK": 60,  "outputK": 8  },
     { "label": "Architectural refactor","description": "Cross-cutting changes, system-level work", "inputK": 100, "outputK": 12 },
-    { "label": "Architecture (Opus)",   "description": "Design sessions, planning",                "inputK": 120, "outputK": 15 }
+    { "label": "Planning",   "description": "Design sessions, planning",                "inputK": 120, "outputK": 15 }
   ],
 
   "model": {
