@@ -1,21 +1,23 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // AI Coding Tool Cost Calculator
-// Self-contained embeddable component — call initCalculator("element-id")
+// Pricing data loaded from pricing.json at runtime.
+// Call: initCalculator("element-id")          — loads pricing.json from same dir
+//       initCalculator("id", "/path/pricing.json") — explicit URL
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
 interface ModelRate {
-  input: number;        // $/M tokens
-  output: number;       // $/M tokens
-  cachedInput?: number; // $/M tokens when cache hits (Claude Code only)
+  input: number;
+  output: number;
+  cachedInput?: number;
 }
 
 interface TaskTier {
   label: string;
   description: string;
-  inputK: number;   // k tokens input per task at 1M-line codebase baseline
-  outputK: number;  // k tokens output per task
+  inputK: number;
+  outputK: number;
 }
 
 interface ToolDef {
@@ -24,21 +26,29 @@ interface ToolDef {
   color: string;
   pricingUrl: string;
   modelPricingUrl: string;
+  seatCostPerUser: number;
+  creditsPerUser: number;
   baseCost: (engineers: number) => number;
   includedCredits: (engineers: number) => number;
-  rates: ModelRate[];  // one entry per TaskTier index
+  rates: ModelRate[];
   rateLabels: string[];
+}
+
+interface UserTypeProfile {
+  id: string;
+  label: string;
+  desc: string;
+  tasksPerDay: number;
+  opusPct: number;
 }
 
 interface CalcInputs {
   engineers: number;
   tasksPerDay: number;
   workingDays: number;
-  opusPct: number;        // 0..1
-  codebaseLines: number;  // 10_000 to 100_000_000
+  opusPct: number;
+  codebaseLines: number;
 }
-
-const CACHE_HIT_RATE = 0.40; // Claude Code prompt cache hit rate — fixed assumption
 
 interface TierCost {
   tasks: number;
@@ -55,117 +65,10 @@ interface ToolResult {
   total: number;
 }
 
-// ── User type profiles ───────────────────────────────────────────────────────
-
-interface UserTypeProfile {
-  id: string;
-  label: string;
-  desc: string;
-  tasksPerDay: number;
-  opusPct: number;
-}
-
-// Calibrated against Cursor Teams rates so each profile hits the described monthly spend tier.
-// Daily Tab: ~$17.50/mo · Limited Agent: ~$23.60/mo (often within $20) ·
-// Daily Agent: ~$83.70/mo · Power user: ~$201.80/mo
-const USER_TYPES: UserTypeProfile[] = [
-  { id: "tab",     label: "Basic users",          desc: "Single prompts",                          tasksPerDay: 5,  opusPct: 0 },
-  { id: "limited", label: "Light agentic users",  desc: "Light users who don't code all day",      tasksPerDay: 5,  opusPct: 0.03 },
-  { id: "daily",   label: "Full agentic users",   desc: "Full users who code all day",             tasksPerDay: 10, opusPct: 0.08 },
-  { id: "power",   label: "Power users",          desc: "Full agentic in autonomous mode",         tasksPerDay: 32, opusPct: 0.15 },
-];
-
-function deriveFromUserCounts(counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
-  const total = counts.reduce((s, c) => s + c, 0);
-  if (total === 0) return { engineers: 0, tasksPerDay: 0, opusPct: 0 };
-  const wTasks = USER_TYPES.reduce((s, t, i) => s + t.tasksPerDay * counts[i], 0) / total;
-  const wOpus  = USER_TYPES.reduce((s, t, i) => s + t.opusPct  * counts[i], 0) / total;
-  return { engineers: total, tasksPerDay: Math.round(wTasks), opusPct: +wOpus.toFixed(3) };
-}
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-// Log-scale slider constants for codebase size (10k–100M lines)
-const CB_LOG_MIN = Math.log10(10_000);        // 4
-const CB_LOG_MAX = Math.log10(100_000_000);   // 8
-const CB_DEFAULT_LINES = 1_000_000;
-// Raw slider position (0–100) for default 1M lines
-const CB_DEFAULT_POS = Math.round(
-  ((Math.log10(CB_DEFAULT_LINES) - CB_LOG_MIN) / (CB_LOG_MAX - CB_LOG_MIN)) * 100
-); // ≈ 50
-
-const TIERS: TaskTier[] = [
-  { label: "Small bug fix",         description: "Quick edits, single-file fixes",          inputK: 15,  outputK: 1  },
-  { label: "Minor change",          description: "Multi-file edits, small refactors",        inputK: 35,  outputK: 3  },
-  { label: "New feature",           description: "Full feature implementation",              inputK: 60,  outputK: 8  },
-  { label: "Architectural refactor",description: "Cross-cutting changes, system-level work", inputK: 100, outputK: 12 },
-  { label: "Architecture (Opus)",   description: "Design sessions, planning",                inputK: 120, outputK: 15 },
-];
-
-// Non-Opus task split: bug fix 35 / minor 30 / feature 20 / arch refactor 15
-const BASE_SPLIT = [35, 30, 20, 15];
-const BASE_TOTAL = BASE_SPLIT.reduce((a, b) => a + b, 0); // 100
-
-const TOOLS: ToolDef[] = [
-  {
-    id: "cc",
-    name: "Claude Code",
-    color: "#4A90D9",
-    pricingUrl: "https://claude.ai/pricing",
-    modelPricingUrl: "https://www.anthropic.com/pricing",
-    baseCost: () => 0,
-    includedCredits: () => 0,
-    rates: [
-      { input: 1.00,  output: 5.00  },                       // Small bug fix — Haiku
-      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // Minor change — Sonnet
-      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // New feature — Sonnet
-      { input: 3.00,  output: 15.00, cachedInput: 0.30 },    // Arch refactor — Sonnet
-      { input: 15.00, output: 75.00, cachedInput: 0.50 },    // Architecture — Opus
-    ],
-    rateLabels: ["Haiku", "Sonnet", "Sonnet", "Sonnet", "Opus (direct)"],
-  },
-  {
-    id: "cop",
-    name: "Copilot",
-    color: "#E07B39",
-    pricingUrl: "https://github.com/features/copilot#pricing",
-    modelPricingUrl: "https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing",
-    baseCost: (eng) => eng * 19,
-    includedCredits: (eng) => eng * 19,
-    rates: [
-      { input: 0.25, output: 2.00  },  // Small bug fix — GPT-5 mini
-      { input: 2.00, output: 8.00  },  // Minor change — GPT-4.1
-      { input: 3.00, output: 15.00 },  // New feature — Sonnet
-      { input: 3.00, output: 15.00 },  // Arch refactor — Sonnet
-      { input: 5.00, output: 25.00 },  // Architecture — Opus via Copilot (preferential)
-    ],
-    rateLabels: ["GPT-5 mini", "GPT-4.1", "Sonnet", "Sonnet", "Opus (preferential rate)"],
-  },
-  {
-    id: "cur",
-    name: "Cursor",
-    color: "#5CB85C",
-    pricingUrl: "https://cursor.com/pricing",
-    modelPricingUrl: "https://cursor.com/pricing",
-    baseCost: (eng) => eng * 40,
-    includedCredits: (eng) => eng * 20,  // $20 of the $40 is credits
-    rates: [
-      { input: 1.25,  output: 6.00  },  // Small bug fix — Auto
-      { input: 1.25,  output: 6.00  },  // Minor change — Auto
-      { input: 3.00,  output: 15.00 },  // New feature — Max Sonnet
-      { input: 3.00,  output: 15.00 },  // Arch refactor — Max Sonnet
-      { input: 15.00, output: 75.00 },  // Architecture — Max Opus (full rate)
-    ],
-    rateLabels: ["Auto", "Auto", "Max Sonnet", "Max Sonnet", "Max Opus (full rate)"],
-  },
-];
-
-// ── Calculation ───────────────────────────────────────────────────────────────
-
 interface UserTypeCost {
   label: string;
   count: number;
-  tokenCosts: number[]; // one entry per tool
+  tokenCosts: number[];
 }
 
 interface BreakdownResult {
@@ -173,19 +76,148 @@ interface BreakdownResult {
   toolTotals: ToolResult[];
 }
 
-function calcByUserType(counts: number[], codebaseLines: number): BreakdownResult {
-  const userTypeCosts: UserTypeCost[] = USER_TYPES.map((ut, i) => ({
+// ── JSON schema (mirrors pricing.json) ───────────────────────────────────────
+
+interface PricingJSON {
+  tools: Array<{
+    id: string; name: string; color: string;
+    pricingUrl: string; modelPricingUrl: string;
+    seatCostPerUser: number; creditsPerUser: number;
+    rates: Array<{ label: string; input: number; output: number; cachedInput?: number }>;
+  }>;
+  userTypes: Array<{ id: string; label: string; desc: string; tasksPerDay: number; opusPct: number }>;
+  taskTiers: Array<{ label: string; description: string; inputK: number; outputK: number }>;
+  model: {
+    workingDaysPerMonth: number;
+    cacheHitRate: number;
+    taskSplitNonOpus: number[];
+    defaultCounts: number[];
+    defaultCodebaseLines: number;
+    codebaseMinLines: number;
+    codebaseMaxLines: number;
+    codebaseExponent: number;
+  };
+}
+
+// ── Runtime config (populated from JSON) ─────────────────────────────────────
+
+interface Config {
+  tools: ToolDef[];
+  userTypes: UserTypeProfile[];
+  tiers: TaskTier[];
+  baseSplit: number[];
+  baseTotal: number;
+  workingDays: number;
+  cacheHitRate: number;
+  defaultCounts: number[];
+  cbDefaultLines: number;
+  cbLogMin: number;
+  cbLogMax: number;
+  cbDefaultPos: number;
+  cbExponent: number;
+}
+
+function buildConfig(data: PricingJSON): Config {
+  const tools: ToolDef[] = data.tools.map(t => ({
+    id: t.id, name: t.name, color: t.color,
+    pricingUrl: t.pricingUrl, modelPricingUrl: t.modelPricingUrl,
+    seatCostPerUser: t.seatCostPerUser,
+    creditsPerUser: t.creditsPerUser,
+    baseCost: (eng: number) => eng * t.seatCostPerUser,
+    includedCredits: (eng: number) => eng * t.creditsPerUser,
+    rates: t.rates.map(r => ({ input: r.input, output: r.output, ...(r.cachedInput !== undefined ? { cachedInput: r.cachedInput } : {}) })),
+    rateLabels: t.rates.map(r => r.label),
+  }));
+
+  const cbLogMin = Math.log10(data.model.codebaseMinLines);
+  const cbLogMax = Math.log10(data.model.codebaseMaxLines);
+  const cbDefaultPos = Math.round(
+    ((Math.log10(data.model.defaultCodebaseLines) - cbLogMin) / (cbLogMax - cbLogMin)) * 100
+  );
+  const baseSplit = data.model.taskSplitNonOpus;
+
+  return {
+    tools,
+    userTypes: data.userTypes,
+    tiers: data.taskTiers,
+    baseSplit,
+    baseTotal: baseSplit.reduce((a, b) => a + b, 0),
+    workingDays: data.model.workingDaysPerMonth,
+    cacheHitRate: data.model.cacheHitRate,
+    defaultCounts: data.model.defaultCounts,
+    cbDefaultLines: data.model.defaultCodebaseLines,
+    cbLogMin, cbLogMax, cbDefaultPos,
+    cbExponent: data.model.codebaseExponent,
+  };
+}
+
+// ── Calculation ───────────────────────────────────────────────────────────────
+
+function codebaseMultiplier(cfg: Config, lines: number): number {
+  return Math.pow(lines / cfg.cbDefaultLines, cfg.cbExponent);
+}
+
+function sliderToLines(cfg: Config, pos: number): number {
+  return Math.round(Math.pow(10, cfg.cbLogMin + (pos / 100) * (cfg.cbLogMax - cfg.cbLogMin)));
+}
+
+function calcTierSplit(cfg: Config, opusPct: number): number[] {
+  const remaining = 1 - opusPct;
+  return [
+    ...cfg.baseSplit.map(s => (s / cfg.baseTotal) * remaining),
+    opusPct,
+  ];
+}
+
+function calcTool(cfg: Config, tool: ToolDef, inputs: CalcInputs): ToolResult {
+  const { engineers, tasksPerDay, workingDays, codebaseLines } = inputs;
+  const totalTasks = engineers * tasksPerDay * workingDays;
+  const split = calcTierSplit(cfg, inputs.opusPct);
+  const cbMult = codebaseMultiplier(cfg, codebaseLines);
+
+  const tiers: TierCost[] = cfg.tiers.map((tier, i) => {
+    const tasks = Math.round(totalTasks * split[i]);
+    const inputM = (tasks * tier.inputK * cbMult) / 1000;
+    const outputM = (tasks * tier.outputK) / 1000;
+    const rate = tool.rates[i];
+    let tokenCost: number;
+    if (rate.cachedInput !== undefined && tool.id === "cc" && i > 0) {
+      tokenCost = inputM * cfg.cacheHitRate * rate.cachedInput
+                + inputM * (1 - cfg.cacheHitRate) * rate.input
+                + outputM * rate.output;
+    } else {
+      tokenCost = inputM * rate.input + outputM * rate.output;
+    }
+    return { tasks, inputM, outputM, tokenCost };
+  });
+
+  const tokenTotal = tiers.reduce((sum, t) => sum + t.tokenCost, 0);
+  const baseCost   = tool.baseCost(engineers);
+  const credits    = tool.includedCredits(engineers);
+  return { tiers, tokenTotal, baseCost, credits, total: baseCost - credits + tokenTotal };
+}
+
+function deriveFromUserCounts(cfg: Config, counts: number[]): { engineers: number; tasksPerDay: number; opusPct: number } {
+  const total = counts.reduce((s, c) => s + c, 0);
+  if (total === 0) return { engineers: 0, tasksPerDay: 0, opusPct: 0 };
+  const wTasks = cfg.userTypes.reduce((s, t, i) => s + t.tasksPerDay * counts[i], 0) / total;
+  const wOpus  = cfg.userTypes.reduce((s, t, i) => s + t.opusPct   * counts[i], 0) / total;
+  return { engineers: total, tasksPerDay: Math.round(wTasks), opusPct: +wOpus.toFixed(3) };
+}
+
+function calcByUserType(cfg: Config, counts: number[], codebaseLines: number): BreakdownResult {
+  const userTypeCosts: UserTypeCost[] = cfg.userTypes.map((ut, i) => ({
     label: ut.label,
     count: counts[i],
-    tokenCosts: TOOLS.map(tool =>
+    tokenCosts: cfg.tools.map(tool =>
       counts[i] === 0 ? 0 :
-      calcTool(tool, { engineers: counts[i], tasksPerDay: ut.tasksPerDay,
-                       workingDays: 22, opusPct: ut.opusPct, codebaseLines }).tokenTotal
+      calcTool(cfg, tool, { engineers: counts[i], tasksPerDay: ut.tasksPerDay,
+                            workingDays: cfg.workingDays, opusPct: ut.opusPct, codebaseLines }).tokenTotal
     ),
   }));
 
   const totalEngineers = counts.reduce((s, c) => s + c, 0);
-  const toolTotals: ToolResult[] = TOOLS.map((tool, ti) => {
+  const toolTotals: ToolResult[] = cfg.tools.map((tool, ti) => {
     const tokenTotal = userTypeCosts.reduce((sum, utc) => sum + utc.tokenCosts[ti], 0);
     const baseCost   = tool.baseCost(totalEngineers);
     const credits    = tool.includedCredits(totalEngineers);
@@ -193,62 +225,6 @@ function calcByUserType(counts: number[], codebaseLines: number): BreakdownResul
   });
 
   return { userTypeCosts, toolTotals };
-}
-
-// Input tokens scale with codebase size (log, anchored at 1M lines = 1.0×)
-function codebaseMultiplier(lines: number): number {
-  return Math.pow(lines / 1_000_000, 0.2);
-}
-
-// Convert raw log-slider position (0–100) to line count
-function sliderToLines(pos: number): number {
-  return Math.round(Math.pow(10, CB_LOG_MIN + (pos / 100) * (CB_LOG_MAX - CB_LOG_MIN)));
-}
-
-function calcTierSplit(inputs: CalcInputs): number[] {
-  const { opusPct } = inputs;
-  const remaining = 1 - opusPct;
-  return [
-    (BASE_SPLIT[0] / BASE_TOTAL) * remaining,
-    (BASE_SPLIT[1] / BASE_TOTAL) * remaining,
-    (BASE_SPLIT[2] / BASE_TOTAL) * remaining,
-    (BASE_SPLIT[3] / BASE_TOTAL) * remaining,
-    opusPct,
-  ];
-}
-
-function calcTool(tool: ToolDef, inputs: CalcInputs): ToolResult {
-  const { engineers, tasksPerDay, workingDays, codebaseLines } = inputs;
-  const totalTasks = engineers * tasksPerDay * workingDays;
-  const split = calcTierSplit(inputs);
-  const cbMult = codebaseMultiplier(codebaseLines);
-
-  const tiers: TierCost[] = TIERS.map((tier, i) => {
-    const tasks = Math.round(totalTasks * split[i]);
-    // Only input tokens scale with codebase size; output is fixed by task type
-    const inputM = (tasks * tier.inputK * cbMult) / 1000;
-    const outputM = (tasks * tier.outputK) / 1000;
-
-    const rate = tool.rates[i];
-    let tokenCost: number;
-
-    if (rate.cachedInput !== undefined && tool.id === "cc" && i > 0) {
-      const cachedIn = inputM * CACHE_HIT_RATE * rate.cachedInput;
-      const freshIn  = inputM * (1 - CACHE_HIT_RATE) * rate.input;
-      tokenCost = cachedIn + freshIn + outputM * rate.output;
-    } else {
-      tokenCost = inputM * rate.input + outputM * rate.output;
-    }
-
-    return { tasks, inputM, outputM, tokenCost };
-  });
-
-  const tokenTotal = tiers.reduce((sum, t) => sum + t.tokenCost, 0);
-  const baseCost   = tool.baseCost(engineers);
-  const credits    = tool.includedCredits(engineers);
-  const total      = baseCost - credits + tokenTotal;
-
-  return { tiers, tokenTotal, baseCost, credits, total };
 }
 
 // ── Formatting ────────────────────────────────────────────────────────────────
@@ -279,22 +255,20 @@ function tdStyle(align: string, bg: string): string {
 
 // ── Render ────────────────────────────────────────────────────────────────────
 
-function renderBarChart(results: ToolResult[], container: HTMLElement): void {
+function renderBarChart(cfg: Config, results: ToolResult[], container: HTMLElement): void {
   const max = Math.max(...results.map(r => r.total)) * 1.1;
   const W = 320, H = 140, barW = 64, gap = 24;
-  const startX = (W - (TOOLS.length * barW + (TOOLS.length - 1) * gap)) / 2;
+  const startX = (W - (cfg.tools.length * barW + (cfg.tools.length - 1) * gap)) / 2;
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;display:block;margin:0 auto;">`;
-
   for (let i = 0; i <= 4; i++) {
     const y = 10 + (i / 4) * (H - 50);
     const val = Math.round(max * (1 - i / 4));
     svg += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#2a2a2a" stroke-width="1"/>`;
     svg += `<text x="2" y="${y - 3}" fill="#666" font-size="8" font-family="Montserrat,sans-serif">$${(val / 1000).toFixed(1)}k</text>`;
   }
-
   results.forEach((r, i) => {
-    const tool = TOOLS[i];
+    const tool = cfg.tools[i];
     const barH = max > 0 ? (r.total / max) * (H - 50) : 0;
     const x = startX + i * (barW + gap);
     const y = H - 38 - barH;
@@ -302,7 +276,6 @@ function renderBarChart(results: ToolResult[], container: HTMLElement): void {
     svg += `<text x="${x + barW / 2}" y="${y - 5}" fill="${tool.color}" font-size="9" font-weight="bold" font-family="Montserrat,sans-serif" text-anchor="middle">${fmt(r.total)}</text>`;
     svg += `<text x="${x + barW / 2}" y="${H - 20}" fill="#969696" font-size="8" font-family="Montserrat,sans-serif" text-anchor="middle">${tool.name}</text>`;
   });
-
   svg += `</svg>`;
   container.innerHTML = svg;
 }
@@ -310,14 +283,8 @@ function renderBarChart(results: ToolResult[], container: HTMLElement): void {
 // ── Slider component ──────────────────────────────────────────────────────────
 
 function makeSlider(opts: {
-  id: string;
-  label: string;
-  min: number;
-  max: number;
-  step: number;
-  value: number;
-  format: (v: number) => string;
-  note?: string;
+  id: string; label: string; min: number; max: number; step: number;
+  value: number; format: (v: number) => string; note?: string;
 }): string {
   return `
     <div style="margin-bottom:20px;">
@@ -331,34 +298,33 @@ function makeSlider(opts: {
     </div>`;
 }
 
-// ── Main init ─────────────────────────────────────────────────────────────────
+// ── Main render (called after config is loaded) ───────────────────────────────
 
-export function initCalculator(containerId: string): void {
+function renderCalculator(containerId: string, cfg: Config): void {
   const root = document.getElementById(containerId);
   if (!root) return;
 
-  // Default user type counts: tab=2, limited=4, daily=3, power=1 → 10 engineers
-  const DEFAULT_COUNTS = [2, 4, 3, 1];
+  const DEFAULT_COUNTS = [...cfg.defaultCounts];
   let userCounts = [...DEFAULT_COUNTS];
 
-  const initDerived = deriveFromUserCounts(DEFAULT_COUNTS);
-  const defaultInputs: CalcInputs = {
+  const initDerived = deriveFromUserCounts(cfg, DEFAULT_COUNTS);
+  let inputs: CalcInputs = {
     engineers:     initDerived.engineers,
     tasksPerDay:   initDerived.tasksPerDay,
-    workingDays:   22,
+    workingDays:   cfg.workingDays,
     opusPct:       initDerived.opusPct,
-    codebaseLines: CB_DEFAULT_LINES,
+    codebaseLines: cfg.cbDefaultLines,
   };
 
   root.style.cssText = "background:#161616;border:1px solid #2a2a2a;padding:28px 28px 20px;font-family:'Georgia','Times New Roman',serif;color:#e2e2e2;";
 
   root.innerHTML = `
     <h2 style="font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:22px;color:#e2e2e2;margin:0 0 6px;">AI Coding Tool Cost Estimator</h2>
-    <p style="color:#969696;font-size:14px;margin:0 0 28px;">Real-time cost comparison across GitHub Copilot, Claude Code, and Cursor. Adjust the inputs to match your team's usage pattern.</p>
+    <p style="color:#969696;font-size:14px;margin:0 0 28px;">Real-time cost comparison across ${cfg.tools.map(t => t.name).join(", ")}. Adjust the inputs to match your team's usage pattern.</p>
 
     <div style="margin-bottom:16px;">
       <p style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#969696;margin:0 0 10px;">Team composition</p>
-      ${USER_TYPES.map((ut, i) => `
+      ${cfg.userTypes.map((ut, i) => `
         <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #222;">
           <div>
             <span style="color:#e2e2e2;font-size:14px;">${ut.label}</span>
@@ -371,11 +337,11 @@ export function initCalculator(containerId: string): void {
           </div>
         </div>`).join("")}
       <p id="cc-team-summary" style="color:#555;font-size:11px;margin:10px 0 0;">
-        ${initDerived.engineers} engineers &nbsp;·&nbsp; ${initDerived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(initDerived.opusPct)} Opus
+        ${initDerived.engineers} engineer${initDerived.engineers !== 1 ? "s" : ""} &nbsp;·&nbsp; ${initDerived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(initDerived.opusPct)} Opus
       </p>
     </div>
     <div style="margin-bottom:24px;">
-      ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: CB_DEFAULT_POS, format: () => fmtLines(CB_DEFAULT_LINES), note: "Larger codebases require agents to read more files per task" })}
+      ${makeSlider({ id: "cc-codebase", label: "Codebase size", min: 0, max: 100, step: 1, value: cfg.cbDefaultPos, format: () => fmtLines(cfg.cbDefaultLines), note: "Larger codebases require agents to read more files per task" })}
     </div>
 
     <div style="border-top:1px solid #2a2a2a;padding-top:24px;margin-bottom:20px;">
@@ -390,35 +356,31 @@ export function initCalculator(containerId: string): void {
     </details>
 
     <p style="margin:20px 0 0;font-size:11px;color:#444;">
-      Estimates only. User type counts drive engineers and average tasks/day. Codebase size and Opus % can be adjusted independently. Task mix: 35% small bug fixes / 30% minor changes / 20% new features / 15% architectural refactors. Working days: ${defaultInputs.workingDays}/month.
+      Estimates only. User type counts drive engineers and average tasks/day. Task mix: ${cfg.baseSplit.join("/")}% non-Opus. Working days: ${cfg.workingDays}/month.
     </p>
   `;
 
   const resultsEl     = root.querySelector<HTMLElement>("#cc-results")!;
   const chartEl       = root.querySelector<HTMLElement>("#cc-chart")!;
   const assumptionsEl = root.querySelector<HTMLElement>("#cc-assumptions")!;
-
-  let inputs = { ...defaultInputs };
+  const summaryEl     = root.querySelector<HTMLElement>("#cc-team-summary")!;
 
   function renderAssumptions(): void {
     const linkStyle = (color: string) => `color:${color};font-size:10px;text-decoration:none;border-bottom:1px solid ${color}55;`;
     let html = `<table style="width:100%;border-collapse:collapse;font-size:12px;">
       <thead><tr style="border-bottom:1px solid #2a2a2a;">
         <th style="${thStyle("left")}">Type of task</th>`;
-    TOOLS.forEach(t => {
-      html += `<th style="${thStyle("right")}">
-        <a href="${t.modelPricingUrl}" target="_blank" rel="noopener" style="${linkStyle(t.color)}">${t.name} rates ↗</a>
-      </th>`;
+    cfg.tools.forEach(t => {
+      html += `<th style="${thStyle("right")}"><a href="${t.modelPricingUrl}" target="_blank" rel="noopener" style="${linkStyle(t.color)}">${t.name} rates ↗</a></th>`;
     });
     html += `</tr></thead><tbody>`;
-    TIERS.forEach((tier, i) => {
+    cfg.tiers.forEach((tier, i) => {
       const bg = i % 2 === 0 ? "#1a1a1a" : "#1e1e1e";
       html += `<tr><td style="${tdStyle("left", bg)};color:#969696;">${tier.label}<br><span style="color:#555;font-size:10px;">${tier.description}</span></td>`;
-      TOOLS.forEach(t => {
+      cfg.tools.forEach(t => {
         const r = t.rates[i];
-        const label = t.rateLabels[i];
         const cacheNote = r.cachedInput && t.id === "cc" ? ` (cached $${r.cachedInput})` : "";
-        html += `<td style="${tdStyle("right", bg)};color:#666;font-size:11px;">${label}<br>$${r.input}/$${r.output}/M${cacheNote}</td>`;
+        html += `<td style="${tdStyle("right", bg)};color:#666;font-size:11px;">${t.rateLabels[i]}<br>$${r.input}/$${r.output}/M${cacheNote}</td>`;
       });
       html += `</tr>`;
     });
@@ -428,13 +390,11 @@ export function initCalculator(containerId: string): void {
 
   function buildResultsTable({ userTypeCosts, toolTotals }: BreakdownResult): string {
     const minTotal = Math.min(...toolTotals.map(r => r.total));
-
     let html = `<div style="overflow-x:auto;margin-bottom:16px;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead><tr style="border-bottom:2px solid #2a2a2a;">
           <th style="${thStyle("left")}">User type</th>`;
-
-    TOOLS.forEach((tool, i) => {
+    cfg.tools.forEach((tool, i) => {
       const isWinner = toolTotals[i].total === minTotal;
       html += `<th style="${thStyle("right")}">
         <a href="${tool.pricingUrl}" target="_blank" rel="noopener" style="color:${tool.color};font-weight:600;text-decoration:none;border-bottom:1px solid ${tool.color}33;">${tool.name}</a>
@@ -446,28 +406,25 @@ export function initCalculator(containerId: string): void {
     userTypeCosts.forEach((utc, i) => {
       if (utc.count === 0) return;
       const bg = i % 2 === 0 ? "#1e1e1e" : "#242424";
-      const ut = USER_TYPES[i];
-      const totalTasks = utc.count * ut.tasksPerDay * 22;
+      const ut = cfg.userTypes[i];
+      const totalTasks = utc.count * ut.tasksPerDay * cfg.workingDays;
       html += `<tr style="border-bottom:1px solid #2a2a2a;">
         <td style="${tdStyle("left", bg)}">
           <span style="color:#e2e2e2;">${utc.count}× ${utc.label}</span>
           <br><span style="color:#444;font-size:11px;">${ut.tasksPerDay} tasks/day · ${totalTasks.toLocaleString()} tasks/mo · ${pct(ut.opusPct)} Opus</span>
         </td>`;
-      utc.tokenCosts.forEach(cost => {
-        html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`;
-      });
+      utc.tokenCosts.forEach(cost => { html += `<td style="${tdStyle("right", bg)}">${fmt(cost)}</td>`; });
       html += `</tr>`;
     });
 
     const subtotalBg = "#1a1a1a";
-    html += `<tr style="border-top:1px solid #444;">
-      <td style="${tdStyle("left", subtotalBg)};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Token total</td>`;
+    html += `<tr style="border-top:1px solid #444;"><td style="${tdStyle("left", subtotalBg)};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Token total</td>`;
     toolTotals.forEach(r => { html += `<td style="${tdStyle("right", subtotalBg)};color:#555;">${fmt(r.tokenTotal)}</td>`; });
     html += `</tr>`;
 
     html += `<tr><td style="${tdStyle("left", "#1e1e1e")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Seat cost</td>`;
     toolTotals.forEach((r, i) => {
-      const perSeat = TOOLS[i].baseCost(1);
+      const perSeat = cfg.tools[i].seatCostPerUser;
       const note = perSeat > 0 ? `${fmt(r.baseCost)} ($${perSeat}/seat)` : "No seat cost";
       html += `<td style="${tdStyle("right", "#1e1e1e")};color:#555;font-size:11px;">${note}</td>`;
     });
@@ -475,47 +432,43 @@ export function initCalculator(containerId: string): void {
 
     html += `<tr><td style="${tdStyle("left", "#242424")};color:#555;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Included credits</td>`;
     toolTotals.forEach(r => {
-      const note = r.credits > 0 ? `−${fmt(r.credits)}` : "—";
-      html += `<td style="${tdStyle("right", "#242424")};color:#555;font-size:11px;">${note}</td>`;
+      html += `<td style="${tdStyle("right", "#242424")};color:#555;font-size:11px;">${r.credits > 0 ? `−${fmt(r.credits)}` : "—"}</td>`;
     });
     html += `</tr>`;
 
     html += `<tr><td style="${tdStyle("left", "#111")};font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;">Total / month</td>`;
     toolTotals.forEach((r, i) => {
       const isWinner = r.total === minTotal;
-      const c = isWinner ? "#f0ad4e" : TOOLS[i].color;
+      const c = isWinner ? "#f0ad4e" : cfg.tools[i].color;
       html += `<td style="${tdStyle("right", "#111")};font-weight:700;font-size:16px;color:${c};">${fmt(r.total)}</td>`;
     });
     html += `</tr></tbody></table></div>`;
 
-    html += `<p style="font-size:11px;color:#444;margin:0;">★ lowest cost at current settings &nbsp;·&nbsp; Copilot Opus rate is currently ~⅓ of direct API price — Microsoft preferential rate at time of writing &nbsp;·&nbsp; Claude Code costs reflect prompt caching</p>`;
+    html += `<p style="font-size:11px;color:#444;margin:0;">★ lowest cost &nbsp;·&nbsp; Copilot Opus rate is currently ~⅓ of direct API price — Microsoft preferential rate at time of writing &nbsp;·&nbsp; Claude Code costs reflect prompt caching</p>`;
     return html;
   }
 
   function update(): void {
-    const breakdown = calcByUserType(userCounts, inputs.codebaseLines);
-    renderBarChart(breakdown.toolTotals, chartEl);
+    const breakdown = calcByUserType(cfg, userCounts, inputs.codebaseLines);
+    renderBarChart(cfg, breakdown.toolTotals, chartEl);
     resultsEl.innerHTML = buildResultsTable(breakdown);
     renderAssumptions();
   }
 
-  // ── Wire up user type +/− buttons ────────────────────────────────────────
-  const summaryEl = root.querySelector<HTMLElement>("#cc-team-summary")!;
-
   function syncFromCounts(): void {
-    const derived = deriveFromUserCounts(userCounts);
+    const derived = deriveFromUserCounts(cfg, userCounts);
     inputs.engineers   = derived.engineers;
     inputs.tasksPerDay = derived.tasksPerDay;
     inputs.opusPct     = derived.opusPct;
     summaryEl.innerHTML =
       `${derived.engineers} engineer${derived.engineers !== 1 ? "s" : ""} &nbsp;·&nbsp; ${derived.tasksPerDay} tasks/day avg &nbsp;·&nbsp; ${pct(derived.opusPct)} Opus`;
-    USER_TYPES.forEach((ut, i) => {
-      root.querySelector<HTMLElement>(`#cc-${ut.id}-val`)!.textContent = String(userCounts[i]);
+    cfg.userTypes.forEach((ut, i) => {
+      root!.querySelector<HTMLElement>(`#cc-${ut.id}-val`)!.textContent = String(userCounts[i]);
     });
     update();
   }
 
-  USER_TYPES.forEach((ut, i) => {
+  cfg.userTypes.forEach((ut, i) => {
     root!.querySelector(`#cc-${ut.id}-dec`)!.addEventListener("click", () => {
       if (userCounts[i] > 0) { userCounts[i]--; syncFromCounts(); }
     });
@@ -524,34 +477,30 @@ export function initCalculator(containerId: string): void {
     });
   });
 
-  // ── Wire up standard sliders (codebase only — Opus is derived from user types) ──
-  const sliders: Array<{ id: string; key: keyof CalcInputs }> = [];
-
-  sliders.forEach(({ id, key }) => {
-    const slider = root.querySelector<HTMLInputElement>(`#${id}`)!;
-    const valEl  = root.querySelector<HTMLElement>(`#${id}-val`)!;
-    const fmtFn  = key === "engineers" || key === "tasksPerDay" ? String : pct;
-
-    slider.addEventListener("input", () => {
-      const v = parseFloat(slider.value);
-      (inputs as Record<string, number>)[key] = v;
-      valEl.textContent = fmtFn(v);
-      update();
-    });
-  });
-
-  // ── Wire up log-scale codebase slider ────────────────────────────────────
+  // Codebase size log-scale slider
   const cbSlider = root.querySelector<HTMLInputElement>("#cc-codebase")!;
   const cbValEl  = root.querySelector<HTMLElement>("#cc-codebase-val")!;
-
   cbSlider.addEventListener("input", () => {
-    const lines = sliderToLines(parseFloat(cbSlider.value));
+    const lines = sliderToLines(cfg, parseFloat(cbSlider.value));
     inputs.codebaseLines = lines;
     cbValEl.textContent  = fmtLines(lines);
     update();
   });
 
-  // Initial render
   renderAssumptions();
   update();
+}
+
+// ── Public entry point ────────────────────────────────────────────────────────
+
+export function initCalculator(containerId: string, pricingUrl = "pricing.json"): void {
+  fetch(pricingUrl)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json() as Promise<PricingJSON>;
+    })
+    .then(data => renderCalculator(containerId, buildConfig(data)))
+    .catch(err => {
+      console.error("ai-cost-calculator: failed to load pricing data from", pricingUrl, err);
+    });
 }
