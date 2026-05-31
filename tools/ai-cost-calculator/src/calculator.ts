@@ -96,7 +96,7 @@ const TOOLS: ToolDef[] = [
       { input: 3.00, output: 15.00 },  // Complex — Sonnet
       { input: 5.00, output: 25.00 },  // Planning — Opus via Copilot (discounted)
     ],
-    rateLabels: ["GPT-5 mini", "GPT-4.1", "Sonnet", "Opus (Copilot ⅓ rate)"],
+    rateLabels: ["GPT-5 mini", "GPT-4.1", "Sonnet", "Opus (preferential rate)"],
   },
   {
     id: "cur",
@@ -274,7 +274,7 @@ function renderResults(results: ToolResult[], container: HTMLElement): void {
 
   // ── Breakdown note ──
   html += `<p style="font-size:11px;color:#555;margin:0 0 16px;">
-    ★ lowest cost &nbsp;·&nbsp; Copilot Opus rate ($5/M) is ~⅓ of direct API price ($15/M) &nbsp;·&nbsp; Claude Code costs include prompt caching benefit
+    ★ lowest cost &nbsp;·&nbsp; Copilot Opus rate ($5/M) is currently ~⅓ of direct API price — Microsoft preferential rate at time of writing &nbsp;·&nbsp; Claude Code costs include prompt caching benefit
   </p>`;
 
   container.innerHTML = html;

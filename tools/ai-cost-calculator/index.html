@@ -43,7 +43,7 @@
       <li><strong>Simple</strong> (15k input / 1k output tokens) — quick edits, questions. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
       <li><strong>Medium</strong> (35k / 3k) — bug fixes, feature additions. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
       <li><strong>Complex</strong> (60k / 8k) — refactors, architecture. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Planning / Opus</strong> (80k / 10k) — design sessions, requirements. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is roughly one-third of that ($5/$25), reflecting its wholesale agreement with Anthropic.</li>
+      <li><strong>Planning / Opus</strong> (80k / 10k) — design sessions, requirements. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
     </ul>
 
     <p>Claude Code costs include prompt caching — repeated file reads within a session are billed at approximately 10% of the standard input rate. The cache hit rate slider controls how much of a reduction this produces. Cursor's $400/month floor (for 10 engineers) reflects the $20 platform fee per seat on top of the $20 in included credits.</p>
