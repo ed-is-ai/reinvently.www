@@ -1,0 +1,313 @@
+/* Reinvently services styles — extends blog.css */
+
+/* ── Journey diagram (index page) ───────────────────────────────── */
+.journey {
+  padding: 64px 0 48px;
+}
+.journey-label {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.journey-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+.journey-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+}
+.journey-step:hover { opacity: 1; }
+.journey-step:hover .step-name { color: var(--text); }
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s;
+}
+.journey-step:hover .step-dot { background: var(--text); }
+
+/* Connecting line between dots */
+.journey-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: calc(50% + 6px);
+  right: calc(-50% + 6px);
+  height: 1px;
+  background: var(--bg3);
+}
+
+.step-name {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-top: 16px;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+.step-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 0 8px;
+}
+.step-arrow {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 16px;
+  transition: color 0.2s;
+}
+.journey-step:hover .step-arrow { color: var(--text); }
+
+/* ── First Aid section ───────────────────────────────────────────── */
+.first-aid-section {
+  padding: 40px 0 64px;
+}
+.first-aid-section hr {
+  border: none;
+  border-top: 1px solid var(--bg3);
+  margin-bottom: 40px;
+}
+.first-aid-label {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.first-aid-card {
+  background: var(--bg2);
+  border: 1px solid var(--bg3);
+  padding: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.first-aid-card:hover { border-color: var(--accent); opacity: 1; }
+.first-aid-card h2 {
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.first-aid-card p {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.first-aid-card .read-more {
+  align-self: flex-start;
+}
+
+/* ── Service page — section headings ─────────────────────────────── */
+.service-section {
+  margin-bottom: 48px;
+}
+.service-section-label {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: inherit;
+}
+
+/* ── Output list ─────────────────────────────────────────────────── */
+.output-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.output-list li {
+  border-top: 1px solid var(--bg3);
+  padding: 16px 0;
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.output-list li:last-child { border-bottom: 1px solid var(--bg3); }
+.output-list li::before {
+  content: '—';
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Journey onward signpost (First Aid page) ────────────────────── */
+.onward-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0 0 20px;
+}
+.onward-path {
+  background: var(--bg2);
+  border: 1px solid var(--bg3);
+  padding: 20px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.onward-path:hover { border-color: var(--accent); opacity: 1; }
+.onward-verdict {
+  font-family: var(--font-nav);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.onward-path h3 {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.onward-path p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Contact form (service pages) ────────────────────────────────── */
+.contact-section {
+  background: var(--bg2);
+  border: 1px solid var(--bg3);
+  padding: 40px;
+  margin: 48px 0 0;
+}
+.contact-section h2 {
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.contact-section > p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  background: var(--bg);
+  border: 1px solid var(--bg3);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 16px;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.contact-form textarea { resize: vertical; }
+.contact-form .gdpr-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.contact-form .gdpr-row input { width: auto; flex-shrink: 0; margin-top: 3px; }
+.contact-form .gdpr-row label { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.contact-form button[type="submit"] {
+  align-self: flex-start;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  font-family: var(--font-nav);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.contact-form button[type="submit"]:hover { opacity: 0.8; }
+
+/* ── Contact CTA (links to homepage form) ────────────────────────── */
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-nav);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  margin-top: 20px;
+}
+.contact-cta:hover { opacity: 0.8; }
+
+/* ── Page breadcrumb ─────────────────────────────────────────────── */
+.service-breadcrumb {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.service-breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+.service-breadcrumb a:hover { color: var(--text); opacity: 1; }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .journey-steps {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .journey-step { align-items: flex-start; text-align: left; flex-direction: row; gap: 16px; }
+  .journey-step:not(:last-child)::after { display: none; }
+  .step-dot { margin-top: 5px; }
+  .step-name { margin-top: 0; }
+  .onward-paths { grid-template-columns: 1fr; }
+  .first-aid-card { flex-direction: column; gap: 16px; }
+  .contact-section { padding: 28px 20px; }
+}
