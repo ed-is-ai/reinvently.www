@@ -76,6 +76,7 @@ img { max-width: 100%; display: block; }
   color: var(--text-muted);
 }
 .nav-links a:hover { color: var(--text); opacity: 1; }
+.nav-links a[aria-current="page"] { color: var(--text); }
 
 /* ── Page header ─────────────────────────────────────────────────── */
 .page-header {
