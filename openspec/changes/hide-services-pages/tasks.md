@@ -18,4 +18,4 @@
 ## 3. Verify and commit
 
 - [x] 3.1 Search for any remaining `/services/` links across the site and remove them
-- [ ] 3.2 Commit and push changes
+- [x] 3.2 Commit and push changes
