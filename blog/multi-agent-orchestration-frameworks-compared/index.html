@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro — Reinvently</title>
+  <meta name="description" content="A practical, evidence-based comparison of five multi-agent orchestration tools — ruflo, Aperant, Sandcastle, Mission Control and Maestro — across GitHub popularity, use cases, hosting requirements and community feedback."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"/>
+  <meta property="og:title" content="Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro"/>
+  <meta property="og:description" content="A practical, evidence-based comparison of five multi-agent orchestration tools across GitHub popularity, use cases, hosting requirements and community feedback."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Multi-Agent Orchestration Frameworks Compared"/>
+  <meta name="twitter:description" content="A practical, evidence-based comparison of five multi-agent orchestration tools across popularity, use cases, hosting and community feedback."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control and Maestro",
+    "description": "A practical, evidence-based comparison of five multi-agent orchestration projects — ruflo, Aperant, Sandcastle, Mission Control and Maestro — by GitHub popularity, use case, differentiators, hosting requirements, and real-world community feedback.",
+    "datePublished": "2026-06-06",
+    "dateModified": "2026-06-06",
+    "image": "https://reinvently.co.uk/images/hero.jpg",
+    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "url": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/",
+    "inLanguage": "en-GB",
+    "keywords": ["multi-agent orchestration", "AI coding agents", "agent swarm", "ruflo", "Aperant", "sandcastle", "mission-control", "Maestro", "Claude Code"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between a multi-agent library and a multi-agent platform?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A library (such as Sandcastle) is a programmatic building block you import into your own code and call with a function — you keep full control and assemble the orchestration yourself. A platform (such as ruflo or Mission Control) is a complete system with its own runtime, interface, and opinions about how agents should be coordinated. Libraries suit developers embedding agents into a product; platforms suit teams that want orchestration, monitoring or scale out of the box. The trade-off is control and simplicity versus features and lock-in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which multi-agent framework has the most GitHub stars — and does it matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As of 6 June 2026, ruflo leads by a wide margin with around 58,000 stars, followed by Aperant (~14,300), Sandcastle (~5,800), Mission Control (~5,200) and Maestro (~3,000). But stars measure attention, not reliability. ruflo's own community discussion reports that its headline swarm-coordination features can fail in practice, while smaller projects such as Sandcastle are better regarded for doing one thing well. Treat stars as a signal of interest, then evaluate the tool against your own use case."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these multi-agent frameworks require a Claude subscription?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It varies. Aperant requires a Claude Pro or Max subscription to operate. ruflo, Maestro and Sandcastle are 'bring your own agent' — they wrap or invoke coding agents such as Claude Code, OpenAI Codex or others, so you supply whichever provider and credentials you already use. Mission Control is a framework-agnostic dashboard that connects to multiple agent backends (CrewAI, LangGraph, AutoGen, the Claude SDK and more) rather than mandating one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which multi-agent orchestration tool is best for a team versus a solo developer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a solo developer running many parallel coding tasks locally, Maestro (keyboard-first desktop) or Sandcastle (a library to script your own workflow) fit well. For a team that needs to govern an agent fleet — track spend, enforce access control, and audit work — Mission Control is the only one of the five built specifically for operations and governance. ruflo targets large-scale swarms with cross-agent memory, but its reliability is still in question, so treat it as a pilot rather than a production bet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ruflo production-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As of June 2026, the evidence suggests caution. ruflo is by far the most popular project of the five and is still gaining stars rapidly, but its own GitHub discussion thread and third-party write-ups report that the multi-agent swarm coordination features can fail in practice, and that agents may self-report success when work has actually failed. The ambition is real and development is very active, but if you adopt it today, pilot it on non-critical work and verify outputs independently rather than trusting self-reported results."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/news/">News</a>
+    <a href="/guides/">Guides</a>
+    <a href="/contact/">Contact</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">6 June 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
+  <h1>Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control and Maestro</h1>
+  <p class="summary">These five projects are all described as "multi-agent", but they fall into four distinct categories. This guide compares them on what each is for, how its popularity is trending, what it requires to run, and how the community has received it.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>"Multi-agent" has become a broad label in developer tooling. Search GitHub and you will find many fast-growing projects offering to orchestrate fleets, swarms or teams of AI agents. Placed side by side, however, five of the most discussed projects turn out not to be direct competitors: they are different kinds of tool that share a name.</p>
+
+    <p>Comparing them in a single flat feature table would be misleading, because a TypeScript library and a desktop app — or a governance dashboard and a swarm runtime — are not solving the same problem. This guide instead groups the five — <strong>ruflo</strong>, <strong>Aperant</strong>, <strong>Sandcastle</strong>, <strong>Mission Control</strong> and <strong>Maestro</strong> — by the category each belongs to, then compares them on popularity and momentum, use cases, differentiators, hosting requirements, and community feedback.</p>
+
+    <p>One theme recurs throughout: GitHub stars measure attention rather than usefulness, and in this category the gap between the two is unusually wide.</p>
+
+    <hr/>
+
+    <h2>The landscape: four categories of tool</h2>
+
+    <p>The cleanest way to understand these tools is along two axes. One is <strong>form factor</strong>: are you writing code against a library, or driving an application? The other is <strong>purpose</strong>: hands-on parallel coding for one developer, versus operating and governing a fleet of agents at scale.</p>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Category</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Tool</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">In one line</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Library / primitive</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Sandcastle</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Run sandboxed coding agents from your own TypeScript with one function call</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Desktop coding orchestrators</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Maestro, Aperant</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Desktop apps that run many coding agents in parallel on your machine</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Fleet ops / governance</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Mission Control</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A self-hosted dashboard to dispatch, monitor, cost and govern agent fleets</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Swarm meta-harness</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">ruflo</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A platform for large agent swarms with shared memory and federation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Grouped this way, the meaningful comparisons become clearer. Sandcastle, Maestro and Aperant can reasonably be compared with one another, since all three run coding agents on your own machine. Mission Control and ruflo address a different question — operating agents at scale. Comparing a library with a swarm platform, by contrast, sets two tools against each other that were built to solve different problems.</p>
+
+    <hr/>
+
+    <h2>Popularity: stars and momentum</h2>
+
+    <p>Popularity is the question most people ask about first, and it is worth examining carefully, because cumulative star counts are easy to misread. A total tells you how much attention a project has attracted over its lifetime, not whether interest is currently growing or fading. For that, the growth rate is more informative.</p>
+
+    <p>The table below pairs cumulative stars with two figures: the lifetime average (total stars ÷ age) and the recent rate, measured from the most recent stargazer activity. The difference between the two is often more revealing than either figure alone.</p>
+
+    <div style="overflow-x:auto;margin-bottom:18px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Project</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Stars</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Lifetime/day</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Recent/day</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Momentum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">ruflo</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~58,100</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~158</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~549</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Accelerating</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Aperant</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~14,300</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~78</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~5.5</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Stalled</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Sandcastle</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~5,800</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~72</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~26</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Easing after launch</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Mission Control</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~5,200</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~46</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~20</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Easing after launch</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Maestro</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~3,000</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~15</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">~4</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low but steady</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:rgb(150,150,150);margin-top:0;">GitHub data verified 6 June 2026 via the GitHub API. Recent rate is derived from the most recent stargazer timestamps; ruflo's is inferred from roughly 18,000 stars gained in the 33 days after it crossed 40,000 on 4 May 2026. Figures move quickly — treat them as a snapshot.</p>
+
+    <p>Two points stand out:</p>
+
+    <p><strong>ruflo is both the largest and currently the fastest-growing.</strong> Its lifetime average of ~158 stars a day understates recent activity, since it is the oldest of the five (created June 2025). The recent rate of roughly 549 stars a day indicates that growth is still accelerating.</p>
+
+    <p><strong>Aperant's lifetime average is misleading.</strong> At ~78 stars a day over its life it appears to be the second-strongest riser, but the recent rate has fallen to around 5.5 a day, and — as discussed below — the repository has gone quiet. The lifetime figure reflects an earlier surge that has since ended, which illustrates why the growth rate matters more than the cumulative average.</p>
+
+    <p>Sandcastle and Mission Control show a common pattern: a strong launch settling into a steadier rate. Maestro is the smallest and slowest-growing, but, unlike Aperant, it is still being actively developed.</p>
+
+    <hr/>
+
+    <h2>Popularity is not the same as reliability</h2>
+
+    <p>The most-starred and fastest-growing project of the five is also the most criticised by people who have used it in practice.</p>
+
+    <p>ruflo's own GitHub discussion — a thread titled <a href="https://github.com/ruvnet/ruflo/discussions/1666" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">"Is Ruflo actually that powerful and worth using it?"</a> — raises significant concerns. Contributors report that the headline multi-agent swarm-coordination features can fail in practice, that agents can self-report "success" when the underlying work has actually failed, and that several users removed it from their projects after seeing no meaningful improvement. A write-up from <a href="https://www.augmentcode.com/learn/ruflo-claude-code-multi-agent-orchestration" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Augment Code</a> summarised a broader concern about the category — that teams are "wrapping the wrapper". More positive accounts, such as <a href="https://www.sitepoint.com/deploying-multiagent-swarms-with-ruflo-beyond-singleprompt-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">SitePoint's walkthrough</a>, show a simple two-agent test-driven workflow working, which suggests the basic functionality is sound even where the swarm-scale claims are not yet borne out.</p>
+
+    <p>None of this means ruflo is a poor project. Its ambition — swarms of 100+ agents, shared vector memory, cross-machine federation — reaches further than anything else here, and development is very active. But the distance between the documentation and users' reported experience is the key point: popularity reflects how compelling a project's promise is, not how reliably it is delivered. The quieter tools in this list, Sandcastle in particular, have built their reputations by promising less and delivering it consistently.</p>
+
+    <hr/>
+
+    <h2>The five, by category</h2>
+
+    <h3>Sandcastle — the library</h3>
+    <p><a href="https://github.com/mattpocock/sandcastle" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sandcastle</a>, from well-known TypeScript educator Matt Pocock, is the outlier of the group, and among the most well regarded. It is not an application but a library. You invoke a coding agent with a single <code>sandcastle.run()</code> call, and it handles sandboxing the agent in an isolated container (Docker, Podman or Vercel), managing a git branch strategy, and merging the agent's commits back to your branch automatically. It runs fully offline with no cloud dependency, and it is MIT-licensed.</p>
+    <p><strong>What stands out</strong></p>
+    <ul>
+      <li>Provider-agnostic sandboxing — Docker, Podman, Vercel or a custom provider — so the same code runs locally or in the cloud.</li>
+      <li>Broad agent support: Claude Code, Codex, Cursor Composer, OpenCode, GitHub Copilot and Pi, each with configurable effort or reasoning levels.</li>
+      <li>Composable workflow primitives: session capture and resume, session forking for fan-out, structured output validated with Zod (or any Standard Schema validator), and dynamic context pulled into prompts via shell expressions.</li>
+      <li>Runs fully offline with no cloud dependency; MIT-licensed.</li>
+    </ul>
+    <p><strong>Gaps and watch-outs</strong></p>
+    <ul>
+      <li>It is a building block, not a finished product: there is no UI, dashboard or fleet management — you assemble the workflow yourself.</li>
+      <li>Some features are mutually exclusive: structured output and session resume each require a single iteration (<code>maxIterations === 1</code>), so they cannot be combined with multi-iteration runs.</li>
+      <li>The <code>head</code> branch strategy works only with bind-mount providers (Docker, Podman), not isolated ones such as Vercel.</li>
+      <li>Custom container images must retain a non-root user plus <code>git</code> and <code>gh</code>, or runs fail.</li>
+    </ul>
+    <p><strong>Best for:</strong> embedding agent orchestration inside your own product, scripts or review pipelines. <strong>Community verdict:</strong> well regarded and stable — a common choice for developers who want to build their own orchestration rather than adopt an opinionated platform.</p>
+
+    <h3>Maestro — the keyboard-first desktop orchestrator</h3>
+    <p><a href="https://github.com/RunMaestro/Maestro" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Maestro</a> is a cross-platform desktop "command centre" for running many coding agents in parallel. It is aimed at power users who prefer keyboard-driven workflows, and it brings its own agent rather than mandating one — supporting Claude Code, OpenAI Codex, OpenCode and Factory Droid. Notable features include file-based playbooks for automated task runs, git worktree isolation, multi-agent group chat with a moderator, and a built-in web server for mobile control.</p>
+    <p><strong>What stands out</strong></p>
+    <ul>
+      <li>Bring-your-own-agent: Claude Code, OpenAI Codex, OpenCode and Factory Droid, with Gemini CLI and Qwen3 Coder flagged as demand-dependent.</li>
+      <li>Automation: file-based playbooks run markdown checklists through fresh agent sessions, and a CLI enables headless use in cron jobs and CI/CD.</li>
+      <li>Parallelism without conflicts via git worktrees, plus multi-agent group chat with a moderator routing questions to the right agent.</li>
+      <li>Operational tooling: a usage dashboard with CSV export, regex output filtering, diff viewing, and mobile remote control through a built-in web server (QR code or Cloudflare tunnel).</li>
+    </ul>
+    <p><strong>Gaps and watch-outs</strong></p>
+    <ul>
+      <li>It is essentially a pass-through to the underlying agents — results depend on how well those providers are configured; Maestro adds orchestration, not model capability.</li>
+      <li>Support for agents beyond the current four depends on community demand.</li>
+      <li>It has the smallest community and slowest star growth of the five, so expect a thinner ecosystem and fewer third-party resources.</li>
+      <li>AGPL-3.0 — worth noting if you intend to embed or redistribute it commercially.</li>
+    </ul>
+    <p><strong>Best for:</strong> a solo developer or small team juggling many parallel projects locally. <strong>Community verdict:</strong> enthusiastic but niche — multiple <a href="https://news.ycombinator.com/item?id=46307563" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Hacker News</a> appearances, and a <a href="https://medium.com/@roaiwithjeffxli/maestro-ai-coding-agent-orchestration-platform-with-2000-stars-on-github-roai-with-jeff-x-d81e751a664e" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">creator interview</a> cites roughly 80% task success over 12-hour unattended runs. AGPL-3.0 licensed.</p>
+
+    <h3>Aperant — the autonomous desktop app</h3>
+    <p><a href="https://github.com/AndyMik90/Aperant" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Aperant</a> (formerly Auto-Claude) is the most autonomous of the desktop tools: you describe an objective, and it plans, builds and validates through a visual Kanban board, running up to 12 agent terminals in parallel in isolated git worktrees. On features alone it is the most ambitious of the local apps, and it integrates with GitHub, GitLab and Linear.</p>
+    <p><strong>What stands out</strong></p>
+    <ul>
+      <li>A genuinely autonomous loop: plan → implement → self-validating QA → AI-assisted merge-conflict resolution, all surfaced on a Kanban board.</li>
+      <li>Up to 12 parallel agent terminals running in isolated git worktrees, so the main branch is protected.</li>
+      <li>A memory layer that retains insights across sessions.</li>
+      <li>Issue-tracker integration: import from GitHub and GitLab, create merge requests, and sync tasks with Linear; native apps for Windows, macOS and Linux.</li>
+    </ul>
+    <p><strong>Gaps and watch-outs</strong></p>
+    <ul>
+      <li><strong>Maintenance is the main concern.</strong> At the time of writing the latest release (v2.7.6) and the last commit to <code>main</code> are dated 20 February 2026, the more active <code>develop</code> branch has had no commits since 23 March — roughly two and a half months — and there are 359 open issues. Together with the decline in star growth, this suggests development has paused.</li>
+      <li>It requires a Claude Pro or Max subscription plus the Claude Code CLI — there is no choice of provider.</li>
+      <li>Setup friction recurs in the issue tracker (for example, agents failing with "Claude Code not found").</li>
+      <li>Agents run with filesystem access restricted to the project directory and only approved commands; AGPL-3.0, with a commercial licence available.</li>
+    </ul>
+    <p><strong>Best for:</strong> hands-off autonomous feature delivery on a Claude subscription — provided you first confirm the project is being maintained again. <strong>Community verdict:</strong> strong interest in the feature set, tempered by the apparent pause in development; the design is worth studying even if you do not adopt it.</p>
+
+    <h3>Mission Control — the governance dashboard</h3>
+    <p><a href="https://github.com/builderz-labs/mission-control" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Mission Control</a> is the only one of the five built for <em>operations</em> rather than coding. It is a self-hosted dashboard for orchestrating agent fleets: dispatch tasks via a Kanban board with quality-review gates, monitor agents in real time, track token spend, and enforce role-based access (viewer, operator, admin). Crucially, it is framework-agnostic, with adapters for CrewAI, LangGraph, AutoGen, the Claude SDK and others. It runs on SQLite with a single command — no Redis, Postgres or Docker required.</p>
+    <p><strong>What stands out</strong></p>
+    <ul>
+      <li>An operations focus the others lack: around 32 panels covering tasks, agents, skills, logs, tokens, memory, security, cron, alerts, webhooks and pipelines.</li>
+      <li>Framework-agnostic adapters — OpenClaw, CrewAI, LangGraph, AutoGen, the Claude SDK and a generic fallback — with multi-gateway support for connecting to several at once.</li>
+      <li>Governance built in: role-based access (viewer, operator, admin), an "Aegis" review gate that blocks task completion without sign-off, secret detection, MCP-call auditing and 0–100 trust scoring.</li>
+      <li>Deliberately light to run: SQLite (better-sqlite3, WAL mode) with no Redis, Postgres or Docker required, real-time updates over WebSocket/SSE, and natural-language scheduling.</li>
+    </ul>
+    <p><strong>Gaps and watch-outs</strong></p>
+    <ul>
+      <li>Explicitly alpha: APIs, database schemas and configuration formats may change between releases.</li>
+      <li>Claude Code integration is read-only, and some panels (Skills Hub, Cost Tracking) ship with outdated screenshots.</li>
+      <li>A gateway connection is optional but required for real-time session updates and agent messaging.</li>
+      <li>Not safe to expose to the public internet without a TLS reverse proxy and host allow-listing; it is also the youngest and least battle-tested at scale.</li>
+    </ul>
+    <p><strong>Best for:</strong> a team that needs to govern and account for a fleet of agents. <strong>Community verdict:</strong> young and still alpha, but its unusually high fork-to-star ratio (~17%) signals strong builder interest; its website advertises an optional managed tier (from $29/month), though the repository itself documents no pricing. MIT-licensed.</p>
+
+    <h3>ruflo — the swarm meta-harness</h3>
+    <p><a href="https://github.com/ruvnet/ruflo" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">ruflo</a> is the most ambitious and most popular — a "meta-harness" that augments Claude Code with large-scale multi-agent orchestration: swarms of 100+ agents, vector-based adaptive memory, self-learning patterns, zero-trust federation across machines, a plugin marketplace, and multi-provider routing across Claude, GPT and Gemini. It is MIT-licensed and ships companion web interfaces.</p>
+    <p><strong>What stands out</strong></p>
+    <ul>
+      <li>By far the broadest capability set: 100+ coordinated agents, 33 native plugins, parallel MCP tool execution, and multi-provider routing across Claude, GPT, Gemini, Cohere and Ollama with failover.</li>
+      <li>A real memory and learning story: HNSW-indexed vector memory (AgentDB) and self-learning patterns (SONA, ReasoningBank) intended to improve results over successive runs.</li>
+      <li>Distributed operation: zero-trust federation across machines, with behavioural trust scoring for remote agents.</li>
+      <li>Companion web tooling: a hosted multi-model chat interface and a goal-planning UI that decomposes plain-English goals into action plans.</li>
+    </ul>
+    <p><strong>Gaps and watch-outs</strong></p>
+    <ul>
+      <li><strong>Reliability is the central concern</strong> (see above): community reports of swarm-coordination failures and of agents self-reporting success for work that did not complete.</li>
+      <li>Two very different installation paths — a Claude Code plugin versus the full CLI — with, in the maintainers' words, "very different surface areas," which can confuse first use.</li>
+      <li>Parts are explicitly beta (the web UI) or in active development (the goal planner); there are no SLAs or production guarantees.</li>
+      <li>The memory speed advantage applies only above a crossover point of roughly 5,000 vectors — below that it ties or loses to brute-force search — and the <code>curl | bash</code> installer is unavailable on native Windows (npx or WSL required).</li>
+    </ul>
+    <p><strong>Best for:</strong> teams that need swarm scale and cross-agent memory and can tolerate rough edges. <strong>Community verdict:</strong> considerable attention and rapid growth, but contested reliability — best treated as a promising tool to pilot rather than a production-ready guarantee.</p>
+
+    <hr/>
+
+    <h2>Hosting and operational requirements</h2>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Tool</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Form</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Runs where</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Notable requirement</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Licence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Sandcastle</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">TypeScript library</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Your containers (Docker/Podman/Vercel)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Embed in code; offline-capable</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">MIT</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Maestro</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Desktop app</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Local machine</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Bring your own agent CLI</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">AGPL-3.0</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Aperant</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Desktop app</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Local machine</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Requires Claude Pro/Max</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">AGPL-3.0</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Mission Control</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Self-hosted dashboard</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Your server</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">SQLite only — no Redis/PG/Docker; managed tier optional</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">MIT</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">ruflo</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">CLI meta-harness</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Local + optional federation</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Vector memory; heaviest footprint</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">MIT</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The pattern is intuitive once you see the categories. The library has the lightest footprint and the most flexibility; the desktop apps need only your machine (and, for Aperant, a Claude subscription); the governance dashboard is deliberately easy to self-host on a single SQLite-backed process; and the swarm platform carries the most operational weight by design.</p>
+
+    <hr/>
+
+    <h2>Which should you choose?</h2>
+
+    <p><strong>If you are embedding orchestration in your own product:</strong> Sandcastle. It is a primitive rather than a platform — you import it, call it, and retain full control.</p>
+
+    <p><strong>If you are a solo developer parallelising many local projects:</strong> Maestro. Keyboard-first, bring-your-own-agent, and built for long unattended runs.</p>
+
+    <p><strong>If you want hands-off autonomous feature delivery on a Claude subscription:</strong> Aperant's design fits the brief better than anything else here — but check the repository is active again before you commit, or treat it as a reference design rather than a dependency.</p>
+
+    <p><strong>If you are a team that needs to govern spend, access and audit across a fleet:</strong> Mission Control. It is the only one of the five built for operations rather than coding.</p>
+
+    <p><strong>If you need swarm scale and cross-agent memory, and can tolerate rough edges:</strong> ruflo — but pilot it on non-critical work and verify its outputs independently rather than relying on its self-reported results.</p>
+
+    <p>The broader point applies to most fast-moving AI tooling: choose the category first and the specific tool second. Star counts indicate what the community is interested in; they are not a reliable guide to how a tool will perform in your own codebase.</p>
+
+    <hr/>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>What is the difference between a multi-agent library and a multi-agent platform?</h3>
+    <p>A library (such as Sandcastle) is a programmatic building block you import into your own code and call with a function — you keep full control and assemble the orchestration yourself. A platform (such as ruflo or Mission Control) is a complete system with its own runtime, interface and opinions about how agents should be coordinated. Libraries suit developers embedding agents into a product; platforms suit teams that want orchestration, monitoring or scale out of the box. The trade-off is control and simplicity versus features and lock-in.</p>
+
+    <h3>Which multi-agent framework has the most GitHub stars — and does it matter?</h3>
+    <p>As of 6 June 2026, ruflo leads by a wide margin with around 58,000 stars, followed by Aperant (~14,300), Sandcastle (~5,800), Mission Control (~5,200) and Maestro (~3,000). But stars measure attention, not reliability. ruflo's own community discussion reports that its headline swarm-coordination features can fail in practice, while smaller projects such as Sandcastle are better regarded for doing one thing well. Treat stars as a signal of interest, then evaluate the tool against your own use case.</p>
+
+    <h3>Do these multi-agent frameworks require a Claude subscription?</h3>
+    <p>It varies. Aperant requires a Claude Pro or Max subscription to operate. ruflo, Maestro and Sandcastle are "bring your own agent" — they wrap or invoke coding agents such as Claude Code, OpenAI Codex or others, so you supply whichever provider and credentials you already use. Mission Control is a framework-agnostic dashboard that connects to multiple agent backends (CrewAI, LangGraph, AutoGen, the Claude SDK and more) rather than mandating one.</p>
+
+    <h3>Which multi-agent orchestration tool is best for a team versus a solo developer?</h3>
+    <p>For a solo developer running many parallel coding tasks locally, Maestro (keyboard-first desktop) or Sandcastle (a library to script your own workflow) fit well. For a team that needs to govern an agent fleet — track spend, enforce access control, and audit work — Mission Control is the only one of the five built specifically for operations and governance. ruflo targets large-scale swarms with cross-agent memory, but its reliability is still in question, so treat it as a pilot rather than a production bet.</p>
+
+    <h3>Is ruflo production-ready?</h3>
+    <p>As of June 2026, the evidence suggests caution. ruflo is by far the most popular project of the five and is still gaining stars rapidly, but its own GitHub discussion thread and third-party write-ups report that the multi-agent swarm coordination features can fail in practice, and that agents may self-report success when work has actually failed. The ambition is real and development is very active, but if you adopt it today, pilot it on non-critical work and verify outputs independently rather than trusting self-reported results.</p>
+
+    <hr/>
+
+    <p><em>Weighing up agentic tooling for your team? <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Talk to Reinvently.</a></em></p>
+
+    <div class="related-posts">
+      <p class="related-posts-label">Continue reading</p>
+      <ul class="related-list">
+        <li><a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</a></li>
+        <li><a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor</a></li>
+        <li><a href="/blog/ai-agent-interoperability-a2a-protocol/">AI Agent Interoperability and the A2A Protocol</a></li>
+      </ul>
+    </div>
+
+<a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
