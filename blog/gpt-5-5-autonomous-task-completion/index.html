@@ -36,6 +36,46 @@
     "keywords": ["GPT-5.5", "OpenAI", "autonomous AI", "agentic AI", "enterprise AI", "AI governance", "AI workflow"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes GPT-5.5 different?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Released by OpenAI on 23 April 2026, it is designed for autonomous task completion — decomposing a complex goal into subtasks, executing them, self-verifying its work and navigating ambiguity without returning for approval at each step. It also uses fewer tokens than GPT-5.4 for comparable results."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you supervise AI that does not ask for approval?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Design supervision at the boundaries: define what inputs the agent may receive and what outputs it may produce without human review. Anything within the boundary runs autonomously; anything crossing it triggers a human escalation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the main governance questions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "How to supervise without checkpoints, what happens when the model makes a wrong turn mid-task, what the audit trail is, and who is accountable when things go wrong — currently the person or team that deployed the agent and defined its scope."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does autonomous AI make sense today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "High-complexity tasks with clear success criteria and low-to-medium consequence of error — research synthesis, competitive analysis, internal workflow automation — on clean, well-structured data. Keep a human on irreversible or external-facing actions."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -62,7 +102,7 @@
 
     <p>Every AI deployment of the past three years has shared an implicit design assumption: a human stays in the loop at each decision point. The AI drafts, the human approves. The AI suggests, the human selects. The AI retrieves, the human interprets. The model is powerful, but it is ultimately a tool that waits to be directed.</p>
 
-    <p>GPT-5.5, released by OpenAI on 23 April 2026, is the most direct challenge yet to that assumption. Rather than assisting with individual steps, it is designed to receive a complex, multi-part task and complete it — planning its own approach, verifying its own work, and navigating ambiguity without returning for approval at each stage. The human hands off, and the model handles the rest.</p>
+    <p>GPT-5.5, released by <a href="https://openai.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenAI</a> on 23 April 2026, is the most direct challenge yet to that assumption. Rather than assisting with individual steps, it is designed to receive a complex, multi-part task and complete it — planning its own approach, verifying its own work, and navigating ambiguity without returning for approval at each stage. The human hands off, and the model handles the rest.</p>
 
     <p>This is not a marginal improvement. It assumes most organisations will work really differently in future. And it raises questions that enterprise technology leaders need answers to before they deploy it.</p>
 
@@ -104,7 +144,7 @@
 
     <h2>GPT-5.5 vs. Claude Managed Agents: Different Philosophies for the Same Goal</h2>
 
-    <p>GPT-5.5 is not the only approach to autonomous AI in the market. Anthropic's Claude Managed Agents — which we <a href="/blog/claude-memory-dream-enterprise-agents/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">covered recently</a> — address the same fundamental challenge from a different angle.</p>
+    <p>GPT-5.5 is not the only approach to autonomous AI in the market. <a href="https://www.anthropic.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic</a>'s Claude Managed Agents — which we <a href="/blog/claude-memory-dream-enterprise-agents/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">covered recently</a> — address the same fundamental challenge from a different angle.</p>
 
     <p>Where GPT-5.5 focuses on the model's innate ability to plan and execute autonomously within a session, Claude Managed Agents emphasise persistent memory, self-improvement over time, and developer-controlled infrastructure. They are designed for long-running deployments that get better with use, rather than for one-shot complex task completion.</p>
 
@@ -129,7 +169,21 @@
 
     <p>GPT-5.5 is a significant moment. The shift from AI-that-assists to AI-that-acts is not a distant future development — it is available today, tested, and deployed in production by organisations across industries. The question for enterprise technology leaders is not whether to engage with autonomous AI, but how to do so in a way that captures the efficiency gains while managing the governance risks that come with it.</p>
 
-    <hr/>
+        <h2>Frequently asked questions</h2>
+
+    <h3>What makes GPT-5.5 different?</h3>
+    <p>Released by OpenAI on 23 April 2026, it is designed for autonomous task completion — decomposing a complex goal into subtasks, executing them, self-verifying its work and navigating ambiguity without returning for approval at each step. It also uses fewer tokens than GPT-5.4 for comparable results.</p>
+
+    <h3>How do you supervise AI that does not ask for approval?</h3>
+    <p>Design supervision at the boundaries: define what inputs the agent may receive and what outputs it may produce without human review. Anything within the boundary runs autonomously; anything crossing it triggers a human escalation.</p>
+
+    <h3>What are the main governance questions?</h3>
+    <p>How to supervise without checkpoints, what happens when the model makes a wrong turn mid-task, what the audit trail is, and who is accountable when things go wrong — currently the person or team that deployed the agent and defined its scope.</p>
+
+    <h3>Where does autonomous AI make sense today?</h3>
+    <p>High-complexity tasks with clear success criteria and low-to-medium consequence of error — research synthesis, competitive analysis, internal workflow automation — on clean, well-structured data. Keep a human on irreversible or external-facing actions.</p>
+
+<hr/>
 
     <p><em>Reinvently helps organisations evaluate and deploy enterprise AI safely and effectively. If you are thinking through how autonomous AI fits into your workflows, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">talk to Reinvently</a>.</em></p>
 

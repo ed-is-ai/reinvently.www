@@ -36,6 +36,46 @@
     "keywords": ["A2A Protocol", "AI agent interoperability", "enterprise AI", "agentic AI", "Salesforce", "Google Cloud", "AI platform strategy"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the A2A protocol?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An open standard, managed by the Linux Foundation's Agentic AI Foundation and backed by more than 150 organisations, that lets AI agents from different vendors discover each other, communicate and hand off tasks without custom integration code."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does A2A work in practice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents discover these cards, compose workflows and delegate subtasks — closer to calling an API than building a bespoke connector — and data need not move between systems for agents to collaborate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is A2A different from MCP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They operate at different layers. Anthropic's Model Context Protocol governs how a single agent accesses tools and data; A2A governs how agents talk to each other. They are complementary, and enterprises can use both."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should enterprises do about A2A now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ask every AI platform you evaluate whether it supports A2A and on what timeline, reconsider the integration-driven case for single-vendor consolidation, design in workflows rather than tools, and set your multi-agent data-governance model before workflows reach production."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -64,7 +104,7 @@
 
     <p>This is the integration tax. And until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
 
-    <p>But things have been getting better.  The A2A Protocol is now backed by more than 150 organisations and managed by the Linux Foundation's Agentic AI Foundation. Microsoft, AWS, SAP, ServiceNow, Workday, and IBM are all on board. This is not a proprietary standard competing for dominance. It is quickly becoming the TCP/IP of agentic AI.</p>
+    <p>But things have been getting better.  The A2A Protocol is now backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>'s Agentic AI Foundation. Microsoft, AWS, SAP, ServiceNow, Workday, and IBM are all on board. This is not a proprietary standard competing for dominance. It is quickly becoming the TCP/IP of agentic AI.</p>
 
     <hr/>
 
@@ -101,9 +141,9 @@
 
     <p>The breadth of A2A adoption matters as much as the protocol itself. With Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday, and IBM all committed, A2A covers the core enterprise software stack for most large organisations. A workflow that needs to touch CRM, ERP, ITSM, and HCM systems can do so through A2A without any of those vendors needing bespoke agreements with each other.</p>
 
-    <p>The Linux Foundation's stewardship is also significant. Placing A2A under an open-source governance structure rather than a single vendor removes the risk that the protocol is redirected in ways that benefit one participant at the expense of others. The precedent here is Kubernetes — an open standard that now underpins how almost every enterprise runs containerised workloads, regardless of which cloud they use.</p>
+    <p>The Linux Foundation's stewardship is also significant. Placing A2A under an open-source governance structure rather than a single vendor removes the risk that the protocol is redirected in ways that benefit one participant at the expense of others. The precedent here is <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> — an open standard that now underpins how almost every enterprise runs containerised workloads, regardless of which cloud they use.</p>
 
-    <p>A2A is complementary to, not competitive with, Anthropic's Model Context Protocol (MCP), which governs how individual agents access tools and data sources. MCP handles the agent-to-tool layer; A2A handles the agent-to-agent layer. Enterprises building on Claude Managed Agents can use both.</p>
+    <p>A2A is complementary to, not competitive with, Anthropic's <a href="https://modelcontextprotocol.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Model Context Protocol</a> (MCP), which governs how individual agents access tools and data sources. MCP handles the agent-to-tool layer; A2A handles the agent-to-agent layer. Enterprises building on Claude Managed Agents can use both.</p>
 
     <hr/>
 
@@ -127,7 +167,21 @@
 
     <p>The A2A Protocol will not eliminate the complexity of enterprise AI. But it removes one of its most persistent sources of friction — the assumption that effective agentic AI requires a single-vendor environment. For technology leaders evaluating their AI roadmap, that changes the calculus significantly.</p>
 
-    <hr/>
+        <h2>Frequently asked questions</h2>
+
+    <h3>What is the A2A protocol?</h3>
+    <p>An open standard, managed by the Linux Foundation's Agentic AI Foundation and backed by more than 150 organisations, that lets AI agents from different vendors discover each other, communicate and hand off tasks without custom integration code.</p>
+
+    <h3>How does A2A work in practice?</h3>
+    <p>Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents discover these cards, compose workflows and delegate subtasks — closer to calling an API than building a bespoke connector — and data need not move between systems for agents to collaborate.</p>
+
+    <h3>How is A2A different from MCP?</h3>
+    <p>They operate at different layers. Anthropic's Model Context Protocol governs how a single agent accesses tools and data; A2A governs how agents talk to each other. They are complementary, and enterprises can use both.</p>
+
+    <h3>What should enterprises do about A2A now?</h3>
+    <p>Ask every AI platform you evaluate whether it supports A2A and on what timeline, reconsider the integration-driven case for single-vendor consolidation, design in workflows rather than tools, and set your multi-agent data-governance model before workflows reach production.</p>
+
+<hr/>
 
     <p><em>Reinvently helps organisations design enterprise AI strategies that are built to last. If you are thinking through your agentic AI architecture, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">talk to Reinvently</a>.</em></p>
 
