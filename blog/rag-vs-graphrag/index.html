@@ -36,6 +36,46 @@
     "keywords": ["RAG", "GraphRAG", "retrieval augmented generation", "knowledge graph", "AI architecture", "Microsoft"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between RAG and GraphRAG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard RAG retrieves text chunks by semantic similarity from a vector database and passes them to the model. GraphRAG first extracts a knowledge graph of entities and relationships from the corpus, which lets it answer multi-hop and corpus-wide questions that chunk retrieval misses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should you use standard RAG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For most enterprise knowledge retrieval — document search and question-answering over large corpora. It is fast to build, scales well with volume, easy to evaluate, and supported by a wide ecosystem including LangChain, LlamaIndex and vector databases such as Pinecone, Weaviate and pgvector."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is GraphRAG worth the extra cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When queries require synthesising information across many documents or reasoning over relationships between entities. GraphRAG reduces hallucination on relational queries, but it is more expensive and slower to index and more complex to maintain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is GraphRAG open source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Microsoft Research released GraphRAG as an open-source project in mid-2024, and it has since been widely adopted."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -62,7 +102,7 @@
 
     <p>Retrieval-augmented generation — RAG — has become the default architecture for enterprise AI applications that need to work with private or proprietary knowledge. Rather than relying solely on a model's training data, RAG retrieves relevant documents at query time and passes them to the model as context. The results are more accurate, more current and more trustworthy than pure generation.</p>
 
-    <p>But RAG has limits. And Microsoft's GraphRAG — released as open source in 2024 and now widely adopted — was designed to address them.</p>
+    <p>But RAG has limits. And Microsoft's <a href="https://github.com/microsoft/graphrag" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GraphRAG</a> — released as open source in 2024 and now widely adopted — was designed to address them.</p>
 
     <p>This post explains both architectures clearly, compares them honestly, and helps you decide which is right for your use case.</p>
 
@@ -84,7 +124,7 @@
       <li>Works well for document search and question-answering over large corpora</li>
       <li>Scales well with document volume</li>
       <li>Retrieval quality is easy to evaluate and improve</li>
-      <li>Wide ecosystem of tools, frameworks (LangChain, LlamaIndex) and managed services</li>
+      <li>Wide ecosystem of tools, frameworks (<a href="https://www.langchain.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">LangChain</a>, <a href="https://www.llamaindex.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">LlamaIndex</a>) and managed services</li>
     </ul>
 
     <h3>Weaknesses</h3>
@@ -200,7 +240,21 @@
 
     <p>When you hit that ceiling, GraphRAG is worth the additional complexity.</p>
 
-    <hr/>
+        <h2>Frequently asked questions</h2>
+
+    <h3>What is the difference between RAG and GraphRAG?</h3>
+    <p>Standard RAG retrieves text chunks by semantic similarity from a vector database and passes them to the model. GraphRAG first extracts a knowledge graph of entities and relationships from the corpus, which lets it answer multi-hop and corpus-wide questions that chunk retrieval misses.</p>
+
+    <h3>When should you use standard RAG?</h3>
+    <p>For most enterprise knowledge retrieval — document search and question-answering over large corpora. It is fast to build, scales well with volume, easy to evaluate, and supported by a wide ecosystem including LangChain, LlamaIndex and vector databases such as Pinecone, Weaviate and pgvector.</p>
+
+    <h3>When is GraphRAG worth the extra cost?</h3>
+    <p>When queries require synthesising information across many documents or reasoning over relationships between entities. GraphRAG reduces hallucination on relational queries, but it is more expensive and slower to index and more complex to maintain.</p>
+
+    <h3>Is GraphRAG open source?</h3>
+    <p>Yes. Microsoft Research released GraphRAG as an open-source project in mid-2024, and it has since been widely adopted.</p>
+
+<hr/>
 
     <p><em>Reinvently helps organisations design and implement retrieval architectures that match their actual use case. If you are building AI-native software, see our <a href="/services/build/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Build service</a>.</em></p>
 
