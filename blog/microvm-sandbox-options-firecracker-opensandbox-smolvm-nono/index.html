@@ -46,7 +46,7 @@
 <header class="article-header">
   <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Technology Strategy</div>
   <h1>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h1>
-  <p class="summary">The brief asked to compare microVM options. The first useful finding is that only two of the five are microVMs. They sit at four different points on an isolation spectrum — and the point you pick matters more than the product.</p>
+  <p class="summary">The brief asked to compare microVM options. The first useful finding is that they are not all microVMs — they occupy four different points on an isolation spectrum, and the boundaries between them are moving. The point you pick matters more than the product.</p>
 </header>
 
 <main class="container">
@@ -58,7 +58,7 @@
 
     <p>The market has responded quickly. In March 2026 Alibaba Cloud open-sourced OpenSandbox; AWS has been hardening Firecracker since 2018; and a cluster of smaller projects — SmolVM, nono, Docker's own Sandboxes feature — now offer to isolate agent code in a few commands. The brief for this piece was to compare five of them as "microVM options".</p>
 
-    <p>That framing is where the confusion starts. Only two of the five are microVMs. The other three are different things entirely — a shared-kernel container, a user-space kernel, and an operating-system process sandbox. Comparing them as if they were interchangeable is how organisations end up either over-engineering a problem they do not have or under-protecting one they do.</p>
+    <p>That framing is where the confusion starts. Only two of the five were built from the ground up as microVMs. The others each take a different approach — a shared-kernel container, a user-space kernel, and an operating-system process sandbox. And the ground is shifting under the labels: Docker, whose Sandboxes feature began as a container, has since moved it onto microVMs, which is a data point worth holding onto. Comparing these tools as if they were interchangeable is how organisations end up either over-engineering a problem they do not have or under-protecting one they do.</p>
 
     <hr/>
 
@@ -85,7 +85,7 @@
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Shared-kernel container</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">Namespaces and cgroups. One shared host kernel.</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Namespaces and cgroups, one shared host kernel — though recent versions add a per-sandbox microVM on macOS and Windows.</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Docker Sandboxes</td>
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
@@ -116,19 +116,19 @@
 
     <p>nono, built by Luke Hinds, is the lightest option here and the one most often miscategorised. It is not a virtual machine and not a container. It is a capability-based security shell that wraps an existing command using kernel primitives — Landlock on Linux, Seatbelt on macOS — to restrict what that process can touch. Once the restrictions are applied they cannot be widened: there is no API to escape them, not even for nono itself.</p>
 
-    <p>What it does well is protect your own machine from your own agent. Point it at Claude Code or a terminal-based assistant and you can declare, in a JSON profile, exactly which directories and network destinations the agent may reach. Credentials are injected at the boundary and zeroised on exit, so the agent never sees your SSH keys or cloud tokens even while using them. It runs anywhere the agent already runs, with near-zero overhead and no images to build.</p>
+    <p>What it does well is protect your own machine from your own agent. Point it at Claude Code or a terminal-based assistant and you can declare, in a JSON profile, exactly which directories and network destinations the agent may reach. Credentials are injected at the boundary and zeroised on exit, so the agent never sees your SSH keys or cloud tokens even while using them. It runs anywhere the agent already runs, with near-zero overhead and no images to build. Its Show HN debut drew a warm reception from developers with exactly this worry, and the practitioners who have written it up tend to reach the same verdict: for running agents during day-to-day development, it strikes a sensible balance between safety and staying out of the way.</p>
 
     <p>The limit is inherent to the model. nono still shares your kernel and runs on your host. It is an excellent answer to "my trusted coding agent might read a file or reach a server it should not", and a poor answer to "I am about to execute code written by an untrusted model for an untrusted user". It hardens the blast radius; it does not virtualise it away.</p>
 
-    <h3>Docker Sandboxes — the familiar container</h3>
+    <h3>Docker Sandboxes — the familiar tool that changed its mind</h3>
 
-    <p>Docker Sandboxes, an experimental feature in recent Docker Desktop releases, gives coding agents an isolated container to work in without leaving the tooling every developer already knows. For a trusted, in-house agent operating on a known codebase, that is often enough: namespaces and cgroups keep the agent away from the host filesystem and cap its resources, and the developer experience is unchanged.</p>
+    <p>Docker Sandboxes, an experimental feature aimed at running coding agents such as Claude Code, Codex and Gemini unattended, gives an agent a disposable, isolated environment without leaving the tooling every developer already knows. Its appeal is almost entirely about developer experience — "the best DX of any local AI coding sandbox I have tried", in the words of educator Matt Pocock, quoted on Docker's own launch blog — and about the ability to run agents without a stream of permission prompts, then delete the environment and start fresh in seconds if one goes off the rails.</p>
 
-    <p>The caveat is the one the wider industry spent the first half of 2026 repeating. Containers share the host kernel. Isolation rests on namespaces, cgroups and the assumption that no one finds a kernel bug to escape through. For code you wrote, that assumption is reasonable. For arbitrary code an AI generates on behalf of strangers, a shared-kernel container is the layer most security engineers now say is not sufficient on its own. Docker is a fine default for trust you already have, and the wrong default for trust you do not.</p>
+    <p>What makes it the most interesting entry here is that it changed isolation model mid-flight. The experimental preview used ordinary container isolation: namespaces and cgroups over one shared host kernel, which is reasonable for code you wrote and weak for code an AI generates on behalf of strangers. Docker evidently reached the same conclusion the rest of the industry did, because recent releases run each sandbox inside a dedicated microVM on macOS and Windows — "a hard security boundary", in Docker's phrasing — with Linux support still on the roadmap. In other words, the tool most people reach for because it is already installed has itself concluded that a shared kernel was not enough for unsupervised agents. That migration is the clearest single piece of evidence for this whole comparison: the isolation model is not a fixed property of the product, and it is the thing you actually have to check.</p>
 
     <h3>OpenSandbox — the user-space kernel</h3>
 
-    <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. It uses Google's gVisor runtime, which places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost.</p>
+    <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. It uses Google's gVisor runtime, which places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost. Concretely, gVisor's user-space kernel implements roughly 200 of the Linux kernel's roughly 400 system calls, so it narrows what an escape could reach — but code that depends on an unimplemented low-level call will fail, which is the compatibility tax you pay for the smaller surface. Independent testing puts its overhead at roughly 10 to 30 percent on I/O-heavy work and close to nothing on compute-bound tasks.</p>
 
     <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. Its secure runtime is also pluggable: gVisor is the default, but it can sit on Kata Containers or Firecracker instead. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
 
@@ -136,7 +136,7 @@
 
     <h3>Firecracker — the microVM primitive</h3>
 
-    <p>Firecracker is the reference point everything else is measured against. AWS built it in Rust, open-sourced it in November 2018 under Apache 2.0, and runs Lambda and Fargate on it at a scale of trillions of executions. It creates true microVMs on top of KVM: each workload gets its own guest kernel behind a hardware virtualisation boundary, yet boots in under 125 milliseconds, adds less than 5 MiB of memory overhead per microVM, and a single host can launch up to 150 of them per second. That combination — a real VM boundary at close to container speed — is why it underpins so much of the managed sandbox market.</p>
+    <p>Firecracker is the reference point everything else is measured against. AWS built it in Rust, open-sourced it in November 2018 under Apache 2.0, and runs Lambda and Fargate on it at a scale of trillions of executions. It creates true microVMs on top of KVM: each workload gets its own guest kernel behind a hardware virtualisation boundary, yet boots in under 125 milliseconds, adds less than 5 MiB of memory overhead per microVM, and a single host can launch up to 150 of them per second. That combination — a real VM boundary at close to container speed — is why it underpins so much of the managed sandbox market: the agent-sandbox providers E2B and Vercel Sandbox both build on Firecracker, while Modal took the gVisor route instead. When AWS, Google and Microsoft each built ephemeral agent sandboxes, every one of them reached for a hardware or user-space isolation primitive rather than a plain container.</p>
 
     <p>The honest limitation is that Firecracker is a primitive, not a product. It gives you the virtual machine monitor and very little else: you assemble the guest kernel, the root filesystem, the networking and the lifecycle management yourself. Its host requirements are also firm. It runs only on Linux, on x86_64 or 64-bit ARM, and needs the KVM module with read and write access to /dev/kvm; the current support policy covers host kernels 5.10, 6.1 and 6.18, with guest kernels 5.10 and 6.1. It does not support nested virtualisation, so it must run on bare metal — on AWS that means a .metal instance type rather than an ordinary VM. Each guest starts from a default of 128 MiB of RAM, configurable upward. That is the correct choice if you are building a platform other teams will consume. It is a large amount of undifferentiated engineering if you simply want to run some agent code safely this quarter — which is exactly the gap the managed services built on Firecracker, and the tools below it, exist to fill.</p>
 
@@ -144,7 +144,7 @@
 
     <p>SmolVM takes the microVM boundary and wraps it in developer ergonomics. It provides a single interface over hardware hypervisors — Firecracker, QEMU and libkrun on Linux, Hypervisor.framework on macOS, the Windows Hypervisor Platform on Windows — so one workflow gives you a real per-workload kernel across all three operating systems. Boot times land in the low hundreds of milliseconds, and, importantly, its images use the OCI format, so anything already on Docker Hub or a container registry can be pulled and booted as a microVM.</p>
 
-    <p>This is the microVM for people who do not want to become hypervisor engineers. It suits a developer who wants strong isolation on a Mac laptop, a team distributing a locked-down environment, or a workload that needs a genuine VM boundary without the assembly work Firecracker demands. It is younger and less battle-tested than the AWS lineage, and running microVMs at fleet scale still carries real operational weight — but it closes most of the distance between "I want a microVM" and "I have one running".</p>
+    <p>This is the microVM for people who do not want to become hypervisor engineers. It suits a developer who wants strong isolation on a Mac laptop, a team distributing a locked-down environment, or a workload that needs a genuine VM boundary without the assembly work Firecracker demands. Its clearest advantage over Firecracker is reach: Firecracker does not run on macOS at all, whereas SmolVM reaches an equivalent boundary there through Apple's Hypervisor.framework — which is part of why its launch drew heavy attention on Hacker News. Early community comparisons have been favourable; a widely-shared thread on the r/LangChain subreddit claimed it beats E2B and OpenSandbox on snapshotting, fork speed and computer-use support, though head-to-head claims of that kind are worth testing against your own workload rather than taking on trust. It is younger and less battle-tested than the AWS lineage, and running microVMs at fleet scale still carries real operational weight — but it closes most of the distance between "I want a microVM" and "I have one running".</p>
 
     <hr/>
 
@@ -173,9 +173,9 @@
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:12px 16px;color:rgb(226,226,226);">Docker Sandboxes</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">Modest per container; on macOS or Windows, Docker Desktop itself runs a Linux VM of roughly 2 GiB</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Recent versions give each sandbox its own microVM on macOS and Windows; Docker Desktop already runs a Linux VM of roughly 2 GiB underneath</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Image size — commonly hundreds of MB to several GB</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">Low if Docker Desktop 4.50+ is already installed</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low if a recent Docker Desktop is already installed</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Minutes</td>
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
@@ -230,7 +230,7 @@
 
     <p>Three errors recur often enough to name.</p>
 
-    <p><strong>Treating a container as isolation for untrusted code.</strong> Docker is the reflex because it is already installed. But a shared-kernel container was designed to package software that trusts the host, not to contain software the host cannot trust. Running model-generated code for external users inside a plain container is the single most common over-estimate of a boundary in this list.</p>
+    <p><strong>Treating a container as isolation for untrusted code.</strong> Docker is the reflex because it is already installed. But a shared-kernel container was designed to package software that trusts the host, not to contain software the host cannot trust. Running model-generated code for external users inside a plain container is the single most common over-estimate of a boundary in this list — a point Docker itself conceded when it moved Sandboxes onto microVMs.</p>
 
     <p><strong>Reaching for a microVM when a process sandbox would do.</strong> The opposite mistake is real too. Standing up Firecracker to contain a trusted internal coding agent is engineering effort spent on a threat you do not have. If the code is yours and the machine is yours, nono or a container answers the question at a fraction of the cost.</p>
 
