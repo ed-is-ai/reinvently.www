@@ -32,6 +32,54 @@
     "keywords": ["AI agent sandboxing", "microVM", "Firecracker", "OpenSandbox", "SmolVM", "nono", "gVisor", "code execution isolation", "enterprise AI security"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are all of these microVM options actually microVMs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (gVisor by default), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which option gives the strongest isolation boundary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A hardware microVM — Firecracker or SmolVM — because each workload gets its own guest kernel behind a hypervisor. It is the safest place to run untrusted, model-generated code, at the cost of more setup and operational weight than a container or a process sandbox."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Firecracker require to run?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Linux on x86_64 or 64-bit ARM, the KVM module with read and write access to /dev/kvm, and bare metal — it does not support nested virtualisation, so on AWS it needs a .metal instance rather than an ordinary VM. Each microVM adds under 5 MiB of overhead, boots in under 125 ms, and starts from a default of 128 MiB of guest RAM."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is a lightweight tool like nono enough?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the agent runs code your own team wrote, on infrastructure you control. nono fences an existing process with near-zero overhead and no images to build. For untrusted code — especially code generated on behalf of external users — you want a user-space kernel such as gVisor at minimum, or a microVM for the highest stakes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should we build on Firecracker directly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level wrapper such as SmolVM or OpenSandbox."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -236,7 +284,24 @@
 
     <p><strong>Isolating the filesystem and forgetting the network and the secrets.</strong> A sandbox that stops an agent writing to disk but lets it open outbound connections, or hands it live credentials in an environment variable, has isolated the wrong thing. Data exfiltration does not need filesystem access; it needs a network socket and something worth sending. Whatever model you choose, network egress control and credential handling are part of the decision, not an afterthought to it — which is precisely why nono treats them as first-class and why they are worth checking in every other option.</p>
 
-    <hr/>
+        <h2>Frequently asked questions</h2>
+
+    <h3>Are all of these microVM options actually microVMs?</h3>
+    <p>No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (gVisor by default), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows.</p>
+
+    <h3>Which option gives the strongest isolation boundary?</h3>
+    <p>A hardware microVM — Firecracker or SmolVM — because each workload gets its own guest kernel behind a hypervisor. It is the safest place to run untrusted, model-generated code, at the cost of more setup and operational weight than a container or a process sandbox.</p>
+
+    <h3>What does Firecracker require to run?</h3>
+    <p>Linux on x86_64 or 64-bit ARM, the KVM module with read and write access to /dev/kvm, and bare metal — it does not support nested virtualisation, so on AWS it needs a .metal instance rather than an ordinary VM. Each microVM adds under 5 MiB of overhead, boots in under 125 ms, and starts from a default of 128 MiB of guest RAM.</p>
+
+    <h3>When is a lightweight tool like nono enough?</h3>
+    <p>When the agent runs code your own team wrote, on infrastructure you control. nono fences an existing process with near-zero overhead and no images to build. For untrusted code — especially code generated on behalf of external users — you want a user-space kernel such as gVisor at minimum, or a microVM for the highest stakes.</p>
+
+    <h3>Should we build on Firecracker directly?</h3>
+    <p>Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level wrapper such as SmolVM or OpenSandbox.</p>
+
+<hr/>
 
     <p><em>Most teams we speak to discover this question later than they should — after the agent is already running, not before. If you are working out where your agents' code should execute and how much isolation the workload actually warrants, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is a good conversation to have.</em></p>
 
