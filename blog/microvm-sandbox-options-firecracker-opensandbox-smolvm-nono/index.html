@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared — Reinvently</title>
+  <meta name="description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono take very different approaches to isolating AI agent code. A decision guide to the isolation spectrum for enterprise teams."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"/>
+  <meta property="og:title" content="How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared"/>
+  <meta property="og:description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono take very different approaches to isolating AI agent code. A decision guide to the isolation spectrum for enterprise teams."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared"/>
+  <meta name="twitter:description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono take very different approaches to isolating AI agent code. A decision guide to the isolation spectrum for enterprise teams."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared",
+    "description": "Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono take very different approaches to isolating AI agent code. A decision guide to the isolation spectrum for enterprise teams.",
+    "datePublished": "2026-07-01",
+    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "url": "https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/",
+    "inLanguage": "en-GB",
+    "keywords": ["AI agent sandboxing", "microVM", "Firecracker", "OpenSandbox", "SmolVM", "nono", "gVisor", "code execution isolation", "enterprise AI security"]
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Technology Strategy</div>
+  <h1>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h1>
+  <p class="summary">The brief asked to compare microVM options. The first useful finding is that only two of the five are microVMs. They sit at four different points on an isolation spectrum — and the point you pick matters more than the product.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>Once an AI agent can write and run code, someone has to decide where that code runs. A coding agent that refactors your repository, a research agent that executes generated Python, a customer-facing assistant that runs SQL — each of them, at some point, executes instructions that no human reviewed line by line. If that execution happens on a machine with access to your source code, your cloud credentials and your production network, the isolation boundary around it is not a detail. It is the control.</p>
+
+    <p>The market has responded quickly. In March 2026 Alibaba Cloud open-sourced OpenSandbox; AWS has been hardening Firecracker since 2018; and a cluster of smaller projects — SmolVM, nono, Docker's own Sandboxes feature — now offer to isolate agent code in a few commands. The brief for this piece was to compare five of them as "microVM options".</p>
+
+    <p>That framing is where the confusion starts. Only two of the five are microVMs. The other three are different things entirely — a shared-kernel container, a user-space kernel, and an operating-system process sandbox. Comparing them as if they were interchangeable is how organisations end up either over-engineering a problem they do not have or under-protecting one they do.</p>
+
+    <hr/>
+
+    <h2>What you are really choosing between</h2>
+
+    <p>The stated question — "which sandbox?" — conceals a more fundamental one: how strong an isolation boundary does your workload actually need, and how much operational weight are you willing to carry to get it. Those two move in opposite directions. A stronger boundary almost always costs more to run.</p>
+
+    <p>Every option in this comparison sits on a spectrum with four points. Understanding the point is more durable than memorising the product, because the products change monthly and the four models do not.</p>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Isolation model</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">What separates the code from your host</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">In this comparison</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">OS process sandbox</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Kernel permission primitives; no virtualisation. Shares your kernel and host.</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">nono</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Shared-kernel container</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Namespaces and cgroups. One shared host kernel.</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Docker Sandboxes</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">User-space kernel</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A software kernel intercepts every system call before it reaches the host.</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox (gVisor)</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Hardware microVM</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A separate guest kernel behind a hypervisor boundary.</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Firecracker, SmolVM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Read the table top to bottom and the boundary gets stronger with every row. Read it bottom to top and the workload gets lighter and quicker to start. The whole decision lives in that trade. A microVM gives an attacker who breaks out of the code nothing but a stripped-down guest kernel to attack next; a process sandbox gives them your kernel, weakened only by the permissions you remembered to remove.</p>
+
+    <p>For enterprise technology leaders, the practical consequence is that "we sandbox our agents" is not a security posture. The model you chose is the security posture. A team running untrusted, model-generated code inside a plain container and a team running it inside a microVM have made materially different bets, even though both would tick the same box on a questionnaire.</p>
+
+    <hr/>
+
+    <h2>The case for each option</h2>
+
+    <p>Below, each tool with the model it represents, what it is genuinely good at, and where it stops. None of the five is wrong. Each is wrong for the workloads it was not built for.</p>
+
+    <h3>nono — the process sandbox</h3>
+
+    <p>nono, built by Luke Hinds, is the lightest option here and the one most often miscategorised. It is not a virtual machine and not a container. It is a capability-based security shell that wraps an existing command using kernel primitives — Landlock on Linux, Seatbelt on macOS — to restrict what that process can touch. Once the restrictions are applied they cannot be widened: there is no API to escape them, not even for nono itself.</p>
+
+    <p>What it does well is protect your own machine from your own agent. Point it at Claude Code or a terminal-based assistant and you can declare, in a JSON profile, exactly which directories and network destinations the agent may reach. Credentials are injected at the boundary and zeroised on exit, so the agent never sees your SSH keys or cloud tokens even while using them. It runs anywhere the agent already runs, with near-zero overhead and no images to build.</p>
+
+    <p>The limit is inherent to the model. nono still shares your kernel and runs on your host. It is an excellent answer to "my trusted coding agent might read a file or reach a server it should not", and a poor answer to "I am about to execute code written by an untrusted model for an untrusted user". It hardens the blast radius; it does not virtualise it away.</p>
+
+    <h3>Docker Sandboxes — the familiar container</h3>
+
+    <p>Docker Sandboxes, an experimental feature in recent Docker Desktop releases, gives coding agents an isolated container to work in without leaving the tooling every developer already knows. For a trusted, in-house agent operating on a known codebase, that is often enough: namespaces and cgroups keep the agent away from the host filesystem and cap its resources, and the developer experience is unchanged.</p>
+
+    <p>The caveat is the one the wider industry spent the first half of 2026 repeating. Containers share the host kernel. Isolation rests on namespaces, cgroups and the assumption that no one finds a kernel bug to escape through. For code you wrote, that assumption is reasonable. For arbitrary code an AI generates on behalf of strangers, a shared-kernel container is the layer most security engineers now say is not sufficient on its own. Docker is a fine default for trust you already have, and the wrong default for trust you do not.</p>
+
+    <h3>OpenSandbox — the user-space kernel</h3>
+
+    <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. It uses Google's gVisor runtime, which places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost.</p>
+
+    <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
+
+    <h3>Firecracker — the microVM primitive</h3>
+
+    <p>Firecracker is the reference point everything else is measured against. AWS built it in Rust, open-sourced it in November 2018 under Apache 2.0, and runs Lambda and Fargate on it at a scale of trillions of executions. It creates true microVMs on top of KVM: each workload gets its own guest kernel behind a hardware virtualisation boundary, yet boots in under 125 milliseconds, adds less than 5 MiB of memory overhead, and a single host can launch around 150 of them per second. That combination — a real VM boundary at close to container speed — is why it underpins so much of the managed sandbox market.</p>
+
+    <p>The honest limitation is that Firecracker is a primitive, not a product. It gives you the virtual machine monitor and very little else: you assemble the guest kernel, the root filesystem, the networking and the lifecycle management yourself, and you run it on bare-metal Linux with KVM. That is the correct choice if you are building a platform other teams will consume. It is a large amount of undifferentiated engineering if you simply want to run some agent code safely this quarter — which is exactly the gap the managed services built on Firecracker, and the tools below it, exist to fill.</p>
+
+    <h3>SmolVM — the microVM made approachable</h3>
+
+    <p>SmolVM takes the microVM boundary and wraps it in developer ergonomics. It provides a single interface over hardware hypervisors — Firecracker, QEMU and libkrun on Linux, Hypervisor.framework on macOS, the Windows Hypervisor Platform on Windows — so one workflow gives you a real per-workload kernel across all three operating systems. Boot times land in the low hundreds of milliseconds, and, importantly, its images use the OCI format, so anything already on Docker Hub or a container registry can be pulled and booted as a microVM.</p>
+
+    <p>This is the microVM for people who do not want to become hypervisor engineers. It suits a developer who wants strong isolation on a Mac laptop, a team distributing a locked-down environment, or a workload that needs a genuine VM boundary without the assembly work Firecracker demands. It is younger and less battle-tested than the AWS lineage, and running microVMs at fleet scale still carries real operational weight — but it closes most of the distance between "I want a microVM" and "I have one running".</p>
+
+    <hr/>
+
+    <h2>The factors that should drive your decision</h2>
+
+    <p>There is no ranking here, because the right answer is a function of your workload, not the software. Four questions settle it.</p>
+
+    <ol>
+      <li><strong>Whose code is running?</strong> If the agent executes code your own team wrote, on infrastructure you control, a process sandbox (nono) or a container (Docker) protects against accident and mistake at almost no cost. If it executes code a model generated — especially on behalf of external users — you want a kernel boundary the code cannot see past: gVisor at minimum, a microVM for the highest stakes.</li>
+      <li><strong>Who shares the host?</strong> Single-tenant, single-machine work tolerates a weaker boundary because a breakout harms only the person who launched it. The moment multiple customers' code runs on shared hardware, the blast radius of one escape includes everyone else on that host, and the calculus moves decisively towards user-space kernels or microVMs.</li>
+      <li><strong>One machine or a fleet?</strong> nono and SmolVM are strongest on a developer's machine. OpenSandbox and Firecracker are built for clusters. Choosing a laptop tool for a platform problem, or a platform for a laptop problem, is the most common source of wasted effort in this space.</li>
+      <li><strong>Build or consume?</strong> Firecracker is a foundation to build on. Most organisations should build on it only indirectly — through a managed service or a higher-level tool such as SmolVM or OpenSandbox — unless running sandbox infrastructure is itself part of the product they sell.</li>
+    </ol>
+
+    <p>Whose code, whose host, how many machines, build or buy. Answer those four and the field of five narrows to one or two on its own.</p>
+
+    <hr/>
+
+    <h2>Common mistakes</h2>
+
+    <p>Three errors recur often enough to name.</p>
+
+    <p><strong>Treating a container as isolation for untrusted code.</strong> Docker is the reflex because it is already installed. But a shared-kernel container was designed to package software that trusts the host, not to contain software the host cannot trust. Running model-generated code for external users inside a plain container is the single most common over-estimate of a boundary in this list.</p>
+
+    <p><strong>Reaching for a microVM when a process sandbox would do.</strong> The opposite mistake is real too. Standing up Firecracker to contain a trusted internal coding agent is engineering effort spent on a threat you do not have. If the code is yours and the machine is yours, nono or a container answers the question at a fraction of the cost.</p>
+
+    <p><strong>Isolating the filesystem and forgetting the network and the secrets.</strong> A sandbox that stops an agent writing to disk but lets it open outbound connections, or hands it live credentials in an environment variable, has isolated the wrong thing. Data exfiltration does not need filesystem access; it needs a network socket and something worth sending. Whatever model you choose, network egress control and credential handling are part of the decision, not an afterthought to it — which is precisely why nono treats them as first-class and why they are worth checking in every other option.</p>
+
+    <hr/>
+
+    <p><em>Most teams we speak to discover this question later than they should — after the agent is already running, not before. If you are working out where your agents' code should execute and how much isolation the workload actually warrants, <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> is a good conversation to have.</em></p>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
