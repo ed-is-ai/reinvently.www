@@ -134,9 +134,9 @@
 
     <h3>Firecracker — the microVM primitive</h3>
 
-    <p>Firecracker is the reference point everything else is measured against. AWS built it in Rust, open-sourced it in November 2018 under Apache 2.0, and runs Lambda and Fargate on it at a scale of trillions of executions. It creates true microVMs on top of KVM: each workload gets its own guest kernel behind a hardware virtualisation boundary, yet boots in under 125 milliseconds, adds less than 5 MiB of memory overhead, and a single host can launch around 150 of them per second. That combination — a real VM boundary at close to container speed — is why it underpins so much of the managed sandbox market.</p>
+    <p>Firecracker is the reference point everything else is measured against. AWS built it in Rust, open-sourced it in November 2018 under Apache 2.0, and runs Lambda and Fargate on it at a scale of trillions of executions. It creates true microVMs on top of KVM: each workload gets its own guest kernel behind a hardware virtualisation boundary, yet boots in under 125 milliseconds, adds less than 5 MiB of memory overhead per microVM, and a single host can launch up to 150 of them per second. That combination — a real VM boundary at close to container speed — is why it underpins so much of the managed sandbox market.</p>
 
-    <p>The honest limitation is that Firecracker is a primitive, not a product. It gives you the virtual machine monitor and very little else: you assemble the guest kernel, the root filesystem, the networking and the lifecycle management yourself, and you run it on bare-metal Linux with KVM. That is the correct choice if you are building a platform other teams will consume. It is a large amount of undifferentiated engineering if you simply want to run some agent code safely this quarter — which is exactly the gap the managed services built on Firecracker, and the tools below it, exist to fill.</p>
+    <p>The honest limitation is that Firecracker is a primitive, not a product. It gives you the virtual machine monitor and very little else: you assemble the guest kernel, the root filesystem, the networking and the lifecycle management yourself. Its host requirements are also firm. It runs only on Linux, on x86_64 or 64-bit ARM, and needs the KVM module with read and write access to /dev/kvm; the current support policy covers host kernels 5.10, 6.1 and 6.18, with guest kernels 5.10 and 6.1. It does not support nested virtualisation, so it must run on bare metal — on AWS that means a .metal instance type rather than an ordinary VM. Each guest starts from a default of 128 MiB of RAM, configurable upward. That is the correct choice if you are building a platform other teams will consume. It is a large amount of undifferentiated engineering if you simply want to run some agent code safely this quarter — which is exactly the gap the managed services built on Firecracker, and the tools below it, exist to fill.</p>
 
     <h3>SmolVM — the microVM made approachable</h3>
 
@@ -187,7 +187,7 @@
             <td style="padding:12px 16px;color:rgb(226,226,226);">Firecracker</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Configurable guest RAM (minimum 128 MiB) plus under 5 MiB of VMM overhead per microVM</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">A guest kernel and root filesystem you build — around 50 MiB is a common starting point</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">High — bare-metal Linux with KVM; assemble kernel, rootfs and networking yourself</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">High — bare-metal Linux with KVM, no nested virtualisation (a .metal instance on AWS); assemble kernel, rootfs and networking yourself</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Days</td>
           </tr>
           <tr>
