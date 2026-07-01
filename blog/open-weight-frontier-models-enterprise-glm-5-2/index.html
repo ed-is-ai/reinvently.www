@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision — Reinvently</title>
+  <meta name="description" content="GLM-5.2 beats GPT-5.5 on SWE-bench Pro (62.1 vs 58.6) under an MIT licence. A decision framework for UK enterprises weighing Chinese open-weight AI models."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/open-weight-frontier-models-enterprise-glm-5-2/"/>
+  <meta property="og:title" content="Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision"/>
+  <meta property="og:description" content="GLM-5.2 beats GPT-5.5 on SWE-bench Pro (62.1 vs 58.6) under an MIT licence. A decision framework for UK enterprises weighing Chinese open-weight AI models."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/open-weight-frontier-models-enterprise-glm-5-2/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision"/>
+  <meta name="twitter:description" content="GLM-5.2 beats GPT-5.5 on SWE-bench Pro (62.1 vs 58.6) under an MIT licence. A decision framework for UK enterprises weighing Chinese open-weight AI models."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision",
+    "description": "GLM-5.2 beats GPT-5.5 on SWE-bench Pro (62.1 vs 58.6) under an MIT licence. A decision framework for UK enterprises weighing Chinese open-weight AI models.",
+    "datePublished": "2026-07-02",
+    "dateModified": "2026-07-02",
+    "image": "https://reinvently.co.uk/images/hero.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Technology Strategy Consultant", "worksFor": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "url": "https://reinvently.co.uk/blog/open-weight-frontier-models-enterprise-glm-5-2/",
+    "inLanguage": "en-GB",
+    "keywords": ["GLM-5.2", "open-weight models", "Z.ai", "Chinese AI models", "enterprise AI governance", "self-hosting LLMs", "data residency", "MIT licence", "AI procurement", "UK AI strategy", "GLM-5.2 enterprise"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is GLM-5.2 safe for enterprise use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends entirely on how you consume it. The MIT-licensed weights are inert files that can run on infrastructure you control, with no data leaving your boundary — for that route the governance questions are provenance, behavioural evaluation, and workload isolation, not data flow. Z.ai's hosted API is a different matter: requests travel to infrastructure under Chinese jurisdiction, which for most UK organisations handling personal or commercially sensitive data is a hard barrier under UK GDPR international transfer rules. A middle route exists — Western inference providers hosting the open weights — which removes the Chinese endpoint but reintroduces a third-party processor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does GLM-5.2 compare to Claude and GPT-5.5 for enterprise coding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On coding benchmarks, GLM-5.2 scores 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 72.6 percent for GPT-5.5 and 75.1 percent for Claude Opus 4.8 — the first time an open-weight model has led both an OpenAI and an Anthropic flagship on an agent-style software engineering benchmark. For enterprises, the benchmark gap is not the deciding factor. US frontier vendors offer contractual accountability, certifications, and a legal presence you can put on a contract; GLM-5.2 offers capability you can own outright. Which matters more depends on your data classification, token volume, and engineering capacity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does self-hosting GLM-5.2 require?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GLM-5.2 is a roughly 750-billion-parameter mixture-of-experts model. Even the FP8 build Z.ai published on Hugging Face occupies on the order of 750GB of GPU memory before serving a single token, which in practice means a dedicated multi-GPU inference node — eight H200-class accelerators or equivalent — plus the MLOps capability to operate it, an evaluation harness to test model behaviour against your policies, and isolation infrastructure for agentic workloads. The hardware and staffing bill for a production deployment runs to hundreds of thousands of pounds a year, so the economics only work at high token volumes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can UK organisations legally send data to GLM-5.2's API?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For personal data, the barrier is high. The UK has no adequacy regulations covering China, so any transfer of personal data to a Chinese processor requires appropriate safeguards such as the International Data Transfer Agreement plus a transfer risk assessment — an assessment complicated by China's National Intelligence Law 2017, which obliges Chinese organisations to support state intelligence work. For non-personal data such as source code, there is no UK GDPR barrier, but source code is commercially sensitive, frequently contains embedded secrets, and its transfer to a Chinese endpoint is a commercial and security decision most boards will want made deliberately rather than by default."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the MIT licence on GLM-5.2 restrict commercial use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MIT is one of the most permissive licences in software: it allows unrestricted commercial use, modification, fine-tuning, and redistribution, with no acceptable-use policy, no user-count thresholds, and no revocation mechanism. This distinguishes GLM-5.2 from most earlier open-weight releases, such as Meta's Llama models, which ship under community licences containing usage restrictions and commercial thresholds. For enterprise legal teams, MIT weights are governed by ordinary open-source software policy rather than case-by-case AI licence review."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">2 July 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
+  <h1>Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision</h1>
+  <p class="summary">A Beijing lab has published MIT-licensed weights for a model that beats GPT-5.5 at coding. Whether a UK enterprise should touch it is a better-defined question than the headlines suggest — because it is not one decision. It is three.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <p>On 13 June 2026, Z.ai — the Beijing-based lab previously known as Zhipu AI — released GLM-5.2. Four days later it published the full model weights on <a href="https://huggingface.co/zai-org/GLM-5.2" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Hugging Face</a> under an MIT licence. The benchmark results are the part the developer press has covered: 62.1 on SWE-bench Pro against 58.6 for <a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5</a>, and 74.4 percent on FrontierSWE against 72.6 percent for GPT-5.5 and 75.1 percent for Claude Opus 4.8 — at roughly one sixth of the API price, according to <a href="https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">VentureBeat's analysis</a>. It is the first time an open-weight model has led both an OpenAI and an Anthropic flagship on an agent-style software engineering benchmark.</p>
+
+    <p>The coverage so far is written for developers, and it stops at the benchmarks. The question it leaves open is the one that will land on the desk of a UK CIO within the next quarter: should an enterprise use a frontier model built in China, and under what conditions? <a href="https://www.techtimes.com/articles/318543/20260617/glm-52-open-weights-live-top-coding-benchmark-api-use-carries-china-data-risk.htm" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">TechTimes</a> compressed the whole dilemma into a single headline — open weights live, but API use carries China data risk — and then, like everyone else, moved on to the next release.</p>
+
+    <p><strong>The short answer: this is not one decision but three.</strong> Whether to consume GLM-5.2 through Z.ai's hosted API is a data-residency decision, and for most UK organisations handling personal or commercially sensitive data the answer is no. Whether to run the MIT-licensed weights on infrastructure you control is a capability and supply-chain decision, and for a smaller set of organisations the answer is a qualified yes. And whether your developers are already using it through a $3-per-month coding plan is not a decision at all — it is a fact to verify, this week.</p>
+
+    <p>This post sets out a framework for making those calls. It is written to outlast GLM-5.2 itself: successor models will arrive on the same terms, and the three questions will not change.</p>
+
+    <hr/>
+
+    <h2>What You Are Actually Deciding</h2>
+
+    <p>"Should we use GLM-5.2?" conceals a more fundamental question, because the model exists in two forms that have almost nothing in common from a governance perspective.</p>
+
+    <p>The first form is a hosted service. Z.ai sells API access at $1.40 per million input tokens and $4.40 per million output — with cached input at $0.26, roughly a fifth of the uncached rate — and consumer-grade coding plans from around $3 per month. Every request to that service travels to infrastructure operated by a Chinese company, subject to Chinese jurisdiction. That includes China's National Intelligence Law 2017, which obliges Chinese organisations to support state intelligence work, and it is the substance behind the "China data risk" headlines.</p>
+
+    <p>The second form is a set of files: roughly 750 billion parameters (a mixture-of-experts design, with about 40 billion active per token) that you can download, inspect, and run on hardware you control. Those files do not transmit anything. They have no telemetry, no licence server, no connection to Beijing. They are, in the strict sense, inert.</p>
+
+    <p>The weights do not move your data. The wire does.</p>
+
+    <p>In practice, this means the risk that dominates the headlines attaches almost entirely to the API route. For the weights, the governance questions are different in kind: where did the artefact come from, how does it behave, and what does the licence permit. Collapsing these two forms into one "GLM-5.2 decision" is how organisations end up either banning an artefact that poses no data-flow risk, or approving a service that poses a substantial one.</p>
+
+    <p>There is also a route between the two that the headlines miss. Because the weights are open, Western inference providers can — and already do — host GLM-5.2 on US and European infrastructure. That removes the Chinese endpoint entirely, though it reintroduces a third-party processor and narrows the price advantage. Any serious evaluation should treat it as a distinct option, not a footnote.</p>
+
+    <p>Timing matters too, because the question will not arrive through a single channel. In practice, GLM-5.2 reaches an enterprise in three ways: a developer asking to expense a coding plan, a cost-reduction pitch that cites the price gap against incumbent tooling, and a board member asking what the organisation's exposure to Chinese AI models actually is. Each of those conversations goes better when the framework already exists. The organisations that handle this well will be the ones with an answer prepared before the third conversation lands.</p>
+
+    <hr/>
+
+    <h2>The Case for Each Route</h2>
+
+    <h3>Route one: consume it as a service</h3>
+
+    <p>The case for the API is simple economics. Frontier-grade coding capability at a sixth of US frontier pricing changes the cost calculation for token-heavy engineering workloads, and the coding plans put that capability within reach of an individual developer's personal card. No infrastructure, no MLOps, no procurement cycle.</p>
+
+    <p>The case against depends on which API. Z.ai's own endpoint is, for most UK enterprises, effectively closed for personal data: the UK has no adequacy regulations covering China, so a transfer to a Chinese processor requires appropriate safeguards and a transfer risk assessment under the <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">ICO's international transfer rules</a> — an assessment that the National Intelligence Law makes difficult to pass. Source code without personal data clears the UK GDPR barrier, but it is commercially sensitive, routinely contains embedded credentials, and reveals your architecture. Sending it to any external endpoint is a decision; sending it to one under Chinese jurisdiction is a decision your board should know about. Our analysis of the <a href="/blog/uk-ai-regulation-ico-employment-2026/">ICO's tightening enforcement posture</a> covers how quickly "we did not know" stops being an acceptable answer.</p>
+
+    <p>A Western-hosted deployment of the same weights changes the analysis materially. The model is identical; the jurisdiction is not. For organisations that want GLM-5.2's capability and price point without the transfer question, this is the pragmatic middle: evaluate the host as you would any other AI processor — data-processing terms, retention, region — and the Chinese-origin question reduces to model behaviour rather than data flow.</p>
+
+    <h3>Route two: self-host the open weights</h3>
+
+    <p>The MIT licence is the fact that matters here, and it is worth being precise about why. Most "open" model releases — Meta's Llama family is the obvious example — ship under community licences with acceptable-use policies, commercial thresholds, and revocation mechanisms. MIT has none of those. Unrestricted commercial use, modification, fine-tuning, and redistribution, with no lever for the publisher to pull later. For enterprise legal teams, that moves the weights out of case-by-case AI-licence review and into ordinary open-source software policy, which most organisations already have.</p>
+
+    <p>What the licence permits, the hardware constrains. The FP8 build occupies on the order of 750GB of GPU memory before it serves a single token — in practice a dedicated node of eight H200-class accelerators, or more for production traffic with a 1M-token context window in play. Add the engineers to operate it and a realistic annual bill runs well into six figures. Self-hosting a frontier model is a platform investment, not a download.</p>
+
+    <p>For the organisations that can carry that weight, the return is a form of control no API contract offers. Data never leaves your boundary, which dissolves the residency question rather than mitigating it. There is no per-token meter, which changes the economics of high-volume and always-on workloads. And you can fine-tune on proprietary data without that data touching a third party. This is model sovereignty, and it is the natural complement to the compute sovereignty argument we made about the <a href="/blog/uk-sovereign-ai-programme/">UK's £500 million sovereign AI programme</a>: sovereign infrastructure with nothing to run on it is half an answer, and open-weight frontier models are the other half.</p>
+
+    <p>Self-hosting does not mean zero governance — it means different governance. Three obligations replace the data-flow question. Provenance: pull weights from the official repository and verify checksums, because a frontier model is now a supply-chain artefact like any other dependency. Evaluation: test behaviour against your own policies before production, along the lines of the NCSC's <a href="https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">guidelines for secure AI system development</a> — a model trained in a different regulatory and cultural context will have different refusal behaviour and different failure modes, and you want to find them before your users do. Isolation: agentic coding workloads execute generated code, and a self-hosted model gives you full responsibility for the boundary around that execution — the trade-offs are the subject of our <a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">comparison of sandboxing options for AI agent code</a>.</p>
+
+    <h3>Route three: stay with US frontier vendors</h3>
+
+    <p>Abstaining is a legitimate strategy, and for many organisations the right one. Claude Opus 4.8 still leads GLM-5.2 on FrontierSWE, and the benchmark point is the least of it: what Anthropic, OpenAI, and Microsoft sell is accountability as much as capability — a vendor with a UK or US legal presence, enterprise certifications, contractual data-processing terms, and someone to hold responsible when something goes wrong. That accountability is what the roughly sixfold price premium buys, and for regulated organisations it is frequently worth every pound. The considerations mirror the ones in our comparison of <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot, Claude Code, and Cursor</a>: procurement familiarity and vendor trust decide more enterprise AI purchases than benchmarks do.</p>
+
+    <p>The failure mode of route three is not choosing it — it is pretending that choosing it ends the matter. A policy of "we use approved US vendors" does nothing about the developer with a personal Z.ai subscription, and it leaves you without a position when the CFO asks why the engineering AI budget is six times what a competitor pays. Route three is a defensible answer to the GLM-5.2 question. It is not a substitute for having asked it.</p>
+
+    <hr/>
+
+    <h2>How the Three Routes Compare</h2>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;"></th>
+            <th style="text-align:left;padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Hosted API</th>
+            <th style="text-align:left;padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Self-hosted weights</th>
+            <th style="text-align:left;padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">US frontier vendor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Data leaves your boundary</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Yes — Chinese jurisdiction (Z.ai direct) or third-party host (Western)</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">No</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Yes — UK/US contractual terms</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Cost profile</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">$1.40/$4.40 per MTok; plans from ~$3/month</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Six-figure annual platform cost; no per-token meter</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Roughly 6x per token</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Engineering lift</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">None</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">High — 8x H200-class node, MLOps, evaluation</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Low</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Governance focus</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Transfer risk, processor terms</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Provenance, evaluation, isolation</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Vendor contract, standard DPA</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Best for</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Non-sensitive workloads via Western hosts</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">High-volume, data-sensitive, sovereignty-driven</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">Regulated sectors, low token volume</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr/>
+
+    <h2>The Factors That Should Drive Your Decision</h2>
+
+    <p>There is no universally right route. There is a right route for a given organisation, and these five factors do most of the work in finding it.</p>
+
+    <ul>
+      <li><strong>Data classification.</strong> If the workload touches personal data or regulated data, Z.ai's direct API is effectively off the table under UK GDPR transfer rules. Your realistic choices narrow to a Western-hosted deployment, self-hosting, or a US vendor. If the workload is genuinely non-sensitive — public documentation, open-source code — the direct API's price becomes hard to argue with.</li>
+      <li><strong>Token volume.</strong> Self-hosting has a high fixed cost and a near-zero marginal one. If your engineering organisation's model spend is measured in hundreds of pounds a month, the API routes win on arithmetic alone. If it is measured in tens of thousands, a dedicated inference platform starts to pay for itself — and the 1M-token context makes whole-codebase workloads feasible in a way that changes what "volume" means.</li>
+      <li><strong>Engineering capacity.</strong> A platform team that already operates GPU infrastructure can take on a self-hosted frontier model as an extension of existing practice. An organisation without one should not acquire that capability just to chase a price gap; the salaries will eat the savings.</li>
+      <li><strong>Sector exposure.</strong> Public sector bodies, critical national infrastructure, and defence-adjacent suppliers face procurement scrutiny where the origin of a model is a question in its own right, regardless of technical merit or deployment architecture. If a security review board will need to sign off, factor in that the answer may be no for reasons a benchmark cannot touch. Attitudes to Chinese-built AI also vary sharply by market, as our review of <a href="/blog/global-ai-adoption-attitudes/">global AI adoption attitudes</a> found — worth remembering if your customers, rather than your regulators, are the audience that matters.</li>
+      <li><strong>Time horizon.</strong> If you are making this decision for GLM-5.2 alone, you are making it too narrowly. Open-weight releases at the frontier are now a pattern, not an event; the policy you write should name the category and survive the next release.</li>
+    </ul>
+
+    <p>One organisational note: no single function owns this decision cleanly. The transfer analysis belongs to the data protection officer, the supply-chain and isolation questions to the security team, the economics to the head of engineering, and the sector-exposure judgement to the board. The natural home is whichever forum already owns cloud and vendor risk. The mistake is letting it default to whichever function encounters the model first, because each of the four sees only part of the picture — and the first encounter, as the next section argues, is usually the least governed one.</p>
+
+    <hr/>
+
+    <h2>Three Mistakes That Will Cost You</h2>
+
+    <p><strong>Conflating the weights with the API.</strong> This error runs in both directions. Organisations ban the weights citing data-flow risks that inert files cannot pose, pushing capable teams toward less governed alternatives. Or they approve "GLM-5.2" as a single line item and discover later that approval covered a Chinese API endpoint nobody scrutinised. Govern the two forms separately, because they are separate things.</p>
+
+    <p><strong>Ignoring the $3 side door.</strong> The most consequential GLM-5.2 exposure in most organisations will not arrive through procurement. It will arrive through a developer with a personal coding plan routing company source code to a Beijing endpoint because the tool is good and the price is trivial. This is not hypothetical malice; it is what engineers do when the sanctioned tooling lags the frontier. The response is practical: check expense claims and network egress for Z.ai endpoints, state a clear position in the acceptable-use policy, and — most effectively — make sure the sanctioned alternative is good enough that the side door is not worth the bother.</p>
+
+    <p><strong>Writing a model policy instead of a category policy.</strong> A governance document titled "GLM-5.2" is obsolete the day GLM-6 ships. The durable version answers the structural questions — what data may leave our boundary and to which jurisdictions, under what conditions we run open weights, who signs off on model provenance and evaluation — and then applies to every release that follows. The organisations that handled cloud adoption well a decade ago did it with exactly this move: policy at the level of the pattern, not the product.</p>
+
+    <hr/>
+
+    <p><em>If your organisation is working out where open-weight models fit — or has just discovered they already do — <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Reinvently</a> helps UK enterprises think through exactly this kind of decision.</em></p>
+
+    <div class="related-posts">
+      <p class="related-posts-label">Continue reading</p>
+      <ul class="related-list">
+        <li><a href="/blog/uk-sovereign-ai-programme/">UK Sovereign AI: What the Government's £500m Bet Means for Your Organisation</a></li>
+        <li><a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5 and the Age of Autonomous Task Completion</a></li>
+        <li><a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor: Which AI Coding Tool is Right for Your Team?</a></li>
+        <li><a href="/blog/uk-ai-regulation-ico-employment-2026/">UK AI Regulation Tightens: What the ICO Guidance and Parliament's Inquiry Mean for Employers</a></li>
+        <li><a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</a></li>
+        <li><a href="/blog/global-ai-adoption-attitudes/">Global AI Adoption: How Different Countries Are Embracing Artificial Intelligence</a></li>
+      </ul>
+    </div>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+  <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently is a UK technology strategy consultancy helping engineering teams adopt AI tooling and modern development practices.</p>
+</footer>
+
+</body>
+</html>
