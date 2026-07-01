@@ -146,6 +146,69 @@
 
     <hr/>
 
+    <h2>Footprint and setup effort, the factors that decide it in practice</h2>
+
+    <p>Isolation strength is the headline, but two quieter factors often settle the choice before security does: how much memory and disk each running workload consumes, and how long it takes to get the first one running. These track the same spectrum as the boundary — a stronger boundary generally costs more resource and more setup — but the ranges are wide enough to matter on their own. Time to first useful sandbox runs from minutes to days across these five.</p>
+
+    <div style="overflow-x:auto;margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1b1b1b;">
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Tool</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">RAM per workload</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Disk / image</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">Setup effort</th>
+            <th style="text-align:left;padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:400;">To first run</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">nono</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Negligible — wraps an existing process, no extra kernel</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A single binary of a few MB; no images to pull</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Minimal — install the binary, write a JSON policy</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Minutes</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Docker Sandboxes</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Modest per container; on macOS or Windows, Docker Desktop itself runs a Linux VM of roughly 2 GiB</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Image size — commonly hundreds of MB to several GB</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low if Docker Desktop 4.50+ is already installed</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Minutes</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Container memory plus a gVisor kernel process per sandbox; gVisor adds roughly 10 to 30 percent on I/O-heavy work</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Container images plus the platform's own components</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Moderate — stand it up on Docker or Kubernetes</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Hours</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1b1b1b;">
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Firecracker</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Configurable guest RAM (minimum 128 MiB) plus under 5 MiB of VMM overhead per microVM</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">A guest kernel and root filesystem you build — around 50 MiB is a common starting point</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">High — bare-metal Linux with KVM; assemble kernel, rootfs and networking yourself</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Days</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">SmolVM</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Defaults to 8 GiB, but elastic — the host commits only what the guest actually uses and reclaims the rest; configurable down to a few hundred MiB</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">OCI images; a 20 GiB disk by default, configurable</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Low to moderate — one-line install, boots standard OCI images</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Minutes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Two readings of that table are worth drawing out. The first is that the lightest boundary is also the lightest to run: nono adds a binary of a few megabytes and effectively no memory, because it is not virtualising anything — it is fencing a process you were going to run anyway. The heaviest to operate is Firecracker, and not because a microVM is large — the running overhead is tiny — but because you are responsible for building and maintaining everything around it. The effort in Firecracker is engineering time, not gigabytes.</p>
+
+    <p>The second is that raw defaults mislead. SmolVM advertises 8 GiB and a 20 GiB disk, which sounds heavy next to a container, but its memory is elastic: the host only commits what the guest touches. A configured-down SmolVM and a gVisor sandbox can end up in a similar place, while giving you a stronger boundary. In practice, judge these on the resource a workload actually consumes and the days of setup it demands, not on the numbers in the quickstart.</p>
+
+    <p>In practice, this means the resource question and the security question are rarely in tension for a single workload — the tension is with your team's time. Firecracker's boundary is the strongest and its per-VM footprint is among the smallest; what makes it expensive is the platform you have to build to use it. That is why most organisations reach it through a managed service or a wrapper such as SmolVM, and why "how quickly can one engineer get this running" belongs in the decision alongside "how strong is the boundary".</p>
+
+    <hr/>
+
     <h2>The factors that should drive your decision</h2>
 
     <p>There is no ranking here, because the right answer is a function of your workload, not the software. Four questions settle it.</p>
