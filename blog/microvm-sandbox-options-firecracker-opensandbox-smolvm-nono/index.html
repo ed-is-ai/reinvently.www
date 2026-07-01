@@ -130,7 +130,9 @@
 
     <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. It uses Google's gVisor runtime, which places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost.</p>
 
-    <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
+    <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. Its secure runtime is also pluggable: gVisor is the default, but it can sit on Kata Containers or Firecracker instead. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
+
+    <p>One consequence of that design is that OpenSandbox publishes no fixed storage or memory footprint, because it does not have one of its own — the resource cost is whatever the backend you choose imposes, from a lightweight gVisor container up to a full Firecracker microVM. Persistent data is handled through the underlying platform, using Docker volumes or Kubernetes persistent volume claims rather than any store OpenSandbox provides itself.</p>
 
     <h3>Firecracker — the microVM primitive</h3>
 
@@ -178,8 +180,8 @@
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">Container memory plus a gVisor kernel process per sandbox; gVisor adds roughly 10 to 30 percent on I/O-heavy work</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">Container images plus the platform's own components</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">No published per-sandbox default; inherited from the backend. On its gVisor default, container memory plus a kernel process per sandbox — gVisor adds roughly 10 to 30 percent on I/O-heavy work</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">Not published — depends on the backend and image; persistent data via Docker volumes or Kubernetes PVCs</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Moderate — stand it up on Docker or Kubernetes</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Hours</td>
           </tr>
