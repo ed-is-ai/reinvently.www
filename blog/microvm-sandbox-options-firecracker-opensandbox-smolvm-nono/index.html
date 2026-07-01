@@ -42,7 +42,7 @@
         "name": "Are all of these microVM options actually microVMs?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (gVisor by default), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows."
+          "text": "No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (typically gVisor), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows."
         }
       },
       {
@@ -74,7 +74,7 @@
         "name": "Should we build on Firecracker directly?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level wrapper such as SmolVM or OpenSandbox."
+          "text": "Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level tool such as SmolVM or OpenSandbox."
         }
       }
     ]
@@ -139,7 +139,7 @@
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">User-space kernel</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">A software kernel intercepts every system call before it reaches the host.</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox (<a href="https://gvisor.dev/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">gVisor</a>)</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox (run with <a href="https://gvisor.dev/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">gVisor</a>)</td>
           </tr>
           <tr>
             <td style="padding:12px 16px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Hardware microVM</td>
@@ -176,9 +176,9 @@
 
     <h3>OpenSandbox — the user-space kernel</h3>
 
-    <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. It uses Google's gVisor runtime, which places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost. Concretely, gVisor's user-space kernel implements roughly 200 of the Linux kernel's roughly 400 system calls, so it narrows what an escape could reach — but code that depends on an unimplemented low-level call will fail, which is the compatibility tax you pay for the smaller surface. Independent testing puts its overhead at roughly 10 to 30 percent on I/O-heavy work and close to nothing on compute-bound tasks.</p>
+    <p>OpenSandbox, open-sourced by Alibaba Cloud in March 2026 under the Apache 2.0 licence, sits one rung up. Run with Google's gVisor runtime, it places a software kernel between the sandboxed process and the host: every system call the agent makes is intercepted and handled in user space rather than passed straight to the host kernel. That shrinks the attack surface considerably compared with a plain container, at some performance cost. Concretely, gVisor's user-space kernel implements roughly 200 of the Linux kernel's roughly 400 system calls, so it narrows what an escape could reach — but code that depends on an unimplemented low-level call will fail, which is the compatibility tax you pay for the smaller surface. Independent testing puts its overhead at roughly 10 to 30 percent on I/O-heavy work and close to nothing on compute-bound tasks.</p>
 
-    <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. Its secure runtime is also pluggable: gVisor is the default, but it can sit on Kata Containers or Firecracker instead. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
+    <p>Its real strength is that it is built as production infrastructure rather than a single-machine tool. It runs on both Docker and Kubernetes, so the same sandbox scales from a laptop to a cluster; it ships SDKs for Python, TypeScript, Go and Java on day one; and it exposes a unified API for the things agents actually do — run a code interpreter, drive a browser, manage files and processes, stream output back. Its secure runtime is also pluggable — gVisor, Kata Containers or Firecracker microVM — on top of its core Docker and Kubernetes runtimes. For an organisation standardising agent execution across many teams, that breadth matters more than any single benchmark. The trade is operational: you are adopting and running a platform, not calling a library.</p>
 
     <p>One consequence of that design is that OpenSandbox publishes no fixed storage or memory footprint, because it does not have one of its own — the resource cost is whatever the backend you choose imposes, from a lightweight gVisor container up to a full Firecracker microVM. Persistent data is handled through the underlying platform, using Docker volumes or Kubernetes persistent volume claims rather than any store OpenSandbox provides itself.</p>
 
@@ -190,7 +190,7 @@
 
     <h3>SmolVM — the microVM made approachable</h3>
 
-    <p>SmolVM takes the microVM boundary and wraps it in developer ergonomics. It provides a single interface over hardware hypervisors — Firecracker, QEMU and libkrun on Linux, Hypervisor.framework on macOS, the Windows Hypervisor Platform on Windows — so one workflow gives you a real per-workload kernel across all three operating systems. Boot times land in the low hundreds of milliseconds, and, importantly, its images use the OCI format, so anything already on Docker Hub or a container registry can be pulled and booted as a microVM.</p>
+    <p>SmolVM takes the microVM boundary and wraps it in developer ergonomics. It runs on the hypervisor each platform already has — KVM (via libkrun) on Linux, Hypervisor.framework on macOS, the Windows Hypervisor Platform on Windows — so one workflow gives you a real per-workload kernel across all three operating systems. Boot times land in the low hundreds of milliseconds, and, importantly, its images use the OCI format, so anything already on Docker Hub or a container registry can be pulled and booted as a microVM.</p>
 
     <p>This is the microVM for people who do not want to become hypervisor engineers. It suits a developer who wants strong isolation on a Mac laptop, a team distributing a locked-down environment, or a workload that needs a genuine VM boundary without the assembly work Firecracker demands. Its clearest advantage over Firecracker is reach: Firecracker does not run on macOS at all, whereas SmolVM reaches an equivalent boundary there through Apple's Hypervisor.framework — which is part of why its launch drew heavy attention on Hacker News. Early community comparisons have been favourable; a widely-shared thread on the r/LangChain subreddit claimed it beats E2B and OpenSandbox on snapshotting, fork speed and computer-use support, though head-to-head claims of that kind are worth testing against your own workload rather than taking on trust. It is younger and less battle-tested than the AWS lineage, and running microVMs at fleet scale still carries real operational weight — but it closes most of the distance between "I want a microVM" and "I have one running".</p>
 
@@ -228,7 +228,7 @@
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:12px 16px;color:rgb(226,226,226);">OpenSandbox</td>
-            <td style="padding:12px 16px;color:rgb(226,226,226);">No published per-sandbox default; inherited from the backend. On its gVisor default, container memory plus a kernel process per sandbox — gVisor adds roughly 10 to 30 percent on I/O-heavy work</td>
+            <td style="padding:12px 16px;color:rgb(226,226,226);">No published per-sandbox default; inherited from the backend. Run with gVisor, container memory plus a kernel process per sandbox, with roughly 10 to 30 percent overhead on I/O-heavy work</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Not published — depends on the backend and image; persistent data via Docker volumes or Kubernetes PVCs</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Moderate — stand it up on Docker or Kubernetes</td>
             <td style="padding:12px 16px;color:rgb(226,226,226);">Hours</td>
@@ -255,7 +255,7 @@
 
     <p>The second is that raw defaults mislead. SmolVM advertises 8 GiB and a 20 GiB disk, which sounds heavy next to a container, but its memory is elastic: the host only commits what the guest touches. A configured-down SmolVM and a gVisor sandbox can end up in a similar place, while giving you a stronger boundary. In practice, judge these on the resource a workload actually consumes and the days of setup it demands, not on the numbers in the quickstart.</p>
 
-    <p>In practice, this means the resource question and the security question are rarely in tension for a single workload — the tension is with your team's time. Firecracker's boundary is the strongest and its per-VM footprint is among the smallest; what makes it expensive is the platform you have to build to use it. That is why most organisations reach it through a managed service or a wrapper such as SmolVM, and why "how quickly can one engineer get this running" belongs in the decision alongside "how strong is the boundary".</p>
+    <p>In practice, this means the resource question and the security question are rarely in tension for a single workload — the tension is with your team's time. Firecracker's boundary is the strongest and its per-VM footprint is among the smallest; what makes it expensive is the platform you have to build to use it. That is why most organisations reach it through a managed service or a friendlier microVM tool such as SmolVM, and why "how quickly can one engineer get this running" belongs in the decision alongside "how strong is the boundary".</p>
 
     <hr/>
 
@@ -287,7 +287,7 @@
         <h2>Frequently asked questions</h2>
 
     <h3>Are all of these microVM options actually microVMs?</h3>
-    <p>No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (gVisor by default), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows.</p>
+    <p>No. Only Firecracker and SmolVM are hardware microVMs. OpenSandbox uses a user-space kernel (typically gVisor), nono is an operating-system process sandbox using Landlock on Linux and Seatbelt on macOS, and Docker Sandboxes began as a shared-kernel container — though recent versions run each sandbox in a dedicated microVM on macOS and Windows.</p>
 
     <h3>Which option gives the strongest isolation boundary?</h3>
     <p>A hardware microVM — Firecracker or SmolVM — because each workload gets its own guest kernel behind a hypervisor. It is the safest place to run untrusted, model-generated code, at the cost of more setup and operational weight than a container or a process sandbox.</p>
@@ -299,7 +299,7 @@
     <p>When the agent runs code your own team wrote, on infrastructure you control. nono fences an existing process with near-zero overhead and no images to build. For untrusted code — especially code generated on behalf of external users — you want a user-space kernel such as gVisor at minimum, or a microVM for the highest stakes.</p>
 
     <h3>Should we build on Firecracker directly?</h3>
-    <p>Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level wrapper such as SmolVM or OpenSandbox.</p>
+    <p>Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level tool such as SmolVM or OpenSandbox.</p>
 
 <hr/>
 
