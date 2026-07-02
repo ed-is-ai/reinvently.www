@@ -90,7 +90,7 @@
 <header class="article-header">
   <div class="post-meta">2 July 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Technology Strategy Consultant, Reinvently</div>
   <h1>GLM-5.2 vs Claude Opus 4.8 vs GPT-5.5 for Enterprise Coding</h1>
-  <p class="summary">The benchmark tables circulating since GLM-5.2's launch mix numbers that were never measured the same way. Here is what the scores can and cannot tell you — and how the three models actually differ for an engineering organisation.</p>
+  <p class="summary">The benchmark tables circulating since GLM-5.2's launch mix numbers that were never measured the same way. What the scores can and cannot tell you, and how the three models actually differ for an engineering organisation.</p>
 </header>
 
 <main class="container">
@@ -98,19 +98,19 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <p>Since Z.ai released GLM-5.2 on 13 June, every comparison article has led with the same table: 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 75.1 for Claude Opus 4.8 and 72.6 for GPT-5.5. The numbers are real. The problem is that they were not all produced the same way, and the difference matters more than the decimal points.</p>
+    <p>Since Z.ai released GLM-5.2 on 13 June, every comparison article has led with the same table: 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 75.1 for Claude Opus 4.8 and 72.6 for GPT-5.5. The numbers are real. They were not all produced the same way, and that matters more than the decimal points.</p>
 
-    <p><strong>The short answer:</strong> Claude Opus 4.8 remains the quality ceiling for complex coding work. GLM-5.2 gets within a point of it on FrontierSWE at roughly a sixth of the price, and is the first open-weight model to beat a US frontier flagship on agent-style software engineering benchmarks. GPT-5.5 trails both on these specific tests but remains the most widely deployed of the three. Whether any of that translates to your team depends on questions the benchmarks do not answer.</p>
+    <p><strong>The short answer:</strong> Claude Opus 4.8 remains the quality ceiling for complex coding work. GLM-5.2 gets within a point of it on FrontierSWE at roughly a sixth of the price, and is the first open-weight model to beat a US frontier flagship on agent-style software engineering benchmarks. GPT-5.5 trails both here but remains the most widely deployed of the three. Whether any of that translates to your team depends on questions the benchmarks do not answer.</p>
 
-    <p>This piece covers the capability comparison. The governance decision — API versus self-hosted weights versus abstaining — is the subject of our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>, and the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
+    <p>This piece covers capability. The governance decision — API, self-hosted weights, or neither — is in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>; the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
 
     <hr/>
 
     <h2>Read the Benchmark Numbers Sceptically</h2>
 
-    <p>Most published SWE-bench Pro scores are vendor self-reported figures produced on tuned agent scaffolds. Scale AI's standardised leaderboard, which runs every model on identical scaffolding, tells a humbler story: the <a href="https://www.morphllm.com/swe-bench-pro" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">aggregated tracking of SWE-bench Pro results</a> notes that while the vendor aggregate credits Opus 4.8 with 69.2 percent, Scale's best standardised Claude run scored 51.9 percent on the public set. A score 10 to 30 points above the standardised leaderboard is a scaffold number, not a model number.</p>
+    <p>Most published SWE-bench Pro scores are vendor self-reported figures from tuned agent scaffolds. Scale AI's standardised leaderboard, which runs every model on identical scaffolding, is humbler: per the <a href="https://www.morphllm.com/swe-bench-pro" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">SWE-bench Pro tracking</a>, the vendor aggregate credits Opus 4.8 with 69.2 percent while Scale's best standardised Claude run scored 51.9 on the public set. A score 10 to 30 points above the standardised leaderboard is a scaffold number, not a model number.</p>
 
-    <p>GLM-5.2's own 62.1 carries a further caveat: it was measured by third parties, because Z.ai published no SWE-bench figure at launch. So the honest reading of the table is narrower than the headlines: GLM-5.2 demonstrably beats GPT-5.5 on like-for-like runs, and sits within a point of Opus 4.8 on FrontierSWE, where the scores come from the same analysis. The 69.2-versus-62.1 comparison between Opus and GLM crosses harnesses and should not be quoted as a gap of seven points.</p>
+    <p>GLM-5.2's 62.1 has its own caveat: it was measured by third parties, as Z.ai published no SWE-bench figure at launch. The honest reading is narrower than the headlines: GLM-5.2 beats GPT-5.5 on like-for-like runs and sits within a point of Opus 4.8 on FrontierSWE, where the scores come from one analysis. The 69.2-versus-62.1 comparison crosses harnesses and should not be quoted as a seven-point gap.</p>
 
     <figure style="margin:0 0 28px 0;">
       <svg viewBox="0 0 720 124" role="img" aria-label="Bar chart of FrontierSWE scores: Claude Opus 4.8 75.1 percent, GLM-5.2 74.4 percent, GPT-5.5 72.6 percent." style="width:100%;height:auto;display:block;">
@@ -149,7 +149,7 @@
       <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">FrontierSWE, percent — the one benchmark where all three scores come from the same analysis. The near-identical bars are the point. Source: <a href="https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">VentureBeat</a>, June 2026.</figcaption>
     </figure>
 
-    <p>For an enterprise evaluation, the practical rule: trust orderings within a single standardised run, treat cross-source comparisons as directional, and pilot on your own repositories before believing any of it.</p>
+    <p>The practical rule: trust orderings within a single standardised run, treat cross-source comparisons as directional, and pilot on your own repositories before believing any of it.</p>
 
     <hr/>
 
@@ -159,19 +159,19 @@
 
     <p>The economics are the headline: $1.40 per million input tokens and $4.40 output, with cached input at $0.26, against $5/$25 for Opus 4.8 (<a href="https://llm-stats.com/models/compare/glm-5.2-vs-claude-opus-4-8" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">llm-stats comparison</a>). For token-heavy agentic workloads — long refactors, whole-repository analysis using the 1M-token context — the gap compounds daily.</p>
 
-    <p>The under-reported fact is how little switching costs. Z.ai exposes an Anthropic-compatible API endpoint for coding tools, so GLM-5.2 drops into Claude Code, Cline, and Cursor by changing a base URL and key — in Claude Code the 1M-context variant is <code>glm-5.2[1m]</code> (<a href="https://apidog.com/blog/glm-5-2-claude-code-cline-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">setup guide</a>). Teams that have invested in agentic tooling around Claude, as many covered in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">coding tool comparison</a> have, can trial GLM-5.2 inside the same workflow in an afternoon. The same compatibility cuts the other way: adopting GLM-5.2 creates no tooling lock-in.</p>
+    <p>Switching costs are the under-reported fact. Z.ai exposes an Anthropic-compatible endpoint, so GLM-5.2 drops into Claude Code, Cline, and Cursor by changing a base URL and key — in Claude Code the 1M-context variant is <code>glm-5.2[1m]</code> (<a href="https://apidog.com/blog/glm-5-2-claude-code-cline-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">setup guide</a>). Teams with agentic tooling built around Claude, as in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">coding tool comparison</a>, can trial it in the same workflow in an afternoon. The compatibility also means adopting GLM-5.2 creates no lock-in.</p>
 
-    <p>The weaknesses are the mirror of the price. There is no vendor with a UK legal presence standing behind the output, the benchmark record is thinner and partly third-party measured, and the data-residency analysis has to be done before any pilot touches real code. Early adopter reports also note migration friction — model-id conventions differ by tool, and routing through intermediary providers has produced tool-call errors in Cursor.</p>
+    <p>The weaknesses mirror the price. No vendor with a UK legal presence stands behind the output, the benchmark record is thinner, and the data-residency analysis must precede any pilot on real code. Early adopters also report migration friction: model-id conventions differ by tool, and routing through intermediaries has produced tool-call errors in Cursor.</p>
 
     <h3>Claude Opus 4.8: the quality ceiling, priced accordingly</h3>
 
-    <p>Opus 4.8 leads FrontierSWE at 75.1 percent and is the model the others are measured against — the strongest choice where correctness on complex, multi-file work dominates cost. The ecosystem argument compounds the model argument: Claude Code remains the most invested-in agentic coding tool, with a 46 percent "most loved" rating in The Pragmatic Engineer's survey of 906 developers, and the co-design advantage of tool and model coming from the same lab shows up in community reports on output quality.</p>
+    <p>Opus 4.8 leads FrontierSWE at 75.1 percent and is the model the others are measured against — the strongest choice where correctness on complex, multi-file work dominates cost. The ecosystem compounds it: Claude Code holds a 46 percent "most loved" rating in The Pragmatic Engineer's survey of 906 developers, and tool and model coming from the same lab shows up in community reports on output quality.</p>
 
-    <p>The cost is real: at $5/$25 per million tokens, an Opus-heavy team pays for that margin continuously, whether or not a given task needed it. The economical pattern we see is a split estate — Opus for planning, architecture, and the hardest debugging; a cheaper model for volume work. Until June, the cheaper tier meant Haiku- or Sonnet-class models. GLM-5.2's arrival within a point of Opus changes what "cheaper tier" can mean.</p>
+    <p>At $5/$25, an Opus-heavy team pays for the margin continuously, whether or not a task needed it. The economical pattern is a split estate: Opus for planning, architecture, and the hardest debugging; a cheaper model for volume. Until June the cheaper tier meant Haiku- or Sonnet-class models. GLM-5.2 arriving within a point of Opus changes what "cheaper" can mean.</p>
 
     <h3>GPT-5.5: behind on these benchmarks, ahead on distribution</h3>
 
-    <p>GPT-5.5 trails on both coding benchmarks — 58.6 on SWE-bench Pro and 72.6 percent on FrontierSWE against GLM-5.2's 62.1 and 74.4. But coding benchmarks are not the whole of engineering work: as we covered in our <a href="/blog/gpt-5-5-autonomous-task-completion/">analysis of GPT-5.5's autonomous task completion</a>, its strength is sustained multi-step task execution, and it remains the default model in more enterprise tooling than either rival. It is not the budget option, though: at $5 input and $30 output per million tokens, its output is the most expensive of the three — the case for GPT-5.5 is the ecosystem, not the price. For organisations standardised on OpenAI through Microsoft's ecosystem, the switching cost runs the other way: the question is not whether GPT-5.5 tops a leaderboard but whether the gap justifies leaving an integrated estate.</p>
+    <p>GPT-5.5 trails both here — 58.6 on SWE-bench Pro, 72.6 percent on FrontierSWE. Coding benchmarks are not the whole of engineering work, though: its strength is sustained multi-step execution, as we covered in our <a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5 analysis</a>, and it is the default model in more enterprise tooling than either rival. It is not the budget option: at $5/$30 per million tokens its output is the most expensive of the three, so the case is the ecosystem, not the price. For organisations standardised on OpenAI through Microsoft, the question is not whether GPT-5.5 tops a leaderboard but whether the gap justifies leaving an integrated estate.</p>
 
     <hr/>
 
@@ -232,7 +232,7 @@
 
     <h2>Cost per Token Is Not Cost per Task</h2>
 
-    <p>The sixfold price gap is a per-token figure, and engineering organisations do not buy tokens — they buy completed work. If a cheaper model needs two attempts where a stronger one needs one, the gap halves before you account for the engineer's time reviewing the failed attempt. On FrontierSWE the quality difference between GLM-5.2 and Opus 4.8 is 0.7 points; on your codebase it may be larger or smaller, and no public retry-adjusted cost data yet exists for GLM-5.2. That is measurable in a two-week pilot, and worth measuring: at these list prices, even a modest real-world quality discount leaves GLM-5.2 far cheaper per completed task, while a large one erases the saving entirely.</p>
+    <p>The price gap is per token; engineering organisations buy completed work. If a cheaper model needs two attempts where a stronger one needs one, the gap halves before you count the engineer's time reviewing the failure. On FrontierSWE the quality difference is 0.7 points; on your codebase it may be larger or smaller, and no public retry-adjusted cost data exists yet. A two-week pilot measures it: a modest real-world quality discount still leaves GLM-5.2 far cheaper per completed task; a large one erases the saving.</p>
 
     <figure style="margin:0 0 28px 0;">
       <svg viewBox="0 0 720 248" role="img" aria-label="Grouped bar chart of list prices per million tokens. Input: GLM-5.2 $1.40, Claude Opus 4.8 $5.00, GPT-5.5 $5.00. Output: GLM-5.2 $4.40, Claude Opus 4.8 $25.00, GPT-5.5 $30.00." style="width:100%;height:auto;display:block;">
@@ -286,7 +286,7 @@
       <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">List prices per million tokens. Cached input: GLM-5.2 $0.26, Opus 4.8 $0.50, GPT-5.5 $0.50. Sources: <a href="https://llm-stats.com/models/compare/glm-5.2-vs-claude-opus-4-8" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">llm-stats</a> and <a href="https://www.morphllm.com/openai-api-pricing" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenAI's published price table</a>, June 2026.</figcaption>
     </figure>
 
-    <p>Caching shifts the numbers without changing the ordering. Agentic coding re-reads the same files continuously, and all three vendors discount cached input: Claude Opus 4.8 and GPT-5.5 both charge $0.50 per million cached tokens — 90 percent off base input, with Opus cache writes costing 1.25x once when the cache is created — against GLM-5.2's $0.26. Caching therefore does nothing to separate the US vendors from each other, and GLM-5.2 keeps roughly the same relative edge cached as uncached. Real workloads run materially below list price on all three, as we noted for Claude Code in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">tool comparison</a>.</p>
+    <p>Caching shifts the numbers, not the ordering. Agentic coding re-reads the same files continuously, and all three discount cached input: Opus 4.8 and GPT-5.5 at $0.50 per million (90 percent off base; Opus cache writes cost 1.25x, once), GLM-5.2 at $0.26. Caching does not separate the US vendors, and GLM-5.2 keeps its edge cached or not. Real workloads run well below list price on all three, as we noted for Claude Code in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">tool comparison</a>.</p>
 
     <hr/>
 
