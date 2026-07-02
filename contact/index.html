@@ -85,5 +85,26 @@
 <script src="../js/ceph-p3-01_website-builder-data-prod_static_widgets_UX.4.51.22.js" crossorigin></script>
 <script src="../js/blobby_go_558bf111-ac00-4bc6-bc31-8aae375f3151_gpub_ad2d5015d04c71c9_script.js" crossorigin></script>
 
+<script>
+/* Blog signup: auto-fill and hide the widget's required message field */
+(function(){
+  function fix(){
+    var t=document.querySelector('#contact textarea');
+    if(!t||t.dataset.blogSignupHidden)return;
+    try{
+      var set=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;
+      set.call(t,'Blog signup');
+      t.dispatchEvent(new Event('input',{bubbles:true}));
+    }catch(e){t.value='Blog signup';}
+    var w=t.parentElement;
+    while(w&&w.parentElement&&w.parentElement.querySelectorAll('input,textarea').length===1&&w.parentElement.id!=='contact'){w=w.parentElement;}
+    if(w){w.style.display='none';w.setAttribute('aria-hidden','true');}
+    t.dataset.blogSignupHidden='1';
+  }
+  new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
+  document.addEventListener('DOMContentLoaded',fix);
+  fix();
+})();
+</script>
 </body>
 </html>
