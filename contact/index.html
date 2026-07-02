@@ -20,6 +20,9 @@
     /* Hide site name rendered by widget JS */
     [data-aid="CONTACT_SECTION_TITLE_REND"],
     [data-aid="CONTACT_TITLE_REND"] { display: none !important; }
+    /* Blog signup: hide the widget's message field (auto-filled by script; survives React re-renders) */
+    #contact textarea[data-aid="CONTACT_FORM_MESSAGE"],
+    #contact div:has(textarea[data-aid="CONTACT_FORM_MESSAGE"]):not(:has(input)) { display: none !important; }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -47,7 +50,7 @@
       "name": "Reinvently",
       "url": "https://reinvently.co.uk",
       "areaServed": {"@type": "Country", "name": "GB"},
-      "employee": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Technology Strategy Consultant", "url": "https://uk.linkedin.com/in/edmond-yau"}
+      "employee": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Applied AI Architect", "url": "https://uk.linkedin.com/in/edmond-yau"}
     }
   }
   </script>
@@ -60,6 +63,7 @@
     <a href="/">Home</a>
     <a href="/news/">News</a>
     <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
     <a href="/contact/" aria-current="page">Contact</a>
   </div>
 </nav>
@@ -89,17 +93,20 @@
 /* Blog signup: auto-fill and hide the widget's required message field */
 (function(){
   function fix(){
-    var t=document.querySelector('#contact textarea');
-    if(!t||t.dataset.blogSignupHidden)return;
-    try{
-      var set=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;
-      set.call(t,'Blog signup');
-      t.dispatchEvent(new Event('input',{bubbles:true}));
-    }catch(e){t.value='Blog signup';}
-    var w=t.parentElement;
-    while(w&&w.parentElement&&w.parentElement.querySelectorAll('input,textarea').length===1&&w.parentElement.id!=='contact'){w=w.parentElement;}
-    if(w){w.style.display='none';w.setAttribute('aria-hidden','true');}
-    t.dataset.blogSignupHidden='1';
+    var t=document.querySelector('#contact textarea[data-aid="CONTACT_FORM_MESSAGE"]')||document.querySelector('#contact textarea');
+    if(!t)return;
+    if(!t.dataset.blogSignupFilled){
+      try{
+        var set=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;
+        set.call(t,'Blog signup');
+        t.dispatchEvent(new Event('input',{bubbles:true}));
+      }catch(e){t.value='Blog signup';}
+      t.dataset.blogSignupFilled='1';
+    }
+    /* Hide the field's outermost wrapper that holds no other fields; re-applied on every render */
+    var w=t,p=t.parentElement;
+    while(p&&p.id!=='contact'&&p.querySelectorAll('input,textarea').length===1){w=p;p=p.parentElement;}
+    if(w.style.display!=='none'){w.style.display='none';w.setAttribute('aria-hidden','true');}
   }
   new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
   document.addEventListener('DOMContentLoaded',fix);
