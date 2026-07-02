@@ -108,6 +108,53 @@
 
     <p>On 13 June 2026, Z.ai — the Beijing-based lab previously known as Zhipu AI — released GLM-5.2. Four days later it published the full model weights on <a href="https://huggingface.co/zai-org/GLM-5.2" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Hugging Face</a> under an MIT licence. The benchmark results are the part the developer press has covered: 62.1 on SWE-bench Pro against 58.6 for <a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5</a>, and 74.4 percent on FrontierSWE against 72.6 percent for GPT-5.5 and 75.1 percent for Claude Opus 4.8 — at roughly one sixth of the API price, according to <a href="https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">VentureBeat's analysis</a>. It is the first time an open-weight model has led both an OpenAI and an Anthropic flagship on an agent-style software engineering benchmark.</p>
 
+    <figure style="margin:0 0 28px 0;">
+      <svg viewBox="0 0 720 224" role="img" aria-label="Grouped bar chart of coding benchmark scores. SWE-bench Pro: GLM-5.2 62.1, GPT-5.5 58.6. FrontierSWE: GLM-5.2 74.4, GPT-5.5 72.6, Claude Opus 4.8 75.1." style="width:100%;height:auto;display:block;">
+        <title>Coding benchmark scores: GLM-5.2 vs GPT-5.5 vs Claude Opus 4.8</title>
+        <desc>Horizontal bars on a 0 to 100 scale. GLM-5.2 leads GPT-5.5 on both benchmarks and trails Claude Opus 4.8 by 0.7 points on FrontierSWE.</desc>
+        <g stroke="#2c2c2a" stroke-width="1">
+          <line x1="218" y1="28" x2="218" y2="196"/>
+          <line x1="336" y1="28" x2="336" y2="196"/>
+          <line x1="454" y1="28" x2="454" y2="196"/>
+          <line x1="572" y1="28" x2="572" y2="196"/>
+          <line x1="690" y1="28" x2="690" y2="196"/>
+        </g>
+        <line x1="100" y1="28" x2="100" y2="196" stroke="#383835" stroke-width="1.5"/>
+        <g font-family="Montserrat,sans-serif" font-size="10" letter-spacing="2" fill="rgb(150,150,150)">
+          <text x="0" y="20">SWE-BENCH PRO</text>
+          <text x="0" y="104">FRONTIERSWE</text>
+        </g>
+        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)" text-anchor="end">
+          <text x="92" y="47">GLM-5.2</text>
+          <text x="92" y="73">GPT-5.5</text>
+          <text x="92" y="131">GLM-5.2</text>
+          <text x="92" y="157">GPT-5.5</text>
+          <text x="92" y="183">Opus 4.8</text>
+        </g>
+        <path d="M100,32 h362.4 q4,0 4,4 v14 q0,4 -4,4 h-362.4 z" fill="#3987e5"><title>GLM-5.2 — SWE-bench Pro: 62.1</title></path>
+        <path d="M100,58 h341.7 q4,0 4,4 v14 q0,4 -4,4 h-341.7 z" fill="#199e70"><title>GPT-5.5 — SWE-bench Pro: 58.6</title></path>
+        <path d="M100,116 h435.0 q4,0 4,4 v14 q0,4 -4,4 h-435.0 z" fill="#3987e5"><title>GLM-5.2 — FrontierSWE: 74.4</title></path>
+        <path d="M100,142 h424.3 q4,0 4,4 v14 q0,4 -4,4 h-424.3 z" fill="#199e70"><title>GPT-5.5 — FrontierSWE: 72.6</title></path>
+        <path d="M100,168 h439.1 q4,0 4,4 v14 q0,4 -4,4 h-439.1 z" fill="#c98500"><title>Claude Opus 4.8 — FrontierSWE: 75.1</title></path>
+        <g font-family="Montserrat,sans-serif" font-size="12" fill="#e2e2e2">
+          <text x="474" y="47">62.1</text>
+          <text x="454" y="73">58.6</text>
+          <text x="547" y="131">74.4</text>
+          <text x="536" y="157">72.6</text>
+          <text x="551" y="183">75.1</text>
+        </g>
+        <g font-family="Montserrat,sans-serif" font-size="10" fill="rgb(150,150,150)" text-anchor="middle">
+          <text x="100" y="214">0</text>
+          <text x="218" y="214">20</text>
+          <text x="336" y="214">40</text>
+          <text x="454" y="214">60</text>
+          <text x="572" y="214">80</text>
+          <text x="690" y="214">100</text>
+        </g>
+      </svg>
+      <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">Benchmark scores, percent. Claude Opus 4.8's SWE-bench Pro score was not reported in the same analysis. Source: <a href="https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">VentureBeat</a>, June 2026.</figcaption>
+    </figure>
+
     <p>The coverage so far is written for developers, and it stops at the benchmarks. The question it leaves open is the one that will land on the desk of a UK CIO within the next quarter: should an enterprise use a frontier model built in China, and under what conditions? <a href="https://www.techtimes.com/articles/318543/20260617/glm-52-open-weights-live-top-coding-benchmark-api-use-carries-china-data-risk.htm" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">TechTimes</a> compressed the whole dilemma into a single headline — open weights live, but API use carries China data risk — and then, like everyone else, moved on to the next release.</p>
 
     <p><strong>The short answer: this is not one decision but three.</strong> Whether to consume GLM-5.2 through Z.ai's hosted API is a data-residency decision, and for most UK organisations handling personal or commercially sensitive data the answer is no. Whether to run the MIT-licensed weights on infrastructure you control is a capability and supply-chain decision, and for a smaller set of organisations the answer is a qualified yes. And whether your developers are already using it through a $3-per-month coding plan is not a decision at all — it is a fact to verify, this week.</p>
@@ -148,7 +195,7 @@
 
     <h3>Route two: self-host the open weights</h3>
 
-    <p>Start with the licence, because most "open" model releases are not this open. Meta's Llama family, the obvious comparison, ships under a community licence with acceptable-use policies, commercial thresholds, and a revocation mechanism. MIT has none of those: unrestricted commercial use, modification, fine-tuning, and redistribution, with no lever for the publisher to pull later. For legal teams, that moves the weights out of case-by-case AI-licence review and into the ordinary open-source policy most organisations already have.</p>
+    <p>Start with the licence. When Z.ai published the weights on 17 June, it chose MIT — and most "open" model releases are not this open. Meta's Llama family, the obvious comparison, ships under a community licence with acceptable-use policies, commercial thresholds, and a revocation mechanism. MIT has none of those: unrestricted commercial use, modification, fine-tuning, and redistribution, with no lever for the publisher to pull later. For legal teams, that moves the weights out of case-by-case AI-licence review and into the ordinary open-source policy most organisations already have.</p>
 
     <p>The constraint is hardware. The FP8 build occupies on the order of 750GB of GPU memory before it serves a single token — a dedicated node of eight H200-class accelerators, or more for production traffic with the 1M-token context in play. Add the engineers to operate it and a realistic annual bill runs well into six figures. This is a platform investment, not a download.</p>
 
@@ -164,7 +211,7 @@
 
     <h3>Route three: stay with US frontier vendors</h3>
 
-    <p>Abstaining is a legitimate strategy, and for many organisations the right one. Claude Opus 4.8 still leads GLM-5.2 on FrontierSWE, but the benchmark point is the least of it: what Anthropic, OpenAI, and Microsoft sell is accountability as much as capability — a vendor with a UK or US legal presence, certifications, contractual data-processing terms, and someone to hold responsible when something goes wrong. That is what the roughly sixfold price premium buys, and for regulated organisations it is frequently worth every pound. As our comparison of <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot, Claude Code, and Cursor</a> found, procurement familiarity and vendor trust decide more enterprise AI purchases than benchmarks do.</p>
+    <p>Abstaining is a legitimate strategy, and for many organisations the right one. Claude Opus 4.8 still leads GLM-5.2 on FrontierSWE (75.1 against 74.4 percent), but the benchmark point is the least of it: what Anthropic, OpenAI, and Microsoft sell is accountability as much as capability — a vendor with a UK or US legal presence, certifications, contractual data-processing terms, and someone to hold responsible when something goes wrong. That is what the roughly sixfold price premium buys, and for regulated organisations it is frequently worth every pound. As our comparison of <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot, Claude Code, and Cursor</a> found, procurement familiarity and vendor trust decide more enterprise AI purchases than benchmarks do.</p>
 
     <p>The failure mode of route three is not choosing it — it is pretending that choosing it ends the matter. A policy of "we use approved US vendors" does nothing about the developer with a personal Z.ai subscription, and it leaves you without a position when the CFO asks why the engineering AI budget is six times what a competitor pays.</p>
 
