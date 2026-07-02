@@ -100,7 +100,7 @@
 
     <p>Since Z.ai released GLM-5.2 on 13 June, everyone has been amazed by the benchmarks and the price. Can you trust the numbers? Yes and no. The scores are real and you can use Z.ai's API directly today — but most enterprises will need to self-host for data-residency and compliance reasons, and priced that way the true numbers stop matching the headlines. In our own testing, GLM-5.2 also lands short of both Claude and OpenAI's Codex.</p>
 
-    <p><strong>The short answer:</strong> Claude Fable 5 remains the quality ceiling for complex coding work — 90 percent on FrontierSWE against GLM-5.2's 74.4 — at $10/$50 per million tokens. GLM-5.2 is so cheap in comparison that it is a serious contender for high-volume workloads where you can justify the per-hour cost of renting GPUs, and with no first-party managed GLM-5.2 on the hyperscalers yet (AWS Bedrock lists its predecessor GLM 5; Microsoft Foundry offers 5.2 via Fireworks), self-hosting is usually how you would run it. GPT-5.5 trails on these benchmarks but remains the most widely deployed of the three.</p>
+    <p><strong>The short answer:</strong> Claude Fable 5 remains the quality ceiling for complex coding work — 90 percent on FrontierSWE against GLM-5.2's 74.4 — at $10/$50 per million tokens. GLM-5.2 is so cheap in comparison that it is a serious contender for high-volume workloads where you can justify the per-hour cost of renting GPUs, and with no managed GLM-5.2 on the hyperscalers at all (AWS Bedrock lists GLM 5, and Microsoft Foundry's Fireworks listing only reaches GLM 5.1), self-hosting is usually how you would run it. GPT-5.5 trails on these benchmarks but remains the most widely deployed of the three.</p>
 
     <p>In practical terms you need to do three things: test on your own repositories before trusting any leaderboard, choose a deployment route deliberately, and price the models per completed task rather than per token. This piece works through each. The governance decision — API, self-hosted weights, or neither — is in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>; the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
 
@@ -164,7 +164,7 @@
 
     <p>Switching costs are the under-reported fact. Z.ai exposes an Anthropic-compatible endpoint, so GLM-5.2 drops into Claude Code, Cline, and Cursor by changing a base URL and key — in Claude Code the 1M-context variant is <code>glm-5.2[1m]</code> (<a href="https://apidog.com/blog/glm-5-2-claude-code-cline-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">setup guide</a>). Teams with agentic tooling built around Claude, as in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">coding tool comparison</a>, can trial it in the same workflow in an afternoon. The compatibility also means adopting GLM-5.2 creates no lock-in.</p>
 
-    <p>The weaknesses mirror the price. No vendor with a UK legal presence stands behind the output, the benchmark record is thinner, and the data-residency analysis must precede any pilot on real code. The managed-cloud route is also only half-built: at the time of writing, <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-zai-glm-5.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AWS Bedrock's catalogue</a> carries GLM 5 rather than 5.2, and Microsoft Foundry offers 5.2 through Fireworks rather than as a first-party model — so procurement cannot simply tick the usual hyperscaler box. Early adopters also report migration friction: model-id conventions differ by tool, and routing through intermediaries has produced tool-call errors in Cursor.</p>
+    <p>The weaknesses mirror the price. No vendor with a UK legal presence stands behind the output, the benchmark record is thinner, and the data-residency analysis must precede any pilot on real code. The managed-cloud route is not built yet: at the time of writing, <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-zai-glm-5.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AWS Bedrock's catalogue</a> carries GLM 5 rather than 5.2, and Microsoft Foundry's Fireworks listing only reaches GLM 5.1 — so procurement cannot simply tick the usual hyperscaler box for 5.2. Early adopters also report migration friction: model-id conventions differ by tool, and routing through intermediaries has produced tool-call errors in Cursor.</p>
 
     <h3>Claude Fable 5: the quality ceiling, priced accordingly</h3>
 
@@ -316,7 +316,7 @@
 
     <hr/>
 
-    <p><em>Reinvently helps UK engineering organisations choose and evaluate AI tooling on evidence rather than leaderboards. <a href="/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Talk to us</a> if a structured pilot would help.</em></p>
+    <p><em>New posts land here first. <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sign up for email updates</a>.</em></p>
 
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
