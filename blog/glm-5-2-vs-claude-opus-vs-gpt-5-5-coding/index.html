@@ -286,7 +286,7 @@
       <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">List prices per million tokens. Cached input: GLM-5.2 $0.26, Opus 4.8 $0.50, GPT-5.5 $0.50. Sources: <a href="https://llm-stats.com/models/compare/glm-5.2-vs-claude-opus-4-8" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">llm-stats</a> and <a href="https://www.morphllm.com/openai-api-pricing" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenAI's published price table</a>, June 2026.</figcaption>
     </figure>
 
-    <p>Caching shifts the same calculation. Agentic coding re-reads the same files continuously, and GLM-5.2's $0.26 cached-input rate — like the caching economics we noted for Claude Code in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">tool comparison</a> — means real workloads run materially below list price on both sides of the comparison.</p>
+    <p>Caching shifts the numbers without changing the ordering. Agentic coding re-reads the same files continuously, and all three vendors discount cached input: Claude Opus 4.8 and GPT-5.5 both charge $0.50 per million cached tokens — 90 percent off base input, with Opus cache writes costing 1.25x once when the cache is created — against GLM-5.2's $0.26. Caching therefore does nothing to separate the US vendors from each other, and GLM-5.2 keeps roughly the same relative edge cached as uncached. Real workloads run materially below list price on all three, as we noted for Claude Code in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">tool comparison</a>.</p>
 
     <hr/>
 
@@ -296,10 +296,7 @@
       <li><strong>Complex work where correctness dominates cost.</strong> Opus 4.8, and it is not close once ecosystem depth is counted. The premium is the point.</li>
       <li><strong>High-volume agentic workloads with cost pressure.</strong> Pilot GLM-5.2 through the Anthropic-compatible endpoint inside your existing tooling — after the governance analysis in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide</a>, not before.</li>
       <li><strong>Microsoft-standardised estates.</strong> GPT-5.5's benchmark deficit is unlikely to justify the integration cost of leaving; revisit when your contract does.</li>
-      <li><strong>Whole-repository analysis.</strong> All three list a 1M-token window, but GPT-5.5 doubles its input price above 272K tokens. GLM-5.2 is the only one priced for filling the window routinely — full-context calls at $25 to $30 per million output tokens are an occasional tool, not a workflow.</li>
     </ul>
-
-    <p>The durable pattern is not a winner but a portfolio: a frontier US model where accountability and peak quality matter, and an open-weight model where volume, context length, or data control matter. GLM-5.2's contribution is making the second slot frontier-grade.</p>
 
     <hr/>
 
