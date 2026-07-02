@@ -112,6 +112,43 @@
 
     <p>GLM-5.2's own 62.1 carries a further caveat: it was measured by third parties, because Z.ai published no SWE-bench figure at launch. So the honest reading of the table is narrower than the headlines: GLM-5.2 demonstrably beats GPT-5.5 on like-for-like runs, and sits within a point of Opus 4.8 on FrontierSWE, where the scores come from the same analysis. The 69.2-versus-62.1 comparison between Opus and GLM crosses harnesses and should not be quoted as a gap of seven points.</p>
 
+    <figure style="margin:0 0 28px 0;">
+      <svg viewBox="0 0 720 124" role="img" aria-label="Bar chart of FrontierSWE scores: Claude Opus 4.8 75.1 percent, GLM-5.2 74.4 percent, GPT-5.5 72.6 percent." style="width:100%;height:auto;display:block;">
+        <title>FrontierSWE scores: the like-for-like comparison</title>
+        <desc>Three horizontal bars on a 0 to 100 scale, nearly equal in length, showing the three models within 2.5 points of each other.</desc>
+        <g stroke="#2c2c2a" stroke-width="1">
+          <line x1="218" y1="12" x2="218" y2="96"/>
+          <line x1="336" y1="12" x2="336" y2="96"/>
+          <line x1="454" y1="12" x2="454" y2="96"/>
+          <line x1="572" y1="12" x2="572" y2="96"/>
+          <line x1="690" y1="12" x2="690" y2="96"/>
+        </g>
+        <line x1="100" y1="12" x2="100" y2="96" stroke="#383835" stroke-width="1.5"/>
+        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)" text-anchor="end">
+          <text x="92" y="31">Opus 4.8</text>
+          <text x="92" y="57">GLM-5.2</text>
+          <text x="92" y="83">GPT-5.5</text>
+        </g>
+        <path d="M100,16 h439.1 q4,0 4,4 v14 q0,4 -4,4 h-439.1 z" fill="#c98500"><title>Claude Opus 4.8 — FrontierSWE: 75.1</title></path>
+        <path d="M100,42 h435.0 q4,0 4,4 v14 q0,4 -4,4 h-435.0 z" fill="#3987e5"><title>GLM-5.2 — FrontierSWE: 74.4</title></path>
+        <path d="M100,68 h424.3 q4,0 4,4 v14 q0,4 -4,4 h-424.3 z" fill="#199e70"><title>GPT-5.5 — FrontierSWE: 72.6</title></path>
+        <g font-family="Montserrat,sans-serif" font-size="12" fill="#e2e2e2">
+          <text x="551" y="31">75.1</text>
+          <text x="547" y="57">74.4</text>
+          <text x="536" y="83">72.6</text>
+        </g>
+        <g font-family="Montserrat,sans-serif" font-size="10" fill="rgb(150,150,150)" text-anchor="middle">
+          <text x="100" y="114">0</text>
+          <text x="218" y="114">20</text>
+          <text x="336" y="114">40</text>
+          <text x="454" y="114">60</text>
+          <text x="572" y="114">80</text>
+          <text x="690" y="114">100</text>
+        </g>
+      </svg>
+      <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">FrontierSWE, percent — the one benchmark where all three scores come from the same analysis. The near-identical bars are the point. Source: <a href="https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">VentureBeat</a>, June 2026.</figcaption>
+    </figure>
+
     <p>For an enterprise evaluation, the practical rule: trust orderings within a single standardised run, treat cross-source comparisons as directional, and pilot on your own repositories before believing any of it.</p>
 
     <hr/>
@@ -134,7 +171,7 @@
 
     <h3>GPT-5.5: behind on these benchmarks, ahead on distribution</h3>
 
-    <p>GPT-5.5 trails on both coding benchmarks — 58.6 on SWE-bench Pro and 72.6 percent on FrontierSWE against GLM-5.2's 62.1 and 74.4. But coding benchmarks are not the whole of engineering work: as we covered in our <a href="/blog/gpt-5-5-autonomous-task-completion/">analysis of GPT-5.5's autonomous task completion</a>, its strength is sustained multi-step task execution, and it remains the default model in more enterprise tooling than either rival. For organisations standardised on OpenAI through Microsoft's ecosystem, the switching cost runs the other way: the question is not whether GPT-5.5 tops a leaderboard but whether the gap justifies leaving an integrated estate.</p>
+    <p>GPT-5.5 trails on both coding benchmarks — 58.6 on SWE-bench Pro and 72.6 percent on FrontierSWE against GLM-5.2's 62.1 and 74.4. But coding benchmarks are not the whole of engineering work: as we covered in our <a href="/blog/gpt-5-5-autonomous-task-completion/">analysis of GPT-5.5's autonomous task completion</a>, its strength is sustained multi-step task execution, and it remains the default model in more enterprise tooling than either rival. It is not the budget option, though: at $5 input and $30 output per million tokens, its output is the most expensive of the three — the case for GPT-5.5 is the ecosystem, not the price. For organisations standardised on OpenAI through Microsoft's ecosystem, the switching cost runs the other way: the question is not whether GPT-5.5 tops a leaderboard but whether the gap justifies leaving an integrated estate.</p>
 
     <hr/>
 
@@ -167,13 +204,13 @@
             <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Price per MTok (in/out)</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">$1.40 / $4.40 ($0.26 cached)</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">$5 / $25</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);">Roughly 6x GLM-5.2 (VentureBeat)</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">$5 / $30 ($0.50 cached)</td>
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Context window</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">1M tokens</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">1M tokens</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);">~400K tokens</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">1M listed; 2x input price above 272K</td>
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Access</td>
@@ -197,6 +234,58 @@
 
     <p>The sixfold price gap is a per-token figure, and engineering organisations do not buy tokens — they buy completed work. If a cheaper model needs two attempts where a stronger one needs one, the gap halves before you account for the engineer's time reviewing the failed attempt. On FrontierSWE the quality difference between GLM-5.2 and Opus 4.8 is 0.7 points; on your codebase it may be larger or smaller, and no public retry-adjusted cost data yet exists for GLM-5.2. That is measurable in a two-week pilot, and worth measuring: at these list prices, even a modest real-world quality discount leaves GLM-5.2 far cheaper per completed task, while a large one erases the saving entirely.</p>
 
+    <figure style="margin:0 0 28px 0;">
+      <svg viewBox="0 0 720 248" role="img" aria-label="Grouped bar chart of list prices per million tokens. Input: GLM-5.2 $1.40, Claude Opus 4.8 $5.00, GPT-5.5 $5.00. Output: GLM-5.2 $4.40, Claude Opus 4.8 $25.00, GPT-5.5 $30.00." style="width:100%;height:auto;display:block;">
+        <title>Price per million tokens: GLM-5.2 vs Claude Opus 4.8 vs GPT-5.5</title>
+        <desc>Horizontal bars on a 0 to 30 dollar scale. GPT-5.5 output tokens cost $30 and Opus 4.8 $25, against GLM-5.2's $4.40.</desc>
+        <g stroke="#2c2c2a" stroke-width="1">
+          <line x1="198" y1="28" x2="198" y2="220"/>
+          <line x1="297" y1="28" x2="297" y2="220"/>
+          <line x1="395" y1="28" x2="395" y2="220"/>
+          <line x1="493" y1="28" x2="493" y2="220"/>
+          <line x1="592" y1="28" x2="592" y2="220"/>
+          <line x1="690" y1="28" x2="690" y2="220"/>
+        </g>
+        <line x1="100" y1="28" x2="100" y2="220" stroke="#383835" stroke-width="1.5"/>
+        <g font-family="Montserrat,sans-serif" font-size="10" letter-spacing="2" fill="rgb(150,150,150)">
+          <text x="0" y="20">INPUT, $/MTOK</text>
+          <text x="0" y="130">OUTPUT, $/MTOK</text>
+        </g>
+        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)" text-anchor="end">
+          <text x="92" y="47">GLM-5.2</text>
+          <text x="92" y="73">Opus 4.8</text>
+          <text x="92" y="99">GPT-5.5</text>
+          <text x="92" y="157">GLM-5.2</text>
+          <text x="92" y="183">Opus 4.8</text>
+          <text x="92" y="209">GPT-5.5</text>
+        </g>
+        <path d="M100,32 h23.5 q4,0 4,4 v14 q0,4 -4,4 h-23.5 z" fill="#3987e5"><title>GLM-5.2 — input: $1.40 per million tokens</title></path>
+        <path d="M100,58 h94.3 q4,0 4,4 v14 q0,4 -4,4 h-94.3 z" fill="#c98500"><title>Claude Opus 4.8 — input: $5.00 per million tokens</title></path>
+        <path d="M100,84 h94.3 q4,0 4,4 v14 q0,4 -4,4 h-94.3 z" fill="#199e70"><title>GPT-5.5 — input: $5.00 per million tokens</title></path>
+        <path d="M100,142 h82.5 q4,0 4,4 v14 q0,4 -4,4 h-82.5 z" fill="#3987e5"><title>GLM-5.2 — output: $4.40 per million tokens</title></path>
+        <path d="M100,168 h487.7 q4,0 4,4 v14 q0,4 -4,4 h-487.7 z" fill="#c98500"><title>Claude Opus 4.8 — output: $25.00 per million tokens</title></path>
+        <path d="M100,194 h586 q4,0 4,4 v14 q0,4 -4,4 h-586 z" fill="#199e70"><title>GPT-5.5 — output: $30.00 per million tokens</title></path>
+        <g font-family="Montserrat,sans-serif" font-size="12" fill="#e2e2e2">
+          <text x="136" y="47">$1.40</text>
+          <text x="207" y="73">$5.00</text>
+          <text x="207" y="99">$5.00</text>
+          <text x="195" y="157">$4.40</text>
+          <text x="600" y="183">$25.00</text>
+        </g>
+        <text x="682" y="209" font-family="Montserrat,sans-serif" font-size="12" fill="#161616" text-anchor="end">$30.00</text>
+        <g font-family="Montserrat,sans-serif" font-size="10" fill="rgb(150,150,150)" text-anchor="middle">
+          <text x="100" y="238">$0</text>
+          <text x="198" y="238">$5</text>
+          <text x="297" y="238">$10</text>
+          <text x="395" y="238">$15</text>
+          <text x="493" y="238">$20</text>
+          <text x="592" y="238">$25</text>
+          <text x="690" y="238">$30</text>
+        </g>
+      </svg>
+      <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">List prices per million tokens. Cached input: GLM-5.2 $0.26, GPT-5.5 $0.50. Sources: <a href="https://llm-stats.com/models/compare/glm-5.2-vs-claude-opus-4-8" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">llm-stats</a> and <a href="https://www.morphllm.com/openai-api-pricing" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenAI's published price table</a>, June 2026.</figcaption>
+    </figure>
+
     <p>Caching shifts the same calculation. Agentic coding re-reads the same files continuously, and GLM-5.2's $0.26 cached-input rate — like the caching economics we noted for Claude Code in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">tool comparison</a> — means real workloads run materially below list price on both sides of the comparison.</p>
 
     <hr/>
@@ -207,7 +296,7 @@
       <li><strong>Complex work where correctness dominates cost.</strong> Opus 4.8, and it is not close once ecosystem depth is counted. The premium is the point.</li>
       <li><strong>High-volume agentic workloads with cost pressure.</strong> Pilot GLM-5.2 through the Anthropic-compatible endpoint inside your existing tooling — after the governance analysis in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide</a>, not before.</li>
       <li><strong>Microsoft-standardised estates.</strong> GPT-5.5's benchmark deficit is unlikely to justify the integration cost of leaving; revisit when your contract does.</li>
-      <li><strong>Whole-repository analysis.</strong> GLM-5.2 and Opus 4.8 both offer a 1M-token window; GPT-5.5 runs at roughly 400K. GLM-5.2 is the one priced for filling that window routinely — a full-context call at $25 per million output tokens is an occasional tool, not a workflow.</li>
+      <li><strong>Whole-repository analysis.</strong> All three list a 1M-token window, but GPT-5.5 doubles its input price above 272K tokens. GLM-5.2 is the only one priced for filling the window routinely — full-context calls at $25 to $30 per million output tokens are an occasional tool, not a workflow.</li>
     </ul>
 
     <p>The durable pattern is not a winner but a portfolio: a frontier US model where accountability and peak quality matter, and an open-weight model where volume, context length, or data control matter. GLM-5.2's contribution is making the second slot frontier-grade.</p>
