@@ -98,11 +98,11 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <p>Since Z.ai released GLM-5.2 on 13 June, every comparison article has led with the same table: 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 75.1 for Claude Opus 4.8 and 72.6 for GPT-5.5. The numbers are real. They were not all produced the same way, and that matters more than the decimal points.</p>
+    <p>Since Z.ai released GLM-5.2 on 13 June, the benchmarks and the price have done the selling: 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 75.1 for Claude Opus 4.8 — at a sixth of the cost. Can you trust the numbers? Yes and no. They were not all produced the same way, and in our own testing GLM-5.2 lands somewhere short of both Opus 4.8 and OpenAI's Codex: a serious model, not the leader the headlines imply.</p>
 
-    <p><strong>The short answer:</strong> Claude Opus 4.8 remains the quality ceiling for complex coding work. GLM-5.2 gets within a point of it on FrontierSWE at roughly a sixth of the price, and is the first open-weight model to beat a US frontier flagship on agent-style software engineering benchmarks. GPT-5.5 trails both here but remains the most widely deployed of the three. Whether any of that translates to your team depends on questions the benchmarks do not answer.</p>
+    <p><strong>The short answer:</strong> Claude Opus 4.8 remains the quality ceiling for complex coding work. GLM-5.2 is cheap enough to be a serious contender for high-volume workloads, but it is not yet a first-party managed model in the big clouds — AWS Bedrock lists its predecessor GLM 5, and on Microsoft Foundry it arrives via Fireworks, a third-party inference partner — so compliance and data-residency rules will often point you at self-hosting or a Western host. GPT-5.5 trails both here but remains the most widely deployed of the three.</p>
 
-    <p>This piece covers capability. The governance decision — API, self-hosted weights, or neither — is in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>; the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
+    <p>In practical terms you need to do three things: test on your own repositories before trusting any leaderboard, choose a deployment route deliberately, and price the models per completed task rather than per token. This piece works through each. The governance decision — API, self-hosted weights, or neither — is in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>; the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
 
     <hr/>
 
@@ -161,7 +161,7 @@
 
     <p>Switching costs are the under-reported fact. Z.ai exposes an Anthropic-compatible endpoint, so GLM-5.2 drops into Claude Code, Cline, and Cursor by changing a base URL and key — in Claude Code the 1M-context variant is <code>glm-5.2[1m]</code> (<a href="https://apidog.com/blog/glm-5-2-claude-code-cline-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">setup guide</a>). Teams with agentic tooling built around Claude, as in our <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">coding tool comparison</a>, can trial it in the same workflow in an afternoon. The compatibility also means adopting GLM-5.2 creates no lock-in.</p>
 
-    <p>The weaknesses mirror the price. No vendor with a UK legal presence stands behind the output, the benchmark record is thinner, and the data-residency analysis must precede any pilot on real code. Early adopters also report migration friction: model-id conventions differ by tool, and routing through intermediaries has produced tool-call errors in Cursor.</p>
+    <p>The weaknesses mirror the price. No vendor with a UK legal presence stands behind the output, the benchmark record is thinner, and the data-residency analysis must precede any pilot on real code. The managed-cloud route is also only half-built: at the time of writing, <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-zai-glm-5.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AWS Bedrock's catalogue</a> carries GLM 5 rather than 5.2, and Microsoft Foundry offers 5.2 through Fireworks rather than as a first-party model — so procurement cannot simply tick the usual hyperscaler box. Early adopters also report migration friction: model-id conventions differ by tool, and routing through intermediaries has produced tool-call errors in Cursor.</p>
 
     <h3>Claude Opus 4.8: the quality ceiling, priced accordingly</h3>
 
@@ -214,7 +214,7 @@
           </tr>
           <tr style="border-bottom:1px solid #1b1b1b;">
             <td style="padding:10px 14px;color:rgb(150,150,150);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Access</td>
-            <td style="padding:10px 14px;color:rgb(226,226,226);">API, coding plans, MIT weights</td>
+            <td style="padding:10px 14px;color:rgb(226,226,226);">API, coding plans, MIT weights; no first-party hyperscaler offering yet</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">API and vendor tools only</td>
             <td style="padding:10px 14px;color:rgb(226,226,226);">API and vendor tools only</td>
           </tr>
