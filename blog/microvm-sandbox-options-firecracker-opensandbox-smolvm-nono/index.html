@@ -96,7 +96,8 @@
 <header class="article-header">
   <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Technology Strategy</div>
   <h1>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h1>
-  <p class="summary">The brief asked to compare microVM options. The first useful finding is that they are not all microVMs — they occupy four different points on an isolation spectrum, and the boundaries between them are moving. The point you pick matters more than the product.</p>
+  <p class="summary">The brief was to build a local agentic coding agent that was sandboxed. In researching this, I soon realised that there were a range of fundamentally different approaches that I need to rationalise.  This post is a summary of the options to consider and the trade-offs between them.  What should drive your decision is the level of risk of the agent, and thus how much isolation you need.
+    I already have a physically separate machine for my coding agent, so I have physical isolation that stops it accessing my personal data, but I still wanted to be sure that the agent could not escape and access repos it should not have access to — source code and cloud credentials.</p>
 </header>
 
 <main class="container">
