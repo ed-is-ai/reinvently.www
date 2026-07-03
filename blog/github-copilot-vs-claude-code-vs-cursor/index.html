@@ -299,7 +299,22 @@
     <p><em>If this analysis is useful, the easiest way to get the next one is by email. <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sign up for new-post updates</a>.</em></p>
 
     
-    <div class="related-posts">
+    
+        <h2>Frequently asked questions</h2>
+
+    <h3>What is the difference between GitHub Copilot, Claude Code, and Cursor?</h3>
+    <p>All three tools have converged significantly in features — agentic multi-file editing, VS Code support, SOC 2 Type II certification, and MCP server integration are now shared across all three. The remaining differences are pricing model, model-native optimisation, and ecosystem depth. GitHub Copilot has the deepest Microsoft enterprise integration. Claude Code is built by the same team as the underlying Claude models, producing anecdotally better output quality than accessing Claude via other tools. Cursor offers the most model flexibility and the best tab-completion experience.</p>
+
+    <h3>What does an AI coding tool cost for a team of 10 engineers using agentic workflows?</h3>
+    <p>For a team of 10 engineers running a realistic mix of tasks including Opus-assisted planning, costs diverge significantly by billing model. Copilot runs roughly $960 per month — it benefits from a discounted Opus rate (currently one-third of the direct API price, reflecting a Microsoft preferential rate at time of writing) that makes it cheapest when frontier models are used for planning. Claude Code with prompt caching runs approximately $1,500 per month. Cursor runs around $2,000 per month because it pays full Opus rates on top of its $400 monthly floor. Without Opus, the order reverses: Claude Code drops to around $600, Copilot to $660, and Cursor to $820.</p>
+
+    <h3>Do GitHub Copilot, Claude Code, and Cursor all have SOC 2 certification?</h3>
+    <p>Yes. All three tools hold SOC 2 Type II certification — GitHub Copilot via Microsoft, Claude Code via Anthropic, and Cursor via Anysphere. SOC 2 is no longer a differentiator between these tools. The remaining enterprise distinction is vendor familiarity: GitHub Copilot sits inside procurement relationships most enterprises already have with Microsoft, while Anthropic and Anysphere are newer vendors in most enterprise pipelines.</p>
+
+    <h3>Which AI coding tools support spec-driven development frameworks like BMAD and OpenSpec?</h3>
+    <p>BMAD and OpenSpec are tool-agnostic and work with GitHub Copilot, Claude Code, and Cursor. GitHub Copilot users also have GitHub Spec Kit as a native starting point. Cursor supports SDD workflows via .cursor/rules files combined with BMAD. Claude Code has the deepest native ecosystem — GSD is purpose-built specifically for Claude Code — and the community has produced more shared tooling and conventions around it than the other two.</p>
+
+<div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
         <li><a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding</a></li>

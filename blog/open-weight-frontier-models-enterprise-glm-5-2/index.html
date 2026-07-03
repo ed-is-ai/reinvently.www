@@ -295,7 +295,25 @@
 
     <p><em>We publish pieces like this regularly — no gate, no sales sequence. <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Get new posts by email</a>.</em></p>
 
-    <div class="related-posts">
+    
+        <h2>Frequently asked questions</h2>
+
+    <h3>Is GLM-5.2 safe for enterprise use?</h3>
+    <p>It depends entirely on how you consume it. The MIT-licensed weights are inert files that can run on infrastructure you control, with no data leaving your boundary — for that route the governance questions are provenance, behavioural evaluation, and workload isolation, not data flow. Z.ai's hosted API is a different matter: requests travel to infrastructure under Chinese jurisdiction, which for most UK organisations handling personal or commercially sensitive data is a hard barrier under UK GDPR international transfer rules. A middle route exists — Western inference providers hosting the open weights — which removes the Chinese endpoint but reintroduces a third-party processor.</p>
+
+    <h3>How does GLM-5.2 compare to Claude and GPT-5.5 for enterprise coding?</h3>
+    <p>On coding benchmarks, GLM-5.2 scores 62.1 on SWE-bench Pro against GPT-5.5's 58.6, and 74.4 percent on FrontierSWE against 72.6 percent for GPT-5.5 and 75.1 percent for Claude Opus 4.8 — the first open-weight model to beat a US frontier flagship on agent-style software engineering benchmarks. For enterprises, the benchmark gap is not the deciding factor. US frontier vendors offer contractual accountability, certifications, and a legal presence you can put on a contract; GLM-5.2 offers capability you can own outright. Which matters more depends on your data classification, token volume, and engineering capacity.</p>
+
+    <h3>What does self-hosting GLM-5.2 require?</h3>
+    <p>GLM-5.2 is a roughly 750-billion-parameter mixture-of-experts model. Even the FP8 build Z.ai published on Hugging Face occupies on the order of 750GB of GPU memory before serving a single token, which in practice means a dedicated multi-GPU inference node — eight H200-class accelerators or equivalent — plus the MLOps capability to operate it, an evaluation harness to test model behaviour against your policies, and isolation infrastructure for agentic workloads. The hardware and staffing bill for a production deployment runs to hundreds of thousands of pounds a year, so the economics only work at high token volumes.</p>
+
+    <h3>Can UK organisations legally send data to GLM-5.2's API?</h3>
+    <p>For personal data, the barrier is high. The UK has no adequacy regulations covering China, so any transfer of personal data to a Chinese processor requires appropriate safeguards such as the International Data Transfer Agreement plus a transfer risk assessment — an assessment complicated by China's National Intelligence Law 2017, which obliges Chinese organisations to support state intelligence work. For non-personal data such as source code, there is no UK GDPR barrier, but source code is commercially sensitive, frequently contains embedded secrets, and its transfer to a Chinese endpoint is a commercial and security decision most boards will want made deliberately rather than by default.</p>
+
+    <h3>Does the MIT licence on GLM-5.2 restrict commercial use?</h3>
+    <p>No. MIT is one of the most permissive licences in software: it allows unrestricted commercial use, modification, fine-tuning, and redistribution, with no acceptable-use policy, no user-count thresholds, and no revocation mechanism. This distinguishes GLM-5.2 from most earlier open-weight releases, such as Meta's Llama models, which ship under community licences containing usage restrictions and commercial thresholds. For enterprise legal teams, MIT weights are governed by ordinary open-source software policy rather than case-by-case AI licence review.</p>
+
+<div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
         <li><a href="/blog/uk-ai-policy-landscape-enterprise-2026/">The UK AI Policy Landscape: What Enterprise Leaders Need to Track in 2026</a></li>

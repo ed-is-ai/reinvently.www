@@ -171,7 +171,25 @@
 
     <p><em>We publish pieces like this regularly — no gate, no sales sequence. <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Get new posts by email</a>.</em></p>
 
-    <div class="related-posts">
+    
+        <h2>Frequently asked questions</h2>
+
+    <h3>Is it legal for a UK company to send data to GLM-5.2's API?</h3>
+    <p>It depends on the data. The UK has no adequacy regulations covering China, so sending personal data to Z.ai's API is a restricted transfer under UK GDPR: it requires an appropriate safeguard such as the International Data Transfer Agreement plus a transfer risk assessment, and China's National Intelligence Law 2017 makes that assessment difficult to pass. Data with no personal element — such as sanitised source code — faces no UK GDPR barrier at all; sending it is a commercial and security judgement rather than a legal one.</p>
+
+    <h3>Does Z.ai offer a data processing agreement for enterprise API use?</h3>
+    <p>Yes. Z.ai publishes a Data Processing Addendum under which it acts as processor and the customer as controller, and its documentation states that GLM-5.2 API traffic is not retained and not used for training. The paperwork is genuinely comparable to what Western AI vendors offer. The transfer risk assessment question is not whether the terms exist but whether they are enforceable against a company operating under Chinese jurisdiction, including the National Intelligence Law 2017 — and that is where UK organisations processing personal data tend to get stuck.</p>
+
+    <h3>Does self-hosting GLM-5.2 solve the data-residency problem?</h3>
+    <p>For data residency specifically, yes — completely. The MIT-licensed weights are inert files with no telemetry; run them on infrastructure you control and no data crosses any border, so there is no transfer to assess. Self-hosting replaces the data-flow question with different governance obligations — verifying the provenance of the weights, evaluating model behaviour against your policies, and isolating agentic workloads — but the UK GDPR international transfer regime simply does not apply.</p>
+
+    <h3>Is source code personal data under UK GDPR?</h3>
+    <p>Source code itself usually is not, but what surrounds it often is. Git history contains author names and email addresses; code comments name colleagues; test fixtures and configuration files frequently contain real customer records that were never properly sanitised. A repository sent wholesale to any external API is therefore rarely free of personal data in practice. Before treating a coding workload as outside UK GDPR's transfer rules, verify what is actually in the payload rather than what is supposed to be.</p>
+
+    <h3>Are US AI APIs any different from Chinese ones for UK data transfers?</h3>
+    <p>Legally, yes — and it is worth being precise about why. US authorities can also compel access to data held by US providers, so neither route keeps data purely within UK jurisdiction. The difference is that the UK-US Data Bridge gives transfers to certified US organisations a lawful basis without case-by-case risk assessments, and US law offers redress mechanisms that a UK transfer risk assessment can point to. No equivalent bridge exists for China. The honest framing is not that US APIs are risk-free but that UK law provides a paved road for them and none for Chinese endpoints.</p>
+
+<div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
         <li><a href="/blog/uk-ai-policy-landscape-enterprise-2026/">The UK AI Policy Landscape: What Enterprise Leaders Need to Track in 2026</a></li>
