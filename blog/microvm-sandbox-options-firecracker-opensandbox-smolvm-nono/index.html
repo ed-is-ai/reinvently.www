@@ -105,6 +105,8 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
+    <img class="article-hero-image" src="../../images/hero-microvm-sandbox.jpg" alt="Abstract illustration of five nested wireframe boxes at increasing depth"/>
+
     <p>Once an AI agent can write and run code, someone has to decide where that code runs. A <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">coding agent</a> that refactors your repository, a research agent that executes generated Python, a customer-facing assistant that runs SQL — each of them, at some point, executes instructions that no human reviewed line by line. If that execution happens on a machine with access to your source code, your cloud credentials and your production network, the isolation boundary around it is not a detail. It is the control.</p>
 
     <p>The market has responded quickly. In March 2026 Alibaba Cloud open-sourced <a href="https://github.com/alibaba/OpenSandbox" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenSandbox</a>; AWS has been hardening <a href="https://firecracker-microvm.github.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Firecracker</a> since 2018; and a cluster of smaller projects — <a href="https://smolmachines.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">SmolVM</a>, nono, Docker's own Sandboxes feature — now offer to isolate agent code in a few commands. The brief for this piece was to compare five of them as "microVM options".</p>

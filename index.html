@@ -698,6 +698,8 @@ body{padding-top:61px;}
 /* Blog signup: hide the widget's message field (auto-filled by script; survives React re-renders) */
 #contact textarea[data-aid="CONTACT_FORM_MESSAGE"],
 #contact div:has(textarea[data-aid="CONTACT_FORM_MESSAGE"]):not(:has(input)){display:none!important;}
+.home-card-thumb{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid #1b1b1b;}
+@media (max-width:640px){.home-card-thumb{display:none;}}
 </style>
 </head>
 <body class="x  x-fonts-playfair-display x-fonts-source-sans-pro x-fonts-montserrat">
@@ -732,14 +734,16 @@ body{padding-top:61px;}
     </div>
     <div id="home-blog-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px;">
       <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" data-tags="enterprise tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-eval-results.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">5 July 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder</h3>
-          <p style="color:rgb(226,226,226);font-size:15px;line-height:1.55;margin-bottom:24px;">GPT-5.5 passed 28 of 28, GLM-5.2 passed 26 at an eighth of the cost, and Fable 5 refused nine tasks — five of them entirely benign.</p>
+          <p style="color:rgb(226,226,226);font-size:15px;line-height:1.55;margin-bottom:24px;">GPT-5.5 passed 28 of 28, GLM-5.2 passed 26 at an eighth of the cost, and Fable 5 refused five perfectly benign tasks</p>
           <span style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;padding-bottom:2px;">Read more</span>
         </div>
       </a>
       <a href="/blog/uk-ai-policy-landscape-enterprise-2026/" data-tags="uk-ecosystem enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-uk-ai-policy.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; UK AI News</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The UK AI Policy Landscape: What Enterprise Leaders Need to Track in 2026</h3>
@@ -748,6 +752,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/uk-ai-growth-labs-regulatory-sandboxes/" data-tags="uk-ecosystem enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-uk-growth-labs.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; UK AI News</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">AI Growth Labs: What the UK's Regulatory Sandboxes Mean for Your Sector</h3>
@@ -756,6 +761,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/ai-agent-governance-gap/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-agent-governance.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; Enterprise Adoption</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The Agent Governance Gap: $202m Budgets, 26 Percent Cost Visibility</h3>
@@ -764,6 +770,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-coding-comparison.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding</h3>
@@ -772,6 +779,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/" data-tags="uk-ecosystem" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-china-data-residency.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; UK AI News</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The China Data-Residency Question: GLM-5.2's API vs Open Weights, Honestly</h3>
@@ -780,6 +788,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/" data-tags="enterprise tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-open-weight-decision.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">2 July 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision</h3>
@@ -788,6 +797,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/" data-tags="tools enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-microvm-sandbox.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">1 July 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h3>
@@ -796,6 +806,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/multi-agent-orchestration-frameworks-compared/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-multi-agent-orchestration.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">6 June 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control and Maestro</h3>
@@ -804,6 +815,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-dev-workflow-frameworks.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">30 May 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</h3>
@@ -812,6 +824,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/claude-memory-dream-enterprise-agents/" data-tags="enterprise tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-memory-dream.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">21 May 2026 &nbsp;&middot;&nbsp; Enterprise &middot; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Claude's Memory and Dream Features Are a Breakthrough That Will Accelerate Your AI Adoption Programme</h3>
@@ -820,6 +833,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/uk-ai-regulation-ico-employment-2026/" data-tags="uk-ecosystem enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-regulation-ico.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">15 May 2026 &nbsp;&middot;&nbsp; UK AI &middot; Enterprise</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">UK AI Regulation Tightens: What the ICO Guidance and Parliament's Inquiry Mean for Employers</h3>
@@ -828,6 +842,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/enterprise-ai-adoption-reality-check-2026/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-adoption-reality-check.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">8 May 2026 &nbsp;&middot;&nbsp; Enterprise</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The Enterprise AI Reality Check: Why 79% of Organisations Aren't Seeing ROI</h3>
@@ -836,6 +851,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/uk-sovereign-ai-programme/" data-tags="uk-ecosystem enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-uk-sovereign-ai.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">29 April 2026 &nbsp;&middot;&nbsp; UK AI &middot; Enterprise</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">UK Sovereign AI: What the Government's £500m Bet Means for Your Organisation</h3>
@@ -844,6 +860,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/gpt-5-5-autonomous-task-completion/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-autonomous-task-completion.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">24 April 2026 &nbsp;&middot;&nbsp; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">GPT-5.5 and the Age of Autonomous Task Completion</h3>
@@ -852,6 +869,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/ai-agent-interoperability-a2a-protocol/" data-tags="enterprise tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-a2a-protocol.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">22 April 2026 &nbsp;&middot;&nbsp; Enterprise &middot; Technology Strategy</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The A2A Protocol: Why AI Agent Interoperability Is the Next Big Enterprise Decision</h3>
@@ -860,6 +878,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/global-ai-adoption-attitudes/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-adoption-stats.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">20 April 2026 &nbsp;&middot;&nbsp; AI &middot; Global</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Global AI Adoption: How Different Countries Are Embracing Artificial Intelligence</h3>
@@ -868,6 +887,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/claude-mythos-anthropic-opportunity-for-companies/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-claude-mythos.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">19 April 2026 &nbsp;&middot;&nbsp; AI &middot; Cybersecurity</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Claude Mythos: Anthropic's Most Powerful Model Yet</h3>
@@ -876,6 +896,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/top-10-uk-ai-companies/" data-tags="uk-ecosystem" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-top10-companies.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">13 April 2026 &nbsp;&middot;&nbsp; AI &middot; UK</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The Top 10 UK Companies Leading on AI</h3>
@@ -884,6 +905,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/rag-vs-graphrag/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-rag-vs-graphrag.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">12 April 2026 &nbsp;&middot;&nbsp; AI &middot; Software Engineering</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?</h3>
@@ -892,6 +914,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-cloud-platforms-compared.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">5 April 2026 &nbsp;&middot;&nbsp; AI &middot; Enterprise</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Copilot Studio vs Azure AI Foundry vs AWS Bedrock</h3>
@@ -900,6 +923,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/uk-ai-skills-gap-education-opportunity/" data-tags="uk-ecosystem" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-uk-skills-gap.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">14 March 2026 &nbsp;&middot;&nbsp; AI &middot; Education</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The UK's AI Skills Gap: The Biggest Opportunity of the Decade</h3>
@@ -908,6 +932,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-dev-tools-comparison.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">27 May 2026 &nbsp;&middot;&nbsp; AI &middot; Software Engineering</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">GitHub Copilot vs Claude Code vs Cursor</h3>
@@ -916,6 +941,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/uk-government-ai-institutes/" data-tags="uk-ecosystem" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-uk-government-institutes.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">10 February 2026 &nbsp;&middot;&nbsp; AI &middot; Policy &middot; UK</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The UK's Public AI Infrastructure: Government Institutes Shaping the National AI Ecosystem</h3>
@@ -924,6 +950,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/microsoft-foundry-deep-dive/" data-tags="tools" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-microsoft-foundry.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">18 February 2026 &nbsp;&middot;&nbsp; AI &middot; Enterprise &middot; Microsoft</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Microsoft Foundry: A Deep Dive</h3>
@@ -932,6 +959,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/generative-ai-adoption-by-industry/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-generative-ai-by-industry.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">22 January 2026 &nbsp;&middot;&nbsp; AI &middot; Enterprise</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">Generative AI Adoption by Industry</h3>
@@ -940,6 +968,7 @@ body{padding-top:61px;}
         </div>
       </a>
       <a href="/blog/the-rise-of-ai-in-web-development/" data-tags="enterprise" style="background:#161616;border:1px solid #1b1b1b;display:flex;flex-direction:column;text-decoration:none;">
+        <img class="home-card-thumb" src="images/hero-ai-web-development.jpg" alt=""/>
         <div style="padding:28px;">
           <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin-bottom:12px;">12 November 2025 &nbsp;&middot;&nbsp; AI</p>
           <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;line-height:1.3;margin-bottom:12px;">The Rise of AI in Web Development</h3>
