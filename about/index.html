@@ -20,6 +20,10 @@
   <meta name="twitter:description" content="Curated analysis and research on enterprise AI adoption, with a UK focus."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
   <link rel="stylesheet" href="../blog/blog.css"/>
+  <style>
+    @media (max-width: 800px) { .bio-grid { grid-template-columns: repeat(2,1fr) !important; } }
+    @media (max-width: 560px) { .bio-grid { grid-template-columns: 1fr !important; } }
+  </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
   <script type="application/ld+json">
@@ -33,9 +37,9 @@
       "@type": "ProfessionalService",
       "name": "Reinvently",
       "url": "https://reinvently.co.uk",
-      "areaServed": {"@type": "Country", "name": "GB"},
-      "employee": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Applied AI Architect", "url": "https://uk.linkedin.com/in/edmond-yau"}
-    }
+      "areaServed": {"@type": "Country", "name": "GB"}
+    },
+    "mainEntity": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Applied AI Architect", "url": "https://uk.linkedin.com/in/edmond-yau", "image": "https://reinvently.co.uk/images/ed-yau.jpg", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}}
   }
   </script>
 </head>
@@ -70,9 +74,76 @@
 
     <p><a href="/guides/">Guides</a> are in-depth technical pieces for practitioners and enterprise teams: tool comparisons, architecture deep dives, and how-tos drawn from real deployments.</p>
 
-    <h2>Who writes it</h2>
+    <h2>The Team</h2>
 
-    <p>The blog is written by <a href="https://uk.linkedin.com/in/edmond-yau">Ed Yau</a>, an applied AI architect who likes to put his learning out there. I wish I could spend more time talking about my work — the posts come from my own learning, and whenever I learn something others could benefit from, I share it. This is partly for selfish reasons: writing these posts helps me organise my own thinking.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:24px 0 8px;" class="bio-grid">
+
+      <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
+        <img src="../images/ed-yau.jpg" alt="Ed Yau" width="72" height="72" style="display:block;margin-bottom:18px;border-radius:50%;"/>
+        <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Ed Yau</h3>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Editor-in-Chief &nbsp;·&nbsp; Applied AI Architect, Kerv</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 12px;">Writing here in a personal capacity — the views are his own, not his employer's. He sets the editorial line, picks the topics, and signs off every post before it goes out.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #333;">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/ed-is-ai" style="color:rgb(150,150,150);border-bottom:1px solid #333;">GitHub</a> &nbsp;·&nbsp; <a href="https://kerv.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">Kerv</a></p>
+      </div>
+
+      <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Designer" style="display:block;margin-bottom:18px;">
+          <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
+          <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M25 47 L47 25 L52 30 L30 52 L23 54 Z"/>
+            <line x1="43" y1="29" x2="48" y2="34"/>
+          </g>
+        </svg>
+        <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Sonnet Anthropic</h3>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Designer &nbsp;·&nbsp; Claude Sonnet 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Designs this website, makes sure the fonts and colours don't offend humans.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://claude.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">claude.com</a></p>
+      </div>
+
+      <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Researcher" style="display:block;margin-bottom:18px;">
+          <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
+          <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round" fill="none">
+            <circle cx="32" cy="32" r="11"/>
+            <line x1="40" y1="40" x2="51" y2="51"/>
+          </g>
+        </svg>
+        <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Fable Anthropic</h3>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Researcher &nbsp;·&nbsp; Claude Fable 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Sweeps the coverage, gathers the statistics, and checks every citation against the page it came from. Nothing is quoted here that has not been fetched and read.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://claude.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">claude.com</a></p>
+      </div>
+
+      <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Writer" style="display:block;margin-bottom:18px;">
+          <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
+          <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <polyline points="29,26 19,36 29,46"/>
+            <polyline points="43,26 53,36 43,46"/>
+          </g>
+        </svg>
+        <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Sonnet Anthropic</h3>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Writer &nbsp;·&nbsp; Claude Sonnet 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Built the solution to support our benchmarking. Runs the evaluations, the data crunching, and the charts. When a post claims a number, this agent produced it — and the run that made it is reproducible.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #333;">Featherbench</a></p>
+      </div>
+
+      <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Editor" style="display:block;margin-bottom:18px;">
+          <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
+          <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round">
+            <line x1="22" y1="27" x2="50" y2="27"/>
+            <line x1="22" y1="36" x2="50" y2="36"/>
+            <line x1="22" y1="45" x2="38" y2="45"/>
+          </g>
+        </svg>
+        <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Fable Anthropic</h3>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Editor &nbsp;·&nbsp; Claude Fable 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Drafts and tightens the prose to house style: British English, cuts hype, ensures balance, crushes the filler.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://github.com/ed-is-ai/reinvently.www" style="color:rgb(150,150,150);border-bottom:1px solid #333;">The collaboration, commit by commit</a></p>
+      </div>
+
+    </div>
 
     <h2>Follow along</h2>
 
