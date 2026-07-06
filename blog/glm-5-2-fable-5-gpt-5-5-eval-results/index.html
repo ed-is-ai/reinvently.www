@@ -51,7 +51,7 @@
 <header class="article-header">
   <div class="post-meta">5 July 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder</h1>
-  <p class="summary">The pass rates — 93, 96 and 100 percent — were close. GPT-5.5 took the only clean sweep. Fable 5 scored highest on quality of response but refused perfectly valid asks. GLM-5.2 was lower on quality and we managed to jailbreak it — but it was 8x cheaper than GPT-5.5 (7x cheaper than Fable). We deep dive into the refusals: Anthropic's dual-use screening layer at work.</p>
+  <p class="summary">The pass rates — 93, 96 and 100 percent — were close. GPT-5.5 took the only clean sweep. Fable 5 scored highest on quality of response but refused perfectly valid asks. GLM-5.2 was lower on quality and we managed to jailbreak it — but it was 8x cheaper than GPT-5.5 (15x cheaper than Fable). We deep dive into the refusals: Anthropic's dual-use screening layer at work.</p>
 </header>
 
 <main class="container">
@@ -59,13 +59,62 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <p>In our initial <a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">comparison of GLM-5.2, Claude Fable 5 and GPT-5.5</a> we compared published benchmarks but qualified that these mix numbers that were never measured the same way. To get to an objective assessment you need to test on your workloads. This post is us taking our own advice: on 5 July 2026 we ran all three models through the same 28-task evaluation — identical prompts, identical harness, identical grading.</p>
+    <p>In our initial <a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">comparison of Frontier models from GLM-5.2, Claude Fable 5 and GPT-5.5</a> we compared published benchmarks but qualified that these mix numbers that were never measured the same way. To get to an objective assessment you need to test on your workloads. This post is us taking our own advice: on 5 July 2026 we ran all three models through the same 28-task evaluation — identical prompts, identical harness, identical grading.</p>
 
     <p><strong>The short answer:</strong> GPT-5.5 was the only model to pass every task. GLM-5.2 came within two tasks of it at roughly an eighth of the cost. Claude Fable 5 produced the highest-rated answers when it answered — and refused nine tasks outright. Four were jailbreak attempts, which is what refusals are for. The other five: a sourdough question, three textbook Python debugging exercises, and a customer-review summary. That pattern, not the pass rates, is the finding.</p>
 
     <hr/>
 
     <h2>The Headline Results</h2>
+
+    <figure style="margin:0 0 28px 0;">
+      <svg viewBox="0 0 720 210" role="img" aria-label="Stacked bar chart of task outcomes out of 28 per model. GPT-5.5: 28 passed. GLM-5.2: 26 passed, 2 failed. Claude Fable 5: 22 passed, 5 benign tasks refused, 1 failed." style="width:100%;height:auto;display:block;">
+        <title>Task outcomes per model, 28 tasks each</title>
+        <desc>Horizontal stacked bars. GPT-5.5 passed all 28 tasks. GLM-5.2 passed 26 and failed 2. Claude Fable 5 passed 22, refused 5 benign tasks, and failed 1.</desc>
+        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)">
+          <rect x="100" y="4" width="10" height="10" fill="#199e70"/>
+          <text x="116" y="13">Passed</text>
+          <rect x="196" y="4" width="10" height="10" fill="#c98500"/>
+          <text x="212" y="13">Refused a benign task</text>
+          <rect x="384" y="4" width="10" height="10" fill="#d0524a"/>
+          <text x="400" y="13">Failed</text>
+        </g>
+        <g stroke="#2c2c2a" stroke-width="1">
+          <line x1="247.5" y1="30" x2="247.5" y2="172"/>
+          <line x1="395" y1="30" x2="395" y2="172"/>
+          <line x1="542.5" y1="30" x2="542.5" y2="172"/>
+          <line x1="690" y1="30" x2="690" y2="172"/>
+        </g>
+        <line x1="100" y1="30" x2="100" y2="172" stroke="#383835" stroke-width="1.5"/>
+        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)" text-anchor="end">
+          <text x="92" y="53">GPT-5.5</text>
+          <text x="92" y="105">GLM-5.2</text>
+          <text x="92" y="157">Fable 5</text>
+        </g>
+        <path d="M100,38 h586 q4,0 4,4 v14 q0,4 -4,4 h-586 z" fill="#199e70"><title>GPT-5.5 — passed 28 of 28</title></path>
+        <rect x="100" y="90" width="545.9" height="22" fill="#199e70"><title>GLM-5.2 — passed 26 of 28</title></rect>
+        <path d="M647.9,90 h38.1 q4,0 4,4 v14 q0,4 -4,4 h-38.1 z" fill="#d0524a"><title>GLM-5.2 — failed 2 of 28</title></path>
+        <rect x="100" y="142" width="461.6" height="22" fill="#199e70"><title>Claude Fable 5 — passed 22 of 28</title></rect>
+        <rect x="563.6" y="142" width="103.4" height="22" fill="#c98500"><title>Claude Fable 5 — refused 5 benign tasks</title></rect>
+        <path d="M668.9,142 h17.1 q4,0 4,4 v14 q0,4 -4,4 h-17.1 z" fill="#d0524a"><title>Claude Fable 5 — failed 1 of 28</title></path>
+        <g font-family="Montserrat,sans-serif" font-size="12" font-weight="600" fill="#000" text-anchor="middle">
+          <text x="395" y="53">28</text>
+          <text x="372.9" y="105">26</text>
+          <text x="668.9" y="105">2</text>
+          <text x="330.8" y="157">22</text>
+          <text x="615.2" y="157">5</text>
+          <text x="679.5" y="157">1</text>
+        </g>
+        <g font-family="Montserrat,sans-serif" font-size="10" fill="rgb(150,150,150)" text-anchor="middle">
+          <text x="100" y="190">0</text>
+          <text x="247.5" y="190">7</text>
+          <text x="395" y="190">14</text>
+          <text x="542.5" y="190">21</text>
+          <text x="690" y="190">28</text>
+        </g>
+      </svg>
+      <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">Task outcomes per model, 28 tasks each, single run on 5 July 2026. Fable 5's passed segment includes four jailbreak prompts it refused — the correct outcome, which the harness scores as a pass. The amber segment is refusals of benign tasks.</figcaption>
+    </figure>
 
     <div style="overflow-x:auto;margin:24px 0 32px;">
       <table style="width:100%;border-collapse:collapse;font-size:14px;">
@@ -123,55 +172,6 @@
         </tbody>
       </table>
     </div>
-
-    <figure style="margin:0 0 28px 0;">
-      <svg viewBox="0 0 720 210" role="img" aria-label="Stacked bar chart of task outcomes out of 28 per model. GPT-5.5: 28 passed. GLM-5.2: 26 passed, 2 failed. Claude Fable 5: 22 passed, 5 benign tasks refused, 1 failed." style="width:100%;height:auto;display:block;">
-        <title>Task outcomes per model, 28 tasks each</title>
-        <desc>Horizontal stacked bars. GPT-5.5 passed all 28 tasks. GLM-5.2 passed 26 and failed 2. Claude Fable 5 passed 22, refused 5 benign tasks, and failed 1.</desc>
-        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)">
-          <rect x="100" y="4" width="10" height="10" fill="#199e70"/>
-          <text x="116" y="13">Passed</text>
-          <rect x="196" y="4" width="10" height="10" fill="#c98500"/>
-          <text x="212" y="13">Refused a benign task</text>
-          <rect x="384" y="4" width="10" height="10" fill="#d0524a"/>
-          <text x="400" y="13">Failed</text>
-        </g>
-        <g stroke="#2c2c2a" stroke-width="1">
-          <line x1="247.5" y1="30" x2="247.5" y2="172"/>
-          <line x1="395" y1="30" x2="395" y2="172"/>
-          <line x1="542.5" y1="30" x2="542.5" y2="172"/>
-          <line x1="690" y1="30" x2="690" y2="172"/>
-        </g>
-        <line x1="100" y1="30" x2="100" y2="172" stroke="#383835" stroke-width="1.5"/>
-        <g font-family="Montserrat,sans-serif" font-size="11" fill="rgb(150,150,150)" text-anchor="end">
-          <text x="92" y="53">GPT-5.5</text>
-          <text x="92" y="105">GLM-5.2</text>
-          <text x="92" y="157">Fable 5</text>
-        </g>
-        <path d="M100,38 h586 q4,0 4,4 v14 q0,4 -4,4 h-586 z" fill="#199e70"><title>GPT-5.5 — passed 28 of 28</title></path>
-        <rect x="100" y="90" width="545.9" height="22" fill="#199e70"><title>GLM-5.2 — passed 26 of 28</title></rect>
-        <path d="M647.9,90 h38.1 q4,0 4,4 v14 q0,4 -4,4 h-38.1 z" fill="#d0524a"><title>GLM-5.2 — failed 2 of 28</title></path>
-        <rect x="100" y="142" width="461.6" height="22" fill="#199e70"><title>Claude Fable 5 — passed 22 of 28</title></rect>
-        <rect x="563.6" y="142" width="103.4" height="22" fill="#c98500"><title>Claude Fable 5 — refused 5 benign tasks</title></rect>
-        <path d="M668.9,142 h17.1 q4,0 4,4 v14 q0,4 -4,4 h-17.1 z" fill="#d0524a"><title>Claude Fable 5 — failed 1 of 28</title></path>
-        <g font-family="Montserrat,sans-serif" font-size="12" font-weight="600" fill="#000" text-anchor="middle">
-          <text x="395" y="53">28</text>
-          <text x="372.9" y="105">26</text>
-          <text x="668.9" y="105">2</text>
-          <text x="330.8" y="157">22</text>
-          <text x="615.2" y="157">5</text>
-          <text x="679.5" y="157">1</text>
-        </g>
-        <g font-family="Montserrat,sans-serif" font-size="10" fill="rgb(150,150,150)" text-anchor="middle">
-          <text x="100" y="190">0</text>
-          <text x="247.5" y="190">7</text>
-          <text x="395" y="190">14</text>
-          <text x="542.5" y="190">21</text>
-          <text x="690" y="190">28</text>
-        </g>
-      </svg>
-      <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">Task outcomes per model, 28 tasks each, single run on 5 July 2026. Fable 5's passed segment includes four jailbreak prompts it refused — the correct outcome, which the harness scores as a pass. The amber segment is refusals of benign tasks.</figcaption>
-    </figure>
 
     <p>Two observations before the refusals. Quality and completion are different axes: Fable 5 scored highest on the rubric (9.3) - but was very fussy in what it would do. And the cost gap is as advertised: 26 tasks for $0.18 against 28 for $1.43 for GPT-5.5, an eight-fold price difference for near-identical output — the argument of our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">open-weight decision guide</a> in a single data point. GLM-5.2 was also slowest to first token (median 14.4 seconds against nine to ten).</p>
 
