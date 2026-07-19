@@ -138,18 +138,23 @@
   .eom .method{color:var(--text-dim);font-size:15px;margin:0 0 20px 24px;max-width:74ch;}
   .eom .method li{margin:0 0 8px 0;}
   .eom .method-intro{color:var(--text-dim);margin-bottom:20px;max-width:74ch;}
+  .eom .scoring{margin-top:44px;max-width:74ch;}
+  .eom .scoring h2.section{margin-top:0;}
 
   .runstamp{font-family:var(--font-data);font-size:12px;letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:5px 11px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
 
-  .eom .benchmark-request{margin:56px 0 0;padding:32px;background:radial-gradient(circle at top right,var(--podium-tint),transparent 40%),var(--bg2);border:1px solid #594b2e;border-radius:10px;}
-  .eom .benchmark-request h2.section{margin:0 0 6px;}
-  .eom .benchmark-request-copy{color:var(--text-dim);font-size:15px;line-height:1.65;max-width:74ch;margin:0 0 12px;}
-  .eom .benchmark-request-frame{display:block;width:100%;height:620px;border:0;background:var(--bg2);}
-
   @media (max-width:640px){
+    .eom-header{padding-top:28px;padding-bottom:30px;}
+    .eom-header::before{width:72px;margin-bottom:16px;}
+    .eom-header .post-meta{font-size:10px;letter-spacing:1.3px;line-height:1.65;}
+    .eom-header h1{font-size:32px;margin-bottom:14px;}
+    .eom-header .summary{font-size:16px;line-height:1.5;}
+    .runstamp{font-size:10px;line-height:1.55;letter-spacing:.025em;padding:5px 9px;}
     .eom .lap-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));}
-    .eom .benchmark-request{padding:22px 16px;}
-    .eom .benchmark-request-frame{height:700px;}
+    .eom .scoring{margin-top:36px;padding:20px 16px 4px;border:1px solid #29475a;border-radius:10px;background:var(--telemetry-tint);}
+    .eom .scoring h2.section{font-size:24px;line-height:1.2;margin-bottom:12px;}
+    .eom .method{margin-left:20px;font-size:14px;}
+    .eom .method-intro{font-size:14px;line-height:1.6;}
   }
 </style>
 </head>
@@ -167,7 +172,7 @@
   </div>
 </nav>
 
-<header class="article-header">
+<header class="article-header eom-header">
   <div class="post-meta">Updated 19 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Same car, same track. Ten leading models drive the identical 28-task lap — one harness, verbatim prompts, deterministic grading — and the times go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
@@ -267,15 +272,17 @@
       </div>
     </div>
 
-    <h2 class="section">How Is the Featherbench Leaderboard Scored?</h2>
-    <ul class="method">
-      <li><strong>Same tasks run for all models using the same prompts, same API calls</strong>, measured through one identical OpenRouter streaming path, run serially as time-trial. No other cars on track</li> 
-      <li><strong>Latency is time-to-first-token</strong>, measured through one identical OpenRouter streaming path, run serially so the clock is uncontaminated. Wall-clock is recorded alongside.</li>
-      <li><strong>Checkers are binary and automated.</strong> The LLM rubric is the only judged component — and its bias is made visible in the footnotes rather than assumed away.</li>
-      <li><strong>Effort and reasoning settings are pinned</strong> in <code>models.json</code> and stated with any published number, because they materially move quality and cost.</li>
-<li><strong>Refusals are recorded, not hidden.</strong> A provider-side hard stop is logged as a refusal with its category — never silently retried on another model. Routing is pinned with <code>allow_fallbacks:false</code>, so no quiet re-serves on quantized variants. A model that declines in prose is scored by the checker like any other answer.</li>
-    </ul>
-    <p class="method-intro">Harness, tasks and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a> (MIT). Clone it and run the lap yourself, or <a href="https://github.com/ed-is-ai/featherbench/issues/new?title=Model%20benchmark%20request%3A%20%5Bmodel%20name%5D&amp;body=Model%20and%20version%3A%0AProvider%20or%20API%20route%3A%0AWhy%20it%20should%20be%20benchmarked%3A" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">request a new model via GitHub issue</a>.</p>
+    <section class="scoring" aria-labelledby="scoring-title">
+      <h2 class="section" id="scoring-title">How Is the Ed-o-meter Scored?</h2>
+      <ul class="method">
+        <li><strong>Same tasks run for all models using the same prompts, same API calls</strong>, measured through one identical OpenRouter streaming path, run serially as time-trial. No other cars on track</li>
+        <li><strong>Latency is time-to-first-token</strong>, measured through one identical OpenRouter streaming path, run serially so the clock is uncontaminated. Wall-clock is recorded alongside.</li>
+        <li><strong>Checkers are binary and automated.</strong> The LLM rubric is the only judged component — and its bias is made visible in the footnotes rather than assumed away.</li>
+        <li><strong>Effort and reasoning settings are pinned</strong> in <code>models.json</code> and stated with any published number, because they materially move quality and cost.</li>
+        <li><strong>Refusals are recorded, not hidden.</strong> A provider-side hard stop is logged as a refusal with its category — never silently retried on another model. Routing is pinned with <code>allow_fallbacks:false</code>, so no quiet re-serves on quantized variants. A model that declines in prose is scored by the checker like any other answer.</li>
+      </ul>
+      <p class="method-intro">Harness, tasks and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a> (MIT). Clone it and run the lap yourself, or <a href="https://github.com/ed-is-ai/featherbench/issues/new?title=Model%20benchmark%20request%3A%20%5Bmodel%20name%5D&amp;body=Model%20and%20version%3A%0AProvider%20or%20API%20route%3A%0AWhy%20it%20should%20be%20benchmarked%3A" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">request a new model via GitHub issue</a>.</p>
+    </section>
 
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
@@ -285,12 +292,6 @@
       </ul>
     </div>
 
-    <section class="benchmark-request" aria-labelledby="benchmark-request-title">
-      <h2 class="section" id="benchmark-request-title">Request a Model Benchmark</h2>
-      <p class="benchmark-request-copy">Tell us which model or version you want to see on the board. Include the provider model ID, how it can be accessed, and any benchmark detail that would help us run it consistently.</p>
-      <iframe class="benchmark-request-frame" id="benchmark-request-frame" src="/contact/?variant=benchmark" title="Request a model benchmark" loading="lazy"></iframe>
-    </section>
-
   </article>
 </main>
 
@@ -298,18 +299,6 @@
   <p>&copy; 2026 Reinvently. All rights reserved.</p>
   <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently writes about topics that inform engineering teams adopting AI tooling and modern development practices.</p>
 </footer>
-
-<script>
-(function(){
-  window.addEventListener('message',function(event){
-    if(event.origin!==window.location.origin||!event.data||event.data.type!=='reinvently:benchmark-form-height')return;
-    var frame=document.getElementById('benchmark-request-frame');
-    if(!frame||event.source!==frame.contentWindow)return;
-    var height=Math.max(480,Math.min(Number(event.data.height)||620,900));
-    frame.style.height=height+'px';
-  });
-})();
-</script>
 
 <script>
 /* Every value below is copied verbatim from the published summary tables. */
