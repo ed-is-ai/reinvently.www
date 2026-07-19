@@ -113,7 +113,7 @@
 
     <p>Every model launch arrives with a wall of benchmark scores: MMLU, GPQA, SWE-bench, an alphabet of acronyms that grows with each release. Most are testing something genuinely important. The problem is that each score measures expected performance in some domain rather than performance in yours. A model can top a graduate-level reasoning suite and still fumble the tasks your team actually runs, like extracting a notice period from a tenancy agreement, or declining to follow instructions hidden in a customer review.</p>
 
-    <p>The question that matters in production is more specific, because LLMs get expensive at scale. Once something runs millions of times a month, the pressure is to minimise tokens, spend and latency by running the <em>smallest</em> model that still clears your bar, where "good enough" is defined by your application rather than a public leaderboard. Solving that requires your bar to exist as something a machine can check, and quality, cost and latency to be measured on the same run so the trade-off is visible. We made that argument at length in <a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">our original GLM-5.2 vs GPT-5.5 comparison</a>; this post is about what happened when we acted on it.</p>
+    <p>The question that matters in production is more specific, because LLMs get expensive at scale. Once something runs millions of times a month, the pressure is to minimise tokens, spend and latency by running the <em>smallest</em> model that still clears your bar, where "good enough" is defined by your application rather than a public leaderboard. Solving that requires your bar to exist as something a machine can check, and quality, cost and latency to be measured on the same run so the trade-off is visible. We made that argument at length in <a href="/blog/is-glm-5-2-worth-it-for-enterprise-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">our original GLM-5.2 vs GPT-5.5 comparison</a>; this post is about what happened when we acted on it.</p>
 
     <p><strong>The short answer:</strong> Featherbench is the harness — a single Python file that runs 28 fixed tasks against any model and grades them. <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">The Ed-o-meter</a> is the leaderboard it produces. One variable changes between runs, refusals count as failures, every model judges every response blind, and the raw results are public. Three findings came out of it that no vendor chart would have shown, and the mistakes I made building it were more informative than the results.</p>
 
@@ -236,7 +236,7 @@
       <ul class="related-list">
         <li><a href="/tools/ed-o-meter/">The Ed-o-meter: The Featherbench Leaderboard</a></li>
         <li><a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/">Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder</a></li>
-        <li><a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding</a></li>
+        <li><a href="/blog/is-glm-5-2-worth-it-for-enterprise-coding/">Is GLM-5.2 Worth It for Enterprise Coding? The Cost Case</a></li>
       </ul>
     </div>
 
