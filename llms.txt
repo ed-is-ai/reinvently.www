@@ -1,14 +1,23 @@
 # Reinvently
 
-> Reinvently is a UK-based AI solutions consultancy helping organisations transform ideas into impactful AI solutions. Founded by Ed Yau (https://uk.linkedin.com/in/edmond-yau)
+> Reinvently is an independent AI research organisation led by Ed Yau (https://uk.linkedin.com/in/edmond-yau).
 
-Reinvently works with MSPs and directly with enterprises across charities, public sector, utilties, financial services to identify, design and deploy AI applications that deliver measurable value. Services span AI strategy, solution architecture and training.
+Reinvently publishes original model benchmarks, engineering evaluations and UK-focused analysis of AI governance and adoption. Material findings are tied to a test run, an attributable source or clearly labelled editorial judgement.
 
-## Services
+## Start here
 
-AI strategy and roadmapping, AI solution architecture, web development, AI training and implementation, enterprise AI adoption.
+- [About Reinvently](https://reinvently.co.uk/about/)
+- [Research and editorial standards](https://reinvently.co.uk/research-standards/)
+- [The Ed-o-meter LLM leaderboard](https://reinvently.co.uk/tools/ed-o-meter/)
+- [AI research and analysis](https://reinvently.co.uk/blog/)
 
-## Blog
+## Research areas
+
+- [Model evaluation and AI engineering](https://reinvently.co.uk/topics/engineering-evaluation/)
+- [UK AI governance](https://reinvently.co.uk/topics/uk-ai-governance/)
+- [AI adoption and value](https://reinvently.co.uk/topics/ai-adoption-value/)
+
+## Selected research
 
 - [GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework](https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/) — 30 May 2026
 - [Claude's Memory and Dream Features Are a Breakthrough That Will Accelerate Your AI Adoption Programme](https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/) — 21 May 2026
@@ -32,5 +41,8 @@ AI strategy and roadmapping, AI solution architecture, web development, AI train
 ## Contact
 
 Website: https://reinvently.co.uk
-Contact: https://reinvently.co.uk/#contact
+Contact: https://reinvently.co.uk/contact/
 LinkedIn: https://uk.linkedin.com/in/edmond-yau
+Source repository: https://github.com/ed-is-ai/reinvently.www
+Atom feed: https://reinvently.co.uk/f.atom
+RSS feed: https://reinvently.co.uk/f.rss

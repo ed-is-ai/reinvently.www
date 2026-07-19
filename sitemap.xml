@@ -123,11 +123,24 @@
     <loc>https://reinvently.co.uk/news/</loc>
   </url>
   <url>
+    <loc>https://reinvently.co.uk/research-standards/</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
     <loc>https://reinvently.co.uk/tools/ai-cost-calculator/</loc>
     <lastmod>2026-05-31</lastmod>
   </url>
   <url>
     <loc>https://reinvently.co.uk/tools/ed-o-meter/</loc>
     <lastmod>2026-07-14</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/topics/ai-adoption-value/</loc>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/topics/engineering-evaluation/</loc>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/topics/uk-ai-governance/</loc>
   </url>
 </urlset>
