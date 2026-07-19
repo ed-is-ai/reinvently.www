@@ -3,25 +3,32 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>About — Reinvently</title>
-  <meta name="description" content="Reinvently publishes curated analysis and research on enterprise AI adoption, with a UK focus — practical advice grounded in first-hand experience rather than hype."/>
+  <title>About Reinvently — Independent AI Research</title>
+  <meta name="description" content="Reinvently is an independent AI research organisation publishing model benchmarks, engineering evaluations and UK-focused governance analysis."/>
   <link rel="canonical" href="https://reinvently.co.uk/about/"/>
   <link rel="alternate" type="application/atom+xml" href="https://reinvently.co.uk/f.atom"/>
   <link rel="alternate" type="application/rss+xml" href="https://reinvently.co.uk/f.rss"/>
-  <meta property="og:title" content="About — Reinvently"/>
-  <meta property="og:description" content="Curated analysis and research on enterprise AI adoption, with a UK focus. Practical advice grounded in first-hand experience rather than hype."/>
+  <meta property="og:title" content="About Reinvently — Independent AI Research"/>
+  <meta property="og:description" content="Original model benchmarks, engineering evaluations and UK-focused analysis of AI governance and adoption."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://reinvently.co.uk/about/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="About — Reinvently"/>
-  <meta name="twitter:description" content="Curated analysis and research on enterprise AI adoption, with a UK focus."/>
+  <meta name="twitter:title" content="About Reinvently — Independent AI Research"/>
+  <meta name="twitter:description" content="Original model benchmarks, engineering evaluations and UK-focused analysis of AI governance and adoption."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
   <link rel="stylesheet" href="../blog/blog.css"/>
   <style>
+    .research-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 40px; }
+    .research-area { background:#161616;border:1px solid #1b1b1b;padding:24px; }
+    .research-area h3 { margin:0 0 12px;font-size:20px; }
+    .research-area p { margin:0 0 16px;font-size:15px; }
+    .research-area a { font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase; }
+    .research-principles li { margin-bottom:12px; }
     @media (max-width: 800px) { .bio-grid { grid-template-columns: repeat(2,1fr) !important; } }
+    @media (max-width: 760px) { .research-grid { grid-template-columns:1fr; } }
     @media (max-width: 560px) { .bio-grid { grid-template-columns: 1fr !important; } }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
@@ -31,15 +38,19 @@
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "About Reinvently",
-    "description": "Reinvently publishes curated analysis and research on enterprise AI adoption, with a UK focus.",
+    "description": "Reinvently is an independent AI research organisation producing original model benchmarks, engineering evaluations and UK-focused analysis of AI governance and adoption.",
     "url": "https://reinvently.co.uk/about/",
-    "publisher": {
-      "@type": "ProfessionalService",
+    "publisher": {"@id": "https://reinvently.co.uk/#organisation"},
+    "mainEntity": {
+      "@id": "https://reinvently.co.uk/#organisation",
+      "@type": "Organization",
       "name": "Reinvently",
       "url": "https://reinvently.co.uk",
-      "areaServed": {"@type": "Country", "name": "GB"}
+      "description": "Independent AI research covering model evaluation, AI engineering, UK governance and adoption.",
+      "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png"},
+      "knowsAbout": ["Large language model evaluation", "AI engineering", "UK AI governance", "Enterprise AI adoption"]
     },
-    "mainEntity": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Applied AI Architect", "url": "https://uk.linkedin.com/in/edmond-yau", "image": "https://reinvently.co.uk/images/ed-yau.jpg", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}}
+    "editor": {"@type": "Person", "name": "Ed Yau", "jobTitle": "Applied AI Architect", "url": "https://uk.linkedin.com/in/edmond-yau", "image": "https://reinvently.co.uk/images/ed-yau.jpg", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}}
   }
   </script>
 </head>
@@ -51,38 +62,64 @@
     <a href="/">Home</a>
     <a href="/news/">News</a>
     <a href="/guides/">Guides</a>
+    <a href="/tools/ed-o-meter/">Leaderboard</a>
     <a href="/about/" aria-current="page">About</a>
     <a href="/contact/">Subscribe</a>
   </div>
 </nav>
 
 <header class="page-header">
-  <h1>About this blog</h1>
-  <p>Curated analysis and research on enterprise AI adoption, with a UK focus.</p>
+  <h1>Independent AI research, built in public</h1>
+  <p>Original benchmarks, tested tools and UK-focused analysis for people making consequential decisions about AI.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
 
-    <p>Reinvently exists as a resource to help organisations adopting AI get the most relevant curated news. We publish curated technology analysis and AI research, with particular attention to the UK — its regulators, its public programmes, and the practical constraints its organisations work under.</p>
+    <p>Reinvently is an independent AI research organisation. We evaluate models and engineering tools, publish original benchmark data, and analyse the governance and adoption questions shaping how AI is used in the UK.</p>
 
-    <p>The commitment is to practical advice grounded in first-hand experience. Where we compare tools, we have run them. Where we cite a statistic, we link the source. Where something is unproven or oversold, we say so. There is enough AI hype in circulation already; this blog is not adding to it.</p>
+    <p>The work is designed to make difficult technology decisions more legible. Findings are tied to a test run, an attributable source or a clearly labelled judgement. Where evidence is incomplete, the limitation belongs in the result rather than in a footnote no one reads.</p>
 
-    <h2>What we cover</h2>
+    <h2>Research areas</h2>
 
-    <p><a href="/news/">News</a> tracks model releases, UK AI policy and regulation, and enterprise adoption trends — with analysis of what each development means in practice, not just what was announced.</p>
+    <div class="research-grid">
+      <section class="research-area">
+        <h3>Model evaluation and AI engineering</h3>
+        <p>Reproducible model comparisons, benchmark methodology, developer tooling and the engineering controls needed to put AI systems into production.</p>
+        <a href="/topics/engineering-evaluation/">Explore engineering research &rarr;</a>
+      </section>
+      <section class="research-area">
+        <h3>UK AI governance</h3>
+        <p>Regulation, public infrastructure and policy interpreted as an operating environment for technology leaders—not a stream of announcements.</p>
+        <a href="/topics/uk-ai-governance/">Explore governance research &rarr;</a>
+      </section>
+      <section class="research-area">
+        <h3>AI adoption and value</h3>
+        <p>Evidence about where AI creates measurable value, where programmes stall, and which organisational conditions change the outcome.</p>
+        <a href="/topics/ai-adoption-value/">Explore adoption research &rarr;</a>
+      </section>
+    </div>
 
-    <p><a href="/guides/">Guides</a> are in-depth technical pieces for practitioners and enterprise teams: tool comparisons, architecture deep dives, and how-tos drawn from real deployments.</p>
+    <h2>How we work</h2>
 
-    <h2>The Team</h2>
+    <ul class="research-principles">
+      <li><strong>Test before concluding.</strong> Tool and model comparisons begin with direct use, controlled runs or reproducible artefacts wherever access allows.</li>
+      <li><strong>Show the workings.</strong> The <a href="/tools/ed-o-meter/">Ed-o-meter leaderboard</a>, its Featherbench harness and the underlying methodology are published so results can be inspected rather than merely trusted.</li>
+      <li><strong>Trace the evidence.</strong> Statistics and policy claims link to their source; citations are checked against the material they are used to support.</li>
+      <li><strong>State uncertainty.</strong> Small samples, access constraints, judgement calls and conflicting evidence are part of the finding and are reported as such.</li>
+    </ul>
+
+    <h2>Research and editorial team</h2>
+
+    <p>Ed Yau sets the research agenda and is accountable for every published finding. AI systems support defined research, engineering, design and review roles. They are credited here to make the production process transparent; editorial responsibility remains human.</p>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:24px 0 8px;" class="bio-grid">
 
       <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
         <img src="../images/ed-yau.jpg" alt="Ed Yau" width="72" height="72" style="display:block;margin-bottom:18px;border-radius:50%;"/>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Ed Yau</h3>
-        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Editor-in-Chief &nbsp;·&nbsp; Applied AI Architect, Kerv</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 12px;">Writing here in a personal capacity — the views are his own, not his employer's. He sets the editorial line, picks the topics, and signs off every post before it goes out.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Research Lead &amp; Editor-in-Chief &nbsp;·&nbsp; Applied AI Architect, Kerv</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 12px;">Sets the research agenda, defines the methodology and signs off every published finding. The work is produced in a personal capacity; the views are his own, not his employer's.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #333;">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/ed-is-ai" style="color:rgb(150,150,150);border-bottom:1px solid #333;">GitHub</a> &nbsp;·&nbsp; <a href="https://kerv.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">Kerv</a></p>
       </div>
 
@@ -96,7 +133,7 @@
         </svg>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Sonnet Anthropic</h3>
         <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Designer &nbsp;·&nbsp; Claude Sonnet 5</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Designs this website, makes sure the fonts and colours don't offend humans.</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Designs how the research is presented, keeping dense evidence legible across formats and screen sizes.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://claude.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">claude.com</a></p>
       </div>
 
@@ -110,12 +147,12 @@
         </svg>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Fable Anthropic</h3>
         <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Researcher &nbsp;·&nbsp; Claude Fable 5</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Sweeps the coverage, gathers the statistics, and checks every citation against the page it came from. Nothing is quoted here that has not been fetched and read.</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Maps the evidence base, gathers source material and statistics, and checks each citation against the material it is used to support.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://claude.com" style="color:rgb(150,150,150);border-bottom:1px solid #333;">claude.com</a></p>
       </div>
 
       <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
-        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Writer" style="display:block;margin-bottom:18px;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Benchmark engineer" style="display:block;margin-bottom:18px;">
           <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
           <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
             <polyline points="29,26 19,36 29,46"/>
@@ -123,13 +160,13 @@
           </g>
         </svg>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Sonnet Anthropic</h3>
-        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Writer &nbsp;·&nbsp; Claude Sonnet 5</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Built the solution to support our benchmarking. Runs the evaluations, the data crunching, and the charts. When a post claims a number, this agent produced it — and the run that made it is reproducible.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Benchmark Engineer &nbsp;·&nbsp; Claude Sonnet 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Builds and runs the evaluation harness, processes the results and produces the charts. Published benchmark numbers remain tied to reproducible runs.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #333;">Featherbench</a></p>
       </div>
 
       <div style="background:#161616;border:1px solid #1b1b1b;padding:28px;display:flex;flex-direction:column;height:100%;">
-        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Editor" style="display:block;margin-bottom:18px;">
+        <svg viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Research editor" style="display:block;margin-bottom:18px;">
           <circle cx="36" cy="36" r="36" fill="#1b1b1b"/>
           <g stroke="#e2e2e2" stroke-width="3" stroke-linecap="round">
             <line x1="22" y1="27" x2="50" y2="27"/>
@@ -138,8 +175,8 @@
           </g>
         </svg>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Fable Anthropic</h3>
-        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Editor &nbsp;·&nbsp; Claude Fable 5</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Drafts and tightens the prose to house style: British English, cuts hype, ensures balance, crushes the filler.</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Research Editor &nbsp;·&nbsp; Claude Fable 5</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Challenges claims, tightens methods and prose, applies British English and removes hype that the evidence cannot support.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://github.com/ed-is-ai/reinvently.www" style="color:rgb(150,150,150);border-bottom:1px solid #333;">The collaboration, commit by commit</a></p>
       </div>
 
@@ -153,15 +190,15 @@
         </svg>
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 4px;">Codex OpenAI</h3>
         <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgb(150,150,150);margin:0 0 14px;">Code &amp; PR Reviewer &nbsp;·&nbsp; OpenAI Codex</p>
-        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Implements focused changes, reviews each diff against the brief, and runs the checks before a pull request is handed back.</p>
+        <p style="font-size:15px;line-height:1.6;color:rgb(226,226,226);margin:0 0 18px;">Maintains the publication code, reviews implementation against the brief, and validates changes before research updates are published.</p>
         <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;margin:auto 0 0 0;"><a href="https://openai.com/codex/" style="color:rgb(150,150,150);border-bottom:1px solid #333;">openai.com/codex</a></p>
       </div>
 
     </div>
 
-    <h2>Follow along</h2>
+    <h2>Follow the research</h2>
 
-    <p>New posts go out by email — <a href="/contact/">leave your details</a> and we will send analysis as it is published. Prefer a feed? <a href="/f.atom">Atom</a> and <a href="/f.rss">RSS</a> are available too.</p>
+    <p>New benchmarks, analysis and engineering guides are available by email — <a href="/contact/">subscribe for updates</a>. Prefer a feed? <a href="/f.atom">Atom</a> and <a href="/f.rss">RSS</a> are available too.</p>
 
   </article>
 </main>
