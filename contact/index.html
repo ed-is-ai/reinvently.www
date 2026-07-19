@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <script>window.reinventlyBenchmarkFormVariant=new URLSearchParams(window.location.search).get('variant')==='benchmark';if(window.reinventlyBenchmarkFormVariant){document.documentElement.classList.add('benchmark-form-variant');}</script>
   <title>Get New Posts by Email — Reinvently</title>
   <meta name="description" content="Sign up for email updates from the Reinvently blog — UK-focused analysis of enterprise AI adoption, policy and tooling, sent when new posts are published."/>
   <link rel="stylesheet" href="../blog/blog.css"/>
@@ -20,12 +21,23 @@
     /* Hide site name rendered by widget JS */
     [data-aid="CONTACT_SECTION_TITLE_REND"],
     [data-aid="CONTACT_TITLE_REND"] { display: none !important; }
-    /* Blog signup: hide the widget's message field (auto-filled by script; survives React re-renders) */
-    #contact textarea[data-aid="CONTACT_FORM_MESSAGE"],
-    #contact div:has(textarea[data-aid="CONTACT_FORM_MESSAGE"]):not(:has(input)) { display: none !important; }
+    /* Blog signup: hide the auto-filled message field on the normal subscription page. */
+    html:not(.benchmark-form-variant) #contact textarea[data-aid="CONTACT_FORM_MESSAGE"],
+    html:not(.benchmark-form-variant) #contact div:has(textarea[data-aid="CONTACT_FORM_MESSAGE"]):not(:has(input)) { display: none !important; }
+    /* The leaderboard embeds a focused variant of this existing form. */
+    html.benchmark-form-variant,
+    html.benchmark-form-variant body { background: #161616; }
+    html.benchmark-form-variant .nav,
+    html.benchmark-form-variant .page-header,
+    html.benchmark-form-variant .footer { display: none !important; }
+    html.benchmark-form-variant .x [data-ux="Section"] {
+      padding-top: 24px !important;
+      padding-bottom: 24px !important;
+      background: #161616 !important;
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M',window.reinventlyBenchmarkFormVariant?{send_page_view:false}:{});</script>
   <link rel="canonical" href="https://reinvently.co.uk/contact/"/>
   <meta property="og:title" content="Get New Posts by Email — Reinvently"/>
   <meta property="og:description" content="Sign up for email updates from the Reinvently blog. New analysis, sent when it is published."/>
@@ -90,10 +102,49 @@
 <script src="../js/blobby_go_558bf111-ac00-4bc6-bc31-8aae375f3151_gpub_ad2d5015d04c71c9_script.js" crossorigin></script>
 
 <script>
-/* Blog signup: auto-fill and hide the widget's required message field */
+/* Configure the shared widget for either blog signup or benchmark requests. */
 (function(){
+  var benchmarkVariant=window.reinventlyBenchmarkFormVariant;
+  var heightReportPending=false;
+
+  function replaceExactText(root,replacements){
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    var node;
+    while((node=walker.nextNode())){
+      var key=node.nodeValue.trim();
+      if(replacements[key]){node.nodeValue=node.nodeValue.replace(key,replacements[key]);}
+    }
+  }
+
+  function reportHeight(){
+    if(!benchmarkVariant||window.parent===window||heightReportPending)return;
+    heightReportPending=true;
+    window.requestAnimationFrame(function(){
+      heightReportPending=false;
+      var height=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+      window.parent.postMessage({type:'reinvently:benchmark-form-height',height:height},window.location.origin);
+    });
+  }
+
   function fix(){
-    var t=document.querySelector('#contact textarea[data-aid="CONTACT_FORM_MESSAGE"]')||document.querySelector('#contact textarea');
+    var root=document.getElementById('contact');
+    if(!root)return;
+    var t=root.querySelector('textarea[data-aid="CONTACT_FORM_MESSAGE"]')||root.querySelector('textarea');
+    if(benchmarkVariant){
+      if(t&&!t.dataset.benchmarkRequestConfigured){
+        t.required=true;
+        t.setAttribute('aria-required','true');
+        t.dataset.benchmarkRequestConfigured='1';
+      }
+      replaceExactText(root,{
+        'Message':'Model and benchmark details',
+        'Attachments':'Model card or documentation (optional)',
+        'Send':'Request benchmark',
+        'Thank you for your inquiry! We will get back to you within 48 hours.':'Thanks — your benchmark request has been received.'
+      });
+      reportHeight();
+      return;
+    }
     if(!t)return;
     if(!t.dataset.blogSignupFilled){
       try{
@@ -110,6 +161,8 @@
   }
   new MutationObserver(fix).observe(document.documentElement,{childList:true,subtree:true});
   document.addEventListener('DOMContentLoaded',fix);
+  window.addEventListener('load',reportHeight);
+  window.addEventListener('resize',reportHeight);
   fix();
 })();
 </script>
