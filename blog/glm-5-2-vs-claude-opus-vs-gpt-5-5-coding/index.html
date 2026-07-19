@@ -13,13 +13,13 @@
   <meta property="og:description" content="Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok. How GLM-5.2's price and the self-hosting question change the enterprise coding maths."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-comparison.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding"/>
   <meta name="twitter:description" content="Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok. How GLM-5.2's price and the self-hosting question change the enterprise coding maths."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-coding-comparison.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,7 +28,7 @@
     "description": "Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok. How GLM-5.2's price and the self-hosting question change the enterprise coding maths.",
     "datePublished": "2026-07-02",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
+    "image": "https://reinvently.co.uk/images/hero-coding-comparison.jpg",
     "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
     "url": "https://reinvently.co.uk/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/",
@@ -105,7 +105,7 @@
 
     <p><strong>The short answer:</strong> Claude Fable 5 remains the quality ceiling for complex coding work — 90 percent on FrontierSWE against GLM-5.2's 74.4 — at $10/$50 per million tokens. GLM-5.2 is so cheap in comparison that it is a serious contender for high-volume workloads where you can justify the per-hour cost of renting GPUs, and with no managed GLM-5.2 on the hyperscalers at all (AWS Bedrock lists GLM 5, and Microsoft Foundry's Fireworks listing only reaches GLM 5.1), self-hosting is usually how you would run it. GPT-5.5 trails on these benchmarks but remains the most widely deployed of the three.</p>
 
-    <p>In practical terms you need to do three things: test on your own repositories before trusting any leaderboard, choose a deployment route deliberately, and price the models per completed task rather than per token. This piece works through each. The governance decision — API, self-hosted weights, or neither — is in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide to open-weight frontier models</a>; the UK compliance mechanics are in our <a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">data-residency brief</a>.</p>
+    <p>In practical terms you need to do three things: test on your own repositories before trusting any leaderboard, choose a deployment route deliberately, and price the models per completed task rather than per token. This piece works through each.</p>
 
     <hr/>
 
@@ -313,7 +313,7 @@
 
     <ul>
       <li><strong>Complex work where correctness dominates cost.</strong> Fable 5, and it is not close once ecosystem depth is counted. The premium is the point.</li>
-      <li><strong>High-volume agentic workloads with cost pressure.</strong> Pilot GLM-5.2 through the Anthropic-compatible endpoint inside your existing tooling — after the governance analysis in our <a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">decision guide</a>, not before.</li>
+      <li><strong>High-volume agentic workloads with cost pressure.</strong> Pilot GLM-5.2 through the Anthropic-compatible endpoint inside your existing tooling, with the governance implications weighed deliberately, not before.</li>
       <li><strong>Microsoft-standardised estates.</strong> GPT-5.5's benchmark deficit is unlikely to justify the integration cost of leaving; revisit when your contract does.</li>
     </ul>
 
@@ -339,9 +339,9 @@
 <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
+        <li><a href="/blog/building-the-ed-o-meter-llm-eval-harness/">Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</a></li>
+        <li><a href="/tools/ed-o-meter/">The Ed-o-meter: The Featherbench Leaderboard</a></li>
         <li><a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/">We Ran GLM-5.2, Claude Fable 5 and GPT-5.5 Through the Same 28-Task Evaluation</a></li>
-        <li><a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision</a></li>
-        <li><a href="/blog/glm-5-2-china-data-residency-api-vs-open-weights/">The China Data-Residency Question: GLM-5.2's API vs Open Weights, Honestly</a></li>
         <li><a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor: Which AI Coding Tool is Right for Your Team?</a></li>
         <li><a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5 and the Age of Autonomous Task Completion</a></li>
         <li><a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</a></li>

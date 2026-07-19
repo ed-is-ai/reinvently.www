@@ -11,13 +11,13 @@
   <meta property="og:description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-microvm-sandbox.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How to Sandbox AI Agent Code: 5 Tools, 4 Isolation Models"/>
   <meta name="twitter:description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-microvm-sandbox.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,7 +26,7 @@
     "description": "Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes.",
     "datePublished": "2026-07-01",
     "dateModified": "2026-07-02",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
     "url": "https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/",
     "inLanguage": "en-GB",
@@ -94,7 +94,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Technology Strategy</div>
+  <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h1>
   <p class="summary">The brief was to build a local agentic coding agent that was sandboxed. In researching this, I soon realised that there were a range of fundamentally different approaches that I need to rationalise.  This post is a summary of the options to consider and the trade-offs between them.  What should drive your decision is the level of risk of the agent, and thus how much isolation you need.
     I already have a physically separate machine for my coding agent, so I have physical isolation that stops it accessing my personal data, but I still wanted to be sure that the agent could not escape and access repos it should not have access to — source code and cloud credentials.</p>
@@ -313,7 +313,6 @@
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
-        <li><a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision</a></li>
         <li><a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro</a></li>
         <li><a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</a></li>
         <li><a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor — AI Coding Tools Compared</a></li>
