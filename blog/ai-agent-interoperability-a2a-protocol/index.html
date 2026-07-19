@@ -3,31 +3,31 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>The A2A Protocol: AI Agent Interoperability for Enterprise — Reinvently</title>
-  <meta name="description" content="Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement."/>
+  <title>A2A Protocol: An Enterprise Architecture Decision Guide — Reinvently</title>
+  <meta name="description" content="What the Linux Foundation's A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
-  <meta property="og:title" content="The A2A Protocol: Why AI Agent Interoperability Is the Next Big Enterprise Decision"/>
-  <meta property="og:description" content="Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement."/>
+  <meta property="og:title" content="A2A Protocol: An Enterprise Architecture Decision Guide"/>
+  <meta property="og:description" content="What A2A standardises, where interoperability still stops, and how to evaluate it in architecture and procurement."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="The A2A Protocol: AI Agent Interoperability for the Enterprise"/>
-  <meta name="twitter:description" content="Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement."/>
+  <meta name="twitter:title" content="A2A Protocol: An Enterprise Architecture Decision Guide"/>
+  <meta name="twitter:description" content="What A2A standardises, where interoperability still stops, and how to evaluate it in architecture and procurement."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "The A2A Protocol: Why AI Agent Interoperability Is the Next Big Enterprise Decision",
-    "description": "Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement.",
+    "headline": "A2A Protocol: An Enterprise Architecture Decision Guide",
+    "description": "What the Linux Foundation's A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement.",
     "datePublished": "2026-04-22",
-    "dateModified": "2026-07-02",
+    "dateModified": "2026-07-19",
     "image": "https://reinvently.co.uk/images/hero-a2a-protocol.jpg",
     "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
@@ -46,7 +46,7 @@
         "name": "What is the A2A protocol?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "An open standard, managed by the Linux Foundation and backed by more than 150 organisations, that lets AI agents from different vendors discover each other, communicate and hand off tasks without custom integration code."
+          "text": "An open standard, managed by the Linux Foundation and backed by more than 150 organisations, for agent discovery, task exchange and status updates across vendor and framework boundaries. Product-specific integration, identity and semantic alignment may still be required."
         }
       },
       {
@@ -54,7 +54,7 @@
         "name": "How does A2A work in practice?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents discover these cards, compose workflows and delegate subtasks — closer to calling an API than building a bespoke connector — and data need not move between systems for agents to collaborate."
+          "text": "Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents can discover these cards and delegate tasks through a common protocol. Source datasets can remain in their systems, although task messages and authorised results still cross system boundaries."
         }
       },
       {
@@ -92,8 +92,8 @@
 
 <header class="article-header">
   <div class="post-meta">22 April 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
-  <h1>The A2A Protocol: Why AI Agent Interoperability Is the Next Big Enterprise Decision</h1>
-  <p class="summary">The Agent-to-Agent Protocol, now backed by 150+ organisations including Google, Microsoft, AWS, Salesforce and SAP, solves the integration problem that has kept enterprise AI siloed — and it will reshape how you choose AI platforms.</p>
+  <h1>A2A Protocol: An Enterprise Architecture Decision Guide</h1>
+  <p class="summary">A2A standardises agent discovery and task exchange across vendors. It can reduce protocol-level integration work, but it does not solve identity, semantics, product support or workflow governance.</p>
 </header>
 
 <main class="container">
@@ -107,10 +107,10 @@
       <h2>Key Takeaways</h2>
       <ul>
         <li>The A2A Protocol is now backed by more than 150 organisations, including Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday and IBM.</li>
-        <li>The Linux Foundation manages A2A rather than a single vendor, following the same open-governance model that made Kubernetes the default for containerised workloads.</li>
+        <li>The Linux Foundation manages A2A rather than a single vendor, giving the protocol a neutral governance home; that does not guarantee Kubernetes-like adoption.</li>
         <li>Agents expose a structured Agent Card describing their capabilities and authentication, so integrating a new agent works more like calling an API than building a custom connector.</li>
         <li>A2A is complementary to Anthropic's Model Context Protocol: MCP governs agent-to-tool access while A2A governs agent-to-agent communication, and enterprises can use both together.</li>
-        <li>Because A2A weakens the integration case for single-vendor consolidation, enterprises should ask every AI platform vendor whether and when it will support the protocol.</li>
+        <li>A2A support is a useful procurement question, but teams should verify the supported version, authentication model, agent-card behaviour and operational controls rather than accept a compatibility claim at face value.</li>
       </ul>
     </div>
 
@@ -118,7 +118,7 @@
 
     <p>This is the integration tax. Until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
 
-    <p>But things have been getting better. The A2A Protocol is now backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>. Microsoft, AWS, SAP, ServiceNow, Workday, and IBM are all on board. This is not a proprietary standard competing for dominance. It is quickly becoming the TCP/IP of agentic AI.</p>
+    <p>The A2A Protocol is an attempt to standardise that boundary. It is backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>, with Microsoft, AWS, SAP, ServiceNow, Workday and IBM among its supporters. That breadth makes A2A relevant to architecture decisions; it is too early to treat it as universal infrastructure.</p>
 
     <hr/>
 
@@ -126,11 +126,11 @@
 
     <p>The A2A Protocol defines a standard way for AI agents from different vendors to discover each other, communicate, and hand off tasks — without either system needing to know how the other works internally.</p>
 
-    <p>In practice, this means a Salesforce Agentforce agent handling a customer escalation can hand off a data retrieval task to a Google Gemini Enterprise agent, which in turn queries a ServiceNow agent for ticket history. All of this happens in a single workflow, without custom code connecting the systems. Each agent speaks A2A; everything else is handled by the protocol.</p>
+    <p>In practice, a Salesforce Agentforce agent handling a customer escalation could hand a retrieval task to a Google agent, which could query a ServiceNow agent for ticket history. A2A standardises the messages and task lifecycle between them. Implementers may still need product configuration, identity mapping, error handling and agreement on what each agent's capabilities mean.</p>
 
     <p>The mechanism is straightforward: agents expose an <strong>Agent Card</strong> — a structured description of their capabilities, available actions, and authentication requirements. Orchestrating agents discover these cards, compose workflows, and delegate subtasks. Responses flow back through the same protocol layer. From a developer's perspective, integrating a new agent is closer to calling an API than building a custom connector.</p>
 
-    <p>Data does not need to move between systems for agents to collaborate. A Salesforce agent can instruct a ServiceNow agent to retrieve information and act on it, without that data ever leaving the ServiceNow environment. For enterprises operating under strict data governance or residency requirements, that matters.</p>
+    <p>Source datasets do not need to be copied wholesale between systems for agents to collaborate. A Salesforce agent can ask a ServiceNow agent to act where the data resides, but the request and any authorised result still cross a trust boundary. Data classification, minimisation and audit requirements therefore remain.</p>
 
     <hr/>
 
@@ -143,10 +143,10 @@
     <p>The implications for enterprise architecture are material:</p>
 
     <ul>
-      <li><strong>Best-of-breed without integration penalty.</strong> Organisations can select agents based on capability for each use case — a specialist legal AI agent from one vendor, a finance automation agent from another — without paying a large integration cost to connect them.</li>
-      <li><strong>Reduced vendor lock-in.</strong> When agents communicate through an open standard, replacing one vendor's agent with a better alternative becomes a configuration change rather than a migration project.</li>
+      <li><strong>Best-of-breed with a common protocol.</strong> Organisations can select agents by capability while reducing the amount of bespoke message and task-lifecycle code between them.</li>
+      <li><strong>A narrower form of vendor lock-in.</strong> A common protocol can make substitution easier, but product-specific data models, identity controls and workflow semantics can still create migration work.</li>
       <li><strong>Composable workflows.</strong> Complex business processes that span multiple systems — order-to-cash, hire-to-retire, procure-to-pay — can be automated by orchestrating specialist agents rather than requiring a single monolithic AI deployment.</li>
-      <li><strong>Faster time to value.</strong> Pre-built A2A-compatible agents can be composed into workflows without custom development, dramatically reducing deployment timelines for common use cases.</li>
+      <li><strong>Potentially shorter integration work.</strong> Pre-built, genuinely interoperable agents can reduce protocol plumbing, although end-to-end testing and operational integration remain.</li>
     </ul>
 
     <hr/>
@@ -155,7 +155,7 @@
 
     <p>The breadth of A2A adoption matters as much as the protocol itself. With Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday, and IBM all committed, A2A covers the core enterprise software stack for most large organisations. A workflow that needs to touch CRM, ERP, ITSM, and HCM systems can do so through A2A. None of those vendors need bespoke agreements with each other.</p>
 
-    <p>The Linux Foundation's stewardship matters too. Placing A2A under open-source governance rather than a single vendor removes the risk that one participant redirects the protocol to benefit itself at others' expense. The precedent here is <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> — an open standard that now underpins how almost every enterprise runs containerised workloads, regardless of which cloud they use.</p>
+    <p>The Linux Foundation's stewardship matters too. Placing A2A under open governance reduces dependence on one vendor's roadmap and creates a formal route for multiple implementers to shape the specification. <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> shows that neutral governance can support broad infrastructure adoption, but A2A still has to prove implementation consistency and operational maturity.</p>
 
     <p>A2A is complementary to, not competitive with, Anthropic's <a href="https://modelcontextprotocol.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Model Context Protocol</a> (MCP), which governs how individual agents access tools and data sources. MCP handles the agent-to-tool layer; A2A handles the agent-to-agent layer. Enterprises building on Claude Managed Agents can use both.</p>
 
@@ -166,10 +166,10 @@
     <p>If you are evaluating or re-evaluating your AI platform strategy, A2A changes several of the assumptions that have historically driven those decisions.</p>
 
     <h3>Re-evaluate the case for platform consolidation</h3>
-    <p>The traditional argument for standardising on a single AI platform has been integration simplicity — one vendor means one integration layer. A2A weakens this argument considerably. If your primary platforms all support A2A, the integration case for consolidation largely disappears. What remains are genuine differences in product capability, pricing, and support quality — all easier to evaluate on their own merits.</p>
+    <p>The traditional argument for standardising on a single AI platform includes integration simplicity. Working A2A support weakens the protocol-level part of that argument, but consolidation can still simplify identity, observability, support, data models and commercial management. Test those layers separately instead of treating protocol compatibility as portability.</p>
 
     <h3>Prioritise A2A support in vendor selection</h3>
-    <p>Any AI platform or agent product you evaluate today should be asked directly: do you support A2A, and on what timeline? Vendors that are not on the roadmap for A2A compliance are either planning their own proprietary ecosystem (which re-creates lock-in) or are not serious about enterprise interoperability. Either way, it is a risk factor worth surfacing early.</p>
+    <p>Ask vendors which A2A specification version they support, which authentication profiles are implemented, how Agent Cards are governed, and whether conformance has been tested with products outside their own ecosystem. A roadmap statement is weaker evidence than a repeatable interoperability test.</p>
 
     <h3>Think in workflows, not tools</h3>
     <p>A2A enables a shift in how enterprise AI is designed. Rather than deploying an AI tool that assists with individual tasks, organisations can design end-to-end workflows where multiple specialist agents collaborate. This requires a different conversation internally — from "which AI tool do we buy?" to "which business process do we want to automate end-to-end, and which agents are best suited to each stage?"</p>
@@ -179,15 +179,15 @@
 
     <hr/>
 
-    <p>The A2A Protocol will not eliminate the complexity of enterprise AI. But it removes one of its most persistent sources of friction — the assumption that effective agentic AI requires a single-vendor environment. For technology leaders evaluating their AI roadmap, that changes the calculus.</p>
+    <p>A2A does not eliminate multi-agent complexity. It gives teams a common protocol at one important boundary. Treat it as an interoperability layer to test, not as proof that a multi-vendor workflow is portable, secure or operable end to end.</p>
 
         <h2>Frequently asked questions</h2>
 
     <h3>What is the A2A protocol?</h3>
-    <p>An open standard, managed by the Linux Foundation and backed by more than 150 organisations, that lets AI agents from different vendors discover each other, communicate and hand off tasks without custom integration code.</p>
+    <p>An open standard, managed by the Linux Foundation and backed by more than 150 organisations, for agent discovery, task exchange and status updates across vendor and framework boundaries. Product-specific integration, identity and semantic alignment may still be required.</p>
 
     <h3>How does A2A work in practice?</h3>
-    <p>Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents discover these cards, compose workflows and delegate subtasks — closer to calling an API than building a bespoke connector — and data need not move between systems for agents to collaborate.</p>
+    <p>Each agent exposes an Agent Card describing its capabilities, actions and authentication. Orchestrating agents can discover these cards and delegate tasks through a common protocol. Source datasets can remain in their systems, although task messages and authorised results still cross system boundaries.</p>
 
     <h3>How is A2A different from MCP?</h3>
     <p>They operate at different layers. Anthropic's Model Context Protocol governs how a single agent accesses tools and data; A2A governs how agents talk to each other. They are complementary, and enterprises can use both.</p>
@@ -203,10 +203,10 @@
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
-        <li><a href="/blog/claude-mythos-anthropic-opportunity-for-companies/">Claude Mythos: Anthropic's Most Powerful Model Yet</a></li>
+        <li><a href="/blog/claude-mythos-anthropic-opportunity-for-companies/">Claude Mythos and Project Glasswing: What the Security Evidence Shows</a></li>
         <li><a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro</a></li>
         <li><a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5 and the Age of Autonomous Task Completion</a></li>
-        <li><a href="/blog/claude-memory-dream-enterprise-agents/">Claude's Memory and Dream Features Are a Breakthrough That Will Accelerate Your AI Adoption Programme</a></li>
+        <li><a href="/blog/claude-memory-dream-enterprise-agents/">Claude Memory and Dream: Evidence, Architecture and Risk</a></li>
       </ul>
     </div>
 

@@ -169,10 +169,10 @@
     {
       "id": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/",
       "url": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/",
-      "title": "Claude Memory & Dream: What They Mean for Enterprise AI Adoption",
-      "summary": "Claude's Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI.",
+      "title": "Claude Memory and Dream: Evidence, Architecture and Risk",
+      "summary": "An evidence review of Claude Memory and Dream: reported deployment gains, system architecture, and the governance risks of persistent, self-editing agents.",
       "date_published": "2026-05-21T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",
@@ -225,10 +225,10 @@
     {
       "id": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/",
       "url": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/",
-      "title": "The A2A Protocol: AI Agent Interoperability for Enterprise",
-      "summary": "Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement.",
+      "title": "A2A Protocol: An Enterprise Architecture Decision Guide",
+      "summary": "What the Linux Foundation's A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement.",
       "date_published": "2026-04-22T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",
@@ -253,8 +253,8 @@
     {
       "id": "https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/",
       "url": "https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/",
-      "title": "Claude Mythos: Anthropic's Most Powerful Model Yet",
-      "summary": "Anthropic's Mythos model found a 27-year-old OpenBSD bug. What its security capabilities and Project Glasswing mean for companies planning AI adoption.",
+      "title": "Claude Mythos and Project Glasswing: Security Evidence",
+      "summary": "An evidence review of Claude Mythos and Project Glasswing: reported vulnerability findings, limits of the available data, and implications for security teams.",
       "date_published": "2026-04-19T00:00:00Z",
       "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
@@ -267,10 +267,10 @@
     {
       "id": "https://reinvently.co.uk/blog/top-10-uk-ai-companies/",
       "url": "https://reinvently.co.uk/blog/top-10-uk-ai-companies/",
-      "title": "The Top 10 UK Companies Leading on AI",
-      "summary": "The 10 UK companies leading on AI in 2026, from DeepMind to Wayve and its $1.05 billion raise, and what their progress signals for the UK technology ecosystem.",
+      "title": "UK AI Companies: A Field Guide to Ten Organisations",
+      "summary": "A field guide to ten UK AI organisations across research, security, mobility and enterprise software — and what they reveal about the UK ecosystem.",
       "date_published": "2026-04-13T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",
@@ -323,10 +323,10 @@
     {
       "id": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/",
       "url": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/",
-      "title": "Microsoft Foundry: A Deep Dive",
-      "summary": "Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice.",
+      "title": "Microsoft Foundry: Architecture, Governance and Trade-offs",
+      "summary": "An architecture and governance guide to Microsoft Foundry: its control plane, model and agent services, Azure advantages, operational costs and trade-offs.",
       "date_published": "2026-02-18T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",
@@ -365,10 +365,10 @@
     {
       "id": "https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/",
       "url": "https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/",
-      "title": "The Rise of AI in Web Development",
-      "summary": "84 percent of developers now use or plan to use AI tools. Where the gains in web development are real, where they are overstated, and what to do about it.",
+      "title": "AI-Assisted Web Development: Where It Helps and Fails",
+      "summary": "An evidence-led guide to AI-assisted web development: where coding and content tools save time, where they create risk, and which review controls matter.",
       "date_published": "2025-11-12T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-07-19T00:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",

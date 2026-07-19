@@ -11,23 +11,23 @@ AI strategy and roadmapping, AI solution architecture, web development, AI train
 ## Blog
 
 - [GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework](https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/) — 30 May 2026
-- [Claude's Memory and Dream Features Are a Breakthrough That Will Accelerate Your AI Adoption Programme](https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/) — 21 May 2026
+- [Claude Memory and Dream: Evidence, Architecture and Risk](https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/) — 21 May 2026
 - [GPT-5.5 and the Age of Autonomous Task Completion](https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/) — 21 May 2026
 - [UK AI Regulation Tightens: What the ICO Guidance and Parliament's Inquiry Mean for Employers](https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/) — 15 May 2026
 - [The Enterprise AI Reality Check: Why 79% of Organisations Aren't Seeing ROI](https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/) — 8 May 2026
 - [UK Sovereign AI: What the Government's £500m Bet Means for Your Organisation](https://reinvently.co.uk/blog/uk-sovereign-ai-programme/) — 29 April 2026
-- [The A2A Protocol: Why AI Agent Interoperability Is the Next Big Enterprise Decision](https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/) — 22 April 2026
+- [A2A Protocol: An Enterprise Architecture Decision Guide](https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/) — 22 April 2026
 - [Global AI Adoption: How Different Countries Are Embracing Artificial Intelligence](https://reinvently.co.uk/blog/global-ai-adoption-attitudes/) — 20 April 2026
-- [Claude Mythos: Anthropic's Most Powerful Model Yet](https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/) — 19 April 2026
-- [The Top 10 UK Companies Leading on AI](https://reinvently.co.uk/blog/top-10-uk-ai-companies/) — 13 April 2026
+- [Claude Mythos and Project Glasswing: What the Security Evidence Shows](https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/) — 19 April 2026
+- [UK AI Companies: A Field Guide to Ten Organisations](https://reinvently.co.uk/blog/top-10-uk-ai-companies/) — 13 April 2026
 - [RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?](https://reinvently.co.uk/blog/rag-vs-graphrag/) — 12 April 2026
 - [Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock](https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/) — 5 April 2026
 - [The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade](https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/) — 14 March 2026
 - [GitHub Copilot vs Claude Code vs Cursor](https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/) — 27 May 2026
-- [Microsoft Foundry: A Deep Dive](https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/) — 18 February 2026
+- [Microsoft Foundry: Architecture, Governance and Trade-offs](https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/) — 18 February 2026
 - [The UK's Public AI Infrastructure: Government Institutes Shaping the National AI Ecosystem](https://reinvently.co.uk/blog/uk-government-ai-institutes/) — 10 February 2026
 - [Generative AI Adoption by Industry: Use Cases, Data and What Comes Next](https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/) — 22 January 2026
-- [The Rise of AI in Web Development](https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/) — 12 November 2025
+- [AI-Assisted Web Development: Where It Helps and Where It Fails](https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/) — 12 November 2025
 
 ## Contact
 
