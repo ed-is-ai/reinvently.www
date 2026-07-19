@@ -13,13 +13,13 @@
   <meta property="og:description" content="Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-microsoft-foundry.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Microsoft Foundry: A Deep Dive"/>
   <meta name="twitter:description" content="Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-microsoft-foundry.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice.",
     "datePublished": "2026-02-18",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
+    "image": "https://reinvently.co.uk/images/hero-microsoft-foundry.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/",
+    "url": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"},
     "inLanguage": "en-GB",
     "keywords": ["Microsoft Foundry", "Azure AI", "enterprise AI", "AI platform", "Microsoft"]
   }
@@ -54,7 +54,7 @@
         "name": "Which models does Foundry offer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A broad catalogue in one governed environment: OpenAI (GPT-5.2, GPT-4o, o3), the full Claude family from Anthropic (Haiku 4.5, Sonnet 4.5, Opus 4.1), plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets."
+          "text": "A broad catalogue in one governed environment: OpenAI (GPT-5.5, GPT-5.2, o3), Claude Fable 5 and Opus 4.8 from Anthropic, plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets."
         }
       },
       {
@@ -91,7 +91,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">18 February 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a></div>
+  <div class="post-meta">18 February 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Microsoft Foundry: A Deep Dive into the Enterprise AI Platform Redefining How Organisations Build with AI</h1>
   <p class="summary">Microsoft Foundry is not a single product — it is an end-to-end factory for designing, building, evaluating, deploying and governing AI at scale. Here is everything you need to know.</p>
 </header>
@@ -147,15 +147,15 @@
 
     <h3>OpenAI Models</h3>
     <ul>
-      <li><strong>GPT-5.2</strong> — generally available on Foundry, built for multi-step problem solving, long-context understanding and agentic tool-calling</li>
-      <li><strong>GPT-4o and variants</strong> — the workhorse models for most production applications</li>
+      <li><strong>GPT-5.5</strong> — the current flagship, built for multi-step problem solving, long-context understanding and agentic tool-calling</li>
+      <li><strong>GPT-5.2 and variants</strong> — the previous generation, still widely used for cost-sensitive production workloads</li>
       <li><strong>o3 and o3-mini</strong> — advanced reasoning models for complex analytical tasks</li>
       <li><strong>GPT-image-1.5</strong> — image generation at 4× the speed of previous generations</li>
       <li><strong>Sora 2</strong> — video generation, now in public preview</li>
     </ul>
 
     <h3><a href="https://www.anthropic.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic</a> Models</h3>
-    <p>Foundry now offers the full Claude family — <strong>Haiku 4.5, Sonnet 4.5 and Opus 4.1</strong> — making Azure one of the only enterprise platforms with both OpenAI and Anthropic frontier models in a single, governed environment. This matters because different models have different strengths, and production applications often benefit from routing different tasks to different models.</p>
+    <p>Foundry now offers Anthropic's current flagships — <strong>Claude Fable 5 and Claude Opus 4.8</strong> — making Azure one of the only enterprise platforms with both OpenAI and Anthropic frontier models in a single, governed environment. This matters because different models have different strengths, and production applications often benefit from routing different tasks to different models.</p>
 
     <h3>Open and Third-Party Models</h3>
     <ul>
@@ -324,7 +324,7 @@
 
     <ol>
       <li><strong>Create a Foundry Hub</strong> in the Azure portal — this takes minutes and requires only an Azure subscription</li>
-      <li><strong>Deploy a model</strong> — start with GPT-4o or Claude Sonnet for most use cases</li>
+      <li><strong>Deploy a model</strong> — start with GPT-5.5 or Claude Fable 5 for most use cases</li>
       <li><strong>Build a Prompt Flow</strong> — start with a simple RAG flow connecting to a document store</li>
       <li><strong>Add evaluation</strong> — run the built-in quality evaluators against a test dataset before going to production</li>
       <li><strong>Graduate to agents</strong> — once the core pipeline is solid, explore the Foundry Agent Service for autonomous workflows</li>
@@ -348,7 +348,7 @@
     <p>Formerly Azure AI Studio and then Azure AI Foundry, rebranded at Microsoft Ignite in November 2025, it is an end-to-end AI app and agent factory for designing, building, evaluating, deploying and governing AI applications and agents — positioned as a third pillar alongside Microsoft 365 and Fabric.</p>
 
     <h3>Which models does Foundry offer?</h3>
-    <p>A broad catalogue in one governed environment: OpenAI (GPT-5.2, GPT-4o, o3), the full Claude family from Anthropic (Haiku 4.5, Sonnet 4.5, Opus 4.1), plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets.</p>
+    <p>A broad catalogue in one governed environment: OpenAI (GPT-5.5, GPT-5.2, o3), Claude Fable 5 and Opus 4.8 from Anthropic, plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets.</p>
 
     <h3>What are Foundry's core capabilities?</h3>
     <p>A managed Agent Service with multi-agent workflows and more than 1,400 tool integrations, Foundry IQ for RAG over enterprise data, a Deep Research Agent, Prompt Flow for visual orchestration, a continuous evaluation framework, and built-in Responsible AI tooling.</p>

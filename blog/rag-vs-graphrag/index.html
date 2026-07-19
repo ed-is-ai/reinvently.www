@@ -13,13 +13,13 @@
   <meta property="og:description" content="RAG vs GraphRAG: how Microsoft's open-source knowledge-graph approach, released in 2024, differs from standard retrieval and when each fits your use case."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/rag-vs-graphrag/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-rag-vs-graphrag.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="RAG vs GraphRAG: A Practical Comparison"/>
   <meta name="twitter:description" content="RAG vs GraphRAG: how Microsoft's open-source knowledge-graph approach, released in 2024, differs from standard retrieval and when each fits your use case."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-rag-vs-graphrag.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "RAG vs GraphRAG: how Microsoft's open-source knowledge-graph approach, released in 2024, differs from standard retrieval and when each fits your use case.",
     "datePublished": "2026-04-12",
     "dateModified": "2026-07-01",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/rag-vs-graphrag/",
+    "image": "https://reinvently.co.uk/images/hero-rag-vs-graphrag.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
+    "url": "https://reinvently.co.uk/blog/rag-vs-graphrag/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/rag-vs-graphrag/"},
     "inLanguage": "en-GB",
     "keywords": ["RAG", "GraphRAG", "retrieval augmented generation", "knowledge graph", "AI architecture", "Microsoft"]
   }
@@ -91,7 +91,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">12 April 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a></div>
+  <div class="post-meta">12 April 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>RAG vs GraphRAG: Which Retrieval Architecture Is Right for Your AI Application?</h1>
   <p class="summary">RAG vs GraphRAG: how Microsoft's open-source knowledge-graph approach, released in 2024, differs from standard retrieval and when each fits your use case.</p>
 </header>
@@ -103,9 +103,20 @@
 
     <img class="article-hero-image" src="../../images/hero-rag-vs-graphrag.jpg" alt="Abstract illustration of a simple wireframe chain beside a dense interconnected wireframe mesh"/>
 
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Standard RAG retrieves text chunks by semantic similarity from a vector database, while GraphRAG first builds a knowledge graph of entities and relationships to answer multi-hop questions.</li>
+        <li>Microsoft Research released GraphRAG as open source in mid-2024, and it queries in two modes: local search across entity relationships and global search across community summaries.</li>
+        <li>GraphRAG costs more and indexes slower because a language model must extract the graph first, and it is more complex to deploy and maintain than standard RAG.</li>
+        <li>Standard RAG remains the right default for most enterprise knowledge retrieval, backed by a mature ecosystem including LangChain, LlamaIndex, Pinecone, Weaviate and pgvector.</li>
+        <li>Choose GraphRAG when queries require synthesising across many documents or reasoning over entity relationships; otherwise a hybrid router combining both is an increasingly common production pattern.</li>
+      </ul>
+    </div>
+
     <p>Retrieval-augmented generation — RAG — has become the default architecture for enterprise AI applications that need to work with private or proprietary knowledge. Rather than relying solely on a model's training data, RAG retrieves relevant documents at query time and passes them to the model as context. The results are more accurate, more current and more trustworthy than pure generation.</p>
 
-    <p>But RAG has limits. And Microsoft's <a href="https://github.com/microsoft/graphrag" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GraphRAG</a> — released as open source in 2024 and now widely adopted — was designed to address them.</p>
+    <p>But RAG has limits, and Microsoft's <a href="https://github.com/microsoft/graphrag" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GraphRAG</a> — released as open source in 2024 and now widely adopted — was designed to address them.</p>
 
     <p>This post explains both architectures clearly, compares them honestly, and helps you decide which is right for your use case.</p>
 
@@ -115,11 +126,11 @@
 
     <p>Standard RAG works in two stages.</p>
 
-    <p>First, at indexing time, your documents are chunked into segments, passed through an embedding model, and stored as vectors in a vector database (Pinecone, Weaviate, pgvector and others are commonly used).</p>
+    <p>First, at indexing time, your documents are chunked into segments and passed through an embedding model. The resulting vectors are stored in a vector database — Pinecone, Weaviate and pgvector are commonly used.</p>
 
     <p>At query time, the user's question is embedded using the same model, and the database returns the most semantically similar chunks. Those chunks are injected into the prompt as context, and the language model generates an answer grounded in the retrieved material.</p>
 
-    <p>It is elegant, fast and well-understood. RAG is the right architecture for a large proportion of enterprise knowledge retrieval problems — and it is relatively straightforward to build.</p>
+    <p>It is elegant, fast and well-understood. RAG fits most enterprise knowledge retrieval problems, and it is relatively straightforward to build.</p>
 
     <h3>Strengths</h3>
     <ul>
@@ -144,7 +155,7 @@
 
     <p>GraphRAG, developed by Microsoft Research and released as an open-source project in mid-2024, takes a fundamentally different approach. Rather than chunking documents and embedding them directly, it first extracts a <strong>knowledge graph</strong> from the source corpus.</p>
 
-    <p>During indexing, a language model reads through your documents and extracts entities — people, organisations, concepts, events — and the relationships between them. These are stored as a graph (nodes and edges) alongside community summaries that describe clusters of related entities.</p>
+    <p>During indexing, a language model reads through your documents and extracts entities — people, organisations, concepts, events — and the relationships between them. These are stored as a graph of nodes and edges, alongside community summaries describing clusters of related entities.</p>
 
     <p>At query time, GraphRAG can operate in two modes:</p>
 
@@ -227,19 +238,19 @@
 
     <h2>Which Should You Choose?</h2>
 
-    <p><strong>Choose standard RAG if:</strong> your users need to find specific information within documents, your document set changes frequently, or you are building a knowledge base, internal search tool or document Q&amp;A system. RAG is the right default for the majority of enterprise knowledge retrieval problems.</p>
+    <p><strong>Choose standard RAG if:</strong> your users need to find specific information within documents, or your document set changes frequently. It is also the right choice if you are building a knowledge base, internal search tool or document Q&amp;A system. RAG is the right default for the majority of enterprise knowledge retrieval problems.</p>
 
-    <p><strong>Choose GraphRAG if:</strong> your use case requires reasoning across many documents simultaneously, users ask questions like "what is the relationship between X and Y?" or "summarise the key themes across our research", or you are working with a relatively stable corpus — technical documentation, research archives, regulatory libraries.</p>
+    <p><strong>Choose GraphRAG if:</strong> your use case requires reasoning across many documents simultaneously, or users ask questions like "what is the relationship between X and Y?" or "summarise the key themes across our research". It also fits when you are working with a relatively stable corpus — technical documentation, research archives, regulatory libraries.</p>
 
-    <p><strong>Consider a hybrid approach if:</strong> your application needs both fast local retrieval and deeper synthesis. This is increasingly the production pattern — GraphRAG for complex analytical queries, standard RAG for specific document lookups, with a router deciding which path to use at query time.</p>
+    <p><strong>Consider a hybrid approach if:</strong> your application needs both fast local retrieval and deeper synthesis. This is increasingly the production pattern: GraphRAG handles complex analytical queries, standard RAG handles specific document lookups, and a router decides which path to use at query time.</p>
 
     <hr/>
 
     <h2>The Practical Reality</h2>
 
-    <p>GraphRAG is not a replacement for standard RAG — it is an upgrade for a specific class of problem. Most enterprise applications start with standard RAG and encounter its limits only when users begin asking questions that require connecting information across many documents.</p>
+    <p>GraphRAG upgrades standard RAG for a specific class of problem rather than replacing it. Most enterprise applications start with standard RAG and only hit its limits when users begin asking questions that connect information across many documents.</p>
 
-    <p>The signal to watch for is users rephrasing the same question multiple times, or adding qualifiers like "based on everything you know" — this is usually a sign that the retrieval architecture is not giving the model what it needs to answer well.</p>
+    <p>The signal to watch for is users rephrasing the same question multiple times, or adding qualifiers like "based on everything you know". That usually means the retrieval architecture is not giving the model what it needs to answer well.</p>
 
     <p>When you hit that ceiling, GraphRAG is worth the additional complexity.</p>
 

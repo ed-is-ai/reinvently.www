@@ -13,13 +13,13 @@
   <meta property="og:description" content="Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="The A2A Protocol: AI Agent Interoperability for the Enterprise"/>
   <meta name="twitter:description" content="Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement.",
     "datePublished": "2026-04-22",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/",
+    "image": "https://reinvently.co.uk/images/hero-a2a-protocol.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
+    "url": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"},
     "inLanguage": "en-GB",
     "keywords": ["A2A Protocol", "AI agent interoperability", "enterprise AI", "agentic AI", "Salesforce", "Google Cloud", "AI platform strategy"]
   }
@@ -103,29 +103,40 @@
 
     <img class="article-hero-image" src="../../images/hero-a2a-protocol.jpg" alt="Abstract illustration of two different wireframe forms connected by a single glowing bridge line"/>
 
-    <p>There is a pattern in enterprise AI deployments that almost every technology leader will recognise. The first agent works well. The second agent works well. Then someone asks why the two cannot talk to each other — and the answer turns out to be weeks of bespoke integration work, fragile API glue, and a growing maintenance burden that quietly consumes the efficiency gains the agents were supposed to deliver.</p>
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>The A2A Protocol is now backed by more than 150 organisations, including Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday and IBM.</li>
+        <li>The Linux Foundation manages A2A rather than a single vendor, following the same open-governance model that made Kubernetes the default for containerised workloads.</li>
+        <li>Agents expose a structured Agent Card describing their capabilities and authentication, so integrating a new agent works more like calling an API than building a custom connector.</li>
+        <li>A2A is complementary to Anthropic's Model Context Protocol: MCP governs agent-to-tool access while A2A governs agent-to-agent communication, and enterprises can use both together.</li>
+        <li>Because A2A weakens the integration case for single-vendor consolidation, enterprises should ask every AI platform vendor whether and when it will support the protocol.</li>
+      </ul>
+    </div>
 
-    <p>This is the integration tax. And until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
+    <p>There is a pattern in enterprise AI deployments that almost every technology leader will recognise. The first agent works well. The second agent works well. Then someone asks why the two cannot talk to each other. The answer turns out to be weeks of bespoke integration work, fragile API glue, and a growing maintenance burden that quietly eats into the efficiency gains the agents were supposed to deliver.</p>
 
-    <p>But things have been getting better.  The A2A Protocol is now backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>. Microsoft, AWS, SAP, ServiceNow, Workday, and IBM are all on board. This is not a proprietary standard competing for dominance. It is quickly becoming the TCP/IP of agentic AI.</p>
+    <p>This is the integration tax. Until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
+
+    <p>But things have been getting better. The A2A Protocol is now backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>. Microsoft, AWS, SAP, ServiceNow, Workday, and IBM are all on board. This is not a proprietary standard competing for dominance. It is quickly becoming the TCP/IP of agentic AI.</p>
 
     <hr/>
 
     <h2>The A2A Protocol: 5 Minute Primer</h2>
 
-    <p>The A2A Protocol defines a standard way for AI agents from different vendors to discover each other, communicate, and hand off tasks — without either system needing to understand the other's internal architecture.</p>
+    <p>The A2A Protocol defines a standard way for AI agents from different vendors to discover each other, communicate, and hand off tasks — without either system needing to know how the other works internally.</p>
 
-    <p>In practice, this means a Salesforce Agentforce agent handling a customer escalation can hand off a data retrieval task to a Google Gemini Enterprise agent, which in turn queries a ServiceNow agent for ticket history — all in a single workflow, without custom code connecting them. Each agent speaks A2A; everything else is handled by the protocol.</p>
+    <p>In practice, this means a Salesforce Agentforce agent handling a customer escalation can hand off a data retrieval task to a Google Gemini Enterprise agent, which in turn queries a ServiceNow agent for ticket history. All of this happens in a single workflow, without custom code connecting the systems. Each agent speaks A2A; everything else is handled by the protocol.</p>
 
-    <p>The technical mechanism is straightforward: agents expose an <strong>Agent Card</strong> — a structured description of their capabilities, available actions, and authentication requirements. Orchestrating agents discover these cards, compose workflows, and delegate subtasks. Responses flow back through the same protocol layer. From a developer's perspective, integrating a new agent is closer to calling an API than building a custom connector.</p>
+    <p>The mechanism is straightforward: agents expose an <strong>Agent Card</strong> — a structured description of their capabilities, available actions, and authentication requirements. Orchestrating agents discover these cards, compose workflows, and delegate subtasks. Responses flow back through the same protocol layer. From a developer's perspective, integrating a new agent is closer to calling an API than building a custom connector.</p>
 
-    <p>Crucially, data does not need to move between systems for agents to collaborate. A Salesforce agent can instruct a ServiceNow agent to retrieve information and act on it — without that data ever leaving the ServiceNow environment. For enterprises operating under strict data governance or residency requirements, this is significant.</p>
+    <p>Data does not need to move between systems for agents to collaborate. A Salesforce agent can instruct a ServiceNow agent to retrieve information and act on it, without that data ever leaving the ServiceNow environment. For enterprises operating under strict data governance or residency requirements, that matters.</p>
 
     <hr/>
 
     <h2>Why This Helps Enterprise AI Architecture</h2>
 
-    <p>The conventional approach to multi-agent enterprise AI has required one of two compromises: consolidate everything onto a single vendor's platform (accepting lock-in) or build and maintain custom integrations between platforms (accepting technical debt). Most organisations have ended up doing some of both, and neither is satisfying.</p>
+    <p>The conventional approach to multi-agent enterprise AI has required one of two compromises. Either consolidate everything onto a single vendor's platform and accept lock-in, or build and maintain custom integrations between platforms and accept technical debt. Most organisations have ended up doing some of both, and neither is satisfying.</p>
 
     <p>A2A offers a third path: a heterogeneous agent ecosystem where vendors compete on capability rather than proprietary integration. The Salesforce-Google announcement demonstrates this concretely — two major competitors building complementary agents that interoperate rather than forcing customers to choose.</p>
 
@@ -142,9 +153,9 @@
 
     <h2>The 150+ Organisation Ecosystem</h2>
 
-    <p>The breadth of A2A adoption matters as much as the protocol itself. With Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday, and IBM all committed, A2A covers the core enterprise software stack for most large organisations. A workflow that needs to touch CRM, ERP, ITSM, and HCM systems can do so through A2A without any of those vendors needing bespoke agreements with each other.</p>
+    <p>The breadth of A2A adoption matters as much as the protocol itself. With Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday, and IBM all committed, A2A covers the core enterprise software stack for most large organisations. A workflow that needs to touch CRM, ERP, ITSM, and HCM systems can do so through A2A. None of those vendors need bespoke agreements with each other.</p>
 
-    <p>The Linux Foundation's stewardship is also significant. Placing A2A under an open-source governance structure rather than a single vendor removes the risk that the protocol is redirected in ways that benefit one participant at the expense of others. The precedent here is <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> — an open standard that now underpins how almost every enterprise runs containerised workloads, regardless of which cloud they use.</p>
+    <p>The Linux Foundation's stewardship matters too. Placing A2A under open-source governance rather than a single vendor removes the risk that one participant redirects the protocol to benefit itself at others' expense. The precedent here is <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> — an open standard that now underpins how almost every enterprise runs containerised workloads, regardless of which cloud they use.</p>
 
     <p>A2A is complementary to, not competitive with, Anthropic's <a href="https://modelcontextprotocol.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Model Context Protocol</a> (MCP), which governs how individual agents access tools and data sources. MCP handles the agent-to-tool layer; A2A handles the agent-to-agent layer. Enterprises building on Claude Managed Agents can use both.</p>
 
@@ -155,7 +166,7 @@
     <p>If you are evaluating or re-evaluating your AI platform strategy, A2A changes several of the assumptions that have historically driven those decisions.</p>
 
     <h3>Re-evaluate the case for platform consolidation</h3>
-    <p>The traditional argument for standardising on a single AI platform has been integration simplicity — one vendor means one integration layer. A2A weakens this argument considerably. If your primary platforms all support A2A, the integration case for consolidation largely disappears. What remains are genuine product capability differences, pricing, and support quality — all of which are more tractable to evaluate.</p>
+    <p>The traditional argument for standardising on a single AI platform has been integration simplicity — one vendor means one integration layer. A2A weakens this argument considerably. If your primary platforms all support A2A, the integration case for consolidation largely disappears. What remains are genuine differences in product capability, pricing, and support quality — all easier to evaluate on their own merits.</p>
 
     <h3>Prioritise A2A support in vendor selection</h3>
     <p>Any AI platform or agent product you evaluate today should be asked directly: do you support A2A, and on what timeline? Vendors that are not on the roadmap for A2A compliance are either planning their own proprietary ecosystem (which re-creates lock-in) or are not serious about enterprise interoperability. Either way, it is a risk factor worth surfacing early.</p>
@@ -168,7 +179,7 @@
 
     <hr/>
 
-    <p>The A2A Protocol will not eliminate the complexity of enterprise AI. But it removes one of its most persistent sources of friction — the assumption that effective agentic AI requires a single-vendor environment. For technology leaders evaluating their AI roadmap, that changes the calculus significantly.</p>
+    <p>The A2A Protocol will not eliminate the complexity of enterprise AI. But it removes one of its most persistent sources of friction — the assumption that effective agentic AI requires a single-vendor environment. For technology leaders evaluating their AI roadmap, that changes the calculus.</p>
 
         <h2>Frequently asked questions</h2>
 

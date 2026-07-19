@@ -13,13 +13,13 @@
   <meta property="og:description" content="GitHub Copilot, Claude Code and Cursor compared on capability, control and cost, with Claude Code at 46 percent most-loved in a survey of 906 developers."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="GitHub Copilot vs Claude Code vs Cursor — AI Coding Tools Compared"/>
   <meta name="twitter:description" content="GitHub Copilot, Claude Code and Cursor compared on capability, control and cost, with Claude Code at 46 percent most-loved in a survey of 906 developers."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "GitHub Copilot, Claude Code and Cursor compared on capability, control and cost, with Claude Code at 46 percent most-loved in a survey of 906 developers.",
     "datePublished": "2026-05-27",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
+    "image": "https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg",
     "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/",
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
+    "url": "https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/"},
     "inLanguage": "en-GB",
     "keywords": ["GitHub Copilot", "Claude Code", "Cursor", "AI coding tools", "software engineering", "agentic AI", "AI coding tool pricing", "spec-driven development", "SOC 2 compliance", "token-based billing", "large codebase AI tools"]
   }
@@ -103,9 +103,20 @@
 
     <img class="article-hero-image" src="../../images/hero-dev-tools-comparison.jpg" alt="Abstract illustration of three overlapping wireframe rings in different accent colours"/>
 
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>All three tools now hold SOC 2 Type II certification and share agentic multi-file editing, so the real decision hinges on pricing model rather than feature checklists.</li>
+        <li>For a 10-engineer team using Opus for planning, Copilot costs roughly $960 a month, Claude Code about $1,500, and Cursor around $2,000 because it pays full Opus rates.</li>
+        <li>Without Opus in the mix, Claude Code becomes cheapest at around $600 a month, ahead of Copilot at $660 and Cursor at $820.</li>
+        <li>Claude Code led a Pragmatic Engineer survey of 906 developers with a 46% "most loved" rating, versus 19% for Cursor and 9% for GitHub Copilot.</li>
+        <li>GitHub Copilot's discounted Opus rate — about one-third of the direct API price — makes it the strongest choice for teams that lean heavily on frontier-model planning.</li>
+      </ul>
+    </div>
+
     <p>In 2026, <strong>GitHub Copilot</strong>, <strong>Anthropic's Claude Code</strong>, and <strong>Cursor</strong> sit at the top of the AI coding assistant market. Here is what each actually does, where each falls short, and what each genuinely costs at scale.</p>
 
-    <p>One framing point worth making before the comparison: these tools have been converging. What were once clear differentiators — agentic multi-file editing, VS Code support, SOC 2 certification, MCP server integration, multi-model access — are now common across all three. A comparison written six months ago would have had sharper feature winners. Today the feature checklist is largely similar, and the real decision turns on a narrower set of factors: pricing model and cost at scale, depth of Microsoft enterprise integration, model optimisation, and ecosystem depth. The individual reviews below focus on those remaining genuine differences rather than relitigating capabilities all three now share.</p>
+    <p>Before the comparison, one framing point matters: these tools have been converging. What were once clear differentiators — agentic multi-file editing, VS Code support, SOC 2 certification, MCP server integration, multi-model access — are now common across all three. A comparison written six months ago would have had sharper feature winners; today the checklist looks much the same. The real decision now turns on a narrower set of factors: pricing model and cost at scale, depth of Microsoft enterprise integration, model optimisation, and ecosystem depth. The reviews below focus on those remaining differences, not on capabilities all three now share.</p>
 
     <hr/>
 
@@ -138,16 +149,16 @@
 
     <h2>Cursor — The Developer-First IDE</h2>
 
-    <p><a href="https://cursor.com" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Cursor</a> is a VS Code fork rebuilt specifically around AI assistance, most notable for its predictive tab completions that anticipate what a developer will type across multiple lines — not just the current word but the next logical action. Where Copilot adds AI to an existing editor, Cursor rebuilds the editing experience from scratch: fast, context-aware predictions across the entire codebase, with a model-agnostic architecture that lets teams use Claude, GPT-4o, Gemini, and others from a single interface.</p>
+    <p><a href="https://cursor.com" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Cursor</a> is a VS Code fork rebuilt specifically around AI assistance. It is most notable for predictive tab completions that anticipate what a developer will type across multiple lines — not just the current word, but the next logical action. Where Copilot adds AI to an existing editor, Cursor rebuilds the editing experience from scratch. It offers fast, context-aware predictions across the entire codebase, with a model-agnostic architecture that lets teams use Claude, GPT-5.5, Gemini, and others from a single interface.</p>
 
-    <p>Cursor switched to a credit-based billing model in June 2025, where each subscription tier includes a monthly credit pool that depletes based on which models are used. Expensive models (Claude Opus, GPT-4o) consume credits faster than lightweight ones. This gives teams flexibility to dial up quality when it matters and reduce costs on routine tasks, but requires deliberate management at scale.</p>
+    <p>Cursor switched to a credit-based billing model in June 2025, where each subscription tier includes a monthly credit pool that depletes based on which models are used. Expensive models (Claude Opus 4.8, GPT-5.5) consume credits faster than lightweight ones. This gives teams flexibility to dial up quality when it matters and reduce costs on routine tasks, but requires deliberate management at scale.</p>
 
     <p>Its Teams plan ($40/user/month) is fully enterprise-ready — centralised billing, SAML/OIDC SSO, role-based access control, org-wide privacy controls, and usage analytics are all included. An Enterprise tier with audit logs, SCIM seat management, and invoice/PO billing is available on custom pricing.</p>
 
     <h3>Strengths</h3>
     <ul>
       <li>Best tab-completion and next-action prediction in the category</li>
-      <li>Model-agnostic — Claude, GPT-4o, Gemini all available in one interface</li>
+      <li>Model-agnostic — Claude, GPT-5.5, Gemini all available in one interface</li>
       <li>Full codebase context, not just the open file</li>
       <li>Privacy mode keeps code local (does not leave the machine)</li>
       <li>SOC 2 Type II certified (Anysphere) — SSO, RBAC, audit logs on Teams plan</li>
@@ -168,13 +179,13 @@
 
     <h2>Claude Code — The Reasoning Powerhouse</h2>
 
-    <p><a href="https://claude.com/product/claude-code" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Claude Code</a> takes a deliberately different approach. It is primarily a terminal-based agentic coding tool that operates directly on your codebase, but it is not terminal-only. Native extensions for VS Code and JetBrains bring the agent directly into the IDE, letting developers run Claude Code sessions without leaving their editor. The terminal and IDE experiences share the same underlying model and context — the distinction is largely one of preference rather than capability.</p>
+    <p><a href="https://claude.com/product/claude-code" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Claude Code</a> takes a deliberately different approach. It is primarily a terminal-based agentic coding tool that operates directly on your codebase, but it is not terminal-only. Native extensions for VS Code and JetBrains bring the agent directly into the IDE, letting developers run Claude Code sessions without leaving their editor. The terminal and IDE experiences share the same underlying model and context, so the choice between them comes down to preference, not capability.</p>
 
     <p>What sets Claude Code apart is the depth at which it operates. Rather than working on the file currently open, it reads, edits and navigates across the entire codebase, making it genuinely capable on complex multi-step tasks: large refactors, debugging subtle logic errors, understanding architectural trade-offs. It excels at tasks that require sustained reasoning across many files simultaneously.</p>
 
-    <p>Because it is built and maintained by Anthropic — the same team that builds the underlying Claude models — there is a co-design advantage that shows up in practice. Claude Code is tuned specifically for how Claude models reason and respond, in a way that third-party tools routing through the same API cannot fully replicate. Anecdotally, developers who have used Claude through Cursor or Copilot and then switched to Claude Code report noticeably better output quality on the same tasks, suggesting that model-native tooling does make a difference even when the underlying model is identical. This is difficult to measure formally, but the pattern is consistent enough across community reports to be worth factoring in.</p>
+    <p>Claude Code is built and maintained by Anthropic — the same team that builds the underlying Claude models — and that produces a co-design advantage in practice. Claude Code is tuned specifically for how Claude models reason and respond, in a way that third-party tools routing through the same API cannot fully replicate. Anecdotally, developers who have used Claude through Cursor or Copilot and then switched to Claude Code report noticeably better output quality on the same tasks. That suggests model-native tooling makes a difference even when the underlying model is identical. This is hard to measure formally, but the pattern is consistent enough across community reports to be worth factoring in.</p>
 
-    <p>It also supports hooks, custom slash commands and MCP servers, making it highly extensible. Claude Code has the deepest community investment of any tool in this comparison — while spec-driven development frameworks such as BMAD and OpenSpec are tool-agnostic and run equally well on Cursor or Copilot, GSD is purpose-built for Claude Code specifically, providing structured workflows for planning, phased execution, and verification that lean directly into its agentic strengths. The community signal is measurable: by early 2026, Claude Code had a 46% "most loved" rating among developers, compared to 19% for Cursor and 9% for GitHub Copilot, according to <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">The Pragmatic Engineer's survey of 906 developers</a> (January–February 2026). Beyond frameworks, the community has produced a substantial body of shared tooling, CLAUDE.md conventions, and prompt patterns that compound the tool's capability over time.</p>
+    <p>It also supports hooks, custom slash commands and MCP servers, making it highly extensible. Claude Code has the deepest community investment of any tool in this comparison. Spec-driven development frameworks such as BMAD and OpenSpec are tool-agnostic and run equally well on Cursor or Copilot. GSD, by contrast, is purpose-built for Claude Code, providing structured workflows for planning, phased execution, and verification that lean directly into its agentic strengths. The community signal is measurable. By early 2026, Claude Code had a 46% "most loved" rating among developers, compared to 19% for Cursor and 9% for GitHub Copilot, according to <a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">The Pragmatic Engineer's survey of 906 developers</a> (January–February 2026). Beyond frameworks, the community has produced a substantial body of shared tooling, CLAUDE.md conventions, and prompt patterns that compound the tool's capability over time.</p>
 
     <h3>Strengths</h3>
     <ul>
@@ -205,15 +216,15 @@
 
     <p>The dominant pricing model for enterprise software has always been simple: a fixed fee per seat per month. AI coding tools are forcing a reckoning with that model, and the direction of travel is clear.</p>
 
-    <p>The underlying economics of AI are compute-based. Every request — every autocomplete, every agent action, every chunk of codebase context passed to a model — consumes inference capacity that providers pay for by the token. As these tools shift from autocomplete into agentic workflows that autonomously read files, plan tasks, and execute multi-step changes, the gap between a flat seat fee and the variable cost of inference has started to strain both sides of the market.</p>
+    <p>The underlying economics of AI are compute-based. Every request — every autocomplete, every agent action, every chunk of codebase context passed to a model — consumes inference capacity that providers pay for by the token. As these tools shift from autocomplete into agentic workflows that autonomously read files, plan tasks, and execute multi-step changes, the gap between a flat seat fee and the variable cost of inference keeps widening. That gap is now straining both sides of the market.</p>
 
     <p>The response across the industry has been a gradual migration toward usage-sensitive pricing. Anthropic structures Claude Code around consumption tiers that increase with usage. GitHub introduced “premium request” limits for Copilot's more capable models in 2025, and its enterprise billing increasingly reflects the computational weight of Agent Mode. Cursor moved to a credit-based model in mid-2025, where each subscription tier includes a monthly credit pool that depletes at different rates depending on which model is used.</p>
 
-    <p>The practical implication is that the tool you choose is also a bet on a billing model — and those models behave very differently as AI adoption matures across your team. Cursor has a predictable floor ($400/month for a team of ten) but is variable above it — premium model use generates overages at standard API rates. Claude Code's API billing is purely variable, though its aggressive use of prompt caching — where repeated file reads within a session are charged at a fraction of the standard rate — meaningfully reduces real-world costs below what raw token calculations suggest. Copilot's token model is the most directly aligned with consumption, but carries a structural advantage most teams overlook: it currently offers Claude Opus at roughly one-third of the direct API price — a Microsoft preferential rate at time of writing — making it disproportionately cheap for teams that use a frontier model for planning and architecture work.</p>
+    <p>The practical implication is that the tool you choose is also a bet on a billing model, and those models behave very differently as AI adoption matures across your team. Cursor has a predictable floor ($400/month for a team of ten), but it is variable above that — premium model use generates overages at standard API rates. Claude Code's API billing is purely variable. Its aggressive use of prompt caching — where repeated file reads within a session are charged at a fraction of the standard rate — meaningfully reduces real-world costs below what raw token calculations suggest. Copilot's token model is the most directly aligned with consumption. But it carries a structural advantage most teams overlook: it currently offers Claude Opus at roughly one-third of the direct API price, a Microsoft preferential rate at time of writing. That makes it disproportionately cheap for teams that use a frontier model for planning and architecture work.</p>
 
     <p>For teams where agentic workflows are still lightweight, billing model is a secondary consideration. For teams where AI agents are becoming central to daily engineering work, it is one of the primary factors that determines total cost of ownership. That calculation is shifting faster than most procurement decisions move.</p>
 
-    <p>To make it concrete: a team of 10 engineers on a sizeable codebase — say, a million lines — running a realistic mix of simple edits, feature work, complex refactors, and Opus-assisted planning sessions will spend roughly $960 per month with Copilot, $1,500 with Claude Code (after caching), and $2,000 with Cursor. Remove Opus from the mix and the order changes completely: Claude Code with caching drops to around $600, Copilot to $660, and Cursor to $820. The single biggest cost variable is not which tool you use — it is how often you reach for a frontier model.</p>
+    <p>To make it concrete: take a team of 10 engineers on a sizeable codebase — say, a million lines — running a realistic mix of simple edits, feature work, complex refactors, and Opus-assisted planning sessions. That team will spend roughly $960 per month with Copilot, $1,500 with Claude Code (after caching), and $2,000 with Cursor. Remove Opus from the mix and the order changes completely: Claude Code with caching drops to around $600, Copilot to $660, and Cursor to $820. The single biggest cost variable is not which tool you use — it is how often you reach for a frontier model.</p>
 
     <hr/>
 
@@ -282,15 +293,15 @@
 
     <p><strong>If you are in a regulated industry or need enterprise procurement:</strong> All three tools hold SOC 2 Type II — this is no longer a differentiator. The distinction is vendor familiarity and ecosystem depth. GitHub Copilot sits inside a procurement relationship most enterprises already have with Microsoft, with Active Directory and audit tooling that integrate without additional configuration. Cursor and Anthropic are newer vendors in most enterprise procurement pipelines, which adds friction regardless of their compliance posture. Cursor is the stronger second choice on cost — $40/user/month versus $60 for Copilot Enterprise including GitHub Enterprise Cloud.</p>
 
-    <p><strong>If your team uses a frontier model for planning and architecture work:</strong> Copilot. Its Opus rate is currently roughly one-third of the direct API price — a Microsoft preferential rate at time of writing — which is a meaningful structural advantage for teams that reach for a frontier model on complex design decisions. The more frequently your engineers do that, the harder Copilot's cost position is to beat.</p>
+    <p><strong>If your team uses a frontier model for planning and architecture work:</strong> Copilot. Its Opus rate is currently roughly one-third of the direct API price — a Microsoft preferential rate at time of writing. That is a meaningful structural advantage for teams that reach for a frontier model on complex design decisions. The more frequently your engineers do that, the harder Copilot's cost position is to beat.</p>
 
     <p><strong>If cost predictability matters to your finance or procurement team:</strong> Cursor has a known $400/month floor for a team of ten, which simplifies budgeting at light to medium usage. Above that floor it becomes variable, so the predictability argument weakens as agentic use grows. Claude Code with prompt caching is the more cost-efficient choice at heavy usage without Opus — real-world costs run materially below the headline token rate.</p>
 
-    <p><strong>If you want model flexibility without tool lock-in:</strong> Cursor. The ability to route tasks between Claude, GPT-4o, and Gemini from a single interface, combined with proven enterprise controls, makes it the most adaptable choice for teams whose AI tooling preferences or budgets may shift.</p>
+    <p><strong>If you want model flexibility without tool lock-in:</strong> Cursor. The ability to route tasks between Claude, GPT-5.5, and Gemini from a single interface, combined with proven enterprise controls, makes it the most adaptable choice for teams whose AI tooling preferences or budgets may shift.</p>
 
-    <p><strong>If your team wants to build a structured agentic engineering workflow:</strong> All three tools support the leading SDD frameworks — BMAD and OpenSpec are tool-agnostic and run on Cursor and Copilot as readily as Claude Code. The distinction is depth of native integration: GSD is built specifically for Claude Code, and the Claude Code community has produced more shared tooling, CLAUDE.md conventions, and prompt patterns than equivalent ecosystems around the other two. For teams that want an out-of-the-box spec-driven workflow without building it themselves, GitHub Spec Kit is the most immediately usable starting point for Copilot users. For Cursor, .cursor/rules files and BMAD together cover most of what teams need.</p>
+    <p><strong>If your team wants to build a structured agentic engineering workflow:</strong> All three tools support the leading SDD frameworks — BMAD and OpenSpec are tool-agnostic and run on Cursor and Copilot as readily as Claude Code. The distinction is depth of native integration. GSD is built specifically for Claude Code, and its community has produced more shared tooling, CLAUDE.md conventions, and prompt patterns than the ecosystems around the other two. For teams that want an out-of-the-box spec-driven workflow without building it themselves, GitHub Spec Kit is the most immediately usable starting point for Copilot users. For Cursor, .cursor/rules files and BMAD together cover most of what teams need.</p>
 
-    <p><strong>If output quality on complex tasks matters above all else:</strong> Claude Code. Being built by the same team that built the underlying Claude models produces a co-design advantage that shows up in practice — developers who have used Claude via Cursor or Copilot and then switched to Claude Code consistently report better output quality on the same tasks. This is anecdotal rather than formally benchmarked, but the pattern is consistent enough across community reports to be worth factoring in. It is also the most expensive at team scale, so the quality premium needs to be worth it for your team.</p>
+    <p><strong>If output quality on complex tasks matters above all else:</strong> Claude Code. Being built by the same team that built the underlying Claude models produces a co-design advantage that shows up in practice. Developers who have used Claude via Cursor or Copilot and then switched to Claude Code consistently report better output quality on the same tasks. This is anecdotal rather than formally benchmarked, but the pattern is consistent enough across community reports to be worth factoring in. It is also the most expensive at team scale, so the quality premium needs to be worth it for your team.</p>
 
     <p>In practice, many engineering teams are not choosing one. A common pattern: Copilot or Cursor for day-to-day IDE work, and Claude Code — via terminal or VS Code extension — for complex problem-solving and structured agentic workflows where model-native quality and ecosystem depth matter most.</p>
 
@@ -308,7 +319,7 @@
     <p>All three tools have converged significantly in features — agentic multi-file editing, VS Code support, SOC 2 Type II certification, and MCP server integration are now shared across all three. The remaining differences are pricing model, model-native optimisation, and ecosystem depth. GitHub Copilot has the deepest Microsoft enterprise integration. Claude Code is built by the same team as the underlying Claude models, producing anecdotally better output quality than accessing Claude via other tools. Cursor offers the most model flexibility and the best tab-completion experience.</p>
 
     <h3>What does an AI coding tool cost for a team of 10 engineers using agentic workflows?</h3>
-    <p>For a team of 10 engineers running a realistic mix of tasks including Opus-assisted planning, costs diverge significantly by billing model. Copilot runs roughly $960 per month — it benefits from a discounted Opus rate (currently one-third of the direct API price, reflecting a Microsoft preferential rate at time of writing) that makes it cheapest when frontier models are used for planning. Claude Code with prompt caching runs approximately $1,500 per month. Cursor runs around $2,000 per month because it pays full Opus rates on top of its $400 monthly floor. Without Opus, the order reverses: Claude Code drops to around $600, Copilot to $660, and Cursor to $820.</p>
+    <p>For a team of 10 engineers running a realistic mix of tasks including Opus-assisted planning, costs diverge significantly by billing model. Copilot runs roughly $960 per month. It benefits from a discounted Opus rate — currently one-third of the direct API price, reflecting a Microsoft preferential rate at time of writing — that makes it cheapest when frontier models are used for planning. Claude Code with prompt caching runs approximately $1,500 per month, and Cursor runs around $2,000 because it pays full Opus rates on top of its $400 monthly floor. Without Opus, the order reverses: Claude Code drops to around $600, Copilot to $660, and Cursor to $820.</p>
 
     <h3>Do GitHub Copilot, Claude Code, and Cursor all have SOC 2 certification?</h3>
     <p>Yes. All three tools hold SOC 2 Type II certification — GitHub Copilot via Microsoft, Claude Code via Anthropic, and Cursor via Anysphere. SOC 2 is no longer a differentiator between these tools. The remaining enterprise distinction is vendor familiarity: GitHub Copilot sits inside procurement relationships most enterprises already have with Microsoft, while Anthropic and Anysphere are newer vendors in most enterprise pipelines.</p>
@@ -319,8 +330,7 @@
 <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
-        <li><a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding</a></li>
-        <li><a href="/blog/open-weight-frontier-models-enterprise-glm-5-2/">Open-Weight Frontier Models in the Enterprise: The GLM-5.2 Decision</a></li>
+        <li><a href="/blog/is-claude-fable-5-worth-it-for-enterprise-coding/">Is Claude Fable 5 Worth It for Enterprise Coding?</a></li>
         <li><a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</a></li>
         <li><a href="/blog/microsoft-foundry-deep-dive/">Microsoft Foundry: A Deep Dive</a></li>
         <li><a href="/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/">Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock</a></li>

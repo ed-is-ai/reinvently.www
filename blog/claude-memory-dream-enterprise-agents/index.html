@@ -13,13 +13,13 @@
   <meta property="og:description" content="Claude's Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-memory-dream.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Claude Memory and Dream: A Breakthrough for Enterprise Agents"/>
   <meta name="twitter:description" content="Claude's Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-memory-dream.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "Claude's Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI.",
     "datePublished": "2026-05-21",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/",
+    "image": "https://reinvently.co.uk/images/hero-memory-dream.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
+    "url": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"},
     "inLanguage": "en-GB",
     "keywords": ["Claude Memory", "Claude Dream", "Claude Managed Agents", "enterprise AI", "enterprise adoption", "AI agents", "Anthropic"]
   }
@@ -103,11 +103,22 @@
 
     <img class="article-hero-image" src="../../images/hero-memory-dream.jpg" alt="Abstract illustration of a wireframe tangled knot with one thread breaking free and drifting upward"/>
 
-    <p>Most enterprise AI projects stall at the same point. The pilot works. The demos impress. Then the agent hits production and teams discover they are spending more time maintaining it than they are saving. Prompts drift. Agents forget hard-won institutional knowledge the moment a session ends. Performance that looked great in week one quietly degrades by week eight. The root cause is almost always the same: the agent has no persistent memory, and it cannot learn.</p>
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Claude Memory (public beta since 23 April 2026) and Dream (research preview, announced 6 May 2026) give agents durable, self-curating memory that persists across sessions.</li>
+        <li>Rakuten reported a 97 percent reduction in first-pass errors and Wisedocs a 30 percent faster document verification workflow after deploying Memory-enabled agents.</li>
+        <li>Harvey, the legal AI platform, reported a sixfold increase in task completion after enabling Dream, though the figure is Anthropic-published and comes from long-form legal drafting.</li>
+        <li>Anthropic held roughly 40 percent of enterprise LLM API spend in late 2025, ahead of OpenAI's 27 percent, per Menlo Ventures' survey of 495 US enterprise decision-makers.</li>
+        <li>Before deploying, plan for memory data governance, human-in-the-loop review of Dream in regulated workflows, periodic audits, and a cost model favouring high-volume, repeating tasks.</li>
+      </ul>
+    </div>
 
-    <p><a href="https://www.anthropic.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic</a> has just addressed both problems recently. Memory, now in public beta on Claude Managed Agents since 23 April 2026, gives agents durable, versioned, developer-controlled stores of knowledge that persist across sessions. Dream, announced at Code with Claude on 6 May 2026 and currently in research preview, goes one step further: it lets agents run scheduled reviews of their past sessions and reorganise their memories autonomously, compounding performance over time without any human intervention.</p>
+    <p>Most enterprise AI projects stall at the same point. The pilot works. The demos impress. Then the agent hits production, and teams find they spend more time maintaining it than it saves them. Prompts drift. Agents forget hard-won institutional knowledge the moment a session ends. Performance that looked great in week one quietly degrades by week eight. The root cause is almost always the same: the agent has no persistent memory, and it cannot learn.</p>
 
-    <p>Together they significantly simplify work on enterprise-scale deployments.</p>
+    <p><a href="https://www.anthropic.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic</a> has just addressed both problems. Memory, now in public beta on Claude Managed Agents since 23 April 2026, gives agents durable, versioned, developer-controlled stores of knowledge that persist across sessions. Dream, announced at Code with Claude on 6 May 2026 and currently in research preview, goes further. It lets agents run scheduled reviews of their past sessions and reorganise their memories on their own, compounding performance over time without human intervention.</p>
+
+    <p>Together, the two features simplify work on enterprise-scale deployments considerably.</p>
 
     <hr/>
 
@@ -129,7 +140,7 @@
 
     <p>Claude Memory stores are persistent, versioned text documents mounted to an agent's file system at <code>/mnt/memory/&lt;store-name&gt;/</code>. Agents read and write them using standard file tools — there is no special API to learn, no new abstraction layer. From an agent's perspective, memory is just files.</p>
 
-    <p>That simplicity belies considerable engineering underneath. Every write produces an immutable version (<code>memver_...</code>), meaning any change can be inspected, rolled back, or redacted without touching the agent's underlying model. Developers can configure stores as read-only (for shared organisational knowledge) or read-write (for user- or team-specific context). Concurrency controls prevent conflicts when multiple agents access the same store simultaneously.</p>
+    <p>That simplicity hides real engineering underneath. Every write produces an immutable version (<code>memver_...</code>), so any change can be inspected, rolled back, or redacted without touching the agent's underlying model. Developers can configure stores as read-only (for shared organisational knowledge) or read-write (for user- or team-specific context). Concurrency controls prevent conflicts when multiple agents access the same store at once.</p>
 
     <p>What this means in practice:</p>
 
@@ -139,7 +150,7 @@
       <li>A customer support agent accumulates a profile of recurring issues per account, accessible to any agent that serves that customer.</li>
     </ul>
 
-    <p>Early adopters have published numbers that are worth pausing on. Rakuten reported a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents, and <a href="https://www.wisedocs.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs</a>&#8217; document verification workflow ran <strong>30 percent faster</strong>. These are not marginal gains — they represent the difference between a system that requires human review at every step and one that handles routine cases autonomously.</p>
+    <p>Early adopters have published numbers worth pausing on. <a href="https://claude.com/customers/rakuten-qa" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Rakuten reported</a> a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents, and <a href="https://www.wisedocs.ai/blogs/building-managed-agents-for-document-verification" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs&#8217; document verification workflow</a> ran <strong>30 percent faster</strong>. Both figures come from Anthropic customer case studies rather than independent audits, but they are attributed to named companies, not anonymous sources. The gains are large: they mark the difference between a system that needs human review at every step and one that handles routine cases on its own.</p>
 
     <p>Critically for enterprise teams, every memory write is developer-controlled. Data is exportable, editable, and redactable via the API or the Claude Console. The agent learns, but the organisation retains ownership of what it has learned.</p>
 
@@ -149,13 +160,13 @@
 
     <p>Memory solves persistence. Dream solves curation.</p>
 
-    <p>In any long-running enterprise deployment, memory stores accumulate noise: resolved edge cases that are no longer relevant, outdated context, duplicate entries, patterns that were useful six months ago but have since been superseded. Without intervention, the signal-to-noise ratio degrades and agents begin to perform worse, not better, the longer they run. This is the slow failure mode that most enterprise teams do not anticipate at the start of a deployment.</p>
+    <p>In any long-running enterprise deployment, memory stores accumulate noise. Resolved edge cases stop being relevant, context goes stale, entries duplicate, and patterns that helped six months ago get superseded. Without intervention, the signal-to-noise ratio degrades and agents perform worse, not better, the longer they run. This is the slow failure mode that most enterprise teams do not see coming.</p>
 
-    <p>Dream is a scheduled, asynchronous process that runs between active sessions. It reviews up to 100 past sessions alongside the current memory store, identifies patterns, deduplicates entries, surfaces recurring insights, and reorganises memory into a more effective structure. Developers can configure it to apply updates automatically or to surface proposed changes for human review before they take effect.</p>
+    <p>Dream is a scheduled, asynchronous process that runs between active sessions. It reviews up to 100 past sessions alongside the current memory store to identify patterns and deduplicate entries, then surfaces recurring insights and reorganises memory into a more effective structure. Developers can configure it to apply updates automatically or to surface proposed changes for human review before they take effect.</p>
 
-    <p>Critically, Dream analyses across agents simultaneously, not just within a single session. This means it can surface insights that no individual session could observe — recurring mistakes made across different users, converging workflow patterns, team-level preferences. It is the difference between an agent that reflects on its own experience and one that reflects on the experience of the entire deployment.</p>
+    <p>Critically, Dream analyses across agents at once, not just within a single session. This means it can surface insights that no individual session could observe — recurring mistakes made across different users, converging workflow patterns, team-level preferences. In effect, the agent stops learning only from its own sessions and starts learning from the whole deployment.</p>
 
-    <p>The performance data is significant. <a href="https://www.harvey.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Harvey</a>, the legal AI platform, reported a <strong>6x increase in task completion rates</strong> after enabling it.</p>
+    <p>The performance data comes with a caveat: it is from <a href="https://claude.com/blog/new-in-claude-managed-agents" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic's own announcement</a>, not an independent benchmark. Harvey, the legal AI platform, reported a <strong>6x increase in task completion rates</strong> after enabling it, driven mostly by agents no longer repeating the same filetype and tool-specific mistakes across sessions. Whether that multiple holds outside long-form legal drafting, where failure modes are unusually consistent, is untested.</p>
 
     <p>What makes this commercially relevant is the compound effect. In month one, Memory gives agents a clean start. In month three, Dream has distilled three months of learning into a high-signal memory store. In month twelve, the agent is materially better at its job than it was on day one — not because anyone rewrote the prompt, but because the system learned.</p>
 
@@ -163,7 +174,7 @@
 
     <h2>Why This Simplifies Enterprise Adoption</h2>
 
-    <p>These days, the thing that blocks the business case for Enterprise AI is not capability — it is the increasing awareness of the maintenance overhead. Keeping an agent performant at scale has historically required teams with deep prompt engineering expertise, continuous monitoring, and regular manual intervention. That overhead grows faster than the value delivered, which is why so many pilots never make it to production.</p>
+    <p>These days, the business case for Enterprise AI rarely stalls on capability. It stalls on the growing awareness of maintenance overhead. Keeping an agent performant at scale has historically required teams with deep prompt engineering expertise, continuous monitoring, and regular manual intervention. That overhead grows faster than the value delivered. It's why so many pilots never make it to production.</p>
 
     <p>Memory and Dream directly address that maintenance burden. Consider what teams no longer need to build or manage:</p>
 
@@ -174,9 +185,9 @@
       <li><strong>Manual retraining cycles.</strong> Agents self-improve from operational experience rather than requiring periodic offline updates.</li>
     </ul>
 
-    <p>The Managed Agents platform handles the surrounding infrastructure: stateful sessions, immutable event histories, fine-grained permission controls, and optional self-hosted sandboxes for teams with data-residency requirements. Combined with Memory and Dream, the result is a platform where enterprise teams can focus almost entirely on domain logic — what the agent should do — rather than on the plumbing that keeps it running.</p>
+    <p>The Managed Agents platform handles the surrounding infrastructure: stateful sessions, immutable event histories, fine-grained permission controls, and optional self-hosted sandboxes for teams with data-residency requirements. Combined with Memory and Dream, the result is a platform where enterprise teams can focus on domain logic — what the agent should do — rather than the plumbing that keeps it running.</p>
 
-    <p>Anthropic has positioned this explicitly as infrastructure in the same category as databases or email hosting: something enterprises consume as a managed service, not something they build from scratch. Given that Claude has reached roughly 40 percent of US enterprise AI spending in 2026 — ahead of any other provider — that positioning is landing.</p>
+    <p>Anthropic has positioned this explicitly as infrastructure in the same category as databases or email hosting: something enterprises consume as a managed service, not something they build from scratch. Anthropic held roughly 40 percent of enterprise LLM API spend as of late 2025, ahead of OpenAI's 27 percent, according to <a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Menlo Ventures' survey of 495 US enterprise decision-makers</a>. That positioning is landing. Worth reading that number carefully: it measures the model-API layer, roughly $12.5bn of a $37bn enterprise generative-AI market, not enterprise AI spending as a whole.</p>
 
     <hr/>
 
@@ -191,10 +202,10 @@
     <p>Dream can apply memory updates automatically or hold them for review. For regulated industries or high-stakes workflows — legal, financial, clinical — the review mode is the safer default until you have built confidence in the system's judgment. The performance benefit is still there; it just comes with an additional approval step.</p>
 
     <h3>Memory as a single point of drift</h3>
-    <p>An agent with high-quality memory performs significantly better than one without. The inverse is also true: poorly curated memory can entrench bad patterns. Audit memory stores periodically in the same way you would audit any critical configuration. Dream reduces this risk substantially, but it does not eliminate it.</p>
+    <p>An agent with high-quality memory performs far better than one without. The inverse is also true: poorly curated memory can entrench bad patterns. Audit memory stores periodically in the same way you would audit any critical configuration. Dream reduces this risk substantially, but it does not eliminate it.</p>
 
     <h3>Cost model</h3>
-    <p>Memory stores and Dream cycles consume compute. The economics are favourable at scale — the reduction in human review time and improved task completion rates typically dwarfs the infrastructure cost — but model this before committing. The businesses seeing the largest gains are those with high-volume, repeating workflows where the compound effect of Memory and Dream has room to accumulate.</p>
+    <p>Memory stores and Dream cycles consume compute. The economics are favourable at scale: the reduction in human review time and improved task completion rates typically dwarf the infrastructure cost. Model this before committing. The businesses seeing the largest gains are those with high-volume, repeating workflows where the compound effect of Memory and Dream has room to accumulate.</p>
 
     <hr/>
 

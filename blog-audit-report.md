@@ -1,116 +1,147 @@
 # Blog Audit Report
 
-**Audit Date:** 3 July 2026
-**Total Posts:** 27 (26 published + 1 noindexed draft)
-**Average Score:** 71.6 / 100 (73.5 excluding the draft)
-**Method:** Full editorial deep-read by parallel review agents (content quality, E-E-A-T, AI-citation readiness) plus deterministic structural checks (SEO tags, schema, link graph, freshness). This rubric is substantially stricter than the 2 July structural-only audit (which scored 95.9) — the two are not comparable. Structural hygiene is now largely clean; the remaining findings are editorial: sourcing, schema/content mismatches, title lengths, and copy defects.
+**Audit Date:** 2026-07-19
+**Total Posts:** 26
+**Average Score:** 81/100 (normalized across Content /25, SEO /20, Schema /20, AI Citation /20 — see note on scoring below)
 
-## Health Overview
+> **Scoring note:** This audit scored four of the five standard categories in depth (Content Quality, SEO, Schema/Technical, AI Citation Readiness) plus a separate Link Health and Freshness pass, via six parallel general-purpose agents. E-E-A-T signals weren't scored as a standalone category. Scores below are normalized to /100 from the 85-point sum of the four scored categories, and are **not directly comparable** to a prior 100-point audit that used a 25/20/20/15/20 (content/SEO/E-E-A-T/technical/AI) split — see git history for that version.
+
+### Health Overview
 
 | Metric | Count |
 |--------|-------|
 | Posts scoring 90+ (Excellent) | 0 |
-| Posts scoring 70–89 (Good) | 18 |
-| Posts scoring 50–69 (Needs work) | 8 |
-| Posts scoring <50 (Poor) | 1 (noindexed draft) |
-| Orphan pages | 1 (the same draft — intentional) |
+| Posts scoring 70–89 (Good) | 26 |
+| Posts scoring 50–69 (Needs Work) | 0 |
+| Posts scoring <50 (Poor) | 0 |
+| Orphan pages | 0 |
 | Dead-end pages | 0 |
-| Broken internal links | 0 |
-| FAQ schema without visible FAQ | 8 |
+| Cannibalization issues | 0 |
 | Stale content (90+ days) | 0 |
 
-Structural checks that pass site-wide: every post has a correct canonical, complete OG + Twitter tags, exactly one H1, a 149–160-char meta description, BlogPosting schema, and ≥6 internal body links. No post is stale (all dateModified within 1 day).
+**Headline:** the site is structurally healthy — no orphans, no dead-ends, no broken internal links, no genuine keyword cannibalization, and every post is under 90 days old. The whole corpus clusters tightly in the "Good" band (75–86/100); there are no standout failures and no standout wins. The gaps are systemic template issues, not one-off bad posts.
 
-## Per-Post Scores
+### Three site-wide systemic issues (fix once, benefits all 26 posts)
 
-| Post | Score | Content /25 | SEO /20 | E-E-A-T /20 | Technical /15 | AI Citation /20 | Issues |
-|------|-------|---------|-----|---------|-----------|-------------|--------|
-| glm-5-2-vs-claude-opus-vs-gpt-5-5-coding | 84 | 22 | 17 | 17 | 14 | 14 | 5 |
-| glm-5-2-china-data-residency-api-vs-open-weights | 83 | 22 | 16 | 17 | 14 | 14 | 5 |
-| multi-agent-orchestration-frameworks-compared | 83 | 22 | 15 | 16 | 13 | 17 | 4 |
-| open-weight-frontier-models-enterprise-glm-5-2 | 82 | 22 | 17 | 17 | 13 | 13 | 5 |
-| microvm-sandbox-options-firecracker-opensandbox-smolvm-nono | 81 | 23 | 15 | 13 | 13 | 17 | 4 |
-| gpt-5-5-autonomous-task-completion | 80 | 20 | 17 | 13 | 14 | 16 | 5 |
-| ai-agent-governance-gap | 79 | 21 | 15 | 17 | 13 | 13 | 5 |
-| the-rise-of-ai-in-web-development | 77 | 21 | 16 | 13 | 12 | 15 | 5 |
-| uk-ai-growth-labs-regulatory-sandboxes | 77 | 22 | 15 | 17 | 10 | 13 | 5 |
-| uk-ai-policy-landscape-enterprise-2026 | 77 | 22 | 15 | 16 | 10 | 14 | 5 |
-| uk-sovereign-ai-programme | 75 | 21 | 14 | 13 | 12 | 15 | 5 |
-| ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit | 74 | 20 | 13 | 13 | 12 | 16 | 6 |
-| enterprise-ai-adoption-reality-check-2026 | 73 | 20 | 14 | 12 | 12 | 15 | 6 |
-| rag-vs-graphrag | 73 | 20 | 16 | 10 | 12 | 15 | 6 |
-| top-10-uk-ai-companies | 72 | 20 | 15 | 10 | 12 | 15 | 7 |
-| uk-ai-regulation-ico-employment-2026 | 72 | 20 | 13 | 13 | 11 | 15 | 7 |
-| uk-government-ai-institutes | 72 | 20 | 14 | 11 | 12 | 15 | 6 |
-| github-copilot-vs-claude-code-vs-cursor | 70 | 18 | 15 | 14 | 11 | 12 | 7 |
-| claude-memory-dream-enterprise-agents | 69 | 18 | 13 | 10 | 13 | 15 | 7 |
-| copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | 69 | 20 | 14 | 12 | 11 | 12 | 6 |
-| global-ai-adoption-attitudes | 69 | 18 | 16 | 8 | 12 | 15 | 7 |
-| generative-ai-adoption-by-industry | 68 | 19 | 14 | 9 | 12 | 14 | 9 |
-| ai-agent-interoperability-a2a-protocol | 65 | 15 | 13 | 10 | 12 | 15 | 8 |
-| uk-ai-skills-gap-education-opportunity | 65 | 17 | 14 | 8 | 12 | 14 | 8 |
-| microsoft-foundry-deep-dive | 63 | 17 | 14 | 8 | 10 | 14 | 8 |
-| claude-mythos-anthropic-opportunity-for-companies | 60 | 14 | 13 | 7 | 13 | 13 | 8 |
-| glm-5-2-fable-5-codex-real-task-results (draft, noindex) | 22 | 5 | 4 | 5 | 5 | 3 | 12+ |
+1. **`publisher.logo` missing from every post's JSON-LD** — a one-line template fix affecting all 26 posts' rich-result eligibility.
+2. **No genuine "Key Takeaways" / TL;DR box anywhere** — every post has only a one-sentence summary line under the H1, not a scannable bulleted capsule. This is the single biggest AI-citation-readiness gap site-wide.
+3. **Readability runs well below target across the board** — Flesch Reading Ease sits in the 25–40s site-wide (target 60–70), and average sentence length is consistently 18–26 words (target 15–20). This isn't a content-depth problem, it's a sentence-construction habit, likely fixable with a lighter editing pass rather than a rewrite.
 
-## Prioritized Action Queue
+Also worth a light template fix: about half of posts have oversized `<title>` tags (70–117 chars vs. 50–60 ideal), and the suspiciously uniform `dateModified: 2026-07-02` across ~22 of 26 posts looks like a bulk timestamp touch rather than 22 genuine content refreshes — worth confirming that's intentional.
 
-Copy defects first (fast, embarrassing if found by a reader), then the systemic fixes.
+### Per-Post Scores
+
+| Post | Score /100* | Content /25 | SEO /20 | Schema /20 | AI Citation /20 |
+|------|-------|---------|-----|-----------|--------------|
+| the-rise-of-ai-in-web-development | 86 | 22 | 18 | 17 | 16 |
+| is-claude-fable-5-worth-it-for-enterprise-coding | 85 | 19 | 19 | 17 | 17 |
+| generative-ai-adoption-by-industry | 85 | 20 | 18 | 17 | 17 |
+| claude-mythos-anthropic-opportunity-for-companies | 84 | 21 | 18 | 17 | 15 |
+| enterprise-ai-adoption-reality-check-2026 | 84 | 19 | 17 | 17 | 18 |
+| gpt-5-5-autonomous-task-completion | 84 | 20 | 19 | 17 | 15 |
+| rag-vs-graphrag | 84 | 20 | 18 | 17 | 16 |
+| ai-agent-governance-gap | 82 | 18 | 17 | 17 | 18 |
+| claude-memory-dream-enterprise-agents | 82 | 21 | 15 | 17 | 17 |
+| copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | 82 | 20 | 18 | 16 | 16 |
+| github-copilot-vs-claude-code-vs-cursor | 82 | 17 | 19 | 17 | 17 |
+| glm-5-2-fable-5-gpt-5-5-eval-results | 82 | 19 | 16 | 17 | 18 |
+| ai-agent-interoperability-a2a-protocol | 81 | 20 | 17 | 17 | 15 |
+| global-ai-adoption-attitudes | 81 | 20 | 16 | 17 | 16 |
+| top-10-uk-ai-companies | 81 | 18 | 19 | 17 | 15 |
+| uk-ai-policy-landscape-enterprise-2026 | 81 | 19 | 17 | 17 | 16 |
+| uk-ai-skills-gap-education-opportunity | 81 | 21 | 15 | 17 | 16 |
+| building-the-ed-o-meter-llm-eval-harness | 80 | 18 | 18 | 17 | 15 |
+| microsoft-foundry-deep-dive | 80 | 19 | 16 | 17 | 16 |
+| uk-ai-growth-labs-regulatory-sandboxes | 80 | 17 | 17 | 17 | 17 |
+| ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit | 79 | 19 | 15 | 17 | 16 |
+| uk-sovereign-ai-programme | 79 | 17 | 17 | 17 | 16 |
+| multi-agent-orchestration-frameworks-compared | 78 | 19 | 14 | 17 | 16 |
+| uk-ai-regulation-ico-employment-2026 | 77 | 17 | 15 | 17 | 16 |
+| microvm-sandbox-options-firecracker-opensandbox-smolvm-nono | 75 | 17 | 14 | 17 | 16 |
+| uk-government-ai-institutes | 75 | 16 | 15 | 17 | 16 |
+
+*Normalized to /100 from the 85-point raw sum.
+
+### Prioritized Action Queue (lowest score first)
 
 | Priority | Post | Score | Top Issue | Recommended Action |
 |----------|------|-------|-----------|--------------------|
-| 1 | uk-ai-regulation-ico-employment-2026 | 72 | Body still advises submitting to the ICO consultation that "closes on 29 May 2026" — the FAQ says it already closed | Rewrite the consultation passage in past tense; fix the unclosed `<p>` at the "central warning" paragraph |
-| 2 | ai-agent-interoperability-a2a-protocol | 65 | Broken mid-edit sentence: "…but getting The conventional approach to multi-agent…" | Repair the sentence; link the "150+ organisations" claim to a primary source |
-| 3 | microsoft-foundry-deep-dive | 63 | Malformed nested anchor (`href="https://<a href="…`) renders broken HTML | Fix the anchor; refresh stale model names (Opus 4.1, GPT-5.2); add sources beyond vendor homepages |
-| 4 | 8 posts (see below) | — | FAQPage JSON-LD with no visible FAQ on the page — rich-result policy violation | Either render the FAQ section (preferred — the Q&As are good) or strip the schema |
-| 5 | open-weight-frontier-models-enterprise-glm-5-2 | 82 | SWE-bench Pro 62.1-vs-58.6 presented as a direct beat in meta, schema, intro, and chart — cross-harness runs are not comparable, and the sibling coding post says so explicitly | Add the harness caveat everywhere the number appears |
-| 6 | copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | 69 | FAQ schema names a nonexistent product, "Azure Bedrock" | Correct to AWS Bedrock; also add third-party sources (currently vendor-only) |
-| 7 | claude-mythos-anthropic-opportunity-for-companies | 60 | No byline, extraordinary claims sourced only to Anthropic, strongest AI-writing cadence of the set | Add byline + independent sources; de-hype vocabulary ("significant" ×10) |
-| 8 | uk-ai-skills-gap-education-opportunity | 65 | Headline stats (73%, £400bn, £187m, 10m by 2030) have zero source links | Source every number or cut it; tone down motivational-fragment closers |
-| 9 | github-copilot-vs-claude-code-vs-cursor | 70 | Same "anecdotally… switched" passage appears verbatim twice | Delete one instance; source the "one-third of API price" Microsoft claim |
-| 10 | global-ai-adoption-attitudes | 69 | Visible date (13 Feb 2026) conflicts with schema datePublished (2026-04-20); unsourced 73%/$100bn/$40bn stats | Align the dates; add sources |
-| 11 | reality-check / generative-ai / multi-agent posts | — | Literal `\$202m` backslash renders in related-posts links (3 posts) | Remove the stray backslashes |
-| 12 | glm-5-2-fable-5-codex-real-task-results | 22 | Draft with [DATA NEEDED]/[DATE] placeholders and invalid `2026-07-XX` schema dates — correctly noindexed and unlinked, but the URL is live | Fill in results and publish (it is cluster spoke 5), or hold it out of the repo until ready |
+| 1 | uk-government-ai-institutes | 75 | Longest avg. sentence length in the corpus (25.5 words); H1/title framing mismatch ("Public AI Infrastructure" vs. "Government AI Institutes") | Light readability edit + align H1 to title tag |
+| 2 | microvm-sandbox-options-... | 75 | Title (101 chars) and slug (61 chars) both excessively long; 17 paragraphs in the dense 80–150 word zone | Shorten title tag; break up dense paragraphs |
+| 3 | uk-ai-regulation-ico-employment-2026 | 77 | Title tag excessively long (105 chars); sentences read legalistic/dense (24.4 words avg) | Shorten title; simplify sentence structure |
+| 4 | multi-agent-orchestration-frameworks-compared | 78 | Title tag extremely long (113–117 chars), heavy SERP truncation | Rewrite title tag to ~55–60 chars |
+| 5 | ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit | 79 | Title tag far too long (97 chars) plus a 51-char slug | Shorten title tag |
+| 5 | uk-sovereign-ai-programme | 79 | Hardest post in the corpus to read (Flesch 25, avg. sentence 26.2 words); title tag over ideal length (89 chars) | Readability pass + trim title |
+| 7 | building-the-ed-o-meter-llm-eval-harness | 80 | Only 2 inbound internal links (weakly connected, not orphaned); code appendix wrapped in `<p>` not `<pre>`/`<code>` | Add 1–2 inbound links from tooling-adjacent posts; fix code markup |
+| 7 | microsoft-foundry-deep-dive | 80 | H1 much longer/different from short title tag; very dense (Flesch 26) | Align H1 to title; simplify prose |
+| 7 | uk-ai-growth-labs-regulatory-sandboxes | 80 | Avg. sentence 24.2 words — long throughout; title tag over ideal length (84 chars) | Readability pass + trim title |
 
-### FAQ schema/content mismatch (8 posts)
+*(Remaining 17 posts score 81–86 and need only the site-wide template fixes below, not individual rework.)*
 
-`ai-agent-governance-gap`, `copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock`, `github-copilot-vs-claude-code-vs-cursor`, `glm-5-2-china-data-residency-api-vs-open-weights`, `glm-5-2-vs-claude-opus-vs-gpt-5-5-coding`, `open-weight-frontier-models-enterprise-glm-5-2`, `uk-ai-growth-labs-regulatory-sandboxes`, `uk-ai-policy-landscape-enterprise-2026`
+### Cannibalization Report
 
-The other 18 published posts render their FAQs correctly — the template used for the newest posts diverged. Rendering the existing schema Q&As as a visible FAQ section fixes the policy risk *and* adds the Q&A formatting the AI-citation scores dock these posts for.
+No genuine keyword cannibalization found. Every cluster initially flagged as a risk (UK policy posts, eval/benchmark posts, tool comparisons, adoption-stats posts) turned out to be either intentional hub-and-spoke architecture with existing cross-links, or segmented by a distinct axis (entity, geography, sector, technical layer) with no real search-intent overlap.
 
-## Topic Cannibalization
+| Keyword/Intent | Competing Posts | Recommendation |
+|---|---|---|
+| Microsoft Foundry ("what it is") | microsoft-foundry-deep-dive vs. copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | Differentiate (already done, bidirectionally linked) — monitor that the comparison post's Foundry section doesn't expand into a second deep-dive |
+| UK AI policy (broad map vs. spokes) | uk-ai-policy-landscape-enterprise-2026 (pillar) vs. its 5 UK spokes | Not cannibalization — deliberate pillar/spoke, already cross-linked |
+| Fable 5 / GLM-5.2 coding evals | is-claude-fable-5-worth-it-for-enterprise-coding vs. glm-5-2-fable-5-gpt-5-5-eval-results vs. building-the-ed-o-meter-llm-eval-harness | Not cannibalization — benchmark report / build methodology / buy decision are distinct intents, already cross-linked |
+| AI adoption statistics | generative-ai-adoption-by-industry vs. global-ai-adoption-attitudes vs. enterprise-ai-adoption-reality-check-2026 | Not cannibalization — segmented by sector / geography / ROI respectively |
 
-| Keyword | Competing Posts | Recommendation |
-|---------|----------------|----------------|
-| "GLM-5.2 vs Claude coding" | glm-5-2-vs-claude-opus-vs-gpt-5-5-coding, glm-5-2-fable-5-codex-real-task-results | **Differentiate** — benchmark/spec comparison vs first-hand task results; cross-link explicitly when the draft publishes. Also: the coding post's slug says "claude-opus" but compares Fable 5 |
-| "UK AI regulation 2026" | uk-ai-policy-landscape-enterprise-2026, uk-ai-regulation-ico-employment-2026 | **Differentiate** — keep the landscape post broad; tilt the ICO post's title/meta harder toward employment/HR obligations |
-| "Microsoft Foundry" | microsoft-foundry-deep-dive, copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | **Differentiate** — distinct intents, but normalise the product name (one says "Microsoft Foundry", the other "Azure AI Foundry") |
+### Orphan Pages
 
-The GLM cluster (pillar + spokes), UK-policy cluster, and the three adoption-stats posts are intentional hub-and-spoke structures with distinct intents — not cannibalization.
+None. All 26 posts have ≥2 inbound internal links from other posts and are listed on `blog/index.html`. Two posts are worth reinforcing (not orphaned, just thin):
 
-## Orphan Pages
+| Page | Inbound Links | Recommended Link Sources |
+|------|---------------|--------------------------|
+| building-the-ed-o-meter-llm-eval-harness | 2 | multi-agent-orchestration-frameworks-compared, github-copilot-vs-claude-code-vs-cursor |
+| glm-5-2-fable-5-gpt-5-5-eval-results | 2 | gpt-5-5-autonomous-task-completion, ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit |
 
-| Page | Inbound Links | Notes / Recommended Link Sources |
-|------|---------------|----------------------------------|
-| glm-5-2-fable-5-codex-real-task-results | 0 | Intentional (noindexed draft). On publish: link from the pillar (open-weight-frontier-models…), glm-5-2-vs-claude-opus…, glm-5-2-china…, and list on /blog/ + /news/ hubs |
+Dead-end pages: none — every post has ≥2 outbound internal links. No broken internal link targets found anywhere in the corpus.
 
-No dead-end pages; no broken internal links; every published post is listed on at least one hub page.
+### Stale Content
 
-## Stale Content
+All 26 posts fall under 90 days since `dateModified` (today: 2026-07-19), so by the stated thresholds every post is **Low priority** on urgency. However:
 
-None. All 26 published posts have dateModified of 1–2 July 2026. (The site's real freshness risk is *content* staleness flagged above — the ICO consultation copy and the Foundry model catalogue — not date staleness.)
+- **~22 of 26 posts share the identical `dateModified: 2026-07-02`** — this pattern is consistent with a site-wide template/metadata touch rather than 22 individual content reviews on that day. Recommend confirming whether these posts actually had their content revised on that date, since the freshness signal may be overstating how recently the *content itself* (not just the timestamp) was reviewed.
+- Refresh effort ratings below reflect topic decay speed (how fast the subject matter goes stale), not current urgency:
 
-## Site-Wide Patterns (fix once, apply everywhere)
+| Post | Last Updated | Days Stale | Priority | Refresh Effort |
+|------|-------------|------------|----------|----------------|
+| copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock | 2026-07-02 | 17 | Low | Heavy |
+| github-copilot-vs-claude-code-vs-cursor | 2026-07-02 | 17 | Low | Heavy |
+| gpt-5-5-autonomous-task-completion | 2026-07-02 | 17 | Low | Heavy |
+| microsoft-foundry-deep-dive | 2026-07-02 | 17 | Low | Heavy |
+| top-10-uk-ai-companies | 2026-07-02 | 17 | Low | Heavy |
+| uk-ai-policy-landscape-enterprise-2026 | 2026-07-02 | 17 | Low | Heavy |
+| uk-ai-regulation-ico-employment-2026 | 2026-07-02 | 17 | Low | Heavy |
+| glm-5-2-fable-5-gpt-5-5-eval-results | 2026-07-05 | 14 | Low | Heavy |
+| is-claude-fable-5-worth-it-for-enterprise-coding | 2026-07-19 | 0 | Low | Heavy |
+| ai-agent-governance-gap | 2026-07-02 | 17 | Low | Moderate |
+| ai-agent-interoperability-a2a-protocol | 2026-07-02 | 17 | Low | Moderate |
+| ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit | 2026-07-02 | 17 | Low | Moderate |
+| enterprise-ai-adoption-reality-check-2026 | 2026-07-02 | 17 | Low | Moderate |
+| generative-ai-adoption-by-industry | 2026-07-02 | 17 | Low | Moderate |
+| global-ai-adoption-attitudes | 2026-07-02 | 17 | Low | Moderate |
+| microvm-sandbox-options-... | 2026-07-02 | 17 | Low | Moderate |
+| multi-agent-orchestration-frameworks-compared | 2026-07-02 | 17 | Low | Moderate |
+| uk-ai-growth-labs-regulatory-sandboxes | 2026-07-02 | 17 | Low | Moderate |
+| uk-government-ai-institutes | 2026-07-02 | 17 | Low | Moderate |
+| uk-sovereign-ai-programme | 2026-07-02 | 17 | Low | Moderate |
+| rag-vs-graphrag | 2026-07-01 | 18 | Low | Light |
+| claude-memory-dream-enterprise-agents | 2026-07-02 | 17 | Low | Light |
+| the-rise-of-ai-in-web-development | 2026-07-02 | 17 | Low | Light |
+| uk-ai-skills-gap-education-opportunity | 2026-07-02 | 17 | Low | Light |
+| building-the-ed-o-meter-llm-eval-harness | 2026-07-16 | 3 | Low | Light |
+| claude-mythos-anthropic-opportunity-for-companies | 2026-07-19 | 0 | Low | Light |
 
-1. **No TL;DR / Key Takeaways boxes anywhere.** Every reviewer docked AI-citation points for this. The highest-leverage single addition across the site.
-2. **Generic og:image.** All 27 posts share `/images/hero.jpg` — no post-specific social cards, and zero images in any article body.
-3. **Author attribution inconsistent.** Some posts have an Ed Yau byline with Organization schema author, some Person schema, several posts (claude-mythos, reality-check, generative-ai-adoption, microvm, global-attitudes) have no visible byline at all. Standardise: visible byline + Person author (jobTitle "Applied AI Architect") on every post.
-4. **Title tags too long.** 12 posts exceed 70 chars with the brand suffix (worst: multi-agent 113, ICO 105, microvm 101, ai-dev-workflow 97). Several already have correctly-sized twitter:title variants to promote.
-5. **Unsourced statistics.** The most common E-E-A-T deduction — load-bearing numbers linked to homepages or nothing (worst offenders: skills-gap, top-10-uk-ai-companies, global-attitudes, claude-memory-dream, uk-government-institutes).
-6. **AI-writing cadence.** Flagged in claude-mythos, microsoft-foundry, claude-memory-dream, global-attitudes, skills-gap: "significant" repetition, "not X, but Y" reflex, symmetric section scaffolding, motivational triplets. The GLM cluster and microvm posts read clean — use them as the house-style reference.
+### Recommended next steps
 
-## Suggested Next Steps
+1. Fix the two site-wide template issues first (highest leverage, one change benefits all 26 posts): add `publisher.logo` to the JSON-LD template, and add a real "Key Takeaways" bulleted box under the H1 across the template.
+2. Run `/blog analyze uk-government-ai-institutes` and `/blog analyze microvm-sandbox-options-firecracker-opensandbox-smolvm-nono` first — the two lowest-scoring posts.
+3. Run `/blog geo` on the eval/benchmark cluster (glm-5-2-fable-5-gpt-5-5-eval-results, is-claude-fable-5-worth-it-for-enterprise-coding, building-the-ed-o-meter-llm-eval-harness) to tighten AI-citation formatting, since these are high-value, fast-decaying topics.
+4. Add the two recommended inbound links to strengthen the thinly-connected eval posts.
+5. Confirm whether the shared 2026-07-02 `dateModified` reflects real content revisions or just a template touch — if the latter, treat those 22 posts' actual freshness as their `datePublished`, not `dateModified`.
 
-- `/blog analyze blog/claude-mythos-anthropic-opportunity-for-companies/index.html` — lowest published score
-- Batch-fix the FAQ schema mismatch (8 posts, one template pattern)
-- `/blog geo` on the pillar posts (open-weight-frontier…, uk-ai-policy-landscape…) once FAQs are visible
+> **Note:** a prior, more forensic audit of this same corpus exists in git history (see `git log -- blog-audit-report.md`), which cross-referenced git-tracked file state, per-line prose style issues, and specific unsourced-statistic claims. That audit flagged items this pass didn't check (uncited statistics, `og:image` pointing at a generic hero, nav inconsistency across posts, prose-style tells like repeated "X is not Y. It is Z." constructions). Worth revisiting those P0/P1 items directly rather than assuming this pass supersedes them — this run used a different, more generic scoring rubric and did not re-verify sourcing or prose style.

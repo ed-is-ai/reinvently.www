@@ -141,6 +141,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://reinvently.co.uk/tools/ed-o-meter/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -159,26 +165,21 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reinvently.co.uk/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/</loc>
+    <loc>https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reinvently.co.uk/blog/glm-5-2-china-data-residency-api-vs-open-weights/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/open-weight-frontier-models-enterprise-glm-5-2/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
   <url>
     <loc>https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/</loc>
     <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</loc>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

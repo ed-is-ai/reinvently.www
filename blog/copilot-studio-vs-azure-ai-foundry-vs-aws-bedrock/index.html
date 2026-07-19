@@ -13,13 +13,13 @@
   <meta property="og:description" content="Copilot Studio, Microsoft Foundry and AWS Bedrock compared: no-code speed, developer depth or 100+ models via one API. Which one fits your organisation."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-cloud-platforms-compared.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock"/>
   <meta name="twitter:description" content="Copilot Studio, Microsoft Foundry and AWS Bedrock compared: no-code speed, developer depth or 100+ models via one API. Which one fits your organisation."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-cloud-platforms-compared.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,10 +28,10 @@
     "description": "Copilot Studio, Microsoft Foundry and AWS Bedrock compared: no-code speed, developer depth or 100+ models via one API. Which one fits your organisation.",
     "datePublished": "2026-04-05",
     "dateModified": "2026-07-02",
-    "image": "https://reinvently.co.uk/images/hero.jpg",
-    "author": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "sameAs": ["https://uk.linkedin.com/in/edmond-yau"]},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "url": "https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/",
+    "image": "https://reinvently.co.uk/images/hero-cloud-platforms-compared.jpg",
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
+    "url": "https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/"},
     "inLanguage": "en-GB",
     "keywords": ["Copilot Studio", "Microsoft Foundry", "AWS Bedrock", "enterprise AI platform", "Microsoft", "Amazon"]
   }
@@ -95,9 +95,20 @@
 
     <img class="article-hero-image" src="../../images/hero-cloud-platforms-compared.jpg" alt="Abstract illustration of three different wireframe architectural tower forms standing side by side"/>
 
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Copilot Studio starts at $200/month per tenant plus per-message consumption costs, letting Microsoft 365 teams deploy conversational AI agents in days rather than months.</li>
+        <li>Microsoft Foundry gives developers a broad model catalogue — including Azure OpenAI's GPT-5.5 and o3, Anthropic's Claude, and Meta Llama — billed on consumption with no flat licence fee.</li>
+        <li>AWS Bedrock provides access to more than 100 foundation models, including Claude, Llama and Titan, through a single API with per-token pricing that varies by model.</li>
+        <li>The three platforms rarely compete head-on: Copilot Studio targets business users, Foundry targets Azure developers, and Bedrock targets AWS-native engineering teams.</li>
+        <li>Many large enterprises run all three at once — Copilot Studio for business automation, Foundry or Bedrock for custom development — choosing between the latter two based on existing cloud commercial relationships.</li>
+      </ul>
+    </div>
+
     <p>Copilot Studio is built for business users: no code required, deployed in days, and deeply wired into Microsoft 365. Microsoft Foundry is built for developers: full model control, RAG pipelines, and production-grade evaluation tooling. AWS Bedrock is built for infrastructure teams: a single API across more than 100 foundation models from multiple providers, running alongside existing AWS services.</p>
 
-    <p>These are not direct competitors. They sit at different layers of the AI stack, serve different buyers, and solve different problems. For most enterprise organisations, the question is not which one wins — it is which layer you need to own, and which you can leave to a managed service. <strong>Microsoft Copilot Studio</strong>, <strong>Microsoft Foundry</strong>, and <strong>AWS Bedrock</strong> each answer that question differently.</p>
+    <p>These are not direct competitors. They sit at different layers of the AI stack, serve different buyers, and solve different problems. For most enterprise organisations, the real question isn't which platform wins — it's which layer you need to own, and which you can leave to a managed service. <strong>Microsoft Copilot Studio</strong>, <strong>Microsoft Foundry</strong>, and <strong>AWS Bedrock</strong> each answer that question differently.</p>
 
     <hr/>
 
@@ -105,7 +116,7 @@
 
     <p><a href="https://www.microsoft.com/en-us/microsoft-365-copilot/pricing/copilot-studio" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Copilot Studio</a> is Microsoft's low-code platform for building conversational AI agents. It is designed to be accessible to business analysts, IT generalists and power users who want to deploy AI without writing substantial code.</p>
 
-    <p>Out of the box, it connects deeply to Microsoft 365, Teams, SharePoint and Dynamics — making it the fastest route to AI-powered workflows for organisations already in the Microsoft ecosystem. Building a customer service bot, an internal HR assistant or an automated document Q&A system can be done in hours rather than weeks.</p>
+    <p>Out of the box, it connects deeply to Microsoft 365, Teams, SharePoint and Dynamics. That makes it the fastest route to AI-powered workflows for organisations already in the Microsoft ecosystem. Building a customer service bot, an internal HR assistant or an automated document Q&A system can be done in hours rather than weeks.</p>
 
     <h3>Strengths</h3>
     <ul>
@@ -133,7 +144,7 @@
 
     <p><a href="https://azure.microsoft.com/en-us/products/ai-foundry" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Microsoft Foundry</a> (formerly Azure AI Foundry) is Microsoft's platform for professional developers building production-grade AI applications. Where Copilot Studio handles the "last mile" of deployment, Foundry handles the engineering: model selection, fine-tuning, evaluation, RAG pipelines, and integration with enterprise data.</p>
 
-    <p>It gives development teams access to a broad model catalogue — including Azure OpenAI (GPT-4o, o3), Meta Llama, Mistral and others — through a unified API. Crucially, it pairs model access with tooling for responsible AI: evaluation frameworks, content safety filters, prompt flow orchestration and monitoring.</p>
+    <p>It gives development teams access to a broad model catalogue through a unified API — including Azure OpenAI (GPT-5.5, o3), the Claude family from Anthropic, Meta Llama, Mistral and others. It also pairs model access with tooling for responsible AI: evaluation frameworks, content safety filters, prompt flow orchestration and monitoring.</p>
 
     <p>Foundry and Copilot Studio are designed to be complementary. A common enterprise pattern is to use Foundry to build and evaluate the underlying AI logic, then surface it through Copilot Studio for business users.</p>
 
@@ -162,9 +173,9 @@
 
     <h2>AWS Bedrock — Multi-Model Flexibility at Scale</h2>
 
-    <p><a href="https://aws.amazon.com/bedrock/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AWS Bedrock</a> is Amazon's managed foundation model service. Rather than offering a single AI experience, it provides a single API through which developers can access a wide range of models — including Anthropic's Claude, Meta's Llama, Amazon's Titan, Cohere, Mistral and others — and plug them directly into AWS infrastructure.</p>
+    <p><a href="https://aws.amazon.com/bedrock/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AWS Bedrock</a> is Amazon's managed foundation model service. Rather than offering a single AI experience, it provides a single API through which developers can access a wide range of models. That range includes Anthropic's Claude, Meta's Llama, Amazon's Titan, Cohere, Mistral and others, all pluggable directly into AWS infrastructure.</p>
 
-    <p>Bedrock's strength is flexibility and scale. It does not prescribe a development approach or a preferred model. It gives teams a clean, consistent interface for experimenting with different models, switching between them, and running large-scale inference workloads alongside existing AWS services like S3, Lambda, and RDS.</p>
+    <p>Bedrock's strength is flexibility and scale. It does not prescribe a development approach or a preferred model. It gives teams a clean, consistent interface for experimenting with different models and switching between them. That same interface handles large-scale inference workloads alongside existing AWS services like S3, Lambda, and RDS.</p>
 
     <p>For organisations whose applications already live on AWS, Bedrock removes the friction of integrating AI into existing architectures. It also offers Agents for Bedrock — a managed agent framework — and Knowledge Bases for RAG, making it increasingly competitive with Azure Foundry on capability.</p>
 
@@ -260,7 +271,7 @@
 
     <p><strong>If your infrastructure is on AWS:</strong> Bedrock is the natural choice. Its multi-model flexibility and deep AWS integration make it the most pragmatic path for teams already invested in the AWS ecosystem.</p>
 
-    <p><strong>If you are undecided:</strong> The honest answer is that many large organisations use all three — Copilot Studio for business automation, Foundry or Bedrock for custom application development, and whichever cloud they already have a commercial relationship with for infrastructure.</p>
+    <p><strong>If you are undecided:</strong> Many large organisations simply use all three. Copilot Studio handles business automation, Foundry or Bedrock covers custom application development, and the choice between those two usually follows whichever cloud they already have a commercial relationship with.</p>
 
     <p>AI platform choice is increasingly less about capability differences and more about ecosystem fit, team skills, and commercial relationships. Start where your team already is.</p>
 
