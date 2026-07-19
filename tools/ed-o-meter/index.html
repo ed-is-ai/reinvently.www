@@ -42,21 +42,26 @@
     --good:#199e70; --good-tint:rgba(25,158,112,.14);
     --amber:#c98500; --amber-tint:rgba(201,133,0,.14);
     --danger:#d0524a; --danger-tint:rgba(208,82,74,.14);
+    --telemetry:#5ed6ff; --telemetry-tint:rgba(94,214,255,.12);
+    --podium:#f1c35a; --podium-tint:rgba(241,195,90,.12);
+    --silver:#bac6d1; --bronze:#cc916a;
     --hairline:#2a2a2a;
     --font-data:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
   }
   .container{max-width:1180px;}
   .article-body{max-width:none;}
+  .eom-header{position:relative;padding-top:34px;}
+  .eom-header::before{content:"";display:block;width:96px;height:3px;margin-bottom:20px;border-radius:999px;background:linear-gradient(90deg,var(--telemetry),var(--podium));box-shadow:0 0 18px var(--telemetry-tint);}
   .eom h2.section{font-family:var(--font-head);font-size:26px;font-weight:400;color:var(--text);margin:44px 0 6px;}
   .eom .section-note{color:var(--text-muted);font-size:14.5px;margin-bottom:16px;max-width:74ch;}
 
   /* ---------- telemetry chart ---------- */
-  .eom .chart-card{border:1px solid var(--hairline);border-radius:10px;background:var(--bg2);padding:clamp(14px,2.5vw,24px);}
+  .eom .chart-card{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top right,var(--telemetry-tint),transparent 34%),var(--bg2);padding:clamp(14px,2.5vw,24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);}
   .eom .modes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
   .eom .mode-btn{font-family:var(--font-nav);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;background:transparent;
     border:1px solid var(--hairline);border-radius:999px;padding:8px 16px;cursor:pointer;color:var(--text-muted);transition:border-color .15s,color .15s,background .15s;}
-  .eom .mode-btn:hover{border-color:#444;color:var(--text-dim);}
-  .eom .mode-btn[aria-pressed="true"]{background:#fff;border-color:#fff;color:#000;}
+  .eom .mode-btn:hover{border-color:var(--telemetry);color:var(--text);}
+  .eom .mode-btn[aria-pressed="true"]{background:var(--telemetry);border-color:var(--telemetry);color:#061016;box-shadow:0 0 18px var(--telemetry-tint);}
   .eom .chart-scroll{overflow-x:auto;}
   .eom svg#telemetry{display:block;width:100%;height:auto;min-width:560px;}
   .eom .row-name{font-family:var(--font-data);font-size:12.5px;fill:var(--text-dim);}
@@ -69,17 +74,20 @@
   .eom .caveat strong{font-weight:650;color:var(--text);}
 
   /* ---------- board ---------- */
-  .eom .table-scroll{overflow-x:auto;border:1px solid var(--hairline);border-radius:10px;}
+  .eom .table-scroll{overflow-x:auto;border:1px solid #29475a;border-radius:10px;}
   .eom table{width:100%;border-collapse:collapse;min-width:880px;background:var(--bg2);}
-  .eom thead th{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-nav);color:var(--text-muted);text-align:left;padding:0;border-bottom:1px solid var(--hairline);background:#141414;}
+  .eom thead th{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-nav);color:var(--text-muted);text-align:left;padding:0;border-bottom:1px solid #29475a;background:linear-gradient(90deg,#151c24,#111417);}
   .eom .th-sort{all:unset;display:flex;align-items:center;gap:6px;cursor:pointer;padding:11px 12px;width:100%;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;}
   .eom .th-sort .arrow{opacity:.3;font-size:9px;}
   .eom th[aria-sort] .th-sort{color:var(--text);}
   .eom th[aria-sort] .arrow{opacity:1;}
   .eom tbody td{padding:12px;border-bottom:1px solid var(--hairline);font-size:15px;vertical-align:middle;white-space:nowrap;color:var(--text-dim);}
   .eom tbody tr:last-child td{border-bottom:none;}
-  .eom tbody tr:hover{background:#1c1c1c;}
+  .eom tbody tr:hover{background:var(--telemetry-tint);}
   .eom td.rank{font-weight:700;font-size:16px;width:44px;text-align:center;color:var(--text-muted);}
+  .eom tbody tr:nth-child(1) td.rank{color:var(--podium);background:var(--podium-tint);}
+  .eom tbody tr:nth-child(2) td.rank{color:var(--silver);}
+  .eom tbody tr:nth-child(3) td.rank{color:var(--bronze);}
   .eom td.model{font-weight:600;color:var(--text);}
   .eom td.model .swatch{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;}
   .eom td.num{font-family:var(--font-data);font-size:13px;}
@@ -96,7 +104,8 @@
   .eom .corner-legend span{display:inline-flex;align-items:center;gap:6px;}
   .eom .corner-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
   .eom .lap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
-  .eom .lap-card{border:1px solid var(--hairline);border-radius:10px;padding:14px 10px 10px;text-align:center;background:var(--bg2);}
+  .eom .lap-card{border:1px solid var(--hairline);border-radius:10px;padding:14px 10px 10px;text-align:center;background:linear-gradient(145deg,var(--telemetry-tint),transparent 50%),var(--bg2);transition:border-color .15s,transform .15s;}
+  .eom .lap-card:hover{border-color:var(--telemetry);transform:translateY(-2px);}
   .eom .lap-card svg{width:100%;max-width:140px;height:auto;}
   .eom .lap-card .lname{font-family:var(--font-data);font-size:13px;font-weight:600;margin-top:6px;color:var(--text-dim);}
   .eom .lap-card path{cursor:pointer;transition:opacity .12s;}
@@ -112,7 +121,7 @@
   #lapTip .t-field{color:var(--text-muted);font-size:12.5px;}
 
   /* ---------- category grid ---------- */
-  .eom .cat-scroll{overflow-x:auto;border:1px solid var(--hairline);border-radius:10px;}
+  .eom .cat-scroll{overflow-x:auto;border:1px solid #29475a;border-radius:10px;}
   .eom table.cat{min-width:640px;}
   .eom table.cat td.num{text-align:center;}
   .eom table.cat td.hot{background:var(--danger-tint);color:var(--danger);font-weight:600;}
@@ -120,7 +129,7 @@
 
   /* ---------- pit lane ---------- */
   .eom .pit{display:grid;gap:14px;margin-top:6px;}
-  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:16px 18px;font-size:15.5px;background:var(--bg2);}
+  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:16px 18px;font-size:15.5px;background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
   .eom .pit-note h3{font-family:var(--font-head);font-size:18px;font-weight:400;color:var(--text);margin-bottom:6px;}
   .eom .pit-note p{color:var(--text-dim);font-size:15px;line-height:1.6;}
   .eom .pit-note.flag{border-color:var(--danger);background:var(--danger-tint);}
@@ -130,9 +139,9 @@
   .eom .method li{margin:0 0 8px 0;}
   .eom .method-intro{color:var(--text-dim);margin-bottom:20px;max-width:74ch;}
 
-  .runstamp{font-family:var(--font-data);font-size:12px;letter-spacing:.04em;color:var(--text-muted);border:1px solid var(--hairline);border-radius:4px;padding:4px 10px;display:inline-block;margin:0 0 8px;}
+  .runstamp{font-family:var(--font-data);font-size:12px;letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:5px 11px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
 
-  .eom .benchmark-request{margin:56px 0 0;padding:32px;background:var(--bg2);border:1px solid var(--hairline);border-radius:10px;}
+  .eom .benchmark-request{margin:56px 0 0;padding:32px;background:radial-gradient(circle at top right,var(--podium-tint),transparent 40%),var(--bg2);border:1px solid #594b2e;border-radius:10px;}
   .eom .benchmark-request h2.section{margin:0 0 6px;}
   .eom .benchmark-request-copy{color:var(--text-dim);font-size:15px;line-height:1.65;max-width:74ch;margin:0 0 12px;}
   .eom .benchmark-request-frame{display:block;width:100%;height:620px;border:0;background:var(--bg2);}
@@ -158,7 +167,7 @@
   </div>
 </nav>
 
-<header class="article-header">
+<header class="article-header eom-header">
   <div class="post-meta">14 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Same car, same track. Ten frontier models drive the identical 28-task lap — one harness, verbatim prompts, deterministic grading — and the times go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
