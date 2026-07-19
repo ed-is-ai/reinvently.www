@@ -1,7 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Reinvently</title>
+  <title>Reinvently — AI News and Technical Guides</title>
   <link href="https://reinvently.co.uk/"/>
-  <updated>2026-04-19T00:00:00Z</updated>
+  <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
+  <updated>2026-07-19T00:00:00Z</updated>
   <id>https://reinvently.co.uk/</id>
+  <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
+  <entry>
+    <title>LLM Benchmark Design: Building the Ed-o-meter</title>
+    <link href="https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"/>
+    <id>https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</id>
+    <published>2026-07-16T00:00:00Z</published>
+    <updated>2026-07-16T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>How I built Featherbench, a single-file LLM eval harness running 28 tasks: one variable held constant, refusals counted as failures, and judge bias measured.</summary>
+  </entry>
+  <entry>
+    <title>GLM-5.2 vs Fable 5 vs GPT-5.5: Our 28-Task Eval Results</title>
+    <link href="https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/"/>
+    <id>https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/</id>
+    <published>2026-07-05T00:00:00Z</published>
+    <updated>2026-07-05T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>GPT-5.5 passed 28 of 28 tasks, GLM-5.2 passed 26, and Claude Fable 5 refused to do 5 of them. Full results, costs, and a refusal deep dive.</summary>
+  </entry>
+  <entry>
+    <title>The UK AI Policy Landscape: What Enterprise Leaders Need to Track in 2026</title>
+    <link href="https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/"/>
+    <id>https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/</id>
+    <published>2026-07-02T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>No UK AI Act exists. Instead: sector regulators, a £500m sovereign compute programme, AI Growth Labs and a Hardware Plan. The 2026 map for enterprise leaders.</summary>
+  </entry>
+  <entry>
+    <title>AI Growth Labs: What the UK&#x27;s Regulatory Sandboxes Mean for Your Sector</title>
+    <link href="https://reinvently.co.uk/blog/uk-ai-growth-labs-regulatory-sandboxes/"/>
+    <id>https://reinvently.co.uk/blog/uk-ai-growth-labs-regulatory-sandboxes/</id>
+    <published>2026-07-02T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>The UK&#x27;s AI Growth Labs open to legal services this summer, with the ICO and three legal regulators involved. What regulatory sandboxes mean for your sector.</summary>
+  </entry>
+  <entry>
+    <title>Is Claude Fable 5 Worth It for Enterprise Coding?</title>
+    <link href="https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/"/>
+    <id>https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/</id>
+    <published>2026-07-02T00:00:00Z</published>
+    <updated>2026-07-19T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok, double Opus 4.8. Whether the premium is worth it, and when GLM-5.2 is enough.</summary>
+  </entry>
+  <entry>
+    <title>The Agent Governance Gap: $202m Budgets, 26 Percent Cost Visibility</title>
+    <link href="https://reinvently.co.uk/blog/ai-agent-governance-gap/"/>
+    <id>https://reinvently.co.uk/blog/ai-agent-governance-gap/</id>
+    <published>2026-07-02T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>KPMG&#x27;s Q2 2026 pulse: enterprises plan $202m average AI spend but only 26 percent see costs in real time. Why the agent governance gap decides who gets ROI.</summary>
+  </entry>
+  <entry>
+    <title>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</title>
+    <link href="https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"/>
+    <id>https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/</id>
+    <published>2026-07-01T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes.</summary>
+  </entry>
+  <entry>
+    <title>Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro</title>
+    <link href="https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"/>
+    <id>https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/</id>
+    <published>2026-06-06T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>ruflo, Aperant, Sandcastle, Mission Control and Maestro compared. Why 58,000 GitHub stars measure attention, not reliability, and which tool fits which job.</summary>
+  </entry>
+  <entry>
+    <title>GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</title>
+    <link href="https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/"/>
+    <id>https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/</id>
+    <published>2026-05-30T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>GSD, BMAD, OpenSpec and GitHub Spec Kit compared: choosing a spec-driven AI development framework, from the 90,000-star Spec Kit to BMAD&#x27;s $2,000 monthly cost.</summary>
+  </entry>
+  <entry>
+    <title>GitHub Copilot vs Claude Code vs Cursor</title>
+    <link href="https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/"/>
+    <id>https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/</id>
+    <published>2026-05-27T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>GitHub Copilot, Claude Code and Cursor compared on capability, control and cost, with Claude Code at 46 percent most-loved in a survey of 906 developers.</summary>
+  </entry>
+  <entry>
+    <title>GPT-5.5 and the Age of Autonomous Task Completion</title>
+    <link href="https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/"/>
+    <id>https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/</id>
+    <published>2026-05-21T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>GPT-5.5, tested with nearly 200 partners before its 2026 release, completes complex tasks autonomously. The governance questions to answer before deploying it.</summary>
+  </entry>
+  <entry>
+    <title>Claude Memory &amp; Dream: What They Mean for Enterprise AI Adoption</title>
+    <link href="https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"/>
+    <id>https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/</id>
+    <published>2026-05-21T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Claude&#x27;s Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI.</summary>
+  </entry>
+  <entry>
+    <title>UK AI Regulation Tightens: What the ICO Guidance and Parliament&#x27;s Inquiry Mean for Employers</title>
+    <link href="https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/"/>
+    <id>https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/</id>
+    <published>2026-05-15T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Three 2026 developments: an ICO consultation, a Commons inquiry and a DRCF agentic AI paper tighten UK rules on AI at work. What employers should audit now.</summary>
+  </entry>
+  <entry>
+    <title>The Enterprise AI Reality Check: Why 79% of Organisations Aren&#x27;t Seeing ROI</title>
+    <link href="https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/"/>
+    <id>https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/</id>
+    <published>2026-05-08T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>79 percent of organisations struggle with AI adoption and only 29 percent see ROI. What WRITER&#x27;s survey and Stanford&#x27;s playbook say the leaders do differently.</summary>
+  </entry>
+  <entry>
+    <title>UK Sovereign AI: What the Government&#x27;s £500m Bet Means for Your Organisation</title>
+    <link href="https://reinvently.co.uk/blog/uk-sovereign-ai-programme/"/>
+    <id>https://reinvently.co.uk/blog/uk-sovereign-ai-programme/</id>
+    <published>2026-04-29T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>The UK&#x27;s £500 million Sovereign AI programme, explained: why five companies controlling 70 percent of global AI compute pushed Britain to act on infrastructure.</summary>
+  </entry>
+  <entry>
+    <title>The A2A Protocol: AI Agent Interoperability for Enterprise</title>
+    <link href="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
+    <id>https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/</id>
+    <published>2026-04-22T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement.</summary>
+  </entry>
+  <entry>
+    <title>Global AI Adoption: Attitudes and Intensity by Country</title>
+    <link href="https://reinvently.co.uk/blog/global-ai-adoption-attitudes/"/>
+    <id>https://reinvently.co.uk/blog/global-ai-adoption-attitudes/</id>
+    <published>2026-04-20T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Global AI adoption compared: venture funding passed $100 billion in 2024 while the EU leads on regulation. How attitudes and intensity differ by country.</summary>
+  </entry>
+  <entry>
+    <title>Claude Mythos: Anthropic&#x27;s Most Powerful Model Yet</title>
+    <link href="https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/"/>
+    <id>https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/</id>
+    <published>2026-04-19T00:00:00Z</published>
+    <updated>2026-07-19T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Anthropic&#x27;s Mythos model found a 27-year-old OpenBSD bug. What its security capabilities and Project Glasswing mean for companies planning AI adoption.</summary>
+  </entry>
+  <entry>
+    <title>The Top 10 UK Companies Leading on AI</title>
+    <link href="https://reinvently.co.uk/blog/top-10-uk-ai-companies/"/>
+    <id>https://reinvently.co.uk/blog/top-10-uk-ai-companies/</id>
+    <published>2026-04-13T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>The 10 UK companies leading on AI in 2026, from DeepMind to Wayve and its $1.05 billion raise, and what their progress signals for the UK technology ecosystem.</summary>
+  </entry>
+  <entry>
+    <title>RAG vs GraphRAG: A Practical Comparison</title>
+    <link href="https://reinvently.co.uk/blog/rag-vs-graphrag/"/>
+    <id>https://reinvently.co.uk/blog/rag-vs-graphrag/</id>
+    <published>2026-04-12T00:00:00Z</published>
+    <updated>2026-07-01T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>RAG vs GraphRAG: how Microsoft&#x27;s open-source knowledge-graph approach, released in 2024, differs from standard retrieval and when each fits your use case.</summary>
+  </entry>
+  <entry>
+    <title>Microsoft Copilot Studio vs Azure AI Foundry vs AWS Bedrock</title>
+    <link href="https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/"/>
+    <id>https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/</id>
+    <published>2026-04-05T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Copilot Studio, Microsoft Foundry and AWS Bedrock compared: no-code speed, developer depth or 100+ models via one API. Which one fits your organisation.</summary>
+  </entry>
+  <entry>
+    <title>Closing the UK&#x27;s AI Skills Gap</title>
+    <link href="https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/"/>
+    <id>https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/</id>
+    <published>2026-03-14T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>73 percent of UK adults have had no AI training at all. Where the shortage bites hardest, what the £400 billion figure really measures, and the funded routes to close it.</summary>
+  </entry>
+  <entry>
+    <title>Microsoft Foundry: A Deep Dive</title>
+    <link href="https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"/>
+    <id>https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/</id>
+    <published>2026-02-18T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice.</summary>
+  </entry>
+  <entry>
+    <title>The UK&#x27;s Government AI Institutes</title>
+    <link href="https://reinvently.co.uk/blog/uk-government-ai-institutes/"/>
+    <id>https://reinvently.co.uk/blog/uk-government-ai-institutes/</id>
+    <published>2026-02-10T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>A guide to the UK&#x27;s public AI institutes, from the Alan Turing Institute to the world&#x27;s first national AI safety body: what each does and why it matters.</summary>
+  </entry>
+  <entry>
+    <title>Generative AI Adoption by Industry: Use Cases, Data and What Comes Next</title>
+    <link href="https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/"/>
+    <id>https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/</id>
+    <published>2026-01-22T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Generative AI adoption by industry: 71 percent of organisations now use it regularly, returning $3.70 per $1 invested. The use cases and data, sector by sector.</summary>
+  </entry>
+  <entry>
+    <title>The Rise of AI in Web Development</title>
+    <link href="https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/"/>
+    <id>https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/</id>
+    <published>2025-11-12T00:00:00Z</published>
+    <updated>2026-07-02T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>84 percent of developers now use or plan to use AI tools. Where the gains in web development are real, where they are overstated, and what to do about it.</summary>
+  </entry>
 </feed>

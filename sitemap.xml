@@ -2,191 +2,132 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://reinvently.co.uk/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/contact/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://reinvently.co.uk/about/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://reinvently.co.uk/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/</loc>
-    <lastmod>2026-05-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-sovereign-ai-programme/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/global-ai-adoption-attitudes/</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/top-10-uk-ai-companies/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/rag-vs-graphrag/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/</loc>
-    <lastmod>2026-03-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-government-ai-institutes/</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/</loc>
-    <lastmod>2026-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/</loc>
-    <lastmod>2025-11-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/tools/ai-cost-calculator/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/tools/ed-o-meter/</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/uk-ai-growth-labs-regulatory-sandboxes/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://reinvently.co.uk/blog/ai-agent-governance-gap/</loc>
     <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/</loc>
+    <loc>https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/</loc>
     <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
-  <url>
-    <loc>https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/</loc>
+    <loc>https://reinvently.co.uk/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/</loc>
     <lastmod>2026-07-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</loc>
     <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/</loc>
+    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/</loc>
     <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/global-ai-adoption-attitudes/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/</loc>
+    <lastmod>2026-07-19</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/rag-vs-graphrag/</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/top-10-uk-ai-companies/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-ai-growth-labs-regulatory-sandboxes/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-ai-regulation-ico-employment-2026/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-ai-skills-gap-education-opportunity/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-government-ai-institutes/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/blog/uk-sovereign-ai-programme/</loc>
+    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/contact/</loc>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/guides/</loc>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/news/</loc>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/tools/ai-cost-calculator/</loc>
+    <lastmod>2026-05-31</lastmod>
+  </url>
+  <url>
+    <loc>https://reinvently.co.uk/tools/ed-o-meter/</loc>
+    <lastmod>2026-07-14</lastmod>
   </url>
 </urlset>
