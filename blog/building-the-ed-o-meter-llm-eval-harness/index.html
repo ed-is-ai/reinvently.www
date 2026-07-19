@@ -115,7 +115,7 @@
 
     <p>The question that matters in production is more specific, because LLMs get expensive at scale. Once something runs millions of times a month, the pressure is to minimise tokens, spend and latency by running the <em>smallest</em> model that still clears your bar, where "good enough" is defined by your application rather than a public leaderboard. Solving that requires your bar to exist as something a machine can check, and quality, cost and latency to be measured on the same run so the trade-off is visible. We made that argument at length in <a href="/blog/is-claude-fable-5-worth-it-for-enterprise-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">our original GLM-5.2 vs GPT-5.5 comparison</a>; this post is about what happened when we acted on it.</p>
 
-    <p><strong>The short answer:</strong> Featherbench is the harness — a single Python file that runs 28 fixed tasks against any model and grades them. <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">The Ed-o-meter</a> is the leaderboard it produces. One variable changes between runs, refusals count as failures, every model judges every response blind, and the raw results are public. Three findings came out of it that no vendor chart would have shown, and the mistakes I made building it were more informative than the results.</p>
+    <p><strong>The short answer:</strong> Featherbench is the harness — a single Python file that runs 28 fixed tasks against any model and grades them. <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">The Ed-o-meter LLM Leaderboard</a> is what the harness produces. One variable changes between runs, refusals count as failures, every model judges every response blind, and the raw results are public. Three findings came out of it that no vendor chart would have shown, and the mistakes I made building it were more informative than the results.</p>
 
     <p>There is a second reason to run your own. Increasingly the public suites are a question the models have already seen: benchmark contamination is a documented problem, and labs under real competitive pressure have every incentive to optimise for the suites everyone reports. That is <a href="https://en.wikipedia.org/wiki/Goodhart%27s_law" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Goodhart's law</a> applied to evaluation: a benchmark everyone trains against stops measuring what it was built to measure. A private task set, written after the models shipped and embedding documents that exist nowhere else, is largely immune. Nobody benchmark-maxxed against my tenancy agreement, because until the run it didn't exist. And by the time a public number reaches you it has usually shed its conditions anyway: which harness, which settings, which caveats.</p>
 
@@ -205,13 +205,13 @@
 
     <p><strong>Running model code is a security decision.</strong> Coding tasks execute model-generated code against unit tests. The subprocess gets a stripped environment so an answer can't read API keys, and the README tells you to sandbox the whole harness. Any eval framework that runs model output and doesn't document this deserves suspicion.</p>
 
-    <p><strong>One trial is a first read.</strong> With 28 tasks and a single trial each, the Wilson intervals are wide and overlap. On <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the leaderboard</a> they're drawn as whiskers on the pass-rate chart rather than relegated to a footnote, so the presentation looks as uncertain as the data is. Multi-trial runs are the first item on the roadmap.</p>
+    <p><strong>One trial is a first read.</strong> With 28 tasks and a single trial each, the Wilson intervals are wide and overlap. On <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a> they're drawn as whiskers on the pass-rate chart rather than relegated to a footnote, so the presentation looks as uncertain as the data is. Multi-trial runs are the first item on the roadmap.</p>
 
     <h2>What the Measurement Produced</h2>
 
     <p>Whether the exercise was worth it comes down to whether it surfaced anything the vendor charts don't. Three results suggest it did.</p>
 
-    <p>The top rubric score went to a model most shortlists omit, scored blind by a competitor, with a median time-to-first-token of 26.4 seconds — several times longer than anything else on <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the board</a>. Best quality, near-lowest cost, unusable latency for interactive work: that profile only becomes visible when quality, cost and latency are measured on the same run, and no single-axis chart would show it.</p>
+    <p>The top rubric score went to a model most shortlists omit, scored blind by a competitor, with a median time-to-first-token of 26.4 seconds — several times longer than anything else on <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a>. Best quality, near-lowest cost, unusable latency for interactive work: that profile only becomes visible when quality, cost and latency are measured on the same run, and no single-axis chart would show it.</p>
 
     <p>The refusal accounting was similarly decisive. One model hard-refused five benign tasks, including a production bug fix, and whether those refusals count as failures or vanish from the denominator moves it from mid-table to last. The <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> is in the original write-up. Most leaderboards make that choice silently; making it explicitly, with the raw data published, changed both the result and the conversation about it.</p>
 
@@ -234,7 +234,7 @@
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
-        <li><a href="/tools/ed-o-meter/">The Ed-o-meter: The Featherbench Leaderboard</a></li>
+        <li><a href="/tools/ed-o-meter/">The Ed-o-meter: LLM Leaderboard</a></li>
         <li><a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/">Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder</a></li>
         <li><a href="/blog/is-claude-fable-5-worth-it-for-enterprise-coding/">Is Claude Fable 5 Worth It for Enterprise Coding?</a></li>
       </ul>
