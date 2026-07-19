@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="max-image-preview:large"/>
+  <title>AI Engineering &amp; Model Evaluation — Reinvently</title>
+  <meta name="description" content="Original LLM benchmarks, AI architecture comparisons and practical engineering guidance for teams selecting, evaluating and deploying AI systems."/>
+  <link rel="canonical" href="https://reinvently.co.uk/topics/engineering-evaluation/"/>
+  <meta property="og:title" content="AI Engineering &amp; Model Evaluation — Reinvently"/>
+  <meta property="og:description" content="Original benchmarks, architecture comparisons and practical guidance for teams building with AI."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://reinvently.co.uk/topics/engineering-evaluation/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-eval-results.jpg"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="AI Engineering &amp; Model Evaluation — Reinvently"/>
+  <meta name="twitter:description" content="Original benchmarks, architecture comparisons and practical guidance for teams building with AI."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-eval-results.jpg"/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "AI Engineering and Model Evaluation",
+    "description": "Original LLM benchmarks, AI architecture comparisons and practical engineering guidance.",
+    "url": "https://reinvently.co.uk/topics/engineering-evaluation/",
+    "inLanguage": "en-GB",
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "url": "https://reinvently.co.uk/tools/ed-o-meter/"},
+        {"@type": "ListItem", "position": 2, "url": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"},
+        {"@type": "ListItem", "position": 3, "url": "https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/"},
+        {"@type": "ListItem", "position": 4, "url": "https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"},
+        {"@type": "ListItem", "position": 5, "url": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/news/">News</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <p class="topic-eyebrow">Research topic</p>
+  <h1>AI Engineering &amp; Model Evaluation</h1>
+  <p>Original benchmarks, architecture decisions and practical engineering guidance for teams building with AI.</p>
+</header>
+
+<main class="container">
+  <div class="topic-intro">
+    <p>AI engineering decisions are difficult to make from vendor benchmarks alone. This collection focuses on evidence that can be inspected: identical tasks, explicit assumptions, reproducible methods and trade-offs that remain visible rather than being compressed into a single score.</p>
+  </div>
+
+  <section class="topic-feature" aria-labelledby="engineering-feature-title">
+    <div class="topic-feature-copy">
+      <p class="topic-eyebrow">Flagship research</p>
+      <h2 id="engineering-feature-title">The Ed-o-meter LLM Leaderboard</h2>
+      <p>Ten frontier models run through the same 28-task Featherbench evaluation. Compare pass rate, answer quality, security behaviour, latency and cost — with the limitations shown alongside the numbers.</p>
+      <a class="topic-feature-link" href="/tools/ed-o-meter/">Explore the leaderboard &rarr;</a>
+    </div>
+    <img class="topic-feature-image" src="../../images/hero-eval-results.jpg" alt="Abstract illustration of three wireframe forms representing models under evaluation"/>
+  </section>
+
+  <h2 class="topic-section-heading">Engineering research and guides</h2>
+  <div class="blog-grid">
+    <a class="post-card" href="/blog/building-the-ed-o-meter-llm-eval-harness/">
+      <img class="post-card-thumb" src="../../images/hero-eval-harness.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Model Evaluation</div><h2>Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</h2><p>The harness, tasks and evaluation decisions behind Featherbench — including the mistakes that proved most useful.</p><span class="read-more">Read more</span></div>
+    </a>
+    <a class="post-card" href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/">
+      <img class="post-card-thumb" src="../../images/hero-eval-results.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Model Evaluation</div><h2>GLM-5.2, Fable 5 and GPT-5.5 on the Same 28 Tasks</h2><p>What identical prompts reveal about reliability, refusals, quality and cost.</p><span class="read-more">Read more</span></div>
+    </a>
+    <a class="post-card" href="/blog/is-claude-fable-5-worth-it-for-enterprise-coding/">
+      <img class="post-card-thumb" src="../../images/hero-coding-comparison.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Model Selection</div><h2>Is Claude Fable 5 Worth It for Enterprise Coding?</h2><p>How to interpret its benchmark lead, price premium and refusal behaviour.</p><span class="read-more">Read more</span></div>
+    </a>
+    <a class="post-card" href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">
+      <img class="post-card-thumb" src="../../images/hero-microvm-sandbox.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Agent Security</div><h2>How to Sandbox AI Agent Code</h2><p>Firecracker, OpenSandbox, Docker, SmolVM and nono compared by isolation model.</p><span class="read-more">Read more</span></div>
+    </a>
+    <a class="post-card" href="/blog/multi-agent-orchestration-frameworks-compared/">
+      <img class="post-card-thumb" src="../../images/hero-multi-agent-orchestration.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Agent Engineering</div><h2>Multi-Agent Orchestration Frameworks Compared</h2><p>Five orchestration tools compared by use case, hosting, maturity and community evidence.</p><span class="read-more">Read more</span></div>
+    </a>
+    <a class="post-card" href="/blog/rag-vs-graphrag/">
+      <img class="post-card-thumb" src="../../images/hero-rag-vs-graphrag.jpg" alt=""/>
+      <div class="post-card-body"><div class="post-meta">Architecture</div><h2>RAG vs GraphRAG</h2><p>Which retrieval architecture fits your data, questions and operational constraints.</p><span class="read-more">Read more</span></div>
+    </a>
+  </div>
+
+  <div class="topic-crosslinks">
+    <a href="/topics/uk-ai-governance/"><strong>UK AI Governance</strong>Policy, regulation and practical controls for UK organisations.</a>
+    <a href="/topics/ai-adoption-value/"><strong>AI Adoption &amp; Value</strong>Evidence on ROI, readiness and moving useful systems into production.</a>
+  </div>
+</main>
+
+<footer class="footer"><p>&copy; 2026 Reinvently. All rights reserved.</p></footer>
+
+</body>
+</html>
