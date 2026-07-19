@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Reinvently — AI News and Technical Guides</title>
+  <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
   <updated>2026-07-19T00:00:00Z</updated>

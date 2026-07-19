@@ -15,7 +15,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE_URL = "https://reinvently.co.uk"
-FEED_TITLE = "Reinvently — AI News and Technical Guides"
+FEED_TITLE = "Reinvently — Independent AI Research & Analysis"
 FEED_DESCRIPTION = (
     "Independent analysis of enterprise AI adoption, UK AI policy, "
     "model evaluation, and AI engineering tools."
