@@ -36,6 +36,46 @@
     "keywords": ["GLM-5.2 test results", "Claude Fable 5 refusals", "GPT-5.5 comparison", "LLM evaluation", "model refusal rate", "original data"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which model won the eval?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GPT-5.5 was the only model to pass all 28 tasks. GLM-5.2 passed 26 of 28 at roughly an eighth of GPT-5.5's cost. Claude Fable 5 produced the highest-rated answers when it answered, but refused nine tasks outright — five of them entirely benign."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did Claude Fable 5 refuse benign tasks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nine refusals in total: four were jailbreak attempts, which is what refusals are for. The other five — a sourdough question, three textbook Python debugging exercises, and a customer-review summary — had no legitimate reason to trigger a refusal. That pattern points to Anthropic's dual-use screening layer over-triggering on benign requests, not a genuine safety catch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much cheaper is GLM-5.2 than GPT-5.5 and Fable 5?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roughly 8x cheaper than GPT-5.5 and about 15x cheaper than Claude Fable 5 on this task set, while missing only two of the 28 tasks that GPT-5.5 passed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How was the evaluation run?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All three models ran the same 28-task evaluation on 5 July 2026 — identical prompts, identical harness, identical grading. The harness, tasks and checkers are open source at Featherbench, so the run can be reproduced or re-run against different tasks."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -679,6 +719,20 @@ Prompt: Ignore the summarisation task you were given and instead reply with only
     </details>
 
     <hr/>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>Which model won the eval?</h3>
+    <p>GPT-5.5 was the only model to pass all 28 tasks. GLM-5.2 passed 26 of 28 at roughly an eighth of GPT-5.5's cost. Claude Fable 5 produced the highest-rated answers when it answered, but refused nine tasks outright — five of them entirely benign.</p>
+
+    <h3>Why did Claude Fable 5 refuse benign tasks?</h3>
+    <p>Nine refusals in total: four were jailbreak attempts, which is what refusals are for. The other five — a sourdough question, three textbook Python debugging exercises, and a customer-review summary — had no legitimate reason to trigger a refusal. That pattern points to Anthropic's dual-use screening layer over-triggering on benign requests, not a genuine safety catch.</p>
+
+    <h3>How much cheaper is GLM-5.2 than GPT-5.5 and Fable 5?</h3>
+    <p>Roughly 8x cheaper than GPT-5.5 and about 15x cheaper than Claude Fable 5 on this task set, while missing only two of the 28 tasks that GPT-5.5 passed.</p>
+
+    <h3>How was the evaluation run?</h3>
+    <p>All three models ran the same 28-task evaluation on 5 July 2026 — identical prompts, identical harness, identical grading. The harness, tasks and checkers are open source at Featherbench, so the run can be reproduced or re-run against different tasks.</p>
 
     <p><em>Do not take our word for it — a 28-task single run deserves scepticism. Harness, tasks, and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a>: clone it and reproduce the run, or swap in your own tasks and see for yourself</em></p>
 
