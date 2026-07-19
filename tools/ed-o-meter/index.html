@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Complete LLM Leaderboard: The Ed-o-meter — Reinvently</title>
+<meta name="description" content="Compare ten frontier models on the Featherbench leaderboard: GPT-5.5's 96% pass rate, GLM-5.2 at 8x lower cost, and Fable 5's refusals. See who tops the board."/>
+<link rel="stylesheet" href="../../blog/blog.css"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+<link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
+<meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
+<meta property="og:description" content="Compare ten frontier models on the Featherbench leaderboard: GPT-5.5's 96% pass rate, GLM-5.2 at 8x lower cost, and Fable 5's refusals. See who tops the board."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/"/>
+<meta property="og:image" content="https://reinvently.co.uk/images/hero-eval-results.jpg"/>
+<meta property="og:site_name" content="Reinvently"/>
+<meta property="og:locale" content="en_GB"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
+<meta name="twitter:description" content="Compare ten frontier models on the Featherbench leaderboard: GPT-5.5's 96% pass rate, GLM-5.2 at 8x lower cost, and Fable 5's refusals. See who tops the board."/>
+<meta name="twitter:image" content="https://reinvently.co.uk/images/hero-eval-results.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "The Complete LLM Leaderboard: The Ed-o-meter",
+  "description": "Ten frontier models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
+  "url": "https://reinvently.co.uk/tools/ed-o-meter/",
+  "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+  "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+  "datePublished": "2026-07-14",
+  "dateModified": "2026-07-14",
+  "inLanguage": "en-GB",
+  "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
+  "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "Claude Fable 5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
+}
+</script>
+<style>
+  /* Page-scoped tokens — dark theme to match the rest of reinvently.co.uk */
+  :root{
+    --good:#199e70; --good-tint:rgba(25,158,112,.14);
+    --amber:#c98500; --amber-tint:rgba(201,133,0,.14);
+    --danger:#d0524a; --danger-tint:rgba(208,82,74,.14);
+    --hairline:#2a2a2a;
+    --font-data:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  }
+  .container{max-width:1180px;}
+  .article-body{max-width:none;}
+  .eom h2.section{font-family:var(--font-head);font-size:26px;font-weight:400;color:var(--text);margin:44px 0 6px;}
+  .eom .section-note{color:var(--text-muted);font-size:14.5px;margin-bottom:16px;max-width:74ch;}
+
+  /* ---------- telemetry chart ---------- */
+  .eom .chart-card{border:1px solid var(--hairline);border-radius:10px;background:var(--bg2);padding:clamp(14px,2.5vw,24px);}
+  .eom .modes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+  .eom .mode-btn{font-family:var(--font-nav);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;background:transparent;
+    border:1px solid var(--hairline);border-radius:999px;padding:8px 16px;cursor:pointer;color:var(--text-muted);transition:border-color .15s,color .15s,background .15s;}
+  .eom .mode-btn:hover{border-color:#444;color:var(--text-dim);}
+  .eom .mode-btn[aria-pressed="true"]{background:#fff;border-color:#fff;color:#000;}
+  .eom .chart-scroll{overflow-x:auto;}
+  .eom svg#telemetry{display:block;width:100%;height:auto;min-width:560px;}
+  .eom .row-name{font-family:var(--font-data);font-size:12.5px;fill:var(--text-dim);}
+  .eom .row-val{font-family:var(--font-data);font-size:12.5px;font-weight:600;fill:var(--text);}
+  .eom .row-tag{font-family:var(--font-nav);font-size:10px;letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
+  .eom .grid-label{font-family:var(--font-data);font-size:11px;fill:var(--text-muted);}
+  .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
+
+  .eom .caveat{border-left:3px solid var(--amber);background:var(--amber-tint);border-radius:0 8px 8px 0;padding:14px 18px;font-size:15px;margin:22px 0 8px;color:var(--text-dim);}
+  .eom .caveat strong{font-weight:650;color:var(--text);}
+
+  /* ---------- board ---------- */
+  .eom .table-scroll{overflow-x:auto;border:1px solid var(--hairline);border-radius:10px;}
+  .eom table{width:100%;border-collapse:collapse;min-width:880px;background:var(--bg2);}
+  .eom thead th{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-nav);color:var(--text-muted);text-align:left;padding:0;border-bottom:1px solid var(--hairline);background:#141414;}
+  .eom .th-sort{all:unset;display:flex;align-items:center;gap:6px;cursor:pointer;padding:11px 12px;width:100%;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;}
+  .eom .th-sort .arrow{opacity:.3;font-size:9px;}
+  .eom th[aria-sort] .th-sort{color:var(--text);}
+  .eom th[aria-sort] .arrow{opacity:1;}
+  .eom tbody td{padding:12px;border-bottom:1px solid var(--hairline);font-size:15px;vertical-align:middle;white-space:nowrap;color:var(--text-dim);}
+  .eom tbody tr:last-child td{border-bottom:none;}
+  .eom tbody tr:hover{background:#1c1c1c;}
+  .eom td.rank{font-weight:700;font-size:16px;width:44px;text-align:center;color:var(--text-muted);}
+  .eom td.model{font-weight:600;color:var(--text);}
+  .eom td.model .swatch{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;}
+  .eom td.num{font-family:var(--font-data);font-size:13px;}
+  .eom sup{font-size:10px;color:var(--amber);font-weight:700;}
+  .eom .sec-bad{color:var(--danger);font-weight:600;}
+  .eom .sec-good{color:var(--good);}
+  .eom .footnotes{font-size:13.5px;color:var(--text-muted);margin:14px 0 0;max-width:80ch;}
+  .eom .footnotes p{margin-bottom:7px;}
+  .eom .footnotes sup{color:var(--amber);}
+  .eom code{font-family:var(--font-data);font-size:.88em;background:var(--bg2);padding:1px 5px;border-radius:4px;color:var(--text-dim);}
+
+  /* ---------- lap corners ---------- */
+  .eom .corner-legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 2px 18px;font-size:13.5px;color:var(--text-muted);}
+  .eom .corner-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .eom .corner-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .eom .lap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+  .eom .lap-card{border:1px solid var(--hairline);border-radius:10px;padding:14px 10px 10px;text-align:center;background:var(--bg2);}
+  .eom .lap-card svg{width:100%;max-width:140px;height:auto;}
+  .eom .lap-card .lname{font-family:var(--font-data);font-size:13px;font-weight:600;margin-top:6px;color:var(--text-dim);}
+  .eom .lap-card path{cursor:pointer;transition:opacity .12s;}
+  .eom .lap-card path:hover,.eom .lap-card path:focus{opacity:.75;outline:none;}
+  #lapTip{
+    position:fixed;z-index:50;max-width:290px;pointer-events:none;display:none;
+    background:#000;color:#fff;border:1px solid var(--hairline);border-radius:8px;padding:11px 13px;
+    font-size:13px;line-height:1.45;box-shadow:0 6px 20px rgba(0,0,0,.5);
+  }
+  #lapTip .t-head{font-family:var(--font-data);font-weight:600;font-size:12.5px;letter-spacing:.04em;margin-bottom:5px;display:flex;align-items:center;gap:7px;}
+  #lapTip .t-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  #lapTip .t-desc{color:rgb(200,200,200);margin-bottom:5px;}
+  #lapTip .t-field{color:var(--text-muted);font-size:12.5px;}
+
+  /* ---------- category grid ---------- */
+  .eom .cat-scroll{overflow-x:auto;border:1px solid var(--hairline);border-radius:10px;}
+  .eom table.cat{min-width:640px;}
+  .eom table.cat td.num{text-align:center;}
+  .eom table.cat td.hot{background:var(--danger-tint);color:var(--danger);font-weight:600;}
+  .eom table.cat td.warm{background:var(--amber-tint);color:var(--amber);font-weight:600;}
+
+  /* ---------- pit lane ---------- */
+  .eom .pit{display:grid;gap:14px;margin-top:6px;}
+  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:16px 18px;font-size:15.5px;background:var(--bg2);}
+  .eom .pit-note h3{font-family:var(--font-head);font-size:18px;font-weight:400;color:var(--text);margin-bottom:6px;}
+  .eom .pit-note p{color:var(--text-dim);font-size:15px;line-height:1.6;}
+  .eom .pit-note.flag{border-color:var(--danger);background:var(--danger-tint);}
+  .eom .pit-note.steward{border-color:var(--amber);background:var(--amber-tint);}
+
+  .eom .method{color:var(--text-dim);font-size:15px;margin:0 0 20px 24px;max-width:74ch;}
+  .eom .method li{margin:0 0 8px 0;}
+  .eom .method-intro{color:var(--text-dim);margin-bottom:20px;max-width:74ch;}
+
+  .runstamp{font-family:var(--font-data);font-size:12px;letter-spacing:.04em;color:var(--text-muted);border:1px solid var(--hairline);border-radius:4px;padding:4px 10px;display:inline-block;margin:0 0 8px;}
+
+  @media (max-width:640px){
+    .eom .lap-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/news/">News</a>
+    <a href="/guides/">Guides</a>
+    <a href="/tools/ed-o-meter/" aria-current="page">Leaderboard</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta">14 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <h1>The Ed-o-meter</h1>
+  <p class="summary">Same car, same track. Ten frontier models drive the identical 28-task lap — one harness, verbatim prompts, deterministic grading — and the times go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
+  <span class="runstamp">Source runs: 13–14 July 2026 · 28 tasks · single trial per cell · Featherbench</span>
+</header>
+
+<main class="container">
+  <article class="article-body eom">
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <div class="chart-card">
+      <div class="modes" role="group" aria-label="Choose which metric the telemetry shows">
+        <button class="mode-btn" data-mode="pass" aria-pressed="true">Pass rate</button>
+        <button class="mode-btn" data-mode="rubric" aria-pressed="false">Rubric quality</button>
+        <button class="mode-btn" data-mode="costTask" aria-pressed="false">Cost / task</button>
+        <button class="mode-btn" data-mode="ttft" aria-pressed="false">Latency (TTFT)</button>
+      </div>
+      <div class="chart-scroll"><svg id="telemetry" role="img" aria-label="Ranked chart of the selected metric for each model"></svg></div>
+      <p class="axis-note" id="axisNote"></p>
+    </div>
+
+    <div class="caveat" role="note">
+      <strong>These are wet laps.</strong> Every pass rate is a single trial per task with a Wilson 95% interval — the whiskers on the chart. They overlap generously, so treat the ordering as a first read, not a tight estimate. Where a number carries a footnote mark, the footnote is load-bearing: the rubric judge is fable-5, <em>including on its own answers</em>.
+    </div>
+
+    <h2 class="section">Which Model Tops the Featherbench Leaderboard?</h2>
+    <p class="section-note">Click a column to re-rank. Security shown separately because it's where this season's field split; cost shown both per run and per task.</p>
+
+    <div class="table-scroll">
+      <table id="board">
+        <thead>
+          <tr>
+            <th scope="col"><span class="th-sort" style="cursor:default">#</span></th>
+            <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
+            <th scope="col" data-key="pass" aria-sort="descending"><button class="th-sort">Pass rate (95% CI) <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="rubric"><button class="th-sort">Rubric /10 <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="sec"><button class="th-sort">Security <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="ttft"><button class="th-sort">Median TTFT <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="cost"><button class="th-sort">Run cost <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="costTask"><button class="th-sort">Cost / task <span class="arrow">▼</span></button></th>
+          </tr>
+        </thead>
+        <tbody id="boardBody"></tbody>
+      </table>
+    </div>
+
+    <div class="footnotes">
+      <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
+      <p><sup>2</sup> fable-5's 9.2 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.2 versus 8.6–8.7 for the models it judges independently. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
+      <p><sup>3</sup> fable-5's cost/task is computed over its <strong>answering trials only</strong> — refused trials emit near-zero output, and including them would make the model look artificially concise and cheap ($0.0457/trial). No other model on the board has refusals, so the adjustment affects fable-5 alone.</p>
+    </div>
+
+    <h2 class="section">The lap, corner by corner</h2>
+    <p class="section-note">Five corners in fixed order: Coding → Data → Realworld → Security → Tool-use. Each ring is one model's lap; a corner's colour is that model's pass rate in that category. Hover or tap any segment for what that corner tests and how the field handled it.</p>
+    <div class="corner-legend">
+      <span><i style="background:var(--good)"></i>Clean corner (&gt;85%)</span>
+      <span><i style="background:var(--amber)"></i>Ragged (60–85%)</span>
+      <span><i style="background:var(--danger)"></i>Off the track (&lt;60%)</span>
+    </div>
+    <div class="lap-grid" id="lapGrid"></div>
+
+    <h2 class="section" style="margin-top:36px">Pass rate by category, in full</h2>
+    <p class="section-note">Same data as the rings above, exact numbers. Cells below 60% flagged red; 60–85% amber. Coding, data and tool-use are the harness floor — the race is decided in realworld and security.</p>
+
+    <div class="cat-scroll">
+      <table class="cat" id="catTable">
+        <thead><tr>
+          <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Coding</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Data</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Realworld</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Security</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Tool-use</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h2 class="section">What Do the Results Actually Tell You?</h2>
+    <div class="pit">
+      <div class="pit-note flag">
+        <h3>Two cars failed the crash test</h3>
+        <p>gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — a genuine safety difference, not a harness artifact. The Claude trio went 6/6 clean, as did gpt-5.5. One caution before drawing conclusions across the gpt-5.6 trio: luna and sol run behind provider-side moderation and terra does not, so their refusal behaviour isn't strictly apples-to-apples — check <code>is_moderated</code> first.</p>
+      </div>
+      <div class="pit-note">
+        <h3>The mystery guest sets the fastest quality lap</h3>
+        <p>kimi-k3 tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, it's the top model on the board. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data tasks, its only weak corner. Brilliant, cheap, and late — every panel show has one.</p>
+      </div>
+      <div class="pit-note">
+        <h3>Fable failed to complete a single lap</h3>
+        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it though Kimi-k3 was giving better answers. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+      </div>
+      <div class="pit-note">
+        <h3>Cheap as chips, and it reads like it</h3>
+        <p>haiku-4-5 delivers the cheapest full 28-task pass recorded here — $0.12 with a 0.9-second median TTFT and 96%. The rubric tells the rest: 7.4, roughly a point and a half behind the field, a gap the binary checkers can't see. Meanwhile sonnet-4-6 and sonnet-5 ran config-matched — same effort, same max_tokens — and sonnet-4-6 used 3.9× the output tokens and 5.7× the wall-clock for essentially the same rubric quality. Same car, different fuel bill.</p>
+      </div>
+    </div>
+
+    <h2 class="section">How Is the Featherbench Leaderboard Scored?</h2>
+    <ul class="method">
+      <li><strong>Same tasks run for all models using the same prompts, same API calls</strong>, measured through one identical OpenRouter streaming path, run serially as time-trial. No other cars on track</li> 
+      <li><strong>Latency is time-to-first-token</strong>, measured through one identical OpenRouter streaming path, run serially so the clock is uncontaminated. Wall-clock is recorded alongside.</li>
+      <li><strong>Checkers are binary and automated.</strong> The LLM rubric is the only judged component — and its bias is made visible in the footnotes rather than assumed away.</li>
+      <li><strong>Effort and reasoning settings are pinned</strong> in <code>models.json</code> and stated with any published number, because they materially move quality and cost.</li>
+<li><strong>Refusals are recorded, not hidden.</strong> A provider-side hard stop is logged as a refusal with its category — never silently retried on another model. Routing is pinned with <code>allow_fallbacks:false</code>, so no quiet re-serves on quantized variants. A model that declines in prose is scored by the checker like any other answer.</li>
+    </ul>
+    <p class="method-intro">Harness, tasks and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a> (MIT). Clone it and run the lap yourself, or <a href="https://github.com/ed-is-ai/featherbench/issues" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">submit a task</a> for the next one.</p>
+
+    <div class="related-posts">
+      <p class="related-posts-label">Continue reading</p>
+      <ul class="related-list">
+        <li><a href="/blog/building-the-ed-o-meter-llm-eval-harness/">Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</a></li>
+        <li><a href="/blog/glm-5-2-vs-claude-opus-vs-gpt-5-5-coding/">GLM-5.2 vs Claude Fable 5 vs GPT-5.5 for Enterprise Coding</a></li>
+      </ul>
+    </div>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+  <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently writes about topics that inform engineering teams adopting AI tooling and modern development practices.</p>
+</footer>
+
+<script>
+/* Every value below is copied verbatim from the published summary tables. */
+const MODELS = [
+  {id:'haiku', name:'haiku-4-5',     hex:'#7FA8E8', panel:false, pass:96, lo:82, hi:99, rubric:7.4, rNote:1,          cost:0.12,  ttft:0.9,  costTask:0.0044, sec:100, secTxt:'100%'},
+  {id:'s46',   name:'sonnet-4-6',    hex:'#123A8C', panel:false, pass:96, lo:82, hi:99, rubric:8.9, rNote:1,          cost:1.84,  ttft:7.5,  costTask:0.0633, sec:100, secTxt:'100%'},
+  {id:'gpt55', name:'gpt-5.5',       hex:'#C0392B', panel:true,  pass:96, lo:82, hi:99, rubric:8.7,                   cost:1.43,  ttft:13.2, costTask:0.0504, sec:100, secTxt:'100%'},
+  {id:'glm52', name:'glm-5.2',       hex:'#2E7D57', panel:true,  pass:93, lo:77, hi:98, rubric:8.6,                   cost:0.18,  ttft:13.1, costTask:0.0064, sec:83,  secTxt:'83%'},
+  {id:'kimi',  name:'kimi-k3',       hex:'#6B4FA0', panel:false, pass:93, lo:77, hi:98, rubric:9.5,                   cost:0.033, ttft:26.4, costTask:0.0327, sec:100, secTxt:'100%'},
+  {id:'s5',    name:'sonnet-5',      hex:'#4A78D0', panel:false, pass:93, lo:77, hi:98, rubric:8.8, rNote:1,          cost:0.33,  ttft:1.8,  costTask:0.0119, sec:100, secTxt:'100%'},
+  {id:'terra', name:'gpt-5.6-terra', hex:'#A03A5E', panel:true,  pass:89, lo:73, hi:96, rubric:8.9, rNote:1,          cost:0.65,  ttft:3.7,  costTask:0.0227, sec:50,  secTxt:'50%'},
+  {id:'sol',   name:'gpt-5.6-sol',   hex:'#C85A50', panel:true,  pass:86, lo:69, hi:94, rubric:8.7, rNote:1,          cost:1.32,  ttft:8.6,  costTask:0.0466, sec:50,  secTxt:'50%'},
+  {id:'luna',  name:'gpt-5.6-luna',  hex:'#D9748A', panel:true,  pass:82, lo:64, hi:92, rubric:8.5, rNote:1,          cost:0.36,  ttft:6.2,  costTask:0.0129, sec:33,  secTxt:'33%'},
+  {id:'fable5',name:'fable-5',       hex:'#2456E6', panel:true,  pass:78, lo:59, hi:89, rubric:9.2, rNote:2,          cost:1.35,  ttft:7.9,  costTask:0.0684, cNote:3, sec:100, secTxt:'100%'},
+];
+
+const CATS = [
+  {name:'haiku-4-5',     ref:true,  cv:100, dv:100, rv:89,  sv:100, tv:100},
+  {name:'sonnet-4-6',    ref:true,  cv:100, dv:100, rv:89,  sv:100, tv:100},
+  {name:'gpt-5.5',       ref:false, cv:100, dv:100, rv:93,  sv:100, tv:100},
+  {name:'glm-5.2',       ref:false, cv:100, dv:100, rv:89,  sv:83,  tv:100},
+  {name:'kimi-k3',       ref:true,  cv:100, dv:75,  rv:100, sv:100, tv:100},
+  {name:'sonnet-5',      ref:true,  cv:100, dv:100, rv:78,  sv:100, tv:100},
+  {name:'gpt-5.6-terra', ref:false, cv:100, dv:100, rv:100, sv:50,  tv:100},
+  {name:'gpt-5.6-sol',   ref:false, cv:100, dv:100, rv:85,  sv:50,  tv:100},
+  {name:'gpt-5.6-luna',  ref:false, cv:100, dv:100, rv:89,  sv:33,  tv:100},
+  {name:'fable-5',       ref:false, cv:79,  dv:100, rv:80,  sv:100, tv:100},
+];
+
+const MODES = {
+  pass:    {title:'Pass rate — single-trial Wilson 95% intervals shown as whiskers', min:30, max:100, higher:true,
+            val:m=>m.pass, ci:m=>[m.lo,m.hi], fmt:m=>m.pass+'%'+(m.pNote?' ³':''), grid:[40,50,60,70,80,90,100], gfmt:v=>v+'%'},
+  rubric:  {title:'Rubric quality /10 — single judge (fable-5); see footnotes', min:7, max:10, higher:true,
+            val:m=>m.rubric, ci:null, fmt:m=>m.rubric.toFixed(1)+(m.rNote===2?' ²':m.rNote===1?' ¹':''), grid:[7,7.5,8,8.5,9,9.5,10], gfmt:v=>v.toFixed(1),
+            tag:m=>m.rNote===2?'self-judged':null},
+  costTask:{title:'Cost per task, USD — lower is better; ³ = fable-5 answering trials only', min:0, max:0.07, higher:false,
+            val:m=>m.costTask, ci:null, fmt:m=>'$'+m.costTask.toFixed(4)+(m.cNote?' ³':''), grid:[0,0.01,0.02,0.03,0.04,0.05,0.06,0.07], gfmt:v=>v===0?'$0':'$'+v.toFixed(2).replace('0.','.')} ,
+  ttft:    {title:'Median time-to-first-token, seconds — lower is better', min:0, max:28, higher:false,
+            val:m=>m.ttft, ci:null, fmt:m=>m.ttft.toFixed(1)+' s', grid:[0,5,10,15,20,25], gfmt:v=>v+'s'},
+};
+
+const svg = document.getElementById('telemetry');
+const axisNote = document.getElementById('axisNote');
+let mode='pass';
+
+const W=780, ML=150, MR=86, ROW=33, MT=26, MB=14;
+function draw(){
+  const M = MODES[mode];
+  const rows = [...MODELS].sort((a,b)=> M.higher ? M.val(b)-M.val(a) : M.val(a)-M.val(b));
+  const H = MT + rows.length*ROW + MB;
+  const x = v => ML + (v - M.min)/(M.max - M.min) * (W - ML - MR);
+  let s = '';
+  M.grid.forEach(g=>{
+    s += `<line x1="${x(g)}" y1="${MT-8}" x2="${x(g)}" y2="${H-MB}" stroke="#2a2a2a" stroke-width="1"/>`;
+    s += `<text class="grid-label" x="${x(g)}" y="${MT-12}" text-anchor="middle">${M.gfmt(g)}</text>`;
+  });
+  rows.forEach((m,i)=>{
+    const cy = MT + i*ROW + ROW/2;
+    s += `<text class="row-name" x="${ML-10}" y="${cy+4}" text-anchor="end">${m.name}</text>`;
+    if(M.ci){
+      const [lo,hi] = M.ci(m);
+      s += `<line x1="${x(lo)}" y1="${cy}" x2="${x(hi)}" y2="${cy}" stroke="${m.hex}" stroke-width="2" opacity=".4"/>`;
+      s += `<line x1="${x(lo)}" y1="${cy-5}" x2="${x(lo)}" y2="${cy+5}" stroke="${m.hex}" stroke-width="2" opacity=".4"/>`;
+      s += `<line x1="${x(hi)}" y1="${cy-5}" x2="${x(hi)}" y2="${cy+5}" stroke="${m.hex}" stroke-width="2" opacity=".4"/>`;
+    } else {
+      s += `<line x1="${x(M.min)}" y1="${cy}" x2="${x(M.val(m))}" y2="${cy}" stroke="${m.hex}" stroke-width="2" opacity=".25"/>`;
+    }
+    const hollow = M.tag && M.tag(m);
+    s += hollow
+      ? `<circle cx="${x(M.val(m))}" cy="${cy}" r="6" fill="#161616" stroke="${m.hex}" stroke-width="2.5"/>`
+      : `<circle cx="${x(M.val(m))}" cy="${cy}" r="6" fill="${m.hex}"/>`;
+    s += `<text class="row-val" x="${W-MR+10}" y="${cy+4}">${M.fmt(m)}</text>`;
+    if(hollow) s += `<text class="row-tag" x="${x(M.val(m))}" y="${cy-11}" text-anchor="middle">${hollow}</text>`;
+  });
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML = s;
+  axisNote.textContent = M.title;
+  document.querySelectorAll('.mode-btn').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===mode)));
+}
+document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;draw();}));
+draw();
+
+/* ---- sortable board ---- */
+const body = document.getElementById('boardBody');
+let sortKey='pass', sortDir=-1;
+const SUP={1:'¹',2:'²',3:'³'};
+function sup(n){return n?`<sup>${SUP[n]}</sup>`:''}
+function render(){
+  const rows=[...MODELS].sort((a,b)=>(a[sortKey]-b[sortKey])*sortDir);
+  body.innerHTML = rows.map((m,i)=>`
+    <tr>
+      <td class="rank">${i+1}</td>
+      <td class="model"><span class="swatch" style="background:${m.hex}"></span>${m.name}</td>
+      <td class="num">${m.pass}% [${m.lo}–${m.hi}]${sup(m.pNote)}</td>
+      <td class="num">${m.rubric.toFixed(1)}${sup(m.rNote)}</td>
+      <td class="num ${m.sec<60?'sec-bad':m.sec===100?'sec-good':''}">${m.secTxt}</td>
+      <td class="num">${m.ttft.toFixed(1)} s</td>
+      <td class="num">$${m.cost.toFixed(m.cost<0.1?3:2)}</td>
+      <td class="num">$${m.costTask.toFixed(4)}${sup(m.cNote)}</td>
+    </tr>`).join('');
+  document.querySelectorAll('#board th[data-key]').forEach(th=>{
+    const active = th.dataset.key===sortKey;
+    th.toggleAttribute('aria-sort', active);
+    if(active) th.setAttribute('aria-sort', sortDir===-1?'descending':'ascending');
+    th.querySelector('.arrow').textContent = active ? (sortDir===-1?'▼':'▲') : '▼';
+  });
+}
+document.querySelectorAll('#board th[data-key] .th-sort').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const key=btn.closest('th').dataset.key;
+    if(key===sortKey){ sortDir*=-1; } else { sortKey=key; sortDir=-1; }
+    render();
+  });
+});
+render();
+
+/* ---- lap corners: one ring per model, 5 fixed-order arc segments ---- */
+const CORNERS = [
+  {key:'cv', label:'Coding',
+   desc:'Unit-tested programming tasks — fix the bug, write the function. Pass or fail comes from the tests, not opinion.',
+   field:'Field: nine of ten at 100%. fable-5 the only wobble (79%), where refusals cost it cells.'},
+  {key:'dv', label:'Data',
+   desc:'Structured extraction and transformation — parse it, reshape it, get the schema exactly right.',
+   field:'Field: everyone at 100% except kimi-k3 (75%) — its only weak corner.'},
+  {key:'rv', label:'Realworld',
+   desc:'Advice, planning and everyday requests — the corner where binary checkers are bluntest and quality gaps hide.',
+   field:'Field range 78–100%: the weakest corner for almost everyone, and where the podium was decided.'},
+  {key:'sv', label:'Security',
+   desc:'Prompt-injection and jailbreak resistance — canary tasks that reveal whether the model can be talked into anything.',
+   field:'Field split 33–100%. gpt-5.6 luna and sol emitted the jailbreak canary in 10 of 12 cells; the Claude trio and gpt-5.5 went clean.'},
+  {key:'tv', label:'Tool-use',
+   desc:'Function-calling tasks — pick the right tool, format the call correctly.',
+   field:'All ten models took this corner clean: 100% across the board.'},
+];
+function cornerColor(v){ return v<60 ? '#d0524a' : v<=85 ? '#c98500' : '#199e70'; }
+function cornerWord(v){ return v<60 ? 'off the track' : v<=85 ? 'ragged' : 'clean'; }
+function polar(cx,cy,r,deg){ const rad=(deg-90)*Math.PI/180; return [cx+r*Math.cos(rad), cy+r*Math.sin(rad)]; }
+function wedge(cx,cy,rO,rI,a1,a2){
+  const [x1,y1]=polar(cx,cy,rO,a1), [x2,y2]=polar(cx,cy,rO,a2);
+  const [x3,y3]=polar(cx,cy,rI,a2), [x4,y4]=polar(cx,cy,rI,a1);
+  const large=(a2-a1)>180?1:0;
+  return `M ${x1} ${y1} A ${rO} ${rO} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${rI} ${rI} 0 ${large} 0 ${x4} ${y4} Z`;
+}
+function lapRingSVG(m){
+  const cx=60, cy=60, rO=54, rI=32, gap=5, seg=(360/5)-gap;
+  let s = `<svg viewBox="0 0 120 120" role="img" aria-label="${m.name} pass rate by category">`;
+  CORNERS.forEach((c,i)=>{
+    const start=i*(seg+gap), end=start+seg, v=m[c.key];
+    s += `<path d="${wedge(cx,cy,rO,rI,start,end)}" fill="${cornerColor(v)}" tabindex="0" role="img"
+            data-model="${m.name}" data-ci="${i}" data-v="${v}"
+            aria-label="${c.label}, ${m.name}: ${v}% — ${cornerWord(v)}. ${c.desc}"></path>`;
+  });
+  return s+`</svg>`;
+}
+document.getElementById('lapGrid').innerHTML = CATS.map(m=>`
+  <div class="lap-card">
+    ${lapRingSVG(m)}
+    <div class="lname">${m.name}</div>
+  </div>`).join('');
+
+/* ---- lap tooltip ---- */
+const lapTip = document.createElement('div');
+lapTip.id = 'lapTip';
+document.body.appendChild(lapTip);
+function showTip(path, x, y){
+  const c = CORNERS[+path.dataset.ci];
+  const v = +path.dataset.v;
+  lapTip.innerHTML = `
+    <div class="t-head"><span class="t-dot" style="background:${cornerColor(v)}"></span>${c.label} — ${path.dataset.model}: ${v}% (${cornerWord(v)})</div>
+    <div class="t-desc">${c.desc}</div>
+    <div class="t-field">${c.field}</div>`;
+  lapTip.style.display='block';
+  positionTip(x,y);
+}
+function positionTip(x,y){
+  const pad=14, r=lapTip.getBoundingClientRect();
+  let left=x+pad, top=y+pad;
+  if(left+r.width > window.innerWidth-8)  left = x - r.width - pad;
+  if(top+r.height > window.innerHeight-8) top  = y - r.height - pad;
+  lapTip.style.left=Math.max(8,left)+'px';
+  lapTip.style.top=Math.max(8,top)+'px';
+}
+function hideTip(){ lapTip.style.display='none'; }
+const lapGridEl = document.getElementById('lapGrid');
+lapGridEl.addEventListener('mousemove', e=>{
+  const p = e.target.closest('path[data-ci]');
+  if(p) showTip(p, e.clientX, e.clientY); else hideTip();
+});
+lapGridEl.addEventListener('mouseleave', hideTip);
+lapGridEl.addEventListener('click', e=>{           /* touch devices: tap a segment */
+  const p = e.target.closest('path[data-ci]');
+  if(p){ showTip(p, e.clientX, e.clientY); e.stopPropagation(); }
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('#lapGrid')) hideTip(); });
+lapGridEl.addEventListener('focusin', e=>{          /* keyboard access */
+  const p = e.target.closest('path[data-ci]');
+  if(p){ const r=p.getBoundingClientRect(); showTip(p, r.left+r.width/2, r.top+r.height/2); }
+});
+lapGridEl.addEventListener('focusout', hideTip);
+
+/* ---- category grid ---- */
+const catBody = document.querySelector('#catTable tbody');
+function cls(v){ return v<60?'hot':v<=85?'warm':''; }
+catBody.innerHTML = CATS.map(m=>`
+  <tr>
+    <td class="model">${m.name}</td>
+    <td class="num ${cls(m.cv)}">${m.cv}%</td>
+    <td class="num ${cls(m.dv)}">${m.dv}%</td>
+    <td class="num ${cls(m.rv)}">${m.rv}%</td>
+    <td class="num ${cls(m.sv)}">${m.sv}%${m.svm||''}</td>
+    <td class="num ${cls(m.tv)}">${m.tv}%</td>
+  </tr>`).join('');
+</script>
+</body>
+</html>
