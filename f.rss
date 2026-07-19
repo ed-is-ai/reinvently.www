@@ -83,11 +83,11 @@
       <description>GPT-5.5, tested with nearly 200 partners before its 2026 release, completes complex tasks autonomously. The governance questions to answer before deploying it.</description>
     </item>
     <item>
-      <title>Claude Memory &amp; Dream: What They Mean for Enterprise AI Adoption</title>
+      <title>Claude Memory and Dream: Evidence, Architecture and Risk</title>
       <link>https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/</guid>
       <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
-      <description>Claude&#x27;s Memory and Dream features cut first-pass errors by 97 percent in early deployments. What persistent, self-improving agents mean for enterprise AI.</description>
+      <description>An evidence review of Claude Memory and Dream: reported deployment gains, system architecture, and the governance risks of persistent, self-editing agents.</description>
     </item>
     <item>
       <title>UK AI Regulation Tightens: What the ICO Guidance and Parliament&#x27;s Inquiry Mean for Employers</title>
@@ -111,11 +111,11 @@
       <description>The UK&#x27;s £500 million Sovereign AI programme, explained: why five companies controlling 70 percent of global AI compute pushed Britain to act on infrastructure.</description>
     </item>
     <item>
-      <title>The A2A Protocol: AI Agent Interoperability for Enterprise</title>
+      <title>A2A Protocol: An Enterprise Architecture Decision Guide</title>
       <link>https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/</guid>
       <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
-      <description>Backed by 150+ organisations, the A2A protocol lets AI agents from different vendors work together. What it means for enterprise architecture and procurement.</description>
+      <description>What the Linux Foundation&#x27;s A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement.</description>
     </item>
     <item>
       <title>Global AI Adoption: Attitudes and Intensity by Country</title>
@@ -125,18 +125,18 @@
       <description>Global AI adoption compared: venture funding passed $100 billion in 2024 while the EU leads on regulation. How attitudes and intensity differ by country.</description>
     </item>
     <item>
-      <title>Claude Mythos: Anthropic&#x27;s Most Powerful Model Yet</title>
+      <title>Claude Mythos and Project Glasswing: Security Evidence</title>
       <link>https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/claude-mythos-anthropic-opportunity-for-companies/</guid>
       <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
-      <description>Anthropic&#x27;s Mythos model found a 27-year-old OpenBSD bug. What its security capabilities and Project Glasswing mean for companies planning AI adoption.</description>
+      <description>An evidence review of Claude Mythos and Project Glasswing: reported vulnerability findings, limits of the available data, and implications for security teams.</description>
     </item>
     <item>
-      <title>The Top 10 UK Companies Leading on AI</title>
+      <title>UK AI Companies: A Field Guide to Ten Organisations</title>
       <link>https://reinvently.co.uk/blog/top-10-uk-ai-companies/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/top-10-uk-ai-companies/</guid>
       <pubDate>Mon, 13 Apr 2026 00:00:00 +0000</pubDate>
-      <description>The 10 UK companies leading on AI in 2026, from DeepMind to Wayve and its $1.05 billion raise, and what their progress signals for the UK technology ecosystem.</description>
+      <description>A field guide to ten UK AI organisations across research, security, mobility and enterprise software — and what they reveal about the UK ecosystem.</description>
     </item>
     <item>
       <title>RAG vs GraphRAG: A Practical Comparison</title>
@@ -160,11 +160,11 @@
       <description>73 percent of UK adults have had no AI training at all. Where the shortage bites hardest, what the £400 billion figure really measures, and the funded routes to close it.</description>
     </item>
     <item>
-      <title>Microsoft Foundry: A Deep Dive</title>
+      <title>Microsoft Foundry: Architecture, Governance and Trade-offs</title>
       <link>https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/</guid>
       <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
-      <description>Microsoft Foundry deep dive: OpenAI and Anthropic models in one governed platform, agents with 1,400+ tool integrations, and when it is the right choice.</description>
+      <description>An architecture and governance guide to Microsoft Foundry: its control plane, model and agent services, Azure advantages, operational costs and trade-offs.</description>
     </item>
     <item>
       <title>The UK&#x27;s Government AI Institutes</title>
@@ -181,11 +181,11 @@
       <description>Generative AI adoption by industry: 71 percent of organisations now use it regularly, returning $3.70 per $1 invested. The use cases and data, sector by sector.</description>
     </item>
     <item>
-      <title>The Rise of AI in Web Development</title>
+      <title>AI-Assisted Web Development: Where It Helps and Fails</title>
       <link>https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/</guid>
       <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
-      <description>84 percent of developers now use or plan to use AI tools. Where the gains in web development are real, where they are overstated, and what to do about it.</description>
+      <description>An evidence-led guide to AI-assisted web development: where coding and content tools save time, where they create risk, and which review controls matter.</description>
     </item>
   </channel>
 </rss>
