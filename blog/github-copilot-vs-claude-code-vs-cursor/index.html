@@ -138,16 +138,16 @@
 
     <h2>Cursor — The Developer-First IDE</h2>
 
-    <p><a href="https://cursor.com" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Cursor</a> is a VS Code fork rebuilt specifically around AI assistance, most notable for its predictive tab completions that anticipate what a developer will type across multiple lines — not just the current word but the next logical action. Where Copilot adds AI to an existing editor, Cursor rebuilds the editing experience from scratch: fast, context-aware predictions across the entire codebase, with a model-agnostic architecture that lets teams use Claude, GPT-4o, Gemini, and others from a single interface.</p>
+    <p><a href="https://cursor.com" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Cursor</a> is a VS Code fork rebuilt specifically around AI assistance, most notable for its predictive tab completions that anticipate what a developer will type across multiple lines — not just the current word but the next logical action. Where Copilot adds AI to an existing editor, Cursor rebuilds the editing experience from scratch: fast, context-aware predictions across the entire codebase, with a model-agnostic architecture that lets teams use Claude, GPT-5.5, Gemini, and others from a single interface.</p>
 
-    <p>Cursor switched to a credit-based billing model in June 2025, where each subscription tier includes a monthly credit pool that depletes based on which models are used. Expensive models (Claude Opus, GPT-4o) consume credits faster than lightweight ones. This gives teams flexibility to dial up quality when it matters and reduce costs on routine tasks, but requires deliberate management at scale.</p>
+    <p>Cursor switched to a credit-based billing model in June 2025, where each subscription tier includes a monthly credit pool that depletes based on which models are used. Expensive models (Claude Opus 4.8, GPT-5.5) consume credits faster than lightweight ones. This gives teams flexibility to dial up quality when it matters and reduce costs on routine tasks, but requires deliberate management at scale.</p>
 
     <p>Its Teams plan ($40/user/month) is fully enterprise-ready — centralised billing, SAML/OIDC SSO, role-based access control, org-wide privacy controls, and usage analytics are all included. An Enterprise tier with audit logs, SCIM seat management, and invoice/PO billing is available on custom pricing.</p>
 
     <h3>Strengths</h3>
     <ul>
       <li>Best tab-completion and next-action prediction in the category</li>
-      <li>Model-agnostic — Claude, GPT-4o, Gemini all available in one interface</li>
+      <li>Model-agnostic — Claude, GPT-5.5, Gemini all available in one interface</li>
       <li>Full codebase context, not just the open file</li>
       <li>Privacy mode keeps code local (does not leave the machine)</li>
       <li>SOC 2 Type II certified (Anysphere) — SSO, RBAC, audit logs on Teams plan</li>
@@ -286,7 +286,7 @@
 
     <p><strong>If cost predictability matters to your finance or procurement team:</strong> Cursor has a known $400/month floor for a team of ten, which simplifies budgeting at light to medium usage. Above that floor it becomes variable, so the predictability argument weakens as agentic use grows. Claude Code with prompt caching is the more cost-efficient choice at heavy usage without Opus — real-world costs run materially below the headline token rate.</p>
 
-    <p><strong>If you want model flexibility without tool lock-in:</strong> Cursor. The ability to route tasks between Claude, GPT-4o, and Gemini from a single interface, combined with proven enterprise controls, makes it the most adaptable choice for teams whose AI tooling preferences or budgets may shift.</p>
+    <p><strong>If you want model flexibility without tool lock-in:</strong> Cursor. The ability to route tasks between Claude, GPT-5.5, and Gemini from a single interface, combined with proven enterprise controls, makes it the most adaptable choice for teams whose AI tooling preferences or budgets may shift.</p>
 
     <p><strong>If your team wants to build a structured agentic engineering workflow:</strong> All three tools support the leading SDD frameworks — BMAD and OpenSpec are tool-agnostic and run on Cursor and Copilot as readily as Claude Code. The distinction is depth of native integration: GSD is built specifically for Claude Code, and the Claude Code community has produced more shared tooling, CLAUDE.md conventions, and prompt patterns than equivalent ecosystems around the other two. For teams that want an out-of-the-box spec-driven workflow without building it themselves, GitHub Spec Kit is the most immediately usable starting point for Copilot users. For Cursor, .cursor/rules files and BMAD together cover most of what teams need.</p>
 
