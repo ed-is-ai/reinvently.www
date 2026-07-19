@@ -30,7 +30,7 @@
     "dateModified": "2026-07-02",
     "image": "https://reinvently.co.uk/images/hero-agent-governance.jpg",
     "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/ai-agent-governance-gap/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/ai-agent-governance-gap/"},
     "inLanguage": "en-GB",
     "keywords": ["AI agent governance", "agentic AI ROI", "KPMG AI pulse survey", "AI cost visibility", "enterprise AI agents", "agentic AI failure", "AI adoption 2026", "employee AI resistance"]
@@ -103,17 +103,28 @@
 
     <img class="article-hero-image" src="../../images/hero-agent-governance.jpg" alt="Abstract illustration of a wireframe maze with one path trailing off into open space"/>
 
-    <p>Large US enterprises plan to invest a weighted average of $202 million in AI over the next twelve months, according to KPMG's <a href="https://kpmg.com/us/en/media/news/q2-ai-pulse-2026.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Q2 2026 AI Pulse Survey</a> of 204 C-suite leaders at $1 billion-plus organisations. In the same survey, 26 percent said they have real-time visibility of what their AI actually costs.</p>
+    <div class="key-takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Large US enterprises plan to spend a weighted average of $202 million on AI over the next twelve months, but only 26 percent have real-time visibility of what it costs.</li>
+        <li>Agent deployment has plateaued at 53 percent, yet multi-agent orchestration doubled from 9 to 18 percent and banking-sector deployment jumped from 23 to 56 percent in one quarter.</li>
+        <li>Monitoring dashboards (66 percent) and approval processes (61 percent) are common, but token-level spend controls (36 percent) and real-time cost visibility (26 percent) remain rare, leaving a "watching but not controlling" gap.</li>
+        <li>Employee resistance quadrupled from 5 to 20 percent, driven mainly by trust and ethics concerns (53 percent) rather than fear of job loss or lack of skills.</li>
+        <li>Gartner's 40 percent agentic-AI-project cancellation forecast for 2027 now looks like arithmetic, not speculation: leaders should instrument cost, add token controls, and isolate agents before orchestrating them further.</li>
+      </ul>
+    </div>
 
-    <p>Those two numbers describe the state of enterprise agentic AI more precisely than any benchmark. The money is committed; the instrumentation is not. And Gartner's June 2025 prediction — that over 40 percent of agentic AI projects will be cancelled by the end of 2027 on cost, unclear value, and inadequate risk controls — reads less like a forecast now and more like arithmetic.</p>
+    <p>Large US enterprises plan to invest a weighted average of $202 million in AI over the next twelve months, according to KPMG's <a href="https://kpmg.com/us/en/media/news/q2-ai-pulse-2026.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Q2 2026 AI Pulse Survey</a> of 204 C-suite leaders at $1 billion-plus organisations. In the same survey, only 26 percent said they have real-time visibility of what their AI actually costs.</p>
+
+    <p>Those two numbers describe the state of enterprise agentic AI better than any benchmark. The money is committed; the instrumentation is not. Gartner predicted in June 2025 that over 40 percent of agentic AI projects will be cancelled by the end of 2027, citing cost, unclear value, and weak risk controls. That prediction now reads less like a forecast and more like arithmetic.</p>
 
     <hr/>
 
     <h2>What the Q2 Data Says</h2>
 
-    <p>Agent deployment has stopped climbing: 53 percent of organisations, down marginally from 55 percent the previous quarter. Beneath the flat headline, three things moved sharply. Organisations orchestrating multiple agents doubled, from 9 to 18 percent. Banking-sector deployment jumped from 23 to 56 percent in a single quarter. And employee resistance quadrupled, from 5 to 20 percent.</p>
+    <p>Agent deployment has stopped climbing: 53 percent of organisations, down marginally from 55 percent the previous quarter. Beneath that flat headline, three things moved sharply. Organisations orchestrating multiple agents doubled, from 9 to 18 percent. Banking-sector deployment jumped from 23 to 56 percent in a single quarter. And employee resistance quadrupled, from 5 to 20 percent.</p>
 
-    <p>The governance picture explains the plateau better than any technology argument. Monitoring dashboards exist in 66 percent of organisations and approval processes in 61 percent — the watching layer is half-built. The controlling layer is not: 36 percent have direct token or usage controls, and 26 percent have real-time cost visibility. Organisations can increasingly see what their agents do; far fewer can constrain what they spend.</p>
+    <p>Governance explains the plateau better than any technology argument. Monitoring dashboards exist in 66 percent of organisations and approval processes in 61 percent, so the watching layer is half-built. The controlling layer is not: 36 percent have direct token or usage controls, and 26 percent have real-time cost visibility. Organisations can increasingly see what their agents do. Far fewer can constrain what they spend.</p>
 
     <figure style="margin:0 0 28px 0;">
       <svg viewBox="0 0 720 150" role="img" aria-label="Bar chart of governance coverage among large US enterprises: monitoring dashboards 66 percent, approval processes 61 percent, token or usage controls 36 percent, real-time cost visibility 26 percent." style="width:100%;height:auto;display:block;">
@@ -155,21 +166,21 @@
       <figcaption style="font-size:12px;color:rgb(150,150,150);margin-top:8px;">Share of large US enterprises with each governance layer in place. Source: <a href="https://kpmg.com/us/en/media/news/q2-ai-pulse-2026.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">KPMG Quarterly AI Pulse Survey, Q2 2026</a> (204 C-suite leaders, $1B+ organisations).</figcaption>
     </figure>
 
-    <p>The resistance data carries the most information per percentage point. Of the 20 percent now resisting, 53 percent cite trust and ethics and 51 percent cite workload and complexity — both up sharply — while the fear-based drivers fell: skills concerns dropped from 76 to 57 percent, job-security concerns from 67 to 55 percent. Employees are not afraid of the agents. They distrust how the agents are being rolled out, which is a governance verdict delivered from below.</p>
+    <p>The resistance data carries the most information per percentage point. Of the 20 percent now resisting, 53 percent cite trust and ethics and 51 percent cite workload and complexity, both up sharply. Meanwhile the fear-based drivers fell: skills concerns dropped from 76 to 57 percent, job-security concerns from 67 to 55 percent. Employees are not afraid of the agents. They distrust how the agents are being rolled out — a governance verdict delivered from below.</p>
 
     <hr/>
 
     <h2>What the Data Does Not Say</h2>
 
-    <p>The sample is 204 US-based leaders at organisations with $1 billion-plus revenue, a third above $10 billion. It says little directly about UK mid-market organisations, where budgets are smaller but the visibility problem is, in our experience, identical. One flat quarter is not a trend reversal — 53 percent against 55 could be noise. And self-reported deployment tells you an agent exists somewhere in the estate, not that it does economically meaningful work; the survey cannot distinguish a production system from an expensive pilot wearing production clothes.</p>
+    <p>The sample is 204 US-based leaders at organisations with $1 billion-plus revenue, a third above $10 billion. It says little directly about UK mid-market organisations, where budgets are smaller but the visibility problem is, in our experience, identical. One flat quarter is not a trend reversal; 53 percent against 55 could just be noise. And self-reported deployment only tells you an agent exists somewhere in the estate, not that it does economically meaningful work. The survey cannot distinguish a production system from an expensive pilot wearing production clothes.</p>
 
     <hr/>
 
     <h2>What Separates the Leaders From the Stalled</h2>
 
-    <p>The concentration pattern is the story. While overall deployment went sideways, multi-agent orchestration doubled and banking went from 23 to 56 percent — the organisations already in production are compounding, while the rest circle. PwC's 2026 <a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AI performance study</a> found three-quarters of AI's economic gains are being captured by just 20 percent of companies. This matches the pattern we documented in our <a href="/blog/enterprise-ai-adoption-reality-check-2026/">enterprise adoption reality check</a>: the gap between leaders and laggards is not widening because leaders have better models — everyone has the same models — but because they built the operational scaffolding that turns model capability into shipped work.</p>
+    <p>The concentration pattern is the story. Overall deployment went sideways, but multi-agent orchestration doubled and banking went from 23 to 56 percent. The organisations already in production are compounding, while the rest circle. PwC's 2026 <a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AI performance study</a> found three-quarters of AI's economic gains are being captured by just 20 percent of companies. This matches the pattern we documented in our <a href="/blog/enterprise-ai-adoption-reality-check-2026/">enterprise adoption reality check</a>. Everyone has the same models, so the gap between leaders and laggards is not widening because leaders have better ones. It is widening because they built the operational scaffolding that turns model capability into shipped work.</p>
 
-    <p>The orchestration signal deserves particular attention from teams still on single-agent deployments: coordinated multi-agent systems are where the leaders went next, and the framework choices involved are the subject of our <a href="/blog/multi-agent-orchestration-frameworks-compared/">comparison of orchestration tooling</a>.</p>
+    <p>The orchestration signal deserves particular attention from teams still on single-agent deployments. Coordinated multi-agent systems are where the leaders went next, and our <a href="/blog/multi-agent-orchestration-frameworks-compared/">comparison of orchestration tooling</a> covers the framework choices involved.</p>
 
     <hr/>
 

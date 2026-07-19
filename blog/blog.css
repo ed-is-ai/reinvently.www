@@ -199,6 +199,26 @@ img { max-width: 100%; display: block; }
   border: 1px solid #1b1b1b;
   margin: 8px 0 40px;
 }
+.key-takeaways {
+  background: var(--bg2);
+  border: 1px solid var(--bg3);
+  border-left: 3px solid var(--accent);
+  padding: 28px 32px;
+  margin: 8px 0 40px;
+}
+.article-body .key-takeaways h2 {
+  font-family: var(--font-nav);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+.key-takeaways ul { margin: 0; padding-left: 20px; color: var(--text-dim); }
+.key-takeaways li { margin-bottom: 10px; line-height: 1.6; }
+.key-takeaways li:last-child { margin-bottom: 0; }
+
 .article-body h2 {
   font-family: var(--font-head);
   font-size: 28px;
