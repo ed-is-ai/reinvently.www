@@ -50,10 +50,13 @@
   }
   .container{max-width:1180px;}
   .article-body{max-width:none;}
-  .eom-header{position:relative;padding-top:34px;}
+  .eom-header{position:relative;padding:clamp(48px,5vw,88px) max(24px,calc((100vw - 1180px)/2)) clamp(42px,4vw,72px);}
   .eom-header::before{content:"";display:block;width:96px;height:3px;margin-bottom:20px;border-radius:999px;background:linear-gradient(90deg,var(--telemetry),var(--podium));box-shadow:0 0 18px var(--telemetry-tint);}
-  .eom h2.section{font-family:var(--font-head);font-size:26px;font-weight:400;color:var(--text);margin:44px 0 6px;}
-  .eom .section-note{color:var(--text-muted);font-size:14.5px;margin-bottom:16px;max-width:74ch;}
+  .eom-header .post-meta{font-size:clamp(11px,.72vw,13px);}
+  .eom-header h1{font-size:clamp(38px,3vw,56px);max-width:1180px;}
+  .eom-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.55;max-width:72ch;}
+  .eom h2.section{font-family:var(--font-head);font-size:clamp(26px,1.8vw,34px);font-weight:400;color:var(--text);margin:clamp(44px,4vw,64px) 0 8px;}
+  .eom .section-note{color:var(--text-muted);font-size:clamp(14.5px,1vw,17px);margin-bottom:18px;max-width:78ch;}
 
   /* ---------- telemetry chart ---------- */
   .eom .chart-card{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top right,var(--telemetry-tint),transparent 34%),var(--bg2);padding:clamp(14px,2.5vw,24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);}
@@ -129,19 +132,19 @@
 
   /* ---------- pit lane ---------- */
   .eom .pit{display:grid;gap:14px;margin-top:6px;}
-  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:16px 18px;font-size:15.5px;background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
-  .eom .pit-note h3{font-family:var(--font-head);font-size:18px;font-weight:400;color:var(--text);margin-bottom:6px;}
-  .eom .pit-note p{color:var(--text-dim);font-size:15px;line-height:1.6;}
+  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:clamp(16px,1.5vw,22px);font-size:clamp(15.5px,1vw,17px);background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
+  .eom .pit-note h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin-bottom:6px;}
+  .eom .pit-note p{color:var(--text-dim);font-size:inherit;line-height:1.6;}
   .eom .pit-note.flag{border-color:var(--danger);background:var(--danger-tint);}
   .eom .pit-note.steward{border-color:var(--amber);background:var(--amber-tint);}
 
-  .eom .method{color:var(--text-dim);font-size:15px;margin:0 0 20px 24px;max-width:74ch;}
+  .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin:0 0 20px 24px;max-width:78ch;}
   .eom .method li{margin:0 0 8px 0;}
-  .eom .method-intro{color:var(--text-dim);margin-bottom:20px;max-width:74ch;}
-  .eom .scoring{margin-top:44px;max-width:74ch;}
+  .eom .method-intro{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin-bottom:20px;max-width:78ch;}
+  .eom .scoring{margin-top:clamp(44px,4vw,64px);max-width:78ch;}
   .eom .scoring h2.section{margin-top:0;}
 
-  .runstamp{font-family:var(--font-data);font-size:12px;letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:5px 11px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
+  .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:6px 12px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
 
   @media (max-width:640px){
     .eom-header{padding-top:28px;padding-bottom:30px;}
