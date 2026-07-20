@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>All 28 Featherbench Tasks &amp; Model Comparison — The Ed-o-meter — Reinvently</title>
+<meta name="description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text. Pick two models to compare side by side."/>
+<link rel="stylesheet" href="../../../blog/blog.css"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+<link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/tests/"/>
+<meta property="og:title" content="All 28 Featherbench Tasks &amp; Model Comparison"/>
+<meta property="og:description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/tests/"/>
+<meta property="og:site_name" content="Reinvently"/>
+<meta property="og:locale" content="en_GB"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="All 28 Featherbench Tasks &amp; Model Comparison"/>
+<meta name="twitter:description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text."/>
+<style>
+  :root{
+    --good:#199e70; --good-tint:rgba(25,158,112,.14);
+    --amber:#c98500; --amber-tint:rgba(201,133,0,.14);
+    --danger:#d0524a; --danger-tint:rgba(208,82,74,.14);
+    --telemetry:#5ed6ff; --telemetry-tint:rgba(94,214,255,.12);
+    --hairline:#2a2a2a;
+    --font-data:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  }
+  .container{max-width:1180px;}
+  .article-body{max-width:none;}
+  .cmp-header{padding:clamp(36px,4vw,56px) max(24px,calc((100vw - 1132px)/2)) clamp(28px,3vw,40px);}
+  .cmp-header h1{font-size:clamp(30px,2.4vw,44px);font-weight:400;color:var(--text);margin-bottom:10px;}
+  .cmp-header p{color:var(--text-dim);font-size:clamp(15px,1vw,17px);line-height:1.6;}
+
+  /* ---------- picker ---------- */
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:14px;border:1px solid #29475a;border-radius:10px;background:var(--bg2);padding:16px 18px;margin:24px 0;}
+  .picker label{font-family:var(--font-nav);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px;}
+  .picker select{font-family:var(--font-data);font-size:14px;background:#0d0f12;color:var(--text);border:1px solid var(--hairline);border-radius:6px;padding:8px 10px;min-width:180px;}
+  .picker select:focus{outline:2px solid var(--telemetry);outline-offset:1px;}
+  .picker .vs{color:var(--text-muted);font-family:var(--font-nav);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:18px;}
+  .picker .swatch{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:7px;}
+
+  .summary-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:10px;overflow:hidden;margin-bottom:28px;}
+  .summary-cell{background:var(--bg2);padding:16px 18px;}
+  .summary-cell .label{font-family:var(--font-nav);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+  .summary-cell .row{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-data);font-size:15px;color:var(--text);margin-bottom:4px;}
+  .summary-cell .row span:first-child{color:var(--text-dim);font-size:13px;}
+  .summary-cell .diff{color:var(--telemetry);}
+
+  /* ---------- filters ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .filter-btn{font-family:var(--font-nav);font-size:11.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:1px solid var(--hairline);border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--text-muted);transition:border-color .15s,color .15s,background .15s;}
+  .filter-btn:hover{border-color:var(--telemetry);color:var(--text);}
+  .filter-btn[aria-pressed="true"]{background:var(--telemetry);border-color:var(--telemetry);color:#061016;}
+
+  /* ---------- task cards ---------- */
+  .task-card{border:1px solid #29475a;border-radius:10px;background:var(--bg2);margin-bottom:16px;overflow:hidden;}
+  .task-card.disagree{border-color:var(--amber);}
+  .task-head{padding:16px 20px;border-bottom:1px solid var(--hairline);}
+  .task-head .cat-tag{font-family:var(--font-nav);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--telemetry);margin-bottom:4px;}
+  .task-head h3{font-family:var(--font-head);font-size:19px;font-weight:400;color:var(--text);margin-bottom:4px;}
+  .task-head .short{color:var(--text-muted);font-size:13.5px;margin-bottom:10px;}
+  .task-head details summary{cursor:pointer;font-size:12.5px;color:var(--text-muted);font-family:var(--font-nav);letter-spacing:.03em;}
+  .task-head details summary:hover{color:var(--telemetry);}
+  .task-head details pre{white-space:pre-wrap;font-family:var(--font-data);font-size:12.5px;line-height:1.55;color:var(--text-dim);background:#0d0f12;border-radius:6px;padding:12px 14px;margin-top:10px;max-height:280px;overflow-y:auto;}
+
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 20px;}
+  .compare-col + .compare-col{border-left:1px solid var(--hairline);}
+  .compare-col .who{display:flex;align-items:center;gap:8px;font-family:var(--font-data);font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;}
+  .compare-col .who .swatch{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:999px;margin-bottom:10px;}
+  .badge.pass{background:var(--good-tint);color:var(--good);}
+  .badge.fail{background:var(--danger-tint);color:var(--danger);}
+  .badge.refusal{background:var(--amber-tint);color:var(--amber);}
+  .stat-row{display:flex;justify-content:space-between;font-family:var(--font-data);font-size:12.5px;color:var(--text-dim);margin-bottom:4px;}
+  .stat-row span:last-child{color:var(--text);}
+  .compare-col .check-detail{font-size:12px;color:var(--text-muted);margin:10px 0;line-height:1.5;}
+  .compare-col details{margin-top:10px;}
+  .compare-col details summary{cursor:pointer;font-size:12.5px;color:var(--telemetry);font-family:var(--font-nav);letter-spacing:.03em;}
+  .compare-col details pre{white-space:pre-wrap;word-break:break-word;font-family:var(--font-data);font-size:12.5px;line-height:1.55;color:var(--text-dim);background:#0d0f12;border-radius:6px;padding:12px 14px;margin-top:10px;max-height:420px;overflow-y:auto;}
+
+  /* ---------- fork CTA ---------- */
+  .fork-cta{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top left,var(--telemetry-tint),transparent 44%),var(--bg2);padding:24px 26px;margin:32px 0 8px;}
+  .fork-cta h3{font-family:var(--font-head);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;}
+  .fork-cta p{color:var(--text-dim);font-size:14.5px;line-height:1.6;max-width:74ch;margin-bottom:16px;}
+  .fork-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-nav);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#061016;background:var(--telemetry);border-radius:999px;padding:10px 18px;text-decoration:none;transition:box-shadow .15s;}
+  .fork-link:hover{box-shadow:0 0 18px var(--telemetry-tint);}
+
+  @media (max-width:760px){
+    .compare-grid{grid-template-columns:1fr;}
+    .compare-col + .compare-col{border-left:none;border-top:1px solid var(--hairline);}
+  }
+  @media (max-width:640px){
+    .cmp-header{padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/news/">News</a>
+    <a href="/guides/">Guides</a>
+    <a href="/tools/ed-o-meter/" aria-current="page">LLM Leaderboard</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Subscribe</a>
+  </div>
+</nav>
+
+<header class="article-header cmp-header">
+  <a class="back-link" href="/tools/ed-o-meter/">&#8592; Back to the leaderboard</a>
+  <h1 style="margin-top:14px">All 28 Featherbench Tasks</h1>
+  <p>The task list behind the Ed-o-meter, with what each model actually said. Pick two models below to compare pass/fail, cost, latency and full answer text side by side, task by task. Every task and checker here is open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Featherbench</a> — fork it and swap in your own tasks to build a benchmark that reflects what your team actually does.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+
+    <div class="picker" role="group" aria-label="Choose two models to compare">
+      <div>
+        <label for="modelA">Model A</label>
+        <select id="modelA"></select>
+      </div>
+      <div class="vs">vs</div>
+      <div>
+        <label for="modelB">Model B</label>
+        <select id="modelB"></select>
+      </div>
+    </div>
+
+    <div class="summary-bar" id="summaryBar"></div>
+
+    <div class="filters" id="catFilters" role="group" aria-label="Filter tasks by category"></div>
+
+    <p id="loadStatus" style="color:var(--text-muted);font-size:14px;">Loading task results…</p>
+    <div id="taskList"></div>
+
+    <div class="fork-cta">
+      <h3>Build your own benchmark</h3>
+      <p>These 28 tasks test what we cared about — your team's edge cases will be different. Featherbench is a single-file, MIT-licensed harness: fork it, delete the tasks that don't matter to you, and write ones that encode your own answer key. The whole point of running your own eval is that nobody can benchmark-max against a task that didn't exist until you wrote it.</p>
+      <a href="https://github.com/ed-is-ai/featherbench" class="fork-link">Fork Featherbench on GitHub &#8594;</a>
+    </div>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently. All rights reserved.</p>
+  <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently writes about topics that inform engineering teams adopting AI tooling and modern development practices.</p>
+</footer>
+
+<script>
+let TASKS = [];
+let TASK_RESULTS = {};
+
+const MODELS = [
+  {id:'haiku-4-5',     name:'haiku-4-5',     hex:'#7FA8E8'},
+  {id:'sonnet-4-6',    name:'sonnet-4-6',    hex:'#123A8C'},
+  {id:'gpt-5.5',       name:'gpt-5.5',       hex:'#C0392B'},
+  {id:'glm-5.2',       name:'glm-5.2',       hex:'#2E7D57'},
+  {id:'kimi-k3',       name:'kimi-k3',       hex:'#6B4FA0'},
+  {id:'sonnet-5',      name:'sonnet-5',      hex:'#4A78D0'},
+  {id:'gpt-5.6-terra', name:'gpt-5.6-terra', hex:'#A03A5E'},
+  {id:'gpt-5.6-sol',   name:'gpt-5.6-sol',   hex:'#C85A50'},
+  {id:'gpt-5.6-luna',  name:'gpt-5.6-luna',  hex:'#D9748A'},
+  {id:'fable-5',       name:'fable-5',       hex:'#2456E6'},
+];
+const MODEL_BY_ID = Object.fromEntries(MODELS.map(m=>[m.id,m]));
+const CAT_LABEL = {coding:'Coding', data:'Data', realworld:'Realworld', security:'Security', 'tool-use':'Tool-use'};
+const CAT_ORDER = ['coding','data','realworld','security','tool-use'];
+
+const modelASel = document.getElementById('modelA');
+const modelBSel = document.getElementById('modelB');
+MODELS.forEach(m=>{
+  modelASel.add(new Option(m.name, m.id));
+  modelBSel.add(new Option(m.name, m.id));
+});
+modelASel.value = 'haiku-4-5';
+modelBSel.value = 'kimi-k3';
+
+let activeCat = 'all';
+const catFilters = document.getElementById('catFilters');
+function renderFilters(){
+  const cats = ['all', ...CAT_ORDER];
+  catFilters.innerHTML = cats.map(c=>{
+    const label = c==='all' ? 'All tasks' : CAT_LABEL[c];
+    return `<button class="filter-btn" data-cat="${c}" aria-pressed="${c===activeCat}">${label}</button>`;
+  }).join('');
+}
+catFilters.addEventListener('click', e=>{
+  const b = e.target.closest('.filter-btn');
+  if(!b) return;
+  activeCat = b.dataset.cat;
+  renderFilters();
+  renderAll();
+});
+
+function esc(s){
+  return (s||'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+}
+
+function statBlock(model, res){
+  if(!res) return '<div class="check-detail">No recorded run for this model.</div>';
+  const badgeClass = res.refusal ? 'refusal' : (res.pass ? 'pass' : 'fail');
+  const badgeText = res.refusal ? 'Refused' : (res.pass ? 'Pass' : 'Fail');
+  const ttft = res.ttft!=null ? res.ttft.toFixed(1)+' s' : '—';
+  const cost = res.cost!=null ? '$'+res.cost.toFixed(4) : '—';
+  return `
+    <span class="badge ${badgeClass}">${badgeText}</span>
+    <div class="stat-row"><span>TTFT</span><span>${ttft}</span></div>
+    <div class="stat-row"><span>Wall-clock</span><span>${res.wall!=null ? res.wall.toFixed(1)+' s' : '—'}</span></div>
+    <div class="stat-row"><span>Cost</span><span>${cost}</span></div>
+    <div class="stat-row"><span>Output tokens</span><span>${res.outTok!=null ? res.outTok : '—'}</span></div>
+    ${res.detail ? `<div class="check-detail">${esc(res.detail)}</div>` : ''}
+    ${res.text ? `<details><summary>View full answer</summary><pre>${esc(res.text)}</pre></details>` : ''}
+  `;
+}
+
+function taskCardHTML(task, idA, idB){
+  const resA = (TASK_RESULTS[task.id] || {})[idA];
+  const resB = (TASK_RESULTS[task.id] || {})[idB];
+  const mA = MODEL_BY_ID[idA], mB = MODEL_BY_ID[idB];
+  const disagree = resA && resB && (!!resA.pass !== !!resB.pass);
+  return `
+    <div class="task-card${disagree ? ' disagree' : ''}">
+      <div class="task-head">
+        <div class="cat-tag">${CAT_LABEL[task.category] || task.category}</div>
+        <h3>${esc(task.title)}</h3>
+        <div class="short">${esc(task.short)}</div>
+        ${task.prompt ? `<details><summary>View prompt</summary><pre>${esc(task.prompt)}</pre></details>` : ''}
+      </div>
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="who"><span class="swatch" style="background:${mA.hex}"></span>${mA.name}</div>
+          ${statBlock(mA, resA)}
+        </div>
+        <div class="compare-col">
+          <div class="who"><span class="swatch" style="background:${mB.hex}"></span>${mB.name}</div>
+          ${statBlock(mB, resB)}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSummary(idA, idB){
+  const mA = MODEL_BY_ID[idA], mB = MODEL_BY_ID[idB];
+  function agg(id){
+    let pass=0, cost=0, ttftSum=0, ttftN=0, refusals=0;
+    TASKS.forEach(t=>{
+      const r = (TASK_RESULTS[t.id] || {})[id];
+      if(!r) return;
+      if(r.pass) pass++;
+      if(r.refusal) refusals++;
+      cost += r.cost || 0;
+      if(r.ttft!=null){ ttftSum += r.ttft; ttftN++; }
+    });
+    return {pass, cost, refusals, ttftAvg: ttftN ? ttftSum/ttftN : null};
+  }
+  const a = agg(idA), b = agg(idB);
+  const disagreeCount = TASKS.filter(t=>{
+    const ra = (TASK_RESULTS[t.id]||{})[idA], rb = (TASK_RESULTS[t.id]||{})[idB];
+    return ra && rb && (!!ra.pass !== !!rb.pass);
+  }).length;
+  document.getElementById('summaryBar').innerHTML = `
+    <div class="summary-cell">
+      <div class="label"><span class="swatch" style="background:${mA.hex}"></span>${mA.name} — pass rate</div>
+      <div class="row"><span>Passed</span><span>${a.pass} / 28</span></div>
+      <div class="row"><span>Refusals</span><span>${a.refusals}</span></div>
+      <div class="row"><span>Total cost</span><span>$${a.cost.toFixed(4)}</span></div>
+      <div class="row"><span>Avg TTFT</span><span>${a.ttftAvg!=null ? a.ttftAvg.toFixed(1)+' s' : '—'}</span></div>
+    </div>
+    <div class="summary-cell">
+      <div class="label"><span class="swatch" style="background:${mB.hex}"></span>${mB.name} — pass rate</div>
+      <div class="row"><span>Passed</span><span>${b.pass} / 28</span></div>
+      <div class="row"><span>Refusals</span><span>${b.refusals}</span></div>
+      <div class="row"><span>Total cost</span><span>$${b.cost.toFixed(4)}</span></div>
+      <div class="row"><span>Avg TTFT</span><span>${b.ttftAvg!=null ? b.ttftAvg.toFixed(1)+' s' : '—'}</span></div>
+    </div>
+    <div class="summary-cell">
+      <div class="label">Head to head</div>
+      <div class="row"><span>Tasks they disagree on</span><span class="diff">${disagreeCount} / 28</span></div>
+      <div class="row"><span>Cost difference</span><span>$${Math.abs(a.cost-b.cost).toFixed(4)}</span></div>
+    </div>
+  `;
+}
+
+function renderTasks(idA, idB){
+  const list = activeCat==='all' ? TASKS : TASKS.filter(t=>t.category===activeCat);
+  document.getElementById('taskList').innerHTML = list.map(t=>taskCardHTML(t, idA, idB)).join('');
+}
+
+function renderAll(){
+  const idA = modelASel.value, idB = modelBSel.value;
+  renderSummary(idA, idB);
+  renderTasks(idA, idB);
+}
+
+modelASel.addEventListener('change', renderAll);
+modelBSel.addEventListener('change', renderAll);
+renderFilters();
+
+const loadStatus = document.getElementById('loadStatus');
+fetch('tests-data.json')
+  .then(r => {
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(data => {
+    TASKS = data.tasks;
+    TASK_RESULTS = data.results;
+    loadStatus.remove();
+    renderAll();
+  })
+  .catch(err => {
+    loadStatus.textContent = 'Could not load task results (' + err.message + '). If you opened this file directly, serve it over http:// instead — fetch() of local JSON is blocked under file://.';
+  });
+</script>
+</body>
+</html>
