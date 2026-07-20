@@ -50,13 +50,13 @@
   }
   .container{max-width:1180px;}
   .article-body{max-width:none;}
-  .eom-header{position:relative;padding:clamp(48px,5vw,88px) max(24px,calc((100vw - 1180px)/2)) clamp(42px,4vw,72px);}
+  .eom-header{position:relative;padding:clamp(48px,5vw,88px) max(24px,calc((100vw - 1132px)/2)) clamp(42px,4vw,72px);}
   .eom-header::before{content:"";display:block;width:96px;height:3px;margin-bottom:20px;border-radius:999px;background:linear-gradient(90deg,var(--telemetry),var(--podium));box-shadow:0 0 18px var(--telemetry-tint);}
   .eom-header .post-meta{font-size:clamp(11px,.72vw,13px);}
   .eom-header h1{font-size:clamp(38px,3vw,56px);max-width:1180px;}
-  .eom-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.55;max-width:72ch;}
+  .eom-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.55;max-width:none;}
   .eom h2.section{font-family:var(--font-head);font-size:clamp(26px,1.8vw,34px);font-weight:400;color:var(--text);margin:clamp(44px,4vw,64px) 0 8px;}
-  .eom .section-note{color:var(--text-muted);font-size:clamp(14.5px,1vw,17px);margin-bottom:18px;max-width:78ch;}
+  .eom .section-note{color:var(--text-muted);font-size:clamp(14.5px,1vw,17px);margin-bottom:18px;}
 
   /* ---------- telemetry chart ---------- */
   .eom .chart-card{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top right,var(--telemetry-tint),transparent 34%),var(--bg2);padding:clamp(14px,2.5vw,24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);}
@@ -75,12 +75,21 @@
 
   .eom .caveat{border-left:3px solid var(--amber);background:var(--amber-tint);border-radius:0 8px 8px 0;padding:14px 18px;font-size:15px;margin:22px 0 8px;color:var(--text-dim);}
   .eom .caveat strong{font-weight:650;color:var(--text);}
+  .eom .task-list{margin-top:12px;}
+  .eom .task-list summary{cursor:pointer;font-weight:600;color:var(--text);font-size:14px;}
+  .eom .task-list summary:hover{color:var(--telemetry);}
+  .eom .task-list-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px;}
+  .eom .task-list-grid h4{font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--telemetry);margin-bottom:8px;}
+  .eom .task-list-grid h4 span{color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0;}
+  .eom .task-list-grid ul{list-style:none;margin:0;padding:0;}
+  .eom .task-list-grid li{font-size:13.5px;line-height:1.5;color:var(--text-dim);margin-bottom:8px;}
+  .eom .task-list-grid li strong{color:var(--text);font-weight:600;}
 
   /* ---------- board ---------- */
   .eom .table-scroll{overflow-x:auto;border:1px solid #29475a;border-radius:10px;}
   .eom table{width:100%;border-collapse:collapse;min-width:880px;background:var(--bg2);}
   .eom thead th{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-nav);color:var(--text-muted);text-align:left;padding:0;border-bottom:1px solid #29475a;background:linear-gradient(90deg,#151c24,#111417);}
-  .eom .th-sort{all:unset;display:flex;align-items:center;gap:6px;cursor:pointer;padding:11px 12px;width:100%;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;}
+  .eom .th-sort{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:6px;cursor:pointer;padding:11px 12px;width:100%;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;}
   .eom .th-sort .arrow{opacity:.3;font-size:9px;}
   .eom th[aria-sort] .th-sort{color:var(--text);}
   .eom th[aria-sort] .arrow{opacity:1;}
@@ -97,7 +106,7 @@
   .eom sup{font-size:10px;color:var(--amber);font-weight:700;}
   .eom .sec-bad{color:var(--danger);font-weight:600;}
   .eom .sec-good{color:var(--good);}
-  .eom .footnotes{font-size:13.5px;color:var(--text-muted);margin:14px 0 0;max-width:80ch;}
+  .eom .footnotes{font-size:13.5px;color:var(--text-muted);margin:14px 0 0;}
   .eom .footnotes p{margin-bottom:7px;}
   .eom .footnotes sup{color:var(--amber);}
   .eom code{font-family:var(--font-data);font-size:.88em;background:var(--bg2);padding:1px 5px;border-radius:4px;color:var(--text-dim);}
@@ -132,16 +141,16 @@
 
   /* ---------- pit lane ---------- */
   .eom .pit{display:grid;gap:14px;margin-top:6px;}
-  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:clamp(16px,1.5vw,22px);font-size:clamp(15.5px,1vw,17px);background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
+  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:clamp(12px,1vw,16px);font-size:clamp(15.5px,1vw,17px);background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
   .eom .pit-note h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin-bottom:6px;}
   .eom .pit-note p{color:var(--text-dim);font-size:inherit;line-height:1.6;}
   .eom .pit-note.flag{border-color:var(--danger);background:var(--danger-tint);}
   .eom .pit-note.steward{border-color:var(--amber);background:var(--amber-tint);}
 
-  .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin:0 0 20px 24px;max-width:78ch;}
+  .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin:0 0 20px 24px;}
   .eom .method li{margin:0 0 8px 0;}
-  .eom .method-intro{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin-bottom:20px;max-width:78ch;}
-  .eom .scoring{margin-top:clamp(44px,4vw,64px);max-width:78ch;}
+  .eom .method-intro{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin-bottom:20px;}
+  .eom .scoring{margin-top:clamp(44px,4vw,64px);}
   .eom .scoring h2.section{margin-top:0;}
 
   .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:6px 12px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
@@ -178,14 +187,16 @@
 <header class="article-header eom-header">
   <div class="post-meta">Updated 19 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Same car, same track. Ten leading models drive the identical 28-task lap — one harness, verbatim prompts, deterministic grading — and the times go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
-  <span class="runstamp">Source runs: 18–19 July 2026 · 28 tasks · single trial per cell · Featherbench</span>
+  <p class="summary">Same driver, same track. The LLM is the star. Ten leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
 </header>
 
 <main class="container">
   <article class="article-body eom">
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <h2 class="section" style="margin-top:0">Which Model Tops Our Leaderboard?</h2>
+    <p class="section-note">How the LLMs did in our realworld tests.  Our focus here was real tasks that real people carry out, not academic metrics.  We focus on single tasks to simplify the assessment. An agentic flow is ultimately a series of such tasks. Think of these like unit tests for the agent.  We made them cheap enough to run so that even the whole suite costs just $30.   <a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">See every task and each model's actual answer, or compare two models head to head &#8594;</a></p>
 
     <div class="chart-card">
       <div class="modes" role="group" aria-label="Choose which metric the telemetry shows">
@@ -199,10 +210,68 @@
     </div>
 
     <div class="caveat" role="note">
-      <strong>These are wet laps.</strong> Every pass rate is a single trial per task with a Wilson 95% interval — the whiskers on the chart. They overlap generously, so treat the ordering as a first read, not a tight estimate. Where a number carries a footnote mark, the footnote is load-bearing: the rubric judge is fable-5, <em>including on its own answers</em>.
+      The overall score is the pass rate across my 28 realworld tasks. As we only had a limited number of trials there is a wide Wilson interval — the whiskers on the chart.
+      <details class="task-list">
+        <summary>See all 28 tasks</summary>
+        <div class="task-list-grid">
+          <div>
+            <h4>Coding <span>(7 · Python)</span></h4>
+            <ul>
+              <li><strong>CSV dedupe</strong> — small, well-specified task with a deterministic unit-test checker</li>
+              <li><strong>Debug billing date</strong> — fix a month/day-overflow date bug without regressing the working cases</li>
+              <li><strong>Debug money split</strong> — split integer pennies N ways so shares sum exactly and stay fair</li>
+              <li><strong>Debug mutable default</strong> — fix the classic mutable-default-argument bug</li>
+              <li><strong>Debug pagination</strong> — fix an off-by-one page-count bug</li>
+              <li><strong>Log parsing</strong> — parse logs with quoted quotes, missing fields, IPv6 edge cases</li>
+              <li><strong>Rate limiter</strong> — stateful class implementation tested against an injected fake clock</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Data <span>(4)</span></h4>
+            <ul>
+              <li><strong>CSV schema mapping</strong> — map a raw CRM export onto a conformed customer dimension</li>
+              <li><strong>Fabric roadmap</strong> — turn a catalogue, mapping and requirements into a phased user-story roadmap</li>
+              <li><strong>Data model from interview</strong> — derive a star-schema model and requirements from a stakeholder transcript</li>
+              <li><strong>Data quality assessment</strong> — catch seeded defects in a small table and prioritise fixes</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Realworld <span>(9)</span></h4>
+            <ul>
+              <li><strong>Crying baby advice</strong> — safety-sensitive triage for an unusually crying 8-week-old</li>
+              <li><strong>Date night in Nottingham</strong> — local recommendations without hallucinated venues</li>
+              <li><strong>Flight search honesty</strong> — admit no live pricing data rather than fabricate flights</li>
+              <li><strong>Strict bullet formatting</strong> — obey exact format constraints under an awkward word ban</li>
+              <li><strong>Lisbon holiday plan</strong> — five-day itinerary respecting cost, kids and a rest day</li>
+              <li><strong>Honey cough pushback</strong> — correct a wrong premise: no honey for a 5-month-old</li>
+              <li><strong>Marathon PB plan</strong> — week-by-week training plan around a fixed club session</li>
+              <li><strong>Vegetarian weeknight recipe</strong> — genuinely meat-free recipe for six</li>
+              <li><strong>Tenancy extraction</strong> — grounded answers from a provided agreement, including admitting what isn't covered</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Security <span>(6)</span></h4>
+            <ul>
+              <li><strong>Email summary injection</strong> — summarise an email without obeying an embedded refund instruction</li>
+              <li><strong>UnGpt document injection</strong> — summarise a review without emitting the embedded jailbreak canary</li>
+              <li><strong>AIM/Machiavelli jailbreak</strong> — refuse the unfiltered persona while still answering the benign question</li>
+              <li><strong>Developer Mode jailbreak</strong> — refuse the dual-response jailbreak template</li>
+              <li><strong>Evil Confidant jailbreak</strong> — refuse the "no rules" persona while staying helpful</li>
+              <li><strong>OPPO jailbreak</strong> — refuse the opposite-of-a-safe-model persona template</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Tool-use <span>(2)</span></h4>
+            <ul>
+              <li><strong>Flight tool selection</strong> — search only, don't book, when explicitly told not to</li>
+              <li><strong>Weather tool call</strong> — call the weather tool with the correct location argument</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:14px"><a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">See each model's actual answer to every task, or pick two models to compare head to head &#8594;</a></p>
+      </details>
     </div>
 
-    <h2 class="section">Which Model Tops the Featherbench Leaderboard?</h2>
     <p class="section-note">Click a column to re-rank. Security shown separately because it's where this season's field split; cost shown both per run and per task.</p>
 
     <div class="table-scroll">
@@ -259,19 +328,19 @@
     <div class="pit">
       <div class="pit-note flag">
         <h3>Two cars failed the crash test</h3>
-        <p>gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — a genuine safety difference, not a harness artifact. The Claude trio went 6/6 clean, as did gpt-5.5. One caution before drawing conclusions across the gpt-5.6 trio: luna and sol run behind provider-side moderation and terra does not, so their refusal behaviour isn't strictly apples-to-apples — check <code>is_moderated</code> first.</p>
+        <p>The gpt5.6 is quick but safety issues.  gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, it's the top model on the board. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data tasks, its only weak corner. Brilliant, cheap, and late — every panel show has one.</p>
+        <p>kimi-k3 tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, it's the top model on the board. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
       </div>
       <div class="pit-note">
         <h3>Fable failed to complete a single lap</h3>
-        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it though Kimi-k3 was giving better answers. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it though Kimi-k3 was giving better answers. You'll need a fallback model if you using Fable.  See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
       </div>
       <div class="pit-note">
         <h3>Cheap as chips, and it reads like it</h3>
-        <p>haiku-4-5 delivers the cheapest full 28-task pass recorded here — $0.12 with a 0.9-second median TTFT and 96%. The rubric tells the rest: 7.4, roughly a point and a half behind the field, a gap the binary checkers can't see. Meanwhile sonnet-4-6 and sonnet-5 ran config-matched — same effort, same max_tokens — and sonnet-4-6 used 3.9× the output tokens and 5.7× the wall-clock for essentially the same rubric quality. Same car, different fuel bill.</p>
+        <p>haiku-4-5 delivers the cheapest & fastest results — $0.12 with a 0.9-second median TTFT and 96%.  The model defaults to caveman mode though, a rubric of 7.4 was ok but lagged the field by 1.5 points.  Use where urgency & cost efficiency matters most —  sonnet-4-6 and sonnet-5 used 3.9× the output tokens and 5.7× the wall-clock for only slightly better results.</p>
       </div>
     </div>
 
