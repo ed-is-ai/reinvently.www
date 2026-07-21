@@ -123,9 +123,9 @@
 
     <hr/>
 
-    <h2>One Variable</h2>
+    <h2>What Does It Mean to Hold One Variable Constant?</h2>
 
-    <p>Nothing changes other than the model. The tasks, the prompts, the answer keys, the checkers, the rubric, the scoring and the routing are all fixed. Everything is audited in source control so I can prove this.</p>
+    <p>Nothing changes between runs other than the model under test. The 28 tasks, the prompts, the answer keys, the checkers, the rubric, the scoring and the routing are all fixed and tracked in source control, so any two runs differ by exactly one thing. That is the whole design constraint: if a score moves, the model moved it, not a quietly re-tuned prompt or a changed grader. It sounds obvious, but most informal model comparisons vary the prompt and the model at the same time and then attribute the difference to the model.</p>
 
     <h2>Why Build a New Eval Harness?</h2>
 
@@ -154,7 +154,7 @@
 
     <h2>How Should a Benchmark Count Refusals?</h2>
 
-    <p>Models sometimes refuse to do something, if it violates some build in policy.  It's a point of debate. We chose to count these as fails as whilst that keeps the model safe, it doesn't help me as I still need to do the task that you refused!!</p>
+    <p>Models sometimes refuse a task when it trips some built-in policy. How to score that is a genuine point of debate, and it materially moves rankings. Featherbench counts benign refusals as failures, on the reasoning that from the user's side a refused bug fix and a failed bug fix are indistinguishable — either way the work you needed doesn't get done. The raw JSONL is published so anyone who prefers different accounting can re-score it.</p>
 
     <h2>Mistakes I Made Building the Harness</h2>
 
@@ -162,19 +162,19 @@
 
     <p><strong>The vegetarian recipe check kept giving me incorrect failures.</strong> My forbidden-term checker for the vegetarian recipe flagged a response that contained any animal product terms, e.g. a warning that "some stock cubes contain animal products" = FAIL. I added a negation-aware shield to cover this.</p>
 
-    <p><strong>I got wary of running these models.</strong>I bought separate hardware to ensure complete isolation from my day-to-day work. But I'd probably just docker sandbox.</p>
+    <p><strong>I got wary of running these models.</strong> I bought separate hardware to isolate the runs from my day-to-day work, though a Docker sandbox would have done the job.</p>
 
-    <p><strong>More runs required</strong> I concentrated on testing many models with the same 28 tasks and ran 1 or 2 trials each, thus we still have some wide Wilson intervals. On <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a> they're drawn as whiskers on the pass-rate chart rather than relegated to a footnote, so the presentation looks as uncertain as the data is. Multi-trial runs are the first item on the roadmap.</p>
+    <p><strong>More runs required.</strong> I concentrated on testing many models with the same 28 tasks and ran only one or two trials each, so some pass rates still carry wide Wilson intervals. On <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a> they're drawn as whiskers on the pass-rate chart rather than relegated to a footnote, so the presentation looks as uncertain as the data is. Multi-trial runs are the first item on the roadmap.</p>
 
-    <h2>What the Measurement Produced</h2>
+    <h2>What Did I Learn Through the Process?</h2>
 
     <p>Whether the exercise was worth it comes down to whether you learn something new that wasn't readily reported. For me it really deepened my understanding of the nuances in model behavior.</p>
 
-    <p>For instance the top rubric score went to Kimi-3, which aligns to the hype. But with a median time-to-first-token of 26.4 seconds — it was several times longer than anything else on <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a>. this latency makes it unusable for interactive work: it makes it too slow for most things unforunately</p>
+    <p>For instance, the top rubric score went to Kimi-3, which aligns with the hype. But its median time-to-first-token was 26.4 seconds — several times longer than anything else on <a href="/tools/ed-o-meter/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">the LLM Leaderboard</a>. That latency makes it impractical for interactive work: highest quality on paper, too slow to use.</p>
 
-    <p>It soon became clear that Fable-5 was a very fussy model, it hard-refused a bunch tasks that nothing else thought twice about, which made it pretty rubbish for realworld use.  The <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> is in the original write-up. Most leaderboards make that choice silently; making it explicitly, with the raw data published, changed both the result and the conversation about it.</p>
+    <p>It soon became clear that Fable-5 was a very fussy model. It hard-refused a run of tasks that nothing else thought twice about, which made it a poor fit for real-world use. The <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> is in the original write-up. Most leaderboards make that accounting choice silently; making it explicit, with the raw data published, changed both the result and the conversation about it.</p>
 
-    <p>Another surprising finding was how badly the GPT5.6 range performanced on jailbreak canary tests, much worse than GPT5.5 or similarly performing models.  OpenAI have clearly taken a very different architectural approach for this range but you really have to watch out for it in your harness.</p>
+    <p>Another surprising finding was how badly the GPT-5.6 range performed on jailbreak canary tests, much worse than GPT-5.5 or similarly capable models. OpenAI have clearly taken a different architectural approach for this range, and it is the kind of regression you only catch if your harness tests for it directly.</p>
 
 
     <h2>What's Next for the Ed-o-meter</h2>
@@ -188,6 +188,23 @@
     <p>The harness, the 28 verbatim prompts and the raw results are on <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub</a>. If you find a flaw in the method, I'd genuinely rather hear it than not.</p>
 
     <p><em>Featherbench is MIT-licensed. The Ed-o-meter is re-run on every major model release. To get future posts as they are published, <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">leave your email address</a>.</em></p>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>What is the difference between Featherbench and the Ed-o-meter?</h3>
+    <p>Featherbench is the eval harness: a single Python file that runs a fixed set of tasks against any model and grades the results. The Ed-o-meter is the leaderboard it produces, published as a public results page. Featherbench is the test track, Ed-o-meter the leaderboard of results.</p>
+
+    <h3>Why build a new LLM eval harness instead of using Inspect AI or promptfoo?</h3>
+    <p>Inspect AI, promptfoo and Braintrust are all more capable, and if you need tracing, dataset versioning or a UI you should use one of them. The narrower requirement here was auditability: when a number looks wrong, the distance between noticing and finding the cause should be one file read.</p>
+
+    <h3>How should a benchmark count model refusals?</h3>
+    <p>Featherbench counts benign refusals as failures, on the reasoning that from the user's side a refused bug fix and a failed bug fix are indistinguishable.  The choice is debatable and it materially moves the model's ranking, so the raw JSONL is published for anyone who prefers different accounting.</p>
+
+    <h3>How do you stop the judge model from favouring its own answers?</h3>
+    <p>You cannot eliminate judge bias, so Featherbench measures it. Every selected model judges every response blind, and the harness publishes a judge-bias matrix showing the mean score each judge gives each contestant. Most published evals use a single judge that is quietly one of the contestants and leave the bias as an assumption.</p>
+
+    <h3>Why run models through OpenRouter rather than each vendor's API?</h3>
+    <p>One endpoint, one streaming path and one latency clock for every model, so no vendor-specific SDK is quietly doing its own retries or connection pooling and contaminating the comparison. It also makes adding a model a one-line config change, which is how the panel can include brand new open-weight releases. Open Router does have a route to alternatives feature, so the risk of a router re-serving a request on a different upstream or a quantized variant is pinned shut with <code>allow_fallbacks:false</code>.</p>
 
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
