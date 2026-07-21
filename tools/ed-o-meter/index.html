@@ -167,6 +167,17 @@
     .eom .scoring h2.section{font-size:24px;line-height:1.2;margin-bottom:12px;}
     .eom .method{margin-left:20px;font-size:14px;}
     .eom .method-intro{font-size:14px;line-height:1.6;}
+
+    /* chart: fit the plot to the screen so the data dots are not scrolled off */
+    .eom svg#telemetry{min-width:0;}
+    .eom .row-name,.eom .row-val{font-size:11px;}
+
+    /* wide tables stay horizontally scrollable — add a right-edge fade so the
+       swipe affordance is discoverable, plus tighter cells */
+    .eom .table-scroll,.eom .cat-scroll{position:relative;}
+    .eom .table-scroll::after,.eom .cat-scroll::after{content:"";position:absolute;top:0;right:0;bottom:0;width:26px;border-radius:0 10px 10px 0;pointer-events:none;background:linear-gradient(90deg,rgba(17,20,23,0),var(--bg2));}
+    .eom tbody td{padding:10px 9px;font-size:14px;}
+    .eom td.num{font-size:12px;}
   }
 </style>
 </head>
@@ -416,8 +427,12 @@ const svg = document.getElementById('telemetry');
 const axisNote = document.getElementById('axisNote');
 let mode='pass';
 
-const W=780, ML=150, MR=86, ROW=33, MT=26, MB=14;
+const MT=26, MB=14;
 function draw(){
+  // Compact geometry on narrow screens so the whole plot fits without the
+  // data dots scrolling off-screen to the right.
+  const narrow = window.innerWidth <= 640;
+  const W = narrow?520:780, ML = narrow?96:150, MR = narrow?52:86, ROW = narrow?30:33;
   const M = MODES[mode];
   const rows = [...MODELS].sort((a,b)=> M.higher ? M.val(b)-M.val(a) : M.val(a)-M.val(b));
   const H = MT + rows.length*ROW + MB;
@@ -452,6 +467,7 @@ function draw(){
 }
 document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;draw();}));
 draw();
+let rzT; window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(draw,150);});
 
 /* ---- sortable board ---- */
 const body = document.getElementById('boardBody');
