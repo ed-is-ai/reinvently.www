@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="max-image-preview:large"/>
+  <title>How Much Does AI Improve Software Development Productivity?</title>
+  <meta name="description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
+  <link rel="alternate" type="application/atom+xml" href="https://reinvently.co.uk/f.atom"/>
+  <link rel="alternate" type="application/json" href="https://reinvently.co.uk/f.json"/>
+  <link rel="alternate" type="application/rss+xml" href="https://reinvently.co.uk/f.rss"/>
+  <meta property="og:title" content="How Much Does AI Improve Software Development Productivity?"/>
+  <meta property="og:description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
+  <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
+  <meta property="article:modified_time" content="2026-07-29T01:18:34+01:00"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="How Much Does AI Improve Software Development Productivity?"/>
+  <meta name="twitter:description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"How Much Does AI Improve Software Development Productivity?",
+    "description":"A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one.",
+    "datePublished":"2026-07-28T23:31:06+01:00",
+    "dateModified":"2026-07-29T01:18:34+01:00",
+    "version":"1.0",
+    "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
+    "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
+    "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk"},
+    "publishingPrinciples":"https://reinvently.co.uk/research-standards/",
+    "url":"https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"},
+    "inLanguage":"en-GB",
+    "keywords":["AI coding productivity","coding agents","GitHub Copilot","spec-driven development","agentic software engineering"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://reinvently.co.uk/"},
+      {"@type":"ListItem","position":2,"name":"Guides","item":"https://reinvently.co.uk/guides/"},
+      {"@type":"ListItem","position":3,"name":"AI coding productivity review"}
+    ]
+  }
+  </script>
+  <style>
+    .article-header{padding-left:max(20px,calc((100% - 720px)/2));padding-right:max(20px,calc((100% - 720px)/2))}
+    .article-header h1,.article-header .summary{max-width:720px}
+    .article-diagram{margin:42px 0}
+    .article-diagram svg{display:block;width:100%;height:auto;border:1px solid #d7dde0;background:#fff}
+    .article-diagram figcaption{margin-top:10px;color:rgb(150,150,150);font-size:13px;line-height:1.5}
+    .evidence-table{width:100%;border-collapse:collapse;margin:28px 0 40px;font-size:13px}
+    .evidence-table th,.evidence-table td{padding:13px 10px;border:1px solid #29332e;text-align:left;vertical-align:top}
+    .evidence-table th{color:#fff;background:#17201b}
+    .evidence-table td{color:rgb(185,185,185)}
+    .evidence-table tbody tr:nth-child(even){background:#0e120f}
+    .evidence-table tbody tr:hover{background:#141a17}
+    .evidence-table .high{color:#55b980}.evidence-table .medium{color:#f3bf55}.evidence-table .low{color:#ef7f77}
+    .effect-register-wrap{width:100%;margin:28px 0 40px;overflow-x:auto}
+    .effect-register-table{width:100%;min-width:700px;margin:0}
+    .effect-register-table th:first-child,.effect-register-table td:first-child{min-width:105px;white-space:nowrap}
+    .effect-register-table td:first-child br{display:none}
+    .effect-register-table td:first-child br+code::before{content:" "}
+    .evidence-callout{border-left:3px solid #55b980;padding:16px 20px;margin:30px 0;background:#141a17}
+    .evidence-callout p{margin:0}
+    .article-body p a,.article-body .evidence-table a,.article-body .source-register a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
+    .article-body p a:hover,.article-body .evidence-table a:hover,.article-body .source-register a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
+    .citation-block{margin:34px 0 28px;padding:18px 20px;border:1px solid #29332e;border-left:3px solid #55b980;background:#111713}
+    .citation-block p{margin:0 0 9px}
+    .citation-block p:last-child{margin-bottom:0}
+    .citation-block-title{color:#fff;font-weight:700}
+    .citation-meta{color:rgb(150,150,150);font-size:13px}
+    .article-breadcrumb{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 34px;color:rgb(150,150,150);font-family:var(--font-nav);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+    .article-breadcrumb a{color:rgb(190,190,190)}
+    .article-breadcrumb a:hover{color:#55b980;opacity:1}
+    .article-breadcrumb [aria-current="page"]{color:rgb(150,150,150)}
+    details{margin:20px 0 28px;padding:14px 18px;border:1px solid #252c28;background:#111311}
+    details summary{cursor:pointer;color:#ddd}
+    .article-toc{margin:28px 0 44px;padding:22px 24px;border:1px solid #29332e;border-top:2px solid #55b980;background:#121613}
+    .article-toc-title{margin:0 0 16px;color:#fff;font-size:18px;font-weight:700}
+    .article-toc ul{margin:0;padding:0;list-style:none}
+    .article-toc>ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 34px}
+    .article-toc-section{display:block;color:#fff;font-weight:700}
+    .article-toc>ul>li>ul{margin:9px 0 0 4px;padding-left:15px;border-left:1px solid #34463b}
+    .article-toc>ul>li>ul li{margin:7px 0}
+    .article-toc a{color:rgb(190,190,190);text-decoration:none}
+    .article-toc a:hover{color:#55b980}
+    @media(max-width:700px){.article-toc>ul{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/news/">News</a><a href="/guides/">Guides</a><a href="/tools/ed-o-meter/">LLM Leaderboard</a><a href="/about/">About</a><a href="/contact/">Subscribe</a></div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta"><time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Systematic Review</a> &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);">Ed Yau</a>, Applied AI Architect</div>
+  <h1>How Much Does AI Improve Software Development Productivity?</h1>
+  <p class="summary">A systematic review of 59 studies finds reliable coding-stage gains but much smaller improvements in releases and adoption. The strongest evidence supports 1.1–1.3× higher release output. Highest-automation agent-native cases report a 4.5× median and 10×+ at the upper end, but these are low-confidence organisational estimates that depend on workflows redesigned around agents and scaled verification—not gains teams should expect on day one.</p>
+</header>
+
+<main class="container">
+<article class="article-body">
+  <nav class="article-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span aria-hidden="true">›</span>
+    <a href="/guides/">Guides</a><span aria-hidden="true">›</span>
+    <span aria-current="page">AI coding productivity review</span>
+  </nav>
+  <img class="article-hero-image" src="../../images/hero-coding-output-to-releases.jpg" width="1200" height="630" alt="Many AI-generated code commits converging through a narrow gate into only three shipped releases"/>
+
+  <aside class="citation-block" aria-labelledby="citation-title">
+    <p class="citation-block-title" id="citation-title">How to cite this review</p>
+    <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
+    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T01:18:34+01:00">29 July 2026</time></p>
+  </aside>
+
+  <nav class="article-toc" id="contents" aria-label="Article contents">
+    <p class="article-toc-title">Contents</p>
+    <ul>
+      <li>
+        <a class="article-toc-section" href="#review-method">Method and scope</a>
+        <ul>
+          <li><a href="#outcome-definitions">Outcome definitions</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="article-toc-section" href="#results">Results by degree of automation</a>
+        <ul>
+          <li><a href="#task-results">1. Assisted development</a></li>
+          <li><a href="#specified-results">2. Spec-driven execution</a></li>
+          <li><a href="#agent-native-results">3. Agent-native delivery</a></li>
+          <li><a href="#study-plot">Study-results graph</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="article-toc-section" href="#moderators">Moderators and downstream effects</a>
+        <ul>
+          <li><a href="#project-context">Greenfield and brownfield</a></li>
+          <li><a href="#delivery-results">Code activity, releases and use</a></li>
+          <li><a href="#language">Programming-language effects</a></li>
+          <li><a href="#experience">Developer experience</a></li>
+          <li><a href="#automated-review">Automated review</a></li>
+          <li><a href="#quality">Quality, maintainability and security</a></li>
+        </ul>
+      </li>
+      <li><a class="article-toc-section" href="#effect-register">Productivity effect register</a></li>
+      <li>
+        <span class="article-toc-section">Interpretation</span>
+        <ul>
+          <li><a href="#limitations">Limitations</a></li>
+          <li><a href="#future-measurement">Future measurement</a></li>
+          <li><a href="#conclusion">Discussion and conclusion</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="article-toc-section" href="#evidence-registers">Evidence and references</a>
+      </li>
+    </ul>
+  </nav>
+
+  <h2 id="abstract">Abstract</h2>
+  <p><strong>AI-assisted software development accelerates code production more reliably than it accelerates delivery.</strong> Software development is a tractable proxy for other AI-assisted business processes because instructions, revisions and outcomes are digitally recorded, although effects cannot be transferred directly. Reliable measurement is needed to budget model, platform, integration and verification costs and construct time-to-market business cases.</p>
+  <p>This rapid, non-protocol-registered systematic review of AI coding productivity examines 115 documents published from 1 January 2024: 59 empirical studies, two secondary syntheses and 54 supporting or contextual documents. Forty productivity and delivery studies contribute 42 quantitative effect estimates; 19 studies examine review, quality, security, maintainability, skills and interaction cost. Evidence is grouped into three operating models:</p>
+  <ol>
+    <li><strong><a href="#task-results">Assisted development:</a></strong> the model suggests; the developer implements and verifies.</li>
+    <li><strong><a href="#specified-results">Spec-driven execution:</a></strong> the agent implements a defined outcome; a human reads and approves the result.</li>
+    <li><strong><a href="#agent-native-results">Agent-native delivery:</a></strong> agents build, test and perform initial review; humans own intent, architecture and release.</li>
+  </ol>
+  <p>Controlled evidence included a 19% slowdown in familiar mature repositories and gains of approximately 20–30% in larger enterprise trials; higher estimates came from smaller or narrower studies. The independent meta-analysis found a moderate effect with extreme heterogeneity and materially smaller effects outside laboratories. In the largest matched delivery study, more than 100,000 developers produced 180% more commits but only 30% more releases and no additional application usage. Release output increased by <strong>1.1–1.3×</strong> across successive tool generations; this review therefore uses <strong>1.2×</strong> as a central planning case, not a universal effect.</p>
+  <p>Reference values rise with automation: approximately <strong>1.25×</strong> for assisted development, <strong>2×</strong> for bounded spec-driven execution and <strong>4.5×</strong> for agent-native delivery. Only the first is supported by multiple controlled comparisons; the second is an interpolation and the third a low-confidence organisational upside scenario. Effects also vary with greenfield or brownfield context, programming-language feedback, developer experience and downstream verification capacity.</p>
+  <p>Quality is mixed: bounded trials report higher completeness and correctness, while longitudinal studies identify integration, review, complexity, ownership and security costs. <strong>Speed without scaled verification can come at the expense of quality. Maintaining quality at higher generation rates requires executable tests, security controls, review capacity, monitoring and accountable ownership, but does not guarantee it.</strong> Productivity should therefore be measured from accepted intent to reliable production—not by code volume; a coding-stage gain is not automatically a lead-time or customer-value gain.</p>
+
+  <h2 id="review-method">Review question and method</h2>
+  <p>The review question was: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
+  <p>The search covered publications dated from <strong>1 January 2024 to 28 July 2026</strong>. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. References were followed back to peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where work first appeared as an older preprint but received a 2024–2026 peer-reviewed publication, the later publication was used; otherwise pre-2024 work was excluded.</p>
+  <p>A source was eligible for the productivity synthesis when it reported a quantitative outcome, described an identifiable development workflow and supplied a baseline or comparator. Surveys were retained only as contextual evidence about perceived effects or bottlenecks. Unattributed marketing claims and secondary summaries without an inspectable primary source were excluded. Source traceability, uncertainty and corrections follow Reinvently’s <a href="/research-standards/">research and editorial standards</a>.</p>
+  <p>Of the 115 included documents, 59 form the empirical evidence base. The quantitative productivity synthesis contains 42 effect estimates drawn from 40 of those studies; 19 additional studies measure adjacent outcomes. The remaining 56 documents comprise 54 contextual or methodological sources and two secondary syntheses. Two reports each contribute more than one estimate because they describe materially different workflows. Documents, studies and estimates are therefore counted separately.</p>
+
+  <h3>The evidence chain</h3>
+  <table class="evidence-table">
+    <thead><tr><th>Object</th><th>Count</th><th>Meaning</th><th>How it is traced</th></tr></thead>
+    <tbody>
+      <tr><td>Document</td><td>115</td><td>A paper, preprint, report or webpage</td><td>Direct URL in one of the three reference registers</td></tr>
+      <tr><td>Included empirical study</td><td>59</td><td>An evaluation contributing measured productivity or an adjacent outcome</td><td>Stable study identifier, <code>ST-01</code> to <code>ST-59</code></td></tr>
+      <tr><td>Productivity effect estimate</td><td>42</td><td>A reported comparison for time, output, workflow activity or delivery</td><td>Stable estimate identifier, <code>E-01</code> to <code>E-42</code></td></tr>
+      <tr><td>Review conclusion</td><td>—</td><td>A synthesis made in this article</td><td>Linked to the relevant estimate identifiers and studies</td></tr>
+    </tbody>
+  </table>
+  <p>The trace is: <strong>conclusion → effect estimate → study → source document</strong>. A study’s design, the directness of its outcome and confidence in its estimate are recorded as separate properties:</p>
+  <ul>
+    <li><strong>Design:</strong> randomised or controlled experiment, quasi-experiment, longitudinal comparison, organisational telemetry or disclosed case study.</li>
+    <li><strong>Outcome stage:</strong> coding activity, task completion, integration and review, release, adoption or quality and security.</li>
+    <li><strong>Confidence:</strong> <em>high</em> for a credible comparator, directly measured outcome and low material risk of bias; <em>moderate</em> where a comparison remains vulnerable to bias, confounding or an indirect metric; and <em>low</em> for historical baselines, self-report or counterfactual estimates. Context-only documents are not graded.</li>
+  </ul>
+  <p>Peer-reviewed, preprint and first-party report are publication types rather than confidence grades. A randomised design can still receive moderate confidence when it is small or at high risk of bias; a large quasi-experiment can provide stronger decision evidence than a weak experiment.</p>
+  <h3>Where the evidence ceiling sits</h3>
+  <p>A productivity-focused systematic review identified <a href="https://arxiv.org/abs/2507.03156">39 peer-reviewed primary studies published through December 2024</a>, using a broader productivity definition than this review’s quantitative comparator rule. A newer preregistered <a href="https://arxiv.org/abs/2605.04779">meta-analysis of 14 productivity studies</a> estimated a moderate pooled effect (Hedges’ <em>g</em> = 0.33) with extreme heterogeneity (<em>I</em><sup>2</sup> = 99%); laboratory effects were larger than enterprise and open-source effects. Later field and repository studies expand the pool, but the number of independent causal estimates remains much smaller than the total literature.</p>
+  <p>The 59-study empirical base includes measured outcomes that determine whether local speed survives into useful delivery. Studies were assigned once, according to their principal outcome:</p>
+  <table class="evidence-table">
+    <thead><tr><th>Included-study group</th><th>Studies</th><th>Role in this review</th></tr></thead>
+    <tbody>
+      <tr><td>Task time, throughput and delivery</td><td>40</td><td>Produces the 42 quantitative effect estimates and the three central reference values</td></tr>
+      <tr><td>Code review and collaboration</td><td>7</td><td>Tests whether generation speed displaces work into review or changes pull-request outcomes</td></tr>
+      <tr><td>Quality, security and maintainability</td><td>8</td><td>Measures defects, vulnerability, technical debt and downstream evolution costs</td></tr>
+      <tr><td>Skills, experience and interaction cost</td><td>4</td><td>Measures learning, perceived effectiveness and the hidden work of directing and checking AI</td></tr>
+    </tbody>
+  </table>
+  <h3>Confidence profile</h3>
+  <table class="evidence-table">
+    <thead><tr><th>Confidence</th><th>Included studies</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td class="high">High</td><td>11</td><td>Credible comparator, sufficiently direct outcome and no identified material risk that reverses the result</td></tr>
+      <tr><td class="medium">Moderate</td><td>35</td><td>Useful comparative evidence with residual bias, confounding, indirectness or precision limitations</td></tr>
+      <tr><td class="low">Low</td><td>13</td><td>Historical baseline, self-report, organisational case or counterfactual estimate</td></tr>
+      <tr><td>Not graded</td><td>56 documents</td><td>Context, mechanism, methods, benchmarks and secondary synthesis rather than included effect studies</td></tr>
+    </tbody>
+  </table>
+  <details>
+    <summary><strong>Study register: 19 adjacent-outcome studies</strong></summary>
+    <table class="evidence-table">
+      <thead><tr><th>Study ID</th><th>Study and principal outcome</th><th>Design</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr id="ST-41"><td><code>ST-41</code></td><td><a href="https://arxiv.org/abs/2601.01129">RovoDev Code Reviewer</a> — review usefulness</td><td>Large-scale online evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-42"><td><code>ST-42</code></td><td><a href="https://arxiv.org/abs/2607.03316">Is Agentic Code Review Helpful?</a> — review quality</td><td>Comparative evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-43"><td><code>ST-43</code></td><td><a href="https://doi.org/10.1145/3805760.3814909">When Code Authors Are Agents</a> — pull-request collaboration</td><td>Large-scale observational study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-44"><td><code>ST-44</code></td><td><a href="https://arxiv.org/abs/2602.08915">Comparing AI Coding Agents</a> — pull-request acceptance</td><td>Task-stratified observational study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-45"><td><code>ST-45</code></td><td><a href="https://arxiv.org/abs/2607.14037">Early Adoption by GitHub Projects</a> — adoption and review</td><td>Repository study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-46"><td><code>ST-46</code></td><td><a href="https://arxiv.org/abs/2402.08967">AI-generated Pull-request Descriptions</a> — review outcomes</td><td>Comparative repository study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-47"><td><code>ST-47</code></td><td><a href="https://arxiv.org/abs/2412.18531">Automated Code Review in Practice</a> — review behaviour</td><td>Industrial observational study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-48"><td><code>ST-48</code></td><td><a href="https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/">GitHub Copilot and Code Quality</a> — correctness and readability</td><td>Randomised controlled trial</td><td class="high">High</td></tr>
+        <tr id="ST-49"><td><code>ST-49</code></td><td><a href="https://arxiv.org/abs/2510.10165">AI-assisted Programming and Maintenance Burden</a></td><td>Comparative repository study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-50"><td><code>ST-50</code></td><td><a href="https://arxiv.org/abs/2603.28592">Debt Behind the AI Boom</a> — technical debt</td><td>Large-scale repository study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-51"><td><code>ST-51</code></td><td><a href="https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/">AI-assisted Assessment of Coding Practices</a></td><td>Industrial deployment evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-52"><td><code>ST-52</code></td><td><a href="https://arxiv.org/abs/2507.13499">AI-assisted Fixes to Review Comments</a></td><td>Large-scale industrial evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-53"><td><code>ST-53</code></td><td><a href="https://doi.org/10.1145/3610721">Asleep at the Keyboard?</a> — security weaknesses</td><td>Controlled security evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-54"><td><code>ST-54</code></td><td><a href="https://arxiv.org/abs/2607.11348">AI Code Assistants and Security API Usage</a></td><td>Repository study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-55"><td><code>ST-55</code></td><td><a href="https://www.usenix.org/conference/usenixsecurity26/presentation/thang">GoodVibe</a> — generated-code security</td><td>Controlled security evaluation</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-56"><td><code>ST-56</code></td><td><a href="https://www.anthropic.com/research/AI-assistance-coding-skills">AI Assistance and Coding-skill Formation</a></td><td>Randomised controlled trial</td><td class="high">High</td></tr>
+        <tr id="ST-57"><td><code>ST-57</code></td><td><a href="https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise">AI Code-assistant Use at IBM</a></td><td>Enterprise mixed-method study</td><td class="medium">Moderate</td></tr>
+        <tr id="ST-58"><td><code>ST-58</code></td><td><a href="https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/">Dear Diary</a> — workplace experience</td><td>Randomised controlled trial</td><td class="high">High</td></tr>
+        <tr id="ST-59"><td><code>ST-59</code></td><td><a href="https://www.microsoft.com/en-us/research/?p=894132">Reading Between the Lines</a> — interaction cost</td><td>Behavioural modelling study</td><td class="medium">Moderate</td></tr>
+      </tbody>
+    </table>
+  </details>
+  <p>Moving substantially beyond this empirical base is possible only by broadening again—to benchmark-only model evaluations, student exercises without a human baseline, additional vendor surveys or narrow task studies. Those documents can explain mechanisms and boundaries, but counting them as equivalent productivity studies would reduce rather than improve the review’s precision.</p>
+  <p>A meta-analysis was not appropriate because the studies measure different outcomes—task time, completed work, commits, deployment velocity and estimated project duration—and examine materially different systems. Results are therefore synthesised narratively and normalised to output multipliers only where the underlying comparison permits it. Causal interpretation is reserved for estimates with a credible counterfactual and sufficiently direct outcome.</p>
+
+  <figure class="article-diagram">
+  <svg viewBox="0 0 760 430" role="img" aria-labelledby="ladder-title ladder-desc" xmlns="http://www.w3.org/2000/svg">
+    <title id="ladder-title">Implementation-stage planning scenarios at three levels of AI autonomy</title>
+    <desc id="ladder-desc">Manual development is the one-times baseline. Assisted development is modelled at 1.25 times with higher evidence confidence, while spec-driven execution at two times and agent-native implementation at 4.5 times rely on low-confidence case evidence. These are not release-level forecasts.</desc>
+    <rect width="760" height="430" fill="#fff"/><text x="38" y="42" fill="#24282b" font-family="Arial,sans-serif" font-size="24" font-weight="700">Implementation gains grow—and evidence weakens</text>
+    <line x1="100" y1="350" x2="710" y2="350" stroke="#9aa3a8"/><line x1="100" y1="350" x2="100" y2="70" stroke="#9aa3a8"/>
+    <g stroke="#dde3e6"><line x1="100" y1="290" x2="710" y2="290"/><line x1="100" y1="230" x2="710" y2="230"/><line x1="100" y1="170" x2="710" y2="170"/><line x1="100" y1="110" x2="710" y2="110"/></g>
+    <g fill="#667078" font-family="Arial,sans-serif" font-size="11"><text x="68" y="354">0×</text><text x="68" y="294">1×</text><text x="68" y="234">2×</text><text x="68" y="174">3×</text><text x="68" y="114">4×</text><text x="68" y="76">5×</text></g>
+    <rect x="140" y="290" width="105" height="60" fill="#748087"/><rect x="285" y="275" width="105" height="75" fill="#356fbd"/><rect x="430" y="230" width="105" height="120" fill="#c98914"/><rect x="575" y="80" width="105" height="270" fill="#c84f4a"/>
+    <text x="175" y="280" fill="#4e585e" font-family="Arial,sans-serif" font-size="18" font-weight="700">1×</text><text x="314" y="265" fill="#356fbd" font-family="Arial,sans-serif" font-size="18" font-weight="700">1.25×</text><text x="469" y="220" fill="#a66d08" font-family="Arial,sans-serif" font-size="18" font-weight="700">2×</text><text x="609" y="70" fill="#b4433f" font-family="Arial,sans-serif" font-size="18" font-weight="700">4.5×</text>
+    <g fill="#465159" font-family="Arial,sans-serif" font-size="11"><text x="149" y="373">manual</text><text x="287" y="373">prompt assist</text><text x="433" y="373">spec + human</text><text x="573" y="373">agent-native loop</text></g>
+    <g font-family="Arial,sans-serif" font-size="11"><text x="151" y="401" fill="#667078">baseline</text><text x="304" y="401" fill="#287e50">stronger evidence</text><text x="447" y="401" fill="#a66d08">case evidence</text><text x="586" y="401" fill="#b4433f">case estimates</text></g>
+  </svg>
+  <figcaption>Implementation-stage scenarios, not release forecasts. The first level is supported by controlled studies; the larger numbers rely mainly on organisational cases using different metrics. In the largest matched event study, observed release output increased by approximately 1.1×, 1.2× and 1.3× across successive tool generations.</figcaption>
+  </figure>
+
+  <h2 id="outcome-definitions">Outcome definitions</h2>
+  <p>A percentage can describe less time, more throughput, more commits or more output judged valuable. Those are not interchangeable.</p>
+  <ul>
+    <li>A <strong>25% reduction in time</strong> means a task takes 75 rather than 100 hours. At full utilisation, that is approximately <strong>1.33× throughput</strong>.</li>
+    <li>A <strong>25% increase in output</strong> means 1.25 units are delivered in the original time.</li>
+    <li><strong>4× throughput</strong> is a 300% increase over baseline—not “400% faster”. A 400% increase means 5× output.</li>
+  </ul>
+  <p>Commits and lines of code are especially weak proxies. An agent can generate more of both without increasing production value. Deployment velocity, completed work items, task time and escaped defects are more useful, but even these need context.</p>
+
+  <h2 id="results">Results by degree of automation</h2>
+  <p>The findings are grouped by the three operating models defined in the abstract, each representing a different degree of automation. A separate downstream-conversion section then tests how gains in coding activity survive into releases and actual use.</p>
+  <h3 id="task-results">1. Assisted development: task completion and local output</h3>
+  <p>The strongest evidence concerns assistants operating inside otherwise conventional human-led workflows. The measured effects are heterogeneous, and tool choice changes the interaction model without determining the outcome by itself. For a practical comparison of those interaction models, see <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
+  <p>A randomised trial involving 96 Google engineers found that AI assistance reduced time on a complex enterprise task by an estimated <a href="https://arxiv.org/abs/2410.12944">21%</a>, although the confidence interval was wide. Three field experiments at Microsoft, Accenture and a Fortune 100 company covered 4,867 developers and found a <a href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535">26.08% increase in completed tasks</a>.</p>
+  <p>A 109-participant controlled experiment found that ChatGPT helped with simple coding puzzles but <a href="https://arxiv.org/abs/2402.05650">did not improve efficiency or quality on a more typical software-development task</a>. A later controlled study of 69 participants found no strong overall time effect, but AI users achieved <a href="https://doi.org/10.1109/TSE.2026.3679627">more than twice the median task completeness</a> and scored 12.5% lower on code-ownership questions. Together these results show why task completion, time and understanding should be reported separately.</p>
+  <p>Two smaller crossover experiments add qualified positive evidence. In a 32-person ICSE study, an in-IDE code-understanding assistant helped participants complete <a href="https://research.google/pubs/using-an-llm-to-help-with-code-understanding/">0.47 more subtasks than web search</a>, but did not significantly change completion time or comprehension. An 18-person JavaScript study found that participants using ClueBot <a href="https://doi.org/10.1145/3702163.3702168">finished faster and made fewer errors</a>; its small student-heavy sample and high risk of bias limit generalisation.</p>
+  <p>A larger quasi-experiment at Ant Group compared matched teams during the staged introduction of CodeFuse. Across a sample of 1,219 programmers, code output increased by <a href="https://www.bis.org/publ/work1208.htm">55%</a>. More conservative specifications found gains of roughly 13–22% in tasks completed and related workflow measures. Effects were concentrated among junior developers, and lines of code remained the principal outcome.</p>
+  <p>A public-sector study by GovTech Singapore reported <a href="https://arxiv.org/abs/2409.17434">21–28% faster coding and task completion</a> with GitHub Copilot. The direction is consistent with the larger controlled studies, although the disclosed design provides less protection against selection and reporting effects.</p>
+  <p>METR examined that contrasting setting. Sixteen experienced open-source developers completed 246 real tasks in repositories they had worked in for an average of five years. With early-2025 AI tools available, they were <a href="https://arxiv.org/abs/2507.09089">19% slower</a>. Before the study they predicted a 24% speed-up; afterwards they still believed they had been 20% faster.</p>
+  <p>A separate Anthropic randomised trial found only a small, statistically non-significant task-speed improvement, while participants using AI scored <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">17% lower on a subsequent mastery test</a>. This does not establish a long-term productivity loss, but it identifies skill retention as an omitted outcome in most speed studies.</p>
+  <p>Enterprise studies based mainly on self-report provide useful triangulation but weaker effect estimates. An <a href="https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise">IBM study of 669 developers</a> found heterogeneous perceived productivity effects from watsonx Code Assistant, while a Microsoft randomised diary study found that <a href="https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/">84% reported positive changes in daily work practices</a> without a corresponding change in trust in generated code.</p>
+  <p>Interaction studies expose work that completion metrics miss: prompting, inspecting, editing and recovering from suggestions. Microsoft’s <a href="https://www.microsoft.com/en-us/research/?p=894132">CUPS study of 21 programmers</a> made those costs observable. A randomised study of <a href="https://www.microsoft.com/en-us/research/publication/need-help-designing-proactive-ai-assistants-for-programming/">proactive programming assistance</a> found benefits but strong interface effects, while a controlled comparison found that agents reduced effort and completed some otherwise inaccessible tasks without removing the need to understand their behaviour (<a href="https://arxiv.org/abs/2507.08149">Code with Me or for Me?</a>). A five-day professional field study similarly found that poorly timed proactive assistance could interrupt flow (<a href="https://doi.org/10.1145/3742413.3789148">ProAIDE</a>), and a comparison of GitHub Copilot and Windsurf treated effectiveness as a combination of usefulness, control and coordination rather than generated volume (<a href="https://doi.org/10.1109/MS.2026.3671677">AI-Assisted Collaboration</a>).</p>
+  <p>Adoption evidence helps explain these mechanisms but does not establish delivery gains. GitHub’s telemetry-linked study of 2,047 respondents associated higher completion acceptance with higher perceived productivity (<a href="https://doi.org/10.1145/3633453">Measuring GitHub Copilot’s Impact on Productivity</a>). A peer-reviewed <a href="https://doi.org/10.1145/3597503.3608128">410-developer usability survey</a> identified fewer keystrokes, faster completion and syntax recall as leading benefits, but control and non-functional requirements as common failures. A 57-developer enterprise survey found that production use depended on repository context, trust and integration requirements (<a href="https://doi.org/10.1145/3786181.3788727">Vukovic et al.</a>).</p>
+  <p>Smaller controlled studies reinforce the importance of task selection. At ANZ Bank, a six-week controlled study reported <a href="https://arxiv.org/abs/2402.05636">42.3% faster completion</a> on Python exercises. A 24-person within-subject study found higher requirements completed per minute with both conversational and completion interfaces, although its tasks were short and only nine participants were professionals (<a href="https://doi.org/10.1145/3661145">Weber et al.</a>). In a 2026 brownfield-onboarding experiment with 24 developers, Copilot Agent reduced mean completion time by <a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">61.7% relative to Copilot Ask</a> and workload by 57.4%, without a significant correctness improvement.</p>
+  <p>Industrial completion systems provide credible day-to-day activity measures, although these are not product outcomes. Meta’s CodeCompose supplied 8% of accepted code for 16,000 users (<a href="https://doi.org/10.1145/3643774">FSE 2024 deployment study</a>); extending it to multi-line suggestions nearly doubled keystrokes saved from 9% to 17% (<a href="https://arxiv.org/abs/2402.04141">large-scale experiment</a>). The UK Government’s trial made 2,500 licences available and combined telemetry with surveys; participants reported approximately <a href="https://www.gov.uk/government/publications/ai-coding-assistant-trial">one hour saved per working day</a>, but the result was self-reported rather than a causal time study.</p>
+
+  <h3 id="specified-results">2. Spec-driven execution: bounded delegation</h3>
+  <p>At the second level, the engineer defines an outcome, constraints and acceptance checks; the agent performs multi-file implementation; the engineer still reads and owns the change. Evidence here is less controlled because organisations usually adopt several changes at once. <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">How to Choose an AI Development Framework</a> compares the main frameworks used to structure this kind of specification and delegation.</p>
+  <p>Salesforce reports that work items completed per developer rose <a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">50.8% year over year</a>, while its “Effective Output” measure rose 151.3%. Engineers remained responsible for structuring problems and evaluating results, but the organisation had also standardised tooling, expanded access and changed workflows. The figures are not an isolated test of specification.</p>
+  <p>An Amazon Prime Video Financial Systems team provides a more specific example. A senior engineer spent three weeks decomposing work and writing detailed requirements before a ten-day sprint. The team used spec-driven development for complex features and direct agent assistance where requirements were already clear. It reduced a 90-week estimate to 24 weeks—approximately <a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">3.75× acceleration</a>—and produced nearly six times the baseline commits.</p>
+  <p>The study conditions limit external validity: six engineers had no on-call work, no other projects, minimal meetings and no context switching. Specification was part of the system, not the only intervention.</p>
+  <p>Cisco reports teams achieving up to <a href="https://www.sonarsource.com/blog/ai-first-engineering-cisco/">3× productivity</a> in technical-debt workflows. Its agent investigates a quality issue, produces a written plan, implements in a fresh session and opens a pull request for human review. The work is unusually deterministic, with SonarQube providing a ready-made issue description and verification layer.</p>
+  <p>Evidence on specification quality shows why “more detail” is not sufficient by itself. Copilot generated both repayments and reproductions of technical debt when prompted with 1,140 variants derived from TODO comments (<a href="https://lab-design.github.io/papers/ICSE-24b/">O’Brien et al.</a>). By contrast, Meta found that pre-computing context across 4,100 files reduced agent tool calls by <a href="https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/">40%</a>, while a separate internal agent reduced approximately ten hours of performance-regression investigation to 30 minutes (<a href="https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/">capacity-efficiency case</a>). These first-party cases suggest that explicit context and executable feedback reduce search cost; they do not isolate specification as a causal multiplier.</p>
+  <p>A peer-reviewed ICSE 2026 study examined an expert-led, AI-implemented workflow on PicoScenes, a 1.52-million-line industrial system with a ten-year history. The authors report <a href="https://doi.org/10.1145/3786583.3786872">68.3% less feature-implementation time</a>, alongside 28.2% lower mean cyclomatic complexity and 50% fewer defects. The comparison concerns one system and a bundled development method, but it provides unusually detailed evidence that specified delegation can extend beyond small greenfield tasks.</p>
+  <p>Anthropic’s internal mixed-methods study offers a second organisational data point. Engineers self-reported a 50% average productivity gain as Claude use expanded, while internal telemetry showed a <a href="https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic">67% increase in merged pull requests per engineer per day</a>. The before-and-after design cannot isolate Claude from team growth, task selection or workflow change.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> reported outcomes support a <strong>1.5–2.5× range</strong> for spec-driven execution with human review. The <strong>2×</strong> midpoint is an evidence-informed interpolation, not a controlled effect estimate. <strong>Basis:</strong> <code>E-21</code>, <code>E-29</code>, <code>E-30</code>, <code>E-38</code>, <code>E-39</code>.</p></div>
+
+  <h3 id="agent-native-results">3. Agent-native delivery: production cases</h3>
+  <p>The largest claims concern teams that restructure repositories, planning, testing, review and parallel execution so agents can operate for longer with less synchronous human attention. Where that design extends to several specialised agents, <a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared</a> maps the main architectural categories and their reliability trade-offs.</p>
+  <p>AWS reports that, among 25 teams combining new tools with new practices, the median gain was <a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">4.5× normalised deployment velocity</a>, with some teams exceeding 10×. Its Bedrock pathfinder reported 20× normalised commit velocity, but this involved six senior engineers rebuilding a system under highly unusual conditions. Deployment velocity is the more useful number.</p>
+  <p>OpenAI describes an internal product built with no manually written code: approximately one million lines and 1,500 merged pull requests directed initially by three engineers over five months. The team estimates it took <a href="https://openai.com/index/harness-engineering/">one-tenth of the manual development time</a>. This is a serious production account with active users, but the 10× figure remains the team’s counterfactual estimate rather than an experiment.</p>
+  <p>Salesforce reports a 33-endpoint migration completed in 13 days rather than an estimated 231 person-days—an <a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">18× task-specific acceleration</a>. It used reference implementations, reusable rules, isolated environments and autonomous build-fix-validate loops. Migration work is repetitive and parallelisable, limiting the result’s generalisability to novel product development.</p>
+  <p>Amazon reports a broader but similarly task-specific transformation programme: Amazon Q Developer assisted upgrades of tens of thousands of production Java applications, with an estimated <a href="https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/">4,500 developer-years saved</a>. The estimate derives from migrated dependencies and assumed manual effort rather than a concurrent control group, so it is evidence of scale rather than a transferable acceleration factor.</p>
+  <p>Usage telemetry also shows that agentic work remains strongly shaped by human expertise. Anthropic’s analysis of approximately <a href="https://www.anthropic.com/research/claude-code-expertise">400,000 Claude Code sessions</a> found that people made most planning decisions while the agent made most execution decisions; greater domain expertise was associated with a higher probability of verifiable success.</p>
+  <p>Agent benchmarks define a capability ceiling rather than a workplace-productivity effect. <a href="https://openai.com/index/swe-lancer/">SWE-Lancer</a> maps more than 1,400 real freelance tasks to approximately $1 million of historical payouts. The <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html">ICLR 2024 SWE-bench study</a> and <a href="https://arxiv.org/abs/2405.15793">SWE-agent</a> show that repository tools and execution feedback can materially improve issue resolution. <a href="https://arxiv.org/abs/2410.03859">SWE-bench Multimodal</a> exposes weaker performance on visual JavaScript tasks, while <a href="https://arxiv.org/abs/2508.18993">GitTaskBench</a> adds workflow-driven repository use and an economic metric. The paired <a href="https://arxiv.org/abs/2603.15401">SWE-Skills-Bench</a> result is a useful constraint: 39 of 49 packaged skills produced no pass-rate gain and average improvement was only 1.2%. None of these results can be converted directly into hours saved without a human workflow comparator.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> reported agent-native workflows cluster around <strong>3–10×</strong>. AWS’s <strong>4.5× median</strong> is the most suitable central reference in the available case evidence. Confidence remains low because the studies are observational, heterogeneous and frequently vendor-published. <strong>Basis:</strong> <code>E-29</code>, <code>E-31</code>, <code>E-38</code>–<code>E-42</code>.</p></div>
+
+  <h3 id="study-plot">Study results by degree of automation</h3>
+  <p>The evidence changes in both magnitude and strength across the three operating models. The graph places selected implementation-stage estimates on a logarithmic ratio scale. Where a study reports time saved, the value is converted to potential throughput using the reciprocal relationship defined under <a href="#outcome-definitions">outcome definitions</a>. Every label resolves to the corresponding <a href="#effect-register"><code>E</code> entry</a>. The values remain heterogeneous and are not pooled.</p>
+
+  <figure class="article-diagram">
+  <svg viewBox="0 0 760 760" role="img" aria-labelledby="automation-results-title automation-results-desc" xmlns="http://www.w3.org/2000/svg">
+    <title id="automation-results-title">Reported implementation effects by degree of automation</title>
+    <desc id="automation-results-desc">Selected results are grouped into assisted development, spec-driven execution and agent-native delivery. The horizontal axis is logarithmic. Reported effects rise with automation while evidence confidence generally falls. A green vertical band marks the more conservative 1.1 to 1.3 times release-output planning range.</desc>
+    <rect width="760" height="760" fill="#fff"/>
+    <text x="38" y="42" fill="#24282b" font-family="Arial,sans-serif" font-size="24" font-weight="700">Reported gains rise as evidence confidence falls</text>
+    <g font-family="Arial,sans-serif" font-size="11">
+      <circle cx="420" cy="70" r="5" fill="#2f9d62"/><text x="430" y="74" fill="#667078">High confidence</text>
+      <circle cx="525" cy="70" r="5" fill="#c98914"/><text x="535" y="74" fill="#667078">Moderate</text>
+      <circle cx="610" cy="70" r="5" fill="#c84f4a"/><text x="620" y="74" fill="#667078">Low</text>
+    </g>
+
+    <rect x="28" y="126" width="684" height="190" fill="#f5f7f6"/>
+    <rect x="28" y="328" width="684" height="202" fill="#f5f7f6"/>
+    <rect x="28" y="542" width="684" height="138" fill="#f5f7f6"/>
+    <rect x="332" y="108" width="22" height="572" fill="#2f9d62" opacity=".18"/>
+    <text x="362" y="103" fill="#287e50" font-family="Arial,sans-serif" font-size="11" font-weight="700">1.1–1.3× release range</text>
+    <g stroke="#dde3e6">
+      <line x1="230" y1="108" x2="230" y2="680"/><line x1="320" y1="108" x2="320" y2="680"/>
+      <line x1="410" y1="108" x2="410" y2="680"/><line x1="500" y1="108" x2="500" y2="680"/>
+      <line x1="590" y1="108" x2="590" y2="680"/><line x1="680" y1="108" x2="680" y2="680"/>
+    </g>
+    <line x1="320" y1="108" x2="320" y2="680" stroke="#8f999f" stroke-width="2" stroke-dasharray="5 5"/>
+
+    <text x="42" y="152" fill="#374047" font-family="Arial,sans-serif" font-size="17" font-weight="700">1. Assisted development</text>
+    <g fill="#5f6970" font-family="Arial,sans-serif" font-size="11" text-anchor="end">
+      <text x="214" y="186">E-04 · METR · 0.84×</text>
+      <text x="214" y="216">E-18 · CodeFuse · 1.13–1.22×</text>
+      <text x="214" y="246">E-02 · field trials · 1.26×</text>
+      <text x="214" y="276">E-01 · Google · 1.27×</text>
+      <text x="214" y="306">E-28 · GovTech · 1.27–1.39×</text>
+    </g>
+    <circle cx="297" cy="182" r="6" fill="#2f9d62"/>
+    <line x1="337" y1="212" x2="346" y2="212" stroke="#c98914" stroke-width="3"/><circle cx="342" cy="212" r="5" fill="#c98914"/>
+    <circle cx="350" cy="242" r="6" fill="#2f9d62"/><circle cx="351" cy="272" r="6" fill="#2f9d62"/>
+    <line x1="351" y1="302" x2="363" y2="302" stroke="#c84f4a" stroke-width="3"/><circle cx="357" cy="302" r="5" fill="#c84f4a"/>
+
+    <text x="42" y="354" fill="#374047" font-family="Arial,sans-serif" font-size="17" font-weight="700">2. Spec-driven execution</text>
+    <g fill="#5f6970" font-family="Arial,sans-serif" font-size="11" text-anchor="end">
+      <text x="214" y="388">E-30 · Anthropic · 1.67×</text>
+      <text x="214" y="418">E-29 · Salesforce · 2.51×</text>
+      <text x="214" y="448">E-39 · Cisco · up to 3×</text>
+      <text x="214" y="478">E-21 · PicoScenes · 3.15×</text>
+      <text x="214" y="508">E-38 · Prime Video · 3.75×</text>
+    </g>
+    <circle cx="387" cy="384" r="6" fill="#c84f4a"/><circle cx="439" cy="414" r="6" fill="#c84f4a"/>
+    <circle cx="463" cy="444" r="6" fill="#c84f4a"/><circle cx="469" cy="474" r="6" fill="#c98914"/>
+    <circle cx="492" cy="504" r="6" fill="#c84f4a"/>
+
+    <text x="42" y="568" fill="#374047" font-family="Arial,sans-serif" font-size="17" font-weight="700">3. Agent-native delivery</text>
+    <g fill="#5f6970" font-family="Arial,sans-serif" font-size="11" text-anchor="end">
+      <text x="214" y="602">E-31 · AWS median · 4.5×</text>
+      <text x="214" y="632">E-40 · OpenAI estimate · 10×</text>
+      <text x="214" y="662">E-41 · Salesforce migration · 18×</text>
+    </g>
+    <circle cx="515" cy="598" r="6" fill="#c84f4a"/><circle cx="619" cy="628" r="6" fill="#c84f4a"/><circle cx="695" cy="658" r="6" fill="#c84f4a"/>
+
+    <g fill="#667078" font-family="Arial,sans-serif" font-size="10" text-anchor="middle">
+      <text x="230" y="702">0.5×</text><text x="320" y="702">1×</text><text x="410" y="702">2×</text>
+      <text x="500" y="702">4×</text><text x="590" y="702">8×</text><text x="680" y="702">16×</text>
+    </g>
+    <text x="455" y="728" fill="#5f6970" text-anchor="middle" font-family="Arial,sans-serif" font-size="12">reported implementation effect relative to baseline (log scale)</text>
+  </svg>
+  <figcaption>Selected estimates assigned to the closest operating model in this review. Time reductions are converted to potential throughput where appropriate. Measures include task completion, workflow output, effective output, implementation time, deployment velocity and counterfactual project estimates; they should be compared within operating models and not averaged. The green band is the 1.1–1.3× end-to-end release-output planning range, not a confidence interval. The larger Level 2 and Level 3 values mainly come from bundled organisational cases with low-confidence historical or counterfactual baselines.</figcaption>
+  </figure>
+
+  <h2 id="moderators">Moderators and downstream effects</h2>
+  <p>The observed effect is not determined by the degree of automation alone. Project context, downstream capacity, programming-language feedback, developer experience and verification strength change both the attainable gain and the risk carried into later stages.</p>
+
+  <h3 id="project-context">Greenfield and brownfield development</h3>
+  <p>Project context is a major source of heterogeneity. Greenfield work begins without legacy constraints, while brownfield work changes an existing system whose behaviour, interfaces and operational history may be only partly documented. The studies do not support a single greenfield-versus-brownfield multiplier.</p>
+  <p>The mechanism changes with the degree of automation. At Level 1, repository familiarity determines whether suggestions save search and typing or add context and verification overhead. At Level 2, specifications and executable acceptance checks can make structured brownfield changes unusually tractable. At Level 3, the strongest cases come from greenfield systems or repetitive migrations whose environments, tests and work units were redesigned for autonomous execution.</p>
+  <table class="evidence-table">
+    <thead><tr><th>Project context</th><th>Representative evidence</th><th>Observed effect</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td>Bounded greenfield task</td><td>Controlled ChatGPT coding experiment</td><td>Helped on coding puzzles; no efficiency or quality gain on typical development work</td><td>Task realism changes the measured effect even within one experiment</td></tr>
+      <tr><td>Production greenfield system</td><td>OpenAI agent-built product</td><td>Estimated 10× reduction in development time</td><td>Large system claim, but based on a counterfactual rather than a control group</td></tr>
+      <tr><td>Unfamiliar brownfield code</td><td>Two controlled student studies</td><td>35% faster in one study; more tests passed in both</td><td>Implementation improves without corresponding evidence of deeper code comprehension</td></tr>
+      <tr><td>Familiar, mature brownfield code</td><td>METR experienced-maintainer trial</td><td>19% slower</td><td>Tacit knowledge and verification overhead can outweigh generation speed</td></tr>
+      <tr><td>Structured brownfield change</td><td>CodeFuse, PicoScenes and migration cases</td><td>Moderate gains to multi-fold acceleration</td><td>Existing code can be highly tractable when changes repeat and tests provide an oracle</td></tr>
+      <tr><td>Repository-wide agent adoption</td><td>Cursor matched longitudinal study</td><td>Velocity increase was large but transient</td><td>Early output gains may be offset by persistent complexity and review costs</td></tr>
+    </tbody>
+  </table>
+  <p>Two small controlled brownfield experiments make the distinction clearer. Ten undergraduates modifying an unfamiliar legacy web application completed tasks <a href="https://arxiv.org/abs/2506.10051">35% faster and made 50% more solution progress</a> with Copilot. A replication with 18 graduate students also found significantly lower task time and more tests passed, but <a href="https://arxiv.org/abs/2511.02922">no improvement in code comprehension</a>. These results differ from METR’s slowdown among expert maintainers of large repositories they knew well.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> lifecycle status alone is a poor predictor. The strongest positive brownfield results occur when the task is deterministic, the relevant context can be supplied and correctness is executable. Brownfield work becomes less favourable when success depends on tacit architecture knowledge, broad side effects or expensive human verification. <strong>Basis:</strong> <code>E-04</code>, <code>E-18</code>–<code>E-22</code>, <code>E-39</code>–<code>E-42</code>.</p></div>
+
+  <h3 id="delivery-results">Downstream conversion: from code activity to releases and use</h3>
+  <p>This conversion is a cross-level outcome rather than a fourth operating model. At Level 1, local task gains must survive integration and review. Levels 2 and 3 can produce much larger increases in implementation activity, but place correspondingly greater demand on validation, release and adoption capacity.</p>
+  <p>The largest direct study of that conversion followed more than 100,000 GitHub developers using matched event studies and internal usage telemetry. Autocomplete, interactive agents and autonomous agents were associated with cumulative commit gains of 40%, 140% and 180%, respectively. The final effect was much smaller: the 180% commit increase became <a href="https://www.nber.org/papers/w35275">50% more projects and 30% more releases</a>, while analysis across four application marketplaces found no increase in total usage. This is the clearest evidence that code activity, shipped software and realised value are different outcomes.</p>
+  <p>Two unusually large studies find smaller average effects and strong experience differences. A peer-reviewed analysis in <em>Science</em> detected AI-supported Python functions across more than 30 million contributions from 160,097 developers. Within-developer models estimated a <a href="https://doi.org/10.1126/science.adz9311">3.6% increase in quarterly output</a> at observed adoption levels, concentrated among experienced developers; early-career developers showed no significant gain. A regression-discontinuity natural experiment covering 187,489 developers found that Copilot access increased the relative share of coding activity by <a href="https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2025/04/WTIC.2025_Nagle-Frank_Generative-AI.pdf">12.37%</a> and reduced project-management activity by 24.93%. The latter measures work allocation rather than total delivered output, but provides strong evidence that AI changes the composition of work.</p>
+  <p>Other quasi-experiments reinforce the same pattern. A generalized synthetic-control study estimated <a href="https://arxiv.org/abs/2410.02091">6.5% higher project productivity</a> and no code-quality change after Copilot adoption, but integration time increased by 41.6%. A 1,350-developer difference-in-differences study found approximately <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5100609">12% more commits and 6% more active repositories</a>, alongside a 2% rise in copy-pasted code. A workplace study using a time discontinuity estimated <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6515379">6.9–8.4% higher coding productivity</a> and 3.1–4.3% fewer working hours without a measured quality decline. Finally, a Python-versus-R natural experiment estimated <a href="https://arxiv.org/abs/2409.08379">17.82% more package releases and 51% more commits</a> in the Copilot-supported ecosystem, with gains weighted toward maintenance; differences between language communities remain an important identification caveat.</p>
+  <p>Matched and longitudinal workplace studies are less uniformly positive. Uplevel compared approximately 800 developers with and without Copilot access and found <a href="https://uplevelteam.com/blog/genai-developers">no significant change in pull-request cycle time or throughput</a>, alongside a 41% higher bug rate. A two-year NAV study covering 26,317 commits across 703 repositories similarly found <a href="https://arxiv.org/abs/2509.20353">no statistically significant post-adoption activity change</a>. By contrast, a 13-month study of three agile teams found one stable team increased delivered story points by <a href="https://arxiv.org/abs/2602.13766">59.1%</a>, with the other teams and quality measures more mixed.</p>
+  <p>Vendor telemetry shows that more code can coexist with more downstream work. Faros’s 2025 dataset of 10,000 developers and 1,255 teams associated high AI adoption with <a href="https://www.faros.ai/blog/ai-software-engineering">21% more completed tasks and 98% more merged pull requests</a>, but also 91% longer review time and no organisation-level DORA improvement. Its later two-year study of 22,000 developers and 4,000 teams found <a href="https://www.faros.ai/research/ai-acceleration-whiplash">33.7% more completed tasks and 16.2% faster merges</a>, alongside 861% more code churn and 242.7% more incidents per pull request. These studies disclose large samples but remain observational and are published by an engineering-intelligence vendor.</p>
+  <p>Other large datasets point in the same two-sided direction. DX reports, from 135,000 developers in 425 organisations, an average <a href="https://getdx.com/report/ai-assisted-engineering-q4-impact-report/">3.6 hours saved per week</a> and 60% more pull requests among daily users. Jellyfish reports that the highest-adoption cohort across more than 200,000 engineers shipped <a href="https://jellyfish.co/blog/are-ai-coding-tools-making-companies-more-productive/">56% more epics per 100 engineers</a> and used 25% fewer person-months per epic. Neither comparison randomly assigned AI use, so selection, team maturity and task mix remain plausible explanations.</p>
+  <p>Developer surveys explain why perception and telemetry diverge. In Stack Overflow’s <a href="https://survey.stackoverflow.co/2024/ai">2024 survey, 81% named productivity as a benefit</a>. By <a href="https://survey.stackoverflow.co/2025/ai">2025, 69% of agent users reported increased productivity</a>, yet 46% distrusted AI accuracy and 45% said debugging AI-generated code was time-consuming. These are valuable population signals, not estimates of causal speed.</p>
+  <p>Large first-party surveys provide adoption context rather than causal estimates. GitHub’s <a href="https://github.blog/news-insights/research/survey-ai-wave-grows/">2024 international survey</a> documents perceived effects on flow, cognitive effort and collaboration. <a href="https://devecosystem-2025.jetbrains.com/">JetBrains’ 2025 Developer Ecosystem survey</a> and <a href="https://www.atlassian.com/blog/developer/developer-experience-report-2025">Atlassian’s 3,500-person developer-experience survey</a> broaden that picture. Anthropic’s analysis of <a href="https://www.anthropic.com/research/impact-software-development">500,000 coding interactions</a> found that Claude Code use was predominantly automation rather than augmentation. None of these designs establishes an output multiplier.</p>
+  <p>The same distinction matters outside engineering telemetry: an organisation can report faster local work without obtaining adoption or financial value. <a href="/blog/enterprise-ai-adoption-reality-check-2026/">The Enterprise AI Reality Check</a> examines that wider gap between tool deployment, workflow change, measurement and realised return.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> the controlled evidence centres near <strong>1.25× output</strong>, with a range that includes negative effects. Large comparative studies then show substantial attenuation between code activity and shipped value. In the largest matched event study, release effects were approximately <strong>1.1× for autocomplete, 1.2× for interactive agents and 1.3× for the cumulative autonomous-agent stack</strong>. For budgeting and time-to-market analysis, <strong>1.1–1.3× release output, centred on 1.2×, is the more defensible base range</strong>; 2–4.5× remains implementation-stage upside requiring workflow redesign and independent verification. Task fit, repository maturity, developer familiarity and downstream capacity explain more of the variation than tool availability alone. <strong>Basis:</strong> <code>E-01</code>–<code>E-20</code>, <code>E-23</code>–<code>E-28</code>, <code>E-32</code>–<code>E-37</code>.</p></div>
+
+  <h3 id="language">Programming language is a moderator, but “strongly typed is faster” is not yet established</h3>
+  <p>The language hypothesis is plausible: a compiler or type checker gives an agent a cheap, deterministic signal before a human reads the patch. Google’s production completion system supports the mechanism. In Go, approximately 8% of raw suggestions failed to compile; semantic checks filtered 80% of those failures, and acceptance grew by 1.9× after the checks were introduced, compared with 1.3× in languages without them. This is evidence that compiler-like feedback improves an AI workflow—not that static typing alone increases end-to-end developer productivity.</p>
+  <p>Its role grows with automation. At Level 1, compiler and linter feedback filters suggestions before the developer accepts them. At Level 2, those checks become executable acceptance constraints for a multi-file change. At Level 3, they form part of the agent’s build–test–repair loop and reduce how often a human must inspect obviously invalid states.</p>
+  <p>Cross-language evaluations show genuine variation, but not a simple static-versus-dynamic ranking. An evaluation across <a href="https://arxiv.org/abs/2501.02338">19 programming languages</a> found above-average results for several statically typed, lower-abstraction languages. A study of all 2,033 LeetCode problems found substantial correctness differences across <a href="https://doi.org/10.1145/3715108">C, Java, JavaScript and Python</a>. The newer <a href="https://www.swebench.com/multilingual.html">SWE-bench Multilingual</a>, <a href="https://arxiv.org/abs/2504.02605">Multi-SWE-bench</a> and <a href="https://arxiv.org/abs/2602.02262">OmniCode</a> evaluations likewise show materially different resolution rates by language and task. In OmniCode, for example, SWE-agent’s best Java test-generation result was only 20.9%.</p>
+  <p>Language familiarity and training-data density can move in the opposite direction to type-system strength. A controlled cross-language trajectory study found large differences in token consumption across <a href="https://arxiv.org/abs/2607.22807">Python, Java, Rust and OCaml</a>, with agents repeatedly producing non-compiling solutions in less familiar languages. A Java unit-test study found that type-rich context helped, but generated tests still suffered from compilation and oracle errors (<a href="https://doi.org/10.1145/3661167.3661216">EASE 2024 evaluation</a>). <a href="https://aclanthology.org/2025.ommm-1.11/">TypePilot</a> provides more direct evidence that a Scala type system can constrain insecure generations, although it evaluates generated-code robustness rather than developer time.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> treat the language as part of the verification harness. Static types, exhaustive compilers and mature linters should reduce the cost of rejecting a bad change, while popular ecosystems may improve generation quality through better training coverage. No identified field experiment isolates static typing as a causal productivity multiplier.</p></div>
+
+  <h3 id="experience">Developer experience changes where AI helps</h3>
+  <p>“Experience” is not one variable. General coding tenure, familiarity with a particular repository and knowledge of the problem domain can produce different effects. In assisted-development trials, less-experienced developers often gain more. The three randomised field experiments covering 4,867 developers found <a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2025.00535">higher adoption and larger productivity gains among less-experienced developers</a>. In the CodeFuse field experiment, the measured output increase was <a href="https://www.bis.org/publ/work1208.pdf">concentrated among junior programmers</a>, despite minimal junior–senior differences in suggestion acceptance.</p>
+  <p>Repository familiarity can reverse that pattern. METR’s experienced maintainers were 19% slower on repositories they had worked in for an average of five years, while two small studies of developers modifying unfamiliar brownfield applications found faster completion and more tests passed. This does not show that novices outperform experts. It suggests that assistance is more valuable when the tool supplies missing context, but can impose prompting and verification overhead when a developer already holds a strong mental model of the code.</p>
+  <p>At higher degrees of automation, domain expertise becomes more—not less—important. In Anthropic’s analysis of approximately 400,000 Claude Code sessions, novice-rated sessions reached verified success 15% of the time, compared with 28–33% for intermediate-to-expert sessions. When sessions encountered trouble, verified recovery rose from 4% for novices to 15% for experts. The authors found that <a href="https://www.anthropic.com/research/claude-code-expertise">task-specific expertise predicted success more strongly than working in a software occupation</a>, although the outcomes were inferred from transcripts and telemetry rather than production value.</p>
+  <p>The relationship is therefore not a simple equalising effect. A study of more than 160,000 open-source developers found that observed contribution gains were <a href="https://doi.org/10.1126/science.adz9311">concentrated among experienced developers</a>, with no significant gain among early-career developers. Different tasks, experience measures and workflows explain part of the apparent contradiction.</p>
+  <p>Qualitative and longitudinal studies describe the same shift from implementation toward supervision. Experienced professionals retain control over architecture and quality rather than relying on unconstrained “vibe coding” (<a href="https://arxiv.org/abs/2512.14012">Huang et al.</a>). A six-month panel found 84% reporting productivity improvement at both waves, while worsened developer experience nearly doubled in the matched cohort (<a href="https://arxiv.org/abs/2605.23135">Vella and Blincoe</a>). Microsoft’s <a href="https://www.microsoft.com/en-us/research/publication/the-space-of-ai-real-world-lessons-on-ais-impact-on-developers/">SPACE study of more than 500 developers</a> found benefits concentrated in routine work and weaker evidence for collaboration, while repository traces show use extending well beyond code generation (<a href="https://www.microsoft.com/en-us/research/publication/developers-and-generative-ai-a-study-of-self-admitted-usage-in-open-source-projects/">self-admitted open-source usage study</a>).</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> less-experienced developers may gain more from Level 1 assistance on bounded tasks, while experts may gain little—or slow down—when assistance disrupts work in a familiar repository. At Levels 2 and 3, domain knowledge improves specification, steering, exception handling and verification. Experience should therefore be measured as <strong>coding tenure, repository familiarity and domain expertise</strong>, not a single seniority label.</p></div>
+
+  <h3 id="automated-review">Automated review is necessary—but not a 4× cause</h3>
+  <p>Review responsibility changes with the degree of automation. At Level 1, the developer inspects suggestions while implementing the change. At Level 2, a human reviews and owns a completed agent-authored change. At Level 3, automated review becomes a first-pass control before accountable human approval. The third-level increase cannot be attributed to automated review alone, and the available evidence does not isolate review as a causal factor.</p>
+  <p>OpenAI’s guide to AI-native engineering says automated review gives engineers more confidence that major bugs are caught, but <a href="https://cdn.openai.com/business-guides-and-resources/building-an-ai-native-engineering-team.pdf">does not necessarily make the pull-request process faster</a>. Humans still need to understand the implications and own the merge.</p>
+  <p>A 2026 study of 31,073 CodeRabbit review comments across 10,191 pull requests found that only <a href="https://arxiv.org/abs/2607.03316">36.4% were accepted</a>, while 56.3% were rejected. Common reasons included false positives, redundant comments and suggestions outside the intended scope.</p>
+  <p>Atlassian reports a more favourable result from a tightly integrated review system. Its year-long evaluation across more than 1,900 repositories found that RovoDev reduced <a href="https://arxiv.org/abs/2601.01129">pull-request cycle time by 30.8%</a> and human-written review comments by 35.6%; 38.7% of its comments triggered a subsequent code change. The paper was accepted to the ICSE 2026 Software Engineering in Practice track, but the evaluation was observational and conducted by the tool’s developer.</p>
+  <p>The review bottleneck is real. A GitLab survey of 1,528 developers and technology buyers found that <a href="https://about.gitlab.com/press/releases/2026-06-23-gitlab-research-reveals-organizations-are-generating-ai-code-faster-than-they-can-control-it/">85% agreed AI had shifted the bottleneck</a> from writing code to review and validation. But survey agreement is not proof that an automated reviewer removes it.</p>
+  <p>Large-scale repository studies show why review results depend on task and governance. A study of <a href="https://doi.org/10.1145/3805760.3814909">40,214 human- and agent-authored pull requests</a> found materially different collaboration patterns when agents authored the change. A separate analysis of <a href="https://arxiv.org/abs/2602.08915">7,156 agent-authored pull requests</a> found that acceptance varied more by task type than by agent: documentation reached 82.1%, compared with 66.1% for new features. Early-adoption research covering <a href="https://arxiv.org/abs/2607.14037">25,264 agentic pull requests</a> found that most repositories still produced only one or two agent-authored pull requests over three months and relied predominantly on a single human reviewer.</p>
+  <p>The broader repository record confirms that acceptance is not equivalent to wholesale integration. <a href="https://arxiv.org/abs/2602.09185">AIDev</a> catalogues 932,791 agent-authored pull requests across 116,211 repositories. A study of 9,427 agentic pull requests found that core developers more consistently required passing CI before acceptance (<a href="https://doi.org/10.1145/3793302.3793377">Cynthia et al.</a>), while a longitudinal comparison tracks changing mergeability, complexity and defect proneness in agent- and human-authored pull requests (<a href="https://arxiv.org/abs/2607.21832">Morovati et al.</a>). PatchTrack found a median of only <a href="https://link.springer.com/article/10.1007/s10664-026-10869-5">25% of suggested code integrated</a> across 338 pull requests; developers usually extracted, adapted or rejected parts of a patch. These studies do not estimate causal speed, but show why generated or accepted code volume can overstate delivered value.</p>
+  <p>Interventions at narrower review stages show both useful automation and displacement. Across 18,256 pull requests, AI-generated descriptions were associated with <a href="https://arxiv.org/abs/2402.08967">shorter review time and a higher merge probability</a>. At Google, ML-generated edits now resolve <a href="https://research.google/pubs/resolving-code-review-comments-with-machine-learning/">7.5% of reviewer comments</a>, an effect estimated to save hundreds of thousands of engineer hours annually at that scale. AutoCommenter was deployed across four languages to tens of thousands of Google developers and produced a measurable workflow benefit, although the published study does not translate it into an end-to-end speed multiplier (<a href="https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/">industrial evaluation</a>).</p>
+  <p>Negative and null results are equally instructive. In Beko’s ten-project deployment, developers resolved 73.8% of automated comments, but median pull-request closure increased from 5 hours 52 minutes to 8 hours 20 minutes (<a href="https://arxiv.org/abs/2412.18531">Automated Code Review in Practice</a>). Meta’s review-comment patch system initially made reviewers more than 5% slower; moving suggestions from reviewers to authors removed that regression, and the final system achieved a 19.7% actionable-to-applied rate (<a href="https://arxiv.org/abs/2507.13499">randomised safety trials and production experiment</a>).</p>
+  <p>The high-performing cases combine review with deterministic tests, static analysis, isolated environments, repository rules, short feedback loops and human ownership. Review is one control in a harness; <a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">How to Sandbox AI Agent Code</a> compares practical isolation boundaries for the execution layer.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> automated review is a scaling control whose importance increases with the degree of automation—not a demonstrated cause of a 4× gain. At Level 1, narrow review automation can remove routine work but can also interrupt or slow the developer. At Level 2, it should reject deterministic defects before accountable human review. At Level 3, it is necessary to prevent generated volume overwhelming review capacity, but current systems still reject or fail to action many comments and do not remove the need for human approval. No identified study isolates automated review as an end-to-end productivity multiplier. <strong>Basis:</strong> <code>ST-41</code>–<code>ST-47</code>, <code>ST-51</code>–<code>ST-52</code>.</p></div>
+
+  <h3 id="quality">Quality effects are mixed and may emerge later</h3>
+  <p>Speed and throughput do not fully describe the productivity effect, and the quality risk changes with the degree of automation. At Level 1, a developer can reject a bad suggestion before it becomes a change. At Level 2, larger agent-authored patches increase the amount of behaviour a human must verify. At Level 3, generation and initial review both scale, making independent tests, security controls, monitoring and ownership part of the operating model rather than optional safeguards. A GitHub randomised controlled trial with 202 experienced developers found that Copilot users were <a href="https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/">53.2% more likely to pass all ten unit tests</a>. Blind review also found small but statistically significant improvements in readability, reliability, maintainability and conciseness.</p>
+  <p>Longitudinal evidence is less uniformly positive. A matched difference-in-differences study of 806 repositories found that adopting Cursor produced a <a href="https://arxiv.org/abs/2511.04427">large but transient increase in development velocity</a>, while static-analysis warnings and code complexity increased persistently. Another open-source study found that, after Copilot adoption, core developers reviewed <a href="https://arxiv.org/abs/2510.10165">6.5% more code while producing 19% less original code</a>, consistent with maintenance work being redistributed rather than removed.</p>
+  <p>A controlled maintenance experiment provides a useful boundary on that interpretation. When 75 participants evolved code written by someone else, the speed advantage for maintaining AI-assisted code was <a href="https://link.springer.com/article/10.1007/s10664-026-10889-1">small and statistically unreliable</a>. A separate analysis of 304,362 verified AI-authored commits found that <a href="https://arxiv.org/abs/2603.28592">more than 15% introduced at least one detectable issue</a>, and 24.2% of the tracked issues remained at the latest repository revision.</p>
+  <p>Security evaluations consistently reject the assumption that compilable means safe. Copilot produced vulnerable output in approximately 40% of 1,689 programs in the peer-reviewed <a href="https://doi.org/10.1145/3610721">“Asleep at the Keyboard” study</a>. A 2024 replication found a lower but still substantial <a href="https://doi.org/10.1109/SANER60148.2024.00051">27.25% vulnerable share</a>. In real repositories, security weaknesses affected 29.5% of observed Python snippets and 24.2% of JavaScript snippets (<a href="https://doi.org/10.1145/3716848">Fu et al.</a>), while a 44-developer controlled study found no significant improvement in secure API use (<a href="https://arxiv.org/abs/2607.11348">Mousavi et al.</a>).</p>
+  <p>The surrounding risks create verification work. Across 16 coding models, package hallucinations averaged <a href="https://www.usenix.org/publications/loginonline/we-have-package-you-comprehensive-analysis-package-hallucinations-code">19.6%</a>. A 2024 USENIX evaluation found that LLMs could assist code analysis but remained unreliable across tasks (<a href="https://www.usenix.org/conference/usenixsecurity24/presentation/fang">Fang et al.</a>). Newer security-by-default work improved secure generation by up to 2.5× across six models and four security-critical languages, but this is a model-level benchmark rather than evidence that deployed teams experience fewer incidents (<a href="https://www.usenix.org/conference/usenixsecurity26/presentation/thang">GoodVibe</a>). The strongest conclusion is therefore not that AI necessarily increases production bugs, but that generated code retains material defect and vulnerability risk and requires an explicit verification budget.</p>
+  <p>Automated tests can recover part of this cost, but generated tests need their own oracle. TestPilot generated JavaScript tests with median statement coverage of <a href="https://doi.org/10.1109/TSE.2023.3334955">70.2%</a> in its 2024 journal publication. ChatTESTER increased compilable tests by 34.3% and tests with correct assertions by 18.7% relative to direct ChatGPT generation (<a href="https://doi.org/10.1145/3660783">FSE 2024 study</a>). A broader evaluation across 17 Java projects found that prompt content and model choice materially changed outcomes (<a href="https://arxiv.org/abs/2406.18181">Yang et al.</a>). The productive mechanism is therefore the executable feedback loop, not test text generation alone.</p>
+  <p>Repository telemetry indicates that these costs may emerge slowly. GitClear’s analysis of <a href="https://gitclear-public.s3.us-west-2.amazonaws.com/Coding-on-Copilot-2024-Developer-Research.pdf">153 million changed lines</a> found rising churn and copy-paste activity as AI adoption grew, although it could not identify AI authorship causally. DORA’s 2024 cross-organisation analysis associated a 25% increase in AI adoption with better documentation, code quality and review speed, but also <a href="https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report">1.5% lower delivery throughput and 7.2% lower stability</a>. These are associations, but they illustrate why local speed and delivery performance must be measured separately.</p>
+  <p><a href="https://dora.dev/research/2025/dora-report/">Google’s 2025 DORA research</a> develops that finding: AI appears to amplify existing organisational strengths and weaknesses, with higher adoption associated with both greater throughput and greater instability. The appropriate comparison is therefore not simply with and without AI, but the same degree of automation under stronger and weaker delivery systems.</p>
+  <p>Collectively, these studies indicate that short-task quality can improve while repository-level complexity, persistent defects and expert review load still rise over time. This distinction is especially consequential in brownfield systems, where each accepted change becomes part of the next task’s context. <a href="/blog/the-rise-of-ai-in-web-development/">AI-Assisted Web Development: Where It Helps and Where It Fails</a> applies the same boundary to pattern-heavy work that is easy to verify and judgement-heavy work where plausible output can hide defects.</p>
+  <div class="evidence-callout"><p><strong>Review finding:</strong> faster generation does not inevitably reduce quality, but the evidence does not support treating quality as constant across degrees of automation. Level 1 trials can improve immediate correctness on bounded tasks while longitudinal studies still detect complexity, maintenance and security costs. At Levels 2 and 3, larger agent-authored changes expand the verification surface; maintaining quality requires independent tests, security controls, monitoring and accountable ownership to scale with generation. No identified study demonstrates that quality remains stable at the article’s 2× or 4.5× implementation scenarios. <strong>Basis:</strong> <code>ST-22</code>, <code>ST-27</code>, <code>ST-48</code>–<code>ST-50</code>, <code>ST-53</code>–<code>ST-55</code>.</p></div>
+
+  <figure class="article-diagram">
+  <svg viewBox="0 0 760 330" role="img" aria-labelledby="system-title system-desc" xmlns="http://www.w3.org/2000/svg">
+    <title id="system-title">Local coding speed can be lost at downstream delivery stages</title>
+    <desc id="system-desc">A pipeline runs from intent through generation, verification, review and deployment. Generation is accelerated first, shifting queues and risk into downstream stages unless the whole system is redesigned.</desc>
+    <rect width="760" height="330" fill="#fff"/><text x="38" y="42" fill="#24282b" font-family="Arial,sans-serif" font-size="24" font-weight="700">A faster generator does not guarantee faster delivery</text>
+    <g font-family="Arial,sans-serif">
+      <rect x="42" y="110" width="118" height="70" rx="4" fill="#f2f4f5" stroke="#aab2b7"/><text x="82" y="140" fill="#374047" font-size="14">intent</text><text x="62" y="162" fill="#667078" font-size="11">scope + constraints</text>
+      <rect x="184" y="110" width="118" height="70" rx="4" fill="#e6f4ec" stroke="#2f9d62"/><text x="213" y="140" fill="#287e50" font-size="14">generate</text><text x="207" y="162" fill="#287e50" font-size="11">accelerates first</text>
+      <rect x="326" y="110" width="118" height="70" rx="4" fill="#f2f4f5" stroke="#aab2b7"/><text x="351" y="140" fill="#374047" font-size="14">verify</text><text x="344" y="162" fill="#667078" font-size="11">tests + state</text>
+      <rect x="468" y="110" width="118" height="70" rx="4" fill="#fbf2dc" stroke="#c98914"/><text x="499" y="140" fill="#a66d08" font-size="14">review</text><text x="487" y="162" fill="#a66d08" font-size="11">queue moves here</text>
+      <rect x="610" y="110" width="108" height="70" rx="4" fill="#f2f4f5" stroke="#aab2b7"/><text x="636" y="140" fill="#374047" font-size="14">deploy</text><text x="626" y="162" fill="#667078" font-size="11">value + incidents</text>
+      <g stroke="#90999f" stroke-width="2"><line x1="160" y1="145" x2="184" y2="145"/><line x1="302" y1="145" x2="326" y2="145"/><line x1="444" y1="145" x2="468" y2="145"/><line x1="586" y1="145" x2="610" y2="145"/></g>
+      <path d="M237 205 C310 270 480 270 530 205" fill="none" stroke="#c84f4a" stroke-width="3" stroke-dasharray="8 6"/><text x="315" y="286" fill="#b4433f" font-size="13">unverified volume creates downstream rework</text>
+      <text x="55" y="235" fill="#5f6970" font-size="12">The relevant outcome spans accepted intent through production operation.</text>
+    </g>
+  </svg>
+  <figcaption>Productivity gains survive only when verification, review and deployment scale with generation.</figcaption>
+  </figure>
+
+  <h2 id="effect-register">Productivity effect register and confidence assessment</h2>
+  <div class="effect-register-wrap" role="region" aria-label="Scrollable productivity effect register" tabindex="0">
+  <table class="evidence-table effect-register-table">
+    <thead><tr><th>IDs</th><th>Study and outcome</th><th>Design</th><th>Effect</th><th>Confidence</th><th>Main limitation</th></tr></thead>
+    <tbody>
+      <tr id="E-01"><td><code>ST-01</code><br/><code>E-01</code></td><td><a href="https://arxiv.org/abs/2410.12944">Google enterprise RCT</a> — task time</td><td>Randomised field experiment</td><td>21% less time</td><td class="high">High</td><td>96 engineers; wide confidence interval</td></tr>
+      <tr id="E-02"><td><code>ST-02</code><br/><code>E-02</code></td><td><a href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535">Microsoft/Accenture/F100</a> — completed tasks</td><td>Controlled field experiments</td><td>+26.08%</td><td class="high">High</td><td>Effects varied between companies</td></tr>
+      <tr id="E-03"><td><code>ST-03</code><br/><code>E-03</code></td><td><a href="https://arxiv.org/abs/2402.05650">Rocks Coding, Not Development</a> — task performance</td><td>Controlled experiment</td><td>Coding gain; no development-task gain</td><td class="high">High</td><td>109 participants; assigned tasks</td></tr>
+      <tr id="E-04"><td><code>ST-04</code><br/><code>E-04</code></td><td><a href="https://arxiv.org/abs/2507.09089">METR</a> — mature-repository task time</td><td>Randomised experiment</td><td>19% slower</td><td class="high">High</td><td>16 expert maintainers; early-2025 tools</td></tr>
+      <tr id="E-05"><td><code>ST-05</code><br/><code>E-05</code></td><td><a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">PACIS assistant–agent trial</a> — completion time</td><td>Controlled experiment</td><td>61.7% less time</td><td class="high">High</td><td>24 developers; assistant comparator</td></tr>
+      <tr id="E-06"><td><code>ST-06</code><br/><code>E-06</code></td><td><a href="https://arxiv.org/abs/2402.05636">ANZ Bank</a> — Python-task completion</td><td>Controlled experiment</td><td>42.3% faster</td><td class="high">High</td><td>Exercises followed tool training</td></tr>
+      <tr id="E-07"><td><code>ST-07</code><br/><code>E-07</code></td><td><a href="https://doi.org/10.1145/3661145">Weber et al.</a> — requirements per minute</td><td>Within-subject experiment</td><td>Significant increase</td><td class="high">High</td><td>24 participants; mostly junior</td></tr>
+      <tr id="E-08"><td><code>ST-08</code><br/><code>E-08</code></td><td><a href="https://doi.org/10.1109/TSE.2026.3679627">More Code, Less Understanding</a> — task completeness</td><td>Controlled experiment</td><td>&gt;2× median completeness</td><td class="high">High</td><td>No strong overall time effect</td></tr>
+      <tr id="E-09"><td><code>ST-09</code><br/><code>E-09</code></td><td><a href="https://research.google/pubs/using-an-llm-to-help-with-code-understanding/">GILT</a> — code-understanding progress</td><td>Crossover trial</td><td>+0.47 subtasks; no time gain</td><td class="medium">Moderate</td><td>32 participants; high risk of bias</td></tr>
+      <tr id="E-10"><td><code>ST-10</code><br/><code>E-10</code></td><td><a href="https://doi.org/10.1145/3702163.3702168">ClueBot</a> — JavaScript time and errors</td><td>Crossover experiment</td><td>Less time; fewer errors</td><td class="medium">Moderate</td><td>18 participants; student-heavy sample</td></tr>
+      <tr id="E-11"><td><code>ST-11</code><br/><code>E-11</code></td><td><a href="https://www.nber.org/papers/w35275">Writing Code vs. Shipping Code</a> — commits, releases and use</td><td>Matched event study</td><td>+180% commits; +30% releases; no usage gain</td><td class="medium">Moderate</td><td>Adoption remains non-random</td></tr>
+      <tr id="E-12"><td><code>ST-12</code><br/><code>E-12</code></td><td><a href="https://doi.org/10.1126/science.adz9311">Global diffusion and impact</a> — quarterly contributions</td><td>Within-developer fixed effects</td><td>+3.6%</td><td class="medium">Moderate</td><td>AI authorship inferred on public GitHub</td></tr>
+      <tr id="E-13"><td><code>ST-13</code><br/><code>E-13</code></td><td><a href="https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2025/04/WTIC.2025_Nagle-Frank_Generative-AI.pdf">Generative AI and the Nature of Work</a> — work allocation</td><td>Regression discontinuity</td><td>+12.37% coding share</td><td class="medium">Moderate</td><td>Task mix, not final output</td></tr>
+      <tr id="E-14"><td><code>ST-14</code><br/><code>E-14</code></td><td><a href="https://arxiv.org/abs/2410.02091">Collaborative open source</a> — project output and integration</td><td>Generalised synthetic control</td><td>+6.5%; integration time +41.6%</td><td class="medium">Moderate</td><td>Adoption inferred</td></tr>
+      <tr id="E-15"><td><code>ST-15</code><br/><code>E-15</code></td><td><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5100609">Copilot X</a> — commits and repositories</td><td>Matched difference-in-differences</td><td>+12% commits; +6% repositories</td><td class="medium">Moderate</td><td>Copy-paste also rose</td></tr>
+      <tr id="E-16"><td><code>ST-16</code><br/><code>E-16</code></td><td><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6515379">Workplace AI-coder deployment</a> — productivity index</td><td>Regression discontinuity in time</td><td>+6.9–8.4%</td><td class="medium">Moderate</td><td>Time discontinuities permit confounding</td></tr>
+      <tr id="E-17"><td><code>ST-17</code><br/><code>E-17</code></td><td><a href="https://arxiv.org/abs/2409.08379">Python–R natural experiment</a> — releases and commits</td><td>Difference-in-differences</td><td>+17.82% releases; +51% commits</td><td class="medium">Moderate</td><td>Language ecosystems may differ</td></tr>
+      <tr id="E-18"><td><code>ST-18</code><br/><code>E-18</code></td><td><a href="https://www.bis.org/publ/work1208.htm">Ant Group CodeFuse</a> — code and workflow</td><td>Matched field experiment</td><td>+55% code; +13–22% workflow</td><td class="medium">Moderate</td><td>Code volume was primary</td></tr>
+      <tr id="E-19"><td><code>ST-19</code><br/><code>E-19</code></td><td><a href="https://arxiv.org/abs/2506.10051">Brownfield undergraduate study</a> — task time</td><td>Controlled experiment</td><td>35% faster</td><td class="medium">Moderate</td><td>Ten students; narrow application</td></tr>
+      <tr id="E-20"><td><code>ST-20</code><br/><code>E-20</code></td><td><a href="https://arxiv.org/abs/2511.02922">Brownfield replication</a> — time and tests</td><td>Within-subject experiment</td><td>Faster; more tests passed</td><td class="medium">Moderate</td><td>No comprehension gain</td></tr>
+      <tr id="E-21"><td><code>ST-21</code><br/><code>E-21</code></td><td><a href="https://doi.org/10.1145/3786583.3786872">PicoScenes</a> — implementation time</td><td>Comparative industrial case</td><td>68.3% less time</td><td class="medium">Moderate</td><td>One system; bundled method</td></tr>
+      <tr id="E-22"><td><code>ST-22</code><br/><code>E-22</code></td><td><a href="https://arxiv.org/abs/2511.04427">Cursor repositories</a> — velocity</td><td>Matched longitudinal study</td><td>Large, transient increase</td><td class="medium">Moderate</td><td>Observable adopters only</td></tr>
+      <tr id="E-23"><td><code>ST-23</code><br/><code>E-23</code></td><td><a href="https://arxiv.org/abs/2402.04141">Meta multi-line completion</a> — keystrokes saved</td><td>Large-scale online experiment</td><td>9–17%</td><td class="medium">Moderate</td><td>Local activity proxy</td></tr>
+      <tr id="E-24"><td><code>ST-24</code><br/><code>E-24</code></td><td><a href="https://uplevelteam.com/blog/genai-developers">Uplevel</a> — PR cycle and throughput</td><td>Matched observational study</td><td>No significant change</td><td class="medium">Moderate</td><td>Observational assignment</td></tr>
+      <tr id="E-25"><td><code>ST-25</code><br/><code>E-25</code></td><td><a href="https://arxiv.org/abs/2509.20353">NAV</a> — commit activity</td><td>Longitudinal repository study</td><td>No significant change</td><td class="medium">Moderate</td><td>25 users; self-selection</td></tr>
+      <tr id="E-26"><td><code>ST-26</code><br/><code>E-26</code></td><td><a href="https://arxiv.org/abs/2602.13766">Three agile teams</a> — story points</td><td>Longitudinal multi-case study</td><td>+59.1% in one team</td><td class="medium">Moderate</td><td>One stable comparison</td></tr>
+      <tr id="E-27"><td><code>ST-27</code><br/><code>E-27</code></td><td><a href="https://link.springer.com/article/10.1007/s10664-026-10889-1">Echoes of AI</a> — task time</td><td>Comparative experiment</td><td>30.7% lower median time</td><td class="medium">Moderate</td><td>Participants chose workflow</td></tr>
+      <tr id="E-28"><td><code>ST-28</code><br/><code>E-28</code></td><td><a href="https://arxiv.org/abs/2409.17434">GovTech Singapore</a> — task speed</td><td>Structured field study</td><td>21–28% faster</td><td class="low">Low</td><td>Limited comparative detail</td></tr>
+      <tr id="E-29"><td><code>ST-29</code><br/><code>E-29</code></td><td><a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">Salesforce agentic SDLC</a> — effective output</td><td>Before-and-after telemetry</td><td>+151.3%</td><td class="low">Low</td><td>Many simultaneous changes</td></tr>
+      <tr id="E-30"><td><code>ST-30</code><br/><code>E-30</code></td><td><a href="https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic">Anthropic adoption</a> — merged PRs</td><td>Before-and-after telemetry</td><td>+67%</td><td class="low">Low</td><td>Telemetry plus self-report</td></tr>
+      <tr id="E-31"><td><code>ST-31</code><br/><code>E-31</code></td><td><a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">AWS 25 teams</a> — deployment velocity</td><td>Multi-team organisational telemetry</td><td>Median 4.5×</td><td class="low">Low</td><td>Not randomised; limited method</td></tr>
+      <tr id="E-32"><td><code>ST-32</code><br/><code>E-32</code></td><td><a href="https://www.gov.uk/government/publications/ai-coding-assistant-trial">UK Government</a> — reported time saved</td><td>Voluntary workplace trial</td><td>About one hour per day</td><td class="low">Low</td><td>Self-reported time</td></tr>
+      <tr id="E-33"><td><code>ST-33</code><br/><code>E-33</code></td><td><a href="https://doi.org/10.1145/3643774">Meta CodeCompose</a> — accepted-code share</td><td>Deployment telemetry</td><td>8% of code</td><td class="low">Low</td><td>Activity proxy</td></tr>
+      <tr id="E-34"><td><code>ST-34</code><br/><code>E-34</code></td><td><a href="https://www.faros.ai/blog/ai-software-engineering">Faros 2025</a> — tasks, PRs and review</td><td>Observational telemetry</td><td>+21% tasks; +98% PRs</td><td class="low">Low</td><td>Review time rose 91%</td></tr>
+      <tr id="E-35"><td><code>ST-35</code><br/><code>E-35</code></td><td><a href="https://www.faros.ai/research/ai-acceleration-whiplash">Faros 2026</a> — delivery telemetry</td><td>Longitudinal telemetry</td><td>+33.7% tasks; 16.2% faster merges</td><td class="low">Low</td><td>Churn and incidents rose</td></tr>
+      <tr id="E-36"><td><code>ST-36</code><br/><code>E-36</code></td><td><a href="https://getdx.com/report/ai-assisted-engineering-q4-impact-report/">DX Q4 2025</a> — time and PR output</td><td>Survey plus telemetry</td><td>3.6 hours/week; +60% PRs</td><td class="low">Low</td><td>Non-random usage</td></tr>
+      <tr id="E-37"><td><code>ST-37</code><br/><code>E-37</code></td><td><a href="https://jellyfish.co/blog/are-ai-coding-tools-making-companies-more-productive/">Jellyfish</a> — epics and effort</td><td>Adoption-cohort analysis</td><td>+56% epics; −25% effort</td><td class="low">Low</td><td>High-adoption cohort may differ</td></tr>
+      <tr id="E-38"><td><code>ST-31</code><br/><code>E-38</code></td><td><a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">AWS Prime Video</a> — forecast duration</td><td>Disclosed case estimate</td><td>3.75×</td><td class="low">Low</td><td>Comparator was a forecast</td></tr>
+      <tr id="E-39"><td><code>ST-38</code><br/><code>E-39</code></td><td><a href="https://www.sonarsource.com/blog/ai-first-engineering-cisco/">Cisco</a> — tech-debt workflow</td><td>Disclosed production case</td><td>Up to 3×</td><td class="low">Low</td><td>Deterministic issue class</td></tr>
+      <tr id="E-40"><td><code>ST-39</code><br/><code>E-40</code></td><td><a href="https://openai.com/index/harness-engineering/">OpenAI</a> — estimated project time</td><td>Counterfactual case estimate</td><td>10×</td><td class="low">Low</td><td>No control</td></tr>
+      <tr id="E-41"><td><code>ST-29</code><br/><code>E-41</code></td><td><a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">Salesforce migration</a> — task duration</td><td>Counterfactual case estimate</td><td>18×</td><td class="low">Low</td><td>Repetitive, parallelisable work</td></tr>
+      <tr id="E-42"><td><code>ST-40</code><br/><code>E-42</code></td><td><a href="https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/">Amazon Q migration</a> — estimated effort</td><td>Counterfactual portfolio estimate</td><td>4,500 developer-years</td><td class="low">Low</td><td>Dependency-based estimate</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="limitations">Limitations</h2>
+  <p>This rapid systematic review was not protocol-registered and did not include a formal risk-of-bias instrument. Searches prioritised English-language, web-accessible studies and first-party disclosures; relevant unpublished evaluations may therefore be absent. The corpus is broad rather than exhaustively database-indexed. Publication bias is likely to be strongest in the agent-native tier, where organisations have an incentive to publish exceptional successes.</p>
+  <p>The evidence base is too heterogeneous for a pooled effect estimate. Controlled studies mostly evaluate individual assistance, while agent-native reports measure teams, workflows or individual migrations. Historical estimates can also change after a project begins, and commit or line-volume measures may reward activity rather than value. Greenfield and brownfield labels were assigned from the disclosed project setting and were not always prespecified by study authors. Experience measures also differ: job tenure, coding tenure, repository familiarity and task-specific expertise are not interchangeable. Programming-language studies predominantly measure correctness, compilation or benchmark success rather than developer time, so the language analysis is mechanistic and exploratory. The three-level autonomy taxonomy was applied for this review and has not itself been independently validated.</p>
+  <p>Benchmark quality adds a separate constraint. OpenAI found contamination and test-design problems severe enough to stop using <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">SWE-bench Verified</a>, then estimated that approximately 30% of SWE-Bench Pro tasks were broken in a separate <a href="https://openai.com/index/separating-signal-from-noise-coding-evaluations/">agent-assisted audit and human annotation study</a>. Benchmark progress shows that agents can perform longer tasks under controlled conditions; it cannot be converted directly into hours saved without a human workflow comparator.</p>
+
+  <h2 id="future-measurement">Implications for future measurement</h2>
+  <p>The literature would benefit from staged comparisons of representative work rather than further surveys of perceived speed. A robust organisational study would:</p>
+  <ol>
+    <li>Select repeated task classes with sufficient history for a baseline.</li>
+    <li>Measure accepted intent through production operation, rather than coding time alone.</li>
+    <li>Separate active human time, elapsed time and agent runtime.</li>
+    <li>Include review rounds, escaped defects, rollback and rework.</li>
+    <li>Compare similar tasks at assisted, spec-driven and agent-native levels.</li>
+    <li>Report the model, repository characteristics, team composition, coding tenure, repository familiarity and domain expertise.</li>
+  </ol>
+  <p>Relevant outcome measures include lead time, work items deployed, change failure rate, reviewer minutes, post-merge rework and production incidents. Commits can diagnose activity, but are not an adequate primary productivity outcome. For a worked example of holding variables constant, exposing uncertainty and separating raw results from interpretation, see <a href="/blog/building-the-ed-o-meter-llm-eval-harness/">Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</a>.</p>
+
+  <h2 id="conclusion">Discussion and conclusion</h2>
+  <p><strong>The central finding is a conversion problem.</strong> AI can substantially increase implementation output, but the gain is often attenuated as work passes through understanding, integration, review, testing, release and adoption. The largest matched study makes that loss visible: 180% more commits became 30% more releases and no increase in application usage (<code>E-11</code>). The independent meta-analysis reaches the same broad boundary from another direction: average productivity improves, but estimated effects are far smaller in enterprise and open-source settings than in controlled laboratories.</p>
+  <p>For end-to-end planning, the largest matched delivery study observed approximately <strong>1.1×, 1.2× and 1.3× release output</strong> across successive tool generations. This review therefore uses <strong>1.2× as an evidence-anchored central planning case</strong>, driven principally by <code>E-11</code> and triangulated against <code>E-14</code>–<code>E-17</code>; it is not a pooled or universal effect. The larger figures describe narrower implementation stages: approximately <strong>1.25×</strong> for conventional assistant use, <strong>2×</strong> as a conditional hypothesis for bounded spec-driven work and <strong>4.5×</strong> as a low-confidence agent-native upside scenario. They should not be applied to the whole delivery system. Increasing autonomy does not itself establish causation; the largest outcomes combine a model with redesigned repositories, specifications, environments, tests, review and parallel execution.</p>
+  <p>The evidence also rejects a simple speed-versus-quality trade-off. Short, bounded tasks can become both faster and more correct. The recurrent risk is asymmetry: generation scales before verification does, shifting cost into integration time, review queues, churn, complexity, security findings and weaker code ownership. <strong>Speed without scaled verification can come at the expense of quality. Maintaining quality at higher generation rates requires robust review and verification, but the evidence does not show that these controls guarantee it—particularly at the 2× and 4.5× implementation scenarios.</strong></p>
+  <p>Project lifecycle alone is a poor predictor. Greenfield work has less legacy coupling but often lacks historical baselines and inherited test suites. Brownfield work has more constraints, yet repetitive migrations and well-instrumented changes can be highly tractable. Experience does not move the effect in one direction: bounded Level 1 trials often favour less-experienced developers, familiar-repository experts can slow down, and domain expertise becomes more valuable as automation increases. The more useful distinctions are tacit versus explicit context, subjective versus executable acceptance and generated versus independently verified output.</p>
+  <p>For investment decisions, the unit of analysis should be the <strong>verified outcome in production</strong>. A credible business case should estimate model and platform costs, integration effort, reviewer capacity, rework, incidents and the proportion of coding-time savings that reaches release and customer use. Time-to-market claims should be based on lead time through production operation, not commits, lines of code or self-reported hours saved.</p>
+  <p><strong>As automation increases, AI coding becomes a systems-engineering problem. The limiting factor is increasingly not how quickly a model can generate code, but how effectively an organisation can specify, verify, integrate and release correct work.</strong></p>
+
+  <hr/>
+  <h2 id="evidence-registers">Evidence and document registers</h2>
+  <p>The registers preserve the review chain from included study to source document. Confidence is assigned in the study registers above; supporting and contextual documents are not graded as productivity evidence.</p>
+  <h3>A. Included empirical studies (59)</h3>
+  <details>
+  <summary>Show the 59 studies ordered by study ID</summary>
+  <ul class="source-register">
+    <li><code>ST-01</code> — <a href="https://arxiv.org/abs/2410.12944">How much does AI impact development speed?</a> — Google enterprise RCT.</li>
+    <li><code>ST-02</code> — <a href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535">The Effects of Generative AI on High-Skilled Work</a> — Microsoft, Accenture and Fortune 100 field experiments.</li>
+    <li><code>ST-03</code> — <a href="https://arxiv.org/abs/2402.05650">Rocks Coding, Not Development: A Human-Centric, Experimental Evaluation of LLM-Supported SE Tasks</a>.</li>
+    <li><code>ST-04</code> — <a href="https://arxiv.org/abs/2507.09089">Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a> — METR.</li>
+    <li><code>ST-05</code> — <a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">From Assistants to Agents: Exploring Efficiency and Human Agency in AI-Supported Programming</a>.</li>
+    <li><code>ST-06</code> — <a href="https://arxiv.org/abs/2402.05636">The Impact of AI Tool on Engineering at ANZ Bank</a>.</li>
+    <li><code>ST-07</code> — <a href="https://doi.org/10.1145/3661145">Significant Productivity Gains through Programming with Large Language Models</a>.</li>
+    <li><code>ST-08</code> — <a href="https://doi.org/10.1109/TSE.2026.3679627">More Code, Less Understanding? On the Impact of AI Assistants on Developers’ Productivity and Code Ownership</a>.</li>
+    <li><code>ST-09</code> — <a href="https://research.google/pubs/using-an-llm-to-help-with-code-understanding/">Using an LLM to Help With Code Understanding</a> — Google and Carnegie Mellon University.</li>
+    <li><code>ST-10</code> — <a href="https://doi.org/10.1145/3702163.3702168">ClueBot: A Conversational Agent to Assist in JavaScript Programming</a>.</li>
+    <li><code>ST-11</code> — <a href="https://www.nber.org/papers/w35275">Writing Code vs. Shipping Code: The Impact of AI on Software Development</a> — matched event study of more than 100,000 developers.</li>
+    <li><code>ST-12</code> — <a href="https://doi.org/10.1126/science.adz9311">The Global Diffusion and Impact of Artificial Intelligence Writing Code</a> — <em>Science</em>.</li>
+    <li><code>ST-13</code> — <a href="https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2025/04/WTIC.2025_Nagle-Frank_Generative-AI.pdf">Generative AI and the Nature of Work</a>.</li>
+    <li><code>ST-14</code> — <a href="https://arxiv.org/abs/2410.02091">The Impact of Generative AI on Collaborative Open-Source Software Development</a>.</li>
+    <li><code>ST-15</code> — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5100609">The Impact of Generative AI on Software Development: Evidence from GitHub Copilot X</a>.</li>
+    <li><code>ST-16</code> — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6515379">The Productivity Effects of Generative AI: Evidence from a Workplace Deployment of an AI Coder</a>.</li>
+    <li><code>ST-17</code> — <a href="https://arxiv.org/abs/2409.08379">The Impact of Generative AI on Open-Source Software Development</a>.</li>
+    <li><code>ST-18</code> — <a href="https://www.bis.org/publ/work1208.htm">Generative AI and labour productivity: a field experiment on coding</a> — BIS and Ant Group CodeFuse study.</li>
+    <li><code>ST-19</code> — <a href="https://arxiv.org/abs/2506.10051">The Effects of GitHub Copilot on Computing Students in Brownfield Programming Tasks</a>.</li>
+    <li><code>ST-20</code> — <a href="https://arxiv.org/abs/2511.02922">Comprehension–Performance Gap in GenAI-Assisted Brownfield Programming</a>.</li>
+    <li><code>ST-21</code> — <a href="https://doi.org/10.1145/3786583.3786872">Less Effort, More Productivity: Lessons Learned from Developing Millions of Lines of Code with Large Language Model</a> — ICSE 2026.</li>
+    <li><code>ST-22</code> — <a href="https://arxiv.org/abs/2511.04427">Speed at the Cost of Quality? The Impact of LLM Agent Assistance on Software Development</a>.</li>
+    <li><code>ST-23</code> — <a href="https://arxiv.org/abs/2402.04141">Multi-line AI-assisted Code Authoring</a> — Meta.</li>
+    <li><code>ST-24</code> — <a href="https://uplevelteam.com/blog/genai-developers">Does GenAI Improve Software Developer Productivity?</a> — Uplevel Data Labs.</li>
+    <li><code>ST-25</code> — <a href="https://arxiv.org/abs/2509.20353">Longitudinal GitHub Copilot Adoption at NAV IT</a>.</li>
+    <li><code>ST-26</code> — <a href="https://arxiv.org/abs/2602.13766">Longitudinal Multi-case Study of AI-assisted Agile Teams</a>.</li>
+    <li><code>ST-27</code> — <a href="https://link.springer.com/article/10.1007/s10664-026-10889-1">Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability</a>.</li>
+    <li><code>ST-28</code> — <a href="https://arxiv.org/abs/2409.17434">Harnessing the Potential of Gen-AI Coding Assistants in Public Sector Software Development</a> — GovTech Singapore.</li>
+    <li><code>ST-29</code> — <a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">Pioneering the Agentic Shift Within Salesforce Engineering</a>.</li>
+    <li><code>ST-30</code> — <a href="https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic">How AI Is Transforming Work at Anthropic</a> — survey, interviews and internal telemetry.</li>
+    <li><code>ST-31</code> — <a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">How frontier teams are reinventing AI-native development</a> — AWS.</li>
+    <li><code>ST-32</code> — <a href="https://www.gov.uk/government/publications/ai-coding-assistant-trial">AI Coding Assistant Trial: UK Public Sector Findings</a>.</li>
+    <li><code>ST-33</code> — <a href="https://doi.org/10.1145/3643774">AI-assisted Code Authoring at Scale</a> — Meta CodeCompose, FSE 2024.</li>
+    <li><code>ST-34</code> — <a href="https://www.faros.ai/blog/ai-software-engineering">The AI Productivity Paradox</a> — Faros 2025.</li>
+    <li><code>ST-35</code> — <a href="https://www.faros.ai/research/ai-acceleration-whiplash">AI Acceleration Whiplash</a> — Faros 2026.</li>
+    <li><code>ST-36</code> — <a href="https://getdx.com/report/ai-assisted-engineering-q4-impact-report/">State of AI-assisted Engineering, Q4 2025</a> — DX.</li>
+    <li><code>ST-37</code> — <a href="https://jellyfish.co/blog/are-ai-coding-tools-making-companies-more-productive/">Are AI Coding Tools Making Companies More Productive?</a> — Jellyfish.</li>
+    <li><code>ST-38</code> — <a href="https://www.sonarsource.com/blog/ai-first-engineering-cisco/">AI-First Engineering: How Cisco Reached Tech Debt Zero</a> — SonarSource case study.</li>
+    <li><code>ST-39</code> — <a href="https://openai.com/index/harness-engineering/">Harness engineering: leveraging Codex in an agent-first world</a> — OpenAI.</li>
+    <li><code>ST-40</code> — <a href="https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/">Amazon Q Developer just reached a $260 million milestone</a> — AWS production migration disclosure.</li>
+    <li><code>ST-41</code> — <a href="https://arxiv.org/abs/2601.01129">RovoDev Code Reviewer: A Large-Scale Online Evaluation</a> — Atlassian and Monash University, ICSE 2026.</li>
+    <li><code>ST-42</code> — <a href="https://arxiv.org/abs/2607.03316">Is Agentic Code Review Helpful?</a></li>
+    <li><code>ST-43</code> — <a href="https://doi.org/10.1145/3805760.3814909">When Code Authors Are Agents: A Large-Scale Study of Human–Agent Collaboration in Pull Requests</a>.</li>
+    <li><code>ST-44</code> — <a href="https://arxiv.org/abs/2602.08915">Comparing AI Coding Agents: A Task-Stratified Analysis of Pull Request Acceptance</a>.</li>
+    <li><code>ST-45</code> — <a href="https://arxiv.org/abs/2607.14037">Early Adoption of Agentic Coding Tools by GitHub Projects</a>.</li>
+    <li><code>ST-46</code> — <a href="https://arxiv.org/abs/2402.08967">AI-generated Pull-request Descriptions and Review Outcomes</a>.</li>
+    <li><code>ST-47</code> — <a href="https://arxiv.org/abs/2412.18531">Automated Code Review in Practice</a>.</li>
+    <li><code>ST-48</code> — <a href="https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/">Does GitHub Copilot improve code quality?</a> — GitHub randomised controlled trial.</li>
+    <li><code>ST-49</code> — <a href="https://arxiv.org/abs/2510.10165">AI-assisted Programming May Decrease the Productivity of Experienced Developers by Increasing Maintenance Burden</a>.</li>
+    <li><code>ST-50</code> — <a href="https://arxiv.org/abs/2603.28592">Debt Behind the AI Boom: A Large-Scale Empirical Study of AI-Generated Code in the Wild</a>.</li>
+    <li><code>ST-51</code> — <a href="https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/">AI-assisted Assessment of Coding Practices in Industrial Code Review</a> — Google AutoCommenter.</li>
+    <li><code>ST-52</code> — <a href="https://arxiv.org/abs/2507.13499">AI-Assisted Fixes to Code Review Comments at Scale</a> — Meta.</li>
+    <li><code>ST-53</code> — <a href="https://doi.org/10.1145/3610721">Asleep at the Keyboard? Assessing the Security of GitHub Copilot’s Code Contributions</a> — Communications of the ACM.</li>
+    <li><code>ST-54</code> — <a href="https://arxiv.org/abs/2607.11348">Understanding the Impact of AI Code Assistants on Security API Usage</a>.</li>
+    <li><code>ST-55</code> — <a href="https://www.usenix.org/conference/usenixsecurity26/presentation/thang">GoodVibe: Security-by-Vibe for LLM-Based Code Generation</a> — USENIX Security 2026.</li>
+    <li><code>ST-56</code> — <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">How AI assistance impacts the formation of coding skills</a> — Anthropic randomised trial.</li>
+    <li><code>ST-57</code> — <a href="https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise">Examining the Use and Impact of an AI Code Assistant in the Enterprise</a> — IBM Research, CHI 2025.</li>
+    <li><code>ST-58</code> — <a href="https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/">Dear Diary: A Randomized Controlled Trial of Generative AI Coding Tools in the Workplace</a> — Microsoft Research, ICSE 2025.</li>
+    <li><code>ST-59</code> — <a href="https://www.microsoft.com/en-us/research/?p=894132">Reading Between the Lines: Modeling User Behavior and Costs in AI-Assisted Programming</a>.</li>
+  </ul>
+  </details>
+
+  <h3>B. Systematic reviews and meta-analyses (2)</h3>
+  <details>
+  <summary>Show the 2 systematic reviews and meta-analyses</summary>
+  <ul>
+    <li><a href="https://arxiv.org/abs/2507.03156">The Impact of LLM Assistants on Software Developer Productivity: A Systematic Literature Review</a>.</li>
+    <li><a href="https://arxiv.org/abs/2605.04779">The Productivity Impact of AI Coding Assistants: A Preregistered Meta-analysis</a>.</li>
+  </ul>
+  </details>
+
+  <h3>C. Supporting and contextual documents (54)</h3>
+  <details>
+  <summary>Show the 54 supporting documents alphabetically</summary>
+  <ul>
+    <li><a href="https://doi.org/10.1145/3597503.3608128">A Large-Scale Survey on the Usability of AI Programming Assistants</a> — ICSE 2024.</li>
+    <li><a href="https://www.anthropic.com/research/claude-code-expertise">Agentic coding and persistent returns to expertise</a> — analysis of approximately 400,000 Claude Code sessions.</li>
+    <li><a href="https://about.gitlab.com/press/releases/2026-06-23-gitlab-research-reveals-organizations-are-generating-ai-code-faster-than-they-can-control-it/">AI Accountability Report</a> — GitLab and The Harris Poll.</li>
+    <li><a href="https://doi.org/10.1109/MS.2026.3671677">AI-Assisted Collaboration: Exploring Developer Experience with GitHub Copilot and Windsurf</a>.</li>
+    <li><a href="https://arxiv.org/abs/2602.09185">AIDev: Studying AI Coding Agents on GitHub</a>.</li>
+    <li><a href="https://doi.org/10.1109/TSE.2023.3334955">An Empirical Evaluation of LLMs for Automated Unit Test Generation</a> — IEEE TSE 2024.</li>
+    <li><a href="https://www.anthropic.com/research/impact-software-development">Anthropic Economic Index: AI’s Impact on Software Development</a>.</li>
+    <li><a href="https://lab-design.github.io/papers/ICSE-24b/">Are Prompt Engineering and TODO Comments Friends or Foes?</a>.</li>
+    <li><a href="https://doi.org/10.1145/3793302.3793377">Are We All Using Agents the Same Way?</a>.</li>
+    <li><a href="https://doi.org/10.1145/3715108">Assessing and Analyzing the Correctness of GitHub Copilot’s Code Suggestions</a>.</li>
+    <li><a href="https://doi.org/10.1109/SANER60148.2024.00051">Assessing the Security of GitHub Copilot Generated Code: A Targeted Replication</a> — SANER 2024.</li>
+    <li><a href="https://cdn.openai.com/business-guides-and-resources/building-an-ai-native-engineering-team.pdf">Building an AI-native engineering team</a> — OpenAI.</li>
+    <li><a href="https://arxiv.org/abs/2507.08149">Code with Me or for Me? How Increasing AI Automation Transforms Developer Workflows</a>.</li>
+    <li><a href="https://gitclear-public.s3.us-west-2.amazonaws.com/Coding-on-Copilot-2024-Developer-Research.pdf">Coding on Copilot: 2024 Developer Research</a> — GitClear.</li>
+    <li><a href="https://devecosystem-2025.jetbrains.com/">Developer Ecosystem Survey 2025</a> — JetBrains.</li>
+    <li><a href="https://doi.org/10.1145/3742413.3789148">Developer Interaction Patterns with Proactive AI: A Five-Day Field Study</a>.</li>
+    <li><a href="https://www.microsoft.com/en-us/research/publication/developers-and-generative-ai-a-study-of-self-admitted-usage-in-open-source-projects/">Developers and Generative AI: A Study of Self-admitted Usage in Open Source Projects</a>.</li>
+    <li><a href="https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report">DORA Accelerate State of DevOps Report 2024</a>.</li>
+    <li><a href="https://doi.org/10.1145/3660783">Evaluating and Improving ChatGPT for Unit Test Generation</a> — FSE 2024.</li>
+    <li><a href="https://arxiv.org/abs/2501.02338">Evaluation of ChatGPT-4 Code Generation Across 19 Programming Languages</a>.</li>
+    <li><a href="https://arxiv.org/abs/2508.18993">GitTaskBench</a>.</li>
+    <li><a href="https://arxiv.org/abs/2607.21832">How Do AI Coding Agents Contribute to Software Development?</a>.</li>
+    <li><a href="https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/">How Meta Used AI to Map Tribal Knowledge in Large-scale Data Pipelines</a>.</li>
+    <li><a href="https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/">How Unified AI Agents Optimise Performance at Hyperscale</a> — Meta.</li>
+    <li><a href="https://openai.com/index/swe-lancer/">Introducing the SWE-Lancer Benchmark</a> — OpenAI.</li>
+    <li><a href="https://www.usenix.org/conference/usenixsecurity24/presentation/fang">Large Language Models for Code Analysis: Do LLMs Really Do Their Job?</a> — USENIX Security 2024.</li>
+    <li><a href="https://doi.org/10.1145/3633453">Measuring GitHub Copilot’s Impact on Productivity</a>.</li>
+    <li><a href="https://arxiv.org/abs/2504.02605">Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving</a>.</li>
+    <li><a href="https://www.microsoft.com/en-us/research/publication/need-help-designing-proactive-ai-assistants-for-programming/">Need Help? Designing Proactive AI Assistants for Programming</a>.</li>
+    <li><a href="https://arxiv.org/abs/2602.02262">OmniCode: A Benchmark for Evaluating Software Engineering Agents</a>.</li>
+    <li><a href="https://arxiv.org/abs/2406.18181">On the Evaluation of Large Language Models in Unit Test Generation</a>.</li>
+    <li><a href="https://link.springer.com/article/10.1007/s10664-026-10869-5">PatchTrack: A Comprehensive Analysis of ChatGPT’s Influence on Pull-request Outcomes</a>.</li>
+    <li><a href="https://arxiv.org/abs/2512.14012">Professional Software Developers Don’t Vibe, They Control</a>.</li>
+    <li><a href="https://research.google/pubs/resolving-code-review-comments-with-machine-learning/">Resolving Code Review Comments with Machine Learning</a> — Google.</li>
+    <li><a href="https://doi.org/10.1145/3716848">Security Weaknesses of Copilot-Generated Code in GitHub Projects</a> — ACM TOSEM 2025.</li>
+    <li><a href="https://openai.com/index/separating-signal-from-noise-coding-evaluations/">Separating Signal from Noise in Coding Evaluations</a> — OpenAI.</li>
+    <li><a href="https://survey.stackoverflow.co/2024/ai">Stack Overflow Developer Survey 2024: AI</a>.</li>
+    <li><a href="https://survey.stackoverflow.co/2025/ai">Stack Overflow Developer Survey 2025: AI</a>.</li>
+    <li><a href="https://dora.dev/research/2025/dora-report/">State of AI-assisted Software Development 2025</a> — DORA.</li>
+    <li><a href="https://www.atlassian.com/blog/developer/developer-experience-report-2025">State of Developer Experience Report 2025</a> — Atlassian.</li>
+    <li><a href="https://github.blog/news-insights/research/survey-ai-wave-grows/">Survey: The AI Wave Continues to Grow</a> — GitHub 2024.</li>
+    <li><a href="https://arxiv.org/abs/2405.15793">SWE-agent: Agent–Computer Interfaces Enable Automated Software Engineering</a>.</li>
+    <li><a href="https://www.swebench.com/multilingual.html">SWE-bench Multilingual</a>.</li>
+    <li><a href="https://arxiv.org/abs/2410.03859">SWE-bench Multimodal</a>.</li>
+    <li><a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</a> — ICLR 2024.</li>
+    <li><a href="https://arxiv.org/abs/2603.15401">SWE-Skills-Bench</a>.</li>
+    <li><a href="https://arxiv.org/abs/2607.22807">The Best Programming Language for Tokenmaxxing</a>.</li>
+    <li><a href="https://arxiv.org/abs/2605.23135">The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study</a>.</li>
+    <li><a href="https://www.microsoft.com/en-us/research/publication/the-space-of-ai-real-world-lessons-on-ais-impact-on-developers/">The SPACE of AI: Real-World Lessons on AI’s Impact on Developers</a>.</li>
+    <li><a href="https://aclanthology.org/2025.ommm-1.11/">TypePilot: Leveraging the Scala Type System for Secure LLM-generated Code</a>.</li>
+    <li><a href="https://doi.org/10.1145/3786181.3788727">Usage, Effects and Requirements for AI Coding Assistants in the Enterprise</a>.</li>
+    <li><a href="https://doi.org/10.1145/3661167.3661216">Using Large Language Models to Generate JUnit Tests</a> — EASE 2024.</li>
+    <li><a href="https://www.usenix.org/publications/loginonline/we-have-package-you-comprehensive-analysis-package-hallucinations-code">We Have a Package for You: Package Hallucinations by Code-generating LLMs</a>.</li>
+    <li><a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities</a> — OpenAI.</li>
+  </ul>
+  </details>
+
+</article>
+</main>
+
+<footer class="footer"><p>&copy; 2026 Reinvently &nbsp;&middot;&nbsp; <a href="/research-standards/">Research standards</a></p></footer>
+</body>
+</html>

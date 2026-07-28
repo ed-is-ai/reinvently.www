@@ -3,9 +3,18 @@
   <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
-  <updated>2026-07-19T00:00:00Z</updated>
+  <updated>2026-07-29T00:00:00Z</updated>
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
+  <entry>
+    <title>How Much Does AI Improve Software Development Productivity?</title>
+    <link href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
+    <id>https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</id>
+    <published>2026-07-28T00:00:00Z</published>
+    <updated>2026-07-29T00:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>Strong evidence supports 1.1–1.3× release output; highest-automation cases report a low-confidence 4.5× median and 10×+ upper end.</summary>
+  </entry>
   <entry>
     <title>LLM Benchmark Design: Building the Ed-o-meter</title>
     <link href="https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"/>

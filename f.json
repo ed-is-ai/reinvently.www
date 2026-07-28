@@ -13,6 +13,20 @@
   "language": "en-GB",
   "items": [
     {
+      "id": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
+      "url": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
+      "title": "How Much Does AI Improve Software Development Productivity?",
+      "summary": "Strong evidence supports 1.1–1.3× release output; highest-automation cases report a low-confidence 4.5× median and 10×+ upper end.",
+      "date_published": "2026-07-28T00:00:00Z",
+      "date_modified": "2026-07-29T00:00:00Z",
+      "authors": [
+        {
+          "name": "Ed Yau",
+          "url": "https://uk.linkedin.com/in/edmond-yau"
+        }
+      ]
+    },
+    {
       "id": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/",
       "url": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/",
       "title": "LLM Benchmark Design: Building the Ed-o-meter",
