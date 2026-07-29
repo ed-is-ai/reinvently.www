@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-07-29T18:09:13+01:00"/>
+  <meta property="article:modified_time" content="2026-07-29T19:19:07+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -31,7 +31,7 @@
     "headline":"How Much Does AI Improve Software Development Productivity?",
     "description":"A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-07-29T18:09:13+01:00",
+    "dateModified":"2026-07-29T19:19:07+01:00",
     "version":"1.0",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
@@ -74,6 +74,12 @@
     .effect-register-table td:first-child br+code::before{content:" "}
     .evidence-callout{border-left:3px solid #55b980;padding:16px 20px;margin:30px 0;background:#141a17}
     .evidence-callout p{margin:0}
+    .corpus-tree{margin:26px 0 34px;padding:20px 22px;border:1px solid #29332e;border-left:3px solid #55b980;background:#111713}
+    .corpus-tree ul{margin:8px 0 0 8px;padding-left:22px;border-left:1px solid #34463b;list-style:none}
+    .corpus-tree>ul{margin:0;padding-left:0;border-left:0}
+    .corpus-tree li{position:relative;margin:10px 0;color:rgb(190,190,190)}
+    .corpus-tree ul ul li::before{content:"";position:absolute;left:-22px;top:.75em;width:13px;border-top:1px solid #34463b}
+    .corpus-tree strong{color:#fff}
     .article-body p a,.article-body .evidence-table a,.article-body .source-register a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
     .article-body p a:hover,.article-body .evidence-table a:hover,.article-body .source-register a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
     .citation-block{margin:34px 0 28px;padding:18px 20px;border:1px solid #29332e;border-left:3px solid #55b980;background:#111713}
@@ -123,7 +129,7 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T18:09:13+01:00">29 July 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T19:19:07+01:00">29 July 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
@@ -132,7 +138,10 @@
       <li>
         <a class="article-toc-section" href="#review-method">Method and scope</a>
         <ul>
-          <li><a href="#outcome-definitions">What counts as productivity?</a></li>
+          <li><a href="#review-scope">Review question and search</a></li>
+          <li><a href="#outcome-definitions">What evidence was eligible?</a></li>
+          <li><a href="#corpus-structure">How the evidence was divided</a></li>
+          <li><a href="#evidence-appraisal">Evidence weighting and synthesis</a></li>
         </ul>
       </li>
       <li>
@@ -192,80 +201,58 @@
   <p>Reference values rise with automation. They are approximately <strong>1.25×</strong> for assisted development, <strong>2×</strong> for bounded spec-driven execution and <strong>4.5×</strong> for agent-native delivery. Only the first is supported by multiple controlled comparisons; the second is an interpolation and the third a low-confidence organisational upside scenario. Effects also vary with project context, programming-language feedback, developer experience and downstream verification capacity.</p>
   <p>Short, bounded trials show that AI can make work both faster and more correct. Longer-running studies are less reassuring: higher code output can create more integration and review work, greater complexity, weaker ownership and continuing security risk. <strong>The practical risk is not speed itself, but generation growing faster than the organisation’s capacity to verify what is produced.</strong> Teams therefore need executable tests, security checks, sufficient review capacity, production monitoring and accountable ownership. These controls reduce risk but do not guarantee quality. Productivity should be measured as reliable software delivered to production, not as code volume. Faster coding creates business value only when it shortens end-to-end lead time without increasing rework or operational risk.</p>
 
-  <h2 id="review-method">Review question and method</h2>
-  <p>The review question was: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
-  <p>The search was last run on <strong>28 July 2026</strong>. It covered publications dated from <strong>1 January 2024 to that date</strong>. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. References were followed back to peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where work first appeared as an older preprint but received a 2024–2026 peer-reviewed publication, the later publication was used. Otherwise, pre-2024 work was excluded.</p>
-  <p>A source was eligible for the productivity synthesis when it reported a quantitative outcome, described an identifiable development workflow and supplied a baseline or comparator. Surveys were retained only as contextual evidence about perceived effects or bottlenecks. Unattributed marketing claims and secondary summaries without an inspectable primary source were excluded. Source traceability, uncertainty and corrections follow Reinvently’s <a href="/research-standards/">research and editorial standards</a>.</p>
-  <p>Of the 115 included documents, 59 form the empirical evidence base. The quantitative productivity synthesis contains 42 effect estimates drawn from 40 of those studies; 19 additional studies measure adjacent outcomes. The remaining 56 documents comprise 54 contextual or methodological sources and two secondary syntheses. Two reports each contribute more than one estimate because they describe materially different workflows. Documents, studies and estimates are therefore counted separately.</p>
+  <h2 id="review-method">How was the review conducted?</h2>
 
-  <h3>The evidence chain</h3>
-  <table class="evidence-table">
-    <thead><tr><th>Object</th><th>Count</th><th>Meaning</th><th>How it is traced</th></tr></thead>
-    <tbody>
-      <tr><td>Document</td><td>115</td><td>A paper, preprint, report or webpage</td><td>Direct URL in one of the three reference registers</td></tr>
-      <tr><td>Included empirical study</td><td>59</td><td>An evaluation contributing measured productivity or an adjacent outcome</td><td>Stable study identifier, <code>ST-01</code> to <code>ST-59</code></td></tr>
-      <tr><td>Productivity effect estimate</td><td>42</td><td>A reported comparison for time, output, workflow activity or delivery</td><td>Stable estimate identifier, <code>E-01</code> to <code>E-42</code></td></tr>
-      <tr><td>Review conclusion</td><td>—</td><td>A synthesis made in this article</td><td>Linked to the relevant estimate identifiers and studies</td></tr>
-    </tbody>
-  </table>
-  <p>The trace is: <strong>conclusion → effect estimate → study → source document</strong>. A study’s design, the directness of its outcome and confidence in its estimate are recorded as separate properties:</p>
-  <ul>
-    <li><strong>Design:</strong> randomised or controlled experiment, quasi-experiment, longitudinal comparison, organisational telemetry or disclosed case study.</li>
-    <li><strong>Outcome stage:</strong> coding activity, task completion, integration and review, release, adoption or quality and security.</li>
-    <li><strong>Confidence:</strong> <em>high</em> for a credible comparator, directly measured outcome and low material risk of bias; <em>moderate</em> where a comparison remains vulnerable to bias, confounding or an indirect metric; and <em>low</em> for historical baselines, self-report or counterfactual estimates. Context-only documents are not graded.</li>
-  </ul>
-  <p>Peer-reviewed, preprint and first-party report are publication types rather than confidence grades. A randomised design can still receive moderate confidence when it is small or at high risk of bias; a large quasi-experiment can provide stronger decision evidence than a weak experiment.</p>
-  <h3>Where the evidence ceiling sits</h3>
-  <p>A productivity-focused systematic review identified <a href="https://arxiv.org/abs/2507.03156">39 peer-reviewed primary studies published through December 2024</a>, using a broader productivity definition than this review’s quantitative comparator rule. A newer preregistered <a href="https://arxiv.org/abs/2605.04779">meta-analysis of 14 productivity studies</a> estimated a moderate pooled effect (Hedges’ <em>g</em> = 0.33) with extreme heterogeneity (<em>I</em><sup>2</sup> = 99%); laboratory effects were larger than enterprise and open-source effects. Later field and repository studies expand the pool, but the number of independent causal estimates remains much smaller than the total literature.</p>
-  <p>The 59-study empirical base includes measured outcomes that determine whether local speed survives into useful delivery. Studies were assigned once, according to their principal outcome:</p>
-  <table class="evidence-table">
-    <thead><tr><th>Included-study group</th><th>Studies</th><th>Role in this review</th></tr></thead>
-    <tbody>
-      <tr><td>Task time, throughput and delivery</td><td>40</td><td>Produces the 42 quantitative effect estimates and the three central reference values</td></tr>
-      <tr><td>Code review and collaboration</td><td>7</td><td>Tests whether generation speed displaces work into review or changes pull-request outcomes</td></tr>
-      <tr><td>Quality, security and maintainability</td><td>8</td><td>Measures defects, vulnerability, technical debt and downstream evolution costs</td></tr>
-      <tr><td>Skills, experience and interaction cost</td><td>4</td><td>Measures learning, perceived effectiveness and the hidden work of directing and checking AI</td></tr>
-    </tbody>
-  </table>
-  <h3>Confidence profile</h3>
+  <h3 id="review-scope">What question and period did the review cover?</h3>
+  <p>This rapid, non-protocol-registered systematic review asked: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
+  <p>The search was last run on <strong>28 July 2026</strong> and covered publications dated from <strong>1 January 2024</strong> to that date. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. Citation chasing was used to locate peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where older preprint work received a 2024–2026 peer-reviewed publication, the later publication was used. Other pre-2024 work was excluded.</p>
+
+  <h3 id="outcome-definitions">What evidence was eligible?</h3>
+  <p>We included sources that measured an identifiable development workflow against a baseline or comparator. Surveys provided context only; unattributed marketing claims and unverifiable secondary summaries were excluded. Traceability and corrections follow Reinvently’s <a href="/research-standards/">research and editorial standards</a>.</p>
+  <p>Outcomes included task time, completed work, review and integration, releases and adoption. Time and output are reported separately: <strong>25% less time</strong> implies up to <strong>1.33× potential throughput</strong>, while <strong>25% more output</strong> is <strong>1.25×</strong>. Similarly, <strong>4× throughput</strong> is a 300% increase. Commits and lines of code are treated as activity proxies rather than production value.</p>
+
+  <h3 id="corpus-structure">How was the evidence base divided?</h3>
+  <p>We reviewed <strong>115 source documents</strong> and classified them by whether they provided primary productivity evidence, evidence on adjacent outcomes, secondary synthesis or supporting context:</p>
+  <div class="corpus-tree" role="group" aria-label="Evidence corpus hierarchy">
+    <ul>
+      <li><strong>115 source documents</strong>
+        <ul>
+          <li><strong>40 documents</strong> provided primary productivity and delivery evidence → <strong>42 effect estimates</strong>
+            <ul>
+              <li>Two studies report two materially different workflows.</li>
+            </ul>
+          </li>
+          <li><strong>19 documents</strong> provided adjacent-outcome evidence
+            <ul>
+              <li>7 review and collaboration</li>
+              <li>8 quality, security and maintainability</li>
+              <li>4 skills, experience and interaction cost</li>
+            </ul>
+          </li>
+          <li><strong>2 documents</strong> provided secondary syntheses</li>
+          <li><strong>54 documents</strong> provided supporting context or methodological validation</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h3 id="evidence-appraisal">How was the evidence weighted?</h3>
+  <p>We graded each of the <strong>59 empirical studies</strong> by confidence so stronger evidence carried more weight in the conclusions. Grades considered study design, comparator quality, outcome directness and risk of bias. Publication type—peer-reviewed paper, preprint or first-party report—did not determine the grade.</p>
   <table class="evidence-table">
     <thead><tr><th>Confidence</th><th>Included studies</th><th>Interpretation</th></tr></thead>
     <tbody>
       <tr><td class="high">High</td><td>11</td><td>Credible comparator, sufficiently direct outcome and no identified material risk that reverses the result</td></tr>
       <tr><td class="medium">Moderate</td><td>35</td><td>Useful comparative evidence with residual bias, confounding, indirectness or precision limitations</td></tr>
       <tr><td class="low">Low</td><td>13</td><td>Historical baseline, self-report, organisational case or counterfactual estimate</td></tr>
-      <tr><td>Not graded</td><td>56 documents</td><td>Context, mechanism, methods, benchmarks and secondary synthesis rather than included effect studies</td></tr>
     </tbody>
   </table>
-  <details>
-    <summary><strong>Study register: 19 adjacent-outcome studies</strong></summary>
-    <table class="evidence-table">
-      <thead><tr><th>Study ID</th><th>Study and principal outcome</th><th>Design</th><th>Confidence</th></tr></thead>
-      <tbody>
-        <tr id="ST-41"><td><code>ST-41</code></td><td><a href="https://arxiv.org/abs/2601.01129">RovoDev Code Reviewer</a> — review usefulness</td><td>Large-scale online evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-42"><td><code>ST-42</code></td><td><a href="https://arxiv.org/abs/2607.03316">Is Agentic Code Review Helpful?</a> — review quality</td><td>Comparative evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-43"><td><code>ST-43</code></td><td><a href="https://doi.org/10.1145/3805760.3814909">When Code Authors Are Agents</a> — pull-request collaboration</td><td>Large-scale observational study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-44"><td><code>ST-44</code></td><td><a href="https://arxiv.org/abs/2602.08915">Comparing AI Coding Agents</a> — pull-request acceptance</td><td>Task-stratified observational study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-45"><td><code>ST-45</code></td><td><a href="https://arxiv.org/abs/2607.14037">Early Adoption by GitHub Projects</a> — adoption and review</td><td>Repository study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-46"><td><code>ST-46</code></td><td><a href="https://arxiv.org/abs/2402.08967">AI-generated Pull-request Descriptions</a> — review outcomes</td><td>Comparative repository study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-47"><td><code>ST-47</code></td><td><a href="https://arxiv.org/abs/2412.18531">Automated Code Review in Practice</a> — review behaviour</td><td>Industrial observational study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-48"><td><code>ST-48</code></td><td><a href="https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/">GitHub Copilot and Code Quality</a> — correctness and readability</td><td>Randomised controlled trial</td><td class="high">High</td></tr>
-        <tr id="ST-49"><td><code>ST-49</code></td><td><a href="https://arxiv.org/abs/2510.10165">AI-assisted Programming and Maintenance Burden</a></td><td>Comparative repository study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-50"><td><code>ST-50</code></td><td><a href="https://arxiv.org/abs/2603.28592">Debt Behind the AI Boom</a> — technical debt</td><td>Large-scale repository study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-51"><td><code>ST-51</code></td><td><a href="https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/">AI-assisted Assessment of Coding Practices</a></td><td>Industrial deployment evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-52"><td><code>ST-52</code></td><td><a href="https://arxiv.org/abs/2507.13499">AI-assisted Fixes to Review Comments</a></td><td>Large-scale industrial evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-53"><td><code>ST-53</code></td><td><a href="https://doi.org/10.1145/3610721">Asleep at the Keyboard?</a> — security weaknesses</td><td>Controlled security evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-54"><td><code>ST-54</code></td><td><a href="https://arxiv.org/abs/2607.11348">AI Code Assistants and Security API Usage</a></td><td>Repository study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-55"><td><code>ST-55</code></td><td><a href="https://www.usenix.org/conference/usenixsecurity26/presentation/thang">GoodVibe</a> — generated-code security</td><td>Controlled security evaluation</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-56"><td><code>ST-56</code></td><td><a href="https://www.anthropic.com/research/AI-assistance-coding-skills">AI Assistance and Coding-skill Formation</a></td><td>Randomised controlled trial</td><td class="high">High</td></tr>
-        <tr id="ST-57"><td><code>ST-57</code></td><td><a href="https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise">AI Code-assistant Use at IBM</a></td><td>Enterprise mixed-method study</td><td class="medium">Moderate</td></tr>
-        <tr id="ST-58"><td><code>ST-58</code></td><td><a href="https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/">Dear Diary</a> — workplace experience</td><td>Randomised controlled trial</td><td class="high">High</td></tr>
-        <tr id="ST-59"><td><code>ST-59</code></td><td><a href="https://www.microsoft.com/en-us/research/?p=894132">Reading Between the Lines</a> — interaction cost</td><td>Behavioural modelling study</td><td class="medium">Moderate</td></tr>
-      </tbody>
-    </table>
-  </details>
-  <p>Moving substantially beyond this empirical base is possible only by broadening again—to benchmark-only model evaluations, student exercises without a human baseline, additional vendor surveys or narrow task studies. Those documents can explain mechanisms and boundaries, but counting them as equivalent productivity studies would reduce rather than improve the review’s precision.</p>
-  <p>A meta-analysis was not appropriate because the studies measure different outcomes—task time, completed work, commits, deployment velocity and estimated project duration—and examine materially different systems. Results are therefore synthesised narratively and normalised to output multipliers only where the underlying comparison permits it. Causal interpretation is reserved for estimates with a credible counterfactual and sufficiently direct outcome.</p>
+  <p>The 54 contextual documents and two secondary syntheses informed interpretation but were not graded as primary evidence.</p>
+  <h4>How were findings synthesised?</h4>
+  <p>The studies were too different for a meaningful pooled meta-analysis. We therefore grouped findings by degree of automation and delivery stage, converting results to output multipliers only where valid. Causal conclusions were limited to credible experimental or quasi-experimental comparisons; telemetry, historical baselines and counterfactual estimates were treated as associations or case evidence.</p>
+  <p>Each productivity conclusion can be traced from the <strong>effect estimate (<code>E</code>)</strong> to the <strong>empirical study (<code>ST</code>)</strong> and its source. Adjacent findings on review, quality, security, maintainability, skills and interaction cost link directly to their study and source.</p>
+
+  <h2 id="results">How do reported gains vary by degree of automation?</h2>
+  <p>The findings are grouped by the three operating models defined in the abstract, each representing a different degree of automation. A separate downstream-conversion section then tests how gains in coding activity survive into releases and actual use.</p>
 
   <figure class="article-diagram">
   <svg viewBox="0 0 760 430" role="img" aria-labelledby="ladder-title ladder-desc" xmlns="http://www.w3.org/2000/svg">
@@ -283,17 +270,6 @@
   <figcaption>Implementation-stage scenarios, not release forecasts. The first level is supported by controlled studies; the larger numbers rely mainly on organisational cases using different metrics. In the largest matched event study, observed release output increased by approximately 1.1×, 1.2× and 1.3× across successive tool generations.</figcaption>
   </figure>
 
-  <h2 id="outcome-definitions">What counts as software-development productivity?</h2>
-  <p>A percentage can describe less time, more throughput, more commits or more output judged valuable. Those are not interchangeable.</p>
-  <ul>
-    <li>A <strong>25% reduction in time</strong> means a task takes 75 rather than 100 hours. At full utilisation, that is approximately <strong>1.33× throughput</strong>.</li>
-    <li>A <strong>25% increase in output</strong> means 1.25 units are delivered in the original time.</li>
-    <li><strong>4× throughput</strong> is a 300% increase over baseline—not “400% faster”. A 400% increase means 5× output.</li>
-  </ul>
-  <p>Commits and lines of code are especially weak proxies. An agent can generate more of both without increasing production value. Deployment velocity, completed work items, task time and escaped defects are more useful, but even these need context.</p>
-
-  <h2 id="results">How do reported gains vary by degree of automation?</h2>
-  <p>The findings are grouped by the three operating models defined in the abstract, each representing a different degree of automation. A separate downstream-conversion section then tests how gains in coding activity survive into releases and actual use.</p>
   <h3 id="task-results">1. Assisted development: task completion and local output</h3>
   <p>The strongest evidence concerns assistants operating inside otherwise conventional human-led workflows. The measured effects are heterogeneous, and tool choice changes the interaction model without determining the outcome by itself. For a practical comparison of those interaction models, see <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
   <p>A randomised trial involving 96 Google engineers found that AI assistance reduced time on a complex enterprise task by an estimated <a href="https://arxiv.org/abs/2410.12944">21%</a>, although the confidence interval was wide. Three field experiments at Microsoft, Accenture and a Fortune 100 company covered 4,867 developers and found a <a href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535">26.08% increase in completed tasks</a>.</p>
@@ -544,6 +520,8 @@
 
   <h2 id="limitations">Limitations of the AI coding productivity evidence</h2>
   <p>This rapid systematic review was not protocol-registered and did not include a formal risk-of-bias instrument. Searches prioritised English-language, web-accessible studies and first-party disclosures; relevant unpublished evaluations may therefore be absent. The corpus is broad rather than exhaustively database-indexed. Publication bias is likely to be strongest in the agent-native tier, where organisations have an incentive to publish exceptional successes.</p>
+  <p>The number of independent causal estimates is much smaller than the total literature. A productivity-focused systematic review identified <a href="https://arxiv.org/abs/2507.03156">39 peer-reviewed primary studies published through December 2024</a>, using a broader productivity definition than this review’s quantitative comparator rule. A newer preregistered <a href="https://arxiv.org/abs/2605.04779">meta-analysis of 14 productivity studies</a> estimated a moderate pooled effect (Hedges’ <em>g</em> = 0.33) with extreme heterogeneity (<em>I</em><sup>2</sup> = 99%); laboratory effects were larger than enterprise and open-source effects.</p>
+  <p>The corpus could be made larger by admitting more benchmark-only evaluations, student exercises without a human baseline, vendor surveys or narrow task studies. Those documents can explain mechanisms and boundaries, but counting them as equivalent productivity evidence would reduce rather than improve the review’s precision.</p>
   <p>The evidence base is too heterogeneous for a pooled effect estimate. Controlled studies mostly evaluate individual assistance, while agent-native reports measure teams, workflows or individual migrations. Historical estimates can also change after a project begins, and commit or line-volume measures may reward activity rather than value. Greenfield and brownfield labels were assigned from the disclosed project setting and were not always prespecified by study authors. Experience measures also differ: job tenure, coding tenure, repository familiarity and task-specific expertise are not interchangeable. Programming-language studies predominantly measure correctness, compilation or benchmark success rather than developer time, so the language analysis is mechanistic and exploratory. The three-level autonomy taxonomy was applied for this review and has not itself been independently validated.</p>
   <p>Benchmark quality adds a separate constraint. OpenAI found contamination and test-design problems severe enough to stop using <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">SWE-bench Verified</a>, then estimated that approximately 30% of SWE-Bench Pro tasks were broken in a separate <a href="https://openai.com/index/separating-signal-from-noise-coding-evaluations/">agent-assisted audit and human annotation study</a>. Benchmark progress shows that agents can perform longer tasks under controlled conditions; it cannot be converted directly into hours saved without a human workflow comparator.</p>
 
@@ -570,7 +548,7 @@
 
   <hr/>
   <h2 id="evidence-registers">Evidence and document registers</h2>
-  <p>The registers preserve the review chain from included study to source document. Confidence is assigned in the study registers above; supporting and contextual documents are not graded as productivity evidence.</p>
+  <p>The registers preserve the review chain from included study to source document. Study confidence is summarised in the method and recorded for quantitative estimates in the productivity effect register. Supporting and contextual documents are not graded as productivity evidence.</p>
   <h3>A. Included empirical studies (59)</h3>
   <details>
   <summary>Show the 59 studies ordered by study ID</summary>
