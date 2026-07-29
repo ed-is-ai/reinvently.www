@@ -47,6 +47,11 @@
     --silver:#bac6d1; --bronze:#cc916a;
     --hairline:#2a2a2a;
     --font-data:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+    /* Prose measure. The container is 1180px so tables and charts can breathe,
+       but running text at that width is ~130 characters a line — far past the
+       60–75 that reads comfortably. Every prose block is capped instead. */
+    --measure:64ch;
+    --measure-wide:78ch;
   }
   .container{max-width:1180px;}
   .article-body{max-width:none;}
@@ -54,9 +59,9 @@
   .eom-header::before{content:"";display:block;width:96px;height:3px;margin-bottom:20px;border-radius:999px;background:linear-gradient(90deg,var(--telemetry),var(--podium));box-shadow:0 0 18px var(--telemetry-tint);}
   .eom-header .post-meta{font-size:clamp(11px,.72vw,13px);}
   .eom-header h1{font-size:clamp(38px,3vw,56px);max-width:1180px;}
-  .eom-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.55;max-width:none;}
-  .eom h2.section{font-family:var(--font-head);font-size:clamp(26px,1.8vw,34px);font-weight:400;color:var(--text);margin:clamp(44px,4vw,64px) 0 8px;}
-  .eom .section-note{color:var(--text-muted);font-size:clamp(14.5px,1vw,17px);margin-bottom:18px;}
+  .eom-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.6;max-width:var(--measure-wide);text-wrap:pretty;}
+  .eom h2.section{font-family:var(--font-head);font-size:clamp(26px,1.8vw,34px);font-weight:400;color:var(--text);margin:clamp(44px,4vw,64px) 0 8px;letter-spacing:-.01em;max-width:var(--measure-wide);text-wrap:balance;}
+  .eom .section-note{color:var(--text-muted);font-size:clamp(14.5px,1vw,17px);line-height:1.62;margin-bottom:18px;max-width:var(--measure-wide);text-wrap:pretty;}
 
   /* ---------- telemetry chart ---------- */
   .eom .chart-card{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top right,var(--telemetry-tint),transparent 34%),var(--bg2);padding:clamp(14px,2.5vw,24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);}
@@ -67,13 +72,13 @@
   .eom .mode-btn[aria-pressed="true"]{background:var(--telemetry);border-color:var(--telemetry);color:#061016;box-shadow:0 0 18px var(--telemetry-tint);}
   .eom .chart-scroll{overflow-x:auto;}
   .eom svg#telemetry{display:block;width:100%;height:auto;min-width:560px;}
-  .eom .row-name{font-family:var(--font-data);font-size:12.5px;fill:var(--text-dim);}
-  .eom .row-val{font-family:var(--font-data);font-size:12.5px;font-weight:600;fill:var(--text);}
+  .eom .row-name{font-family:var(--font-data);font-size:12.5px;fill:var(--text-dim);letter-spacing:-.01em;}
+  .eom .row-val{font-family:var(--font-data);font-size:12.5px;font-weight:600;fill:var(--text);font-variant-numeric:tabular-nums;}
   .eom .row-tag{font-family:var(--font-nav);font-size:10px;letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
-  .eom .grid-label{font-family:var(--font-data);font-size:11px;fill:var(--text-muted);}
+  .eom .grid-label{font-family:var(--font-data);font-size:11px;fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
 
-  .eom .caveat{border-left:3px solid var(--amber);background:var(--amber-tint);border-radius:0 8px 8px 0;padding:14px 18px;font-size:15px;margin:22px 0 8px;color:var(--text-dim);}
+  .eom .caveat{border-left:3px solid var(--amber);background:var(--amber-tint);border-radius:0 8px 8px 0;padding:15px 20px;font-size:15px;line-height:1.62;margin:22px 0 8px;color:var(--text-dim);text-wrap:pretty;}
   .eom .caveat strong{font-weight:650;color:var(--text);}
   .eom .task-list{margin-top:12px;}
   .eom .task-list summary{cursor:pointer;font-weight:600;color:var(--text);font-size:14px;}
@@ -93,33 +98,44 @@
   .eom .th-sort .arrow{opacity:.3;font-size:9px;}
   .eom th[aria-sort] .th-sort{color:var(--text);}
   .eom th[aria-sort] .arrow{opacity:1;}
-  .eom tbody td{padding:12px;border-bottom:1px solid var(--hairline);font-size:15px;vertical-align:middle;white-space:nowrap;color:var(--text-dim);}
+  .eom tbody td{padding:13px 12px;border-bottom:1px solid var(--hairline);font-size:15px;vertical-align:middle;white-space:nowrap;color:var(--text-dim);}
   .eom tbody tr:last-child td{border-bottom:none;}
+  /* Zebra beneath the hover tint: 13 rows × 8 columns is a long horizontal
+     track, and the banding keeps the eye on one model across the row. */
+  .eom tbody tr:nth-child(even){background:rgba(255,255,255,.018);}
   .eom tbody tr:hover{background:var(--telemetry-tint);}
-  .eom td.rank{font-weight:700;font-size:16px;width:44px;text-align:center;color:var(--text-muted);}
+  .eom td.rank{font-weight:700;font-size:16px;width:44px;text-align:center;color:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom tbody tr:nth-child(1) td.rank{color:var(--podium);background:var(--podium-tint);}
   .eom tbody tr:nth-child(2) td.rank{color:var(--silver);}
   .eom tbody tr:nth-child(3) td.rank{color:var(--bronze);}
-  .eom td.model{font-weight:600;color:var(--text);}
+  /* Model IDs are identifiers, not prose — monospace matches the ring labels
+     and chart rows, which already use the data face. */
+  .eom td.model{font-family:var(--font-data);font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-.01em;}
   .eom td.model .swatch{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;}
-  .eom td.num{font-family:var(--font-data);font-size:13px;}
-  .eom sup{font-size:10px;color:var(--amber);font-weight:700;}
+  /* tabular-nums so decimal points and percentages line up down each column */
+  .eom td.num{font-family:var(--font-data);font-size:13px;font-variant-numeric:tabular-nums;}
+  .eom sup{font-size:9.5px;color:var(--amber);font-weight:600;margin-left:2px;letter-spacing:.04em;vertical-align:super;}
   .eom .sec-bad{color:var(--danger);font-weight:600;}
   .eom .sec-good{color:var(--good);}
-  .eom .footnotes{font-size:13.5px;color:var(--text-muted);margin:14px 0 0;}
-  .eom .footnotes p{margin-bottom:7px;}
-  .eom .footnotes sup{color:var(--amber);}
+  /* ---------- footnotes ----------
+     Nine notes, several of them a paragraph each. Hanging indent puts the
+     marker in its own gutter so the note bodies form a clean left edge. */
+  .eom .footnotes{font-size:13.5px;line-height:1.62;color:var(--text-muted);margin:18px 0 0;max-width:var(--measure-wide);border-top:1px solid var(--hairline);padding-top:16px;}
+  .eom .footnotes p{margin:0 0 11px;padding-left:1.9em;text-indent:-1.9em;text-wrap:pretty;}
+  .eom .footnotes p:last-child{margin-bottom:0;}
+  .eom .footnotes strong{color:var(--text-dim);}
+  .eom .footnotes sup{color:var(--amber);font-size:11px;margin:0 .5em 0 0;vertical-align:baseline;}
   .eom code{font-family:var(--font-data);font-size:.88em;background:var(--bg2);padding:1px 5px;border-radius:4px;color:var(--text-dim);}
 
   /* ---------- lap corners ---------- */
   .eom .corner-legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 2px 18px;font-size:13.5px;color:var(--text-muted);}
   .eom .corner-legend span{display:inline-flex;align-items:center;gap:6px;}
   .eom .corner-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
-  .eom .lap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
-  .eom .lap-card{border:1px solid var(--hairline);border-radius:10px;padding:14px 10px 10px;text-align:center;background:linear-gradient(145deg,var(--telemetry-tint),transparent 50%),var(--bg2);transition:border-color .15s,transform .15s;}
-  .eom .lap-card:hover{border-color:var(--telemetry);transform:translateY(-2px);}
-  .eom .lap-card svg{width:100%;max-width:140px;height:auto;}
-  .eom .lap-card .lname{font-family:var(--font-data);font-size:13px;font-weight:600;margin-top:6px;color:var(--text-dim);}
+  .eom .lap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+  .eom .lap-card{border:1px solid var(--hairline);border-radius:10px;padding:14px 10px 11px;text-align:center;background:linear-gradient(145deg,var(--telemetry-tint),transparent 50%),var(--bg2);transition:border-color .15s,transform .15s,box-shadow .15s;}
+  .eom .lap-card:hover{border-color:var(--telemetry);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .eom .lap-card svg{width:100%;max-width:132px;height:auto;}
+  .eom .lap-card .lname{font-family:var(--font-data);font-size:12.5px;font-weight:600;margin-top:8px;color:var(--text-dim);letter-spacing:-.01em;}
   .eom .lap-card path{cursor:pointer;transition:opacity .12s;}
   .eom .lap-card path:hover,.eom .lap-card path:focus{opacity:.75;outline:none;}
   #lapTip{
@@ -139,21 +155,26 @@
   .eom table.cat td.hot{background:var(--danger-tint);color:var(--danger);font-weight:600;}
   .eom table.cat td.warm{background:var(--amber-tint);color:var(--amber);font-weight:600;}
 
-  /* ---------- pit lane ---------- */
-  .eom .pit{display:grid;gap:14px;margin-top:6px;}
-  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:clamp(12px,1vw,16px);font-size:clamp(15.5px,1vw,17px);background:linear-gradient(90deg,var(--telemetry-tint),transparent 44%),var(--bg2);}
-  .eom .pit-note h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin-bottom:6px;}
-  .eom .pit-note p{color:var(--text-dim);font-size:inherit;line-height:1.6;}
-  .eom .pit-note.flag{border-color:var(--danger);background:var(--danger-tint);}
-  .eom .pit-note.steward{border-color:var(--amber);background:var(--amber-tint);}
+  /* ---------- pit lane ----------
+     Six notes stacked full-width made a very long column of near-identical
+     cards; two-up on wide screens reads as a set and halves the scroll. */
+  .eom .pit{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;margin-top:6px;align-items:start;}
+  .eom .pit-note{border:1px solid var(--hairline);border-radius:10px;padding:clamp(14px,1.1vw,18px);font-size:clamp(15px,.95vw,16.5px);background:linear-gradient(150deg,var(--telemetry-tint),transparent 52%),var(--bg2);}
+  .eom .pit-note h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,21px);font-weight:400;color:var(--text);margin-bottom:7px;line-height:1.25;text-wrap:balance;}
+  .eom .pit-note p{color:var(--text-dim);font-size:inherit;line-height:1.62;text-wrap:pretty;}
+  .eom .pit-note.flag{border-color:var(--danger);background:linear-gradient(150deg,var(--danger-tint),transparent 62%),var(--bg2);}
+  .eom .pit-note.steward{border-color:var(--amber);background:linear-gradient(150deg,var(--amber-tint),transparent 62%),var(--bg2);}
+  .eom .pit-note code{background:rgba(0,0,0,.35);}
 
-  .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin:0 0 20px 24px;}
-  .eom .method li{margin:0 0 8px 0;}
-  .eom .method-intro{color:var(--text-dim);font-size:clamp(15px,1vw,17px);margin-bottom:20px;}
+  .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);line-height:1.62;margin:0 0 20px 24px;max-width:var(--measure-wide);}
+  .eom .method li{margin:0 0 10px 0;padding-left:2px;text-wrap:pretty;}
+  .eom .method li::marker{color:var(--telemetry);}
+  .eom .method-intro{color:var(--text-dim);font-size:clamp(15px,1vw,17px);line-height:1.62;margin-bottom:20px;max-width:var(--measure-wide);}
   .eom .scoring{margin-top:clamp(44px,4vw,64px);}
   .eom .scoring h2.section{margin-top:0;}
 
-  .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:6px 12px;display:inline-block;margin:0 0 8px;background:var(--telemetry-tint);}
+  .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:7px 14px;display:inline-block;margin:22px 0 0;background:var(--telemetry-tint);}
+  .runstamp code{background:none;padding:0;color:inherit;font-size:1em;}
 
   @media (max-width:640px){
     .eom-header{padding-top:28px;padding-bottom:30px;}
@@ -177,7 +198,16 @@
     .eom .table-scroll,.eom .cat-scroll{position:relative;}
     .eom .table-scroll::after,.eom .cat-scroll::after{content:"";position:absolute;top:0;right:0;bottom:0;width:26px;border-radius:0 10px 10px 0;pointer-events:none;background:linear-gradient(90deg,rgba(17,20,23,0),var(--bg2));}
     .eom tbody td{padding:10px 9px;font-size:14px;}
+    .eom td.model{font-size:12.5px;}
     .eom td.num{font-size:12px;}
+
+    /* prose: ch-based measures already collapse below the viewport, but the
+       footnote hanging indent and card padding want tightening by hand */
+    .eom .footnotes{font-size:13px;padding-top:14px;}
+    .eom .footnotes p{padding-left:1.6em;text-indent:-1.6em;}
+    .eom .pit{gap:12px;}
+    .eom .pit-note{padding:14px 15px;}
+    .eom .caveat{padding:14px 16px;font-size:14.5px;}
   }
 </style>
 </head>
@@ -198,7 +228,8 @@
 <header class="article-header eom-header">
   <div class="post-meta">Updated 29 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance. This lap adds opus-5, gemini-3.6-flash and grok-4.5 — and the corrected checkers reverse the safety order.</p>
+  <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
+  <p class="runstamp">13 models &nbsp;·&nbsp; 28 tasks &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260728T215711Z</code></p>
 </header>
 
 <main class="container">
@@ -439,12 +470,15 @@ function supTxt(n){ const a=marks(n); return a.length?' '+a.join(' '):''; }
 function sup(n){ const a=marks(n); return a.length?`<sup>${a.join(' ')}</sup>`:''; }
 
 const MODES = {
-  pass:    {title:'Pass rate — single-trial Wilson 95% intervals shown as whiskers', min:30, max:100, higher:true,
-            val:m=>m.pass, ci:m=>[m.lo,m.hi], fmt:m=>m.pass+'%'+supTxt(m.pNote), grid:[40,50,60,70,80,90,100], gfmt:v=>v+'%'},
+  /* Axis floor sits just under the lowest Wilson lower bound on the board (59%),
+     not at an arbitrary 30% — otherwise half the plot is empty and the models
+     bunch against the right edge where the differences stop being legible. */
+  pass:    {title:'Pass rate — single-trial Wilson 95% intervals shown as whiskers', min:50, max:100, higher:true,
+            val:m=>m.pass, ci:m=>[m.lo,m.hi], fmt:m=>m.pass+'%'+supTxt(m.pNote), grid:[50,60,70,80,90,100], gfmt:v=>v+'%'},
   rubric:  {title:'Rubric quality /10 — single judge (fable-5); see footnotes', min:7, max:10, higher:true,
             val:m=>m.rubric, ci:null, fmt:m=>m.rubric.toFixed(1)+supTxt(m.rNote), grid:[7,7.5,8,8.5,9,9.5,10], gfmt:v=>v.toFixed(1),
             tag:m=>m.rNote===2?'self-judged':null},
-  costTask:{title:'Cost per task, USD — lower is better; ⁴ = fable-5 and opus-5 answering trials only', min:0, max:0.07, higher:false,
+  costTask:{title:'Cost per task, USD — lower is better; ⁴ = fable-5 and opus-5 answering trials only', min:0, max:0.075, higher:false,
             val:m=>m.costTask, ci:null, fmt:m=>'$'+m.costTask.toFixed(4)+supTxt(m.cNote), grid:[0,0.01,0.02,0.03,0.04,0.05,0.06,0.07], gfmt:v=>v===0?'$0':'$'+v.toFixed(2).replace('0.','.')} ,
   ttft:    {title:'Median time-to-first-token, seconds — lower is better', min:0, max:28, higher:false,
             val:m=>m.ttft, ci:null, fmt:m=>m.ttft.toFixed(1)+' s', grid:[0,5,10,15,20,25], gfmt:v=>v+'s'},
