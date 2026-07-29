@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-07-29T18:09:13+01:00"/>
+  <meta property="article:modified_time" content="2026-07-29T18:38:05+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -31,7 +31,7 @@
     "headline":"How Much Does AI Improve Software Development Productivity?",
     "description":"A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-07-29T18:09:13+01:00",
+    "dateModified":"2026-07-29T18:38:05+01:00",
     "version":"1.0",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
@@ -123,7 +123,7 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T18:09:13+01:00">29 July 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T18:38:05+01:00">29 July 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
@@ -196,19 +196,28 @@
   <p>The review question was: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
   <p>The search was last run on <strong>28 July 2026</strong>. It covered publications dated from <strong>1 January 2024 to that date</strong>. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. References were followed back to peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where work first appeared as an older preprint but received a 2024–2026 peer-reviewed publication, the later publication was used. Otherwise, pre-2024 work was excluded.</p>
   <p>A source was eligible for the productivity synthesis when it reported a quantitative outcome, described an identifiable development workflow and supplied a baseline or comparator. Surveys were retained only as contextual evidence about perceived effects or bottlenecks. Unattributed marketing claims and secondary summaries without an inspectable primary source were excluded. Source traceability, uncertainty and corrections follow Reinvently’s <a href="/research-standards/">research and editorial standards</a>.</p>
-  <p>Of the 115 included documents, 59 form the empirical evidence base. The quantitative productivity synthesis contains 42 effect estimates drawn from 40 of those studies; 19 additional studies measure adjacent outcomes. The remaining 56 documents comprise 54 contextual or methodological sources and two secondary syntheses. Two reports each contribute more than one estimate because they describe materially different workflows. Documents, studies and estimates are therefore counted separately.</p>
+  <p>The review counts three different units. A <strong>document</strong> is a source such as a paper or report. A <strong>study</strong> is an empirical evaluation reported by a source. An <strong>effect estimate</strong> is a measured comparison produced by a study. These units are nested rather than additive.</p>
 
-  <h3>The evidence chain</h3>
+  <h3>How the numbers fit together</h3>
+  <div class="evidence-callout">
+    <p><strong>115 source documents</strong> = <strong>59 empirical-study sources</strong> + <strong>2 secondary syntheses</strong> + <strong>54 supporting or contextual sources</strong>.<br/>
+    <strong>59 empirical studies</strong> = <strong>40 productivity and delivery studies</strong> + <strong>19 adjacent-outcome studies</strong>.<br/>
+    <strong>42 productivity effect estimates</strong> come from the 40 productivity and delivery studies because two studies contribute one additional estimate each.</p>
+  </div>
   <table class="evidence-table">
-    <thead><tr><th>Object</th><th>Count</th><th>Meaning</th><th>How it is traced</th></tr></thead>
+    <thead><tr><th>Corpus level</th><th>Count</th><th>Relationship to the other counts</th><th>How it is traced</th></tr></thead>
     <tbody>
-      <tr><td>Document</td><td>115</td><td>A paper, preprint, report or webpage</td><td>Direct URL in one of the three reference registers</td></tr>
-      <tr><td>Included empirical study</td><td>59</td><td>An evaluation contributing measured productivity or an adjacent outcome</td><td>Stable study identifier, <code>ST-01</code> to <code>ST-59</code></td></tr>
-      <tr><td>Productivity effect estimate</td><td>42</td><td>A reported comparison for time, output, workflow activity or delivery</td><td>Stable estimate identifier, <code>E-01</code> to <code>E-42</code></td></tr>
-      <tr><td>Review conclusion</td><td>—</td><td>A synthesis made in this article</td><td>Linked to the relevant estimate identifiers and studies</td></tr>
+      <tr><td>All source documents</td><td>115</td><td>Top-level corpus: 59 + 2 + 54</td><td>Direct URL in one of the three reference registers</td></tr>
+      <tr><td>Empirical-study sources</td><td>59</td><td>Subset of the 115 documents; reports the 59 studies split into 40 + 19</td><td>Study identifiers <code>ST-01</code> to <code>ST-59</code></td></tr>
+      <tr><td>Productivity and delivery studies</td><td>40</td><td>Subset of the 59 studies; produces the 42 effect estimates</td><td>Study ID plus the corresponding effect-estimate ID</td></tr>
+      <tr><td>Adjacent-outcome studies</td><td>19</td><td>Subset of the 59 studies; covers review, quality, security, maintainability, skills and interaction cost</td><td>Study identifiers <code>ST-41</code> to <code>ST-59</code></td></tr>
+      <tr><td>Secondary syntheses</td><td>2</td><td>Part of the 115 documents, but outside the 59 empirical studies</td><td>Direct URL in the secondary-synthesis register</td></tr>
+      <tr><td>Supporting or contextual documents</td><td>54</td><td>Part of the 115 documents, but outside the 59 empirical studies</td><td>Direct URL in the supporting-document register</td></tr>
+      <tr><td>Productivity effect estimates</td><td>42</td><td>Outputs from the 40 productivity and delivery studies; not additional documents or studies</td><td>Estimate identifiers <code>E-01</code> to <code>E-42</code></td></tr>
     </tbody>
   </table>
-  <p>The trace is: <strong>conclusion → effect estimate → study → source document</strong>. A study’s design, the directness of its outcome and confidence in its estimate are recorded as separate properties:</p>
+  <p>Productivity conclusions follow the chain <strong>conclusion → effect estimate (<code>E</code>) → empirical study (<code>ST</code>) → source document</strong>. Conclusions about review, quality, security, maintainability, skills or interaction cost link directly to an adjacent-outcome study and its source because those 19 studies do not contribute to the 42-estimate productivity register.</p>
+  <p>A study’s design, the directness of its outcome and confidence in its estimate are recorded as separate properties:</p>
   <ul>
     <li><strong>Design:</strong> randomised or controlled experiment, quasi-experiment, longitudinal comparison, organisational telemetry or disclosed case study.</li>
     <li><strong>Outcome stage:</strong> coding activity, task completion, integration and review, release, adoption or quality and security.</li>
