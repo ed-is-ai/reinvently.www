@@ -1,0 +1,116 @@
+existing_category,study_id,title,url
+empirical,ST-01,How much does AI impact development speed?,https://arxiv.org/abs/2410.12944
+empirical,ST-02,The Effects of Generative AI on High-Skilled Work,https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535
+empirical,ST-03,"Rocks Coding, Not Development: A Human-Centric, Experimental Evaluation of LLM-Supported SE Tasks",https://arxiv.org/abs/2402.05650
+empirical,ST-04,Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity,https://arxiv.org/abs/2507.09089
+empirical,ST-05,From Assistants to Agents: Exploring Efficiency and Human Agency in AI-Supported Programming,https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/
+empirical,ST-06,The Impact of AI Tool on Engineering at ANZ Bank,https://arxiv.org/abs/2402.05636
+empirical,ST-07,Significant Productivity Gains through Programming with Large Language Models,https://doi.org/10.1145/3661145
+empirical,ST-08,"More Code, Less Understanding? On the Impact of AI Assistants on Developers’ Productivity and Code Ownership",https://doi.org/10.1109/TSE.2026.3679627
+empirical,ST-09,Using an LLM to Help With Code Understanding,https://research.google/pubs/using-an-llm-to-help-with-code-understanding/
+empirical,ST-10,ClueBot: A Conversational Agent to Assist in JavaScript Programming,https://doi.org/10.1145/3702163.3702168
+empirical,ST-11,Writing Code vs. Shipping Code: The Impact of AI on Software Development,https://www.nber.org/papers/w35275
+empirical,ST-12,The Global Diffusion and Impact of Artificial Intelligence Writing Code,https://doi.org/10.1126/science.adz9311
+empirical,ST-13,Generative AI and the Nature of Work,https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2025/04/WTIC.2025_Nagle-Frank_Generative-AI.pdf
+empirical,ST-14,The Impact of Generative AI on Collaborative Open-Source Software Development,https://arxiv.org/abs/2410.02091v1
+empirical,ST-15,The Impact of Generative AI on Software Development: Evidence from GitHub Copilot X,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5100609
+empirical,ST-16,The Productivity Effects of Generative AI: Evidence from a Workplace Deployment of an AI Coder,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6515379
+empirical,ST-17,The Impact of Generative AI on Open-Source Software Development,https://arxiv.org/abs/2409.08379
+empirical,ST-18,Generative AI and labour productivity: a field experiment on coding,https://www.bis.org/publ/work1208.htm
+empirical,ST-19,The Effects of GitHub Copilot on Computing Students in Brownfield Programming Tasks,https://arxiv.org/abs/2506.10051
+empirical,ST-20,Comprehension–Performance Gap in GenAI-Assisted Brownfield Programming,https://arxiv.org/abs/2511.02922
+empirical,ST-21,"Less Effort, More Productivity: Lessons Learned from Developing Millions of Lines of Code with Large Language Model",https://doi.org/10.1145/3786583.3786872
+empirical,ST-22,Speed at the Cost of Quality? The Impact of LLM Agent Assistance on Software Development,https://arxiv.org/abs/2511.04427
+empirical,ST-23,Multi-line AI-assisted Code Authoring,https://arxiv.org/abs/2402.04141
+empirical,ST-24,Does GenAI Improve Software Developer Productivity?,https://uplevelteam.com/blog/genai-developers
+empirical,ST-25,Longitudinal GitHub Copilot Adoption at NAV IT,https://arxiv.org/abs/2509.20353
+empirical,ST-26,Longitudinal Multi-case Study of AI-assisted Agile Teams,https://arxiv.org/abs/2602.13766
+empirical,ST-27,Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability,https://link.springer.com/article/10.1007/s10664-026-10889-1
+empirical,ST-28,Harnessing the Potential of Gen-AI Coding Assistants in Public Sector Software Development,https://arxiv.org/abs/2409.17434
+empirical,ST-29,Pioneering the Agentic Shift Within Salesforce Engineering,https://www.salesforce.com/news/stories/how-engineering-became-agentic/
+empirical,ST-30,How AI Is Transforming Work at Anthropic,https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic
+empirical,ST-31,How frontier teams are reinventing AI-native development,https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/
+empirical,ST-32,AI Coding Assistant Trial: UK Public Sector Findings,https://www.gov.uk/government/publications/ai-coding-assistant-trial
+empirical,ST-33,AI-assisted Code Authoring at Scale,https://doi.org/10.1145/3643774
+empirical,ST-34,The AI Productivity Paradox,https://www.faros.ai/blog/ai-software-engineering
+empirical,ST-35,AI Acceleration Whiplash,https://www.faros.ai/research/ai-acceleration-whiplash
+empirical,ST-36,"State of AI-assisted Engineering, Q4 2025",https://getdx.com/report/ai-assisted-engineering-q4-impact-report/
+empirical,ST-37,Are AI Coding Tools Making Companies More Productive?,https://jellyfish.co/blog/are-ai-coding-tools-making-companies-more-productive/
+empirical,ST-38,AI-First Engineering: How Cisco Reached Tech Debt Zero,https://www.sonarsource.com/blog/ai-first-engineering-cisco/
+empirical,ST-39,Harness engineering: leveraging Codex in an agent-first world,https://openai.com/index/harness-engineering/
+empirical,ST-40,Amazon Q Developer just reached a $260 million milestone,https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/
+empirical,ST-41,RovoDev Code Reviewer: A Large-Scale Online Evaluation,https://arxiv.org/abs/2601.01129
+empirical,ST-42,Is Agentic Code Review Helpful?,https://arxiv.org/abs/2607.03316
+empirical,ST-43,When Code Authors Are Agents: A Large-Scale Study of Human–Agent Collaboration in Pull Requests,https://doi.org/10.1145/3805760.3814909
+empirical,ST-44,Comparing AI Coding Agents: A Task-Stratified Analysis of Pull Request Acceptance,https://arxiv.org/abs/2602.08915
+empirical,ST-45,Early Adoption of Agentic Coding Tools by GitHub Projects,https://arxiv.org/abs/2607.14037
+empirical,ST-46,AI-generated Pull-request Descriptions and Review Outcomes,https://arxiv.org/abs/2402.08967
+empirical,ST-47,Automated Code Review in Practice,https://arxiv.org/abs/2412.18531
+empirical,ST-48,Does GitHub Copilot improve code quality?,https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/
+empirical,ST-49,AI-assisted Programming May Decrease the Productivity of Experienced Developers by Increasing Maintenance Burden,https://arxiv.org/abs/2510.10165
+empirical,ST-50,Debt Behind the AI Boom: A Large-Scale Empirical Study of AI-Generated Code in the Wild,https://arxiv.org/abs/2603.28592
+empirical,ST-51,AI-assisted Assessment of Coding Practices in Industrial Code Review,https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/
+empirical,ST-52,AI-Assisted Fixes to Code Review Comments at Scale,https://arxiv.org/abs/2507.13499
+empirical,ST-53,Asleep at the Keyboard? Assessing the Security of GitHub Copilot’s Code Contributions,https://doi.org/10.1145/3610721
+empirical,ST-54,Understanding the Impact of AI Code Assistants on Security API Usage,https://arxiv.org/abs/2607.11348
+empirical,ST-55,GoodVibe: Security-by-Vibe for LLM-Based Code Generation,https://www.usenix.org/conference/usenixsecurity26/presentation/thang
+empirical,ST-56,How AI assistance impacts the formation of coding skills,https://www.anthropic.com/research/AI-assistance-coding-skills
+empirical,ST-57,Examining the Use and Impact of an AI Code Assistant in the Enterprise,https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise
+empirical,ST-58,Dear Diary: A Randomized Controlled Trial of Generative AI Coding Tools in the Workplace,https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/
+empirical,ST-59,Reading Between the Lines: Modeling User Behavior and Costs in AI-Assisted Programming,https://www.microsoft.com/en-us/research/?p=894132
+secondary_synthesis,,The Impact of LLM Assistants on Software Developer Productivity: A Systematic Literature Review,https://arxiv.org/abs/2507.03156
+secondary_synthesis,,A meta-analysis of the effect of generative AI on productivity and learning in programming,https://arxiv.org/abs/2605.04779
+contextual,,A Large-Scale Survey on the Usability of AI Programming Assistants,https://doi.org/10.1145/3597503.3608128
+contextual,,Agentic coding and persistent returns to expertise,https://www.anthropic.com/research/claude-code-expertise
+contextual,,AI Accountability Report,https://about.gitlab.com/press/releases/2026-06-23-gitlab-research-reveals-organizations-are-generating-ai-code-faster-than-they-can-control-it/
+contextual,,AIDev: Studying AI Coding Agents on GitHub,https://arxiv.org/abs/2602.09185
+contextual,,An Empirical Evaluation of LLMs for Automated Unit Test Generation,https://doi.org/10.1109/TSE.2023.3334955
+contextual,,Anthropic Economic Index: AI’s Impact on Software Development,https://www.anthropic.com/research/impact-software-development
+contextual,,Are Prompt Engineering and TODO Comments Friends or Foes?,https://lab-design.github.io/papers/ICSE-24b/
+contextual,,Are We All Using Agents the Same Way?,https://arxiv.org/abs/2601.20106
+contextual,,Assessing and Analyzing the Correctness of GitHub Copilot’s Code Suggestions,https://doi.org/10.1145/3715108
+contextual,,Assessing the Security of GitHub Copilot Generated Code: A Targeted Replication,https://doi.org/10.1109/SANER60148.2024.00051
+contextual,,Building an AI-native engineering team,https://cdn.openai.com/business-guides-and-resources/building-an-ai-native-engineering-team.pdf
+contextual,,Code with Me or for Me? How Increasing AI Automation Transforms Developer Workflows,https://arxiv.org/abs/2507.08149
+contextual,,Coding on Copilot: 2024 Developer Research,https://gitclear-public.s3.us-west-2.amazonaws.com/Coding-on-Copilot-2024-Developer-Research.pdf
+contextual,,Developer Ecosystem Survey 2025,https://devecosystem-2025.jetbrains.com/
+contextual,,Developer Interaction Patterns with Proactive AI: A Five-Day Field Study,https://doi.org/10.1145/3742413.3789148
+contextual,,Developers and Generative AI: A Study of Self-admitted Usage in Open Source Projects,https://www.microsoft.com/en-us/research/publication/developers-and-generative-ai-a-study-of-self-admitted-usage-in-open-source-projects/
+contextual,,DORA Accelerate State of DevOps Report 2024,https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report
+contextual,,Evaluating and Improving ChatGPT for Unit Test Generation,https://doi.org/10.1145/3660783
+contextual,,Evaluation of ChatGPT-4 Code Generation Across 19 Programming Languages,https://arxiv.org/abs/2501.02338
+contextual,,GitTaskBench,https://arxiv.org/abs/2508.18993
+contextual,,How Do AI Coding Agents Contribute to Software Development?,https://arxiv.org/abs/2607.21832
+contextual,,How Meta Used AI to Map Tribal Knowledge in Large-scale Data Pipelines,https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/
+contextual,,How Unified AI Agents Optimise Performance at Hyperscale,https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/
+contextual,,Introducing the SWE-Lancer Benchmark,https://openai.com/index/swe-lancer/
+contextual,,Large Language Models for Code Analysis: Do LLMs Really Do Their Job?,https://www.usenix.org/conference/usenixsecurity24/presentation/fang
+contextual,,Measuring GitHub Copilot’s Impact on Productivity,https://doi.org/10.1145/3633453
+contextual,,ML-Enhanced Code Completion Improves Developer Productivity,https://research.google/blog/ml-enhanced-code-completion-improves-developer-productivity/
+contextual,,Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving,https://arxiv.org/abs/2504.02605
+contextual,,Need Help? Designing Proactive AI Assistants for Programming,https://www.microsoft.com/en-us/research/publication/need-help-designing-proactive-ai-assistants-for-programming/
+contextual,,OmniCode: A Benchmark for Evaluating Software Engineering Agents,https://arxiv.org/abs/2602.02262
+contextual,,On the Evaluation of Large Language Models in Unit Test Generation,https://arxiv.org/abs/2406.18181
+contextual,,PatchTrack: A Comprehensive Analysis of ChatGPT’s Influence on Pull-request Outcomes,https://link.springer.com/article/10.1007/s10664-026-10869-5
+contextual,,"Professional Software Developers Don’t Vibe, They Control",https://arxiv.org/abs/2512.14012
+contextual,,Resolving Code Review Comments with Machine Learning,https://research.google/pubs/resolving-code-review-comments-with-machine-learning/
+contextual,,Security Weaknesses of Copilot-Generated Code in GitHub Projects,https://doi.org/10.1145/3716848
+contextual,,Separating Signal from Noise in Coding Evaluations,https://openai.com/index/separating-signal-from-noise-coding-evaluations/
+contextual,,Stack Overflow Developer Survey 2024: AI,https://survey.stackoverflow.co/2024/ai
+contextual,,Stack Overflow Developer Survey 2025: AI,https://survey.stackoverflow.co/2025/ai
+contextual,,State of AI-assisted Software Development 2025,https://dora.dev/research/2025/dora-report/
+contextual,,State of Developer Experience Report 2025,https://www.atlassian.com/blog/developer/developer-experience-report-2025
+contextual,,Survey: The AI Wave Continues to Grow,https://github.blog/news-insights/research/survey-ai-wave-grows/
+contextual,,SWE-agent: Agent–Computer Interfaces Enable Automated Software Engineering,https://arxiv.org/abs/2405.15793
+contextual,,SWE-bench Multilingual,https://www.swebench.com/multilingual.html
+contextual,,SWE-bench Multimodal,https://arxiv.org/abs/2410.03859
+contextual,,SWE-bench: Can Language Models Resolve Real-World GitHub Issues?,https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html
+contextual,,SWE-Skills-Bench,https://arxiv.org/abs/2603.15401
+contextual,,The Best Programming Language for Tokenmaxxing,https://arxiv.org/abs/2607.22807
+contextual,,The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study,https://arxiv.org/abs/2605.23135
+contextual,,The SPACE of AI: Real-World Lessons on AI’s Impact on Developers,https://www.microsoft.com/en-us/research/publication/the-space-of-ai-real-world-lessons-on-ais-impact-on-developers/
+contextual,,TypePilot: Leveraging the Scala Type System for Secure LLM-generated Code,https://aclanthology.org/2025.ommm-1.11/
+contextual,,"Usage, Effects and Requirements for AI Coding Assistants in the Enterprise",https://doi.org/10.1145/3786181.3788727
+contextual,,Using Large Language Models to Generate JUnit Tests,https://doi.org/10.1145/3661167.3661216
+contextual,,We Have a Package for You: Package Hallucinations by Code-generating LLMs,https://www.usenix.org/publications/loginonline/we-have-package-you-comprehensive-analysis-package-hallucinations-code
+contextual,,Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities,https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/
