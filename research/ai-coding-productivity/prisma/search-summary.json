@@ -1,0 +1,33 @@
+{
+  "existing_corpus_records": 115,
+  "openalex_records_before_cross_source_deduplication": 1188,
+  "master_records_after_cross_source_deduplication": 947,
+  "pending_human_review": 0,
+  "initial_rule_based_exclusions": 615,
+  "empirical_records_from_locked_corpus": 59,
+  "supporting_records_from_locked_corpus": 56,
+  "title_abstract_records_screened": 832,
+  "reports_sought_for_full_text": 69,
+  "title_abstract_exclusions_after_review": 763,
+  "reports_assessed_for_eligibility": 69,
+  "report_assessment_decisions": {
+    "exclude_full_text": 27,
+    "include_adjacent": 35,
+    "include_productivity": 4,
+    "duplicate_report": 2,
+    "upgrade_existing_adjacent": 1
+  },
+  "new_source_documents_included": 39,
+  "updated_source_documents": 154,
+  "updated_empirical_studies": 99,
+  "updated_productivity_studies": 44,
+  "updated_adjacent_studies": 55,
+  "updated_productivity_effect_estimates": 46,
+  "updated_secondary_syntheses": 2,
+  "updated_contextual_documents": 53,
+  "updated_confidence": {
+    "high": 11,
+    "moderate": 63,
+    "low": 25
+  }
+}
