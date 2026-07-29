@@ -5,33 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="robots" content="max-image-preview:large"/>
   <title>How Much Does AI Improve Software Development Productivity?</title>
-  <meta name="description" content="A review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× median gains, but not as a day-one result."/>
+  <meta name="description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <link rel="canonical" href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <link rel="alternate" type="application/atom+xml" href="https://reinvently.co.uk/f.atom"/>
   <link rel="alternate" type="application/json" href="https://reinvently.co.uk/f.json"/>
   <link rel="alternate" type="application/rss+xml" href="https://reinvently.co.uk/f.rss"/>
   <meta property="og:title" content="How Much Does AI Improve Software Development Productivity?"/>
-  <meta property="og:description" content="A review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× median gains, but not as a day-one result."/>
+  <meta property="og:description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-07-29T01:12:33+01:00"/>
+  <meta property="article:modified_time" content="2026-07-29T01:25:53+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How Much Does AI Improve Software Development Productivity?"/>
-  <meta name="twitter:description" content="A review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× median gains, but not as a day-one result."/>
+  <meta name="twitter:description" content="A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":"How Much Does AI Improve Software Development Productivity?",
-    "description":"A review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× median gains, but not as a day-one result.",
+    "description":"A systematic review of 59 studies finds 1.1–1.3× higher release output. Low-confidence agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-07-29T01:12:33+01:00",
+    "dateModified":"2026-07-29T01:25:53+01:00",
     "version":"1.0",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
@@ -123,7 +123,7 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T01:12:33+01:00">29 July 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.0</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-29T01:25:53+01:00">29 July 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
@@ -132,11 +132,11 @@
       <li>
         <a class="article-toc-section" href="#review-method">Method and scope</a>
         <ul>
-          <li><a href="#outcome-definitions">Outcome definitions</a></li>
+          <li><a href="#outcome-definitions">What counts as productivity?</a></li>
         </ul>
       </li>
       <li>
-        <a class="article-toc-section" href="#results">Results by degree of automation</a>
+        <a class="article-toc-section" href="#results">How gains vary by automation</a>
         <ul>
           <li><a href="#task-results">1. Assisted development</a></li>
           <li><a href="#specified-results">2. Spec-driven execution</a></li>
@@ -145,7 +145,7 @@
         </ul>
       </li>
       <li>
-        <a class="article-toc-section" href="#moderators">Moderators and downstream effects</a>
+        <a class="article-toc-section" href="#moderators">What moderates productivity?</a>
         <ul>
           <li><a href="#project-context">Greenfield and brownfield</a></li>
           <li><a href="#delivery-results">Code activity, releases and use</a></li>
@@ -159,9 +159,9 @@
       <li>
         <span class="article-toc-section">Interpretation</span>
         <ul>
-          <li><a href="#limitations">Limitations</a></li>
-          <li><a href="#future-measurement">Future measurement</a></li>
-          <li><a href="#conclusion">Discussion and conclusion</a></li>
+          <li><a href="#limitations">Evidence limitations</a></li>
+          <li><a href="#future-measurement">How to measure productivity</a></li>
+          <li><a href="#conclusion">What the evidence supports</a></li>
         </ul>
       </li>
       <li>
@@ -170,21 +170,31 @@
     </ul>
   </nav>
 
+  <section class="key-takeaways" aria-labelledby="key-findings-title">
+    <h2 id="key-findings-title">Key findings</h2>
+    <ul>
+      <li>Controlled assistant studies generally find approximately 20–30% coding-stage gains, although results include negative effects.</li>
+      <li>The strongest delivery evidence supports approximately 1.1–1.3× higher release output.</li>
+      <li>The 2× and 4.5× scenarios concern narrower implementation workflows and carry substantially less confidence.</li>
+      <li>Speed without scaled verification can displace work into review, integration, security and maintenance.</li>
+    </ul>
+  </section>
+
   <h2 id="abstract">Abstract</h2>
-  <p><strong>AI-assisted software development accelerates code production more reliably than it accelerates delivery.</strong> Software development is a tractable proxy for other AI-assisted business processes because instructions, revisions and outcomes are digitally recorded, although effects cannot be transferred directly. Reliable measurement is needed to budget model, platform, integration and verification costs and construct time-to-market business cases.</p>
-  <p>This rapid, non-protocol-registered systematic review examines 115 documents published from 1 January 2024: 59 empirical studies, two secondary syntheses and 54 supporting or contextual documents. Forty productivity and delivery studies contribute 42 quantitative effect estimates; 19 studies examine review, quality, security, maintainability, skills and interaction cost. Evidence is grouped into three operating models:</p>
+  <p><strong>AI-assisted software development accelerates code production more reliably than it accelerates delivery.</strong> Software development is a useful proxy for other AI-assisted business processes because its instructions, revisions and outcomes are digitally recorded. However, effect sizes cannot be transferred directly to other domains. Reliable measurement supports budgets for models, platforms, integration and verification while strengthening time-to-market business cases.</p>
+  <p>This rapid, non-protocol-registered systematic review of AI coding productivity examines 115 documents published from 1 January 2024. The corpus contains 59 empirical studies, two secondary syntheses and 54 supporting or contextual documents. Forty productivity and delivery studies contribute 42 quantitative effect estimates; another 19 examine review, quality, security, maintainability, skills and interaction cost. Evidence is grouped into three operating models:</p>
   <ol>
     <li><strong><a href="#task-results">Assisted development:</a></strong> the model suggests; the developer implements and verifies.</li>
     <li><strong><a href="#specified-results">Spec-driven execution:</a></strong> the agent implements a defined outcome; a human reads and approves the result.</li>
     <li><strong><a href="#agent-native-results">Agent-native delivery:</a></strong> agents build, test and perform initial review; humans own intent, architecture and release.</li>
   </ol>
-  <p>Controlled evidence included a 19% slowdown in familiar mature repositories and gains of approximately 20–30% in larger enterprise trials; higher estimates came from smaller or narrower studies. The independent meta-analysis found a moderate effect with extreme heterogeneity and materially smaller effects outside laboratories. In the largest matched delivery study, more than 100,000 developers produced 180% more commits but only 30% more releases and no additional application usage. Release output increased by <strong>1.1–1.3×</strong> across successive tool generations; this review therefore uses <strong>1.2×</strong> as a central planning case, not a universal effect.</p>
-  <p>Reference values rise with automation: approximately <strong>1.25×</strong> for assisted development, <strong>2×</strong> for bounded spec-driven execution and <strong>4.5×</strong> for agent-native delivery. Only the first is supported by multiple controlled comparisons; the second is an interpolation and the third a low-confidence organisational upside scenario. Effects also vary with greenfield or brownfield context, programming-language feedback, developer experience and downstream verification capacity.</p>
-  <p>Quality is mixed: bounded trials report higher completeness and correctness, while longitudinal studies identify integration, review, complexity, ownership and security costs. <strong>Speed without scaled verification can come at the expense of quality. Maintaining quality at higher generation rates requires executable tests, security controls, review capacity, monitoring and accountable ownership, but does not guarantee it.</strong> Productivity should therefore be measured from accepted intent to reliable production—not by code volume; a coding-stage gain is not automatically a lead-time or customer-value gain.</p>
+  <p>Controlled evidence ranged from a 19% slowdown in familiar mature repositories to approximately 20–30% gains in larger enterprise trials. Higher estimates came from smaller or narrower studies. The independent meta-analysis found a moderate effect with extreme heterogeneity, while effects were materially smaller outside laboratories. In the largest matched delivery study, more than 100,000 developers produced 180% more commits but only 30% more releases and no additional application usage. Release output rose by <strong>1.1–1.3×</strong> across successive tool generations. The review therefore uses <strong>1.2×</strong> as a central planning case, not a universal effect.</p>
+  <p>Reference values rise with automation. They are approximately <strong>1.25×</strong> for assisted development, <strong>2×</strong> for bounded spec-driven execution and <strong>4.5×</strong> for agent-native delivery. Only the first is supported by multiple controlled comparisons; the second is an interpolation and the third a low-confidence organisational upside scenario. Effects also vary with project context, programming-language feedback, developer experience and downstream verification capacity.</p>
+  <p>Quality findings are mixed: bounded trials report higher completeness and correctness, while longitudinal studies identify integration, review, complexity, ownership and security costs. <strong>Speed without scaled verification can therefore come at the expense of quality.</strong> Maintaining quality at higher generation rates requires executable tests, security controls, review capacity, monitoring and accountable ownership. These controls reduce risk but do not guarantee quality. Productivity should be measured from accepted intent to reliable production, not by code volume. A coding-stage gain is not automatically a lead-time or customer-value gain.</p>
 
   <h2 id="review-method">Review question and method</h2>
   <p>The review question was: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
-  <p>The search covered publications dated from <strong>1 January 2024 to 28 July 2026</strong>. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. References were followed back to peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where work first appeared as an older preprint but received a 2024–2026 peer-reviewed publication, the later publication was used; otherwise pre-2024 work was excluded.</p>
+  <p>The search was last run on <strong>28 July 2026</strong>. It covered publications dated from <strong>1 January 2024 to that date</strong>. Search combinations included <em>AI coding assistant</em>, <em>developer productivity</em>, <em>developer experience</em>, <em>repository familiarity</em>, <em>domain expertise</em>, <em>coding agent</em>, <em>spec-driven development</em>, <em>agentic code review</em>, <em>deployment velocity</em>, <em>software delivery</em>, <em>programming language</em>, <em>static typing</em>, <em>security</em>, <em>maintainability</em> and <em>unit-test generation</em>. References were followed back to peer-reviewed papers, preprints, official research publications and first-party engineering reports. Where work first appeared as an older preprint but received a 2024–2026 peer-reviewed publication, the later publication was used. Otherwise, pre-2024 work was excluded.</p>
   <p>A source was eligible for the productivity synthesis when it reported a quantitative outcome, described an identifiable development workflow and supplied a baseline or comparator. Surveys were retained only as contextual evidence about perceived effects or bottlenecks. Unattributed marketing claims and secondary summaries without an inspectable primary source were excluded. Source traceability, uncertainty and corrections follow Reinvently’s <a href="/research-standards/">research and editorial standards</a>.</p>
   <p>Of the 115 included documents, 59 form the empirical evidence base. The quantitative productivity synthesis contains 42 effect estimates drawn from 40 of those studies; 19 additional studies measure adjacent outcomes. The remaining 56 documents comprise 54 contextual or methodological sources and two secondary syntheses. Two reports each contribute more than one estimate because they describe materially different workflows. Documents, studies and estimates are therefore counted separately.</p>
 
@@ -273,7 +283,7 @@
   <figcaption>Implementation-stage scenarios, not release forecasts. The first level is supported by controlled studies; the larger numbers rely mainly on organisational cases using different metrics. In the largest matched event study, observed release output increased by approximately 1.1×, 1.2× and 1.3× across successive tool generations.</figcaption>
   </figure>
 
-  <h2 id="outcome-definitions">Outcome definitions</h2>
+  <h2 id="outcome-definitions">What counts as software-development productivity?</h2>
   <p>A percentage can describe less time, more throughput, more commits or more output judged valuable. Those are not interchangeable.</p>
   <ul>
     <li>A <strong>25% reduction in time</strong> means a task takes 75 rather than 100 hours. At full utilisation, that is approximately <strong>1.33× throughput</strong>.</li>
@@ -282,7 +292,7 @@
   </ul>
   <p>Commits and lines of code are especially weak proxies. An agent can generate more of both without increasing production value. Deployment velocity, completed work items, task time and escaped defects are more useful, but even these need context.</p>
 
-  <h2 id="results">Results by degree of automation</h2>
+  <h2 id="results">How do reported gains vary by degree of automation?</h2>
   <p>The findings are grouped by the three operating models defined in the abstract, each representing a different degree of automation. A separate downstream-conversion section then tests how gains in coding activity survive into releases and actual use.</p>
   <h3 id="task-results">1. Assisted development: task completion and local output</h3>
   <p>The strongest evidence concerns assistants operating inside otherwise conventional human-led workflows. The measured effects are heterogeneous, and tool choice changes the interaction model without determining the outcome by itself. For a practical comparison of those interaction models, see <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
@@ -389,7 +399,7 @@
   <figcaption>Selected estimates assigned to the closest operating model in this review. Time reductions are converted to potential throughput where appropriate. Measures include task completion, workflow output, effective output, implementation time, deployment velocity and counterfactual project estimates; they should be compared within operating models and not averaged. The green band is the 1.1–1.3× end-to-end release-output planning range, not a confidence interval. The larger Level 2 and Level 3 values mainly come from bundled organisational cases with low-confidence historical or counterfactual baselines.</figcaption>
   </figure>
 
-  <h2 id="moderators">Moderators and downstream effects</h2>
+  <h2 id="moderators">What moderates AI coding productivity and downstream delivery?</h2>
   <p>The observed effect is not determined by the degree of automation alone. Project context, downstream capacity, programming-language feedback, developer experience and verification strength change both the attainable gain and the risk carried into later stages.</p>
 
   <h3 id="project-context">Greenfield and brownfield development</h3>
@@ -532,12 +542,12 @@
   </table>
   </div>
 
-  <h2 id="limitations">Limitations</h2>
+  <h2 id="limitations">Limitations of the AI coding productivity evidence</h2>
   <p>This rapid systematic review was not protocol-registered and did not include a formal risk-of-bias instrument. Searches prioritised English-language, web-accessible studies and first-party disclosures; relevant unpublished evaluations may therefore be absent. The corpus is broad rather than exhaustively database-indexed. Publication bias is likely to be strongest in the agent-native tier, where organisations have an incentive to publish exceptional successes.</p>
   <p>The evidence base is too heterogeneous for a pooled effect estimate. Controlled studies mostly evaluate individual assistance, while agent-native reports measure teams, workflows or individual migrations. Historical estimates can also change after a project begins, and commit or line-volume measures may reward activity rather than value. Greenfield and brownfield labels were assigned from the disclosed project setting and were not always prespecified by study authors. Experience measures also differ: job tenure, coding tenure, repository familiarity and task-specific expertise are not interchangeable. Programming-language studies predominantly measure correctness, compilation or benchmark success rather than developer time, so the language analysis is mechanistic and exploratory. The three-level autonomy taxonomy was applied for this review and has not itself been independently validated.</p>
   <p>Benchmark quality adds a separate constraint. OpenAI found contamination and test-design problems severe enough to stop using <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">SWE-bench Verified</a>, then estimated that approximately 30% of SWE-Bench Pro tasks were broken in a separate <a href="https://openai.com/index/separating-signal-from-noise-coding-evaluations/">agent-assisted audit and human annotation study</a>. Benchmark progress shows that agents can perform longer tasks under controlled conditions; it cannot be converted directly into hours saved without a human workflow comparator.</p>
 
-  <h2 id="future-measurement">Implications for future measurement</h2>
+  <h2 id="future-measurement">How should organisations measure AI coding productivity?</h2>
   <p>The literature would benefit from staged comparisons of representative work rather than further surveys of perceived speed. A robust organisational study would:</p>
   <ol>
     <li>Select repeated task classes with sufficient history for a baseline.</li>
@@ -549,13 +559,14 @@
   </ol>
   <p>Relevant outcome measures include lead time, work items deployed, change failure rate, reviewer minutes, post-merge rework and production incidents. Commits can diagnose activity, but are not an adequate primary productivity outcome. For a worked example of holding variables constant, exposing uncertainty and separating raw results from interpretation, see <a href="/blog/building-the-ed-o-meter-llm-eval-harness/">Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</a>.</p>
 
-  <h2 id="conclusion">Discussion and conclusion</h2>
-  <p><strong>The central finding is a conversion problem.</strong> AI can substantially increase implementation output, but the gain is often attenuated as work passes through understanding, integration, review, testing, release and adoption. The largest matched study makes that loss visible: 180% more commits became 30% more releases and no increase in application usage (<code>E-11</code>). The independent meta-analysis reaches the same broad boundary from another direction: average productivity improves, but estimated effects are far smaller in enterprise and open-source settings than in controlled laboratories.</p>
-  <p>For end-to-end planning, the largest matched delivery study observed approximately <strong>1.1×, 1.2× and 1.3× release output</strong> across successive tool generations. This review therefore uses <strong>1.2× as an evidence-anchored central planning case</strong>, driven principally by <code>E-11</code> and triangulated against <code>E-14</code>–<code>E-17</code>; it is not a pooled or universal effect. The larger figures describe narrower implementation stages: approximately <strong>1.25×</strong> for conventional assistant use, <strong>2×</strong> as a conditional hypothesis for bounded spec-driven work and <strong>4.5×</strong> as a low-confidence agent-native upside scenario. They should not be applied to the whole delivery system. Increasing autonomy does not itself establish causation; the largest outcomes combine a model with redesigned repositories, specifications, environments, tests, review and parallel execution.</p>
-  <p>The evidence also rejects a simple speed-versus-quality trade-off. Short, bounded tasks can become both faster and more correct. The recurrent risk is asymmetry: generation scales before verification does, shifting cost into integration time, review queues, churn, complexity, security findings and weaker code ownership. <strong>Speed without scaled verification can come at the expense of quality. Maintaining quality at higher generation rates requires robust review and verification, but the evidence does not show that these controls guarantee it—particularly at the 2× and 4.5× implementation scenarios.</strong></p>
-  <p>Project lifecycle alone is a poor predictor. Greenfield work has less legacy coupling but often lacks historical baselines and inherited test suites. Brownfield work has more constraints, yet repetitive migrations and well-instrumented changes can be highly tractable. Experience does not move the effect in one direction: bounded Level 1 trials often favour less-experienced developers, familiar-repository experts can slow down, and domain expertise becomes more valuable as automation increases. The more useful distinctions are tacit versus explicit context, subjective versus executable acceptance and generated versus independently verified output.</p>
-  <p>For investment decisions, the unit of analysis should be the <strong>verified outcome in production</strong>. A credible business case should estimate model and platform costs, integration effort, reviewer capacity, rework, incidents and the proportion of coding-time savings that reaches release and customer use. Time-to-market claims should be based on lead time through production operation, not commits, lines of code or self-reported hours saved.</p>
-  <p><strong>As automation increases, AI coding becomes a systems-engineering problem. The limiting factor is increasingly not how quickly a model can generate code, but how effectively an organisation can specify, verify, integrate and release correct work.</strong></p>
+  <h2 id="conclusion">What does the evidence support?</h2>
+  <p><strong>The central finding is a conversion problem.</strong> AI can substantially increase implementation output, but the gain often shrinks across understanding, integration, review, testing, release and adoption. The largest matched study illustrates that loss (<code>E-11</code>): 180% more commits became only 30% more releases and no increase in application usage. The independent meta-analysis points to the same boundary. Average productivity improves, but effects are much smaller in enterprise and open-source settings than in controlled laboratories.</p>
+  <p>For end-to-end planning, the largest matched delivery study observed approximately <strong>1.1×, 1.2× and 1.3× release output</strong> across successive tool generations. This review therefore uses <strong>1.2× as an evidence-anchored central planning case</strong>. The estimate is driven principally by <code>E-11</code> and triangulated against <code>E-14</code>–<code>E-17</code>; it is not a pooled or universal effect.</p>
+  <p>Larger figures describe narrower implementation stages. Conventional assistant use has a reference value of approximately <strong>1.25×</strong>, while bounded spec-driven work has a conditional <strong>2×</strong> hypothesis. Agent-native delivery has a low-confidence <strong>4.5×</strong> upside scenario. These values should not be applied to the whole delivery system, and increasing autonomy does not itself establish causation. The largest outcomes combine models with redesigned repositories, specifications, environments, tests, review and parallel execution.</p>
+  <p>The evidence also rejects a simple speed-versus-quality trade-off. Short, bounded tasks can become both faster and more correct. The recurrent risk is asymmetry: generation scales before verification and moves costs into integration, review, churn, complexity, security and weaker code ownership. <strong>Speed without scaled verification can therefore come at the expense of quality.</strong> Robust review and verification are required at higher generation rates. However, the evidence does not show that these controls guarantee quality, particularly under the 2× and 4.5× scenarios.</p>
+  <p>Project lifecycle alone is a poor predictor. Greenfield work has less legacy coupling but often lacks historical baselines and inherited test suites. Brownfield work has more constraints, although repetitive migrations and well-instrumented changes can still be highly tractable. Experience also changes the effect. Bounded Level 1 trials often favour less-experienced developers, while familiar-repository experts can slow down. Domain expertise becomes more valuable as automation increases. The more useful distinctions are tacit versus explicit context, subjective versus executable acceptance and generated versus independently verified output.</p>
+  <p>For investment decisions, the unit of analysis should be the <strong>verified outcome in production</strong>. A credible business case should include model and platform costs, integration effort, reviewer capacity, rework and incidents. It should then estimate how much coding-time savings reach release and customer use. Time-to-market claims should use lead time through production operation; commits, lines of code and self-reported hours are insufficient.</p>
+  <p><strong>As automation increases, AI coding becomes a systems-engineering problem.</strong> The limiting factor is no longer only how quickly a model can generate code. It is how effectively an organisation can specify, verify, integrate and release correct work.</p>
 
   <hr/>
   <h2 id="evidence-registers">Evidence and document registers</h2>
