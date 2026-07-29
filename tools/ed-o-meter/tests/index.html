@@ -158,13 +158,16 @@ let TASKS = [];
 let TASK_RESULTS = {};
 
 const MODELS = [
+  {id:'gemini-3.6-flash', name:'gemini-3.6-flash', hex:'#4285F4'},
   {id:'haiku-4-5',     name:'haiku-4-5',     hex:'#7FA8E8'},
   {id:'sonnet-4-6',    name:'sonnet-4-6',    hex:'#123A8C'},
   {id:'gpt-5.5',       name:'gpt-5.5',       hex:'#C0392B'},
+  {id:'grok-4.5',      name:'grok-4.5',      hex:'#00C2C7'},
   {id:'glm-5.2',       name:'glm-5.2',       hex:'#2E7D57'},
   {id:'kimi-k3',       name:'kimi-k3',       hex:'#6B4FA0'},
   {id:'sonnet-5',      name:'sonnet-5',      hex:'#4A78D0'},
   {id:'gpt-5.6-terra', name:'gpt-5.6-terra', hex:'#A03A5E'},
+  {id:'opus-5',        name:'opus-5',        hex:'#D97757'},
   {id:'gpt-5.6-sol',   name:'gpt-5.6-sol',   hex:'#C85A50'},
   {id:'gpt-5.6-luna',  name:'gpt-5.6-luna',  hex:'#D9748A'},
   {id:'fable-5',       name:'fable-5',       hex:'#2456E6'},
@@ -250,40 +253,47 @@ function taskCardHTML(task, idA, idB){
 function renderSummary(idA, idB){
   const mA = MODEL_BY_ID[idA], mB = MODEL_BY_ID[idB];
   function agg(id){
-    let pass=0, cost=0, ttftSum=0, ttftN=0, refusals=0;
+    let pass=0, cost=0, ttftSum=0, ttftN=0, refusals=0, scored=0;
     TASKS.forEach(t=>{
       const r = (TASK_RESULTS[t.id] || {})[id];
       if(!r) return;
+      /* pass === null means recorded but not scored — a neutral provider-side
+         refusal. It stays out of the denominator, matching the leaderboard. */
+      if(r.pass!=null) scored++;
       if(r.pass) pass++;
       if(r.refusal) refusals++;
       cost += r.cost || 0;
       if(r.ttft!=null){ ttftSum += r.ttft; ttftN++; }
     });
-    return {pass, cost, refusals, ttftAvg: ttftN ? ttftSum/ttftN : null};
+    return {pass, scored, cost, refusals, ttftAvg: ttftN ? ttftSum/ttftN : null};
   }
   const a = agg(idA), b = agg(idB);
-  const disagreeCount = TASKS.filter(t=>{
+  const comparable = TASKS.filter(t=>{
     const ra = (TASK_RESULTS[t.id]||{})[idA], rb = (TASK_RESULTS[t.id]||{})[idB];
-    return ra && rb && (!!ra.pass !== !!rb.pass);
+    return ra && rb && ra.pass!=null && rb.pass!=null;
+  });
+  const disagreeCount = comparable.filter(t=>{
+    const ra = TASK_RESULTS[t.id][idA], rb = TASK_RESULTS[t.id][idB];
+    return !!ra.pass !== !!rb.pass;
   }).length;
   document.getElementById('summaryBar').innerHTML = `
     <div class="summary-cell">
       <div class="label"><span class="swatch" style="background:${mA.hex}"></span>${mA.name} — pass rate</div>
-      <div class="row"><span>Passed</span><span>${a.pass} / 28</span></div>
+      <div class="row"><span>Passed</span><span>${a.pass} / ${a.scored}</span></div>
       <div class="row"><span>Refusals</span><span>${a.refusals}</span></div>
       <div class="row"><span>Total cost</span><span>$${a.cost.toFixed(4)}</span></div>
       <div class="row"><span>Avg TTFT</span><span>${a.ttftAvg!=null ? a.ttftAvg.toFixed(1)+' s' : '—'}</span></div>
     </div>
     <div class="summary-cell">
       <div class="label"><span class="swatch" style="background:${mB.hex}"></span>${mB.name} — pass rate</div>
-      <div class="row"><span>Passed</span><span>${b.pass} / 28</span></div>
+      <div class="row"><span>Passed</span><span>${b.pass} / ${b.scored}</span></div>
       <div class="row"><span>Refusals</span><span>${b.refusals}</span></div>
       <div class="row"><span>Total cost</span><span>$${b.cost.toFixed(4)}</span></div>
       <div class="row"><span>Avg TTFT</span><span>${b.ttftAvg!=null ? b.ttftAvg.toFixed(1)+' s' : '—'}</span></div>
     </div>
     <div class="summary-cell">
       <div class="label">Head to head</div>
-      <div class="row"><span>Tasks they disagree on</span><span class="diff">${disagreeCount} / 28</span></div>
+      <div class="row"><span>Tasks they disagree on</span><span class="diff">${disagreeCount} / ${comparable.length}</span></div>
       <div class="row"><span>Cost difference</span><span>$${Math.abs(a.cost-b.cost).toFixed(4)}</span></div>
     </div>
   `;
