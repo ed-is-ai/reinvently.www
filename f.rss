@@ -6,6 +6,13 @@
     <description>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</description>
     <language>en-gb</language>
     <item>
+      <title>How Much Does AI Improve Software Development Productivity?</title>
+      <link>https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</link>
+      <guid isPermaLink="true">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Strong evidence supports 1.1–1.3× release output; highest-automation cases report a low-confidence 4.5× median and 10×+ upper end.</description>
+    </item>
+    <item>
       <title>LLM Benchmark Design: Building the Ed-o-meter</title>
       <link>https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</guid>
