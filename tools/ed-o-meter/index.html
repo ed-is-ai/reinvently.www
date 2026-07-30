@@ -79,9 +79,26 @@
   .eom .grid-label{font-family:var(--font-data);fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
 
-  .eom .caveat{border-left:3px solid var(--amber);background:var(--amber-tint);border-radius:0 8px 8px 0;padding:15px 20px;font-size:15px;line-height:1.62;margin:22px 0 8px;color:var(--text-dim);text-wrap:pretty;}
+  .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
+  .eom-header .verdict strong{color:var(--text);font-weight:650;}
+  .eom-header .verdict a{color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
+  .eom-header .verdict a:hover{border-color:var(--telemetry);opacity:1;}
+  .eom .fold{margin:18px 0 0;border-top:1px solid var(--hairline);padding-top:12px;}
+  .eom .fold>summary{cursor:pointer;font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);}
+  .eom .fold>summary:hover{color:var(--telemetry);}
+  /* Prominent variant — the category numbers are a destination, not a footnote. */
+  .eom .fold-strong{border-top:0;padding-top:0;margin:22px 0 0;}
+  .eom .fold-strong>summary{display:inline-flex;align-items:center;gap:10px;list-style:none;
+    font-family:var(--font-nav);font-size:clamp(12px,.85vw,14px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:11px 20px;background:var(--telemetry-tint);
+    transition:background .15s,border-color .15s,color .15s;}
+  .eom .fold-strong>summary::-webkit-details-marker{display:none;}
+  .eom .fold-strong>summary::after{content:"▾";font-size:11px;line-height:1;transition:transform .15s;}
+  .eom .fold-strong[open]>summary::after{transform:rotate(180deg);}
+  .eom .fold-strong>summary:hover{background:var(--telemetry);border-color:var(--telemetry);color:#061016;box-shadow:0 0 18px var(--telemetry-tint);}
+  .eom .caveat{border-left:3px solid var(--amber);padding:15px 20px;font-size:15px;line-height:1.62;margin:22px 0 8px;color:var(--text-dim);text-wrap:pretty;}
   .eom .caveat strong{font-weight:650;color:var(--text);}
-  .eom .task-list{margin-top:12px;}
+  .eom .task-list{margin-top:16px;border:1px solid var(--hairline);border-radius:10px;background:var(--bg2);padding:14px 18px;}
   .eom .task-list summary{cursor:pointer;font-weight:600;color:var(--text);font-size:14px;}
   .eom .task-list summary:hover{color:var(--telemetry);}
   .eom .task-list-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px;}
@@ -165,6 +182,8 @@
   .eom .pit-note p{color:var(--text-dim);font-size:inherit;line-height:1.62;text-wrap:pretty;}
   .eom .pit-note.flag{border-color:var(--danger);background:linear-gradient(150deg,var(--danger-tint),transparent 62%),var(--bg2);}
   .eom .pit-note.steward{border-color:var(--amber);background:linear-gradient(150deg,var(--amber-tint),transparent 62%),var(--bg2);}
+  .eom .pit-note.pick{border-color:var(--podium);background:linear-gradient(150deg,var(--podium-tint),transparent 62%),var(--bg2);}
+  .eom .pit-note.pick h3{color:var(--podium);}
   .eom .pit-note code{background:rgba(0,0,0,.35);}
 
   .eom .method{color:var(--text-dim);font-size:clamp(15px,1vw,17px);line-height:1.62;margin:0 0 20px 24px;}
@@ -230,7 +249,8 @@
   <div class="post-meta">Updated 29 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
-  <p class="runstamp">13 models &nbsp;·&nbsp; 28 tasks &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260728T215711Z</code></p>
+  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. <strong>haiku-4-5</strong> if cost and speed rule; <strong>sonnet-4-6</strong> if you want the quality without the wait. Surprisingly, the newest models didn't cut it. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
+  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260728T215711Z</code></p>
 </header>
 
 <main class="container">
@@ -254,7 +274,106 @@
 
     <div class="caveat" role="note">
       The overall score is the pass rate across my 28 realworld tasks. As we only had a limited number of trials there is a wide Wilson interval — the whiskers on the chart.
-      <details class="task-list">
+    </div>
+
+    <p class="section-note">Summary of results: click a column to sort by your chosen metric.</p>
+
+    <div class="table-scroll">
+      <table id="board">
+        <thead>
+          <tr>
+            <th scope="col"><span class="th-sort" style="cursor:default">#</span></th>
+            <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
+            <th scope="col" data-key="pass" aria-sort="descending"><button class="th-sort">Pass rate (95% CI) <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="rubric"><button class="th-sort">Rubric /10 <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="sec"><button class="th-sort">Security <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="ttft"><button class="th-sort">Median TTFT <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="cost"><button class="th-sort">Run cost <span class="arrow">▼</span></button></th>
+            <th scope="col" data-key="costTask"><button class="th-sort">Cost / task <span class="arrow">▼</span></button></th>
+          </tr>
+        </thead>
+        <tbody id="boardBody"></tbody>
+      </table>
+    </div>
+
+    <details class="fold">
+      <summary>Four caveats on how these numbers were produced</summary>
+      <div class="footnotes">
+      <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
+      <p><sup>2</sup> fable-5's 9.2 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.2 versus 8.6–8.7 for the models it judges independently. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
+      <p><sup>3</sup> <strong>Recipe-checker false-positive.</strong> On the vegetarian weeknight recipe the forbidden-term checker fires on a non-ingredient mention — a label-check caution or a negated omission list ("uses no fish sauce or animal-derived garnishes"). All three recipes are genuinely meat-free, so gpt-5.5, sonnet-5 and fable-5 are scored as passing that task here. No task or checker was edited.</p>
+      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0457/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. No other model on the board has refusals.</p>
+      </div>
+    </details>
+
+    <h2 class="section">The lap, corner by corner</h2>
+    <p class="section-note">The lap is five corners in fixed order: Coding → Data → Realworld → Security → Tool-use. A corner's colour is that model's pass rate in that category. Green is good — it means 85%+ success. For models that can do it all, look for all green.</p>
+    <p class="section-note">Hover or tap any segment for what that corner tests and how the model handled it.</p>
+    <div class="corner-legend">
+      <span><i style="background:var(--good)"></i>Clean corner (&gt;85%)</span>
+      <span><i style="background:var(--amber)"></i>Ragged (60–85%)</span>
+      <span><i style="background:var(--danger)"></i>Off the track (&lt;60%)</span>
+    </div>
+    <div class="lap-grid" id="lapGrid"></div>
+
+    <details class="fold fold-strong">
+      <summary>See the exact numbers by category</summary>
+      <p class="section-note" style="margin-top:14px">Cells below 60% are flagged red and 60–85% amber — coding, data and tool-use are the harness floor, so the race is decided in realworld and security.</p>
+
+    <div class="cat-scroll">
+      <table class="cat" id="catTable">
+        <thead><tr>
+          <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Coding</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Data</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Realworld</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Security</span></th>
+          <th scope="col"><span class="th-sort" style="cursor:default">Tool-use</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    </details>
+
+    <h2 class="section" id="verdict">What Do the Results Actually Tell You?</h2>
+    <div class="pit">
+      <div class="pit-note pick">
+        <h3>If you only run one model, run gpt-5.5</h3>
+        <p>gpt-5.5 is the best all-round balance on the board: 96% pass, an 8.7 rubric, 100% security with the canary emitted in none of six jailbreak cells, and $1.43 for the lap. It is the only model in the top group scoring 93% or better in every category. The one cost is patience — a 13.2-second median time-to-first-token, second slowest here. sonnet-4-6 is the next pick, with a marginally better 8.9 rubric and a much faster 7.5-second TTFT, for $1.84.</p>
+      </div>
+      <div class="pit-note steward">
+        <h3>Fable failed to complete a single lap</h3>
+        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+      </div>
+      <div class="pit-note">
+        <h3>Cheap as chips, and it reads like it</h3>
+        <p>haiku-4-5 delivers the cheapest & fastest results — $0.12 with a 0.9-second median TTFT and 96%.  The model defaults to caveman mode though, a rubric of 7.4 was ok but lagged the field by 1.5 points.  Use where urgency & cost efficiency matters most —  sonnet-4-6 and sonnet-5 used 3.9× the output tokens and 5.7× the wall-clock for only slightly better results.</p>
+      </div>
+      <div class="pit-note">
+        <h3>The mystery guest sets the fastest quality lap</h3>
+        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, though opus-5's 9.4 now runs it close on quality at a tenth of the wait. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
+      </div>
+      <div class="pit-note flag">
+        <h3>Two cars failed the crash test</h3>
+        <p>The gpt-5.6 pair is quick, but it has a safety problem.  gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
+      </div>
+      <div class="pit-note steward">
+        <h3>A safety filter can look exactly like a bad lap</h3>
+        <p>opus-5 posts the best rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 50% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5. Two Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
+      </div>
+    </div>
+
+    <section class="scoring" aria-labelledby="scoring-title">
+      <h2 class="section" id="scoring-title">How Is the Ed-o-meter Scored?</h2>
+      <ul class="method">
+        <li><strong>Same tasks run for all models using the same prompts, same API calls</strong>, measured through one identical OpenRouter streaming path, run serially as time-trial. No other cars on track</li>
+        <li><strong>Latency is time-to-first-token</strong>, measured through one identical OpenRouter streaming path, run serially so the clock is uncontaminated. Wall-clock is recorded alongside.</li>
+        <li><strong>Checkers are binary and automated.</strong> The LLM rubric is the only judged component — and its bias is made visible in the footnotes rather than assumed away.</li>
+        <li><strong>Effort and reasoning settings are pinned</strong> in <code>models.json</code> and stated with any published number, because they materially move quality and cost.</li>
+        <li><strong>Refusals are recorded, not hidden.</strong> A provider-side hard stop is logged as a refusal with its category — never silently retried on another model. Routing is pinned with <code>allow_fallbacks:false</code>, so no quiet re-serves on quantized variants. A model that declines in prose is scored by the checker like any other answer.</li>
+      </ul>
+      <p class="method-intro">Harness, tasks and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a> (MIT). Clone it and run the lap yourself, or <a href="https://github.com/ed-is-ai/featherbench/issues/new?title=Model%20benchmark%20request%3A%20%5Bmodel%20name%5D&amp;body=Model%20and%20version%3A%0AProvider%20or%20API%20route%3A%0AWhy%20it%20should%20be%20benchmarked%3A" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">request a new model via GitHub issue</a>.</p>
+      <details class="task-list" id="tasks" open>
         <summary>See all 28 tasks</summary>
         <div class="task-list-grid">
           <div>
@@ -313,99 +432,6 @@
         </div>
         <p style="margin-top:14px"><a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">See each model's actual answer to every task, or pick two models to compare head to head &#8594;</a></p>
       </details>
-    </div>
-
-    <p class="section-note">Click a column to re-rank. Security shown separately because it's where this season's field split; cost shown both per run and per task.</p>
-
-    <div class="table-scroll">
-      <table id="board">
-        <thead>
-          <tr>
-            <th scope="col"><span class="th-sort" style="cursor:default">#</span></th>
-            <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
-            <th scope="col" data-key="pass" aria-sort="descending"><button class="th-sort">Pass rate (95% CI) <span class="arrow">▼</span></button></th>
-            <th scope="col" data-key="rubric"><button class="th-sort">Rubric /10 <span class="arrow">▼</span></button></th>
-            <th scope="col" data-key="sec"><button class="th-sort">Security <span class="arrow">▼</span></button></th>
-            <th scope="col" data-key="ttft"><button class="th-sort">Median TTFT <span class="arrow">▼</span></button></th>
-            <th scope="col" data-key="cost"><button class="th-sort">Run cost <span class="arrow">▼</span></button></th>
-            <th scope="col" data-key="costTask"><button class="th-sort">Cost / task <span class="arrow">▼</span></button></th>
-          </tr>
-        </thead>
-        <tbody id="boardBody"></tbody>
-      </table>
-    </div>
-
-    <div class="footnotes">
-      <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
-      <p><sup>2</sup> fable-5's 9.2 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.2 versus 8.6–8.7 for the models it judges independently. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
-      <p><sup>3</sup> <strong>Recipe-checker false-positive.</strong> On the vegetarian weeknight recipe the forbidden-term checker fires on a non-ingredient mention — a label-check caution or a negated omission list ("uses no fish sauce or animal-derived garnishes"). All three recipes are genuinely meat-free, so gpt-5.5, sonnet-5 and fable-5 are scored as passing that task here. No task or checker was edited.</p>
-      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0457/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. No other model on the board has refusals.</p>
-    </div>
-
-    <h2 class="section">The lap, corner by corner</h2>
-    <p class="section-note">Five corners in fixed order: Coding → Data → Realworld → Security → Tool-use. Each ring is one model's lap; a corner's colour is that model's pass rate in that category. Hover or tap any segment for what that corner tests and how the field handled it.</p>
-    <div class="corner-legend">
-      <span><i style="background:var(--good)"></i>Clean corner (&gt;85%)</span>
-      <span><i style="background:var(--amber)"></i>Ragged (60–85%)</span>
-      <span><i style="background:var(--danger)"></i>Off the track (&lt;60%)</span>
-    </div>
-    <div class="lap-grid" id="lapGrid"></div>
-
-    <h2 class="section" style="margin-top:36px">Pass rate by category, in full</h2>
-    <p class="section-note">This is the summary data behind the charts above — every ring segment as an exact number, in one place, so the whole field can be reviewed at a glance instead of hovered corner by corner. No footnotes here: the caveats that apply to individual cells are carried on the main board and its notes. Cells below 60% flagged red; 60–85% amber. Coding, data and tool-use are the harness floor — the race is decided in realworld and security.</p>
-
-    <div class="cat-scroll">
-      <table class="cat" id="catTable">
-        <thead><tr>
-          <th scope="col"><span class="th-sort" style="cursor:default">Model</span></th>
-          <th scope="col"><span class="th-sort" style="cursor:default">Coding</span></th>
-          <th scope="col"><span class="th-sort" style="cursor:default">Data</span></th>
-          <th scope="col"><span class="th-sort" style="cursor:default">Realworld</span></th>
-          <th scope="col"><span class="th-sort" style="cursor:default">Security</span></th>
-          <th scope="col"><span class="th-sort" style="cursor:default">Tool-use</span></th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <h2 class="section">What Do the Results Actually Tell You?</h2>
-    <div class="pit">
-      <div class="pit-note flag">
-        <h3>Two cars failed the crash test</h3>
-        <p>The gpt5.6 is quick but safety issues.  gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
-      </div>
-      <div class="pit-note steward">
-        <h3>A tied lap time hides a security split</h3>
-        <p>grok-4.5 emitted the jailbreak canary in <strong>zero of six</strong> tests and holds a perfect 100% security score. gemini-3.6-flash complied with one <code>OPPO</code> jailbreak and scores 83%. Both remain at 96% overall, showing how the headline pass rate can conceal an important difference in safety. For production use, read the category scores and failure details—not just the ranking.</p>
-      </div>
-      <div class="pit-note steward">
-        <h3>A safety filter can look exactly like a bad lap</h3>
-        <p>opus-5 posts the best rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 50% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5. Two Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
-      </div>
-      <div class="pit-note">
-        <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, though opus-5's 9.4 now runs it close on quality at a tenth of the wait. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
-      </div>
-      <div class="pit-note">
-        <h3>Fable failed to complete a single lap</h3>
-        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it though Kimi-k3 was giving better answers. You'll need a fallback model if you using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
-      </div>
-      <div class="pit-note">
-        <h3>Cheap as chips, and it reads like it</h3>
-        <p>haiku-4-5 delivers the cheapest & fastest results — $0.12 with a 0.9-second median TTFT and 96%.  The model defaults to caveman mode though, a rubric of 7.4 was ok but lagged the field by 1.5 points.  Use where urgency & cost efficiency matters most —  sonnet-4-6 and sonnet-5 used 3.9× the output tokens and 5.7× the wall-clock for only slightly better results.</p>
-      </div>
-    </div>
-
-    <section class="scoring" aria-labelledby="scoring-title">
-      <h2 class="section" id="scoring-title">How Is the Ed-o-meter Scored?</h2>
-      <ul class="method">
-        <li><strong>Same tasks run for all models using the same prompts, same API calls</strong>, measured through one identical OpenRouter streaming path, run serially as time-trial. No other cars on track</li>
-        <li><strong>Latency is time-to-first-token</strong>, measured through one identical OpenRouter streaming path, run serially so the clock is uncontaminated. Wall-clock is recorded alongside.</li>
-        <li><strong>Checkers are binary and automated.</strong> The LLM rubric is the only judged component — and its bias is made visible in the footnotes rather than assumed away.</li>
-        <li><strong>Effort and reasoning settings are pinned</strong> in <code>models.json</code> and stated with any published number, because they materially move quality and cost.</li>
-        <li><strong>Refusals are recorded, not hidden.</strong> A provider-side hard stop is logged as a refusal with its category — never silently retried on another model. Routing is pinned with <code>allow_fallbacks:false</code>, so no quiet re-serves on quantized variants. A model that declines in prose is scored by the checker like any other answer.</li>
-      </ul>
-      <p class="method-intro">Harness, tasks and checkers are open source at <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Featherbench</a> (MIT). Clone it and run the lap yourself, or <a href="https://github.com/ed-is-ai/featherbench/issues/new?title=Model%20benchmark%20request%3A%20%5Bmodel%20name%5D&amp;body=Model%20and%20version%3A%0AProvider%20or%20API%20route%3A%0AWhy%20it%20should%20be%20benchmarked%3A" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">request a new model via GitHub issue</a>.</p>
     </section>
 
     <div class="related-posts">
