@@ -3,91 +3,864 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>AI Coding Tool Cost Estimator — Reinvently</title>
-  <meta name="description" content="Interactive cost estimator for GitHub Copilot, Claude Code, and Cursor. Model token-based billing, Opus planning costs, and Claude Code prompt caching to compare real monthly costs for your team."/>
+  <title>AI Coding Cost Calculator: Copilot, Claude, Cursor &amp; Codex</title>
+  <meta name="description" content="Estimate GitHub Copilot, Claude Code, Cursor, Codex and Google Antigravity costs by team size, codebase, usage and AI delivery model."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <style>
     .tool-full-width {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 48px;
+      padding: 40px 48px 28px;
     }
     .container { max-width: 1200px; }
-    .article-body { max-width: none; }
+    .article-header {
+      background:
+        radial-gradient(circle at 82% 20%, rgba(75, 144, 102, .11), transparent 28%),
+        linear-gradient(135deg, #171717 0%, #141816 100%);
+      overflow: hidden;
+      padding-left: max(48px, calc((100vw - 1104px) / 2));
+      padding-right: max(48px, calc((100vw - 1104px) / 2));
+      position: relative;
+    }
+    .article-header::after {
+      border: 1px solid rgba(115, 214, 155, .08);
+      border-radius: 50%;
+      content: "";
+      height: 320px;
+      position: absolute;
+      right: 7%;
+      top: -190px;
+      width: 320px;
+    }
+    .article-header > * { position: relative; z-index: 1; }
+    .article-header .summary {
+      border-left: 2px solid #537762;
+      padding-left: 18px;
+    }
+    .article-body {
+      max-width: 1104px;
+      padding-top: 24px;
+    }
+    .guide-card {
+      background: linear-gradient(145deg, #151715 0%, #111211 100%);
+      border: 1px solid #292f2b;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .18);
+      margin: 0 0 24px;
+      overflow: hidden;
+      padding: 34px 36px 36px;
+      position: relative;
+    }
+    .guide-card::before {
+      background: linear-gradient(90deg, #73d69b, rgba(115, 214, 155, 0));
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 190px;
+    }
+    .guide-card--start {
+      margin-bottom: 20px;
+      padding: 27px 30px 29px;
+    }
+    .guide-card--start .guide-choice {
+      min-height: 0;
+    }
+    .guide-jump-links {
+      align-items: center;
+      border-top: 1px solid #29302b;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 20px;
+      padding-top: 17px;
+    }
+    .guide-jump-label {
+      color: #6f7771;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+    .guide-jump-links a {
+      border-bottom: 1px solid rgba(131, 203, 160, .35);
+      color: #9fd7b4;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: .5px;
+      padding-bottom: 2px;
+    }
+    .guide-jump-links a:hover,
+    .guide-jump-links a:focus-visible {
+      border-color: #73d69b;
+      color: #c1ead1;
+      opacity: 1;
+      outline: none;
+    }
+    #operating-model-title,
+    #provider-pricing-title {
+      scroll-margin-top: 24px;
+    }
+    .guide-kicker {
+      color: #7ebd97;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .guide-card > h2 {
+      color: #f0f0f0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.25;
+      margin: 0 0 12px;
+    }
+    .guide-lede,
+    .article-body .guide-lede,
+    .guide-copy {
+      max-width: 760px;
+    }
+    .guide-lede,
+    .article-body .guide-lede {
+      color: #aeb5b0;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .guide-choice-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .guide-choice {
+      background: #0d0f0e;
+      border: 1px solid #262c28;
+      min-height: 168px;
+      padding: 22px 22px 20px;
+    }
+    .guide-choice-label {
+      color: #77a789;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      margin-bottom: 9px;
+      text-transform: uppercase;
+    }
+    .guide-choice h3 {
+      color: #f0f0f0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin: 0 0 9px;
+    }
+    .guide-choice p {
+      color: #a4aaa6;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .profile-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 22px 0 24px;
+    }
+    .profile-card {
+      background: #0d0f0e;
+      border: 1px solid #262b28;
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      padding: 20px;
+    }
+    .profile-number {
+      color: #557561;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      margin-bottom: 18px;
+    }
+    .article-body .profile-card h3 {
+      color: #f0f0f0;
+      font-size: 19px;
+      margin: 0 0 10px;
+    }
+    .article-body .profile-card p {
+      color: #949b96;
+      font-size: 13px;
+      line-height: 1.58;
+      margin: 0 0 18px;
+    }
+    .profile-metrics {
+      border-top: 1px solid #292d2a;
+      color: #8ecaa5;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      letter-spacing: .25px;
+      line-height: 1.7;
+      margin-top: auto;
+      padding-top: 13px;
+    }
+    .assumption-strip {
+      background: #172019;
+      border: 1px solid #293e31;
+      border-left: 3px solid #73d69b;
+      color: #b9c5bd;
+      margin: 24px 0;
+      padding: 17px 19px;
+    }
+    .assumption-strip strong {
+      color: #dce8df;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .article-body .assumption-strip p {
+      color: #aab7af;
+      font-size: 13px;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .token-scale {
+      border-top: 1px solid #282d29;
+      margin-top: 26px;
+      padding-top: 24px;
+    }
+    .article-body .token-scale h3 {
+      font-size: 20px;
+      margin: 0 0 7px;
+    }
+    .token-scale-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 18px 0;
+    }
+    .token-stat {
+      background: #0c0e0d;
+      border: 1px solid #252a27;
+      padding: 17px 18px;
+    }
+    .token-stat strong {
+      color: #8edbaa;
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 23px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .token-stat span {
+      color: #8f9691;
+      display: block;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .guide-facts {
+      display: grid;
+      gap: 1px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 22px 0;
+    }
+    .guide-fact {
+      background: #0d0f0e;
+      border: 1px solid #252a27;
+      padding: 17px;
+    }
+    .guide-fact span {
+      color: #6e8f7a;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      letter-spacing: 1.2px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .guide-fact strong {
+      color: #d6dad7;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.45;
+    }
+    .default-cost-snapshot {
+      border-top: 1px solid #282d29;
+      margin-top: 24px;
+      padding-top: 22px;
+    }
+    .article-body .default-cost-snapshot h3 {
+      color: #e6e9e7;
+      font-size: 20px;
+      margin: 0 0 5px;
+    }
+    .article-body .default-cost-snapshot > p {
+      color: #888f8a;
+      font-size: 12px;
+      margin: 0 0 15px;
+    }
+    .default-cost-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .article-body .default-cost-grid li {
+      background: #0d0f0e;
+      border: 1px solid #252a27;
+      margin: 0;
+      min-width: 0;
+      padding: 14px;
+    }
+    .default-cost-grid span {
+      color: #7d857f;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      letter-spacing: .65px;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .default-cost-grid strong {
+      color: #a9dfbd;
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .article-body .guide-links {
+      border-top: 1px solid #282d29;
+      color: #9fa7a1;
+      font-size: 13px;
+      margin-top: 22px;
+      padding-top: 18px;
+    }
+    .guide-card a,
+    .evidence-notes a {
+      border-bottom: 1px solid rgba(131, 203, 160, .35);
+      color: #83cba0;
+    }
+    .evidence-notes {
+      background: #0c0e0d;
+      border: 1px solid #242925;
+      color: #777;
+      font-size: 12px;
+      line-height: 1.65;
+      margin: 32px 0 42px;
+      padding: 26px 28px 24px;
+    }
+    .evidence-notes h2 {
+      color: #aaa;
+      font-family: Montserrat, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+    .evidence-notes p { margin: 0 0 12px; }
+    .evidence-notes ol {
+      display: grid;
+      gap: 6px 34px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 18px 0 0;
+      padding-left: 20px;
+    }
+    .evidence-notes li {
+      break-inside: avoid;
+      margin: 0 0 7px;
+      padding-right: 8px;
+    }
+    .cc-shell {
+      background: linear-gradient(155deg, #181918 0%, #141514 100%);
+      border: 1px solid #303530;
+      border-top: 2px solid #486a55;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .24);
+      color: #dedede;
+      font-family: Georgia, "Times New Roman", serif;
+      padding: 30px;
+    }
+    .cc-topline,
+    .cc-section-heading,
+    .cc-results-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .cc-topline h2 {
+      color: #f0f0f0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin: 4px 0 6px;
+    }
+    .cc-topline p,
+    .cc-section-heading p,
+    .cc-results-heading p {
+      color: #898989;
+      font-size: 13px;
+      margin: 0;
+    }
+    .cc-eyebrow,
+    .cc-label {
+      color: #909090;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .cc-reset {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      border-radius: 3px;
+      color: #aaa;
+      cursor: pointer;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 9px 14px;
+      text-transform: uppercase;
+    }
+    .cc-reset:hover,
+    .cc-reset:focus-visible {
+      border-color: #73d69b;
+      color: #73d69b;
+    }
+    .cc-mode {
+      background: #101010;
+      border: 1px solid #292929;
+      display: inline-flex;
+      margin: 24px 0 4px;
+      padding: 3px;
+    }
+    .cc-mode button {
+      background: transparent;
+      border: 0;
+      color: #777;
+      cursor: pointer;
+      font-family: Montserrat, sans-serif;
+      font-size: 11px;
+      padding: 9px 14px;
+    }
+    .cc-mode button.active {
+      background: #263d31;
+      color: #87e1aa;
+    }
+    .cc-section {
+      border-top: 1px solid #292929;
+      margin-top: 24px;
+      padding-top: 22px;
+    }
+    .cc-section-heading {
+      margin-bottom: 16px;
+    }
+    .cc-section-heading h3 {
+      color: #dedede;
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin: 0 0 4px;
+      text-transform: uppercase;
+    }
+    .cc-field-grid,
+    .cc-plan-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .cc-field-grid-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .cc-field-grid-three,
+    .cc-plan-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+    .cc-contract-fields {
+      border-top: 1px solid #303030;
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+      padding-top: 12px;
+    }
+    .cc-field input,
+    .cc-field select {
+      background: #101010;
+      border: 1px solid #343434;
+      border-radius: 2px;
+      box-sizing: border-box;
+      color: #e5e5e5;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      height: 42px;
+      padding: 8px 10px;
+      width: 100%;
+    }
+    .cc-field input:focus,
+    .cc-field select:focus,
+    .cc-mode button:focus-visible {
+      border-color: #73d69b;
+      outline: 2px solid rgba(115, 214, 155, .18);
+      outline-offset: 1px;
+    }
+    .cc-input-wrap {
+      display: flex;
+      position: relative;
+    }
+    .cc-input-wrap input:has(+ .cc-suffix) { padding-right: 68px; }
+    .cc-suffix {
+      color: #666;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      pointer-events: none;
+      position: absolute;
+      right: 10px;
+      top: 14px;
+      text-transform: uppercase;
+    }
+    .cc-note,
+    .cc-cell-note {
+      color: #676767;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      line-height: 1.45;
+    }
+    .cc-workload-adjustment {
+      background: #151b17;
+      border-left: 3px solid #73d69b;
+      color: #8c9a90;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      line-height: 1.55;
+      margin: 16px 0 0;
+      padding: 10px 12px;
+    }
+    .cc-workload-adjustment strong { color: #b9d7c4; }
+    .cc-results {
+      border-top: 1px solid #343434;
+      margin-top: 28px;
+      padding-top: 26px;
+    }
+    .cc-results-heading { align-items: flex-end; }
+    .cc-legend {
+      color: #747474;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+    .cc-chart {
+      background: #111;
+      border: 1px solid #252525;
+      margin: 18px 0;
+      padding: 10px;
+    }
+    .cc-chart svg {
+      display: block;
+      height: auto;
+      margin: 0 auto;
+      max-width: 720px;
+      width: 100%;
+    }
+    .cc-table-wrap {
+      overflow-x: clip;
+      width: 100%;
+    }
+    .cc-results-table,
+    .cc-rate-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .cc-results-table {
+      min-width: 0;
+      table-layout: fixed;
+    }
+    .cc-rate-table { min-width: 760px; }
+    .cc-results-table th,
+    .cc-results-table td {
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+    .cc-results-table th:nth-child(1) { width: 10%; }
+    .cc-results-table th:nth-child(2) { width: 10%; }
+    .cc-results-table th:nth-child(3) { width: 12%; }
+    .cc-results-table th:nth-child(4) { width: 11%; }
+    .cc-results-table th:nth-child(5) { width: 11%; }
+    .cc-results-table th:nth-child(6) { width: 32%; }
+    .cc-results-table th:nth-child(7) { width: 14%; }
+    .cc-results-table th,
+    .cc-rate-table th {
+      background: #101010;
+      color: #777;
+      font-family: Montserrat, sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 11px 12px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    .cc-results-table td,
+    .cc-rate-table td {
+      border-top: 1px solid #2b2b2b;
+      color: #bbb;
+      font-size: 12px;
+      padding: 13px 12px;
+      vertical-align: middle;
+    }
+    .cc-provider-link {
+      border-bottom: 1px solid color-mix(in srgb, var(--provider), transparent 55%);
+      color: var(--provider);
+      text-decoration: none;
+    }
+    .cc-tooltip {
+      display: inline-flex;
+      margin-left: 5px;
+      position: relative;
+      vertical-align: middle;
+      z-index: 20;
+    }
+    .cc-tooltip-trigger {
+      align-items: center;
+      background: transparent;
+      border: 1px solid #4a4a4a;
+      border-radius: 50%;
+      color: #8a8a8a;
+      cursor: help;
+      display: inline-flex;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9px;
+      font-style: italic;
+      height: 16px;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      width: 16px;
+    }
+    .cc-tooltip-trigger:hover,
+    .cc-tooltip-trigger:focus-visible {
+      border-color: #73d69b;
+      color: #9ddfb7;
+      outline: none;
+    }
+    .cc-tooltip-content {
+      background: #202421;
+      border: 1px solid #465049;
+      bottom: calc(100% + 8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+      color: #c7ccc9;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.55;
+      opacity: 0;
+      padding: 12px 14px;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      text-align: left;
+      text-transform: none;
+      transform: translateY(3px);
+      transition: opacity .12s ease, transform .12s ease;
+      visibility: hidden;
+      white-space: normal;
+      width: min(380px, 70vw);
+      z-index: 50;
+    }
+    .cc-tooltip-content strong {
+      color: #e3e7e4;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .cc-tooltip-formula {
+      border-top: 1px solid #3a413c;
+      color: #9ddfb7;
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 9px;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .cc-tooltip:hover .cc-tooltip-content,
+    .cc-tooltip:focus-within .cc-tooltip-content {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    .cc-total strong {
+      color: var(--provider);
+      display: block;
+      font-size: 16px;
+    }
+    .cc-total span {
+      color: #666;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      margin-top: 3px;
+      white-space: normal;
+    }
+    .cc-caveat {
+      color: #6f6f6f;
+      font-size: 11px;
+      line-height: 1.55;
+      margin: 14px 0 0;
+    }
+    .cc-assumptions {
+      border-top: 1px solid #2d2d2d;
+      margin-top: 24px;
+      padding-top: 18px;
+    }
+    .cc-assumptions summary {
+      color: #929292;
+      cursor: pointer;
+      font-family: Montserrat, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .cc-assumptions-body {
+      color: #858585;
+      font-size: 12px;
+      line-height: 1.55;
+      margin-top: 16px;
+    }
+    .cc-assumptions-body a { color: #9ddfb7; }
+    .cc-assumptions-body ul { margin-bottom: 0; }
+    .cc-rate-table td strong,
+    .cc-rate-table td span {
+      display: block;
+    }
+    .cc-rate-table td span {
+      color: #686868;
+      font-family: Montserrat, sans-serif;
+      font-size: 8px;
+      margin-top: 4px;
+    }
+    .cc-loading,
+    .cc-error {
+      background: #161616;
+      border: 1px solid #2d2d2d;
+      color: #999;
+      padding: 28px;
+    }
+    .cc-error strong,
+    .cc-error span { display: block; }
+    .cc-error strong { color: #e29b83; margin-bottom: 5px; }
+    .cost-formula {
+      background: #171d19;
+      border-left: 3px solid #73d69b;
+      color: #d8e8de;
+      display: block;
+      font-family: Montserrat, sans-serif;
+      font-size: 11px;
+      line-height: 1.6;
+      margin: 8px 0 18px;
+      padding: 10px 12px;
+    }
+    @media (max-width: 860px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-card { min-height: 0; }
+      .guide-facts { grid-template-columns: 1fr; }
+      .default-cost-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .evidence-notes ol { grid-template-columns: 1fr; }
+      .cc-field-grid-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cc-field-grid-three,
+      .cc-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cc-table-wrap { overflow-x: auto; }
+      .cc-tooltip-content {
+        bottom: 16px;
+        left: 16px;
+        position: fixed;
+        right: 16px;
+        width: auto;
+      }
+      .cc-results-table {
+        min-width: 900px;
+        table-layout: auto;
+      }
+      .cc-results-table th:nth-child(6),
+      .cc-results-table td:nth-child(6) {
+        min-width: 230px;
+      }
+    }
     @media (max-width: 640px) {
       .tool-full-width { padding: 24px 20px; }
+      .article-header {
+        padding: 42px 24px 36px;
+      }
+      .article-header .summary { padding-left: 14px; }
+      .article-body { padding-top: 16px; }
+      .guide-card,
+      .guide-card--start { padding: 27px 22px 28px; }
+      .guide-choice-grid,
+      .token-scale-grid { grid-template-columns: 1fr; }
+      .default-cost-grid { grid-template-columns: 1fr; }
+      .evidence-notes { padding: 23px 20px; }
+      .cc-shell { padding: 20px; }
+      .cc-topline,
+      .cc-results-heading { display: block; }
+      .cc-reset { margin-top: 14px; }
+      .cc-field-grid-four,
+      .cc-field-grid-three,
+      .cc-plan-grid { grid-template-columns: 1fr; }
+      .cc-legend { margin-top: 10px; }
+      .cc-mode { display: flex; }
+      .cc-mode button { flex: 1; }
     }
   </style>
   <link rel="canonical" href="https://reinvently.co.uk/tools/ai-cost-calculator/"/>
-  <meta property="og:title" content="AI Coding Tool Cost Estimator — Copilot vs Claude Code vs Cursor"/>
-  <meta property="og:description" content="Adjust team size, daily task volume, and Opus usage to compare real monthly costs for GitHub Copilot, Claude Code, and Cursor — based on June 2026 token pricing models."/>
+  <meta property="og:title" content="AI Coding Cost Calculator: Copilot, Claude, Cursor &amp; Codex"/>
+  <meta property="og:description" content="Estimate five AI coding tools by team size, codebase, usage and delivery model."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://reinvently.co.uk/tools/ai-cost-calculator/"/>
-  <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="AI Coding Tool Cost Estimator — Copilot vs Claude Code vs Cursor"/>
-  <meta name="twitter:description" content="Adjust team size, daily task volume, and Opus usage to compare real monthly costs for GitHub Copilot, Claude Code, and Cursor — based on June 2026 token pricing models."/>
-  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta name="twitter:title" content="AI Coding Cost Calculator: Copilot, Claude, Cursor &amp; Codex"/>
+  <meta name="twitter:description" content="Estimate five AI coding tools by team size, codebase, usage and delivery model."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "AI Coding Tool Cost Estimator",
-    "description": "Interactive calculator comparing monthly costs for GitHub Copilot, Claude Code, and Cursor. Models token-based billing by task tier, Opus planning usage, and Claude Code prompt caching for teams of any size.",
+    "name": "AI Coding Tool Cost Calculator",
+    "description": "Estimate GitHub Copilot, Claude Code, Cursor, Codex and Google Antigravity costs by team size, codebase, usage and AI delivery model.",
     "url": "https://reinvently.co.uk/tools/ai-cost-calculator/",
+    "image": "https://reinvently.co.uk/images/hero-dev-tools-comparison.jpg",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web",
     "browserRequirements": "Requires JavaScript",
     "isAccessibleForFree": true,
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "author": {
+      "@type": "Person",
+      "name": "Ed Yau",
+      "url": "https://reinvently.co.uk/about/",
+      "sameAs": "https://uk.linkedin.com/in/edmond-yau",
+      "jobTitle": "Applied AI Architect"
+    },
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
-    "datePublished": "2026-05-31",
-    "dateModified": "2026-05-31",
+    "datePublished": "2026-05-31T00:00:00+01:00",
+    "dateModified": "2026-07-31T00:00:00+01:00",
     "inLanguage": "en-GB",
-    "keywords": ["AI coding tool cost", "GitHub Copilot pricing", "Claude Code pricing", "Cursor pricing", "AI coding tool calculator", "token-based billing"]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does the calculator estimate costs for each tool?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The calculator divides tasks into five types — small bug fix, minor change, new feature, architectural refactor, and architecture planning (Opus) — each mapped to the most cost-effective model for that tool. Token consumption per task is estimated from typical context sizes at each level, scaled by codebase size. Costs are calculated from June 2026 published token rates: Copilot uses GPT-5 mini, GPT-4.1, Sonnet, and Opus at its preferential rate; Claude Code uses Haiku, Sonnet, and Opus at direct API rates with a prompt caching reduction; Cursor uses Auto mode for lighter tasks and Max mode for heavier ones."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much will Cursor cost me?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Cursor Teams costs $40 per user per month, but only $20 of that is included credits — the other $20 is a platform access fee. For a team of 10 engineers, that is a $400 monthly floor regardless of usage. Above $200 in token consumption, overages are billed at standard model rates. At medium agentic usage without Opus planning, expect around $400–500 per month. With regular Opus use for architecture and planning, costs can reach $800–2,000 per month for a team of 10, since Cursor pays the full Opus API rate of $15 per million input tokens."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much will GitHub Copilot cost me?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GitHub Copilot Enterprise costs $39 per user per month, which includes an equivalent amount in AI credits. For a team of 10, that is $390 per month base including $390 of credits. At light agentic usage the total stays at $390. At medium usage with a mix of GPT-4.1 and Sonnet, expect $370–660 per month. Copilot's biggest cost advantage is Opus: it currently offers Opus at $5 per million input tokens versus $15 direct — a Microsoft preferential rate at time of writing — making it materially cheaper than Claude Code or Cursor when leading models are used regularly."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much will Claude Code cost me?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Claude Code Enterprise pricing is for larger teams.  There is a headline seat price, then the rest is based on API consumption. At medium-heavy agentic usage, expect roughly $150 per developer per month. Claude Code makes aggressive use of prompt caching, which can help when working over the same areas of codebase repeatedly within a session. The estimator models this as a percentage reduction in input token costs, with a default value of 40% based on observed patterns. Teams that do a lot of iterative work in the same areas may see costs fall significantly below the estimator's baseline."
-        }
-      }
-    ]
+    "keywords": ["AI coding tool cost calculator", "GitHub Copilot pricing", "Claude Code pricing", "Cursor pricing", "Codex pricing", "Google Antigravity pricing", "AI coding budget"]
   }
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
@@ -101,54 +874,180 @@
     <a href="/">Home</a>
     <a href="/news/">News</a>
     <a href="/guides/">Guides</a>
+    <a href="/tools/">Tools</a>
     <a href="/about/">About</a>
+    <a href="/contact/">Subscribe</a>
   </div>
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding &nbsp;·&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
-  <h1>AI Coding Tool Cost Estimator</h1>
-  <p class="summary">Everyone's a bit worried about their token usage these days, as the all-you-can-eat allowances become less generous.  This tool helps to model the cost based on your team size, types of users, to see how GitHub Copilot, Claude Code, and Cursor compare on monthly cost — based on the June 2026 pricing models.</p>
+  <div class="post-meta">Tool &nbsp;·&nbsp; AI Coding &nbsp;·&nbsp; Updated 31 July 2026 &nbsp;·&nbsp; <a href="/about/">Ed Yau, Applied AI Architect</a></div>
+  <h1>AI Coding Tool Cost Calculator</h1>
+  <p class="summary">As AI coding tools converge in capability, cost is becoming a bigger factor in choosing between them. Compare the subscriptions, allowances and model usage behind GitHub Copilot, Claude Code, Cursor, Codex and Google Antigravity.</p>
 </header>
 
 <div class="tool-full-width">
-  <div id="calculator"></div>
+  <section class="guide-card guide-card--start" aria-labelledby="calculator-use-title">
+    <span class="guide-kicker">Start here</span>
+    <h2 id="calculator-use-title">How should you use this calculator?</h2>
+    <p class="guide-lede">Choose the mode that matches the evidence you have today. Both routes apply the same provider pricing and allowance rules.</p>
+
+    <div class="guide-choice-grid">
+      <div class="guide-choice">
+        <span class="guide-choice-label">Before or during a pilot</span>
+        <h3>Estimate activity</h3>
+        <p>Choose an assisted, spec-driven or agent-native operating model. Then adjust codebase size, typical change size, run volume, caching and model mix to produce low, base and high scenarios.</p>
+      </div>
+      <div class="guide-choice">
+        <span class="guide-choice-label">Once usage is measurable</span>
+        <h3>Use known usage</h3>
+        <p>Enter gross token volumes from a representative billing export and compare how the same workload interacts with each provider’s subscription floor and allowance.</p>
+      </div>
+    </div>
+    <nav class="guide-jump-links" aria-label="Calculator methodology">
+      <span class="guide-jump-label">Review the methodology</span>
+      <a href="#operating-model-title">Workload assumptions ↓</a>
+      <a href="#provider-pricing-title">Provider rules ↓</a>
+    </nav>
+  </section>
+
+  <div id="calculator">
+    <div class="cc-loading" role="status">Loading current pricing…</div>
+  </div>
 </div>
 
 <main class="container">
   <article class="article-body">
+    <section class="guide-card" aria-labelledby="operating-model-title">
+      <span class="guide-kicker">Workload assumptions</span>
+      <h2 id="operating-model-title">What do the operating-model profiles represent?</h2>
+      <p class="guide-lede">The presets increase context and generation as more responsibility moves to the agent. They are editable budgeting scenarios—not observed industry averages.</p>
 
-    <h2>How this model works</h2>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <span class="profile-number">01 · Human-led</span>
+          <h3>Assisted development</h3>
+          <p>Copilot-style suggestions and short chats. The developer implements and verifies the change.</p>
+          <span class="profile-metrics">12 interactions/day<br>12k input · 1.5k output/run<br>3.17M input/developer/month</span>
+        </div>
+        <div class="profile-card">
+          <span class="profile-number">02 · Delegated outcome</span>
+          <h3>Spec-driven execution</h3>
+          <p>An agent implements a defined outcome. A human reads, tests and approves the result.</p>
+          <span class="profile-metrics">8 runs/day<br>50k input · 5k output/run<br>8.8M input/developer/month</span>
+        </div>
+        <div class="profile-card">
+          <span class="profile-number">03 · Agent-led</span>
+          <h3>Agent-native delivery</h3>
+          <p>Agents build, test and perform initial review. Humans own intent, architecture and release.</p>
+          <span class="profile-metrics">12 runs/day<br>150k input · 15k output/run<br>39.6M input/developer/month</span>
+        </div>
+      </div>
 
-    <p>This estimator gives a quick approximation of what your tooling budget should be. Most teams have a mixture of different types of tasks, our calculator has been benchmarked against some real-world team usage averages.  Your mileage will vary, and I am not the one paying your token bills, so please calibrate this against your team usage patterns. Estimates based on publicly available pricing information; individual codebase and developer usage patterns will vary.</p>
+      <div class="guide-copy">
+        <p>Selecting a profile resets its editable activity fields and model mix. The neutral workload baseline is a 100,000–400,000-line repository and a 50–75-line pull request. Smaller repositories and narrow fixes reduce the estimate; larger repositories increase input, while broader changes increase both input and output.</p>
+      </div>
 
-    <ul>
-      <li><strong>Small bug fix</strong> (15k input / 1k output tokens) — quick edits, single-file fixes. Claude Code uses Haiku; Copilot uses GPT-5 mini; Cursor uses Auto mode.</li>
-      <li><strong>Minor change</strong> (35k / 3k) — multi-file edits, small refactors. Claude Code uses Sonnet; Copilot uses GPT-4.1; Cursor uses Auto mode.</li>
-      <li><strong>New feature</strong> (60k / 8k) — full feature implementation. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Architectural refactor</strong> (100k / 12k) — cross-cutting changes, system-level work. All three use Sonnet (or Max Sonnet for Cursor).</li>
-      <li><strong>Architecture (Opus)</strong> (120k / 15k) — design sessions, planning. Claude Code and Cursor pay full Opus API rates ($15/$75 per million tokens). Copilot's Opus rate is currently roughly one-third of that ($5/$25), reflecting a Microsoft preferential rate at time of writing.</li>
-    </ul>
+      <div class="assumption-strip">
+        <strong>Code-search assumption</strong>
+        <p>Every repository-size scenario assumes efficient native indexing or a graph-aware plugin such as <a href="https://graphify.com/" target="_blank" rel="noopener">Graphify</a>. This keeps large-repository adjustments to 1.1× and 1.2× rather than modelling repeated raw file reads and grep. Retrieved code still consumes input tokens, and the multipliers remain planning assumptions rather than pooled empirical averages.</p>
+      </div>
 
-    <p>Input token counts are scaled by codebase size. The baseline values above correspond to a 1M-line codebase — roughly an agentic session reading 20–40 files per task. Generally, input tokens scale up and down with the codebase size, since we need to read more to get sufficient context for a safe change. Output tokens do not scale with codebase size.</p>
+      <div class="token-scale">
+        <h3>What does the default 50k-token run represent?</h3>
+        <p class="guide-lede">Using OpenAI’s general rule of thumb of <a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener">about four characters per token</a>:</p>
+        <div class="token-scale-grid">
+          <div class="token-stat">
+            <strong>50,000 input tokens</strong>
+            <span>Approximately 200,000 characters, or roughly 2,500–5,000 lines if every character were source code.</span>
+          </div>
+          <div class="token-stat">
+            <strong>5,000 output tokens</strong>
+            <span>Approximately 20,000 characters, or roughly 250–500 lines under the same all-code assumption.</span>
+          </div>
+        </div>
+        <div class="guide-copy">
+          <p>These are upper-limit code equivalents, not expected patch sizes. Prompts, paths, documentation, tests, terminal output, explanations and repeated context all consume tokens. A 50,000-token context could represent around 25–50% of a 10,000-line service, 2.5–5% of a 100,000-line application, or 0.25–0.5% of a one-million-line repository.</p>
+          <p>The default ten-developer, spec-driven scenario represents 88 million input and 8.8 million output tokens each month. Its cache split is 35% reads, 10% writes and 55% uncached input. Replace these defaults with billing-export data as soon as a representative pilot is available.</p>
+        </div>
+      </div>
+    </section>
 
-    <p>These are estimates. Real costs depend on actual context sizes, session lengths, model routing decisions, and whether your team's usage stays within included credit pools. The model is intentionally transparent so you can adjust assumptions to match your team.</p>
+    <section class="guide-card" aria-labelledby="provider-pricing-title">
+      <span class="guide-kicker">Provider rules</span>
+      <h2 id="provider-pricing-title">How does the calculator handle different provider pricing?</h2>
+      <p class="guide-lede">Each result applies the provider’s subscription, published allowance and usage rules. Hover over—or keyboard-focus—the information marker in the table’s <strong>Calculation</strong> column for the full method and formula.</p>
 
-    <p>Cost should not be the only steer on tool choice.  For a full discussion of other factors affecting choice of tool <a href="/blog/github-copilot-vs-claude-code-vs-cursor/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">GitHub Copilot vs Claude Code vs Cursor</a>.</p>
+      <div class="guide-facts">
+        <div class="guide-fact">
+          <span>Unpublished allowances</span>
+          <strong>Shown as upper bounds or subscription floors—not free usage</strong>
+        </div>
+        <div class="guide-fact">
+          <span>Rates verified</span>
+          <strong>30 July 2026 against first-party pricing pages</strong>
+        </div>
+        <div class="guide-fact">
+          <span>Figures shown</span>
+          <strong>US dollars before tax; negotiated enterprise terms excluded</strong>
+        </div>
+      </div>
 
-    <a class="back-link" href="/blog/">&#8592; Blog</a>
+      <div class="default-cost-snapshot" aria-labelledby="default-cost-title">
+        <h3 id="default-cost-title">Default monthly cost snapshot</h3>
+        <p>Ten developers · spec-driven execution · medium codebase · typical 50–75-line change · balanced model mix</p>
+        <ul class="default-cost-grid">
+          <li data-default-provider="claude" data-default-total="418"><span>Claude Enterprise</span><strong>$418</strong></li>
+          <li data-default-provider="copilot" data-default-total="200"><span>Copilot Business</span><strong>$200</strong></li>
+          <li data-default-provider="cursor" data-default-total="400"><span>Cursor Teams</span><strong>$400</strong></li>
+          <li data-default-provider="codex" data-default-total="519"><span>Codex Business upper bound</span><strong>≤ $519</strong></li>
+          <li data-default-provider="antigravity" data-default-total="200"><span>Antigravity Pro floor</span><strong>≥ $200</strong></li>
+        </ul>
+      </div>
 
+      <p class="guide-copy">Sonnet 5 currently uses introductory pricing through 31 August 2026.</p>
+      <p class="guide-links">Cost is only one part of tool selection. See <a href="/blog/github-copilot-vs-claude-code-vs-cursor/">GitHub Copilot vs Claude Code vs Cursor</a> for a wider comparison, and <a href="/blog/ai-coding-productivity-evidence/">the systematic review of AI coding productivity</a> when constructing the corresponding business case.</p>
+    </section>
+
+    <section class="evidence-notes" aria-labelledby="workload-evidence-title">
+      <h2 id="workload-evidence-title">Evidence behind the planning assumptions</h2>
+      <p>The editable presets are evidence-calibrated planning scenarios, not observed industry averages. Token accounting also differs between tools and agent harnesses. The following original studies and first-party datasets establish the ranges used to interpret interaction size, delegated-task size, change size and repository-context overhead.</p>
+      <ol>
+        <li><a href="https://arxiv.org/abs/2604.22750" target="_blank" rel="noopener">Bai et al., <em>How Do AI Agents Spend Your Money?</em></a> — 1,190 tokens for code reasoning, 3,390 for code chat and 4.17 million for OpenHands agentic coding on average; repeated input context drove most agent consumption.</li>
+        <li><a href="https://doi.org/10.18653/v1/2025.findings-naacl.285" target="_blank" rel="noopener">Islam, Ali and Parvez, <em>CodeSIM</em>, NAACL Findings 2025</a> — direct prompting averaged 560 tokens, while structured planning, coding and debugging averaged 13,640 tokens and 9.3 model calls.</li>
+        <li><a href="https://arxiv.org/abs/2506.18824" target="_blank" rel="noopener">Bouzenia and Pradel, <em>Understanding Software Engineering Agents</em></a> — mean repository-task consumption ranged from 23,000 tokens for AutoCodeRover to 220,000 for RepairAgent and 1.2 million for OpenHands.</li>
+        <li><a href="https://www.anthropic.com/research/claude-code-expertise?level=0" target="_blank" rel="noopener">Anthropic, <em>Agentic coding and persistent returns to expertise</em></a> — first-party analysis of approximately 400,000 Claude Code sessions found about four human turns per typical session and roughly ten agent actions per prompt.</li>
+        <li><a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-in-the-enterprise-with-accenture/" target="_blank" rel="noopener">GitHub and Accenture, enterprise Copilot study</a> — developers reported using Copilot on 3.4 days per week on average; around 30% of suggestions were accepted.</li>
+        <li><a href="https://help.openai.com/en/articles/20001106-codex-rate-card" target="_blank" rel="noopener">OpenAI, Codex rate card</a> — first-party budgeting cross-check reporting average Codex spend of approximately $100–$200 per developer per month, with substantial variation by model, parallelism and automation.</li>
+        <li><a href="https://openreview.net/forum?id=aSfBbhUJAa" target="_blank" rel="noopener">Wang et al., <em>RepoMaster</em>, NeurIPS 2025</a> — graph-guided repository exploration reduced token usage by 95% on GitTaskBench relative to the evaluated baseline.</li>
+        <li><a href="https://arxiv.org/abs/2607.22711" target="_blank" rel="noopener">Zheng et al., <em>CORVUS</em></a> — synchronising repository context reduced average input tokens by 9–50% across two repository benchmarks.</li>
+        <li><a href="https://openreview.net/forum?id=VTF8yNQM66" target="_blank" rel="noopener">Jimenez et al., <em>SWE-bench</em>, ICLR 2024</a> — the median real-world issue changed one function and about 15 lines in a codebase of roughly 400,000 lines; the mean solution changed 32.8 lines across 1.7 files.</li>
+        <li><a href="https://leo-lihao.github.io/files/P9.pdf" target="_blank" rel="noopener">Watanabe et al., <em>On the Use of Agentic Coding</em></a> — matched agentic pull requests changed a median 55 lines across two files, compared with 32 lines across two files for matched human pull requests.</li>
+        <li><a href="https://getdx.com/blog/ai-authored-code-has-nearly-doubled/" target="_blank" rel="noopener">DX, telemetry from more than 400 organisations</a> — median pull-request size increased from 44 to 72 changed lines between July 2025 and June 2026; the observational result does not establish that AI caused the increase.</li>
+        <li><a href="https://arxiv.org/abs/2601.17581" target="_blank" rel="noopener">Ogenrwot and Businge, <em>How AI Coding Agents Modify Code</em>, MSR 2026</a> — analysis of 24,014 merged agentic pull requests found that agent changes were generally smaller and more localised than human contributions.</li>
+        <li><a href="https://arxiv.org/abs/2606.14066" target="_blank" rel="noopener">Zhang et al., <em>FastContext</em></a> — repository reading and searching consumed a large share of agent trajectories; delegated exploration reduced main-agent tokens by up to 60%.</li>
+        <li><a href="https://sourcegraph.com/blog/why-coding-agents-fail-large-codebases" target="_blank" rel="noopener">Sourcegraph, CodeScaleBench</a> — first-party results from 1,281 runs found local-only navigation struggled above roughly 400,000 lines and benefited most from indexed code intelligence between 400,000 and two million lines.</li>
+        <li><a href="https://arxiv.org/abs/2511.13998" target="_blank" rel="noopener">Qiu et al., <em>LoCoBench-Agent</em></a> — evaluates software-engineering agents across 10,000 to one million tokens of relevant context and finds a material trade-off between comprehension and exploration efficiency.</li>
+        <li><a href="https://cursor.com/blog/secure-codebase-indexing" target="_blank" rel="noopener">Cursor, <em>Securely indexing large codebases</em></a> — semantic indexing retrieves relevant code chunks, caches unchanged embeddings and reuses team indexes; Cursor reports higher response accuracy but does not publish a token-saving percentage.</li>
+        <li><a href="https://cursor.com/en-US/blog/aug-2025-pricing-teams" target="_blank" rel="noopener">Cursor, Teams pricing update</a> — model usage is charged at the underlying API rate plus $0.25 per million processed tokens, which covers code indexing, indexing models and tool execution.</li>
+        <li><a href="https://github.com/safishamsi/graphify" target="_blank" rel="noopener">Graphify, open-source repository and documentation</a> — builds a local code knowledge graph exposed through MCP to Claude Code, Cursor, Copilot, Codex, Gemini CLI and other assistants; no directly comparable token-reduction evaluation is published.</li>
+        <li><a href="https://arxiv.org/abs/2603.27277" target="_blank" rel="noopener">Codebase-Memory, repository-graph evaluation</a> — across 31 repositories, a Tree-sitter knowledge graph achieved 83% answer quality versus 92% for file exploration while using ten times fewer tokens and 2.1 times fewer tool calls.</li>
+      </ol>
+    </section>
+
+    <a class="back-link" href="/tools/">&#8592; All tools</a>
   </article>
 </main>
 
-
 <footer class="footer">
   <p>&copy; 2026 Reinvently. All rights reserved.</p>
-  <p style="margin-top:8px;font-size:12px;color:#555;">Reinvently writes about topics that inform engineering teams adopting AI tooling and modern development practices.</p>
+  <p style="margin-top:8px;font-size:12px;color:#555;">Independent AI research, benchmarks and practical tools for technology leaders.</p>
 </footer>
 
-<script src="dist/calculator.js"></script>
-<script>AICostCalculator.initCalculator("calculator");</script>
+<script type="module">
+  import { initCalculator } from "./src/calculator.js";
+  initCalculator("calculator");
+</script>
 
 </body>
 </html>
