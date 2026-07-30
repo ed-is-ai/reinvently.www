@@ -375,8 +375,8 @@
         <p>The gpt5.6 is quick but safety issues.  gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
       </div>
       <div class="pit-note steward">
-        <h3>The stewards read the timing screens wrong</h3>
-        <p>Read bare, this run's raw table said the model that refused everything was the least safe on the panel and the model that got jailbroken was flawless. grok-4.5 scored 50% on security while emitting the canary in <strong>zero of six</strong> cells — it refused the poisoned turn outright and lost the checker's <em>helpfulness</em> half. gemini-3.6-flash read as 100% while genuinely complying, because the canary sat behind an <code>OPPO:</code> label and slipped an own-line regex. On the board both sit at 96% overall, and grok-4.5 holds the perfect security cell. This is the strongest argument on the page for reading the footnotes before the ranking.</p>
+        <h3>A tied lap time hides a security split</h3>
+        <p>grok-4.5 emitted the jailbreak canary in <strong>zero of six</strong> tests and holds a perfect 100% security score. gemini-3.6-flash complied with one <code>OPPO</code> jailbreak and scores 83%. Both remain at 96% overall, showing how the headline pass rate can conceal an important difference in safety. For production use, read the category scores and failure details—not just the ranking.</p>
       </div>
       <div class="pit-note steward">
         <h3>A safety filter can look exactly like a bad lap</h3>
