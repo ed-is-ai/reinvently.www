@@ -367,7 +367,7 @@ def main() -> None:
         "appraisal_basis", "assessor", "assessment_date",
     ]
     with (OUT_DIR / "risk-of-bias-register.csv").open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({key: row[key] for key in fieldnames})
