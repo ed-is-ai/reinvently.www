@@ -13,6 +13,12 @@ inventing retrospective counts.
 - Database: OpenAlex title and abstract search.
 - Other-method stream: 115 documents assembled through agentic Google web
   retrieval, evidence extraction and citation chasing.
+- Publication-source breakdown of that 115-document stream: 40 arXiv-hosted
+  reports, 14 ACM publications identified through the `10.1145` DOI prefix,
+  and 61 other web, publisher or repository sources. arXiv and ACM are shown
+  separately because each supplied at least 10 documents; they are source
+  categories within the agentic retrieval stream, not separate database
+  searches.
 - The small number of 2022–2023 mechanism sources in the article are contextual
   citation-chasing sources, not part of the empirical database search.
 
@@ -48,7 +54,8 @@ repository record.
 - `search_openalex.py` — reproducible search, corpus extraction and deduplication.
 - `search-log.csv` — exact query strings, dates, fields and result counts.
 - `openalex-records.jsonl` — raw database snapshot.
-- `existing-corpus.csv` — documents extracted from the live article.
+- `existing-corpus.csv` — the locked 115-document corpus, including its
+  publication-source grouping.
 - `screening-register.csv` — master deduplicated record and decision register.
 - `screen_title_abstract.py` — archived AI-assisted title/abstract decisions.
 - `full-text-candidates.csv` — the 69 reports advanced to eligibility assessment.

@@ -5,6 +5,14 @@ retrieval-augmented generation process. Google web searches identified
 candidate sources; the reviewer retrieved and extracted relevant evidence;
 promising papers, reports and citations seeded follow-up searches.
 
+The 115 documents are also grouped by publication source. arXiv supplied 40
+documents and ACM supplied 14, identified through ACM's `10.1145` DOI prefix.
+The other 61 came from a long tail of publisher pages, institutional
+repositories and first-party research sites. arXiv and ACM are separated
+because each accounts for at least 10 documents. This is a breakdown of where
+the documents were hosted or published, not evidence that arXiv and ACM were
+searched independently of the agentic Google and citation-chasing process.
+
 The original verbatim Google query history was not retained. The list below is
 therefore a normalised record of the search concepts used, not an exact query
 log:

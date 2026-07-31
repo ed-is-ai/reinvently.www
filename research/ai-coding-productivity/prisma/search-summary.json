@@ -1,5 +1,10 @@
 {
   "existing_corpus_records": 115,
+  "agentic_retrieval_source_breakdown": {
+    "arXiv": 40,
+    "ACM": 14,
+    "Other web/publisher": 61
+  },
   "openalex_records_before_cross_source_deduplication": 1188,
   "master_records_after_cross_source_deduplication": 947,
   "pending_human_review": 0,

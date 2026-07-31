@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-07-30T00:37:33+01:00"/>
+  <meta property="article:modified_time" content="2026-07-31T08:43:51+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -31,8 +31,8 @@
     "headline":"How Much Does AI Improve Software Development Productivity?",
     "description":"A systematic review of 99 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-07-30T00:37:33+01:00",
-    "version":"1.19",
+    "dateModified":"2026-07-31T08:43:51+01:00",
+    "version":"1.20",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
     "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk"},
@@ -129,7 +129,7 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.19</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-30T00:37:33+01:00">30 July 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.20</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-31T08:43:51+01:00">31 July 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
@@ -245,17 +245,18 @@
   <p>Risk of bias was not an automatic exclusion criterion. Observational studies, organisational cases and benchmarks can show real-world associations, possibilities and failure modes even when they cannot isolate AI as the cause. They were retained but given less weight in causal and planning conclusions.</p>
 
   <h4 id="prisma-flow">1. Which records passed PRISMA eligibility screening?</h4>
-  <p>We used two retrieval streams. First, an agentic retrieval-augmented generation (RAG) process used Google web searches to find candidate sources, extract relevant evidence and follow citations to related primary research. This produced the initial 115-document corpus. Second, 14 structured OpenAlex searches tested and expanded that corpus. We archived the search, screening decisions and exclusion reasons using the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 updated-review structure</a>. One AI-assisted reviewer screened the records against the eligibility rules; the screening was not independently duplicated.</p>
+  <p>We used two retrieval streams. First, an agentic retrieval-augmented generation (RAG) process used Google web searches to find candidate sources, extract relevant evidence and follow citations to related primary research. This produced the initial 115-document corpus: 40 arXiv-hosted reports, 14 ACM publications and 61 other web, publisher or repository sources. arXiv and ACM are shown separately because each supplied at least 10 documents; they are publication-source categories within the agentic retrieval stream, not separate database searches. Second, 14 structured OpenAlex searches tested and expanded that corpus. We archived the search, screening decisions and exclusion reasons using the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 updated-review structure</a>. One AI-assisted reviewer screened the records against the eligibility rules; the screening was not independently duplicated.</p>
   <details>
     <summary>Show the search terms</summary>
     <p><strong>Agentic Google searches, normalised by topic:</strong> AI coding productivity; AI coding assistant productivity study; GitHub Copilot productivity study; AI-assisted software development productivity; coding agent productivity; agentic coding productivity; spec-driven development; AI coding release output; deployment velocity; software delivery lead time; AI code review productivity; AI-generated code quality; AI-generated code bugs; AI-generated code maintainability; AI-generated code security vulnerabilities; AI coding greenfield brownfield; AI coding developer experience seniority; AI coding programming languages static typing; Stack Overflow AI developer survey; and first-party research from Google, Microsoft, GitHub, Anthropic, Meta and AWS.</p>
+    <p><strong>Publication sources within the initial corpus:</strong> arXiv, 40 documents; ACM, 14 documents; all other sources, 61 documents. ACM publications were identified by the <code>10.1145</code> DOI prefix. No other individual publication source supplied at least 10 documents.</p>
     <p><strong>Exact OpenAlex queries:</strong> AI coding assistant; AI code assistant; AI-assisted programming; AI-assisted software development; generative AI software development; coding agent; agentic coding; agentic code review; GitHub Copilot productivity; software development productivity AI; AI code review; AI generated code maintainability; AI generated code security; and spec-driven development.</p>
     <p>The earlier verbatim Google query history was not retained, so the first list records the normalised concepts rather than claiming an exact query log. The <a href="/research/ai-coding-productivity/prisma/search-log.csv">OpenAlex query log</a> is exact.</p>
   </details>
   <figure class="article-diagram">
   <svg viewBox="0 0 760 690" role="img" aria-labelledby="prisma-title prisma-desc">
     <title id="prisma-title">PRISMA-style flow of records through the updated review</title>
-    <desc id="prisma-desc">Fourteen OpenAlex searches returned 1,463 records and 832 new records remained after deduplication. Sixty-nine reports were assessed and 39 new documents were included. The separate 115-document agentic web retrieval corpus flows directly into the final 154-document corpus, where it joins the included OpenAlex reports.</desc>
+    <desc id="prisma-desc">Fourteen OpenAlex searches returned 1,463 records and 832 new records remained after deduplication. Sixty-nine reports were assessed and 39 new documents were included. The separate 115-document agentic web retrieval corpus contains 40 arXiv reports, 14 ACM publications and 61 documents from other sources. It flows directly into the final 154-document corpus, where it joins the included OpenAlex reports.</desc>
     <rect width="760" height="690" fill="#fff"/>
     <text x="38" y="42" fill="#24282b" font-family="Arial,sans-serif" font-size="24" font-weight="700">Updated search and selection flow</text>
     <g font-family="Arial,sans-serif">
@@ -263,9 +264,22 @@
       <text x="180" y="101" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">OpenAlex records identified</text>
       <text x="180" y="125" text-anchor="middle" fill="#4f5b62" font-size="13">14 queries; n = 1,463</text>
 
-      <rect x="415" y="75" width="290" height="74" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
-      <text x="560" y="101" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Agentic web retrieval (RAG)</text>
-      <text x="560" y="125" text-anchor="middle" fill="#4f5b62" font-size="13">Google search + citation chasing; n = 115</text>
+      <rect x="415" y="75" width="290" height="58" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
+      <text x="560" y="98" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Agentic web retrieval (RAG)</text>
+      <text x="560" y="119" text-anchor="middle" fill="#4f5b62" font-size="12">Google search + citation chasing; n = 115</text>
+
+      <rect x="415" y="155" width="88" height="64" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
+      <text x="459" y="181" text-anchor="middle" fill="#263238" font-size="13" font-weight="700">arXiv</text>
+      <text x="459" y="202" text-anchor="middle" fill="#4f5b62" font-size="12">n = 40</text>
+
+      <rect x="516" y="155" width="88" height="64" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
+      <text x="560" y="181" text-anchor="middle" fill="#263238" font-size="13" font-weight="700">ACM</text>
+      <text x="560" y="202" text-anchor="middle" fill="#4f5b62" font-size="12">n = 14</text>
+
+      <rect x="617" y="155" width="88" height="64" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
+      <text x="661" y="178" text-anchor="middle" fill="#263238" font-size="12" font-weight="700">Other</text>
+      <text x="661" y="194" text-anchor="middle" fill="#263238" font-size="12" font-weight="700">sources</text>
+      <text x="661" y="211" text-anchor="middle" fill="#4f5b62" font-size="11">n = 61</text>
 
       <rect x="35" y="185" width="290" height="84" rx="5" fill="#eef7f1" stroke="#4aaa76"/>
       <text x="180" y="211" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Deduplicated OpenAlex records</text>
@@ -304,11 +318,16 @@
         <path d="M180 379 V415"/>
         <path d="M325 452 H415"/>
         <path d="M180 489 V550 H370 V570"/>
-        <path d="M560 149 V170 H725 V550 H550 V570"/>
+        <path d="M560 133 V145 H459 V155"/>
+        <path d="M560 145 V155"/>
+        <path d="M560 145 H661 V155"/>
+        <path d="M459 219 V235 H725 V550 H550 V570"/>
+        <path d="M560 219 V235"/>
+        <path d="M661 219 V235"/>
       </g>
     </g>
   </svg>
-  <figcaption>Search update run on 29 July 2026. The 115-document agentic RAG corpus was retained as a separate stream until final inclusion. Of 69 OpenAlex reports assessed, 39 were added, one replaced an earlier version, 27 were ineligible and two were duplicates.</figcaption>
+  <figcaption>Search update run on 29 July 2026. The 115-document agentic RAG corpus was retained as a separate stream until final inclusion. Its publication sources are split where one source supplied at least 10 documents: arXiv supplied 40 and ACM supplied 14; the remaining 61 came from other web, publisher and repository sources. Of 69 OpenAlex reports assessed, 39 were added, one replaced an earlier version, 27 were ineligible and two were duplicates.</figcaption>
   </figure>
 
   <h4 id="risk-of-bias">2. What did the risk-of-bias assessment find?</h4>

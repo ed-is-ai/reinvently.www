@@ -143,6 +143,16 @@ def normalise_doi(value: str) -> str:
     return value
 
 
+def agentic_source_group(url: str) -> str:
+    """Group publication sources represented at least 10 times in the locked corpus."""
+    normalised = url.lower()
+    if "arxiv.org/" in normalised:
+        return "arXiv"
+    if "doi.org/10.1145/" in normalised or "dl.acm.org/" in normalised:
+        return "ACM"
+    return "Other web/publisher"
+
+
 def abstract_from_index(index: dict[str, list[int]] | None) -> str:
     if not index:
         return ""
@@ -238,10 +248,30 @@ def extract_existing_corpus() -> list[dict[str, str]]:
     counts = defaultdict(int)
     for record in parser.records:
         counts[record["existing_category"]] += 1
-    expected = {"empirical": 59, "secondary_synthesis": 2, "contextual": 55}
+    expected = {"empirical": 59, "secondary_synthesis": 2, "contextual": 54}
     if dict(counts) != expected:
         raise RuntimeError(f"Unexpected corpus counts: {dict(counts)}; expected {expected}")
+    for record in parser.records:
+        record["source_group"] = agentic_source_group(record["url"])
     return parser.records
+
+
+def load_existing_corpus() -> list[dict[str, str]]:
+    """Load the locked 115-document snapshot rather than the subsequently expanded article."""
+    snapshot = OUTPUT_DIR / "existing-corpus.csv"
+    if not snapshot.exists():
+        return extract_existing_corpus()
+
+    with snapshot.open(encoding="utf-8", newline="") as handle:
+        records = list(csv.DictReader(handle))
+    counts = defaultdict(int)
+    for record in records:
+        counts[record["existing_category"]] += 1
+        record["source_group"] = agentic_source_group(record["url"])
+    expected = {"empirical": 59, "secondary_synthesis": 2, "contextual": 54}
+    if dict(counts) != expected:
+        raise RuntimeError(f"Unexpected snapshot counts: {dict(counts)}; expected {expected}")
+    return records
 
 
 def openalex_url(phrase: str, cursor: str) -> str:
@@ -474,14 +504,14 @@ def merge_records(existing: list[dict[str, str]], works: list[dict]) -> list[dic
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    existing = extract_existing_corpus()
+    existing = load_existing_corpus()
     works, search_log = run_searches()
     master = merge_records(existing, works)
 
     write_csv(
         OUTPUT_DIR / "existing-corpus.csv",
         existing,
-        ["existing_category", "study_id", "title", "url"],
+        ["existing_category", "study_id", "title", "url", "source_group"],
     )
     write_csv(
         OUTPUT_DIR / "search-log.csv",
@@ -525,6 +555,10 @@ def main() -> None:
 
     summary = {
         "existing_corpus_records": len(existing),
+        "agentic_retrieval_source_breakdown": {
+            group: sum(record["source_group"] == group for record in existing)
+            for group in ("arXiv", "ACM", "Other web/publisher")
+        },
         "openalex_records_before_cross_source_deduplication": len(works),
         "master_records_after_cross_source_deduplication": len(master),
         "pending_human_review": sum(row["human_decision"] == "pending" for row in master),
