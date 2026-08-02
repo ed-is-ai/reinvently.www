@@ -34,7 +34,12 @@ jobs:
           # reviewdog needs the base commit to work out which lines changed.
           fetch-depth: 0
 
+      # reviewdog exits 1 whenever it finds a result in the diff, and its
+      # fail_on_error input does not change that. Without continue-on-error the
+      # annotations would land and the check would still go red, which is the
+      # one thing this job must not do.
       - name: Review prose
+        continue-on-error: true
         uses: errata-ai/vale-action@v2.1.2
         with:
           version: 3.17.0
