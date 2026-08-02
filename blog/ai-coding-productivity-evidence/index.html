@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-08-02T18:38:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T18:41:00+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -31,8 +31,8 @@
     "headline":"How Much Does AI Improve Software Development Productivity?",
     "description":"A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-08-02T18:38:00+01:00",
-    "version":"1.25",
+    "dateModified":"2026-08-02T18:41:00+01:00",
+    "version":"1.26",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
     "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk"},
@@ -95,7 +95,7 @@
     details summary{cursor:pointer;color:#ddd}
     .method-details{margin:34px 0 44px;border-top:2px solid #55b980}
     .method-details>summary{padding:4px 0;color:#fff;font-size:22px;font-weight:700}
-    .method-details>summary h2{display:inline;margin:0;font:inherit}
+    .method-details>summary h3{display:inline;margin:0;font:inherit}
     .method-details[open]>summary{margin-bottom:28px}
     .extended-evidence{margin:24px 0 30px}
     .extended-evidence>summary{font-weight:700}
@@ -135,12 +135,20 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.25</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-08-02T18:38:00+01:00">2 August 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.26</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-08-02T18:41:00+01:00">2 August 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
     <p class="article-toc-title">Contents</p>
     <ul>
+      <li>
+        <a class="article-toc-section" href="#methodology">Methodology</a>
+        <ul>
+          <li><a href="#method-screening">PRISMA screening</a></li>
+          <li><a href="#method-appraisal">Risk-of-bias appraisal</a></li>
+          <li><a href="#method-synthesis">Evidence synthesis</a></li>
+        </ul>
+      </li>
       <li>
         <a class="article-toc-section" href="#results">How gains vary by automation</a>
         <ul>
@@ -172,7 +180,6 @@
         <span class="article-toc-section">Using the evidence</span>
         <ul>
           <li><a href="#future-measurement">Planning and measurement</a></li>
-          <li><a href="#review-method">Method and evidence quality</a></li>
           <li><a href="#limitations">Limitations</a></li>
           <li><a href="#conclusion">What the evidence supports</a></li>
         </ul>
@@ -204,8 +211,21 @@
   </ol>
   <p>Controlled assistant studies generally report approximately 20–30% coding-stage gains, although the range includes a 19% slowdown. The strongest delivery study observed only <strong>10–30% higher release output</strong> across successive tool generations. The review therefore uses <strong>1.2×</strong> as an observational release-planning case. The larger <strong>2×</strong> spec-driven and <strong>4.5×</strong> agent-native scenarios concern narrower implementation workflows and carry less evidence weight. Faster generation produces business value only when verification, review and deployment scale with it. Productivity should therefore be measured as reliable software delivered to production, not as code volume.</p>
 
+  <section aria-labelledby="methodology">
+  <h2 id="methodology">Methodology</h2>
+  <p>We searched for evidence published from <strong>1 January 2022 to 31 July 2026</strong> using three complementary routes: agentic web retrieval and citation chasing, 14 structured OpenAlex searches and direct searches of 15 software-engineering journals. Sources were then screened, appraised and synthesised in three distinct stages.</p>
+
+  <h3 id="method-screening">How did PRISMA screening determine inclusion?</h3>
+  <p>We used the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 structure</a> to record identification, deduplication, title-and-abstract screening, full-report assessment and exclusion reasons. The eligibility rules determined whether a source entered the review; PRISMA documented those decisions and counts. It did not grade the credibility of an included study. One AI-assisted reviewer performed the screening, without independent duplicate review. The complete counts and flow are shown in the <a href="#prisma-flow">PRISMA screening results</a>.</p>
+
+  <h3 id="method-appraisal">How did risk of bias affect the conclusions?</h3>
+  <p>After inclusion, every empirical study received a formal risk-of-bias assessment appropriate to its design: <a href="https://methods.cochrane.org/bias/resources/rob-2-revised-cochrane-risk-bias-tool-randomized-trials">RoB 2</a> for randomised trials, <a href="https://www.riskofbias.info/welcome/robins-i-v2">ROBINS-I V2</a> for non-randomised interventions and <a href="https://jbi.global/critical-appraisal-tools">JBI tools</a> for other designs. Risk of bias was not an automatic exclusion rule. Instead, it reduced the weight placed on studies whose results could also be explained by non-random adoption, team differences, historical baselines or concurrent workflow changes. This is why controlled assistant findings support firmer conclusions than the larger agent-native cases. The design-level judgements are reported in the <a href="#risk-of-bias">risk-of-bias results</a>.</p>
+
+  <h3 id="method-synthesis">How was the evidence synthesised?</h3>
+  <p>Risk of bias was combined with outcome directness, precision and relevance to assign each study an evidence-weight grade. Because the studies measured incompatible outcomes and workflows, we did not calculate a pooled meta-analytic effect. Findings were grouped by degree of automation and delivery stage, and ratios were calculated only when the source comparison allowed it. A sensitivity analysis then removed results at serious or high risk of bias to test which conclusions remained. This preserved the approximate 20–30% bounded-assistant finding, but not a precise causal release multiplier or 4.5× agent-native effect.</p>
+
   <details class="method-details" id="review-method">
-  <summary><h2>How was the review conducted?</h2></summary>
+  <summary><h3>Detailed methods, screening and appraisal results</h3></summary>
 
   <h3 id="review-scope">What question and period did the review cover?</h3>
   <p>This systematic review asked: <em>how does measured software-development productivity change as AI use progresses from prompt assistance to specified delegation and agent-native delivery?</em></p>
@@ -229,16 +249,6 @@
       </li>
     </ul>
   </div>
-
-  <h3 id="review-pipeline">How were sources selected, appraised and weighted?</h3>
-  <p>The review used four consecutive stages. <strong>PRISMA screening</strong> determined which sources were eligible. <strong>Risk-of-bias assessment</strong> tested the internal validity of each included empirical result. <strong>Evidence weighting</strong> combined that judgement with directness, precision and relevance. Finally, a <strong>sensitivity analysis</strong> tested whether the main conclusions survived when weaker evidence was removed.</p>
-  <ol>
-    <li><strong>Eligibility:</strong> search results were screened against the inclusion rules.</li>
-    <li><strong>Risk of bias:</strong> included empirical results were assessed using a design-appropriate instrument.</li>
-    <li><strong>Evidence weight:</strong> studies were graded for their usefulness in answering the review question.</li>
-    <li><strong>Sensitivity:</strong> conclusions were retested without results at serious or high risk of bias.</li>
-  </ol>
-  <p>Risk of bias was not an automatic exclusion criterion. Observational studies, organisational cases and benchmarks can show real-world associations, possibilities and failure modes even when they cannot isolate AI as the cause. They were retained but given less weight in causal and planning conclusions.</p>
 
   <h4 id="prisma-flow">1. Which records passed PRISMA eligibility screening?</h4>
   <p>We used three retrieval streams. Google searches and citation chasing produced a 115-document agentic-web corpus. Fourteen structured OpenAlex searches then tested and expanded it. Finally, direct Crossref searches enumerated publications from 15 named software-engineering journals. Retrieval route and publication type were recorded separately: a journal article first found through the agentic search remains in that stream, while the later journal match is recorded as a duplicate. We archived search results, deduplication, screening decisions and exclusion reasons using the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 updated-review structure</a>. One AI-assisted reviewer screened the records; screening was not independently duplicated.</p>
@@ -375,6 +385,7 @@
   <h4 id="sensitivity-analysis">4. What survived the sensitivity analysis?</h4>
   <div class="evidence-callout"><p>Removing results with serious or high risk of bias still leaves bounded assistant studies pointing to gains of roughly <strong>20–30%</strong>. It leaves insufficient evidence for a precise release multiplier or a causal <strong>4.5×</strong> agent-native gain. The <strong>1.2×</strong> and <strong>4.5×</strong> figures are therefore planning scenarios, not expected effects.</p></div>
   </details>
+  </section>
 
   <h2 id="results">How do reported gains vary by degree of automation?</h2>
   <p>The findings are grouped by the three operating models defined in the abstract, each representing a different degree of automation. A separate downstream-conversion section then tests how gains in coding activity survive into releases and actual use.</p>
