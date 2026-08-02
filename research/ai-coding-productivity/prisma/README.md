@@ -12,21 +12,20 @@ inventing retrospective counts.
 - Search runs: OpenAlex on 29 July 2026; direct journal search on 31 July 2026.
 - Databases: OpenAlex title and abstract search; Crossref enumeration of 15
   software-engineering journals by ISSN.
-- Initial working corpus: 115 documents assembled through agentic Google web
+- Other-method stream: 115 documents assembled through agentic Google web
   retrieval, evidence extraction and citation chasing.
-- Source attribution within that working corpus: 108 agentic-web documents and
-  7 publications reassigned to the selected direct-journal stream.
-- Publication-source breakdown of the 108-document agentic stream: 40
-  arXiv-hosted reports, 12 ACM sources outside the selected journal set and 56
-  other web, publisher or repository sources.
+- Publication-host breakdown of the 115-document agentic stream: 40
+  arXiv-hosted reports, 14 ACM Digital Library or ACM DOI records and 61 other
+  web, publisher or repository sources. These are host or publisher categories,
+  not separate search streams; the ACM group includes journals and conference
+  proceedings.
 - The small number of 2022–2023 mechanism sources in the article are contextual
   citation-chasing sources, not part of the empirical database search.
 
 ## Completed flow
 
 - 115 documents were retained from the initial article: 59 empirical studies,
-  2 secondary syntheses and 54 contextual documents. Their retrieval
-  attribution is 108 agentic-web documents and 7 direct-journal publications.
+  2 secondary syntheses and 54 contextual documents.
 - Fourteen archived OpenAlex queries returned 1,463 records and 1,188 remained
   after cross-query deduplication by OpenAlex identifier.
 - DOI and normalised-title deduplication, followed by merging with the existing
@@ -40,13 +39,11 @@ inventing retrospective counts.
   ineligible and two were duplicate reports.
 - The direct journal search enumerated 10,995 records. A broad topical marker
   screen retained 658 candidates, 10 of which duplicated the included corpus.
-  Seven of those ten matches came from the initial working corpus and were
-  reassigned from agentic-web retrieval to their named journal sources; the
-  other three retained their OpenAlex attribution. Of the 648 records screened,
-  643 were new and 5 overlapped the earlier OpenAlex screen. Those five were
-  reassessed from richer publisher records rather than counted as new
-  identifications. In total, 618 were excluded at title/abstract stage and 30
-  reports were assessed.
+  The original retrieval route was retained for those existing records. Of the
+  648 records screened, 643 were new and 5 overlapped the earlier OpenAlex
+  screen. Those five were reassessed from richer publisher records rather than
+  counted as new identifications. In total, 618 were excluded at title/abstract
+  stage and 30 reports were assessed.
 - The journal assessment added 17 primary adjacent-outcome studies, 2
   secondary syntheses and 8 contextual documents. One existing synthesis was
   replaced by its peer-reviewed journal version and 2 reports were excluded
@@ -70,8 +67,6 @@ repository record.
 - `openalex-records.jsonl` — raw database snapshot.
 - `existing-corpus.csv` — the locked 115-document corpus, including its
   publication-source grouping.
-- `journal-attributed-existing-corpus.csv` — the seven working-corpus
-  publications reassigned from agentic web retrieval to named journal sources.
 - `screening-register.csv` — master deduplicated record and decision register.
 - `screen_title_abstract.py` — archived AI-assisted title/abstract decisions.
 - `full-text-candidates.csv` — the 69 reports advanced to eligibility assessment.
@@ -98,6 +93,6 @@ Run `search_openalex.py`, `screen_title_abstract.py` and `assess_reports.py`
 for the OpenAlex stream. Run `search_journals.py` and `screen_journals.py` for
 the journal stream. Both indexes are live, so rerunning either search can
 change identification counts. The committed JSONL and CSV files preserve the
-snapshots used in article version 1.22. Use
+snapshots used in article version 1.23. Use
 `search_journals.py --reuse-snapshot` to rebuild the journal candidate
 register without querying Crossref again.

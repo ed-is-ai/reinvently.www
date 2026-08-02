@@ -1,8 +1,0 @@
-study_id,existing_category,title,url,journal,venue_id
-ST-08,empirical,"More Code, Less Understanding? On the Impact of AI Assistants on Developers’ Productivity and Code Ownership",https://doi.org/10.1109/TSE.2026.3679627,IEEE Transactions on Software Engineering,J02
-ST-27,empirical,Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability,https://doi.org/10.1007/s10664-026-10889-1,Empirical Software Engineering,J01
-,contextual,An Empirical Evaluation of LLMs for Automated Unit Test Generation,https://doi.org/10.1109/TSE.2023.3334955,IEEE Transactions on Software Engineering,J02
-,contextual,Assessing and Analyzing the Correctness of GitHub Copilot’s Code Suggestions,https://doi.org/10.1145/3715108,ACM Transactions on Software Engineering and Methodology,J03
-,contextual,Developers and Generative AI: A Study of Self-admitted Usage in Open Source Projects,https://doi.org/10.1007/s10664-024-10478-0,Empirical Software Engineering,J01
-,contextual,PatchTrack: A Comprehensive Analysis of ChatGPT’s Influence on Pull-request Outcomes,https://doi.org/10.1007/s10664-026-10869-5,Empirical Software Engineering,J01
-,contextual,Security Weaknesses of Copilot-Generated Code in GitHub Projects,https://doi.org/10.1145/3716848,ACM Transactions on Software Engineering and Methodology,J03

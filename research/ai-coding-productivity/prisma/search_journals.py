@@ -382,12 +382,6 @@ def main() -> None:
             "abstract",
         ],
     )
-    with (HERE / "journal-attributed-existing-corpus.csv").open(
-        encoding="utf-8",
-        newline="",
-    ) as handle:
-        reattributed_count = sum(1 for _ in csv.DictReader(handle))
-
     summary = {
         "search_date": SEARCH_DATE,
         "journals_enumerated": len(JOURNALS),
@@ -408,7 +402,6 @@ def main() -> None:
             not row["dedupe_status"].startswith("duplicate_included")
             for row in rows
         ),
-        "initial_agentic_records_reassigned_to_journals": reattributed_count,
     }
     (HERE / "journal-search-summary.json").write_text(
         json.dumps(summary, indent=2) + "\n",

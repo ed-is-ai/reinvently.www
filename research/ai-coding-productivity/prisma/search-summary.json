@@ -2,8 +2,8 @@
   "existing_corpus_records": 115,
   "agentic_retrieval_source_breakdown": {
     "arXiv": 40,
-    "ACM excluding reassigned journal records": 12,
-    "Other web/publisher excluding reassigned journal records": 56
+    "ACM": 14,
+    "Other web/publisher": 61
   },
   "openalex_records_before_cross_source_deduplication": 1188,
   "master_records_after_cross_source_deduplication": 947,
@@ -39,25 +39,18 @@
     "prior_openalex_records_reassessed": 5,
     "new_records_for_screening": 643,
     "records_screened_or_reassessed": 648,
-    "initial_agentic_records_reassigned_to_journals": 7,
     "title_abstract_exclusions": 618,
     "reports_assessed": 30,
     "included_new_empirical_studies": 17,
     "included_new_secondary_syntheses": 2,
     "included_new_contextual_documents": 8,
     "replacement_reports": 1,
-    "full_text_exclusions": 2,
-    "new_source_documents_added": 27,
-    "journal_attributed_documents_in_final_corpus": 34
+    "full_text_exclusions": 2
   },
   "total_new_source_documents_included": 66,
   "updated_evidence_weight": {
     "high": 12,
     "moderate": 77,
     "low": 27
-  },
-  "initial_corpus_retrieval_attribution": {
-    "agentic_web_retrieval": 108,
-    "direct_journal_search": 7
   }
 }

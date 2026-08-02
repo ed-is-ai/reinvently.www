@@ -3,7 +3,7 @@
   <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-02T17:05:24+01:00</updated>
+  <updated>2026-08-02T17:51:14+01:00</updated>
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
   <entry>
@@ -11,7 +11,7 @@
     <link href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
     <id>https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</id>
     <published>2026-07-28T23:31:06+01:00</published>
-    <updated>2026-08-02T17:05:24+01:00</updated>
+    <updated>2026-08-02T17:51:14+01:00</updated>
     <author><name>Ed Yau</name></author>
     <summary>A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one.</summary>
   </entry>

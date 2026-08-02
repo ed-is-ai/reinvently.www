@@ -1,17 +1,17 @@
 # Agentic web-retrieval terms
 
 Google web searches and citation chasing produced the initial 115-document
-working corpus. A subsequent source-provenance review reassigned seven
-publications from that working set to the selected direct-journal stream. The
-agentic web-retrieval stream therefore contains 108 documents. Google searches
-identified candidate sources; the reviewer retrieved and extracted relevant
-evidence; promising papers, reports and citations seeded follow-up searches.
+agentic web-retrieval corpus. Google searches identified candidate sources;
+the reviewer retrieved and extracted relevant evidence; promising papers,
+reports and citations seeded follow-up searches.
 
-After that reassignment, arXiv supplied 40 documents, ACM sources outside the
-selected direct-journal set supplied 12, and 56 came from other publisher
-pages, institutional repositories and first-party research sites. The seven
-reassigned records are listed in
-`journal-attributed-existing-corpus.csv` and are not counted in this stream.
+Within that stream, arXiv supplied 40 documents, ACM Digital Library or ACM
+DOI records supplied 14, and 61 came from other publisher pages, institutional
+repositories and first-party research sites. These are host or publisher
+categories rather than additional retrieval streams. The ACM group includes
+journal and conference publications. When a later journal search found an
+existing record, the original retrieval route was retained and the journal
+match was recorded as a duplicate.
 
 The original verbatim Google query history was not retained. The list below is
 therefore a normalised record of the search concepts used, not an exact query
