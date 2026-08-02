@@ -4,8 +4,12 @@ name: Site health
 #
 # This runs on a schedule rather than on push, because Pages here is the legacy
 # branch-based build: a push-triggered audit would race its own deploy and grade
-# whichever version happened to win. Weekly, plus on demand, measures what
+# whichever version happened to win. Daily, plus on demand, measures what
 # visitors actually get.
+#
+# 06:00 UTC, matching the other two scheduled jobs. GitHub's cron has no notion
+# of DST, so this lands at 07:00 through British Summer Time and 06:00 in
+# winter.
 #
 # The thresholds in .github/lighthouse/lighthouserc.json have not yet been
 # calibrated against a real run — they were set conservatively so the first runs
@@ -13,7 +17,7 @@ name: Site health
 # of results are in.
 on:
   schedule:
-    - cron: '0 7 * * 1'
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:
