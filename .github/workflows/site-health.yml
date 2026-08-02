@@ -28,23 +28,81 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  lighthouse:
-    name: Lighthouse
+  # Every published page, on desktop. The list comes from sitemap.xml rather
+  # than from a glob or a hand-written list: it is what the site actually
+  # publishes, it excludes the deliberately unlisted services pages, and a new
+  # post starts being audited the day it ships without anyone editing this file.
+  desktop:
+    name: Desktop — every page
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # One page of each kind: the GoDaddy-built homepage, the blog index, and a
-      # representative post. Auditing all 27 posts would take minutes to tell us
-      # the same thing, since they share a template.
-      - name: Audit the live site
+      - name: Build the URL list
+        id: urls
+        run: |
+          # Two plain substitutions rather than one with \?, which is a GNU
+          # extension and silently does nothing on BSD sed — so this stays
+          # runnable on a laptop as well as on the runner.
+          URLS=$(grep -o '<loc>[^<]*</loc>' sitemap.xml \
+            | sed -e 's|<loc>||' -e 's|</loc>||' | sort -u)
+          echo "Auditing $(echo "${URLS}" | wc -l | tr -d ' ') URLs"
+          echo "${URLS}"
+          {
+            echo "urls<<LHCI_EOF"
+            echo "${URLS}"
+            echo "LHCI_EOF"
+          } >> "${GITHUB_OUTPUT}"
+
+      # numberOfRuns is 1 here. This is a coverage sweep looking for outliers,
+      # and the assertions that block on it — SEO, accessibility, meta tags —
+      # are deterministic and do not vary between runs. Only performance is
+      # noisy, and it is warn-only. Three runs across 39 URLs would triple the
+      # time to sharpen a number nothing acts on.
+      - name: Audit
         # This project tags releases without a leading 'v': 12.6.2, not v12.6.2.
         uses: treosh/lighthouse-ci-action@12.6.2
         with:
-          urls: |
-            https://reinvently.co.uk/
-            https://reinvently.co.uk/blog/
-            https://reinvently.co.uk/blog/rag-vs-graphrag/
+          urls: ${{ steps.urls.outputs.urls }}
           configPath: .github/lighthouse/lighthouserc.json
           uploadArtifacts: true
+          # Distinct names: both jobs uploading "lighthouse-results" meant the
+          # second clobbered the first, and the mobile reports were lost.
+          artifactName: lighthouse-desktop
+          temporaryPublicStorage: true
+
+  # Mobile is where Google actually ranks, and where the homepage's inline CSS
+  # is most likely to hurt, so it gets the more careful treatment: fewer pages,
+  # three runs each, median taken.
+  mobile:
+    name: Mobile — homepage and ten posts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The ten heaviest posts rather than the first ten alphabetically. Weight
+      # is what mobile throttling punishes, so this keeps the sample pointed at
+      # the pages most likely to be in trouble. The selection is printed on
+      # every run, because it moves as posts are edited.
+      - name: Pick the heaviest posts
+        id: urls
+        run: |
+          POSTS=$(ls -S blog/*/index.html | head -10 \
+            | sed 's|^blog/|https://reinvently.co.uk/blog/|; s|/index.html$|/|')
+          URLS=$(printf 'https://reinvently.co.uk/\n%s\n' "${POSTS}")
+          echo "Auditing on mobile:"
+          echo "${URLS}"
+          {
+            echo "urls<<LHCI_EOF"
+            echo "${URLS}"
+            echo "LHCI_EOF"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Audit
+        uses: treosh/lighthouse-ci-action@12.6.2
+        with:
+          urls: ${{ steps.urls.outputs.urls }}
+          configPath: .github/lighthouse/lighthouserc.mobile.json
+          uploadArtifacts: true
+          artifactName: lighthouse-mobile
           temporaryPublicStorage: true
