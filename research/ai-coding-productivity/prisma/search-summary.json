@@ -1,0 +1,56 @@
+{
+  "existing_corpus_records": 115,
+  "agentic_retrieval_source_breakdown": {
+    "arXiv": 40,
+    "ACM": 14,
+    "Other web/publisher": 61
+  },
+  "openalex_records_before_cross_source_deduplication": 1188,
+  "master_records_after_cross_source_deduplication": 947,
+  "pending_human_review": 0,
+  "initial_rule_based_exclusions": 615,
+  "empirical_records_from_locked_corpus": 59,
+  "supporting_records_from_locked_corpus": 56,
+  "title_abstract_records_screened": 832,
+  "reports_sought_for_full_text": 69,
+  "title_abstract_exclusions_after_review": 763,
+  "reports_assessed_for_eligibility": 69,
+  "report_assessment_decisions": {
+    "exclude_full_text": 27,
+    "include_adjacent": 35,
+    "include_productivity": 4,
+    "duplicate_report": 2,
+    "upgrade_existing_adjacent": 1
+  },
+  "new_source_documents_included": 39,
+  "updated_source_documents": 181,
+  "updated_empirical_studies": 116,
+  "updated_productivity_studies": 44,
+  "updated_adjacent_studies": 72,
+  "updated_productivity_effect_estimates": 46,
+  "updated_secondary_syntheses": 4,
+  "updated_contextual_documents": 61,
+  "journal_search_update": {
+    "search_date": "2026-07-31",
+    "journals_enumerated": 15,
+    "records_enumerated": 10995,
+    "candidate_reports_after_marker_screen": 658,
+    "duplicates_against_existing_corpus": 10,
+    "prior_openalex_records_reassessed": 5,
+    "new_records_for_screening": 643,
+    "records_screened_or_reassessed": 648,
+    "title_abstract_exclusions": 618,
+    "reports_assessed": 30,
+    "included_new_empirical_studies": 17,
+    "included_new_secondary_syntheses": 2,
+    "included_new_contextual_documents": 8,
+    "replacement_reports": 1,
+    "full_text_exclusions": 2
+  },
+  "total_new_source_documents_included": 66,
+  "updated_evidence_weight": {
+    "high": 12,
+    "moderate": 77,
+    "low": 27
+  }
+}

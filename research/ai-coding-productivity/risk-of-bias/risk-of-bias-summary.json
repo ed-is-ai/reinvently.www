@@ -1,0 +1,30 @@
+{
+  "assessment_date": "2026-07-31",
+  "empirical_studies": 116,
+  "study_level_assessments": 116,
+  "productivity_effect_estimates": 46,
+  "adjacent_outcome_studies": 72,
+  "independent_duplicate_appraisal": false,
+  "study_level_counts": {
+    "RoB 2": {
+      "High": 1,
+      "Some concerns": 9
+    },
+    "ROBINS-I": {
+      "Moderate": 2,
+      "Serious": 16
+    },
+    "JBI quasi": {
+      "High": 5,
+      "Some concerns": 13
+    },
+    "JBI analytical": {
+      "High": 11,
+      "Some concerns": 28
+    },
+    "JBI case": {
+      "High": 16,
+      "Some concerns": 15
+    }
+  }
+}

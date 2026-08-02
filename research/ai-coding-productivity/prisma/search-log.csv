@@ -1,0 +1,15 @@
+query_id,source,search_date,publication_start,publication_end,field,query,records_returned_before_cross_query_deduplication
+Q01,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI coding assistant,205
+Q02,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI code assistant,205
+Q03,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI-assisted programming,127
+Q04,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI-assisted software development,131
+Q05,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,generative AI software development,3
+Q06,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,coding agent,549
+Q07,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,agentic coding,207
+Q08,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,agentic code review,8
+Q09,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,GitHub Copilot productivity,0
+Q10,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,software development productivity AI,0
+Q11,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI code review,3
+Q12,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI generated code maintainability,1
+Q13,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,AI generated code security,5
+Q14,OpenAlex,2026-07-29,2024-01-01,2026-07-28,title and abstract,spec-driven development,19
