@@ -1,47 +1,47 @@
-effect_id,study_id,operating_model,plot_status,classification_basis
-E-01,ST-01,assisted,ratio,"Code completion, smart paste and chat support; the developer implements and verifies"
-E-02,ST-02,assisted,ratio,"Coding assistant suggestions inside a human-led workflow"
-E-03,ST-03,assisted,non_ratio,"ChatGPT supports developer-completed tasks; no delegated execution loop"
-E-04,ST-04,cross_level_or_undisclosed,ratio,"Participants could choose chat and agent-capable tools; results were not separated by interaction mode"
-E-05,ST-05,spec_driven,ratio,"Copilot Agent completes the bounded task under human supervision; Copilot Ask is the comparator"
-E-06,ST-06,assisted,ratio,"GitHub Copilot suggestions and completion on developer-run Python tasks"
-E-07,ST-07,assisted,non_ratio,"Autocomplete and conversational assistance in developer-completed requirements tasks"
-E-08,ST-08,assisted,ratio,"AI code-completion tools support participant-led implementation"
-E-09,ST-09,assisted,non_ratio,"Code-understanding assistant; no delegated implementation"
-E-10,ST-10,assisted,non_ratio,"Conversational programming assistant used by the participant"
-E-11,ST-11,cross_level_stratified,ratio,"Reports separate release effects for autocomplete, interactive agents and autonomous agents"
-E-12,ST-12,cross_level_or_undisclosed,ratio,"AI-authored code is inferred from repository traces; the generating workflow is not observed"
-E-13,ST-13,assisted,ratio,"Copilot access changes developer work allocation inside a human-led workflow"
-E-14,ST-14,assisted,ratio,"GitHub Copilot adoption before autonomous coding-agent workflows"
-E-15,ST-15,assisted,ratio,"Copilot X assistance remains developer-implemented and developer-verified"
-E-16,ST-16,cross_level_or_undisclosed,ratio,"The workplace AI-coder interaction model is not disclosed sufficiently to assign a level"
-E-17,ST-17,assisted,ratio,"GitHub Copilot access in a developer-led ecosystem comparison"
-E-18,ST-18,assisted,ratio,"CodeFuse provides suggestions accepted and integrated by developers"
-E-19,ST-19,assisted,ratio,"Copilot supports participants performing brownfield tasks"
-E-20,ST-20,assisted,non_ratio,"Copilot supports participants performing brownfield tasks"
-E-21,ST-21,spec_driven,ratio,"Experts specify and guide an AI-implemented workflow, then validate and merge"
-E-22,ST-22,cross_level_or_undisclosed,non_ratio,"Cursor adoption is observed at repository level but the product mode is not"
-E-23,ST-23,assisted,non_ratio,"Inline multi-line completion accepted by developers"
-E-24,ST-24,assisted,ratio,"GitHub Copilot access in a conventional pull-request workflow"
-E-25,ST-25,assisted,ratio,"GitHub Copilot use in a conventional developer-led workflow"
-E-26,ST-26,assisted,ratio,"Copilot and a GPT chatbot assist developers; no autonomous implementation loop"
-E-27,ST-27,assisted,ratio,"The 2024 experiment explicitly predates third-generation autonomous coding agents"
-E-28,ST-28,assisted,ratio,"GitHub Copilot coding-assistant trial"
-E-29,ST-29,agent_native,ratio,"Organisation-wide agents write code, review pull requests, generate tests and drive deployments"
-E-30,ST-30,spec_driven,ratio,"Engineers delegate bounded work to Claude Code but retain active supervision and validation"
-E-31,ST-31,agent_native,ratio,"Teams redesign work for independent and parallel agents with executable feedback"
-E-32,ST-32,assisted,non_ratio,"Public-sector trial of commercial coding assistants"
-E-33,ST-33,assisted,non_ratio,"Accepted-code share from Meta's inline completion system"
-E-34,ST-34,cross_level_or_undisclosed,ratio,"Aggregate adoption combines autocomplete, chat and agentic modes without stratified effects"
-E-35,ST-35,cross_level_or_undisclosed,ratio,"Aggregate adoption spans different AI tools and workflow modes"
-E-36,ST-36,cross_level_or_undisclosed,ratio,"Report combines coding assistants and agents without separating their effects"
-E-37,ST-37,cross_level_or_undisclosed,ratio,"Company adoption cohorts do not identify the operating mode used"
-E-38,ST-31,spec_driven,ratio,"Prime Video used detailed requirements, bounded agent execution and human ownership"
-E-39,ST-38,spec_driven,ratio,"Agent investigates, plans and implements a bounded issue before human pull-request review"
-E-40,ST-39,agent_native,ratio,"Agents write, test and review the code; human review is optional"
-E-41,ST-29,agent_native,ratio,"Autonomous parallel build-fix-validate loops produce migration pull requests"
-E-42,ST-40,spec_driven,non_ratio,"Developers review and iterate on the transformation plan before agent implementation"
-E-43,ST-69,spec_driven,ratio,"Whole-app outcome is delegated and iteratively refined against a defined target"
-E-44,ST-70,assisted,non_ratio,"Participants use ChatGPT to complete bounded tasks themselves"
-E-45,ST-86,assisted,ratio,"Three in-IDE completion assistants support participant-led tasks"
-E-46,ST-93,assisted,non_ratio,"Phased GitHub Copilot rollout in a conventional developer-led workflow"
+effect_id,study_id,evidence_weight,operating_model,plot_status,classification_basis
+E-01,ST-01,high,assisted,ratio,"Code completion, smart paste and chat support; the developer implements and verifies"
+E-02,ST-02,high,assisted,ratio,Coding assistant suggestions inside a human-led workflow
+E-03,ST-03,high,assisted,non_ratio,ChatGPT supports developer-completed tasks; no delegated execution loop
+E-04,ST-04,high,cross_level_or_undisclosed,ratio,Participants could choose chat and agent-capable tools; results were not separated by interaction mode
+E-05,ST-05,high,spec_driven,ratio,Copilot Agent completes the bounded task under human supervision; Copilot Ask is the comparator
+E-06,ST-06,high,assisted,ratio,GitHub Copilot suggestions and completion on developer-run Python tasks
+E-07,ST-07,high,assisted,non_ratio,Autocomplete and conversational assistance in developer-completed requirements tasks
+E-08,ST-08,high,assisted,ratio,AI code-completion tools support participant-led implementation
+E-09,ST-09,medium,assisted,non_ratio,Code-understanding assistant; no delegated implementation
+E-10,ST-10,medium,assisted,non_ratio,Conversational programming assistant used by the participant
+E-11,ST-11,medium,cross_level_stratified,ratio,"Reports separate release effects for autocomplete, interactive agents and autonomous agents"
+E-12,ST-12,medium,cross_level_or_undisclosed,ratio,AI-authored code is inferred from repository traces; the generating workflow is not observed
+E-13,ST-13,medium,assisted,ratio,Copilot access changes developer work allocation inside a human-led workflow
+E-14,ST-14,medium,assisted,ratio,GitHub Copilot adoption before autonomous coding-agent workflows
+E-15,ST-15,medium,assisted,ratio,Copilot X assistance remains developer-implemented and developer-verified
+E-16,ST-16,medium,cross_level_or_undisclosed,ratio,The workplace AI-coder interaction model is not disclosed sufficiently to assign a level
+E-17,ST-17,medium,assisted,ratio,GitHub Copilot access in a developer-led ecosystem comparison
+E-18,ST-18,medium,assisted,ratio,CodeFuse provides suggestions accepted and integrated by developers
+E-19,ST-19,medium,assisted,ratio,Copilot supports participants performing brownfield tasks
+E-20,ST-20,medium,assisted,non_ratio,Copilot supports participants performing brownfield tasks
+E-21,ST-21,medium,spec_driven,ratio,"Experts specify and guide an AI-implemented workflow, then validate and merge"
+E-22,ST-22,medium,cross_level_or_undisclosed,non_ratio,Cursor adoption is observed at repository level but the product mode is not
+E-23,ST-23,medium,assisted,non_ratio,Inline multi-line completion accepted by developers
+E-24,ST-24,medium,assisted,ratio,GitHub Copilot access in a conventional pull-request workflow
+E-25,ST-25,medium,assisted,ratio,GitHub Copilot use in a conventional developer-led workflow
+E-26,ST-26,medium,assisted,ratio,Copilot and a GPT chatbot assist developers; no autonomous implementation loop
+E-27,ST-27,medium,assisted,ratio,The 2024 experiment explicitly predates third-generation autonomous coding agents
+E-28,ST-28,low,assisted,ratio,GitHub Copilot coding-assistant trial
+E-29,ST-29,low,agent_native,ratio,"Organisation-wide agents write code, review pull requests, generate tests and drive deployments"
+E-30,ST-30,low,spec_driven,ratio,Engineers delegate bounded work to Claude Code but retain active supervision and validation
+E-31,ST-31,low,agent_native,ratio,Teams redesign work for independent and parallel agents with executable feedback
+E-32,ST-32,low,assisted,non_ratio,Public-sector trial of commercial coding assistants
+E-33,ST-33,low,assisted,non_ratio,Accepted-code share from Meta's inline completion system
+E-34,ST-34,low,cross_level_or_undisclosed,ratio,"Aggregate adoption combines autocomplete, chat and agentic modes without stratified effects"
+E-35,ST-35,low,cross_level_or_undisclosed,ratio,Aggregate adoption spans different AI tools and workflow modes
+E-36,ST-36,low,cross_level_or_undisclosed,ratio,Report combines coding assistants and agents without separating their effects
+E-37,ST-37,low,cross_level_or_undisclosed,ratio,Company adoption cohorts do not identify the operating mode used
+E-38,ST-31,low,spec_driven,ratio,"Prime Video used detailed requirements, bounded agent execution and human ownership"
+E-39,ST-38,low,spec_driven,ratio,"Agent investigates, plans and implements a bounded issue before human pull-request review"
+E-40,ST-39,low,agent_native,ratio,"Agents write, test and review the code; human review is optional"
+E-41,ST-29,low,agent_native,ratio,Autonomous parallel build-fix-validate loops produce migration pull requests
+E-42,ST-40,low,spec_driven,non_ratio,Developers review and iterate on the transformation plan before agent implementation
+E-43,ST-69,low,spec_driven,ratio,Whole-app outcome is delegated and iteratively refined against a defined target
+E-44,ST-70,medium,assisted,non_ratio,Participants use ChatGPT to complete bounded tasks themselves
+E-45,ST-86,low,assisted,ratio,Three in-IDE completion assistants support participant-led tasks
+E-46,ST-93,medium,assisted,non_ratio,Phased GitHub Copilot rollout in a conventional developer-led workflow

@@ -110,3 +110,19 @@ python3 research/ai-coding-productivity/risk-of-bias/assess_risk_of_bias.py
 The script reads the article's stable study and effect registers, verifies
 complete and non-overlapping routing for `ST-01` to `ST-116`, and rewrites the
 CSV and JSON outputs.
+
+## Risk of bias is not evidence weight
+
+These files record risk of bias only — whether a study's design could
+systematically overstate or understate its own result. They do not record the
+**evidence weight** grade reported in the article, which additionally weighs
+directness, precision and relevance to the review question, and so cannot be
+derived from the judgements here.
+
+Evidence weight is published where it is currently recorded:
+
+- **46 productivity effect estimates** — the `evidence_weight` column of
+  `../operating-model-audit.csv` (8 high, 21 moderate, 17 low).
+- **The remaining 70 adjacent-outcome studies** — not yet published per study.
+  The article's High 12 / Moderate 77 / Low 27 table therefore reconciles to a
+  published per-study source for the productivity estimates only.
