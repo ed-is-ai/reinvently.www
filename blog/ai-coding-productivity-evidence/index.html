@@ -5,35 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="robots" content="max-image-preview:large"/>
   <title>How Much Does AI Improve Software Development Productivity?</title>
-  <meta name="description" content="A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one."/>
+  <meta name="description" content="A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <link rel="canonical" href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <link rel="alternate" type="application/atom+xml" href="https://reinvently.co.uk/f.atom"/>
   <link rel="alternate" type="application/json" href="https://reinvently.co.uk/f.json"/>
   <link rel="alternate" type="application/rss+xml" href="https://reinvently.co.uk/f.rss"/>
   <meta property="og:title" content="How Much Does AI Improve Software Development Productivity?"/>
-  <meta property="og:description" content="A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one."/>
+  <meta property="og:description" content="A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end."/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="Many AI-generated code commits converging through a narrow gate into three shipped releases"/>
   <meta property="article:published_time" content="2026-07-28T23:31:06+01:00"/>
-  <meta property="article:modified_time" content="2026-08-02T18:45:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T19:34:00+01:00"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How Much Does AI Improve Software Development Productivity?"/>
-  <meta name="twitter:description" content="A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one."/>
+  <meta name="twitter:description" content="A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg"/>
+  <meta name="twitter:image:alt" content="Many AI-generated code commits converging through a narrow gate into three shipped releases"/>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":"How Much Does AI Improve Software Development Productivity?",
-    "description":"A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one.",
+    "description":"A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-08-02T18:45:00+01:00",
-    "version":"1.27",
-    "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
+    "dateModified":"2026-08-02T19:34:00+01:00",
+    "version":"1.28",
+    "image":[
+      "https://reinvently.co.uk/images/hero-coding-output-to-releases-1x1.webp",
+      "https://reinvently.co.uk/images/hero-coding-output-to-releases-4x3.webp",
+      "https://reinvently.co.uk/images/hero-coding-output-to-releases.webp"
+    ],
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
     "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk"},
     "publishingPrinciples":"https://reinvently.co.uk/research-standards/",
@@ -57,6 +65,7 @@
   <style>
     .article-header{padding-left:max(20px,calc((100% - 720px)/2));padding-right:max(20px,calc((100% - 720px)/2))}
     .article-header h1,.article-header .summary{max-width:720px}
+    .article-hero-picture{display:block}
     .article-diagram{margin:42px 0}
     .article-diagram svg{display:block;width:100%;height:auto;border:1px solid #d7dde0;background:#fff}
     .article-diagram figcaption{margin-top:10px;color:rgb(150,150,150);font-size:13px;line-height:1.5}
@@ -82,6 +91,8 @@
     .corpus-tree strong{color:#fff}
     .article-body p a,.article-body .evidence-table a,.article-body .source-register a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
     .article-body p a:hover,.article-body .evidence-table a:hover,.article-body .source-register a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
+    .article-body .key-takeaways a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
+    .article-body .key-takeaways a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
     .citation-block{margin:34px 0 28px;padding:18px 20px;border:1px solid #29332e;border-left:3px solid #55b980;background:#111713}
     .citation-block p{margin:0 0 9px}
     .citation-block p:last-child{margin-bottom:0}
@@ -130,19 +141,22 @@
     <a href="/guides/">Guides</a><span aria-hidden="true">›</span>
     <span aria-current="page">AI coding productivity review</span>
   </nav>
-  <img class="article-hero-image" src="../../images/hero-coding-output-to-releases.jpg" width="1200" height="630" alt="Many AI-generated code commits converging through a narrow gate into only three shipped releases"/>
+  <picture class="article-hero-picture">
+    <source srcset="../../images/hero-coding-output-to-releases.webp" type="image/webp"/>
+    <img class="article-hero-image" src="../../images/hero-coding-output-to-releases.jpg" width="1200" height="630" alt="Many AI-generated code commits converging through a narrow gate into three shipped releases"/>
+  </picture>
 
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.27</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-08-02T18:45:00+01:00">2 August 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.28</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-08-02T19:34:00+01:00">2 August 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
     <p class="article-toc-title">Contents</p>
     <ul>
       <li>
-        <a class="article-toc-section" href="#methodology">Methodology</a>
+        <a class="article-toc-section" href="#methodology">How the review was conducted</a>
         <ul>
           <li><a href="#method-screening">PRISMA screening</a></li>
           <li><a href="#method-appraisal">Risk-of-bias appraisal</a></li>
@@ -180,7 +194,7 @@
         <span class="article-toc-section">Using the evidence</span>
         <ul>
           <li><a href="#future-measurement">Planning and measurement</a></li>
-          <li><a href="#limitations">Limitations</a></li>
+          <li><a href="#limitations">What the evidence cannot establish</a></li>
           <li><a href="#conclusion">What the evidence supports</a></li>
         </ul>
       </li>
@@ -194,15 +208,15 @@
   <section class="key-takeaways" aria-labelledby="key-findings-title">
     <h2 id="key-findings-title">Key findings</h2>
     <ul>
-      <li>Controlled assistant studies generally find approximately 20–30% coding-stage gains, although results include negative effects.</li>
-      <li>The strongest delivery studies observe approximately 10–30% higher release output, but their non-random adoption creates serious risk of bias.</li>
-      <li>The 2× and 4.5× scenarios concern narrower implementation workflows; supporting evidence becomes sparser as autonomy increases.</li>
-      <li>Speed without scaled verification can displace work into review, integration, security and maintenance.</li>
+      <li>Controlled assistant studies generally find approximately 20–30% coding-stage gains, although results include negative effects (<a href="https://arxiv.org/abs/2410.12944">Google RCT</a>; <a href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535">three field experiments</a>).</li>
+      <li>The strongest delivery study observes approximately <a href="https://www.nber.org/papers/w35275">10–30% higher release output</a>, but non-random adoption creates serious risk of bias.</li>
+      <li>Agent-native cases report a <a href="https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/">4.5× median</a> and an <a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">18× task-specific upper end</a>; these low-weight estimates depend on redesigned workflows.</li>
+      <li>Speed without scaled verification can displace work into review, integration, security and maintenance (<a href="https://arxiv.org/abs/2511.04427">longitudinal repository evidence</a>; <a href="https://dora.dev/research/2025/dora-report/">DORA 2025</a>).</li>
     </ul>
   </section>
 
   <h2 id="abstract">Abstract</h2>
-  <p><strong>AI-assisted software development accelerates code production more reliably than it accelerates delivery.</strong> This systematic review examines 181 documents published from 1 January 2022, including 116 empirical studies. Forty-four productivity and delivery studies contribute 46 effect estimates; another 72 examine review, quality, security, maintainability, skills and interaction cost. Software development is also a useful—though imperfect—proxy for other AI-assisted business processes because its instructions, revisions and outcomes are digitally recorded.</p>
+  <p><strong>AI-assisted software development accelerates code production more reliably than it accelerates delivery.</strong> This systematic review of AI coding productivity examines 181 documents published from 1 January 2022, including 116 empirical studies. Forty-four productivity and delivery studies contribute 46 effect estimates; another 72 examine review, quality, security, maintainability, skills and interaction cost. Software development is also a useful—though imperfect—proxy for other AI-assisted business processes because its instructions, revisions and outcomes are digitally recorded.</p>
   <p>The evidence is grouped into three operating models:</p>
   <ol>
     <li><strong><a href="#task-results">Assisted development:</a></strong> the model suggests; the developer implements and verifies.</li>
@@ -212,7 +226,7 @@
   <p>Controlled assistant studies generally report approximately 20–30% coding-stage gains, although the range includes a 19% slowdown. The strongest delivery study observed only <strong>10–30% higher release output</strong> across successive tool generations. The review therefore uses <strong>1.2×</strong> as an observational release-planning case. The larger <strong>2×</strong> spec-driven and <strong>4.5×</strong> agent-native scenarios concern narrower implementation workflows and carry less evidence weight. Faster generation produces business value only when verification, review and deployment scale with it. Productivity should therefore be measured as reliable software delivered to production, not as code volume.</p>
 
   <section aria-labelledby="methodology">
-  <h2 id="methodology">Methodology</h2>
+  <h2 id="methodology">How was the review conducted?</h2>
   <p>We searched for evidence published from <strong>1 January 2022 to 31 July 2026</strong> using three complementary routes: agentic web retrieval and citation chasing, 14 structured OpenAlex searches and direct searches of 15 software-engineering journals. Sources were then screened, appraised and synthesised in three distinct stages.</p>
 
   <h3 id="method-screening">How did PRISMA screening determine inclusion?</h3>
@@ -848,7 +862,7 @@
   </ol>
   <p>Relevant outcome measures include lead time, work items deployed, change failure rate, reviewer minutes, post-merge rework and production incidents. Commits can diagnose activity, but are not an adequate primary productivity outcome. For a worked example of holding variables constant, exposing uncertainty and separating raw results from interpretation, see <a href="/blog/building-the-ed-o-meter-llm-eval-harness/">Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</a>.</p>
 
-  <h2 id="limitations">Limitations of the AI coding productivity evidence</h2>
+  <h2 id="limitations">What are the limitations of the AI coding productivity evidence?</h2>
   <p>Screening, eligibility and formal risk-of-bias appraisal used one AI-assisted reviewer rather than two independent reviewers. The appraisal was not independently duplicated. Full reports were inspected where publicly accessible; otherwise eligibility and conservative domain judgements used the detailed publisher or repository record. Searches prioritised English-language, web-accessible studies and first-party disclosures, so relevant unpublished or inaccessible evaluations may be absent. The corpus is broad rather than exhaustively database-indexed. Publication bias is likely to be strongest in the agent-native tier, where organisations have an incentive to publish exceptional successes.</p>
   <p>The number of independent causal estimates is much smaller than the total literature. A productivity-focused systematic review identified <a href="https://doi.org/10.1145/3809494">39 peer-reviewed primary studies published through December 2024</a>, using a broader productivity definition than this review’s quantitative comparator rule. A newer preregistered <a href="https://arxiv.org/abs/2605.04779">meta-analysis of 14 productivity studies</a> estimated a moderate pooled effect (Hedges’ <em>g</em> = 0.33) with extreme heterogeneity (<em>I</em><sup>2</sup> = 99%); laboratory effects were larger than enterprise and open-source effects.</p>
   <p>The corpus could be made larger by admitting more benchmark-only evaluations, student exercises without a human baseline, vendor surveys or narrow task studies. Those documents can explain mechanisms and boundaries, but counting them as equivalent productivity evidence would reduce rather than improve the review’s precision.</p>
