@@ -1,7 +1,7 @@
 # Formal risk-of-bias assessment
 
 Status: **complete for the 116 empirical studies included in article version
-1.21**.
+1.22**.
 
 ## Scope
 

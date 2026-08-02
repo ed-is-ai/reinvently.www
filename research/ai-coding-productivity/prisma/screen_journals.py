@@ -242,6 +242,15 @@ def main() -> None:
             ),
         }
     )
+    summary["new_source_documents_added"] = (
+        summary["included_new_empirical_studies"]
+        + summary["included_new_secondary_syntheses"]
+        + summary["included_new_contextual_documents"]
+    )
+    summary["journal_attributed_documents_in_final_corpus"] = (
+        summary["new_source_documents_added"]
+        + summary["initial_agentic_records_reassigned_to_journals"]
+    )
     summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
     combined_path = HERE / "search-summary.json"
@@ -250,6 +259,15 @@ def main() -> None:
     combined["journal_search_update"] = summary
     combined.update(
         {
+            "initial_corpus_retrieval_attribution": {
+                "agentic_web_retrieval": 108,
+                "direct_journal_search": 7,
+            },
+            "agentic_retrieval_source_breakdown": {
+                "arXiv": 40,
+                "ACM excluding reassigned journal records": 12,
+                "Other web/publisher excluding reassigned journal records": 56,
+            },
             "total_new_source_documents_included": 66,
             "updated_source_documents": 181,
             "updated_empirical_studies": 116,

@@ -31,8 +31,8 @@
     "headline":"How Much Does AI Improve Software Development Productivity?",
     "description":"A systematic review of 116 studies finds 10–30% higher release output. Low-weight agent-native cases report 4.5× gains—not on day one.",
     "datePublished":"2026-07-28T23:31:06+01:00",
-    "dateModified":"2026-07-31T18:30:00+01:00",
-    "version":"1.21",
+    "dateModified":"2026-08-02T17:05:24+01:00",
+    "version":"1.22",
     "image":"https://reinvently.co.uk/images/hero-coding-output-to-releases.jpg",
     "author":{"@type":"Person","@id":"https://reinvently.co.uk/about/#ed-yau","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect"},
     "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk"},
@@ -129,7 +129,7 @@
   <aside class="citation-block" aria-labelledby="citation-title">
     <p class="citation-block-title" id="citation-title">How to cite this review</p>
     <p><cite>Yau, E. (2026). “How Much Does AI Improve Software Development Productivity?” Reinvently.</cite> <a href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</a></p>
-    <p class="citation-meta"><strong>Version 1.21</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-07-31T18:30:00+01:00">31 July 2026</time></p>
+    <p class="citation-meta"><strong>Version 1.22</strong> &nbsp;·&nbsp; Published <time datetime="2026-07-28T23:31:06+01:00">28 July 2026</time> &nbsp;·&nbsp; Last updated <time datetime="2026-08-02T17:05:24+01:00">2 August 2026</time></p>
   </aside>
 
   <nav class="article-toc" id="contents" aria-label="Article contents">
@@ -245,11 +245,32 @@
   <p>Risk of bias was not an automatic exclusion criterion. Observational studies, organisational cases and benchmarks can show real-world associations, possibilities and failure modes even when they cannot isolate AI as the cause. They were retained but given less weight in causal and planning conclusions.</p>
 
   <h4 id="prisma-flow">1. Which records passed PRISMA eligibility screening?</h4>
-  <p>We used three retrieval streams. An agentic retrieval-augmented generation (RAG) process used Google searches and citation chasing to build the initial 115-document corpus. Fourteen structured OpenAlex searches then tested and expanded it. Finally, a direct Crossref search enumerated publications from 15 software-engineering journals, including <em>Empirical Software Engineering</em>, IEEE <em>Transactions on Software Engineering</em>, ACM <em>TOSEM</em>, the <em>Journal of Systems and Software</em> and <em>Information and Software Technology</em>. We archived search results, deduplication, screening decisions and exclusion reasons using the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 updated-review structure</a>. One AI-assisted reviewer screened the records; screening was not independently duplicated.</p>
+  <p>We used three retrieval streams. Google searches and citation chasing produced a 115-document working corpus. A source-provenance review assigned 108 of those documents to agentic web retrieval and seven publications to the direct-journal stream. Fourteen structured OpenAlex searches then tested and expanded the corpus. Finally, direct Crossref searches enumerated publications from 15 named software-engineering journals. We archived search results, deduplication, screening decisions and exclusion reasons using the <a href="https://www.prisma-statement.org/prisma-2020-flow-diagram">PRISMA 2020 updated-review structure</a>. One AI-assisted reviewer screened the records; screening was not independently duplicated.</p>
+  <table class="evidence-table">
+    <thead><tr><th>Direct journal source</th><th>Records</th><th>Topical</th><th>Assessed</th><th>Corpus contribution</th></tr></thead>
+    <tbody>
+      <tr><td>Empirical Software Engineering</td><td>859</td><td>70</td><td>6</td><td>6 new + 3 reassigned from RAG</td></tr>
+      <tr><td>IEEE Transactions on Software Engineering</td><td>1,145</td><td>58</td><td>4</td><td>3 new + 2 reassigned from RAG</td></tr>
+      <tr><td>ACM Transactions on Software Engineering and Methodology</td><td>1,238</td><td>311</td><td>9</td><td>8 new + 2 reassigned from RAG; 1 replacement</td></tr>
+      <tr><td>Journal of Systems and Software</td><td>1,205</td><td>36</td><td>3</td><td>3 new</td></tr>
+      <tr><td>Information and Software Technology</td><td>980</td><td>31</td><td>4</td><td>4 new</td></tr>
+      <tr><td>IEEE Software</td><td>978</td><td>43</td><td>1</td><td>1 new</td></tr>
+      <tr><td>Automated Software Engineering</td><td>331</td><td>35</td><td>0</td><td>—</td></tr>
+      <tr><td>Software Quality Journal</td><td>197</td><td>9</td><td>1</td><td>1 new</td></tr>
+      <tr><td>Journal of Software: Evolution and Process</td><td>514</td><td>19</td><td>0</td><td>—</td></tr>
+      <tr><td>Software: Practice and Experience</td><td>475</td><td>12</td><td>1</td><td>—</td></tr>
+      <tr><td>Science of Computer Programming</td><td>480</td><td>3</td><td>1</td><td>1 new</td></tr>
+      <tr><td>Requirements Engineering</td><td>97</td><td>8</td><td>0</td><td>—</td></tr>
+      <tr><td>ACM Transactions on Computing Education</td><td>292</td><td>16</td><td>0</td><td>—</td></tr>
+      <tr><td>IEEE Transactions on Dependable and Secure Computing</td><td>2,000</td><td>3</td><td>0</td><td>—</td></tr>
+      <tr><td>ACM Transactions on Privacy and Security</td><td>204</td><td>4</td><td>0</td><td>—</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>10,995</strong></td><td><strong>658</strong></td><td><strong>30</strong></td><td><strong>27 new + 7 reassigned; 1 replacement</strong></td></tr>
+    </tbody>
+  </table>
   <details>
     <summary>Show the search terms</summary>
     <p><strong>Agentic Google searches, normalised by topic:</strong> AI coding productivity; AI coding assistant productivity study; GitHub Copilot productivity study; AI-assisted software development productivity; coding agent productivity; agentic coding productivity; spec-driven development; AI coding release output; deployment velocity; software delivery lead time; AI code review productivity; AI-generated code quality; AI-generated code bugs; AI-generated code maintainability; AI-generated code security vulnerabilities; AI coding greenfield brownfield; AI coding developer experience seniority; AI coding programming languages static typing; Stack Overflow AI developer survey; and first-party research from Google, Microsoft, GitHub, Anthropic, Meta and AWS.</p>
-    <p><strong>Publication sources within the initial corpus:</strong> arXiv, 40 documents; ACM, 14 documents; all other sources, 61 documents. ACM publications were identified by the <code>10.1145</code> DOI prefix. No other individual publication source supplied at least 10 documents.</p>
+    <p><strong>Agentic-web publication sources after journal reassignment:</strong> arXiv, 40 documents; ACM sources outside the selected direct-journal set, 12 documents; and other web, publisher or repository sources, 56 documents. The seven selected-journal publications are counted only in the direct-journal stream.</p>
     <p><strong>Exact OpenAlex queries:</strong> AI coding assistant; AI code assistant; AI-assisted programming; AI-assisted software development; generative AI software development; coding agent; agentic coding; agentic code review; GitHub Copilot productivity; software development productivity AI; AI code review; AI generated code maintainability; AI generated code security; and spec-driven development.</p>
     <p><strong>Direct journal search:</strong> 15 journals were enumerated by ISSN for articles published from 1 January 2022 to 31 July 2026. Ten reports already present in the included corpus were removed by DOI or normalised title. Five further records overlapped the earlier OpenAlex screen; their richer publisher records were reassessed rather than counted as new identifications. The complete <a href="/research/ai-coding-productivity/prisma/journal-search-log.csv">journal search log</a>, <a href="/research/ai-coding-productivity/prisma/journal-screening-register.csv">screening register</a> and <a href="/research/ai-coding-productivity/prisma/journal-report-assessments.csv">report assessments</a> are published with the review.</p>
     <p>The earlier verbatim Google query history was not retained, so the first list records the normalised concepts rather than claiming an exact query log. The <a href="/research/ai-coding-productivity/prisma/search-log.csv">OpenAlex query log</a> is exact.</p>
@@ -257,7 +278,7 @@
   <figure class="article-diagram">
   <svg viewBox="0 0 1000 760" role="img" aria-labelledby="prisma-title prisma-desc">
     <title id="prisma-title">PRISMA-style flow of records through the updated review</title>
-    <desc id="prisma-desc">The review combines a 115-document agentic web corpus, 39 documents added through OpenAlex and 27 documents added after direct searches of 15 software-engineering journals. The journal search enumerated 10,995 records, retained 658 topical candidates, removed 10 duplicates, screened or reassessed 648 records and assessed 30 reports. Seventeen empirical studies, two syntheses and eight contextual documents were added, and one synthesis was replaced by its peer-reviewed version.</desc>
+    <desc id="prisma-desc">The review combines 108 documents from agentic web retrieval, 39 documents added through OpenAlex, seven working-corpus documents reassigned to named journal sources and 27 documents added by direct searches of 15 software-engineering journals. The journal search enumerated 10,995 records, retained 658 topical candidates, screened or reassessed 648 records and assessed 30 reports. Seventeen empirical studies, two syntheses and eight contextual documents were added, and one synthesis was replaced by its peer-reviewed version.</desc>
     <rect width="1000" height="760" fill="#fff"/>
     <text x="38" y="42" fill="#24282b" font-family="Arial,sans-serif" font-size="24" font-weight="700">Updated search and selection flow</text>
     <g font-family="Arial,sans-serif">
@@ -285,8 +306,8 @@
       <text x="170" y="578" text-anchor="middle" fill="#4f5b62" font-size="12">27 ineligible + 2 duplicate reports</text>
 
       <rect x="360" y="75" width="280" height="70" rx="5" fill="#eef7f1" stroke="#4aaa76"/>
-      <text x="500" y="101" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Journal records enumerated</text>
-      <text x="500" y="125" text-anchor="middle" fill="#4f5b62" font-size="13">15 journals; n = 10,995</text>
+      <text x="500" y="101" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Direct journal sources</text>
+      <text x="500" y="125" text-anchor="middle" fill="#4f5b62" font-size="13">15 named above; n = 10,995</text>
 
       <rect x="360" y="175" width="280" height="82" rx="5" fill="#eef7f1" stroke="#4aaa76"/>
       <text x="500" y="201" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Topical candidates deduplicated</text>
@@ -304,13 +325,13 @@
 
       <rect x="360" y="507" width="280" height="88" rx="5" fill="#f7f1ef" stroke="#c9826b"/>
       <text x="500" y="533" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Journal-search outcome</text>
-      <text x="500" y="557" text-anchor="middle" fill="#4f5b62" font-size="12">27 added + 1 replacement</text>
-      <text x="500" y="578" text-anchor="middle" fill="#4f5b62" font-size="12">2 reports excluded at full text</text>
+      <text x="500" y="557" text-anchor="middle" fill="#4f5b62" font-size="12">27 added + 7 working-corpus records reassigned</text>
+      <text x="500" y="578" text-anchor="middle" fill="#4f5b62" font-size="12">1 replacement; 2 reports excluded at full text</text>
 
       <rect x="690" y="75" width="280" height="86" rx="5" fill="#f4f6f7" stroke="#aab2b7"/>
       <text x="830" y="101" text-anchor="middle" fill="#263238" font-size="14" font-weight="700">Agentic web retrieval (RAG)</text>
-      <text x="830" y="125" text-anchor="middle" fill="#4f5b62" font-size="12">Google search + citation chasing; n = 115</text>
-      <text x="830" y="146" text-anchor="middle" fill="#667078" font-size="11">40 arXiv · 14 ACM · 61 other sources</text>
+      <text x="830" y="125" text-anchor="middle" fill="#4f5b62" font-size="12">Google search + citation chasing; n = 108</text>
+      <text x="830" y="146" text-anchor="middle" fill="#667078" font-size="11">Selected-journal publications reassigned</text>
 
       <rect x="275" y="655" width="450" height="78" rx="5" fill="#dff2e6" stroke="#2f9d62" stroke-width="2"/>
       <text x="500" y="682" text-anchor="middle" fill="#1f5e3d" font-size="15" font-weight="700">Updated included corpus: 181 documents</text>
@@ -325,7 +346,7 @@
       </g>
     </g>
   </svg>
-  <figcaption>The OpenAlex update ran on 29 July 2026 and the direct journal search on 31 July 2026. The agentic RAG corpus remained a separate stream until final inclusion. The journal search enumerated all articles in 15 priority venues, applied a broad topical marker screen and removed reports already in the included corpus. Five records previously screened through OpenAlex were reassessed using richer publisher records and are identified in the register. The journal stream added 17 empirical studies, two syntheses and eight contextual documents; one existing synthesis was replaced by its peer-reviewed journal version.</figcaption>
+  <figcaption>The OpenAlex update ran on 29 July 2026 and the direct journal search on 31 July 2026. Source attribution split the initial 115-document working corpus into 108 agentic-web documents and seven publications assigned to their named journal sources. Of the ten journal matches already included, those seven were reassigned from RAG and three retained their earlier OpenAlex attribution. Five other records previously screened through OpenAlex were reassessed using richer publisher records. The direct searches added 17 empirical studies, two syntheses and eight contextual documents; one synthesis was replaced by its peer-reviewed journal version.</figcaption>
   </figure>
 
   <h4 id="risk-of-bias">2. What did the risk-of-bias assessment find?</h4>
