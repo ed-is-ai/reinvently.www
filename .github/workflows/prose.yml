@@ -6,6 +6,11 @@ name: Prose
 # LLM phrasing, epigram frequency, readability, CTA policy. Failing a build on
 # any of them would train you to click past the check, which costs more than the
 # rules are worth. Vale annotates the diff and stays quiet otherwise.
+#
+# Two ways in, because they need different machinery. On a pull request Vale
+# runs through reviewdog and annotates the lines you added. On the daily
+# schedule there is no diff to annotate, so reviewdog has nothing to do and a
+# plain whole-site sweep is what is wanted instead.
 on:
   pull_request:
     paths:
@@ -14,6 +19,8 @@ on:
       - '.vale.ini'
       - '.github/styles/**'
       - '.github/workflows/prose.yml'
+  schedule:
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -27,6 +34,7 @@ concurrency:
 jobs:
   vale:
     name: Vale
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -50,3 +58,38 @@ jobs:
           filter_mode: added
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # The daily sweep. reviewdog is not involved: with no pull request there is no
+  # diff to filter against, so this runs Vale over every post and writes the
+  # result to the run summary. It never fails — the count is the signal, and
+  # 12 alerts across 27 posts was the calibrated baseline.
+  audit:
+    name: Daily prose audit
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pinned to the version the rules were calibrated against. Note the tag
+      # carries a 'v' but the asset filename does not.
+      - name: Install Vale
+        env:
+          VALE_VERSION: 3.17.0
+        run: |
+          curl -sfL --retry 3 \
+            "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" \
+            -o /tmp/vale.tar.gz
+          tar -xzf /tmp/vale.tar.gz -C /usr/local/bin vale
+          vale --version
+
+      - name: Sweep every post
+        run: |
+          {
+            echo "## Prose audit"
+            echo
+            echo '```'
+            vale --no-exit --output=line blog/*/index.html || true
+            echo '```'
+            echo
+            vale --no-exit blog/*/index.html 2>&1 | tail -2 || true
+          } >> "${GITHUB_STEP_SUMMARY}"
