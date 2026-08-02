@@ -1,0 +1,81 @@
+name: Content checks
+
+# The deterministic half of the content pipeline: SEO tag integrity, internal
+# link resolution and typos. Everything here has an objectively right answer,
+# so a failure is a defect and blocking a merge on it is fair.
+#
+# Readability, tone and prose quality are deliberately absent. They are
+# judgement calls, and a job that fails on them teaches you to ignore it.
+#
+# External links are not checked here. With this many cited sources a PR would
+# go red because someone else's server was down or rate-limiting the runner.
+# They belong on a schedule that files one issue, the way ed-o-meter-data.yml
+# already works.
+on:
+  pull_request:
+    paths:
+      - '**.html'
+      - 'images/**'
+      - 'sitemap.xml'
+      - 'scripts/**'
+      - '.github/workflows/content-checks.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  seo:
+    name: SEO tags and structured data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # No dependencies by design — the checker is stdlib only, so there is no
+      # install step to break and nothing to keep pinned.
+      - name: Check every blog post
+        run: python3 scripts/check_seo.py --format github
+
+  links:
+    name: Internal links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Settings live in lychee.toml so a laptop and the runner check the same
+      # things. --root-dir has to be absolute, so it is supplied per-environment.
+      - name: Resolve internal links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config lychee.toml
+            --root-dir "${{ github.workspace }}"
+            './**/*.html'
+          fail: true
+          output: lychee-report.md
+
+      - name: Publish the report
+        if: always()
+        run: cat lychee-report.md >> "${GITHUB_STEP_SUMMARY}" 2>/dev/null || true
+
+  spelling:
+    name: Typos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # `typos` only flags things it is confident are misspellings, which keeps
+      # a prose-heavy repo full of AI vocabulary usable. Additions to the
+      # project vocabulary live in _typos.toml.
+      - name: Check spelling
+        uses: crate-ci/typos-action@master

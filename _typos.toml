@@ -1,0 +1,56 @@
+# Spellcheck configuration for `typos`, used by .github/workflows/content-checks.yml.
+#
+# Add a word here only when `typos` is wrong. If it flagged a genuine mistake,
+# fix the prose instead — the value of this check is that its false-positive
+# rate stays near zero and a red run means something.
+
+[files]
+extend-exclude = [
+  "tmp/",
+  "fonts/",
+  "images/",
+  # Vendored, minified and machine-generated. Nothing here is prose we wrote.
+  "js/",
+  "sw.js",
+  "*.min.js",
+  "*.xlsx",
+  "f.atom",
+  "f.rss",
+  "f.json",
+  "sitemap.xml",
+
+  # Captured third-party records, not our prose. The PRISMA registers hold
+  # paper titles and abstracts verbatim, many of them Swedish, German or
+  # Norwegian; tests-data.json holds raw model output. "Correcting" any of it
+  # would falsify the evidence, which is the opposite of the point.
+  "research/**/prisma/",
+  "tools/ed-o-meter/tests/",
+
+  # Internal review notes that quote the old, misspelled copy on purpose.
+  "UI-REVIEW.md",
+]
+
+[default]
+extend-ignore-re = [
+  # Hex digit runs in CSS font unicode-range descriptors (U+0100-02BA).
+  "U\\+[0-9A-Fa-f?]{2,6}(-[0-9A-Fa-f?]{2,6})?",
+]
+
+[default.extend-words]
+# The author's surname, which `typos` reads as a misspelling of "you" or "yaw".
+# It appears in every byline, so without this the check is unusable.
+Yau = "Yau"
+yau = "yau"
+
+# UK business vocabulary and vendor names that are not English words.
+SME = "SME"
+SMEs = "SMEs"
+Kerv = "Kerv"
+Reinvently = "Reinvently"
+
+# Quoted verbatim inside an adversarial prompt in the eval-results post. The
+# misspelling is part of the artefact being reported on.
+somethin = "somethin"
+
+[type.html]
+extend-glob = ["*.html"]

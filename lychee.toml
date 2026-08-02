@@ -1,0 +1,32 @@
+# Link checking for .github/workflows/content-checks.yml, and for local runs:
+#
+#   lychee --root-dir "$(pwd)" './**/*.html'
+#
+# --root-dir has to be an absolute path, so it stays on the command line where
+# the runner and a laptop can each supply their own.
+
+# Internal links only. External URLs are checked on a schedule instead: with
+# this many cited sources, a PR that goes red because someone else's server was
+# rate-limiting the runner trains you to ignore the check.
+offline = true
+
+# Off deliberately. Every URL on this site is directory-style ('/about/'), and
+# lychee does not append index.html before looking for the fragment, so it
+# reports a miss for anchors that exist. scripts/check_seo.py checks fragments
+# instead, where the directory-to-index.html mapping is already handled.
+include_fragments = "none"
+
+no_progress = true
+
+exclude_path = [
+  "tmp",
+  "js",
+  "node_modules",
+]
+
+exclude = [
+  # Protocol-relative external assets in the GoDaddy website-builder CSS still
+  # embedded in index.html. Offline mode reads '//host/path' as a local file,
+  # so these are excluded rather than checked here.
+  "wsimg\\.com",
+]
