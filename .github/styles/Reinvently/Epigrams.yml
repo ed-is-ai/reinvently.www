@@ -1,0 +1,9 @@
+# The house allowance is one or two epigrams per post. They land when they are
+# rare and read as a tic when they are not, so this counts them rather than
+# banning them.
+extends: occurrence
+message: "More than two antithesis epigrams ('not X, but Y') in one post — keep one or two and rewrite the rest as plain statements."
+level: warning
+scope: ~blockquote
+max: 2
+token: (?i)(?:it'?s |that'?s |this is )?not (?:just |merely |only |simply )?(?:a |an |the )?[^.,;]{3,40}[,.] (?:it'?s|but|they'?re|that'?s)

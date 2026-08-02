@@ -1,0 +1,45 @@
+name: Site health
+
+# Tier 3: Lighthouse against the deployed site.
+#
+# This runs on a schedule rather than on push, because Pages here is the legacy
+# branch-based build: a push-triggered audit would race its own deploy and grade
+# whichever version happened to win. Weekly, plus on demand, measures what
+# visitors actually get.
+#
+# The thresholds in .github/lighthouse/lighthouserc.json have not yet been
+# calibrated against a real run — they were set conservatively so the first runs
+# report numbers instead of going red on arrival. Tighten them once a few weeks
+# of results are in.
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-health
+  cancel-in-progress: false
+
+jobs:
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # One page of each kind: the GoDaddy-built homepage, the blog index, and a
+      # representative post. Auditing all 27 posts would take minutes to tell us
+      # the same thing, since they share a template.
+      - name: Audit the live site
+        uses: treosh/lighthouse-ci-action@v12.6.2
+        with:
+          urls: |
+            https://reinvently.co.uk/
+            https://reinvently.co.uk/blog/
+            https://reinvently.co.uk/blog/rag-vs-graphrag/
+          configPath: .github/lighthouse/lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

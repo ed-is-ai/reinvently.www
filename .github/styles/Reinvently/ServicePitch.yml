@@ -1,0 +1,19 @@
+# House CTA policy: posts ask readers to subscribe to the blog via /contact/.
+# They never pitch consulting or services — the writing earns trust by being
+# useful, and a sales close undercuts that.
+extends: existence
+message: "'%s' reads as a services pitch. Post CTAs ask for a blog subscription via /contact/ instead."
+level: warning
+ignorecase: true
+scope: ~blockquote
+tokens:
+  - (?:book|schedule|arrange) a (?:call|demo|consultation|discovery session)
+  - get in touch to discuss your (?:project|needs|requirements)
+  - (?:our|my) (?:consulting|advisory|professional) services
+  - we can help you (?:build|deliver|implement|transform)
+  - let us help you
+  - hire (?:us|me) to
+  - engage (?:our|my) team
+  - request a quote
+  - talk to (?:our|an) expert
+  - contact (?:us|me) (?:today|now) to

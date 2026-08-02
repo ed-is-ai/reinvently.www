@@ -1,0 +1,47 @@
+name: Prose
+
+# Tier 2: advisory prose review. Nothing here blocks a merge.
+#
+# Every rule in .github/styles/Reinvently is a judgement call — wordiness, stock
+# LLM phrasing, epigram frequency, readability, CTA policy. Failing a build on
+# any of them would train you to click past the check, which costs more than the
+# rules are worth. Vale annotates the diff and stays quiet otherwise.
+on:
+  pull_request:
+    paths:
+      - 'blog/**/*.html'
+      - '**.md'
+      - '.vale.ini'
+      - '.github/styles/**'
+      - '.github/workflows/prose.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: prose-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  vale:
+    name: Vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # reviewdog needs the base commit to work out which lines changed.
+          fetch-depth: 0
+
+      - name: Review prose
+        uses: errata-ai/vale-action@v2.1.2
+        with:
+          version: 3.17.0
+          files: blog
+          # Comment on the diff rather than failing the run.
+          reporter: github-pr-check
+          fail_on_error: false
+          filter_mode: added
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

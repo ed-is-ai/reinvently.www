@@ -1,0 +1,11 @@
+# A single score for the whole post rather than a complaint per sentence.
+# The audience is UK technology leaders, so the target is confident business
+# prose: roughly grade 10-14. Above that the sentences have usually grown
+# clauses that a rewrite would remove.
+extends: readability
+message: "Flesch-Kincaid grade %s — the sentences have grown long. Aim for 14 or below."
+level: suggestion
+scope: ~blockquote
+metrics:
+  - Flesch-Kincaid
+grade: 14
