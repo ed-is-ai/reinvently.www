@@ -11,14 +11,15 @@ name: Content checks
 # go red because someone else's server was down or rate-limiting the runner.
 # They belong on a schedule that files one issue, the way ed-o-meter-data.yml
 # already works.
+# Runs on every pull request, with no paths filter. That is deliberate.
+#
+# These three checks are required by the "protect main" ruleset, and a required
+# check that is skipped never reports at all — it stays pending and the pull
+# request can never merge. A paths filter therefore deadlocks any PR that
+# happens not to touch HTML. The whole workflow finishes in about fifteen
+# seconds, so filtering saved nothing and cost that.
 on:
   pull_request:
-    paths:
-      - '**.html'
-      - 'images/**'
-      - 'sitemap.xml'
-      - 'scripts/**'
-      - '.github/workflows/content-checks.yml'
   push:
     branches: [main]
   workflow_dispatch:

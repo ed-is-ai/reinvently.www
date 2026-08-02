@@ -1,0 +1,43 @@
+extends: existence
+message: "'%s' is a stock LLM phrase — cut it or say the specific thing."
+level: warning
+ignorecase: true
+scope: ~blockquote
+link: https://github.com/ed-is-ai/reinvently.www/blob/main/.github/styles/README.md
+tokens:
+  # Openers that promise significance instead of delivering it.
+  - in today's (?:fast-paced|rapidly evolving|ever-changing)[^.]*
+  - in an era (?:of|where)
+  - in the (?:rapidly )?evolving landscape
+  - as we (?:navigate|move into|look ahead)
+  - it's worth noting that
+  - it's important to (?:note|remember|understand) that
+  - needless to say
+
+  # Vocabulary that reads as generated on sight.
+  - delve into
+  - delving into
+  - tapestry
+  - realm of
+  - navigating the (?:complexities|landscape|world)
+  - unlock(?:ing)? the (?:power|potential|secrets)
+  - harness(?:ing)? the power
+  - game[- ]chang(?:er|ing)
+  - a testament to
+  - stands? as a testament
+  - at the end of the day
+  - when it comes to
+  - the fact that
+
+  # Empty intensifiers and hedges that pad without adding meaning.
+  - very (?:important|significant|useful|clear)
+  - truly (?:remarkable|unique|transformative)
+  - highly (?:effective|efficient|scalable)
+  - robust and scalable
+  - seamless(?:ly)? integrat\w+
+  - cutting[- ]edge
+  - state[- ]of[- ]the[- ]art
+  - best[- ]in[- ]class
+  - move the needle
+  - low[- ]hanging fruit
+  - paradigm shift

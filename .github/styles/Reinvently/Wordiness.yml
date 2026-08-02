@@ -1,0 +1,49 @@
+# Drafts run 10-15% longer than they need to. These are the padding phrases
+# that cause most of it, each with the shorter form that means the same thing.
+extends: substitution
+# Vale passes the replacement first and the matched text second.
+message: "Use '%s' instead of '%s'."
+level: suggestion
+ignorecase: true
+nonword: false
+scope: ~blockquote
+swap:
+  in order to: to
+  in order for: for
+  due to the fact that: because
+  owing to the fact that: because
+  for the purpose of: to
+  with the exception of: except
+  in the event that: if
+  in spite of the fact that: although
+  despite the fact that: although
+  a large number of: many
+  a small number of: a few
+  the majority of: most
+  a significant proportion of: many
+  at this point in time: now
+  in the near future: soon
+  on a regular basis: regularly
+  in a timely manner: promptly
+  is able to: can
+  are able to: can
+  has the ability to: can
+  make a decision: decide
+  provide assistance: help
+  conduct an analysis: analyse
+  perform an evaluation: evaluate
+  give consideration to: consider
+  it is possible that: perhaps
+  there is a possibility that: perhaps
+  prior to: before
+  subsequent to: after
+  in close proximity to: near
+  a wide range of: many
+  utilise: use
+  utilize: use
+  leverage: use
+  facilitate: help
+  commence: start
+  terminate: end
+  endeavour: try
+  ascertain: find out
