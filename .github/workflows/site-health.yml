@@ -34,7 +34,8 @@ jobs:
       # representative post. Auditing all 27 posts would take minutes to tell us
       # the same thing, since they share a template.
       - name: Audit the live site
-        uses: treosh/lighthouse-ci-action@v12.6.2
+        # This project tags releases without a leading 'v': 12.6.2, not v12.6.2.
+        uses: treosh/lighthouse-ci-action@12.6.2
         with:
           urls: |
             https://reinvently.co.uk/
