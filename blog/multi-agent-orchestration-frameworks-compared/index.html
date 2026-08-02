@@ -14,26 +14,43 @@
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-multi-agent-orchestration.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="669"/>
+  <meta property="og:image:alt" content="Multi-agent orchestration hub connecting AI coding agents"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-06-06T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T12:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Multi-Agent Orchestration Frameworks Compared"/>
   <meta name="twitter:description" content="Compare Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro by use case, hosting, maturity and GitHub activity."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-multi-agent-orchestration.jpg"/>
+  <meta name="twitter:image:alt" content="Multi-agent orchestration hub connecting AI coding agents"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Multi-Agent Orchestration Frameworks Compared: Six Tools for Coding, Collaboration and Fleet Operations",
     "description": "Compare Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro by use case, hosting, maturity and GitHub activity.",
-    "datePublished": "2026-06-06",
+    "datePublished": "2026-06-06T00:00:00+01:00",
     "dateModified": "2026-08-02T12:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-multi-agent-orchestration.jpg",
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"},
     "inLanguage": "en-GB",
     "keywords": ["multi-agent orchestration", "AI coding agents", "agent swarm", "Multica", "ruflo", "Aperant", "sandcastle", "mission-control", "Maestro", "Claude Code"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://reinvently.co.uk/"},
+      {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://reinvently.co.uk/guides/"},
+      {"@type": "ListItem", "position": 3, "name": "Multi-Agent Orchestration Frameworks Compared", "item": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -117,17 +134,32 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <img class="article-hero-image" src="../../images/hero-multi-agent-orchestration.jpg" alt="Abstract illustration of a wireframe hub node connected to five satellite nodes in a loose circle"/>
+    <picture>
+      <source srcset="../../images/hero-multi-agent-orchestration.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-multi-agent-orchestration.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Multi-agent orchestration hub connecting AI coding agents"/>
+    </picture>
 
-    <p>"Multi-agent" has become a broad label in developer tooling. Search GitHub and you will find many fast-growing projects offering to orchestrate fleets, swarms or teams of AI agents. Placed side by side, however, six of the most discussed projects turn out not to be direct competitors: they are different kinds of tool that share a name.</p>
+    <aside class="key-takeaways" aria-labelledby="at-a-glance">
+      <h2 id="at-a-glance">At a glance</h2>
+      <ul>
+        <li><strong>Sandcastle</strong> is the programmable library for embedding sandboxed agent runs.</li>
+        <li><strong>Maestro</strong> suits developers coordinating many local coding agents.</li>
+        <li><strong>Aperant</strong> offers autonomous delivery through a Claude-focused desktop workflow.</li>
+        <li><strong>Multica</strong> gives people and coding agents a shared issue board and task queue.</li>
+        <li><strong>Mission Control</strong> focuses on fleet governance, spend, access and audit.</li>
+        <li><strong>ruflo</strong> targets large swarms and shared memory, but needs cautious piloting.</li>
+      </ul>
+    </aside>
 
-    <p>Comparing them in a single flat feature table would be misleading, because a TypeScript library and a desktop app — or an issue-based agent manager, governance dashboard and swarm runtime — are not solving the same problem. This guide groups <strong>Multica</strong>, <strong>ruflo</strong>, <strong>Aperant</strong>, <strong>Sandcastle</strong>, <strong>Mission Control</strong> and <strong>Maestro</strong> by category, then compares use cases, differentiators, hosting requirements, current activity and community evidence.</p>
+    <p>"Multi-agent" has become a broad label in developer tooling. Search GitHub and you will find many fast-growing projects offering to orchestrate fleets, swarms or teams of AI agents. Yet six of the most discussed projects are not direct competitors. They are different kinds of tool sharing the same label.</p>
+
+    <p>A flat feature table would therefore be misleading. A TypeScript library and a desktop app do not solve the same problem. Neither do an issue-based agent manager, a governance dashboard and a swarm runtime. This guide groups <strong>Multica</strong>, <strong>ruflo</strong>, <strong>Aperant</strong>, <strong>Sandcastle</strong>, <strong>Mission Control</strong> and <strong>Maestro</strong> by category. It then compares their use cases, differentiators, hosting requirements, current activity and community evidence.</p>
 
     <p>One theme recurs throughout: GitHub stars measure attention rather than usefulness, and in this category the gap between the two is unusually wide.</p>
 
     <hr/>
 
-    <h2>The landscape: five categories of tool</h2>
+    <h2 id="framework-categories">What types of multi-agent orchestration framework are available?</h2>
 
     <p>The cleanest way to understand these tools is along two axes. One is <strong>form factor</strong>: are you writing code against a library, or driving an application? The other is <strong>purpose</strong>: hands-on parallel coding for one developer, versus operating and governing a fleet of agents at scale.</p>
 
@@ -170,11 +202,11 @@
       </table>
     </div>
 
-    <p>Grouped this way, the meaningful comparisons become clearer. Sandcastle, Maestro and Aperant focus on executing coding work. Multica adds an issue-based collaboration layer around coding CLIs. Mission Control concentrates on fleet operations and governance, while ruflo targets swarm coordination and shared memory. Comparing all six as interchangeable frameworks would obscure those differences.</p>
+    <p>Grouped this way, the meaningful comparisons become clearer. Sandcastle, Maestro and Aperant focus on executing coding work. Multica adds an issue-based collaboration layer around coding CLIs. Mission Control concentrates on fleet operations and governance, while ruflo targets swarm coordination and shared memory. Comparing all six as interchangeable frameworks would obscure those differences. For the process layer above these tools, see our guide to <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">choosing an AI development workflow framework</a>.</p>
 
     <hr/>
 
-    <h2>Popularity and current activity</h2>
+    <h2 id="popularity-and-activity">Which frameworks are most popular and actively maintained?</h2>
 
     <p>GitHub stars show how much attention a project has attracted; they do not establish reliability or adoption. The current snapshot therefore pairs stars and forks with repository age and the latest code activity.</p>
 
@@ -244,25 +276,25 @@
 
     <hr/>
 
-    <h2>Popularity is not the same as reliability</h2>
+    <h2 id="popularity-and-reliability">Does GitHub popularity indicate reliability?</h2>
 
     <p>The most-starred project in the comparison is also the most criticised by people who have used it in practice.</p>
 
-    <p>ruflo's own GitHub discussion — a thread titled <a href="https://github.com/ruvnet/ruflo/discussions/1666" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">"Is Ruflo actually that powerful and worth using it?"</a> — raises significant concerns. Contributors report that the headline multi-agent swarm-coordination features can fail in practice, that agents can self-report "success" when the underlying work has actually failed, and that several users removed it from their projects after seeing no meaningful improvement. A write-up from <a href="https://www.augmentcode.com/learn/ruflo-claude-code-multi-agent-orchestration" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Augment Code</a> summarised a broader concern about the category — that teams are "wrapping the wrapper". More positive accounts, such as <a href="https://www.sitepoint.com/deploying-multiagent-swarms-with-ruflo-beyond-singleprompt-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">SitePoint's walkthrough</a>, show a simple two-agent test-driven workflow working, which suggests the basic functionality is sound even where the swarm-scale claims are not yet borne out.</p>
+    <p>ruflo's own GitHub discussion — a thread titled <a href="https://github.com/ruvnet/ruflo/discussions/1666" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">"Is Ruflo actually that powerful and worth using it?"</a> — raises significant concerns. Contributors report that the headline swarm features can fail in practice. Agents may also report success when the underlying work has failed, and several users say they removed ruflo after seeing no meaningful improvement. A write-up from <a href="https://www.augmentcode.com/learn/ruflo-claude-code-multi-agent-orchestration" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Augment Code</a> summarised a broader concern about the category — that teams are "wrapping the wrapper". More positive accounts exist. <a href="https://www.sitepoint.com/deploying-multiagent-swarms-with-ruflo-beyond-singleprompt-coding/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">SitePoint's walkthrough</a> shows a simple two-agent test-driven workflow working. This suggests the basic functionality is sound even where the swarm-scale claims remain unproven.</p>
 
-    <p>None of this means ruflo is a poor project. Its ambition — swarms of 100+ agents, shared vector memory, cross-machine federation — reaches further than anything else here, and development is very active. But the distance between the documentation and users' reported experience is the key point: popularity reflects how compelling a project's promise is, not how reliably it is delivered. The quieter tools in this list, Sandcastle in particular, have built their reputations by promising less and delivering it consistently.</p>
+    <p>None of this means ruflo is a poor project. Its ambition — swarms of 100+ agents, shared vector memory and cross-machine federation — reaches further than anything else here. Development is also very active. The key issue is the distance between the documentation and users' reported experience. Popularity reflects how compelling a project's promise is, not how reliably it is delivered. Quieter tools, particularly Sandcastle, have built their reputations by promising less and delivering it consistently.</p>
 
     <hr/>
 
-    <h2>The six, by category</h2>
+    <h2 id="framework-comparison">How do the six multi-agent orchestration frameworks compare?</h2>
 
     <h3>Sandcastle — the library</h3>
-    <p><a href="https://github.com/mattpocock/sandcastle" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sandcastle</a>, from well-known TypeScript educator Matt Pocock, is the outlier of the group, and among the most well regarded. It is not an application but a library. You invoke a coding agent with a single <code>sandcastle.run()</code> call, and it handles sandboxing the agent in an isolated container (Docker, Podman or Vercel), managing a git branch strategy, and merging the agent's commits back to your branch automatically. It runs fully offline with no cloud dependency, and it is MIT-licensed.</p>
+    <p><a href="https://github.com/mattpocock/sandcastle" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sandcastle</a>, from well-known TypeScript educator Matt Pocock, is the outlier of the group and among the most well regarded. It is a library rather than an application. A single <code>sandcastle.run()</code> call starts the coding agent. Sandcastle then <a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">isolates the agent in a container</a>, manages its git branch and merges its commits back automatically. It runs fully offline with no cloud dependency and is MIT-licensed.</p>
     <p><strong>What stands out</strong></p>
     <ul>
       <li>Provider-agnostic sandboxing — Docker, Podman, Vercel or a custom provider — so the same code runs locally or in the cloud.</li>
       <li>Broad agent support: Claude Code, Codex, Cursor Composer, OpenCode, GitHub Copilot and Pi, each with configurable effort or reasoning levels.</li>
-      <li>Composable workflow primitives: session capture and resume, session forking for fan-out, structured output validated with Zod (or any Standard Schema validator), and dynamic context pulled into prompts via shell expressions.</li>
+      <li>Composable workflow primitives include session capture, resume and forking for fan-out. Zod or another Standard Schema validator checks structured output, while shell expressions pull dynamic context into prompts.</li>
       <li>Runs fully offline with no cloud dependency; MIT-licensed.</li>
     </ul>
     <p><strong>Gaps and watch-outs</strong></p>
@@ -275,7 +307,7 @@
     <p><strong>Best for:</strong> embedding agent orchestration inside your own product, scripts or review pipelines. <strong>Community verdict:</strong> well regarded and stable — a common choice for developers who want to build their own orchestration rather than adopt an opinionated platform.</p>
 
     <h3>Maestro — the keyboard-first desktop orchestrator</h3>
-    <p><a href="https://github.com/RunMaestro/Maestro" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Maestro</a> is a cross-platform desktop "command centre" for running many coding agents in parallel. It is aimed at power users who prefer keyboard-driven workflows, and it brings its own agent rather than mandating one — supporting Claude Code, OpenAI Codex, OpenCode and Factory Droid. Notable features include file-based playbooks for automated task runs, git worktree isolation, multi-agent group chat with a moderator, and a built-in web server for mobile control.</p>
+    <p><a href="https://github.com/RunMaestro/Maestro" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Maestro</a> is a cross-platform desktop "command centre" for running many coding agents in parallel. It targets power users who prefer keyboard-driven workflows. Rather than mandating one agent, it supports Claude Code, OpenAI Codex, OpenCode and Factory Droid. Other features include file-based playbooks, git worktree isolation and moderated multi-agent group chat. A built-in web server provides mobile control.</p>
     <p><strong>What stands out</strong></p>
     <ul>
       <li>Bring-your-own-agent: Claude Code, OpenAI Codex, OpenCode and Factory Droid, with Gemini CLI and Qwen3 Coder flagged as demand-dependent.</li>
@@ -293,7 +325,7 @@
     <p><strong>Best for:</strong> a solo developer or small team juggling many parallel projects locally. <strong>Community verdict:</strong> enthusiastic but niche — multiple <a href="https://news.ycombinator.com/item?id=46307563" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Hacker News</a> appearances, and a <a href="https://medium.com/@roaiwithjeffxli/maestro-ai-coding-agent-orchestration-platform-with-2000-stars-on-github-roai-with-jeff-x-d81e751a664e" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">creator interview</a> cites roughly 80% task success over 12-hour unattended runs. AGPL-3.0 licensed.</p>
 
     <h3>Aperant — the autonomous desktop app</h3>
-    <p><a href="https://github.com/AndyMik90/Aperant" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Aperant</a> (formerly Auto-Claude) is the most autonomous of the desktop tools: you describe an objective, and it plans, builds and validates through a visual Kanban board, running up to 12 agent terminals in parallel in isolated git worktrees. On features alone it is the most ambitious of the local apps, and it integrates with GitHub, GitLab and Linear.</p>
+    <p><a href="https://github.com/AndyMik90/Aperant" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Aperant</a> (formerly Auto-Claude) is the most autonomous desktop tool here. You describe an objective, then it plans, builds and validates through a visual Kanban board. Up to 12 agent terminals can run in parallel in isolated git worktrees. It is the most ambitious local app on features and integrates with GitHub, GitLab and Linear.</p>
     <p><strong>What stands out</strong></p>
     <ul>
       <li>A genuinely autonomous loop: plan → implement → self-validating QA → AI-assisted merge-conflict resolution, all surfaced on a Kanban board.</li>
@@ -303,15 +335,15 @@
     </ul>
     <p><strong>Gaps and watch-outs</strong></p>
     <ul>
-      <li><strong>Maintenance remains the main concern.</strong> The latest public release is v2.7.6 from 20 February 2026. A June repository update says version 3.0 is being rebuilt in a separate development repository, while public 2.x is in maintenance mode and new pull requests are paused. The rebuild is therefore not independently inspectable yet.</li>
+      <li><strong>Maintenance remains the main concern.</strong> The latest public release is v2.7.6 from 20 February 2026. A June update says version 3.0 is being rebuilt in a separate repository. Public 2.x is in maintenance mode and new pull requests are paused, so the rebuild is not independently inspectable yet.</li>
       <li>It requires a Claude Pro or Max subscription plus the Claude Code CLI — there is no choice of provider.</li>
       <li>Setup friction recurs in the issue tracker (for example, agents failing with "Claude Code not found").</li>
       <li>Agents run with filesystem access restricted to the project directory and only approved commands; AGPL-3.0, with a commercial licence available.</li>
     </ul>
-    <p><strong>Best for:</strong> hands-off autonomous feature delivery on a Claude subscription — provided the public version meets your needs while 3.0 is rebuilt. <strong>Community verdict:</strong> strong interest in the feature set, tempered by a public codebase in maintenance mode; the design is worth studying even if you do not adopt it.</p>
+    <p><strong>Best for:</strong> hands-off autonomous feature delivery on a Claude subscription, provided the public version meets your needs while 3.0 is rebuilt. <strong>Community verdict:</strong> the feature set attracts strong interest, but the public codebase is in maintenance mode. The design is worth studying even if you do not adopt it.</p>
 
     <h3>Mission Control — the governance dashboard</h3>
-    <p><a href="https://github.com/builderz-labs/mission-control" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Mission Control</a> is built for <em>fleet operations</em> rather than coding. It is a self-hosted dashboard for dispatching tasks through a Kanban board with quality-review gates, monitoring agents, tracking token spend and enforcing role-based access. It is framework-agnostic, with adapters for CrewAI, LangGraph, AutoGen, the Claude SDK and others. It runs on SQLite with a single command — no Redis, Postgres or Docker required.</p>
+    <p><a href="https://github.com/builderz-labs/mission-control" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Mission Control</a> is built for <a href="/blog/ai-agent-governance-gap/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">agent fleet operations and governance</a> rather than coding. Its self-hosted dashboard dispatches tasks through a Kanban board with quality-review gates. It also monitors agents, tracks token spend and enforces role-based access. Framework-agnostic adapters cover CrewAI, LangGraph, AutoGen, the Claude SDK and others. It runs on SQLite with a single command, without Redis, Postgres or Docker.</p>
     <p><strong>What stands out</strong></p>
     <ul>
       <li>An operations focus the others lack: around 32 panels covering tasks, agents, skills, logs, tokens, memory, security, cron, alerts, webhooks and pipelines.</li>
@@ -329,7 +361,7 @@
     <p><strong>Best for:</strong> a team that needs to govern and account for a fleet of agents. <strong>Community verdict:</strong> young and still alpha, with active development but limited public deployment evidence. Its website advertises an optional managed tier, while the self-hosted repository is MIT-licensed.</p>
 
     <h3>Multica — the human–agent work management layer</h3>
-    <p><a href="https://github.com/multica-ai/multica" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Multica</a> turns coding agents into assignable teammates. Humans and agents work from the same issue board: a local daemon gives an assigned coding CLI the task and repository context, while the control plane records progress, comments, blockers and outcomes. This puts Multica between a desktop coding orchestrator and a fleet dashboard. It manages who works on what, but leaves code execution and model credentials on connected machines.</p>
+    <p><a href="https://github.com/multica-ai/multica" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Multica</a> turns coding agents into assignable teammates. Humans and agents work from the same issue board. A local daemon gives an assigned coding CLI the task and repository context. The control plane records progress, comments, blockers and outcomes. This puts Multica between a desktop coding orchestrator and a fleet dashboard. It manages who works on what, but leaves code execution and model credentials on connected machines.</p>
     <p><strong>What stands out</strong></p>
     <ul>
       <li>A shared system of work: agents can be assigned issues, post progress and comments, request clarification and hand results back through the same queue used by people.</li>
@@ -346,13 +378,13 @@
       <li>Repository code and provider credentials stay on the execution machine, but custom environment variables are stored by the control plane and passed to the runtime. Secrets need deliberate handling.</li>
       <li>The <a href="https://github.com/multica-ai/multica/blob/main/LICENSE" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Multica License</a> incorporates Apache 2.0 but adds branding, attribution and commercial hosted-service restrictions. It is not plain Apache 2.0.</li>
     </ul>
-    <p><strong>Best for:</strong> teams that want people and several local coding agents to collaborate through one issue board without standardising on a single model provider. <strong>Community verdict:</strong> exceptionally fast early adoption and active development, but the project is young and its large issue queue makes a scoped pilot more prudent than a fleet-wide commitment.</p>
+    <p><strong>Best for:</strong> teams that want people and local coding agents to collaborate through one issue board without standardising on one model provider. <strong>Community verdict:</strong> early adoption has been exceptionally fast and development is active. The project is young, however, and its large issue queue makes a scoped pilot more prudent than a fleet-wide commitment.</p>
 
     <h3>ruflo — the swarm meta-harness</h3>
-    <p><a href="https://github.com/ruvnet/ruflo" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">ruflo</a> is the most ambitious and most popular — a "meta-harness" that augments Claude Code with large-scale multi-agent orchestration: swarms of 100+ agents, vector-based adaptive memory, self-learning patterns, zero-trust federation across machines, a plugin marketplace, and multi-provider routing across Claude, GPT and Gemini. It is MIT-licensed and ships companion web interfaces.</p>
+    <p><a href="https://github.com/ruvnet/ruflo" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">ruflo</a> is the most ambitious and most popular tool in the comparison. This "meta-harness" augments Claude Code with large-scale multi-agent orchestration. Its scope includes swarms of 100+ agents, vector memory, self-learning patterns and cross-machine federation. It also provides a plugin marketplace and routes work across Claude, GPT and Gemini. It is MIT-licensed and ships companion web interfaces.</p>
     <p><strong>What stands out</strong></p>
     <ul>
-      <li>By far the broadest capability set: 100+ coordinated agents, 33 native plugins, parallel MCP tool execution, and multi-provider routing across Claude, GPT, Gemini, Cohere and Ollama with failover.</li>
+      <li>It has the broadest capability set: 100+ coordinated agents, 33 native plugins and parallel MCP tool execution. Multi-provider routing covers Claude, GPT, Gemini, Cohere and Ollama with failover.</li>
       <li>A real memory and learning story: HNSW-indexed vector memory (AgentDB) and self-learning patterns (SONA, ReasoningBank) intended to improve results over successive runs.</li>
       <li>Distributed operation: zero-trust federation across machines, with behavioural trust scoring for remote agents.</li>
       <li>Companion web tooling: a hosted multi-model chat interface and a goal-planning UI that decomposes plain-English goals into action plans.</li>
@@ -362,13 +394,13 @@
       <li><strong>Reliability is the central concern</strong> (see above): community reports of swarm-coordination failures and of agents self-reporting success for work that did not complete.</li>
       <li>Two very different installation paths — a Claude Code plugin versus the full CLI — with, in the maintainers' words, "very different surface areas," which can confuse first use.</li>
       <li>Parts are explicitly beta (the web UI) or in active development (the goal planner); there are no SLAs or production guarantees.</li>
-      <li>The memory speed advantage applies only above a crossover point of roughly 5,000 vectors — below that it ties or loses to brute-force search — and the <code>curl | bash</code> installer is unavailable on native Windows (npx or WSL required).</li>
+      <li>The memory speed advantage applies only above roughly 5,000 vectors. Below that point it ties or loses to brute-force search. The <code>curl | bash</code> installer is also unavailable on native Windows, which requires npx or WSL.</li>
     </ul>
     <p><strong>Best for:</strong> teams that need swarm scale and cross-agent memory and can tolerate rough edges. <strong>Community verdict:</strong> considerable attention and rapid growth, but contested reliability — best treated as a promising tool to pilot rather than a production-ready guarantee.</p>
 
     <hr/>
 
-    <h2>Hosting and operational requirements</h2>
+    <h2 id="hosting-requirements">What does each framework require to run?</h2>
 
     <div style="overflow-x:auto;margin-bottom:28px;">
       <table style="width:100%;border-collapse:collapse;font-size:15px;">
@@ -430,25 +462,27 @@
 
     <p>The library has the lightest footprint and the most flexibility. The desktop apps need only your machine and an agent subscription or CLI. Mission Control is deliberately easy to self-host on one SQLite-backed process. Multica separates its management plane from local execution but needs a larger stack when self-hosted. ruflo carries the most orchestration machinery by design.</p>
 
+    <p>Provider charges can still outweigh the orchestrator's own price when several agents run in parallel. Use the <a href="/tools/ai-cost-calculator/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AI coding tool cost calculator</a> to model seats, workload size, caching and agentic usage before selecting a platform.</p>
+
     <hr/>
 
-    <h2>Which should you choose?</h2>
+    <h2 id="which-framework">Which multi-agent orchestration framework should you choose?</h2>
 
     <p><strong>If you are embedding orchestration in your own product:</strong> Sandcastle. It is a primitive rather than a platform — you import it, call it, and retain full control.</p>
 
     <p><strong>If you are a solo developer parallelising many local projects:</strong> Maestro. Keyboard-first, bring-your-own-agent, and built for long unattended runs.</p>
 
-    <p><strong>If you want hands-off autonomous feature delivery on a Claude subscription:</strong> Aperant's design fits the brief better than anything else here — but check the repository is active again before you commit, or treat it as a reference design rather than a dependency.</p>
+    <p><strong>If you want hands-off autonomous feature delivery on a Claude subscription:</strong> Aperant's design fits the brief better than anything else here. Check the public repository's status before committing, or treat it as a reference design rather than a dependency.</p>
 
     <p><strong>If you want people and coding agents to share one issue board:</strong> Multica. It adds task assignment, progress, reusable skills and team structures around the local coding CLIs you already use.</p>
 
     <p><strong>If you are a team that needs to govern spend, access and audit across a fleet:</strong> Mission Control. Its centre of gravity is operational control rather than coding collaboration.</p>
 
-    <p><strong>If you need swarm scale and cross-agent memory, and can tolerate rough edges:</strong> ruflo — but pilot it on non-critical work and verify its outputs independently rather than relying on its self-reported results.</p>
+    <p><strong>If you need swarm scale and cross-agent memory, and can tolerate rough edges:</strong> choose ruflo. Pilot it on non-critical work and verify outputs independently rather than relying on self-reported results.</p>
 
     <p>The broader point applies to most fast-moving AI tooling: choose the category first and the specific tool second. Star counts indicate what the community is interested in; they are not a reliable guide to how a tool will perform in your own codebase.</p>
 
-    <p>Nor does adding more agents establish a productivity multiplier. Our <a href="/blog/ai-coding-productivity-evidence/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">systematic review of AI software-development productivity</a> finds the largest agent-native claims in redesigned, heavily verified workflows; automated review and orchestration are necessary scaling controls, not independently demonstrated causes of a 4× gain.</p>
+    <p>Nor does adding more agents establish a productivity multiplier. Our <a href="/blog/ai-coding-productivity-evidence/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">systematic review of AI software-development productivity</a> finds the largest agent-native claims in redesigned, heavily verified workflows. Automated review and orchestration are necessary scaling controls, not independently demonstrated causes of a 4× gain.</p>
 
     <hr/>
 
@@ -470,7 +504,7 @@
     <p>Multica is an issue-based human–agent work management platform. It assigns work to local coding CLIs, records their progress and groups people and agents into Squads. Unlike ruflo, it is not primarily a swarm runtime; unlike Mission Control, its centre of gravity is collaborative task delivery rather than fleet-wide spend and access governance.</p>
 
     <h3>Is ruflo production-ready?</h3>
-    <p>The evidence suggests caution. ruflo is the most-starred project in this comparison and development is active, but <a href="https://github.com/ruvnet/ruflo/discussions/1666" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">its own GitHub discussion thread</a> and third-party reports describe swarm-coordination failures and agents self-reporting success when work failed. Pilot it on non-critical work and verify outputs independently.</p>
+    <p>The evidence suggests caution. ruflo is the most-starred project in this comparison and development is active. However, <a href="https://github.com/ruvnet/ruflo/discussions/1666" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">its own GitHub discussion thread</a> and third-party reports describe swarm-coordination failures. They also describe agents reporting success when work failed. Pilot it on non-critical work and verify outputs independently.</p>
 
     <hr/>
 

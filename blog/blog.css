@@ -199,6 +199,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid #1b1b1b;
   margin: 8px 0 40px;
 }
+.article-body picture { display: block; }
 .key-takeaways {
   background: var(--bg2);
   border: 1px solid var(--bg3);
