@@ -134,7 +134,9 @@
       </ul>
     </div>
 
-    <p>There is a pattern in enterprise AI deployments that almost every technology leader will recognise. The first agent works well. The second agent works well. Then someone asks why the two cannot talk to each other. The answer turns out to be weeks of bespoke integration work, fragile API glue, and a growing maintenance burden that quietly eats into the efficiency gains the agents were supposed to deliver.</p>
+    <p>There is a pattern in enterprise AI deployments that almost every technology leader will recognise. The first agent works well. The second agent works well. Then someone asks why the two cannot talk to each other.</p>
+
+    <p>The answer is often weeks of bespoke integration work, fragile API glue and continuing maintenance. That integration burden quietly consumes some of the efficiency gains the agents were meant to deliver.</p>
 
     <p>This is the integration tax. Until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
 
@@ -142,19 +144,19 @@
 
     <hr/>
 
-    <h2>The A2A Protocol: 5 Minute Primer</h2>
+    <h2>What is the A2A Protocol and how does it work?</h2>
 
     <p>The A2A Protocol defines a standard way for AI agents from different vendors to discover each other, communicate, and hand off tasks — without either system needing to know how the other works internally.</p>
 
     <p>In practice, a Salesforce Agentforce agent handling a customer escalation could hand a retrieval task to a Google agent, which could query a ServiceNow agent for ticket history. A2A standardises the messages and task lifecycle between them. Implementers may still need product configuration, identity mapping, error handling and agreement on what each agent's capabilities mean.</p>
 
-    <p>The mechanism is straightforward: agents expose an <strong>Agent Card</strong> — a structured description of their capabilities, available actions, and authentication requirements. Orchestrating agents discover these cards, compose workflows, and delegate subtasks. Responses flow back through the same protocol layer. From a developer's perspective, integrating a new agent is closer to calling an API than building a custom connector.</p>
+    <p>Agents expose an <strong>Agent Card</strong> describing their capabilities, available actions and authentication requirements. Orchestrating agents discover these cards, compose workflows and delegate subtasks. Responses return through the same protocol layer. For a developer, integrating a new agent becomes closer to calling an API than building a custom connector.</p>
 
     <p>Source datasets do not need to be copied wholesale between systems for agents to collaborate. A Salesforce agent can ask a ServiceNow agent to act where the data resides, but the request and any authorised result still cross a trust boundary. Data classification, minimisation and audit requirements therefore remain.</p>
 
     <hr/>
 
-    <h2>Why This Helps Enterprise AI Architecture</h2>
+    <h2>Why does A2A matter for enterprise AI architecture?</h2>
 
     <p>The conventional approach to multi-agent enterprise AI has required one of two compromises. Either consolidate everything onto a single vendor's platform and accept lock-in, or build and maintain custom integrations between platforms and accept technical debt. Most organisations have ended up doing some of both, and neither is satisfying.</p>
 
@@ -171,9 +173,11 @@
 
     <hr/>
 
-    <h2>The 150+ Organisation Ecosystem</h2>
+    <h2>How broad is the A2A ecosystem?</h2>
 
-    <p>The breadth of A2A adoption matters as much as the protocol itself. With Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday, and IBM all committed, A2A covers the core enterprise software stack for most large organisations. A workflow that needs to touch CRM, ERP, ITSM, and HCM systems can do so through A2A. None of those vendors need bespoke agreements with each other.</p>
+    <p>The breadth of A2A adoption matters as much as the protocol itself. Google, Microsoft, AWS, Salesforce, SAP, ServiceNow, Workday and IBM have all committed support. Together, they cover much of the enterprise software stack used by large organisations.</p>
+
+    <p>A workflow spanning CRM, ERP, ITSM and HCM can therefore use one protocol across participating products. The vendors do not need a bespoke protocol agreement for every pairing, although their implementations still need to interoperate in practice.</p>
 
     <p>The Linux Foundation's stewardship matters too. Placing A2A under open governance reduces dependence on one vendor's roadmap and creates a formal route for multiple implementers to shape the specification. <a href="https://kubernetes.io/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Kubernetes</a> shows that neutral governance can support broad infrastructure adoption, but A2A still has to prove implementation consistency and operational maturity.</p>
 
@@ -181,7 +185,7 @@
 
     <hr/>
 
-    <h2>What This Means for Your Platform Decisions</h2>
+    <h2>How should A2A change enterprise platform decisions?</h2>
 
     <p>If you are evaluating or re-evaluating your AI platform strategy, A2A changes several of the assumptions that have historically driven those decisions.</p>
 
@@ -192,7 +196,9 @@
     <p>Ask vendors which A2A specification version they support, which authentication profiles are implemented, how Agent Cards are governed, and whether conformance has been tested with products outside their own ecosystem. A roadmap statement is weaker evidence than a repeatable interoperability test.</p>
 
     <h3>Think in workflows, not tools</h3>
-    <p>A2A enables a shift in how enterprise AI is designed. Rather than deploying an AI tool that assists with individual tasks, organisations can design end-to-end workflows where multiple specialist agents collaborate. This requires a different conversation internally — from "which AI tool do we buy?" to "which business process do we want to automate end-to-end, and which agents are best suited to each stage?" Our comparison of <a href="/blog/multi-agent-orchestration-frameworks-compared/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">multi-agent orchestration frameworks</a> examines the runtime and governance choices behind that operating model.</p>
+    <p>A2A enables a shift in how enterprise AI is designed. Instead of deploying one tool for individual tasks, organisations can design end-to-end workflows in which specialist agents collaborate.</p>
+
+    <p>The internal question changes from "which AI tool do we buy?" to "which business process should we automate, and which agent is best suited to each stage?" Our comparison of <a href="/blog/multi-agent-orchestration-frameworks-compared/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">multi-agent orchestration frameworks</a> examines the runtime and governance choices behind that operating model.</p>
 
     <h3>Plan your data governance model now</h3>
     <p>A2A enables agents to collaborate without moving data between systems, but this requires deliberate configuration. Establish which agents are permitted to instruct which other agents, what data each is authorised to access, and how audit trails are maintained across multi-agent workflows. These governance decisions are much easier to make before workflows are in production than after.</p>
@@ -213,7 +219,7 @@
     <p>They operate at different layers. Anthropic's Model Context Protocol governs how a single agent accesses tools and data; A2A governs how agents talk to each other. They are complementary, and enterprises can use both.</p>
 
     <h3>What should enterprises do about A2A now?</h3>
-    <p>Ask every AI platform you evaluate whether it supports A2A and on what timeline, reconsider the integration-driven case for single-vendor consolidation, design in workflows rather than tools, and set your multi-agent data-governance model before workflows reach production.</p>
+    <p>Ask vendors which A2A version they support and whether they have tested it across products. Reconsider the integration case for single-vendor consolidation, design around workflows rather than tools, and establish multi-agent data governance before production.</p>
 
 <hr/>
 
