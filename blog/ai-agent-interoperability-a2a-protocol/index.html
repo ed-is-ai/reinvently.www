@@ -14,26 +14,43 @@
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="669"/>
+  <meta property="og:image:alt" content="Abstract illustration of two different wireframe forms connected by a single glowing bridge line"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-04-22T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="A2A Protocol: An Enterprise Architecture Decision Guide"/>
   <meta name="twitter:description" content="What A2A standardises, where interoperability still stops, and how to evaluate it in architecture and procurement."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-a2a-protocol.jpg"/>
+  <meta name="twitter:image:alt" content="Abstract illustration of two different wireframe forms connected by a single glowing bridge line"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "A2A Protocol: An Enterprise Architecture Decision Guide",
     "description": "What the Linux Foundation's A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement.",
-    "datePublished": "2026-04-22",
-    "dateModified": "2026-07-19",
+    "datePublished": "2026-04-22T00:00:00+01:00",
+    "dateModified": "2026-08-02T00:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-a2a-protocol.jpg",
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"},
     "inLanguage": "en-GB",
     "keywords": ["A2A Protocol", "AI agent interoperability", "enterprise AI", "agentic AI", "Salesforce", "Google Cloud", "AI platform strategy"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://reinvently.co.uk/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://reinvently.co.uk/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "A2A Protocol: An Enterprise Architecture Decision Guide", "item": "https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -91,7 +108,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">22 April 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">22 April 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>A2A Protocol: An Enterprise Architecture Decision Guide</h1>
   <p class="summary">A2A standardises agent discovery and task exchange across vendors. It can reduce protocol-level integration work, but it does not solve identity, semantics, product support or workflow governance.</p>
 </header>
@@ -101,7 +118,10 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <img class="article-hero-image" src="../../images/hero-a2a-protocol.jpg" alt="Abstract illustration of two different wireframe forms connected by a single glowing bridge line"/>
+    <picture>
+      <source srcset="../../images/hero-a2a-protocol.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-a2a-protocol.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Abstract illustration of two different wireframe forms connected by a single glowing bridge line"/>
+    </picture>
 
     <div class="key-takeaways">
       <h2>Key Takeaways</h2>
@@ -118,7 +138,7 @@
 
     <p>This is the integration tax. Until recently, it was simply the cost of doing business in a multi-vendor AI environment.</p>
 
-    <p>The A2A Protocol is an attempt to standardise that boundary. It is backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>, with Microsoft, AWS, SAP, ServiceNow, Workday and IBM among its supporters. That breadth makes A2A relevant to architecture decisions; it is too early to treat it as universal infrastructure.</p>
+    <p>The A2A Protocol is an attempt to standardise that boundary. It is backed by more than 150 organisations and managed by the <a href="https://www.linuxfoundation.org/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Linux Foundation</a>, with Microsoft, AWS, SAP, ServiceNow, Workday and IBM among its supporters. That breadth makes A2A relevant to architecture decisions; it is too early to treat it as universal infrastructure. Platform support and operational controls still need to be assessed through an <a href="/blog/ai-agent-governance-gap/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">enterprise agent governance model</a>.</p>
 
     <hr/>
 
@@ -172,7 +192,7 @@
     <p>Ask vendors which A2A specification version they support, which authentication profiles are implemented, how Agent Cards are governed, and whether conformance has been tested with products outside their own ecosystem. A roadmap statement is weaker evidence than a repeatable interoperability test.</p>
 
     <h3>Think in workflows, not tools</h3>
-    <p>A2A enables a shift in how enterprise AI is designed. Rather than deploying an AI tool that assists with individual tasks, organisations can design end-to-end workflows where multiple specialist agents collaborate. This requires a different conversation internally — from "which AI tool do we buy?" to "which business process do we want to automate end-to-end, and which agents are best suited to each stage?"</p>
+    <p>A2A enables a shift in how enterprise AI is designed. Rather than deploying an AI tool that assists with individual tasks, organisations can design end-to-end workflows where multiple specialist agents collaborate. This requires a different conversation internally — from "which AI tool do we buy?" to "which business process do we want to automate end-to-end, and which agents are best suited to each stage?" Our comparison of <a href="/blog/multi-agent-orchestration-frameworks-compared/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">multi-agent orchestration frameworks</a> examines the runtime and governance choices behind that operating model.</p>
 
     <h3>Plan your data governance model now</h3>
     <p>A2A enables agents to collaborate without moving data between systems, but this requires deliberate configuration. Establish which agents are permitted to instruct which other agents, what data each is authorised to access, and how audit trails are maintained across multi-agent workflows. These governance decisions are much easier to make before workflows are in production than after.</p>
@@ -204,7 +224,7 @@
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
         <li><a href="/blog/claude-mythos-anthropic-opportunity-for-companies/">Claude Mythos and Project Glasswing: What the Security Evidence Shows</a></li>
-        <li><a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro</a></li>
+        <li><a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared</a></li>
         <li><a href="/blog/gpt-5-5-autonomous-task-completion/">GPT-5.5 and the Age of Autonomous Task Completion</a></li>
         <li><a href="/blog/claude-memory-dream-enterprise-agents/">Claude Memory and Dream: Evidence, Architecture and Risk</a></li>
       </ul>

@@ -14,26 +14,43 @@
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-memory-dream.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="669"/>
+  <meta property="og:image:alt" content="Abstract illustration of a wireframe tangled knot with one thread breaking free and drifting upward"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-05-21T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Claude Memory and Dream: Evidence, Architecture and Risk"/>
   <meta name="twitter:description" content="An evidence review of Claude Memory and Dream: a reported 97% drop in first-pass errors, the architecture, and the governance risks of self-editing agents."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-memory-dream.jpg"/>
+  <meta name="twitter:image:alt" content="Abstract illustration of a wireframe tangled knot with one thread breaking free and drifting upward"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Claude Memory and Dream: Evidence, Architecture and Risk",
     "description": "An evidence review of Claude Memory and Dream: a reported 97% drop in first-pass errors, the architecture, and the governance risks of self-editing agents.",
-    "datePublished": "2026-05-21",
-    "dateModified": "2026-07-19",
+    "datePublished": "2026-05-21T00:00:00+01:00",
+    "dateModified": "2026-08-02T00:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-memory-dream.jpg",
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"},
     "inLanguage": "en-GB",
     "keywords": ["Claude Memory", "Claude Dream", "Claude Managed Agents", "enterprise AI", "enterprise adoption", "AI agents", "Anthropic"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://reinvently.co.uk/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://reinvently.co.uk/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Claude Memory and Dream: Evidence, Architecture and Risk", "item": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -91,7 +108,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">21 May 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">21 May 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Claude Memory and Dream: Evidence, Architecture and Risk</h1>
   <p class="summary">Early customer reports suggest large gains from persistent agent memory. The results are promising, but vendor-published and workload-specific. Here is what the architecture changes — and what still needs proving.</p>
 </header>
@@ -101,7 +118,10 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <img class="article-hero-image" src="../../images/hero-memory-dream.jpg" alt="Abstract illustration of a wireframe tangled knot with one thread breaking free and drifting upward"/>
+    <picture>
+      <source srcset="../../images/hero-memory-dream.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-memory-dream.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Abstract illustration of a wireframe tangled knot with one thread breaking free and drifting upward"/>
+    </picture>
 
     <div class="key-takeaways">
       <h2>Key Takeaways</h2>
@@ -132,7 +152,7 @@
       <li><strong>Context ceilings.</strong> As tasks grow in complexity, the context window becomes a hard architectural limit. Scaling out to multiple agents is possible, but you start needing to create complicated context trees & coordination mechanisms. The overhead grows quickly and the gains plateau.</li>
     </ul>
 
-    <p>Memory and Dream address the first two directly. Multiagent orchestration — also now in public beta — tackles the third. Used together, they remove the ceiling that has kept enterprise AI confined to narrow, carefully managed use cases.</p>
+    <p>Memory and Dream address the first two directly. Multiagent orchestration — also now in public beta — tackles the third. Used together, they can support longer and more complex workflows, although the coordination and verification costs do not disappear. Our <a href="/blog/multi-agent-orchestration-frameworks-compared/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">multi-agent orchestration framework comparison</a> maps those additional design choices.</p>
 
     <hr/>
 
@@ -150,7 +170,7 @@
       <li>A customer support agent accumulates a profile of recurring issues per account, accessible to any agent that serves that customer.</li>
     </ul>
 
-    <p>Early adopters have published numbers worth examining. <a href="https://claude.com/customers/rakuten-qa" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Rakuten reported</a> a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents, and <a href="https://www.wisedocs.ai/blogs/building-managed-agents-for-document-verification" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs&#8217; document verification workflow</a> ran <strong>30 percent faster</strong>. Both figures come from named customer case studies published within Anthropic's commercial ecosystem, not controlled or independent evaluations. They demonstrate potential in those workflows, not an expected effect size for other deployments.</p>
+    <p>Early adopters have published numbers worth examining. <a href="https://claude.com/customers/rakuten-qa" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Rakuten reported</a> a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents, and <a href="https://www.wisedocs.ai/blogs/building-managed-agents-for-document-verification" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs&#8217; document verification workflow</a> ran <strong>30 percent faster</strong>. Both figures come from named customer case studies published within Anthropic's commercial ecosystem, not controlled or independent evaluations. They demonstrate potential in those workflows, not an expected effect size for other deployments. The distinction between task-level gains and reliable delivery is explored in our <a href="/blog/ai-coding-productivity-evidence/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">systematic review of AI coding productivity</a>.</p>
 
     <p>Critically for enterprise teams, every memory write is developer-controlled. Data is exportable, editable, and redactable via the API or the Claude Console. The agent learns, but the organisation retains ownership of what it has learned.</p>
 
