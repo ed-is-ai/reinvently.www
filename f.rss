@@ -62,11 +62,11 @@
       <description>Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes.</description>
     </item>
     <item>
-      <title>Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control &amp; Maestro</title>
+      <title>Multi-Agent Orchestration Frameworks Compared: Six Tools for Coding, Collaboration and Fleet Operations</title>
       <link>https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/</guid>
       <pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate>
-      <description>ruflo, Aperant, Sandcastle, Mission Control and Maestro compared. Why 58,000 GitHub stars measure attention, not reliability, and which tool fits which job.</description>
+      <description>Compare Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro by use case, hosting, maturity and GitHub activity.</description>
     </item>
     <item>
       <title>GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</title>

@@ -127,10 +127,10 @@
     {
       "id": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/",
       "url": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/",
-      "title": "Multi-Agent Orchestration Frameworks Compared: ruflo, Aperant, Sandcastle, Mission Control & Maestro",
-      "summary": "ruflo, Aperant, Sandcastle, Mission Control and Maestro compared. Why 58,000 GitHub stars measure attention, not reliability, and which tool fits which job.",
+      "title": "Multi-Agent Orchestration Frameworks Compared: Six Tools for Coding, Collaboration and Fleet Operations",
+      "summary": "Compare Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro by use case, hosting, maturity and GitHub activity.",
       "date_published": "2026-06-06T00:00:00Z",
-      "date_modified": "2026-07-02T00:00:00Z",
+      "date_modified": "2026-08-02T11:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",
