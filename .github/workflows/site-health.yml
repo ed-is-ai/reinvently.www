@@ -66,6 +66,9 @@ jobs:
           urls: ${{ steps.urls.outputs.urls }}
           configPath: .github/lighthouse/lighthouserc.json
           uploadArtifacts: true
+          # Distinct names: both jobs uploading "lighthouse-results" meant the
+          # second clobbered the first, and the mobile reports were lost.
+          artifactName: lighthouse-desktop
           temporaryPublicStorage: true
 
   # Mobile is where Google actually ranks, and where the homepage's inline CSS
@@ -101,4 +104,5 @@ jobs:
           urls: ${{ steps.urls.outputs.urls }}
           configPath: .github/lighthouse/lighthouserc.mobile.json
           uploadArtifacts: true
+          artifactName: lighthouse-mobile
           temporaryPublicStorage: true
