@@ -1,9 +1,16 @@
-name: Refresh Ed-o-meter data
+name: Watch Ed-o-meter data
 
-# Pulls featherbench's consolidated results and regenerates the board data.
+# Checks whether featherbench's published results have moved away from the
+# numbers on the board, and raises a GitHub issue listing what changed.
+#
+# It writes nothing to the repo. The board's prose is hand-written around its
+# numbers, so the two have to be updated together, by a person, in one commit.
+# This job's job is to notice — run scripts/build_ed_o_meter.py locally to
+# actually regenerate tools/ed-o-meter/data.js.
+#
 # featherbench is not involved in the trigger: it is read as a public URL, so
 # there is no cross-repo token to manage. The optional repository_dispatch
-# below only shortens the lag; it never changes where the PR is raised.
+# below only shortens the lag.
 on:
   schedule:
     - cron: '0 6 * * *'
@@ -12,15 +19,18 @@ on:
     types: [featherbench-results]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  issues: write
 
 concurrency:
   group: ed-o-meter-data
   cancel-in-progress: false
 
+env:
+  ISSUE_LABEL: ed-o-meter-data
+
 jobs:
-  refresh:
+  watch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,23 +42,70 @@ jobs:
             https://raw.githubusercontent.com/ed-is-ai/featherbench/main/results/summary.json
           python3 -c "import json,sys; json.load(open(sys.argv[1]))" "${RUNNER_TEMP}/summary.json"
 
-      - name: Rebuild board data
+      - name: Compare against the board
+        id: check
         run: |
-          python3 scripts/build_ed_o_meter.py "${RUNNER_TEMP}/summary.json" \
-            --report "${RUNNER_TEMP}/refresh-report.md"
+          if python3 scripts/build_ed_o_meter.py "${RUNNER_TEMP}/summary.json" \
+               --check --report "${RUNNER_TEMP}/report.md" > /dev/null 2>&1; then
+            echo "stale=false" >> "${GITHUB_OUTPUT}"
+          else
+            echo "stale=true" >> "${GITHUB_OUTPUT}"
+          fi
+          cat "${RUNNER_TEMP}/report.md" >> "${GITHUB_STEP_SUMMARY}"
 
-      - name: Summarise in the run log
-        run: cat "${RUNNER_TEMP}/refresh-report.md" >> "${GITHUB_STEP_SUMMARY}"
+      - name: Open or update the drift issue
+        if: steps.check.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create "${ISSUE_LABEL}" --color BFD4F2 \
+            --description "Ed-o-meter board differs from featherbench" 2>/dev/null || true
 
-      # Opens a PR only when the generated file actually changed, so quiet days
-      # produce nothing. The page is served from main, so this must never push
-      # to main directly: the prose above the numbers needs a human first.
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          branch: ed-o-meter-data-refresh
-          delete-branch: true
-          add-paths: tools/ed-o-meter/data.js
-          commit-message: Refresh Ed-o-meter data from featherbench
-          title: Refresh Ed-o-meter data from featherbench
-          body-path: ${{ runner.temp }}/refresh-report.md
-          labels: data-refresh
+          {
+            cat "${RUNNER_TEMP}/report.md"
+            echo
+            echo "---"
+            echo
+            echo "To apply, from a checkout:"
+            echo
+            echo '```sh'
+            echo "curl -sfL -o /tmp/summary.json \\"
+            echo "  https://raw.githubusercontent.com/ed-is-ai/featherbench/main/results/summary.json"
+            echo "python3 scripts/build_ed_o_meter.py /tmp/summary.json"
+            echo '```'
+            echo
+            echo "Then fix any prose listed above before committing — the numbers"
+            echo "and the sentences about them need to move together."
+            echo
+            echo "_Updated by [this run](${RUN_URL})._"
+          } > "${RUNNER_TEMP}/issue.md"
+
+          # One living issue, refreshed in place. A daily cron that opened a new
+          # issue each morning would bury the signal within a week.
+          EXISTING=$(gh issue list --label "${ISSUE_LABEL}" --state open \
+            --json number --jq '.[0].number // empty')
+
+          if [ -n "${EXISTING}" ]; then
+            gh issue edit "${EXISTING}" --body-file "${RUNNER_TEMP}/issue.md"
+            echo "Updated issue #${EXISTING}"
+          else
+            gh issue create \
+              --title "Ed-o-meter board has drifted from featherbench" \
+              --label "${ISSUE_LABEL}" \
+              --body-file "${RUNNER_TEMP}/issue.md"
+          fi
+
+      # Closes itself once the board has been brought back into line, so the
+      # open/closed state of the issue is a truthful signal on its own.
+      - name: Close the drift issue when the board is current
+        if: steps.check.outputs.stale == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          EXISTING=$(gh issue list --label "${ISSUE_LABEL}" --state open \
+            --json number --jq '.[0].number // empty')
+          if [ -n "${EXISTING}" ]; then
+            gh issue close "${EXISTING}" \
+              --comment "Board now matches featherbench. Closed automatically."
+          fi
