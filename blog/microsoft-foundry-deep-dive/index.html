@@ -14,26 +14,43 @@
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-microsoft-foundry.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="669"/>
+  <meta property="og:image:alt" content="Abstract illustration of a wireframe form sliced open to reveal layered internal structure"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-02-18T00:00:00+00:00"/>
+  <meta property="article:modified_time" content="2026-08-02T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Microsoft Foundry: Architecture, Governance and Trade-offs"/>
   <meta name="twitter:description" content="A decision guide to Foundry's control plane, model and agent services, Azure advantages, operational costs and trade-offs."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-microsoft-foundry.jpg"/>
+  <meta name="twitter:image:alt" content="Abstract illustration of a wireframe form sliced open to reveal layered internal structure"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Microsoft Foundry: Architecture, Governance and Trade-offs",
     "description": "An architecture and governance guide to Microsoft Foundry: its control plane, model and agent services, Azure advantages, operational costs and trade-offs.",
-    "datePublished": "2026-02-18",
-    "dateModified": "2026-07-19",
+    "datePublished": "2026-02-18T00:00:00+00:00",
+    "dateModified": "2026-08-02T00:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-microsoft-foundry.jpg",
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"},
     "inLanguage": "en-GB",
     "keywords": ["Microsoft Foundry", "Azure AI", "enterprise AI", "AI platform", "Microsoft"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://reinvently.co.uk/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://reinvently.co.uk/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Microsoft Foundry: Architecture, Governance and Trade-offs", "item": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -46,7 +63,7 @@
         "name": "What is Microsoft Foundry?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Formerly Azure AI Studio and then Azure AI Foundry, rebranded at Microsoft Ignite in November 2025, it is an end-to-end AI app and agent factory for designing, building, evaluating, deploying and governing AI applications and agents — positioned as a third pillar alongside Microsoft 365 and Fabric."
+          "text": "Microsoft Foundry was previously Azure AI Studio and Azure AI Foundry. Microsoft rebranded it at Ignite in November 2025. The platform supports the design, evaluation, deployment and governance of AI applications and agents."
         }
       },
       {
@@ -54,7 +71,7 @@
         "name": "Which models does Foundry offer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A broad catalogue in one governed environment: OpenAI (GPT-5.5, GPT-5.2, o3), Claude Fable 5 and Opus 4.8 from Anthropic, plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets."
+          "text": "The catalogue includes OpenAI, Anthropic, Meta, Mistral, Cohere and other model families. Teams can benchmark candidates against their own datasets within the governed environment."
         }
       },
       {
@@ -91,7 +108,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">18 February 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">18 February 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Microsoft Foundry: Architecture, Governance and Trade-offs</h1>
   <p class="summary">Foundry brings model access, agent runtime, evaluation and Azure governance into one platform. That integration is its advantage and its constraint. This guide separates the architecture from the platform pitch.</p>
 </header>
@@ -101,7 +118,20 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <img class="article-hero-image" src="../../images/hero-microsoft-foundry.jpg" alt="Abstract illustration of a wireframe form sliced open to reveal layered internal structure"/>
+    <picture>
+      <source srcset="../../images/hero-microsoft-foundry.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-microsoft-foundry.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Abstract illustration of a wireframe form sliced open to reveal layered internal structure"/>
+    </picture>
+
+    <div class="key-takeaways">
+      <h2>At a glance</h2>
+      <ul>
+        <li>Microsoft Foundry combines model access, agent runtime, retrieval, evaluation and Azure governance in one platform.</li>
+        <li>It fits organisations already committed to Azure identity, networking, data and operational controls.</li>
+        <li>Its integrated control plane can simplify governance, but does not remove the need to configure and operate those controls.</li>
+        <li>Compare it with Copilot Studio, AWS Bedrock and narrower model gateways against a representative workload before standardising.</li>
+      </ul>
+    </div>
 
     <p>Microsoft Foundry is a platform for building and operating AI applications and agents across models, tools and Azure controls. It is not a single product: the value comes from how model access, runtime, evaluation, identity, networking and monitoring fit together.</p>
 
@@ -109,17 +139,17 @@
 
     <hr/>
 
-    <h2>What Is Microsoft Foundry?</h2>
+    <h2>What is Microsoft Foundry?</h2>
 
     <p>Microsoft Foundry — formerly Azure AI Studio, then Azure AI Foundry — was rebranded in November 2025 as part of Microsoft Ignite. The name change was not cosmetic. It reflected a deliberate repositioning of the platform as the <strong>third pillar of Microsoft's enterprise cloud</strong>, sitting alongside Microsoft 365 and Microsoft Fabric.</p>
 
     <p>The clearest way to understand Foundry's place in the ecosystem is this: Microsoft 365 is where knowledge workers use AI. Fabric is where data teams build analytical AI. <strong>Foundry is where developers and architects build, deploy and govern production AI applications and agents.</strong></p>
 
-    <p>It is, in Microsoft's own words, an "AI app and agent factory" — a unified workspace that takes you from model selection all the way through to production monitoring, with enterprise security, compliance and governance throughout.</p>
+    <p>Microsoft describes Foundry as an “AI app and agent factory”. The workspace spans model selection, development, evaluation, deployment and production monitoring. Azure security, compliance and governance services surround that lifecycle.</p>
 
     <hr/>
 
-    <h2>The Architecture</h2>
+    <h2>How is Microsoft Foundry architected?</h2>
 
     <h3>The Control Plane</h3>
 
@@ -131,7 +161,7 @@
       <li><strong>Observability</strong> — all requests, completions, token usage and trace data are aggregated in one place, feeding into Azure Monitor</li>
     </ul>
 
-    <p>The platform supplies the building blocks for centralised observability and security. Production readiness still depends on how teams configure identity, networking, policy, telemetry, alerting and ownership; the presence of a control plane is not evidence that those controls are effective.</p>
+    <p>The platform supplies building blocks for centralised observability and security. Production readiness still depends on identity, networking, policy, telemetry, alerting and ownership. A control plane does not prove that those controls are effective.</p>
 
     <h3>Projects and Hubs</h3>
 
@@ -141,7 +171,7 @@
 
     <hr/>
 
-    <h2>The Model Ecosystem</h2>
+    <h2>Which models does Microsoft Foundry support?</h2>
 
     <p>One of Foundry's most significant advantages is the breadth of its model catalogue — well beyond Azure <a href="https://openai.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">OpenAI</a>. It is one of the most comprehensive collections of leading models available in a single enterprise platform.</p>
 
@@ -155,7 +185,7 @@
     </ul>
 
     <h3><a href="https://www.anthropic.com/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Anthropic</a> Models</h3>
-    <p>Foundry now offers Anthropic's current flagships — <strong>Claude Fable 5 and Claude Opus 4.8</strong> — making Azure one of the only enterprise platforms with both OpenAI and Anthropic leading models in a single, governed environment. This matters because different models have different strengths, and production applications often benefit from routing different tasks to different models.</p>
+    <p>Foundry now offers Anthropic's <strong>Claude Fable 5 and Claude Opus 4.8</strong>. Azure is therefore one of the few enterprise platforms offering both OpenAI and Anthropic models within one governed environment. This supports model routing, where different tasks use different models.</p>
 
     <h3>Open and Third-Party Models</h3>
     <ul>
@@ -169,7 +199,7 @@
 
     <hr/>
 
-    <h2>Core Capabilities</h2>
+    <h2>What can Microsoft Foundry do?</h2>
 
     <h3>1. Foundry Agent Service</h3>
 
@@ -182,7 +212,7 @@
       <li><strong>Enterprise security</strong> — private networking, Entra RBAC, and full tracing built in from the start</li>
     </ul>
 
-    <p>Multi-agent workflows represent a meaningful shift in what is possible. Rather than a single agent attempting to do everything, Foundry enables architectures where a coordinating agent delegates subtasks to specialist agents — one for data retrieval, one for analysis, one for communication — and aggregates the results.</p>
+    <p>Multi-agent workflows divide work among specialists. A coordinating agent might delegate retrieval, analysis and communication to separate agents, then aggregate their results. Our <a href="/blog/multi-agent-orchestration-frameworks-compared/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">multi-agent orchestration comparison</a> explains how Foundry's managed approach differs from portable frameworks and lower-level runtimes.</p>
 
     <h3>2. Foundry IQ (Retrieval-Augmented Generation)</h3>
 
@@ -207,7 +237,7 @@
       <li>Version and deploy flows as managed endpoints</li>
     </ul>
 
-    <p>Prompt Flow is particularly valuable for teams building multi-step applications — customer service agents that retrieve context before responding, document processing pipelines, or research workflows — where the logic is too complex to express as a single prompt.</p>
+    <p>Prompt Flow suits applications whose logic is too complex for one prompt. Examples include customer-service agents that retrieve context, document-processing pipelines and research workflows.</p>
 
     <h3>5. Evaluation Framework</h3>
 
@@ -236,7 +266,7 @@
 
     <hr/>
 
-    <h2>Enterprise Security and Governance</h2>
+    <h2>How does Microsoft Foundry handle security and governance?</h2>
 
     <p>Foundry's enterprise security posture is mature:</p>
 
@@ -251,7 +281,7 @@
 
     <hr/>
 
-    <h2>Pricing</h2>
+    <h2>How much does Microsoft Foundry cost?</h2>
 
     <p>Foundry's pricing is consumption-based — the platform itself carries no flat licence fee. Costs accumulate across the underlying services consumed:</p>
 
@@ -296,7 +326,7 @@
 
     <hr/>
 
-    <h2>When Foundry Is — and Is Not — the Right Choice</h2>
+    <h2>When is Microsoft Foundry the right choice?</h2>
 
     <p><strong>Foundry is the right choice when:</strong></p>
     <ul>
@@ -318,7 +348,7 @@
 
     <hr/>
 
-    <h2>Getting Started</h2>
+    <h2>How should a team get started?</h2>
 
     <p>The fastest path into Foundry for most teams:</p>
 
@@ -334,21 +364,23 @@
 
     <hr/>
 
-    <h2>Decision Summary</h2>
+    <h2>What is the decision?</h2>
 
-    <p>Microsoft Foundry is a strong candidate when an organisation already operates Azure identity, networking, security and data services and wants one control surface across models and agents. That is an architectural fit, not proof that it is the most complete platform for every workload.</p>
+    <p>Microsoft Foundry is a strong candidate for organisations already operating Azure identity, networking, security and data services. It provides one control surface across models and agents. That is an architectural fit, not proof of universal superiority.</p>
 
-    <p>It is not the simplest route for every team. Copilot Studio may suit business-led, low-code delivery; AWS Bedrock may reduce integration work in an AWS estate; a narrower model gateway may be enough for teams that already have strong platform engineering. Compare these options against a representative workload and the controls you must operate, not a catalogue checklist.</p>
+    <p>Foundry is not the simplest route for every team. Copilot Studio may suit business-led, low-code delivery. AWS Bedrock can reduce integration work in an AWS estate. A narrower gateway may be sufficient for teams with strong platform engineering.</p>
+
+    <p>Our <a href="/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Copilot Studio, Azure AI Foundry and AWS Bedrock comparison</a> examines those alternatives. Compare each against a representative workload and the controls you must operate.</p>
 
     <p>Before standardising, test model portability, identity boundaries, trace export, policy enforcement, regional availability, preview dependencies and total operating cost. Foundry's integration is most valuable when those Azure-native dependencies are deliberate.</p>
 
         <h2>Frequently asked questions</h2>
 
     <h3>What is Microsoft Foundry?</h3>
-    <p>Formerly Azure AI Studio and then Azure AI Foundry, rebranded at Microsoft Ignite in November 2025, it is an end-to-end AI app and agent factory for designing, building, evaluating, deploying and governing AI applications and agents — positioned as a third pillar alongside Microsoft 365 and Fabric.</p>
+    <p>Microsoft Foundry was previously Azure AI Studio and Azure AI Foundry. Microsoft rebranded it at Ignite in November 2025. The platform supports the design, evaluation, deployment and governance of AI applications and agents.</p>
 
     <h3>Which models does Foundry offer?</h3>
-    <p>A broad catalogue in one governed environment: OpenAI (GPT-5.5, GPT-5.2, o3), Claude Fable 5 and Opus 4.8 from Anthropic, plus Meta Llama, Mistral, Cohere and others, with tooling to benchmark models against your own datasets.</p>
+    <p>The catalogue includes OpenAI, Anthropic, Meta, Mistral, Cohere and other model families. Teams can benchmark candidates against their own datasets within the governed environment.</p>
 
     <h3>What are Foundry's core capabilities?</h3>
     <p>A managed Agent Service with multi-agent workflows and more than 1,400 tool integrations, Foundry IQ for RAG over enterprise data, a Deep Research Agent, Prompt Flow for visual orchestration, a continuous evaluation framework, and built-in Responsible AI tooling.</p>

@@ -14,26 +14,43 @@
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero-eval-harness.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="669"/>
+  <meta property="og:image:alt" content="Abstract illustration of several paths fanning out from a single point of origin, one drawn as a dense triangulated mesh and the others as clean curves"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-07-16T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-02T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark"/>
   <meta name="twitter:description" content="How I built Featherbench, a single-file LLM eval harness running 28 tasks: one variable held constant, refusals counted as failures, and judge bias measured."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-eval-harness.jpg"/>
+  <meta name="twitter:image:alt" content="Abstract illustration of several paths fanning out from a single point of origin, one drawn as a dense triangulated mesh and the others as clean curves"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark",
     "description": "How I built Featherbench, a single-file LLM eval harness running 28 tasks: one variable held constant, refusals counted as failures, and judge bias measured.",
-    "datePublished": "2026-07-16",
-    "dateModified": "2026-07-16",
+    "datePublished": "2026-07-16T00:00:00+01:00",
+    "dateModified": "2026-08-02T00:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-eval-harness.jpg",
-    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
-    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
     "url": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"},
     "inLanguage": "en-GB",
     "keywords": ["Featherbench", "LLM benchmark", "LLM evaluation harness", "eval harness design", "AI model refusals", "judge bias", "OpenRouter"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://reinvently.co.uk/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://reinvently.co.uk/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark", "item": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -99,7 +116,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">16 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">16 July 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Building the Ed-o-meter: Notes on Writing My Own LLM Benchmark</h1>
   <p class="summary">The harness, the tasks, the decisions that turned out to matter, and the mistakes — written down mostly because the mistakes were more informative than the results.</p>
 </header>
@@ -109,7 +126,20 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <img class="article-hero-image" src="../../images/hero-eval-harness.jpg" alt="Abstract illustration of several paths fanning out from a single point of origin, one drawn as a dense triangulated mesh and the others as clean curves"/>
+    <picture>
+      <source srcset="../../images/hero-eval-harness.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-eval-harness.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Abstract illustration of several paths fanning out from a single point of origin, one drawn as a dense triangulated mesh and the others as clean curves"/>
+    </picture>
+
+    <div class="key-takeaways">
+      <h2>At a glance</h2>
+      <ul>
+        <li>Featherbench is a compact, single-file harness for comparing model quality, latency, cost and refusal behaviour.</li>
+        <li>Its 28 tasks test several capabilities rather than reducing performance to one coding benchmark.</li>
+        <li>Provider and model variables are controlled so the comparison is reproducible.</li>
+        <li>Refusals count as failures, while judge bias and security-check limitations are reported rather than hidden.</li>
+      </ul>
+    </div>
 
     <p>Every model launch arrives with a wall of benchmark scores: MMLU, GPQA, SWE-bench, an alphabet of acronyms that grows with each release. The numbers are always fascinating. The problem is that each score measures expected performance in domains other than yours. A model can top a maths reasoning suite and still fumble the tasks your team actually runs.</p>
 
