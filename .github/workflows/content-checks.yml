@@ -77,5 +77,9 @@ jobs:
       # `typos` only flags things it is confident are misspellings, which keeps
       # a prose-heavy repo full of AI vocabulary usable. Additions to the
       # project vocabulary live in _typos.toml.
+      #
+      # Pinned to the version the exclusions in _typos.toml were seeded against:
+      # a dictionary update is exactly the kind of change that turns an unrelated
+      # PR red. Bump it deliberately, with a local run to confirm.
       - name: Check spelling
-        uses: crate-ci/typos-action@master
+        uses: crate-ci/typos@v1.48.0
