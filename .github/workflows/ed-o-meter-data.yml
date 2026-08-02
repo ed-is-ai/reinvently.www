@@ -115,6 +115,7 @@ jobs:
             gh issue create \
               --title "Ed-o-meter board has drifted from featherbench" \
               --label "${ISSUE_LABEL}" \
+              --assignee "${{ github.repository_owner }}" \
               --body-file "${RUNNER_TEMP}/issue.md"
           fi
 
