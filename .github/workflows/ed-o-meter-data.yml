@@ -1,0 +1,54 @@
+name: Refresh Ed-o-meter data
+
+# Pulls featherbench's consolidated results and regenerates the board data.
+# featherbench is not involved in the trigger: it is read as a public URL, so
+# there is no cross-repo token to manage. The optional repository_dispatch
+# below only shortens the lag; it never changes where the PR is raised.
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [featherbench-results]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ed-o-meter-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch featherbench results
+        run: |
+          curl -sfL --retry 3 --retry-delay 5 \
+            -o "${RUNNER_TEMP}/summary.json" \
+            https://raw.githubusercontent.com/ed-is-ai/featherbench/main/results/summary.json
+          python3 -c "import json,sys; json.load(open(sys.argv[1]))" "${RUNNER_TEMP}/summary.json"
+
+      - name: Rebuild board data
+        run: |
+          python3 scripts/build_ed_o_meter.py "${RUNNER_TEMP}/summary.json" \
+            --report "${RUNNER_TEMP}/refresh-report.md"
+
+      - name: Summarise in the run log
+        run: cat "${RUNNER_TEMP}/refresh-report.md" >> "${GITHUB_STEP_SUMMARY}"
+
+      # Opens a PR only when the generated file actually changed, so quiet days
+      # produce nothing. The page is served from main, so this must never push
+      # to main directly: the prose above the numbers needs a human first.
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ed-o-meter-data-refresh
+          delete-branch: true
+          add-paths: tools/ed-o-meter/data.js
+          commit-message: Refresh Ed-o-meter data from featherbench
+          title: Refresh Ed-o-meter data from featherbench
+          body-path: ${{ runner.temp }}/refresh-report.md
+          labels: data-refresh
