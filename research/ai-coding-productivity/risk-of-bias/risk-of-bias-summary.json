@@ -1,9 +1,9 @@
 {
-  "assessment_date": "2026-07-29",
-  "empirical_studies": 99,
-  "study_level_assessments": 99,
+  "assessment_date": "2026-07-31",
+  "empirical_studies": 116,
+  "study_level_assessments": 116,
   "productivity_effect_estimates": 46,
-  "adjacent_outcome_studies": 55,
+  "adjacent_outcome_studies": 72,
   "independent_duplicate_appraisal": false,
   "study_level_counts": {
     "RoB 2": {
@@ -16,15 +16,15 @@
     },
     "JBI quasi": {
       "High": 5,
-      "Some concerns": 9
+      "Some concerns": 13
     },
     "JBI analytical": {
-      "High": 10,
-      "Some concerns": 21
+      "High": 11,
+      "Some concerns": 28
     },
     "JBI case": {
-      "High": 14,
-      "Some concerns": 12
+      "High": 16,
+      "Some concerns": 15
     }
   }
 }

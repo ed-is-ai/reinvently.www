@@ -21,19 +21,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 ARTICLE = ROOT / "blog/ai-coding-productivity-evidence/index.html"
 OUT_DIR = Path(__file__).resolve().parent
-ASSESSMENT_DATE = date(2026, 7, 29).isoformat()
+ASSESSMENT_DATE = date(2026, 7, 31).isoformat()
 
 
 ROB2 = {1, 2, 4, 9, 10, 23, 48, 52, 56, 58}
 ROBINS_I = {11, 12, 13, 14, 15, 16, 17, 18, 22, 24, 34, 35, 36, 37, 46, 49, 57, 93}
-JBI_QUASI = {3, 5, 6, 7, 8, 19, 20, 27, 28, 32, 54, 70, 86, 94}
+JBI_QUASI = {
+    3, 5, 6, 7, 8, 19, 20, 27, 28, 32, 54, 70, 86, 94,
+    100, 104, 111, 112,
+}
 JBI_ANALYTICAL = {
     25, 30, 33, 41, 42, 43, 44, 45, 47, 50, 51, 59, 60, 61, 63, 66,
     72, 73, 77, 78, 80, 82, 83, 84, 85, 89, 91, 95, 96, 97, 99,
+    101, 102, 103, 105, 106, 107, 109, 113,
 }
 JBI_CASE_BENCHMARK = {
     21, 26, 29, 31, 38, 39, 40, 53, 55, 62, 64, 65, 67, 68, 69,
-    71, 74, 75, 76, 79, 81, 87, 88, 90, 92, 98,
+    71, 74, 75, 76, 79, 81, 87, 88, 90, 92, 98, 108, 110, 114,
+    115, 116,
 }
 
 
@@ -185,15 +190,15 @@ PROFILE_IDS = {
     "robins_moderate": {13, 46},
     "robins_serious": {11, 14, 15, 16, 17, 18, 22, 24, 34, 35, 36, 37, 49, 57, 93},
     "robins_serious_measurement": {12},
-    "jbi_quasi_some": {3, 6, 7, 8, 19, 20, 27, 54, 94},
+    "jbi_quasi_some": {3, 6, 7, 8, 19, 20, 27, 54, 94, 100, 104, 111, 112},
     "jbi_quasi_high": {5, 28, 32, 70, 86},
     "jbi_analytical_some": {
         25, 33, 41, 42, 43, 44, 45, 47, 50, 51, 59, 61, 63, 72, 78,
-        80, 85, 91, 96, 97, 99,
+        80, 85, 91, 96, 97, 99, 101, 102, 103, 105, 107, 109, 113,
     },
-    "jbi_analytical_high": {30, 60, 66, 73, 77, 82, 83, 84, 89, 95},
-    "jbi_case_some": {53, 55, 65, 67, 68, 71, 76, 79, 87, 88, 92, 98},
-    "jbi_case_high": {21, 26, 29, 31, 38, 39, 40, 62, 64, 69, 74, 75, 81, 90},
+    "jbi_analytical_high": {30, 60, 66, 73, 77, 82, 83, 84, 89, 95, 106},
+    "jbi_case_some": {53, 55, 65, 67, 68, 71, 76, 79, 87, 88, 92, 98, 110, 115, 116},
+    "jbi_case_high": {21, 26, 29, 31, 38, 39, 40, 62, 64, 69, 74, 75, 81, 90, 108, 114},
 }
 
 
@@ -223,6 +228,23 @@ NOTES = {
     70: "AI access is confounded with programming experience, so group differences cannot isolate the tool effect.",
     86: "The small student sample and censoring materially affect the reported time comparison.",
     93: "Phased rollout provides temporal variation, but seniority, adoption and team spillovers remain non-random.",
+    100: "The staged human-subject comparison measured report quality directly, but the small sample and incomplete allocation details limit attribution.",
+    101: "Repository mining and a follow-up survey provide convergent evidence, while self-declaration and respondent selection remain incomplete measures of practice.",
+    102: "Instrumented interaction data are direct, but the small student sample and lack of a concurrent no-assistant comparator limit causal interpretation.",
+    103: "The large public conversation dataset supports descriptive use patterns, but shared links are a selected subset of developer interactions.",
+    104: "The mixed-method user study measures recommendation acceptance directly, although the sample and workflow are narrow.",
+    105: "Publicly shared GitHub conversations are observable but selected, and conversation sharing may not represent typical assistant use.",
+    106: "Only 12 students were observed, with no independent non-AI comparison; null quality differences are imprecise.",
+    107: "Issue outcomes and conversations are directly observed, but project, task and developer differences remain confounded.",
+    108: "The three-month fintech case combines telemetry and reflection without a concurrent control, making reported productivity effects difficult to attribute.",
+    109: "Experience sampling, interviews and a follow-up professional survey triangulate collaboration effects, but the outcomes remain largely self-reported.",
+    110: "The benchmark uses concrete vulnerable applications and reproducible attack evidence, but prompt construction and selected cases bound generalisability.",
+    111: "The user study measured evaluation accuracy and cognitive load directly, but the sample was small and allocation details were incomplete.",
+    112: "The between-subjects experiment provides an objective adoption measure, while the bounded online task and incomplete randomisation reporting constrain generalisation.",
+    113: "Repository issues, discussions and Stack Overflow posts provide a broad observed sample, but reporting behaviour and platform selection affect coverage.",
+    114: "The coding benchmark and programmer survey are informative, but they do not compare an identifiable workplace workflow against a concurrent control.",
+    115: "Historical vulnerability scenarios provide a concrete security reference, but prompt construction and selected C/C++ cases limit generalisation to workplace defect rates.",
+    116: "The benchmark compares generated and human solutions directly, but selected algorithmic tasks and reference data do not represent a concurrent professional workflow.",
 }
 
 
@@ -242,7 +264,7 @@ def clean(fragment: str) -> str:
 
 
 def extract_studies(source: str) -> dict[int, dict[str, str]]:
-    section = source.split("<h3>A. Included empirical studies (99)</h3>", 1)[1].split("</details>", 1)[0]
+    section = source.split("<h3>A. Included empirical studies (116)</h3>", 1)[1].split("</details>", 1)[0]
     matches = re.findall(
         r'<li><code>ST-(\d+)</code> — <a href="([^"]+)">(.*?)</a>(.*?)</li>',
         section,
@@ -309,7 +331,7 @@ def main() -> None:
 
     routed = ROB2 | ROBINS_I | JBI_QUASI | JBI_ANALYTICAL | JBI_CASE_BENCHMARK
     profiled = set().union(*PROFILE_IDS.values())
-    expected = set(range(1, 100))
+    expected = set(range(1, 117))
     assert set(studies) == expected
     assert routed == expected
     assert profiled == expected
@@ -321,7 +343,7 @@ def main() -> None:
     productivity_studies = set(effects_by_study)
 
     rows = []
-    for number in range(1, 100):
+    for number in range(1, 117):
         study = studies[number]
         targets = effects_by_study[number]
         effect_ids = "; ".join(target["effect_id"] for target in targets)
@@ -357,7 +379,7 @@ def main() -> None:
         row["_instrument_key"] = instrument_key
         rows.append(row)
 
-    assert len(rows) == len(studies) == 99
+    assert len(rows) == len(studies) == 116
 
     fieldnames = [
         "assessment_id", "study_id", "effect_ids", "evidence_stream", "title",

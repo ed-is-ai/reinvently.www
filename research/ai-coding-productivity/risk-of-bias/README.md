@@ -1,15 +1,15 @@
 # Formal risk-of-bias assessment
 
-Status: **complete for the 99 empirical studies included in article version
-1.18**.
+Status: **complete for the 116 empirical studies included in article version
+1.21**.
 
 ## Scope
 
-The register contains 99 study-level assessments:
+The register contains 116 study-level assessments:
 
 - 44 assessments cover productivity and delivery studies and retain links to
   all 46 estimates (`E-01` to `E-46`);
-- 55 assessments cover the primary adjacent outcome family cited for each
+- 72 assessments cover the primary adjacent outcome family cited for each
   remaining empirical study.
 
 `ST-29` and `ST-31` each contribute two productivity estimates. Their paired
@@ -66,9 +66,9 @@ The study-level results are:
 | --- | ---: | --- |
 | RoB 2 randomised trials | 10 | 9 some concerns; 1 high |
 | ROBINS-I non-randomised intervention studies | 18 | 2 moderate; 16 serious |
-| JBI quasi-experiments | 14 | 9 some concerns; 5 high |
-| JBI analytical observational studies | 31 | 21 some concerns; 10 high |
-| JBI-derived cases and benchmarks | 26 | 12 some concerns; 14 high |
+| JBI quasi-experiments | 18 | 13 some concerns; 5 high |
+| JBI analytical observational studies | 39 | 28 some concerns; 11 high |
+| JBI-derived cases and benchmarks | 29 | 13 some concerns; 16 high |
 
 No study was judged low risk across every applicable domain.
 
@@ -108,5 +108,5 @@ python3 research/ai-coding-productivity/risk-of-bias/assess_risk_of_bias.py
 ```
 
 The script reads the article's stable study and effect registers, verifies
-complete and non-overlapping routing for `ST-01` to `ST-99`, and rewrites the
+complete and non-overlapping routing for `ST-01` to `ST-116`, and rewrites the
 CSV and JSON outputs.

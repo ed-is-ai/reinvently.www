@@ -8,9 +8,10 @@ inventing retrospective counts.
 
 ## Scope
 
-- Empirical search window: 1 January 2024 to 28 July 2026.
-- Search run: 29 July 2026.
-- Database: OpenAlex title and abstract search.
+- Empirical search window: 1 January 2022 to 31 July 2026.
+- Search runs: OpenAlex on 29 July 2026; direct journal search on 31 July 2026.
+- Databases: OpenAlex title and abstract search; Crossref enumeration of 15
+  software-engineering journals by ISSN.
 - Other-method stream: 115 documents assembled through agentic Google web
   retrieval, evidence extraction and citation chasing.
 - Publication-source breakdown of that 115-document stream: 40 arXiv-hosted
@@ -37,9 +38,19 @@ inventing retrospective counts.
 - Sixty-nine reports were assessed for eligibility: 39 new source documents
   were included, one report replaced an existing contextual version, 27 were
   ineligible and two were duplicate reports.
-- The updated corpus contains 154 source documents: 99 empirical studies,
-  2 secondary syntheses and 53 contextual documents. The productivity stream
-  contains 44 studies and 46 effect estimates; 55 studies report adjacent
+- The direct journal search enumerated 10,995 records. A broad topical marker
+  screen retained 658 candidates, 10 of which duplicated the included corpus.
+  Of the 648 records screened, 643 were new and 5 overlapped the earlier
+  OpenAlex screen. Those five were reassessed from richer publisher records
+  rather than counted as new identifications. In total, 618 were excluded at
+  title/abstract stage and 30 reports were assessed.
+- The journal assessment added 17 primary adjacent-outcome studies, 2
+  secondary syntheses and 8 contextual documents. One existing synthesis was
+  replaced by its peer-reviewed journal version and 2 reports were excluded
+  at full text.
+- The updated corpus contains 181 source documents: 116 empirical studies,
+  4 secondary syntheses and 61 contextual documents. The productivity stream
+  contains 44 studies and 46 effect estimates; 72 studies report adjacent
   outcomes.
 
 The title/abstract and report-level passes were performed by one AI-assisted
@@ -63,10 +74,25 @@ repository record.
   study/effect ID assignment.
 - `report-assessments.csv` — report-level decision and exclusion register.
 - `search-summary.json` — current aggregate counts.
+- `search_journals.py` — ISSN-based Crossref enumeration, topical marker
+  screening and deduplication against the included corpus.
+- `journal-search-log.csv` and `journal-records.jsonl.gz` — journal query log
+  and compressed 31 July 2026 snapshot of the Crossref fields used for
+  screening.
+- `journal-screening-register.csv` — all topical journal candidates,
+  deduplication status and title/abstract decisions.
+- `screen_journals.py` — archived journal title/abstract and full-text
+  decisions.
+- `journal-full-text-candidates.csv` and `journal-report-assessments.csv` —
+  journal reports advanced to assessment and their final decisions.
+- `journal-search-summary.json` — aggregate journal-stream counts.
 
 ## Reproduction
 
-Run `search_openalex.py`, then `screen_title_abstract.py`, then
-`assess_reports.py`. OpenAlex is a live index, so rerunning the search can
-change the identification counts. The committed JSONL and CSV files preserve
-the 29 July 2026 snapshot used in article version 1.18.
+Run `search_openalex.py`, `screen_title_abstract.py` and `assess_reports.py`
+for the OpenAlex stream. Run `search_journals.py` and `screen_journals.py` for
+the journal stream. Both indexes are live, so rerunning either search can
+change identification counts. The committed JSONL and CSV files preserve the
+snapshots used in article version 1.21. Use
+`search_journals.py --reuse-snapshot` to rebuild the journal candidate
+register without querying Crossref again.

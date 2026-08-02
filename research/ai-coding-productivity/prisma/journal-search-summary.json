@@ -1,0 +1,17 @@
+{
+  "search_date": "2026-07-31",
+  "journals_enumerated": 15,
+  "records_enumerated": 10995,
+  "candidate_reports_after_marker_screen": 658,
+  "duplicates_against_existing_corpus": 10,
+  "prior_openalex_records_reassessed": 5,
+  "new_records_for_screening": 643,
+  "records_screened_or_reassessed": 648,
+  "title_abstract_exclusions": 618,
+  "reports_assessed": 30,
+  "included_new_empirical_studies": 17,
+  "included_new_secondary_syntheses": 2,
+  "included_new_contextual_documents": 8,
+  "replacement_reports": 1,
+  "full_text_exclusions": 2
+}
