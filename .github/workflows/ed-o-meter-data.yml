@@ -45,11 +45,33 @@ jobs:
       - name: Compare against the board
         id: check
         run: |
-          if python3 scripts/build_ed_o_meter.py "${RUNNER_TEMP}/summary.json" \
-               --check --report "${RUNNER_TEMP}/report.md" > /dev/null 2>&1; then
-            echo "stale=false" >> "${GITHUB_OUTPUT}"
-          else
-            echo "stale=true" >> "${GITHUB_OUTPUT}"
+          set +e
+          python3 scripts/build_ed_o_meter.py "${RUNNER_TEMP}/summary.json" \
+            --check --report "${RUNNER_TEMP}/report.md" \
+            > "${RUNNER_TEMP}/check.stdout" \
+            2> "${RUNNER_TEMP}/check.stderr"
+          STATUS=$?
+          set -e
+
+          cat "${RUNNER_TEMP}/check.stdout"
+          cat "${RUNNER_TEMP}/check.stderr" >&2
+
+          case "${STATUS}" in
+            0)
+              echo "stale=false" >> "${GITHUB_OUTPUT}"
+              ;;
+            1)
+              echo "stale=true" >> "${GITHUB_OUTPUT}"
+              ;;
+            *)
+              echo "::error::Ed-o-meter comparison failed with exit code ${STATUS}"
+              exit "${STATUS}"
+              ;;
+          esac
+
+          if [ ! -f "${RUNNER_TEMP}/report.md" ]; then
+            echo "::error::Comparison completed without producing report.md"
+            exit 2
           fi
           cat "${RUNNER_TEMP}/report.md" >> "${GITHUB_STEP_SUMMARY}"
 
@@ -93,6 +115,7 @@ jobs:
             gh issue create \
               --title "Ed-o-meter board has drifted from featherbench" \
               --label "${ISSUE_LABEL}" \
+              --assignee "${{ github.repository_owner }}" \
               --body-file "${RUNNER_TEMP}/issue.md"
           fi
 

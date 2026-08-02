@@ -26,6 +26,7 @@ import math
 import re
 import statistics
 import sys
+import traceback
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -155,6 +156,20 @@ def parse_data_js(text: str) -> tuple[list[dict[str, Any]], str]:
                 row[key] = float(raw) if "." in raw else int(raw)
         models.append(row)
     return models, (source_run.group(1) if source_run else "")
+
+
+def board_payload(text: str) -> tuple[str, str]:
+    """Return the generated board arrays, excluding run metadata and comments.
+
+    ``generated_utc`` and ``sourceRun`` are useful provenance when data.js is
+    regenerated, but a new timestamp or logically equivalent run must not make
+    the board stale when every displayed value is unchanged.
+    """
+    models = re.search(r"const MODELS = \[\n(.*?)\n\];", text, re.S)
+    cats = re.search(r"const CATS = \[\n(.*?)\n\];", text, re.S)
+    if not models or not cats:
+        raise ValueError("data.js: could not find the generated MODELS and CATS arrays")
+    return models.group(1), cats.group(1)
 
 
 def render_data_js(models: list[dict[str, Any]], cats: list[dict[str, Any]],
@@ -412,7 +427,7 @@ def main() -> int:
         args.report.write_text(report, encoding="utf-8")
 
     if args.check:
-        if rendered != existing_text:
+        if board_payload(rendered) != board_payload(existing_text):
             print(report)
             print("data.js is out of date — run without --check to regenerate.", file=sys.stderr)
             return 1
@@ -425,4 +440,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except Exception:
+        # Exit 1 is reserved for expected board drift. Operational failures use
+        # exit 2 so CI does not mistake malformed input or a script bug for a
+        # routine data refresh.
+        traceback.print_exc()
+        raise SystemExit(2)
