@@ -142,7 +142,7 @@
 
     <hr/>
 
-    <h2>The Problem These Features Solve</h2>
+    <h2>What problem do Claude Memory and Dream solve?</h2>
 
     <p>Enterprise AI deployments have historically faced three compounding challenges that limit how far adoption can go:</p>
 
@@ -156,7 +156,7 @@
 
     <hr/>
 
-    <h2>Memory — Durable Knowledge That Agents Control</h2>
+    <h2>How does Claude Memory create durable knowledge?</h2>
 
     <p>Claude Memory stores are persistent, versioned text documents mounted to an agent's file system at <code>/mnt/memory/&lt;store-name&gt;/</code>. Agents read and write them using standard file tools — there is no special API to learn, no new abstraction layer. From an agent's perspective, memory is just files.</p>
 
@@ -170,17 +170,21 @@
       <li>A customer support agent accumulates a profile of recurring issues per account, accessible to any agent that serves that customer.</li>
     </ul>
 
-    <p>Early adopters have published numbers worth examining. <a href="https://claude.com/customers/rakuten-qa" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Rakuten reported</a> a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents, and <a href="https://www.wisedocs.ai/blogs/building-managed-agents-for-document-verification" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs&#8217; document verification workflow</a> ran <strong>30 percent faster</strong>. Both figures come from named customer case studies published within Anthropic's commercial ecosystem, not controlled or independent evaluations. They demonstrate potential in those workflows, not an expected effect size for other deployments. The distinction between task-level gains and reliable delivery is explored in our <a href="/blog/ai-coding-productivity-evidence/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">systematic review of AI coding productivity</a>.</p>
+    <p>Early adopters have published numbers worth examining. <a href="https://claude.com/customers/rakuten-qa" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Rakuten reported</a> a <strong>97 percent reduction in first-pass errors</strong> after deploying Memory-enabled agents. <a href="https://www.wisedocs.ai/blogs/building-managed-agents-for-document-verification" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Wisedocs&#8217; document verification workflow</a> ran <strong>30 percent faster</strong>.</p>
+
+    <p>Both figures are named customer case studies within Anthropic's commercial ecosystem, not controlled independent evaluations. They show potential in those workflows rather than an expected result elsewhere. Our <a href="/blog/ai-coding-productivity-evidence/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">systematic review of AI coding productivity</a> examines the distinction between task-level gains and reliable delivery.</p>
 
     <p>Critically for enterprise teams, every memory write is developer-controlled. Data is exportable, editable, and redactable via the API or the Claude Console. The agent learns, but the organisation retains ownership of what it has learned.</p>
 
     <hr/>
 
-    <h2>Dream — Automated Memory Curation</h2>
+    <h2>How does Dream curate agent memory?</h2>
 
     <p>Memory addresses persistence. Dream is Anthropic's approach to curation.</p>
 
-    <p>In any long-running enterprise deployment, memory stores accumulate noise. Resolved edge cases stop being relevant, context goes stale, entries duplicate, and patterns that helped six months ago get superseded. Without intervention, the signal-to-noise ratio degrades and agents perform worse, not better, the longer they run. This is the slow failure mode that most enterprise teams do not see coming.</p>
+    <p>In a long-running deployment, memory stores accumulate noise. Resolved edge cases lose relevance, context becomes stale and entries are duplicated or superseded.</p>
+
+    <p>Without intervention, the signal-to-noise ratio can degrade as the deployment ages. This is a slow failure mode that teams may not notice immediately.</p>
 
     <p>Dream is a scheduled, asynchronous process that runs between active sessions. It reviews up to 100 past sessions alongside the current memory store to identify patterns and deduplicate entries, then surfaces recurring insights and reorganises memory into a more effective structure. Developers can configure it to apply updates automatically or to surface proposed changes for human review before they take effect.</p>
 
@@ -192,7 +196,7 @@
 
     <hr/>
 
-    <h2>What This Changes — and What It Does Not</h2>
+    <h2>What changes—and what remains the same?</h2>
 
     <p>Maintenance overhead is one reason agent pilots struggle in production. Persistent memory can remove some plumbing, but it also creates a governed data asset that needs permissions, retention rules, quality checks and monitoring.</p>
 
@@ -211,7 +215,7 @@
 
     <hr/>
 
-    <h2>What to Consider Before Deploying</h2>
+    <h2>What should enterprises consider before deploying?</h2>
 
     <p>Memory and Dream are powerful, but they introduce considerations worth planning for before you commit to a production architecture.</p>
 
@@ -231,7 +235,7 @@
 
     <p>Claude Memory and Dream make persistent context a managed platform capability rather than an entirely bespoke application layer. That is architecturally useful. It is not the same as autonomous learning, and it does not guarantee that maintenance effort falls as a deployment grows.</p>
 
-    <p>The sensible next step is a bounded evaluation: compare a Memory-enabled agent with a stateless baseline, define what Dream may change, and measure quality, review effort and cost over enough time for stale context to become visible.</p>
+    <p>The sensible next step is a bounded evaluation. Compare a Memory-enabled agent with a stateless baseline and define what Dream may change. Measure quality, review effort and cost for long enough that stale context has time to become visible.</p>
 
     <hr/>
 
@@ -248,7 +252,7 @@
     <p>Rakuten reported a 97 percent reduction in first-pass errors with Memory-enabled agents, and Wisedocs a 30 percent faster document workflow. Harvey, the legal AI platform, reported a sixfold increase in task completion after enabling Dream.</p>
 
     <h3>What should you plan for before deploying?</h3>
-    <p>Data governance over what agents may write to memory, a human-in-the-loop review mode for Dream in regulated workflows, periodic auditing of memory stores, and a cost model — the gains are largest for high-volume, repeating workflows.</p>
+    <p>Define what agents may write to memory and use review mode for Dream in regulated workflows. Audit memory stores periodically and model the cost against measured gains, starting with high-volume, repeating tasks.</p>
 
 <p><em>New posts land here first. <a href="/contact/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Sign up for email updates</a>.</em></p>
 
