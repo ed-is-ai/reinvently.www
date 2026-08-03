@@ -8,16 +8,35 @@ name: Watch Ed-o-meter data
 # This job's job is to notice — run scripts/build_ed_o_meter.py locally to
 # actually regenerate tools/ed-o-meter/data.js.
 #
-# featherbench is not involved in the trigger: it is read as a public URL, so
-# there is no cross-repo token to manage. The optional repository_dispatch
-# below only shortens the lag.
+# featherbench is read as a public URL, so nothing here needs a token. It is
+# reached the same way whichever trigger fires.
+#
+# There are four triggers because a schedule alone proved unreliable: GitHub
+# runs schedule events on a best-effort basis and drops them when delayed, and
+# for the first day of this workflow's life not one fired. The push trigger is
+# the dependable floor, the schedule covers quiet periods, and the
+# repository_dispatch is the only one with no lag.
 on:
   schedule:
   # 04:30 UTC, off the hour on purpose: GitHub runs schedule events on a
   # best-effort basis and drops them when delayed, and the top of the hour is
   # the most contended slot. At 0 6 this never fired once. 05:30 through BST.
     - cron: '30 4 * * *'
+
+  # Every push to main, as a heartbeat that does not depend on cron at all.
+  # Pushes here are frequent and event-driven, so even if a scheduled run is
+  # dropped the board cannot drift unnoticed for long. The check is a single
+  # fetch and comparison, and the issue it manages is idempotent — opened once,
+  # refreshed in place, closed when the board is current — so running it often
+  # costs a few seconds and creates no noise.
+  push:
+    branches: [main]
+
   workflow_dispatch:
+
+  # The direct signal, and the only one with no lag: featherbench fires this
+  # when results change. It needs a token in that repository, because
+  # GITHUB_TOKEN cannot dispatch across repositories.
   repository_dispatch:
     types: [featherbench-results]
 

@@ -1,0 +1,58 @@
+name: Notify reinvently.www
+
+# Belongs in ed-is-ai/featherbench as .github/workflows/notify-reinvently.yml.
+# It is kept here as an example because it is the other half of
+# .github/workflows/ed-o-meter-data.yml and the two are easier to keep honest
+# side by side.
+#
+# Fires the moment published results change, which is the only trigger for the
+# drift check with no lag. The scheduled and push triggers on the receiving end
+# stay as fallbacks — this is the fast path, not the only path.
+#
+# Setup, once:
+#
+#   1. Create a fine-grained personal access token scoped to
+#      ed-is-ai/reinvently.www with Repository permissions → Contents:
+#      read and write. That is what the dispatch API checks.
+#   2. Add it to ed-is-ai/featherbench as the secret REINVENTLY_DISPATCH_TOKEN.
+#   3. Commit this file to featherbench.
+#
+# GITHUB_TOKEN cannot be used: it is scoped to the repository that issued it and
+# cannot dispatch to another one.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'results/summary.json'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: notify-reinvently
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tell reinvently.www the results moved
+        env:
+          GH_TOKEN: ${{ secrets.REINVENTLY_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "REINVENTLY_DISPATCH_TOKEN is not set — skipping." >&2
+            echo "The drift check still runs on its own schedule and on pushes" >&2
+            echo "to reinvently.www, so this is a lost shortcut, not a failure." >&2
+            exit 0
+          fi
+
+          # client_payload is informational: the receiving workflow re-fetches
+          # results/summary.json itself rather than trusting anything sent here.
+          gh api repos/ed-is-ai/reinvently.www/dispatches \
+            --method POST \
+            --field event_type=featherbench-results \
+            --raw-field 'client_payload={"sha":"${{ github.sha }}"}'
+
+          echo "Dispatched featherbench-results for ${GITHUB_SHA}."
