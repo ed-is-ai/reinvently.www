@@ -4,7 +4,7 @@
       "numberOfRuns": 3
     },
     "assert": {
-      "//": "Asserts all 175 audits via the preset. The point is the 41 that pass on every page today \u2014 ARIA correctness, form labels, table headers, list structure, doctype, charset \u2014 which cost nothing to lock in and catch the regression a weighted category score would otherwise absorb. Every exception below was measured failing across 72 desktop and mobile reports on 2 August 2026; none is guessed. Groups: (a) fixable and being fixed, held at warn \u2014 errors-in-console, color-contrast, td-has-header, heading-order, aria-allowed-role; (b) uses-long-cache-ttl and cache-insight, which GitHub Pages controls and no change to this repo can affect; (c) timing metrics, whose real signal is the category score rather than the individual audit; (d) known work \u2014 oversized heroes, the GoDaddy bundles, the homepage's inline CSS \u2014 tracked as tasks rather than as a daily red run. Comment keys must not appear inside 'assertions': LHCI reads every key there as an audit id and fails an auditRan check against it.",
+      "//": "Asserts all 175 audits via the preset. The point is the 41 that pass on every page today \u2014 ARIA correctness, form labels, table headers, list structure, doctype, charset \u2014 which cost nothing to lock in and catch the regression a weighted category score would otherwise absorb. Every exception below was measured failing across 72 desktop and mobile reports on 2 August 2026; none is guessed. Groups: (a) fixable and being fixed, held at warn \u2014 errors-in-console, color-contrast, td-has-header, heading-order, aria-allowed-role; (b) uses-long-cache-ttl and cache-insight, which GitHub Pages controls and no change to this repo can affect; (c) timing metrics, whose real signal is the category score rather than the individual audit; (d) known work \u2014 oversized heroes, the GoDaddy bundles, the homepage's inline CSS \u2014 tracked as tasks rather than as a daily red run. Comment keys must not appear inside 'assertions': LHCI reads every key there as an audit id and fails an auditRan check against it. tap-targets is deliberately absent: it was removed in Lighthouse 12 and asserting it produced a permanent auditRan warning on every mobile URL.",
       "preset": "lighthouse:no-pwa",
       "assertions": {
         "categories:seo": [
@@ -38,12 +38,6 @@
           }
         ],
         "font-size": [
-          "warn",
-          {
-            "minScore": 1
-          }
-        ],
-        "tap-targets": [
           "warn",
           {
             "minScore": 1
