@@ -20,7 +20,10 @@ on:
       - '.github/styles/**'
       - '.github/workflows/prose.yml'
   schedule:
-    - cron: '0 6 * * *'
+  # 04:30 UTC, off the hour on purpose: GitHub runs schedule events on a
+  # best-effort basis and drops them when delayed, and the top of the hour is
+  # the most contended slot. At 0 6 this never fired once. 05:30 through BST.
+    - cron: '30 4 * * *'
   workflow_dispatch:
 
 permissions:
