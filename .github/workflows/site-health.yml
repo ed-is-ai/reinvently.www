@@ -7,9 +7,15 @@ name: Site health
 # whichever version happened to win. Daily, plus on demand, measures what
 # visitors actually get.
 #
-# 06:00 UTC, matching the other two scheduled jobs. GitHub's cron has no notion
-# of DST, so this lands at 07:00 through British Summer Time and 06:00 in
-# winter.
+# 04:30 UTC, matching the other two scheduled jobs.
+#
+# Deliberately off the hour. GitHub runs schedule events on a best-effort basis
+# and drops them outright when a delay grows too long, and the top of every hour
+# is the most contended slot there is — at 0 6 none of the three workflows ever
+# fired at all.
+#
+# GitHub's cron has no notion of DST, so this lands at 05:30 through British
+# Summer Time and 04:30 in winter.
 #
 # The thresholds in .github/lighthouse/lighthouserc.json have not yet been
 # calibrated against a real run — they were set conservatively so the first runs
@@ -17,7 +23,7 @@ name: Site health
 # of results are in.
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '30 4 * * *'
   workflow_dispatch:
 
 permissions:
