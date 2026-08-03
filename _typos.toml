@@ -24,7 +24,9 @@ extend-exclude = [
   # Norwegian; tests-data.json holds raw model output. "Correcting" any of it
   # would falsify the evidence, which is the opposite of the point.
   "research/**/prisma/",
-  "tools/ed-o-meter/tests/",
+  # The captured model output only. tools/ed-o-meter/tests/index.html is a
+  # published page and its prose is spellchecked like any other.
+  "tools/ed-o-meter/tests/*.json",
 
   # Internal review notes that quote the old, misspelled copy on purpose.
   "UI-REVIEW.md",
