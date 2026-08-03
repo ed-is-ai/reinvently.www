@@ -7,13 +7,13 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Complete LLM Leaderboard: The Ed-o-meter — Reinvently</title>
-<meta name="description" content="Thirteen models on the Featherbench leaderboard: five tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
 <link rel="stylesheet" href="../../blog/blog.css"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
 <link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta property="og:description" content="Thirteen models on the Featherbench leaderboard: five tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta property="og:description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_GB"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta name="twitter:description" content="Thirteen models on the Featherbench leaderboard: five tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="twitter:description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
 <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
 <script type="application/ld+json">
 {
@@ -33,7 +33,7 @@
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-29",
+  "dateModified": "2026-08-03",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
   "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
@@ -249,11 +249,11 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 29 July 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 3 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
   <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. <strong>haiku-4-5</strong> if cost and speed rule; <strong>sonnet-4-6</strong> if you want the quality without the wait. Surprisingly, the newest models didn't cut it. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
-  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260728T215711Z</code></p>
+  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260802T124847Z</code></p>
 </header>
 
 <main class="container">
@@ -303,9 +303,9 @@
       <summary>Four caveats on how these numbers were produced</summary>
       <div class="footnotes">
       <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
-      <p><sup>2</sup> fable-5's 9.2 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.2 versus 8.6–8.7 for the models it judges independently. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
+      <p><sup>2</sup> fable-5's 9.3 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.3 versus 8.6–8.7 for the models it judges independently. It is also the only figure on its row from an earlier run — the 5 Jul 2026 run, 11 of 28 trials judged — because no trial of its current run has been judged at all. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
       <p><sup>3</sup> <strong>Recipe-checker false-positive.</strong> On the vegetarian weeknight recipe the forbidden-term checker fires on a non-ingredient mention — a label-check caution or a negated omission list ("uses no fish sauce or animal-derived garnishes"). All three recipes are genuinely meat-free, so gpt-5.5, sonnet-5 and fable-5 are scored as passing that task here. No task or checker was edited.</p>
-      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0457/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. No other model on the board has refusals.</p>
+      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0481/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. No other model on the board has refusals.</p>
       </div>
     </details>
 
@@ -342,11 +342,11 @@
     <div class="pit">
       <div class="pit-note pick">
         <h3>If you only run one model, run gpt-5.5</h3>
-        <p>gpt-5.5 is the best all-round balance on the board: 96% pass, an 8.7 rubric, 100% security with the canary emitted in none of six jailbreak cells, and $1.43 for the lap. It is the only model in the top group scoring 93% or better in every category. The one cost is patience — a 13.2-second median time-to-first-token, second slowest here. sonnet-4-6 is the next pick, with a marginally better 8.9 rubric and a much faster 7.5-second TTFT, for $1.84.</p>
+        <p>gpt-5.5 is the best all-round balance on the board: 96% pass, an 8.7 rubric, 100% security with the canary emitted in none of its six security cells, and $1.43 for the lap. Only its realworld corner drops below 100%, at 89% — the corner where nearly every model loses ground. The one cost is patience — a 13.2-second median time-to-first-token, second slowest here. sonnet-4-6 is the next pick, with a marginally better 8.9 rubric and a much faster 7.5-second TTFT, for $1.84.</p>
       </div>
       <div class="pit-note steward">
         <h3>Fable failed to complete a single lap</h3>
-        <p>fable-5 sits last at 78% because it refused to do 5 of the tasks.  It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+        <p>fable-5 is joint-bottom at 79% because it refused to do 5 of the tasks. It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
       </div>
       <div class="pit-note">
         <h3>Cheap as chips, and it reads like it</h3>
@@ -354,15 +354,15 @@
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 93% pass rate, though opus-5's 9.4 now runs it close on quality at a tenth of the wait. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
+        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate, though opus-5's 9.4 now runs it close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
       </div>
       <div class="pit-note flag">
-        <h3>Two cars failed the crash test</h3>
-        <p>The gpt-5.6 pair is quick, but it has a safety problem.  gpt-5.6-luna and gpt-5.6-sol emitted the jailbreak canary in 10 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
+        <h3>Three cars failed the crash test</h3>
+        <p>The gpt-5.6 line is quick, but it has a safety problem.  gpt-5.6-luna, gpt-5.6-terra and gpt-5.6-sol emitted the jailbreak canary in 11 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
       </div>
       <div class="pit-note steward">
         <h3>A safety filter can look exactly like a bad lap</h3>
-        <p>opus-5 posts the best rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 50% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5. Two Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
+        <p>opus-5 posts the best rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 43% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5. Two Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
       </div>
     </div>
 
@@ -579,7 +579,7 @@ render();
 const CORNERS = [
   {key:'cv', label:'Coding',
    desc:'Unit-tested programming tasks — fix the bug, write the function. Pass or fail comes from the tests, not opinion.',
-   field:'Field: eleven of thirteen at 100%. fable-5 (79%) and opus-5 (50%) are the exceptions, and both are refusals rather than wrong answers — opus-5 had four benign debugging tasks blocked before generation.'},
+   field:'Field: eleven of thirteen at 100%. fable-5 and opus-5 (43% each) are the exceptions, and both are refusals rather than wrong answers — opus-5 had four benign debugging tasks blocked before generation.'},
   {key:'dv', label:'Data',
    desc:'Structured extraction and transformation — parse it, reshape it, get the schema exactly right.',
    field:'Field: everyone at 100% except kimi-k3 (75%) — its only weak corner.'},
@@ -588,7 +588,7 @@ const CORNERS = [
    field:'Field range 78–100%: the weakest corner for almost everyone, and where the podium was decided.'},
   {key:'sv', label:'Security',
    desc:'Prompt-injection and jailbreak resistance — canary tasks that reveal whether the model can be talked into anything.',
-   field:'Field split 33–100%, and the corner where the checkers themselves failed in both directions. gpt-5.6 luna and sol emitted the canary in 10 of 12 cells — genuinely unsafe, correctly caught. grok-4.5 emitted it zero times yet the raw checker read 50%; gemini-3.6-flash read 100% while actually complying.'},
+   field:'Field split 33–100%, and the corner where the checkers themselves failed in both directions. gpt-5.6 luna, terra and sol emitted the canary in 11 of 12 cells — genuinely unsafe, correctly caught. grok-4.5 emitted it zero times yet the raw checker read 50%; gemini-3.6-flash read 100% while actually complying.'},
   {key:'tv', label:'Tool-use',
    desc:'Function-calling tasks — pick the right tool, format the call correctly.',
    field:'All thirteen models took this corner clean: 100% across the board.'},
