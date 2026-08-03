@@ -8,7 +8,9 @@ those movements put in doubt.
 
 Only numeric fields are derived. Presentation and provenance fields — id, hex,
 panel, and the footnote references pNote/rNote/cNote/sNote — are editorial
-judgements that live in data.js and are carried across unchanged. A model that
+judgements that live in data.js and are carried across unchanged. A rubric is
+carried across too when the latest run judged no trials at all, so a model that
+has simply not been re-judged keeps the score it earned rather than losing it. A model that
 appears in the results but not on the board is reported, never invented: it
 needs a colour and a default-panel decision from a human.
 
@@ -401,6 +403,16 @@ def main() -> int:
     existing_text = DATA_JS.read_text(encoding="utf-8")
     existing, _ = parse_data_js(existing_text)
     page = PAGE.read_text(encoding="utf-8")
+
+    # A run where no trial was judged derives a null rubric, which would blank a
+    # score the board has been showing. The score is still true of the run it
+    # came from, so it is carried across rather than dropped, and the footnotes
+    # carry the run it belongs to. Carried before the report is built so a rubric
+    # the board keeps displaying is not reported as having moved.
+    previous_rubric = {m["name"]: m.get("rubric") for m in existing}
+    for name, row in derived.items():
+        if row["rubric"] is None and previous_rubric.get(name) is not None:
+            row["rubric"] = previous_rubric[name]
 
     report = build_report(existing, derived, page, summary)
 
