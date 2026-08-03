@@ -4,33 +4,58 @@
       "numberOfRuns": 3
     },
     "assert": {
-      "//": "Same preset and overrides as the desktop config, plus the three mobile-only audits. Kept as a separate file rather than shared, because the two differ in ways that matter and a shared base would hide that.",
+      "//": "Asserts all 175 audits via the preset. The point is the 41 that pass on every page today \u2014 ARIA correctness, form labels, table headers, list structure, doctype, charset \u2014 which cost nothing to lock in and catch the regression a weighted category score would otherwise absorb. Every exception below was measured failing across 72 desktop and mobile reports on 2 August 2026; none is guessed. Groups: (a) fixable and being fixed, held at warn \u2014 errors-in-console, color-contrast, td-has-header, heading-order, aria-allowed-role; (b) uses-long-cache-ttl and cache-insight, which GitHub Pages controls and no change to this repo can affect; (c) timing metrics, whose real signal is the category score rather than the individual audit; (d) known work \u2014 oversized heroes, the GoDaddy bundles, the homepage's inline CSS \u2014 tracked as tasks rather than as a daily red run. Comment keys must not appear inside 'assertions': LHCI reads every key there as an audit id and fails an auditRan check against it.",
       "preset": "lighthouse:no-pwa",
       "assertions": {
-        "categories:seo": ["error", { "minScore": 0.9 }],
-        "categories:accessibility": ["error", { "minScore": 0.9 }],
-        "categories:best-practices": ["warn", { "minScore": 0.9 }],
-
-        "//0": "0.7 against desktop's 0.8: throttled mobile scores run lower for the same page, and the homepage swings between 57 and 82 across runs.",
-        "categories:performance": ["warn", { "minScore": 0.7 }],
-
-        "//1": "Mobile-only, and passing everywhere today.",
-        "viewport": ["error", { "minScore": 1 }],
-        "font-size": ["warn", { "minScore": 1 }],
-        "tap-targets": ["warn", { "minScore": 1 }],
-
-        "//2": "Fixable, and being fixed.",
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:best-practices": [
+          "warn",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:performance": [
+          "warn",
+          {
+            "minScore": 0.7
+          }
+        ],
+        "viewport": [
+          "error",
+          {
+            "minScore": 1
+          }
+        ],
+        "font-size": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "tap-targets": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
         "errors-in-console": "warn",
         "color-contrast": "warn",
         "td-has-header": "warn",
         "heading-order": "warn",
         "aria-allowed-role": "warn",
-
-        "//3": "Not fixable on GitHub Pages.",
         "uses-long-cache-ttl": "off",
         "cache-insight": "off",
-
-        "//4": "Timing metrics — noisy under mobile throttling in particular.",
         "first-contentful-paint": "off",
         "largest-contentful-paint": "off",
         "largest-contentful-paint-element": "off",
@@ -45,8 +70,6 @@
         "speed-index": "off",
         "mainthread-work-breakdown": "off",
         "forced-reflow-insight": "off",
-
-        "//5": "Known work, tracked as tasks.",
         "uses-responsive-images": "off",
         "modern-image-formats": "off",
         "uses-optimized-images": "off",
