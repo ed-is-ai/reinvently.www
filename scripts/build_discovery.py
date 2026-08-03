@@ -136,13 +136,34 @@ def discover_pages() -> list[Page]:
     return sorted(pages, key=lambda page: (page.url != f"{SITE_URL}/", page.url))
 
 
+# The schema blocks used to carry bare dates and now carry full timestamps
+# ("2026-07-01" became "2026-07-01T00:00:00+01:00"). Everything below accepts
+# either, so the feeds do not depend on which form a given post happens to use.
+def parse_date(value: str) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+
+
+def date_only(value: str) -> str:
+    parsed = parse_date(value)
+    return parsed.date().isoformat() if parsed else value
+
+
 def iso_datetime(date: str) -> str:
-    return f"{date}T00:00:00Z"
+    parsed = parse_date(date)
+    if not parsed:
+        return date
+    return parsed.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def rss_datetime(date: str) -> str:
-    parsed = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
-    return format_datetime(parsed)
+    parsed = parse_date(date)
+    return format_datetime(parsed) if parsed else ""
 
 
 def xml_text(value: str) -> str:
@@ -157,7 +178,9 @@ def build_sitemap(pages: list[Page]) -> str:
     for page in pages:
         lines.extend(("  <url>", f"    <loc>{xml_text(page.url)}</loc>"))
         if page.date_modified:
-            lines.append(f"    <lastmod>{page.date_modified}</lastmod>")
+            # Sitemaps take a bare date here, which is also what this file has
+            # always contained — keep it that way regardless of the input form.
+            lines.append(f"    <lastmod>{date_only(page.date_modified)}</lastmod>")
         lines.append("  </url>")
     lines.append("</urlset>")
     return "\n".join(lines) + "\n"

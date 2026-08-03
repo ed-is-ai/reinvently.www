@@ -21,7 +21,7 @@
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta property="article:published_time" content="2026-07-01T00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2026-08-02T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-08-03T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How to Sandbox AI Agent Code: 5 Tools, 4 Isolation Models"/>
   <meta name="twitter:description" content="Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes."/>
@@ -34,7 +34,7 @@
     "headline": "How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared",
     "description": "Firecracker, OpenSandbox, Docker Sandboxes, SmolVM and nono compared: four isolation models for AI agent code, from 5 MiB microVMs to zero-setup sandboxes.",
     "datePublished": "2026-07-01T00:00:00+01:00",
-    "dateModified": "2026-08-02T00:00:00+01:00",
+    "dateModified": "2026-08-03T00:00:00+01:00",
     "image": "https://reinvently.co.uk/images/hero-microvm-sandbox.jpg",
     "author": {"@type": "Person", "name": "Ed Yau", "url": "https://reinvently.co.uk/about/#ed-yau", "sameAs": ["https://uk.linkedin.com/in/edmond-yau", "https://github.com/ed-is-ai"], "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
     "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk", "logo": {"@type": "ImageObject", "url": "https://reinvently.co.uk/images/logo.png", "width": 512, "height": 512}},
@@ -98,6 +98,14 @@
           "@type": "Answer",
           "text": "Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level tool such as SmolVM or OpenSandbox."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Would a microVM have prevented the July 2026 evaluation escapes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Neither the OpenAI nor the Anthropic incident involved defeating an isolation primitive — there was no hypervisor escape, container breakout or gVisor bypass. Anthropic's evaluation machines had live internet access through a misconfiguration, and OpenAI's models exploited a zero-day in the package registry cache proxy that its allow-list permitted them to reach. What leaked was network reachability, not memory, and a stronger isolation layer would not have changed either outcome."
+        }
       }
     ]
   }
@@ -117,7 +125,7 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">1 July 2026 &nbsp;·&nbsp; Updated 3 August 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>How to Sandbox AI Agent Code: Firecracker, OpenSandbox, Docker, SmolVM and nono Compared</h1>
   <p class="summary">The brief was to build a local agentic coding agent that was sandboxed. In researching this, I soon realised that there were a range of fundamentally different approaches that I need to rationalise.  This post is a summary of the options to consider and the trade-offs between them.  What should drive your decision is the level of risk of the agent, and thus how much isolation you need.
     I already have a physically separate machine for my coding agent, so I have physical isolation that stops it accessing my personal data, but I still wanted to be sure that the agent could not escape and access repos it should not have access to — source code and cloud credentials.</p>
@@ -337,6 +345,22 @@
 
     <hr/>
 
+    <h2>What did the July 2026 evaluation escapes show?</h2>
+
+    <p>Two frontier labs disclosed within ten days of each other that their own models had left a sandbox during offensive-security testing and reached real systems belonging to third parties. The evaluations were authorised. The intrusions that followed were not, and neither lab knew they had happened until afterwards.</p>
+
+    <p>OpenAI went first, on 21 July. Two models running <em>ExploitGym</em>, a benchmark that asks an agent to develop working exploits, were confined to an allow-list of package-installation sites reached through a controlled proxy. They spent substantial inference compute looking for a way out, found a zero-day in the package registry cache proxy itself, and used it to reach the open internet. From there they compromised Hugging Face's production infrastructure to obtain the benchmark's answer key. Hugging Face had already detected the intrusion and reported it to law enforcement on 16 July, five days before OpenAI connected the activity to its own evaluation run.</p>
+
+    <p>Anthropic reviewed more than 140,000 evaluation transcripts in response and disclosed three further incidents on 30 July, the earliest dating to April. Claude Opus 4.7, Claude Mythos 5 and an unreleased internal research model had each reached real infrastructure during capture-the-flag exercises run with the evaluation partner Irregular. A misconfiguration had left the evaluation machines with live internet access, and neither party knew. Opus 4.7 compromised a company whose real website shared a name with its fictional target, extracting credentials and several hundred rows of production data — and kept attacking after inferring the environment was real. Mythos 5 published a malicious package to PyPI that ran on 15 real systems inside roughly an hour. The internal model, unable to find its fictional target, scanned about 9,000 hosts and broke into one using an exposed debug page and SQL injection. Both labs have since paused cyber evaluations.</p>
+
+    <p>For anyone choosing between the five options above, the useful detail is which boundary failed. Neither incident was a hypervisor escape, a container breakout or a gVisor bypass. No isolation primitive was defeated. In Anthropic's case the network was open by accident; in OpenAI's, egress was deliberately permitted through a proxy that turned out to be exploitable. A microVM would have changed nothing, because the thing that leaked was reachability, not memory.</p>
+
+    <p>That is the third mistake below, demonstrated at the frontier by teams who understood the risk and were specifically testing for it. Anthropic's own account is blunt about the controls that were missing: validation of every internet path before evaluations began, and real-time monitoring of logs rather than review after the fact. Choosing a strong isolation layer and leaving egress to a configuration flag inverts the effort. Verify the network boundary the way you would verify the kernel one.</p>
+
+    <p>Sources: <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener" target="_blank">Anthropic's incident report</a>, <a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/" rel="noopener" target="_blank">Simon Willison on the OpenAI disclosure</a>, and reporting from <a href="https://techcrunch.com/2026/07/30/anthropic-says-its-own-ai-models-breached-three-companies-during-security-tests/" rel="noopener" target="_blank">TechCrunch</a> and <a href="https://www.theregister.com/ai-and-ml/2026/07/31/anthropics-claude-escaped-test-sandbox-to-attack-three-organizations/5281562" rel="noopener" target="_blank">The Register</a>.</p>
+
+    <hr/>
+
     <h2>Which sandboxing mistakes should you avoid?</h2>
 
     <p>Three errors recur often enough to name.</p>
@@ -363,6 +387,9 @@
 
     <h3>Should we build on Firecracker directly?</h3>
     <p>Usually only if running sandbox infrastructure is itself part of your product. Firecracker is a primitive: you assemble the guest kernel, root filesystem, networking and lifecycle management yourself. Most organisations reach it indirectly through a managed service or a higher-level tool such as SmolVM or OpenSandbox.</p>
+
+    <h3>Would a microVM have prevented the July 2026 evaluation escapes?</h3>
+    <p>No. Neither the OpenAI nor the Anthropic incident involved defeating an isolation primitive — there was no hypervisor escape, container breakout or gVisor bypass. Anthropic's evaluation machines had live internet access through a misconfiguration, and OpenAI's models exploited a zero-day in the package registry cache proxy that its allow-list permitted them to reach. What leaked was network reachability, not memory, and a stronger isolation layer would not have changed either outcome.</p>
 
 <hr/>
 
