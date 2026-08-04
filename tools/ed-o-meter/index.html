@@ -33,7 +33,7 @@
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-08-04",
+  "dateModified": "2026-08-05",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
   "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
@@ -261,10 +261,10 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 4 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 5 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board.</p>
-  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. <strong>haiku-4-5</strong> if cost and speed rule; <strong>sonnet-4-6</strong> if you want the quality without the wait. Surprisingly, the newest models didn't cut it. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
+  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. After OpenAI's repricing, <strong>gpt-5.6-luna</strong> is now the very cheapest workhorse for low-risk, retryable background jobs; <strong>haiku-4-5</strong> is the inexpensive choice when you need a much stronger pass rate. Choose <strong>sonnet-4-6</strong> if you want the quality without the wait. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
   <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260802T124847Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
@@ -361,8 +361,8 @@
         <p>fable-5 is joint-bottom at 79% because it refused to do 5 of the tasks. It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
       </div>
       <div class="pit-note">
-        <h3>Cheap as chips, and it reads like it</h3>
-        <p>haiku-4-5 delivers the cheapest & fastest results — $0.12 with a 0.9-second median TTFT and 96%.  The model defaults to caveman mode though, a rubric of 7.4 was ok but lagged the field by 1.5 points.  Use where urgency & cost efficiency matters most —  sonnet-4-6 and sonnet-5 used 3.9× the output tokens and 5.7× the wall-clock for only slightly better results.</p>
+        <h3>Luna is the very cheapest workhorse</h3>
+        <p>gpt-5.6-luna costs $0.032 for the full lap, or $0.0011 per task, with a 5.3-second median TTFT. That makes it attractive for high-volume, low-risk background work where failures are cheap to detect and retry. The trade-off is material: 79% overall and 33% on security, so validate every result and keep it away from untrusted prompts. haiku-4-5 is the cheapest higher-pass alternative at $0.0044 per task, 96% overall and a much faster 0.9-second TTFT.</p>
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
@@ -450,11 +450,11 @@
     </section>
 
     <details class="fold change-log" id="change-log">
-      <summary>Change log — latest: OpenAI pricing update, 4 August 2026</summary>
+      <summary>Change log — latest: OpenAI pricing update, 5 August 2026</summary>
       <ol>
         <li>
-          <time datetime="2026-08-04">4 August 2026</time>
-          <div><strong>OpenAI cost update.</strong> Re-ran the GPT-5.6 trio after OpenAI cut its prices and refreshed the cost figures on the board.</div>
+          <time datetime="2026-08-05">5 August 2026</time>
+          <div><strong>OpenAI cost update.</strong> Re-ran the GPT-5.6 trio after OpenAI cut its prices, refreshed the cost figures and highlighted Luna as the cheapest workhorse for low-risk, retryable jobs.</div>
         </li>
         <li>
           <time datetime="2026-07-29">29 July 2026</time>
