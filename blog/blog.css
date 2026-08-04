@@ -412,7 +412,7 @@ img { max-width: 100%; display: block; }
   border-color: var(--accent);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 960px) {
   .nav {
     padding: 16px 20px;
     flex-direction: column;

@@ -33,7 +33,7 @@
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-08-03",
+  "dateModified": "2026-08-04",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
   "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
@@ -157,6 +157,7 @@
   .eom .lap-card:hover{border-color:var(--telemetry);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.35);}
   .eom .lap-card svg{width:100%;max-width:132px;height:auto;}
   .eom .lap-card .lname{font-family:var(--font-data);font-size:12.5px;font-weight:600;margin-top:8px;color:var(--text-dim);letter-spacing:-.01em;}
+  .eom .lap-card .lap-meta{margin-top:4px;font-family:var(--font-nav);font-size:9.5px;font-weight:500;letter-spacing:.055em;text-transform:uppercase;color:var(--text-muted);}
   .eom .lap-card path{cursor:pointer;transition:opacity .12s;}
   .eom .lap-card path:hover,.eom .lap-card path:focus{opacity:.75;outline:none;}
   #lapTip{
@@ -196,8 +197,17 @@
   .eom .scoring{margin-top:clamp(44px,4vw,64px);}
   .eom .scoring h2.section{margin-top:0;}
 
+  /* ---------- change log ---------- */
+  .eom .change-log{margin-top:clamp(44px,4vw,64px);}
+  .eom .change-log ol{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--hairline);}
+  .eom .change-log li{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:16px 0;border-bottom:1px solid var(--hairline);color:var(--text-dim);font-size:clamp(14.5px,.95vw,16px);line-height:1.55;}
+  .eom .change-log time{font-family:var(--font-data);font-size:13px;color:var(--telemetry);white-space:nowrap;}
+  .eom .change-log strong{color:var(--text);font-weight:650;}
+
   .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:7px 14px;display:inline-block;margin:22px 0 0;background:var(--telemetry-tint);}
   .runstamp code{background:none;padding:0;color:inherit;font-size:1em;}
+  .runstamp a{color:inherit;border-bottom:1px solid rgba(94,214,255,.35);}
+  .runstamp a:hover{border-color:var(--telemetry);opacity:1;}
 
   @media (max-width:640px){
     .eom-header{padding-top:28px;padding-bottom:30px;}
@@ -211,6 +221,7 @@
     .eom .scoring h2.section{font-size:24px;line-height:1.2;margin-bottom:12px;}
     .eom .method{margin-left:20px;font-size:14px;}
     .eom .method-intro{font-size:14px;line-height:1.6;}
+    .eom .change-log li{grid-template-columns:1fr;gap:5px;}
 
     /* chart: fit the plot to the screen so the data dots are not scrolled off */
     .eom svg#telemetry{min-width:0;}
@@ -242,6 +253,7 @@
     <a href="/">Home</a>
     <a href="/news/">News</a>
     <a href="/guides/">Guides</a>
+    <a href="/tools/ed-o-meter/" aria-current="page">Ed-o-meter</a>
     <a href="/tools/">Tools</a>
     <a href="/about/">About</a>
     <a href="/contact/">Subscribe</a>
@@ -249,11 +261,11 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 3 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 4 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board. Every cell is copied from its source run; the footnotes carry the provenance.</p>
+  <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board.</p>
   <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. <strong>haiku-4-5</strong> if cost and speed rule; <strong>sonnet-4-6</strong> if you want the quality without the wait. Surprisingly, the newest models didn't cut it. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
-  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260802T124847Z</code></p>
+  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260802T124847Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
 <main class="container">
@@ -310,7 +322,7 @@
     </details>
 
     <h2 class="section">The lap, corner by corner</h2>
-    <p class="section-note">The lap is five corners in fixed order: Coding → Data → Realworld → Security → Tool-use. A corner's colour is that model's pass rate in that category. Green is good — it means 85%+ success. For models that can do it all, look for all green.</p>
+    <p class="section-note">The models appear in the order they entered Featherbench, with the latest test date shown under each. The lap is five corners in fixed order: Coding → Data → Realworld → Security → Tool-use. A corner's colour is that model's pass rate in that category. Green is good — it means 85%+ success. For models that can do it all, look for all green.</p>
     <p class="section-note">Hover or tap any segment for what that corner tests and how the model handled it.</p>
     <div class="corner-legend">
       <span><i style="background:var(--good)"></i>Clean corner (&gt;85%)</span>
@@ -437,6 +449,24 @@
       </details>
     </section>
 
+    <details class="fold change-log" id="change-log">
+      <summary>Change log — latest: OpenAI pricing update, 4 August 2026</summary>
+      <ol>
+        <li>
+          <time datetime="2026-08-04">4 August 2026</time>
+          <div><strong>OpenAI cost update.</strong> Re-ran the GPT-5.6 trio after OpenAI cut its prices and refreshed the cost figures on the board.</div>
+        </li>
+        <li>
+          <time datetime="2026-07-29">29 July 2026</time>
+          <div><strong>Three models added.</strong> Added opus-5, gemini-3.6-flash and grok-4.5, with their full task, quality, security, latency and cost results.</div>
+        </li>
+        <li>
+          <time datetime="2026-07-19">19 July 2026</time>
+          <div><strong>Leaderboard launched.</strong> Published the first Ed-o-meter, including the Claude reference set of haiku-4-5, sonnet-4-6 and sonnet-5.</div>
+        </li>
+      </ol>
+    </details>
+
     <div class="related-posts">
       <p class="related-posts-label">Continue reading</p>
       <ul class="related-list">
@@ -462,6 +492,10 @@ const SUP={1:'¹',2:'²',3:'³',4:'⁴',5:'⁵',6:'⁶',7:'⁷',8:'⁸',9:'⁹'}
 function marks(n){ return n==null ? [] : (Array.isArray(n)?n:[n]).map(k=>SUP[k]); }
 function supTxt(n){ const a=marks(n); return a.length?' '+a.join(' '):''; }
 function sup(n){ const a=marks(n); return a.length?`<sup>${a.join(' ')}</sup>`:''; }
+
+const changeLog = document.getElementById('change-log');
+document.querySelector('.runstamp a[href="#change-log"]').addEventListener('click',()=>{changeLog.open=true;});
+if(location.hash==='#change-log') changeLog.open=true;
 
 const MODES = {
   /* Axis floor sits just under the lowest Wilson lower bound on the board (59%),
@@ -613,10 +647,17 @@ function lapRingSVG(m){
   });
   return s+`</svg>`;
 }
+const MODEL_BY_NAME = Object.fromEntries(MODELS.map(model=>[model.name,model]));
+const SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function displayDate(iso){
+  const [year,month,day] = iso.split('-').map(Number);
+  return `${day} ${SHORT_MONTHS[month-1]} ${year}`;
+}
 document.getElementById('lapGrid').innerHTML = CATS.map(m=>`
   <div class="lap-card">
     ${lapRingSVG(m)}
     <div class="lname">${m.name}</div>
+    <div class="lap-meta">Added <time datetime="${MODEL_BY_NAME[m.name].added}">${displayDate(MODEL_BY_NAME[m.name].added)}</time> · Last tested <time datetime="${MODEL_BY_NAME[m.name].tested}">${displayDate(MODEL_BY_NAME[m.name].tested)}</time></div>
   </div>`).join('');
 
 /* ---- lap tooltip ---- */
