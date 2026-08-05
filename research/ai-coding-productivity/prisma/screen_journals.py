@@ -264,11 +264,6 @@ def main() -> None:
             "updated_productivity_effect_estimates": 46,
             "updated_secondary_syntheses": 4,
             "updated_contextual_documents": 61,
-            "updated_evidence_weight": {
-                "high": 12,
-                "moderate": 77,
-                "low": 27,
-            },
         }
     )
     combined_path.write_text(json.dumps(combined, indent=2) + "\n", encoding="utf-8")

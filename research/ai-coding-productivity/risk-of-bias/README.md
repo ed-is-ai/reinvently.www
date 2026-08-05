@@ -68,7 +68,7 @@ The study-level results are:
 | ROBINS-I non-randomised intervention studies | 18 | 2 moderate; 16 serious |
 | JBI quasi-experiments | 18 | 13 some concerns; 5 high |
 | JBI analytical observational studies | 39 | 28 some concerns; 11 high |
-| JBI-derived cases and benchmarks | 29 | 13 some concerns; 16 high |
+| JBI-derived cases and benchmarks | 31 | 15 some concerns; 16 high |
 
 No study was judged low risk across every applicable domain.
 
@@ -98,6 +98,10 @@ full report, with disagreements recorded and resolved.
 - `risk-of-bias-register.csv` — one domain judgement row for every empirical
   study, retaining all linked productivity effect identifiers.
 - `risk-of-bias-summary.json` — study-level totals used in the article.
+- `../evidence-weight-register.csv` — one evidence-weight grade for every
+  empirical study, kept separate from the risk-of-bias judgement.
+- `../generate_evidence_weight_register.py` — consolidates the existing
+  study-level grades from their original appraisal registers.
 
 ## Reproduction
 
@@ -105,11 +109,13 @@ Run:
 
 ```sh
 python3 research/ai-coding-productivity/risk-of-bias/assess_risk_of_bias.py
+python3 research/ai-coding-productivity/generate_evidence_weight_register.py
 ```
 
-The script reads the article's stable study and effect registers, verifies
-complete and non-overlapping routing for `ST-01` to `ST-116`, and rewrites the
-CSV and JSON outputs.
+The risk-of-bias script reads the article's stable study and effect registers,
+verifies complete and non-overlapping routing for `ST-01` to `ST-116`, and
+rewrites its CSV and JSON outputs. The evidence-weight script consolidates the
+existing grades, verifies one grade per study and checks the published totals.
 
 ## Risk of bias is not evidence weight
 
@@ -119,10 +125,9 @@ systematically overstate or understate its own result. They do not record the
 directness, precision and relevance to the review question, and so cannot be
 derived from the judgements here.
 
-Evidence weight is published where it is currently recorded:
-
-- **46 productivity effect estimates** — the `evidence_weight` column of
-  `../operating-model-audit.csv` (8 high, 21 moderate, 17 low).
-- **The remaining 70 adjacent-outcome studies** — not yet published per study.
-  The article's High 12 / Moderate 77 / Low 27 table therefore reconciles to a
-  published per-study source for the productivity estimates only.
+The canonical `../evidence-weight-register.csv` publishes one grade for each
+of the **116 empirical studies**: 12 high, 77 moderate and 27 low. It contains
+44 productivity/delivery studies and 72 adjacent-outcome studies. Studies
+with more than one productivity effect are counted once at study level. The
+effect-level operating-model and plotting decisions remain in
+`../operating-model-audit.csv`.
