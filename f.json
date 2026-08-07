@@ -32,7 +32,7 @@
       "title": "LLM Benchmark Design: Building the Ed-o-meter",
       "summary": "How I built Featherbench, a single-file LLM eval harness running 28 tasks: one variable held constant, refusals counted as failures, and judge bias measured.",
       "date_published": "2026-07-15T23:00:00Z",
-      "date_modified": "2026-08-01T23:00:00Z",
+      "date_modified": "2026-08-06T23:00:00Z",
       "authors": [
         {
           "name": "Ed Yau",

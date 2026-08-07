@@ -3,7 +3,7 @@
   <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
-  <updated>2026-08-03T23:20:08Z</updated>
+  <updated>2026-08-06T23:00:00Z</updated>
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
   <entry>
@@ -20,7 +20,7 @@
     <link href="https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"/>
     <id>https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/</id>
     <published>2026-07-15T23:00:00Z</published>
-    <updated>2026-08-01T23:00:00Z</updated>
+    <updated>2026-08-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
     <summary>How I built Featherbench, a single-file LLM eval harness running 28 tasks: one variable held constant, refusals counted as failures, and judge bias measured.</summary>
   </entry>
