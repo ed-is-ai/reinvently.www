@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/uk-sovereign-ai-programme/"/>
   <meta property="og:title" content="UK Sovereign AI: What the Government's £500m Bet Means for Your Organisation"/>
   <meta property="og:description" content="The UK's £500 million Sovereign AI programme, explained: why five companies controlling 70 percent of global AI compute pushed Britain to act on infrastructure."/>

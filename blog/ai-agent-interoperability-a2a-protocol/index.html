@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/ai-agent-interoperability-a2a-protocol/"/>
   <meta property="og:title" content="A2A Protocol: An Enterprise Architecture Decision Guide"/>
   <meta property="og:description" content="What A2A standardises, where interoperability still stops, and how to evaluate it in architecture and procurement."/>

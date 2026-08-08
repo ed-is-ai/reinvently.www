@@ -20,6 +20,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/services/strategy/"/>
   <meta property="og:title" content="AI Strategy Consulting UK — Reinvently"/>
   <meta property="og:description" content="Reinvently's AI Strategy service helps boards and C-suite leaders understand where AI fits — and builds the roadmap and business case to act on it."/>

@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/ai-agent-governance-gap/"/>
   <meta property="og:title" content="The Agent Governance Gap: $202m Budgets, 26 Percent Cost Visibility"/>
   <meta property="og:description" content="KPMG's Q2 2026 pulse: enterprises plan $202m average AI spend but only 26 percent see costs in real time. Why the agent governance gap decides who gets ROI."/>

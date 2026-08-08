@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/global-ai-adoption-attitudes/"/>
   <meta property="og:title" content="Global AI Adoption: Attitudes and Intensity by Country"/>
   <meta property="og:description" content="Global AI adoption compared: venture funding passed $100 billion in 2024 while the EU leads on regulation. How attitudes and intensity differ by country."/>

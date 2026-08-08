@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/"/>
   <meta property="og:title" content="Is Claude Fable 5 Worth It for Enterprise Coding?"/>
   <meta property="og:description" content="Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok, double Opus 4.8. Whether the premium is worth it, and when GLM-5.2 is enough."/>

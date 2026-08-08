@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"/>
   <meta property="og:title" content="Claude Memory and Dream: Evidence, Architecture and Risk"/>
   <meta property="og:description" content="An evidence review of Claude Memory and Dream: a reported 97% drop in first-pass errors, the architecture, and the governance risks of self-editing agents."/>

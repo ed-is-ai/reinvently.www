@@ -20,6 +20,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/services/accelerate/"/>
   <meta property="og:title" content="AI Delivery Acceleration — Reinvently"/>
   <meta property="og:description" content="Reinvently's Accelerate service scales your successful AI pilot — faster delivery, broader use case coverage, and capability transfer to your team."/>

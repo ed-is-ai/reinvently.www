@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/"/>
   <meta property="og:title" content="Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder"/>
   <meta property="og:description" content="GPT-5.5 passed 28 of 28 tasks, GLM-5.2 passed 26, and Claude Fable 5 refused nine — five of them benign. Full results, costs, and a refusal deep dive."/>

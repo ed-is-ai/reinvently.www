@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/uk-ai-growth-labs-regulatory-sandboxes/"/>
   <meta property="og:title" content="AI Growth Labs: What the UK's Regulatory Sandboxes Mean for Your Sector"/>
   <meta property="og:description" content="The UK's AI Growth Labs open to legal services first in 2026, with the ICO and 3 legal regulators involved. What regulatory sandboxes mean for your sector."/>

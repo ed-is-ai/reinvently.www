@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/gpt-5-5-autonomous-task-completion/"/>
   <meta property="og:title" content="GPT-5.5 and the Age of Autonomous Task Completion"/>
   <meta property="og:description" content="GPT-5.5, tested with nearly 200 partners before its 2026 release, completes complex tasks autonomously. The governance questions to answer before deploying it."/>

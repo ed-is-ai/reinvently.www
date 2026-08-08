@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
 <link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
 <meta property="og:description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>

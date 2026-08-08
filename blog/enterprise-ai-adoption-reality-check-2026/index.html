@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/enterprise-ai-adoption-reality-check-2026/"/>
   <meta property="og:title" content="The Enterprise AI Reality Check: Why 79% of Organisations Aren't Seeing ROI"/>
   <meta property="og:description" content="79 percent of organisations struggle with AI adoption and only 29 percent see ROI. What WRITER's survey and Stanford's playbook say the leaders do differently."/>

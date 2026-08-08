@@ -18,6 +18,18 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xzbx2iww8n");
 </script>
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="/contact/"]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'subscribe_click', {
+      location: link.getAttribute('data-subscribe-location') || 'nav',
+      link_text: link.textContent.trim()
+    });
+  });
+})();
+</script>
   <link rel="canonical" href="https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"/>
   <meta property="og:title" content="Multi-Agent Orchestration Frameworks Compared: Six Tools for Coding, Collaboration and Fleet Operations"/>
   <meta property="og:description" content="Compare Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro by use case, hosting, maturity and GitHub activity."/>
