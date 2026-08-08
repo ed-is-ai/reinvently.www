@@ -21,12 +21,37 @@
 <script>
 (function(){
   document.addEventListener('click', function(e){
-    var link = e.target.closest('a[href="/contact/"]');
+    var link = e.target.closest('a[href]');
     if (!link || typeof gtag !== 'function') return;
-    gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
-      link_text: link.textContent.trim()
-    });
+    var href = link.getAttribute('href');
+
+    if (href === '/contact/') {
+      gtag('event', 'subscribe_click', {
+        location: link.getAttribute('data-subscribe-location') || 'nav',
+        link_text: link.textContent.trim()
+      });
+      return;
+    }
+
+    if (href === '/f.atom' || href === '/f.rss') {
+      gtag('event', 'feed_click', { feed: href === '/f.atom' ? 'atom' : 'rss' });
+      return;
+    }
+
+    try {
+      var url = new URL(href, window.location.href);
+      if (url.hostname && url.hostname !== window.location.hostname) {
+        gtag('event', 'outbound_click', { url: url.href, domain: url.hostname });
+        return;
+      }
+    } catch (err) {}
+
+    if (link.closest('.article-body')) {
+      gtag('event', 'internal_link_click', {
+        url: href,
+        link_text: link.textContent.trim().slice(0, 100)
+      });
+    }
   });
 })();
 </script>
@@ -585,7 +610,10 @@ function draw(){
   axisNote.textContent = M.title;
   document.querySelectorAll('.mode-btn').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===mode)));
 }
-document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;draw();}));
+document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>{
+  if (typeof gtag === 'function') { gtag('event', 'eom_mode_change', { mode: b.dataset.mode }); }
+  mode=b.dataset.mode;draw();
+}));
 draw();
 let rzT; window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(draw,150);});
 
@@ -623,6 +651,7 @@ document.querySelectorAll('#board th[data-key] .th-sort').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const key=btn.closest('th').dataset.key;
     if(key===sortKey){ sortDir*=-1; } else { sortKey=key; sortDir=-1; }
+    if (typeof gtag === 'function') { gtag('event', 'eom_sort_change', { column: sortKey, direction: sortDir===-1?'desc':'asc' }); }
     render();
   });
 });

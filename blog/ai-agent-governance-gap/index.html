@@ -21,12 +21,37 @@
 <script>
 (function(){
   document.addEventListener('click', function(e){
-    var link = e.target.closest('a[href="/contact/"]');
+    var link = e.target.closest('a[href]');
     if (!link || typeof gtag !== 'function') return;
-    gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
-      link_text: link.textContent.trim()
-    });
+    var href = link.getAttribute('href');
+
+    if (href === '/contact/') {
+      gtag('event', 'subscribe_click', {
+        location: link.getAttribute('data-subscribe-location') || 'nav',
+        link_text: link.textContent.trim()
+      });
+      return;
+    }
+
+    if (href === '/f.atom' || href === '/f.rss') {
+      gtag('event', 'feed_click', { feed: href === '/f.atom' ? 'atom' : 'rss' });
+      return;
+    }
+
+    try {
+      var url = new URL(href, window.location.href);
+      if (url.hostname && url.hostname !== window.location.hostname) {
+        gtag('event', 'outbound_click', { url: url.href, domain: url.hostname });
+        return;
+      }
+    } catch (err) {}
+
+    if (link.closest('.article-body')) {
+      gtag('event', 'internal_link_click', {
+        url: href,
+        link_text: link.textContent.trim().slice(0, 100)
+      });
+    }
   });
 })();
 </script>
