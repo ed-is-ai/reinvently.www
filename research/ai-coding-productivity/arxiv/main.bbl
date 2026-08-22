@@ -1,0 +1,826 @@
+\begin{thebibliography}{163}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[ctx({\natexlab{a}})]{ctx02}
+Accountability in code review: The role of intrinsic drivers and the impact of
+  llms, {\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3721127}.
+
+\bibitem[ctx({\natexlab{b}})]{ctx03}
+Agentic coding and persistent returns to expertise, {\natexlab{b}}.
+\newblock URL \url{https://www.anthropic.com/research/claude-code-expertise}.
+\newblock analysis of approximately 400,000 Claude Code sessions.
+
+\bibitem[ctx({\natexlab{c}})]{ctx07}
+Anthropic economic index: Ai's impact on software development, {\natexlab{c}}.
+\newblock URL
+  \url{https://www.anthropic.com/research/impact-software-development}.
+
+\bibitem[ctx({\natexlab{d}})]{ctx08}
+Are prompt engineering and todo comments friends or foes?, {\natexlab{d}}.
+\newblock URL \url{https://lab-design.github.io/papers/ICSE-24b/}.
+
+\bibitem[ctx({\natexlab{e}})]{ctx10}
+Assessing and analyzing the correctness of github copilot's code suggestions,
+  {\natexlab{e}}.
+\newblock URL \url{https://doi.org/10.1145/3715108}.
+
+\bibitem[ctx({\natexlab{f}})]{ctx12}
+Building an ai-native engineering team, {\natexlab{f}}.
+\newblock URL
+  \url{https://cdn.openai.com/business-guides-and-resources/building-an-ai-native-engineering-team.pdf}.
+\newblock OpenAI.
+
+\bibitem[ctx({\natexlab{g}})]{ctx15}
+Continuance use of ai coding assistants among south korean industry developers,
+  {\natexlab{g}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-025-10730-1}.
+
+\bibitem[ctx({\natexlab{h}})]{ctx17}
+Developer interaction patterns with proactive ai: A five-day field study,
+  {\natexlab{h}}.
+\newblock URL \url{https://doi.org/10.1145/3742413.3789148}.
+
+\bibitem[ctx({\natexlab{i}})]{ctx19}
+Empirical analysis of generative ai tool adoption in software development,
+  {\natexlab{i}}.
+\newblock URL \url{https://doi.org/10.1016/j.infsof.2026.108036}.
+
+\bibitem[ctx({\natexlab{j}})]{ctx20}
+Engagement in code review: Peer versus llm interactions, {\natexlab{j}}.
+\newblock URL \url{https://doi.org/10.1145/3830405}.
+
+\bibitem[ctx({\natexlab{k}})]{ctx27}
+Introducing the swe-lancer benchmark, {\natexlab{k}}.
+\newblock URL \url{https://openai.com/index/swe-lancer/}.
+\newblock OpenAI.
+
+\bibitem[ctx({\natexlab{l}})]{ctx28}
+Investigating the role of cultural values in adopting llms for software
+  engineering, {\natexlab{l}}.
+\newblock URL \url{https://doi.org/10.1145/3725529}.
+
+\bibitem[ctx({\natexlab{m}})]{ctx30}
+Measuring github copilot's impact on productivity, {\natexlab{m}}.
+\newblock URL \url{https://doi.org/10.1145/3633453}.
+
+\bibitem[ctx({\natexlab{n}})]{ctx33}
+Need help? designing proactive ai assistants for programming, {\natexlab{n}}.
+\newblock URL
+  \url{https://www.microsoft.com/en-us/research/publication/need-help-designing-proactive-ai-assistants-for-programming/}.
+
+\bibitem[ctx({\natexlab{o}})]{ctx34}
+Navigating the complexity of generative ai adoption in software engineering,
+  {\natexlab{o}}.
+\newblock URL \url{https://doi.org/10.1145/3652154}.
+
+\bibitem[ctx({\natexlab{p}})]{ctx37}
+Patchtrack: A comprehensive analysis of chatgpt's influence on pull-request
+  outcomes, {\natexlab{p}}.
+\newblock URL
+  \url{https://link.springer.com/article/10.1007/s10664-026-10869-5}.
+
+\bibitem[ctx({\natexlab{q}})]{ctx39}
+Resolving code review comments with machine learning, {\natexlab{q}}.
+\newblock URL
+  \url{https://research.google/pubs/resolving-code-review-comments-with-machine-learning/}.
+\newblock Google.
+
+\bibitem[ctx({\natexlab{r}})]{ctx41}
+Separating signal from noise in coding evaluations, {\natexlab{r}}.
+\newblock URL
+  \url{https://openai.com/index/separating-signal-from-noise-coding-evaluations/}.
+\newblock OpenAI.
+
+\bibitem[ctx({\natexlab{s}})]{ctx46}
+Still just personal assistants? generative ai adoption in software
+  organisations, {\natexlab{s}}.
+\newblock URL \url{https://doi.org/10.1016/j.infsof.2025.107805}.
+
+\bibitem[ctx({\natexlab{t}})]{ctx49}
+Swe-bench multilingual, {\natexlab{t}}.
+\newblock URL \url{https://www.swebench.com/multilingual.html}.
+
+\bibitem[ctx({\natexlab{u}})]{ctx55}
+The space of ai: Real-world lessons on ai's impact on developers,
+  {\natexlab{u}}.
+\newblock URL
+  \url{https://www.microsoft.com/en-us/research/publication/the-space-of-ai-real-world-lessons-on-ais-impact-on-developers/}.
+
+\bibitem[ctx({\natexlab{v}})]{ctx57}
+Usage, effects and requirements for ai coding assistants in the enterprise,
+  {\natexlab{v}}.
+\newblock URL \url{https://doi.org/10.1145/3786181.3788727}.
+
+\bibitem[ctx({\natexlab{w}})]{ctx58}
+Using ai-based coding assistants in practice, {\natexlab{w}}.
+\newblock URL \url{https://doi.org/10.1016/j.infsof.2024.107610}.
+
+\bibitem[ctx({\natexlab{x}})]{ctx60}
+We have a package for you: Package hallucinations by code-generating llms,
+  {\natexlab{x}}.
+\newblock URL
+  \url{https://www.usenix.org/publications/loginonline/we-have-package-you-comprehensive-analysis-package-hallucinations-code}.
+
+\bibitem[ctx({\natexlab{y}})]{ctx61}
+Why swe-bench verified no longer measures frontier coding capabilities,
+  {\natexlab{y}}.
+\newblock URL
+  \url{https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/}.
+\newblock OpenAI.
+
+\bibitem[met({\natexlab{a}})]{methodjbi}
+Jbi critical appraisal tools, {\natexlab{a}}.
+\newblock URL \url{https://jbi.global/critical-appraisal-tools}.
+
+\bibitem[met({\natexlab{b}})]{methodrob2}
+Rob 2: A revised cochrane risk-of-bias tool for randomized trials,
+  {\natexlab{b}}.
+\newblock URL
+  \url{https://methods.cochrane.org/bias/resources/rob-2-revised-cochrane-risk-bias-tool-randomized-trials}.
+
+\bibitem[met({\natexlab{c}})]{methodrobinsi}
+Robins-i v2, {\natexlab{c}}.
+\newblock URL \url{https://www.riskofbias.info/welcome/robins-i-v2}.
+
+\bibitem[st0({\natexlab{a}})]{st05}
+From assistants to agents: Exploring efficiency and human agency in
+  ai-supported programming, {\natexlab{a}}.
+\newblock URL \url{https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/}.
+
+\bibitem[st0({\natexlab{b}})]{st07}
+Significant productivity gains through programming with large language models,
+  {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3661145}.
+
+\bibitem[st0({\natexlab{c}})]{st09}
+Using an llm to help with code understanding, {\natexlab{c}}.
+\newblock URL
+  \url{https://research.google/pubs/using-an-llm-to-help-with-code-understanding/}.
+\newblock Google and Carnegie Mellon University.
+
+\bibitem[st1({\natexlab{a}})]{st10}
+Cluebot: A conversational agent to assist in javascript programming,
+  {\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3702163.3702168}.
+
+\bibitem[st1({\natexlab{b}})]{st100}
+More than a judge: Agent\textendash human interaction in crowdsourced testing
+  assessment, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3828168}.
+
+\bibitem[st1({\natexlab{c}})]{st101}
+On developers' self-declaration of ai-generated code, {\natexlab{c}}.
+\newblock URL \url{https://doi.org/10.1145/3771937}.
+
+\bibitem[st1({\natexlab{d}})]{st102}
+Understanding and enhancing cs students' interaction experience with ai coding
+  assistant tools, {\natexlab{d}}.
+\newblock URL \url{https://doi.org/10.1145/3785479}.
+
+\bibitem[st1({\natexlab{e}})]{st104}
+Ai support for data scientists, {\natexlab{e}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-025-10622-4}.
+
+\bibitem[st1({\natexlab{f}})]{st106}
+How students use generative ai for software testing, {\natexlab{f}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-026-10898-0}.
+
+\bibitem[st1({\natexlab{g}})]{st107}
+What makes chatgpt effective for software issue resolution?, {\natexlab{g}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-025-10745-8}.
+
+\bibitem[st1({\natexlab{h}})]{st11}
+Writing code vs. shipping code: The impact of ai on software development,
+  {\natexlab{h}}.
+\newblock URL \url{https://www.nber.org/papers/w35275}.
+\newblock matched event study of more than 100,000 developers.
+
+\bibitem[st1({\natexlab{i}})]{st112}
+Do comments and expertise still matter?, {\natexlab{i}}.
+\newblock URL \url{https://doi.org/10.1016/j.jss.2025.112634}.
+
+\bibitem[st1({\natexlab{j}})]{st114}
+``will i be replaced?'' chatgpt and programmer perceptions, {\natexlab{j}}.
+\newblock URL \url{https://doi.org/10.1016/j.scico.2024.103111}.
+
+\bibitem[st1({\natexlab{k}})]{st115}
+Is github's copilot as bad as humans at introducing vulnerabilities in code?,
+  {\natexlab{k}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-023-10380-1}.
+
+\bibitem[st1({\natexlab{l}})]{st116}
+Github copilot ai pair programmer: Asset or liability?, {\natexlab{l}}.
+\newblock URL \url{https://doi.org/10.1016/j.jss.2023.111734}.
+
+\bibitem[st1({\natexlab{m}})]{st12}
+The global diffusion and impact of artificial intelligence writing code,
+  {\natexlab{m}}.
+\newblock URL \url{https://doi.org/10.1126/science.adz9311}.
+\newblock Science.
+
+\bibitem[st1({\natexlab{n}})]{st13}
+Generative ai and the nature of work, {\natexlab{n}}.
+\newblock URL
+  \url{https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2025/04/WTIC.2025_Nagle-Frank_Generative-AI.pdf}.
+
+\bibitem[st1({\natexlab{o}})]{st15}
+The impact of generative ai on software development: Evidence from github
+  copilot x, {\natexlab{o}}.
+\newblock URL
+  \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5100609}.
+
+\bibitem[st1({\natexlab{p}})]{st16}
+The productivity effects of generative ai: Evidence from a workplace deployment
+  of an ai coder, {\natexlab{p}}.
+\newblock URL
+  \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6515379}.
+
+\bibitem[st1({\natexlab{q}})]{st18}
+Generative ai and labour productivity: a field experiment on coding,
+  {\natexlab{q}}.
+\newblock URL \url{https://www.bis.org/publ/work1208.pdf}.
+\newblock BIS and Ant Group CodeFuse study.
+
+\bibitem[st2({\natexlab{a}})]{st24}
+Does genai improve software developer productivity?, {\natexlab{a}}.
+\newblock URL \url{https://uplevelteam.com/blog/genai-developers}.
+\newblock Uplevel Data Labs.
+
+\bibitem[st2({\natexlab{b}})]{st27}
+Echoes of ai: Investigating the downstream effects of ai assistants on software
+  maintainability, {\natexlab{b}}.
+\newblock URL
+  \url{https://link.springer.com/article/10.1007/s10664-026-10889-1}.
+
+\bibitem[st2({\natexlab{c}})]{st29}
+Pioneering the agentic shift within salesforce engineering, {\natexlab{c}}.
+\newblock URL
+  \url{https://www.salesforce.com/news/stories/how-engineering-became-agentic/}.
+
+\bibitem[st3({\natexlab{a}})]{st30}
+How ai is transforming work at anthropic, {\natexlab{a}}.
+\newblock URL
+  \url{https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic}.
+\newblock survey, interviews and internal telemetry.
+
+\bibitem[st3({\natexlab{b}})]{st31}
+How frontier teams are reinventing ai-native development, {\natexlab{b}}.
+\newblock URL
+  \url{https://aws.amazon.com/blogs/machine-learning/how-frontier-teams-are-reinventing-ai-native-development/}.
+\newblock AWS.
+
+\bibitem[st3({\natexlab{c}})]{st32}
+Ai coding assistant trial: Uk public sector findings, {\natexlab{c}}.
+\newblock URL
+  \url{https://www.gov.uk/government/publications/ai-coding-assistant-trial/ai-coding-assistant-trial-uk-public-sector-findings-report}.
+
+\bibitem[st3({\natexlab{d}})]{st37}
+Are ai coding tools making companies more productive?, {\natexlab{d}}.
+\newblock URL
+  \url{https://jellyfish.co/blog/are-ai-coding-tools-making-companies-more-productive/}.
+\newblock Jellyfish.
+
+\bibitem[st3({\natexlab{e}})]{st38}
+Ai-first engineering: How cisco reached tech debt zero, {\natexlab{e}}.
+\newblock URL
+  \url{https://www.sonarsource.com/blog/ai-first-engineering-cisco/}.
+\newblock SonarSource case study.
+
+\bibitem[st3({\natexlab{f}})]{st39}
+Harness engineering: leveraging codex in an agent-first world, {\natexlab{f}}.
+\newblock URL \url{https://openai.com/index/harness-engineering/}.
+\newblock OpenAI.
+
+\bibitem[st4({\natexlab{a}})]{st40}
+Amazon q developer just reached a \$260 million milestone, {\natexlab{a}}.
+\newblock URL
+  \url{https://aws.amazon.com/blogs/devops/amazon-q-developer-just-reached-a-260-million-dollar-milestone/}.
+\newblock AWS production migration disclosure.
+
+\bibitem[st4({\natexlab{b}})]{st43}
+When code authors are agents: A large-scale study of human\textendash agent
+  collaboration in pull requests, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3805760.3814909}.
+
+\bibitem[st4({\natexlab{c}})]{st48}
+Does github copilot improve code quality?, {\natexlab{c}}.
+\newblock URL
+  \url{https://github.blog/news-insights/research/does-github-copilot-improve-code-quality-heres-what-the-data-says/}.
+\newblock GitHub randomised controlled trial.
+
+\bibitem[st5({\natexlab{a}})]{st51}
+Ai-assisted assessment of coding practices in industrial code review,
+  {\natexlab{a}}.
+\newblock URL
+  \url{https://research.google/pubs/ai-assisted-assessment-of-coding-practices-in-industrial-code-review/}.
+\newblock Google AutoCommenter.
+
+\bibitem[st5({\natexlab{b}})]{st53}
+Asleep at the keyboard? assessing the security of github copilot's code
+  contributions, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3610721}.
+\newblock Communications of the ACM.
+
+\bibitem[st5({\natexlab{c}})]{st56}
+How ai assistance impacts the formation of coding skills, {\natexlab{c}}.
+\newblock URL
+  \url{https://www.anthropic.com/research/AI-assistance-coding-skills}.
+\newblock Anthropic randomised trial.
+
+\bibitem[st5({\natexlab{d}})]{st59}
+Reading between the lines: Modeling user behavior and costs in ai-assisted
+  programming, {\natexlab{d}}.
+\newblock URL \url{https://www.microsoft.com/en-us/research/?p=894132}.
+
+\bibitem[st6({\natexlab{a}})]{st61}
+A study of library usage in agent-authored pull requests, {\natexlab{a}}.
+\newblock URL
+  \url{https://kclpure.kcl.ac.uk/portal/en/publications/9491a361-b84f-4d93-8b55-a7ed5cca4878}.
+
+\bibitem[st6({\natexlab{b}})]{st63}
+Agentic much? adoption of coding agents on github, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3822180}.
+
+\bibitem[st6({\natexlab{c}})]{st69}
+Building web applications with ai: a comparative study, {\natexlab{c}}.
+\newblock URL \url{http://www.theseus.fi/handle/10024/923044}.
+
+\bibitem[st7({\natexlab{a}})]{st70}
+Can generative ai bridge the gap?, {\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1007/s10664-026-10813-7}.
+
+\bibitem[st7({\natexlab{b}})]{st75}
+Domain ambiguity in ai-assisted software development, {\natexlab{b}}.
+\newblock URL \url{http://urn.kb.se/resolve?urn=urn:nbn:se:kau:diva-110473}.
+
+\bibitem[st7({\natexlab{c}})]{st77}
+Exploring and modelling human\textendash ai collaboration effectiveness in
+  software engineering, {\natexlab{c}}.
+\newblock URL \url{https://lutpub.lut.fi/handle/10024/172536}.
+
+\bibitem[st8({\natexlab{a}})]{st81}
+From meeting to pull request, {\natexlab{a}}.
+\newblock URL \url{http://urn.kb.se/resolve?urn=urn:nbn:se:miun:diva-57923}.
+
+\bibitem[st8({\natexlab{b}})]{st83}
+From specifications to implementation in the gen-ai era, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1145/3797092}.
+
+\bibitem[st9({\natexlab{a}})]{st91}
+On the use of agentic coding, {\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3798166}.
+
+\bibitem[st9({\natexlab{b}})]{st92}
+Security weaknesses in llm-generated source code, {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.20550244}.
+
+\bibitem[st9({\natexlab{c}})]{st96}
+Understanding and predicting accepted code suggestions in ai-assisted
+  programming, {\natexlab{c}}.
+\newblock URL \url{https://doi.org/10.1145/3808125}.
+
+\bibitem[st9({\natexlab{d}})]{st97}
+Agenticflict: A large-scale dataset of merge conflicts in ai coding agent pull
+  requests, {\natexlab{d}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.20118379}.
+
+\bibitem[st9({\natexlab{e}})]{st98}
+Evaluating ai-generated t-sql code review reports in an enterprise-scale
+  codebase, {\natexlab{e}}.
+\newblock URL \url{https://www.doria.fi/handle/10024/194633}.
+
+\bibitem[syn({\natexlab{a}})]{syn1}
+The impact of llm-assistants on software developer productivity: A systematic
+  review and mapping study, {\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3809494}.
+
+\bibitem[syn({\natexlab{b}})]{syn3}
+Using llms to enhance code quality: A systematic literature review,
+  {\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1016/j.infsof.2025.107960}.
+
+\bibitem[syn({\natexlab{c}})]{syn4}
+Generative ai solutions for software quality: Assessing industrial readiness,
+  {\natexlab{c}}.
+\newblock URL \url{https://doi.org/10.1007/s11219-026-09754-7}.
+
+\bibitem[met(2020)]{methodprisma}
+Prisma 2020 flow diagram, 2020.
+\newblock URL \url{https://www.prisma-statement.org/prisma-2020-flow-diagram}.
+
+\bibitem[ctx(2022)]{ctx31}
+Ml-enhanced code completion improves developer productivity, 2022.
+\newblock URL
+  \url{https://research.google/blog/ml-enhanced-code-completion-improves-developer-productivity/}.
+\newblock Google, 2022.
+
+\bibitem[ctx(2024{\natexlab{a}})]{ctx01}
+A large-scale survey on the usability of ai programming assistants,
+  2024{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3597503.3608128}.
+\newblock ICSE 2024.
+
+\bibitem[ctx(2024{\natexlab{b}})]{ctx06}
+An empirical evaluation of llms for automated unit test generation,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.1109/TSE.2023.3334955}.
+\newblock IEEE TSE 2024.
+
+\bibitem[ctx(2024{\natexlab{c}})]{ctx11}
+Assessing the security of github copilot generated code: A targeted
+  replication, 2024{\natexlab{c}}.
+\newblock URL \url{https://doi.org/10.1109/SANER60148.2024.00051}.
+\newblock SANER 2024.
+
+\bibitem[ctx(2024{\natexlab{d}})]{ctx14}
+Coding on copilot: 2024 developer research, 2024{\natexlab{d}}.
+\newblock URL
+  \url{https://gitclear-public.s3.us-west-2.amazonaws.com/Coding-on-Copilot-2024-Developer-Research.pdf}.
+\newblock GitClear.
+
+\bibitem[ctx(2024{\natexlab{e}})]{ctx18}
+Dora accelerate state of devops report 2024, 2024{\natexlab{e}}.
+\newblock URL
+  \url{https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report}.
+
+\bibitem[ctx(2024{\natexlab{f}})]{ctx21}
+Evaluating and improving chatgpt for unit test generation, 2024{\natexlab{f}}.
+\newblock URL \url{https://doi.org/10.1145/3660783}.
+\newblock FSE 2024.
+
+\bibitem[ctx(2024{\natexlab{g}})]{ctx29}
+Large language models for code analysis: Do llms really do their job?,
+  2024{\natexlab{g}}.
+\newblock URL
+  \url{https://www.usenix.org/conference/usenixsecurity24/presentation/fang}.
+\newblock USENIX Security 2024.
+
+\bibitem[ctx(2024{\natexlab{h}})]{ctx36}
+On the evaluation of large language models in unit test generation,
+  2024{\natexlab{h}}.
+\newblock URL \url{https://arxiv.org/abs/2406.18181}.
+
+\bibitem[ctx(2024{\natexlab{i}})]{ctx42}
+Stack overflow developer survey 2024: Ai, 2024{\natexlab{i}}.
+\newblock URL \url{https://survey.stackoverflow.co/2024/ai}.
+
+\bibitem[ctx(2024{\natexlab{j}})]{ctx47}
+Survey: The ai wave continues to grow, 2024{\natexlab{j}}.
+\newblock URL
+  \url{https://github.blog/news-insights/research/survey-ai-wave-grows/}.
+\newblock GitHub 2024.
+
+\bibitem[ctx(2024{\natexlab{k}})]{ctx48}
+Swe-agent: Agent\textendash computer interfaces enable automated software
+  engineering, 2024{\natexlab{k}}.
+\newblock URL \url{https://arxiv.org/abs/2405.15793}.
+
+\bibitem[ctx(2024{\natexlab{l}})]{ctx50}
+Swe-bench multimodal, 2024{\natexlab{l}}.
+\newblock URL \url{https://arxiv.org/abs/2410.03859}.
+
+\bibitem[ctx(2024{\natexlab{m}})]{ctx51}
+Swe-bench: Can language models resolve real-world github issues?,
+  2024{\natexlab{m}}.
+\newblock URL
+  \url{https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html}.
+\newblock ICLR 2024.
+
+\bibitem[ctx(2024{\natexlab{n}})]{ctx59}
+Using large language models to generate junit tests, 2024{\natexlab{n}}.
+\newblock URL \url{https://doi.org/10.1145/3661167.3661216}.
+\newblock EASE 2024.
+
+\bibitem[st0(2024{\natexlab{a}})]{st01}
+How much does ai impact development speed?, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2410.12944}.
+\newblock Google enterprise RCT.
+
+\bibitem[st0(2024{\natexlab{b}})]{st03}
+Rocks coding, not development: A human-centric, experimental evaluation of
+  llm-supported se tasks, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2402.05650}.
+
+\bibitem[st0(2024{\natexlab{c}})]{st06}
+The impact of ai tool on engineering at anz bank, 2024{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2402.05636}.
+
+\bibitem[st1(2024{\natexlab{a}})]{st111}
+Llm-based test-driven interactive code generation, 2024{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1109/TSE.2024.3428972}.
+
+\bibitem[st1(2024{\natexlab{b}})]{st14}
+The impact of generative ai on collaborative open-source software development,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2410.02091}.
+
+\bibitem[st1(2024{\natexlab{c}})]{st17}
+The impact of generative ai on open-source software development,
+  2024{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2409.08379}.
+
+\bibitem[st2(2024{\natexlab{a}})]{st23}
+Multi-line ai-assisted code authoring, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2402.04141}.
+\newblock Meta.
+
+\bibitem[st2(2024{\natexlab{b}})]{st28}
+Harnessing the potential of gen-ai coding assistants in public sector software
+  development, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2409.17434}.
+\newblock GovTech Singapore.
+
+\bibitem[st3(2024)]{st33}
+Ai-assisted code authoring at scale, 2024.
+\newblock URL \url{https://doi.org/10.1145/3643774}.
+\newblock Meta CodeCompose, FSE 2024.
+
+\bibitem[st4(2024{\natexlab{a}})]{st46}
+Ai-generated pull-request descriptions and review outcomes, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2402.08967}.
+
+\bibitem[st4(2024{\natexlab{b}})]{st47}
+Automated code review in practice, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2412.18531}.
+
+\bibitem[st8(2024)]{st86}
+How far are ai-powered programming assistants from meeting developers' needs?,
+  2024.
+\newblock URL \url{https://arxiv.org/abs/2404.12000}.
+
+\bibitem[ctx(2025{\natexlab{a}})]{ctx13}
+Code with me or for me? how increasing ai automation transforms developer
+  workflows, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2507.08149}.
+
+\bibitem[ctx(2025{\natexlab{b}})]{ctx16}
+Developer ecosystem survey 2025, 2025{\natexlab{b}}.
+\newblock URL \url{https://devecosystem-2025.jetbrains.com/}.
+\newblock JetBrains.
+
+\bibitem[ctx(2025{\natexlab{c}})]{ctx22}
+Evaluation of chatgpt-4 code generation across 19 programming languages,
+  2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2501.02338}.
+
+\bibitem[ctx(2025{\natexlab{d}})]{ctx23}
+Gittaskbench, 2025{\natexlab{d}}.
+\newblock URL \url{https://arxiv.org/abs/2508.18993}.
+
+\bibitem[ctx(2025{\natexlab{e}})]{ctx32}
+Multi-swe-bench: A multilingual benchmark for issue resolving,
+  2025{\natexlab{e}}.
+\newblock URL \url{https://arxiv.org/abs/2504.02605}.
+
+\bibitem[ctx(2025{\natexlab{f}})]{ctx38}
+Professional software developers don't vibe, they control, 2025{\natexlab{f}}.
+\newblock URL \url{https://arxiv.org/abs/2512.14012}.
+
+\bibitem[ctx(2025{\natexlab{g}})]{ctx40}
+Security weaknesses of copilot-generated code in github projects,
+  2025{\natexlab{g}}.
+\newblock URL \url{https://doi.org/10.1145/3716848}.
+\newblock ACM TOSEM 2025.
+
+\bibitem[ctx(2025{\natexlab{h}})]{ctx43}
+Stack overflow developer survey 2025: Ai, 2025{\natexlab{h}}.
+\newblock URL \url{https://survey.stackoverflow.co/2025/ai}.
+
+\bibitem[ctx(2025{\natexlab{i}})]{ctx44}
+State of ai-assisted software development 2025, 2025{\natexlab{i}}.
+\newblock URL \url{https://dora.dev/research/2025/dora-report/}.
+\newblock DORA.
+
+\bibitem[ctx(2025{\natexlab{j}})]{ctx45}
+State of developer experience report 2025, 2025{\natexlab{j}}.
+\newblock URL
+  \url{https://www.atlassian.com/blog/developer/developer-experience-report-2025}.
+\newblock Atlassian.
+
+\bibitem[ctx(2025{\natexlab{k}})]{ctx56}
+Typepilot: Leveraging the scala type system for secure llm-generated code,
+  2025{\natexlab{k}}.
+\newblock URL \url{https://aclanthology.org/2025.ommm-1.11/}.
+
+\bibitem[st0(2025{\natexlab{a}})]{st02}
+The effects of generative ai on high-skilled work, 2025{\natexlab{a}}.
+\newblock URL
+  \url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2025.00535}.
+\newblock Microsoft, Accenture and Fortune 100 field experiments.
+
+\bibitem[st0(2025{\natexlab{b}})]{st04}
+Measuring the impact of early-2025 ai on experienced open-source developer
+  productivity, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2507.09089}.
+\newblock METR.
+
+\bibitem[st1(2025{\natexlab{a}})]{st110}
+How can chatgpt support human security testers?, 2025{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1109/TSE.2025.3632765}.
+
+\bibitem[st1(2025{\natexlab{b}})]{st19}
+The effects of github copilot on computing students in brownfield programming
+  tasks, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2506.10051}.
+
+\bibitem[st2(2025{\natexlab{a}})]{st20}
+Comprehension\textendash performance gap in genai-assisted brownfield
+  programming, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2511.02922}.
+
+\bibitem[st2(2025{\natexlab{b}})]{st22}
+Speed at the cost of quality? the impact of llm agent assistance on software
+  development, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2511.04427}.
+
+\bibitem[st2(2025{\natexlab{c}})]{st25}
+Longitudinal github copilot adoption at nav it, 2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2509.20353}.
+
+\bibitem[st3(2025{\natexlab{a}})]{st34}
+The ai productivity paradox, 2025{\natexlab{a}}.
+\newblock URL \url{https://www.faros.ai/blog/ai-software-engineering}.
+\newblock Faros 2025.
+
+\bibitem[st3(2025{\natexlab{b}})]{st36}
+State of ai-assisted engineering, q4 2025, 2025{\natexlab{b}}.
+\newblock URL
+  \url{https://getdx.com/report/ai-assisted-engineering-q4-impact-report/}.
+\newblock DX.
+
+\bibitem[st4(2025)]{st49}
+Ai-assisted programming may decrease the productivity of experienced developers
+  by increasing maintenance burden, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.10165}.
+
+\bibitem[st5(2025{\natexlab{a}})]{st52}
+Ai-assisted fixes to code review comments at scale, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2507.13499}.
+\newblock Meta.
+
+\bibitem[st5(2025{\natexlab{b}})]{st57}
+Examining the use and impact of an ai code assistant in the enterprise,
+  2025{\natexlab{b}}.
+\newblock URL
+  \url{https://research.ibm.com/publications/examining-the-use-and-impact-of-an-ai-code-assistant-on-developer-productivity-and-experience-in-the-enterprise}.
+\newblock IBM Research, CHI 2025.
+
+\bibitem[st5(2025{\natexlab{c}})]{st58}
+Dear diary: A randomized controlled trial of generative ai coding tools in the
+  workplace, 2025{\natexlab{c}}.
+\newblock URL
+  \url{https://www.microsoft.com/en-us/research/publication/dear-diary-a-randomized-controlled-trial-of-generative-ai-coding-tools-in-the-workplace/}.
+\newblock Microsoft Research, ICSE 2025.
+
+\bibitem[st6(2025)]{st67}
+Artificially insecure: Examining github copilot's ai-based vulnerability
+  prevention system, 2025.
+\newblock URL \url{https://doi.org/10.1109/svcc65277.2025.11133629}.
+
+\bibitem[st7(2025)]{st71}
+Can llms generate higher quality code than humans?, 2025.
+\newblock URL \url{https://doi.org/10.1109/msr66628.2025.00081}.
+
+\bibitem[st8(2025{\natexlab{a}})]{st80}
+From developer pairs to ai copilots, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2506.04785}.
+
+\bibitem[st8(2025{\natexlab{b}})]{st87}
+How safe are ai-generated patches?, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2507.02976}.
+
+\bibitem[st8(2025{\natexlab{c}})]{st88}
+Human-written vs. ai-generated code, 2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2508.21634}.
+
+\bibitem[st9(2025)]{st93}
+Seniority, spillovers, and ai-enhanced code contributions, 2025.
+\newblock URL \url{https://aisel.aisnet.org/icis2025/impl_adopt/impl_adopt/2/}.
+
+\bibitem[ctx(2026{\natexlab{a}})]{ctx04}
+Ai accountability report, 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://about.gitlab.com/press/releases/2026-06-23-gitlab-research-reveals-organizations-are-generating-ai-code-faster-than-they-can-control-it/}.
+\newblock GitLab and The Harris Poll.
+
+\bibitem[ctx(2026{\natexlab{b}})]{ctx05}
+Aidev: Studying ai coding agents on github, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2602.09185}.
+
+\bibitem[ctx(2026{\natexlab{c}})]{ctx09}
+Are we all using agents the same way?, 2026{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2601.20106}.
+
+\bibitem[ctx(2026{\natexlab{d}})]{ctx24}
+How do ai coding agents contribute to software development?,
+  2026{\natexlab{d}}.
+\newblock URL \url{https://arxiv.org/abs/2607.21832}.
+
+\bibitem[ctx(2026{\natexlab{e}})]{ctx25}
+How meta used ai to map tribal knowledge in large-scale data pipelines,
+  2026{\natexlab{e}}.
+\newblock URL
+  \url{https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/}.
+
+\bibitem[ctx(2026{\natexlab{f}})]{ctx26}
+How unified ai agents optimise performance at hyperscale, 2026{\natexlab{f}}.
+\newblock URL
+  \url{https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/}.
+\newblock Meta.
+
+\bibitem[ctx(2026{\natexlab{g}})]{ctx35}
+Omnicode: A benchmark for evaluating software engineering agents,
+  2026{\natexlab{g}}.
+\newblock URL \url{https://arxiv.org/abs/2602.02262}.
+
+\bibitem[ctx(2026{\natexlab{h}})]{ctx52}
+Swe-skills-bench, 2026{\natexlab{h}}.
+\newblock URL \url{https://arxiv.org/abs/2603.15401}.
+
+\bibitem[ctx(2026{\natexlab{i}})]{ctx53}
+The best programming language for tokenmaxxing, 2026{\natexlab{i}}.
+\newblock URL \url{https://arxiv.org/abs/2607.22807}.
+
+\bibitem[ctx(2026{\natexlab{j}})]{ctx54}
+The impact of ai coding assistants on software engineering: A longitudinal
+  study, 2026{\natexlab{j}}.
+\newblock URL \url{https://arxiv.org/abs/2605.23135}.
+
+\bibitem[st0(2026)]{st08}
+More code, less understanding? on the impact of ai assistants on developers'
+  productivity and code ownership, 2026.
+\newblock URL \url{https://doi.org/10.1109/TSE.2026.3679627}.
+
+\bibitem[st1(2026)]{st109}
+From disruptions to discussions, 2026.
+\newblock URL \url{https://doi.org/10.1109/TSE.2026.3655626}.
+
+\bibitem[st2(2026{\natexlab{a}})]{st21}
+Less effort, more productivity: Lessons learned from developing millions of
+  lines of code with large language model, 2026{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.1145/3786583.3786872}.
+\newblock ICSE 2026.
+
+\bibitem[st2(2026{\natexlab{b}})]{st26}
+Longitudinal multi-case study of ai-assisted agile teams, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2602.13766}.
+
+\bibitem[st3(2026)]{st35}
+Ai acceleration whiplash, 2026.
+\newblock URL \url{https://www.faros.ai/research/ai-acceleration-whiplash}.
+\newblock Faros 2026.
+
+\bibitem[st4(2026{\natexlab{a}})]{st41}
+Rovodev code reviewer: A large-scale online evaluation, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2601.01129}.
+\newblock Atlassian and Monash University, ICSE 2026.
+
+\bibitem[st4(2026{\natexlab{b}})]{st42}
+Is agentic code review helpful?, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2607.03316}.
+
+\bibitem[st4(2026{\natexlab{c}})]{st44}
+Comparing ai coding agents: A task-stratified analysis of pull request
+  acceptance, 2026{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2602.08915}.
+
+\bibitem[st4(2026{\natexlab{d}})]{st45}
+Early adoption of agentic coding tools by github projects, 2026{\natexlab{d}}.
+\newblock URL \url{https://arxiv.org/abs/2607.14037}.
+
+\bibitem[st5(2026{\natexlab{a}})]{st50}
+Debt behind the ai boom: A large-scale empirical study of ai-generated code in
+  the wild, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2603.28592}.
+
+\bibitem[st5(2026{\natexlab{b}})]{st54}
+Understanding the impact of ai code assistants on security api usage,
+  2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2607.11348}.
+
+\bibitem[st5(2026{\natexlab{c}})]{st55}
+Goodvibe: Security-by-vibe for llm-based code generation, 2026{\natexlab{c}}.
+\newblock URL
+  \url{https://www.usenix.org/conference/usenixsecurity26/presentation/thang}.
+\newblock USENIX Security 2026.
+
+\bibitem[st6(2026)]{st60}
+Self-admitted genai usage in open-source software, 2026.
+\newblock URL \url{https://doi.org/10.1109/tse.2026.3681886}.
+
+\bibitem[st7(2026)]{st72}
+Coding agents in the wild, 2026.
+\newblock URL \url{https://doi.org/10.1109/access.2026.3696573}.
+
+\bibitem[syn(2026)]{syn2}
+A meta-analysis of the effect of generative ai on productivity and learning in
+  programming, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.04779}.
+\newblock preregistered (PRISMA-P, OSF, December 2025).
+
+\end{thebibliography}
