@@ -1,0 +1,431 @@
+{
+  "profile": "data-package",
+  "name": "ai-coding-productivity-evidence",
+  "title": "AI Coding Productivity Evidence Base",
+  "description": "PRISMA-structured systematic-review corpus behind \"How Much Does AI Improve Software Development Productivity?\": search logs, screening and eligibility registers, risk-of-bias appraisals and evidence-weight grades for 181 source documents (116 empirical studies, 46 productivity/delivery effect estimates) on AI-assisted software development, spanning 1 January 2022 to 31 July 2026.",
+  "version": "1.28.1",
+  "created": "2026-08-04T00:00:00Z",
+  "keywords": ["AI coding productivity", "systematic review", "PRISMA", "risk of bias", "software engineering", "GitHub Copilot", "spec-driven development", "agentic software engineering"],
+  "contributors": [
+    {"title": "Ed Yau", "role": "author", "path": "https://reinvently.co.uk/about/#ed-yau"}
+  ],
+  "sources": [
+    {
+      "title": "How Much Does AI Improve Software Development Productivity?",
+      "path": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"
+    },
+    {
+      "title": "Reinvently research and editorial standards",
+      "path": "https://reinvently.co.uk/research-standards/"
+    }
+  ],
+  "licenses": [],
+  "resources": [
+    {
+      "name": "evidence-weight-register",
+      "title": "Study-level evidence-weight register",
+      "description": "One evidence-weight grade (high/moderate/low) per empirical study, combining risk of bias with outcome directness, precision and relevance. Canonical study-level register: 116 rows (44 productivity/delivery, 72 adjacent-outcome).",
+      "path": "evidence-weight-register.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "study_id",
+        "fields": [
+          {"name": "study_id", "type": "string", "description": "Stable study identifier, ST-01 to ST-116."},
+          {"name": "title", "type": "string"},
+          {"name": "effect_ids", "type": "string", "description": "Linked productivity effect identifier(s), e.g. E-01; ST-29 and ST-31 each carry two."},
+          {"name": "evidence_stream", "type": "string", "constraints": {"enum": ["productivity/delivery", "adjacent outcome"]}},
+          {"name": "evidence_weight", "type": "string", "constraints": {"enum": ["high", "moderate", "low"]}},
+          {"name": "overall_risk_of_bias", "type": "string", "description": "Risk-of-bias judgement in the instrument's own vocabulary (e.g. Low, Some concerns, Moderate, Serious, High)."},
+          {"name": "appraisal_instrument", "type": "string", "constraints": {"enum": ["RoB 2", "ROBINS-I V2", "JBI quasi-experimental checklist with prespecified overall-risk rule", "JBI analytical cross-sectional/cohort checklist with prespecified overall-risk rule", "JBI-derived software benchmark/case checklist with prespecified overall-risk rule"]}},
+          {"name": "weight_basis", "type": "string"},
+          {"name": "main_limitation", "type": "string"},
+          {"name": "grade_source", "type": "string", "description": "File this grade was consolidated from."},
+          {"name": "assessment_date", "type": "date"}
+        ]
+      }
+    },
+    {
+      "name": "operating-model-audit",
+      "title": "Effect-level operating-model and plotting audit",
+      "description": "One row per productivity/delivery effect estimate (E-01 to E-46), classifying the automation operating model and whether the effect is plotted as a ratio in the study-results graph.",
+      "path": "operating-model-audit.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "effect_id",
+        "fields": [
+          {"name": "effect_id", "type": "string", "description": "E-01 to E-46."},
+          {"name": "study_id", "type": "string"},
+          {"name": "evidence_weight", "type": "string", "constraints": {"enum": ["high", "medium", "low"]}, "description": "Note: this file spells the middle grade 'medium'; evidence-weight-register.csv spells the same grade 'moderate'. Terminology inconsistency in the source data, not a modelling choice."},
+          {"name": "operating_model", "type": "string", "constraints": {"enum": ["assisted", "spec_driven", "agent_native", "cross_level_or_undisclosed", "cross_level_stratified"]}},
+          {"name": "plot_status", "type": "string", "constraints": {"enum": ["ratio", "non_ratio"]}},
+          {"name": "classification_basis", "type": "string"}
+        ],
+        "foreignKeys": [
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "existing-corpus",
+      "title": "Locked pre-update corpus",
+      "description": "The 115-document corpus retained from the article's initial version, with its original publication-source grouping. Baseline that the OpenAlex and journal search streams were deduplicated against.",
+      "path": "prisma/existing-corpus.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {"name": "existing_category", "type": "string", "constraints": {"enum": ["empirical", "secondary_synthesis", "contextual"]}},
+          {"name": "study_id", "type": "string"},
+          {"name": "title", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "source_group", "type": "string", "constraints": {"enum": ["arXiv", "ACM", "Other web/publisher"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "search-log",
+      "title": "OpenAlex query log",
+      "description": "Exact OpenAlex query strings, dates, fields searched and result counts for the 14 archived title/abstract queries.",
+      "path": "prisma/search-log.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "query_id",
+        "fields": [
+          {"name": "query_id", "type": "string", "description": "Q01 to Q14."},
+          {"name": "source", "type": "string"},
+          {"name": "search_date", "type": "date"},
+          {"name": "publication_start", "type": "date"},
+          {"name": "publication_end", "type": "date"},
+          {"name": "field", "type": "string"},
+          {"name": "query", "type": "string"},
+          {"name": "records_returned_before_cross_query_deduplication", "type": "integer"}
+        ]
+      }
+    },
+    {
+      "name": "openalex-records",
+      "title": "Raw OpenAlex record snapshot",
+      "description": "Newline-delimited raw OpenAlex API records for the 29 July 2026 search snapshot. Unstructured/semi-structured source dump underlying screening-register.openalex_id; not every screening-register row has a corresponding record here (existing-corpus rows predate this snapshot).",
+      "path": "prisma/openalex-records.jsonl",
+      "format": "jsonl",
+      "mediatype": "application/x-ndjson"
+    },
+    {
+      "name": "screening-register",
+      "title": "Master OpenAlex-stream screening and decision register",
+      "description": "Deduplicated record register spanning identification through report-level eligibility for the agentic-web and OpenAlex streams (948 rows).",
+      "path": "prisma/screening-register.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "record_id",
+        "fields": [
+          {"name": "record_id", "type": "string", "description": "R-0001 and up."},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "publication_type", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "openalex_id", "type": "string", "description": "OpenAlex work identifier; links to openalex-records.jsonl where present."},
+          {"name": "record_sources", "type": "string", "description": "Retrieval route, e.g. existing_corpus, openalex."},
+          {"name": "query_ids", "type": "string", "description": "Semicolon-separated search-log.query_id value(s) that surfaced this record; not a single-value foreign key."},
+          {"name": "existing_category", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "exclusion_reason", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "estimate_id", "type": "string"},
+          {"name": "confidence", "type": "string", "constraints": {"enum": ["low", "moderate", "high"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "full-text-candidates",
+      "title": "OpenAlex-stream reports advanced to full-text assessment",
+      "description": "The 69 reports advanced from screening-register to eligibility assessment. Byte-identical to report-assessments.csv: every candidate received its decision in place, so no rows were dropped between the two pipeline stages.",
+      "path": "prisma/full-text-candidates.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "record_id",
+        "fields": [
+          {"name": "record_id", "type": "string"},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "publication_type", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "openalex_id", "type": "string"},
+          {"name": "record_sources", "type": "string"},
+          {"name": "query_ids", "type": "string"},
+          {"name": "existing_category", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "exclusion_reason", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "estimate_id", "type": "string"},
+          {"name": "confidence", "type": "string", "constraints": {"enum": ["low", "moderate", "high"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "record_id", "reference": {"resource": "screening-register", "fields": "record_id"}},
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "report-assessments",
+      "title": "OpenAlex-stream report-level decision and exclusion register",
+      "description": "Final report-level eligibility decisions, exclusion reasons and stable study/effect ID assignment for the 69 assessed reports. Byte-identical to full-text-candidates.csv (see that resource's description).",
+      "path": "prisma/report-assessments.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "record_id",
+        "fields": [
+          {"name": "record_id", "type": "string"},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "publication_type", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "openalex_id", "type": "string"},
+          {"name": "record_sources", "type": "string"},
+          {"name": "query_ids", "type": "string"},
+          {"name": "existing_category", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "exclusion_reason", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "estimate_id", "type": "string"},
+          {"name": "confidence", "type": "string", "constraints": {"enum": ["low", "moderate", "high"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "record_id", "reference": {"resource": "screening-register", "fields": "record_id"}},
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "search-summary",
+      "title": "Aggregate OpenAlex-stream and corpus-wide counts",
+      "description": "Current aggregate PRISMA counts (identification through inclusion) for the agentic-web/OpenAlex stream and the combined corpus, as cited in the article.",
+      "path": "prisma/search-summary.json",
+      "format": "json",
+      "mediatype": "application/json"
+    },
+    {
+      "name": "journal-search-log",
+      "title": "Direct journal (Crossref) search log",
+      "description": "Per-venue Crossref enumeration parameters and result counts for the 15 named software-engineering journals, searched by ISSN.",
+      "path": "prisma/journal-search-log.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "venue_id",
+        "fields": [
+          {"name": "venue_id", "type": "string", "description": "J01 to J15."},
+          {"name": "journal", "type": "string"},
+          {"name": "issn", "type": "string"},
+          {"name": "search_date", "type": "date"},
+          {"name": "publication_start", "type": "date"},
+          {"name": "publication_end", "type": "date"},
+          {"name": "records_enumerated", "type": "integer"},
+          {"name": "crossref_total_results", "type": "integer"}
+        ]
+      }
+    },
+    {
+      "name": "journal-records",
+      "title": "Raw Crossref record snapshot",
+      "description": "Compressed newline-delimited raw Crossref records for the 31 July 2026 direct journal search, tagged with the originating journal_search_id/name/issn (journal-search-log.venue_id).",
+      "path": "prisma/journal-records.jsonl.gz",
+      "format": "jsonl",
+      "mediatype": "application/x-ndjson",
+      "compression": "gz"
+    },
+    {
+      "name": "journal-screening-register",
+      "title": "Journal-stream screening and decision register",
+      "description": "All topical journal-search candidates (659 rows), deduplication status against the existing corpus, and title/abstract decisions.",
+      "path": "prisma/journal-screening-register.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "journal_record_id",
+        "fields": [
+          {"name": "journal_record_id", "type": "string", "description": "JR-001 and up."},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "journal", "type": "string"},
+          {"name": "issn", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "within_search_venues", "type": "string", "description": "Matching journal-search-log.venue_id."},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "dedupe_status", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "title_abstract_reason", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "evidence_weight", "type": "string", "constraints": {"enum": ["high", "moderate", "low"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "within_search_venues", "reference": {"resource": "journal-search-log", "fields": "venue_id"}},
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "journal-full-text-candidates",
+      "title": "Journal-stream reports advanced to full-text assessment",
+      "description": "The 30 journal reports advanced from journal-screening-register to eligibility assessment. Byte-identical to journal-report-assessments.csv (see that resource's description).",
+      "path": "prisma/journal-full-text-candidates.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "journal_record_id",
+        "fields": [
+          {"name": "journal_record_id", "type": "string"},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "journal", "type": "string"},
+          {"name": "issn", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "within_search_venues", "type": "string"},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "dedupe_status", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "title_abstract_reason", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "evidence_weight", "type": "string", "constraints": {"enum": ["high", "moderate", "low"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "journal_record_id", "reference": {"resource": "journal-screening-register", "fields": "journal_record_id"}},
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "journal-report-assessments",
+      "title": "Journal-stream report-level decision register",
+      "description": "Final report-level eligibility decisions for the 30 assessed journal reports. Byte-identical to journal-full-text-candidates.csv (see that resource's description).",
+      "path": "prisma/journal-report-assessments.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "journal_record_id",
+        "fields": [
+          {"name": "journal_record_id", "type": "string"},
+          {"name": "title", "type": "string"},
+          {"name": "publication_year", "type": "year"},
+          {"name": "journal", "type": "string"},
+          {"name": "issn", "type": "string"},
+          {"name": "doi", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "within_search_venues", "type": "string"},
+          {"name": "automated_screen", "type": "string"},
+          {"name": "automated_reason", "type": "string"},
+          {"name": "dedupe_status", "type": "string"},
+          {"name": "abstract", "type": "string"},
+          {"name": "human_decision", "type": "string"},
+          {"name": "title_abstract_reason", "type": "string"},
+          {"name": "full_text_decision", "type": "string"},
+          {"name": "full_text_reason", "type": "string"},
+          {"name": "study_id", "type": "string"},
+          {"name": "evidence_weight", "type": "string", "constraints": {"enum": ["high", "moderate", "low"]}}
+        ],
+        "foreignKeys": [
+          {"fields": "journal_record_id", "reference": {"resource": "journal-screening-register", "fields": "journal_record_id"}},
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "journal-search-summary",
+      "title": "Aggregate journal-stream counts",
+      "description": "Aggregate PRISMA counts for the direct journal (Crossref) search stream only.",
+      "path": "prisma/journal-search-summary.json",
+      "format": "json",
+      "mediatype": "application/json"
+    },
+    {
+      "name": "risk-of-bias-register",
+      "title": "Study-level risk-of-bias domain register",
+      "description": "One domain-judgement row per empirical study (117 rows, ST-01 to ST-116; two studies each contribute a paired-estimate row), routed to RoB 2, ROBINS-I, a JBI checklist or a JBI-derived benchmark/case checklist per study design. Kept deliberately separate from evidence-weight-register: risk of bias judges internal validity only, not directness, precision or relevance.",
+      "path": "risk-of-bias/risk-of-bias-register.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "assessment_id",
+        "fields": [
+          {"name": "assessment_id", "type": "string", "description": "RB-ST-01 and up."},
+          {"name": "study_id", "type": "string"},
+          {"name": "effect_ids", "type": "string"},
+          {"name": "evidence_stream", "type": "string", "constraints": {"enum": ["productivity/delivery", "adjacent outcome"]}},
+          {"name": "title", "type": "string"},
+          {"name": "url", "type": "string", "format": "uri"},
+          {"name": "target_results", "type": "string", "description": "The specific reported result this assessment targets."},
+          {"name": "instrument", "type": "string", "constraints": {"enum": ["RoB 2", "ROBINS-I V2", "JBI quasi-experimental checklist with prespecified overall-risk rule", "JBI analytical cross-sectional/cohort checklist with prespecified overall-risk rule", "JBI-derived software benchmark/case checklist with prespecified overall-risk rule"]}},
+          {"name": "instrument_version", "type": "string"},
+          {"name": "profile", "type": "string", "description": "Study-design profile used for routing to an instrument."},
+          {"name": "domain_1", "type": "string"},
+          {"name": "domain_2", "type": "string"},
+          {"name": "domain_3", "type": "string"},
+          {"name": "domain_4", "type": "string"},
+          {"name": "domain_5", "type": "string"},
+          {"name": "domain_6", "type": "string"},
+          {"name": "domain_7", "type": "string"},
+          {"name": "domain_8", "type": "string"},
+          {"name": "domain_9", "type": "string"},
+          {"name": "domain_10", "type": "string"},
+          {"name": "overall_risk_of_bias", "type": "string", "description": "Qualitative overall judgement in the routed instrument's own vocabulary."},
+          {"name": "study_specific_note", "type": "string"},
+          {"name": "decision_rationale", "type": "string"},
+          {"name": "appraisal_basis", "type": "string"},
+          {"name": "assessor", "type": "string"},
+          {"name": "assessment_date", "type": "date"}
+        ],
+        "foreignKeys": [
+          {"fields": "study_id", "reference": {"resource": "evidence-weight-register", "fields": "study_id"}}
+        ]
+      }
+    },
+    {
+      "name": "risk-of-bias-summary",
+      "title": "Study-level risk-of-bias totals",
+      "description": "Aggregate counts of overall risk-of-bias judgements by routed instrument, as cited in the article's risk-of-bias section.",
+      "path": "risk-of-bias/risk-of-bias-summary.json",
+      "format": "json",
+      "mediatype": "application/json"
+    }
+  ]
+}
