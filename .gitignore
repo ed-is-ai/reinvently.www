@@ -2,3 +2,12 @@
 repurposed/
 tmp/
 .DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
