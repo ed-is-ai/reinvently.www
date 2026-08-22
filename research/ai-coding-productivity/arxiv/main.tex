@@ -549,8 +549,8 @@ The largest direct study of that conversion followed more than 100,000 GitHub de
 
 \draw[loww, dashed, line width=1.1pt, ->] (impl.south) to[out=-70,in=-110] node[midway, below=2pt, text=loww, align=center, font=\footnotesize] {Verification, integration and review\\absorb part of the local gain} (release.south);
 
-\node[box, fill=neutralbox, draw=neutralline, minimum width=3.6cm, below=1.6cm of review] (produse) {\textbf{Product use}\\[2pt]\footnotesize No measured increase\\\footnotesize in the matched study};
-\draw[->, neutralline, line width=1pt] (release.south) |- (produse.east);
+\node[box, fill=neutralbox, draw=neutralline, minimum width=3.6cm, below=1.6cm of review] (productuse) {\textbf{Product use}\\[2pt]\footnotesize No measured increase\\\footnotesize in the matched study};
+\draw[->, neutralline, line width=1pt] (release.south) |- (productuse.east);
 
 \end{tikzpicture}
 \caption{Implementation gains narrow on the path to production and use. A delivery pipeline runs from intent through code generation, verification and review to releases and product use. Implementation-stage evidence ranges from about 1.25 times in controlled assistant studies to a 4.5 times median and 18 times task-specific upper-end estimate in agent-native cases. The strongest direct delivery evidence reports only 10 to 30 percent higher release output, and no measured increase in marketplace use. Local implementation gains do not translate directly into releases or product use. Verification and review capacity determine how much speed survives.}
