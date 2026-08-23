@@ -17,7 +17,7 @@ needs a colour and a default-panel decision from a human.
 Usage:
     build_ed_o_meter.py <summary.json> [--report PATH] [--check]
 
-``--check`` writes nothing and exits 1 if data.js is out of date, for CI.
+``--check`` writes nothing and exits 1 if the board needs attention, for CI.
 """
 
 from __future__ import annotations
@@ -289,7 +289,7 @@ def material(before: dict[str, Any], after: dict[str, Any]) -> bool:
 
 
 def build_report(old: list[dict[str, Any]], new: dict[str, dict[str, Any]],
-                 page: str, summary: dict[str, Any]) -> str:
+                 page: str, summary: dict[str, Any]) -> tuple[str, bool]:
     lines = ["## Ed-o-meter data refresh", ""]
     lines.append(f"Source: featherbench `results/summary.json`, generated {summary['generated_utc']}.")
     lines.append(f"{summary['counts']['records']} records; "
@@ -390,7 +390,7 @@ def build_report(old: list[dict[str, Any]], new: dict[str, dict[str, Any]],
             lines.append("No rubric at all, `rubric` emitted as null: " + ", ".join(missing) + ".")
         lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(lines), changed
 
 
 # --------------------------------------------------------------------------
@@ -400,7 +400,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("summary", type=Path, help="path to featherbench results/summary.json")
     parser.add_argument("--report", type=Path, default=None, help="write the Markdown report here")
-    parser.add_argument("--check", action="store_true", help="exit 1 if data.js is stale; write nothing")
+    parser.add_argument("--check", action="store_true", help="exit 1 if the board needs attention; write nothing")
     args = parser.parse_args()
 
     summary = json.loads(args.summary.read_text(encoding="utf-8"))
@@ -420,7 +420,7 @@ def main() -> int:
         if row["rubric"] is None and previous_rubric.get(name) is not None:
             row["rubric"] = previous_rubric[name]
 
-    report = build_report(existing, derived, page, summary)
+    report, has_board_changes = build_report(existing, derived, page, summary)
 
     # Merge: derived numbers onto preserved editorial fields, board order kept.
     merged: list[dict[str, Any]] = []
@@ -449,9 +449,14 @@ def main() -> int:
         args.report.write_text(report, encoding="utf-8")
 
     if args.check:
-        if board_payload(rendered) != board_payload(existing_text):
+        # A new upstream model is actionable even though it is deliberately not
+        # merged into the board automatically: it still needs an editorial
+        # colour and panel decision. Likewise, a model disappearing upstream
+        # needs a human decision. Comparing only the rendered payload misses
+        # both cases because the merge intentionally leaves them untouched.
+        if has_board_changes or board_payload(rendered) != board_payload(existing_text):
             print(report)
-            print("data.js is out of date — run without --check to regenerate.", file=sys.stderr)
+            print("Ed-o-meter board needs attention — review the report.", file=sys.stderr)
             return 1
         print("data.js is up to date.")
         return 0
