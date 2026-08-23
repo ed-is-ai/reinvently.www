@@ -22,7 +22,7 @@ const MODELS = [
   {id:'terra', name:'gpt-5.6-terra', hex:'#A03A5E', panel:true, added:'2026-07-12', addedOrder:8, tested:'2026-08-02', pass:86, lo:69, hi:94, rubric:8.7, rNote:1, cost:0.24, ttft:4.8, costTask:0.0087, sec:33, secTxt:'33%'},
   {id:'opus5', name:'opus-5', hex:'#D97757', panel:true, added:'2026-07-28', addedOrder:11, tested:'2026-07-28', pass:86, lo:69, hi:94, rubric:9.4, cost:1.67, ttft:8.3, costTask:0.0696, cNote:4, sec:100, secTxt:'100%'},
   {id:'fable5', name:'fable-5', hex:'#2456E6', panel:true, added:'2026-07-03', addedOrder:1, tested:'2026-07-14', pass:79, lo:60, hi:90, pNote:[3], rubric:9.3, rNote:2, cost:1.35, ttft:7.9, costTask:0.0748, cNote:4, sec:100, secTxt:'100%'},
-  {id:'luna', name:'gpt-5.6-luna', hex:'#D9748A', panel:true, added:'2026-07-12', addedOrder:7, tested:'2026-08-02', pass:79, lo:60, hi:90, rubric:8.6, rNote:1, cost:0.032, ttft:5.3, costTask:0.0011, sec:33, secTxt:'33%'},
+  {id:'luna', name:'gpt-5.6-luna', hex:'#D9748A', panel:true, added:'2026-07-12', addedOrder:7, tested:'2026-08-02', pass:79, lo:60, hi:90, rubric:8.6, rNote:1, cost:0.064, ttft:5.3, costTask:0.0023, sec:33, secTxt:'33%'},
 ];
 
 const CATS = [
