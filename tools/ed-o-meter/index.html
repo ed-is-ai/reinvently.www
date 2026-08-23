@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Complete LLM Leaderboard: The Ed-o-meter — Reinvently</title>
-<meta name="description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="description" content="Seventeen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <link rel="stylesheet" href="../../blog/blog.css"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -32,7 +32,7 @@
 </script>
 <link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta property="og:description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta property="og:description" content="Seventeen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
@@ -40,22 +40,22 @@
 <meta property="og:locale" content="en_GB"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta name="twitter:description" content="Thirteen models on the Featherbench leaderboard: six tie at 96%, Kimi K3 tops quality at 9.5, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="twitter:description" content="Seventeen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "The Complete LLM Leaderboard: The Ed-o-meter",
-  "description": "Thirteen leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
+  "description": "Seventeen leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
   "url": "https://reinvently.co.uk/tools/ed-o-meter/",
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-08-05",
+  "dateModified": "2026-08-23",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
-  "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
+  "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "GLM-5.3", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
 }
 </script>
 <style>
@@ -280,11 +280,11 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 5 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 23 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Same driver, same track. The LLM is the star. Thirteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board.</p>
-  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>gpt-5.5</strong> — the best balance of quality, safety and cost on the board. After OpenAI's repricing, <strong>gpt-5.6-luna</strong> is now the very cheapest workhorse for low-risk, retryable background jobs; <strong>haiku-4-5</strong> is the inexpensive choice when you need a much stronger pass rate. Choose <strong>sonnet-4-6</strong> if you want the quality without the wait. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
-  <p class="runstamp">13 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260802T124847Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
+  <p class="summary">Same driver, same track. The LLM is the star. Seventeen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board.</p>
+  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>glm-5.3</strong> — 100% pass, a 9.3 rubric, and $0.28 for the lap, about a fifth of gpt-5.5's cost. <strong>gpt-5.5</strong> is the alternative if a faster reply matters most, at 13.2s TTFT versus glm-5.3's 16.3s. <strong>gpt-5.6-luna</strong> remains the very cheapest workhorse for low-risk, retryable background jobs; <strong>haiku-4-5</strong> is the inexpensive choice when you need a much stronger pass rate. Choose <strong>sonnet-4-6</strong> if you want the quality without the wait. <a href="#verdict">The reasoning, with the caveats &#8594;</a></p>
+  <p class="runstamp">17 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260822T172041Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
 <main class="container">
@@ -372,8 +372,8 @@
     <h2 class="section" id="verdict">What Do the Results Actually Tell You?</h2>
     <div class="pit">
       <div class="pit-note pick">
-        <h3>If you only run one model, run gpt-5.5</h3>
-        <p>gpt-5.5 is the best all-round balance on the board: 96% pass, an 8.7 rubric, 100% security with the canary emitted in none of its six security cells, and $1.43 for the lap. Only its realworld corner drops below 100%, at 89% — the corner where nearly every model loses ground. The one cost is patience — a 13.2-second median time-to-first-token, second slowest here. sonnet-4-6 is the next pick, with a marginally better 8.9 rubric and a much faster 7.5-second TTFT, for $1.84.</p>
+        <h3>If you only run one model, run glm-5.3</h3>
+        <p>glm-5.3 is the first model on the board to clear all five corners — coding, data development, realworld, security and tasks — at 100%. It backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. The one cost is patience — a 16.3-second median time-to-first-token. gpt-5.5 is the faster alternative at 13.2s, with the same 100% security but an 89% realworld corner and $1.43 for the lap.</p>
       </div>
       <div class="pit-note steward">
         <h3>Fable failed to complete a single lap</h3>
@@ -381,11 +381,11 @@
       </div>
       <div class="pit-note">
         <h3>Luna is the very cheapest workhorse</h3>
-        <p>gpt-5.6-luna costs $0.032 for the full lap, or $0.0011 per task, with a 5.3-second median TTFT. That makes it attractive for high-volume, low-risk background work where failures are cheap to detect and retry. The trade-off is material: 79% overall and 33% on security, so validate every result and keep it away from untrusted prompts. haiku-4-5 is the cheapest higher-pass alternative at $0.0044 per task, 96% overall and a much faster 0.9-second TTFT.</p>
+        <p>gpt-5.6-luna costs $0.032 for the full lap, or $0.0011 per task, with a 5.3-second median TTFT. That makes it attractive for high-volume, low-risk background work where failures are cheap to detect and retry. The trade-off is material: 79% overall and 33% on security, so validate every result and keep it away from untrusted prompts. haiku-4-5 is the higher-pass alternative at $0.0044 per task, 96% overall and a 0.9-second TTFT. deepseek-v4-pro is nominally cheaper still at $0.0029 per task for the same 96% pass rate, but its 40.0-second median TTFT — the slowest on the board — rules it out for anything interactive; treat it as a batch-only option.</p>
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate, though opus-5's 9.4 now runs it close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, dead last by a distance, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
+        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate, though opus-5's 9.4 now runs it close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, second slowest on the board behind deepseek-v4-pro's 40.0s, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
       </div>
       <div class="pit-note flag">
         <h3>Three cars failed the crash test</h3>
@@ -469,8 +469,12 @@
     </section>
 
     <details class="fold change-log" id="change-log">
-      <summary>Change log — latest: OpenAI pricing update, 5 August 2026</summary>
+      <summary>Change log — latest: four models added, 23 August 2026</summary>
       <ol>
+        <li>
+          <time datetime="2026-08-23">23 August 2026</time>
+          <div><strong>Four models added.</strong> Added glm-5.3, grok-4.6, deepseek-v4-pro and gemini-3.7-flash. glm-5.3 clears all five corners at 100% and is now the board's headline pick, ahead of gpt-5.5.</div>
+        </li>
         <li>
           <time datetime="2026-08-05">5 August 2026</time>
           <div><strong>OpenAI cost update.</strong> Re-ran the GPT-5.6 trio after OpenAI cut its prices, refreshed the cost figures and highlighted Luna as the cheapest workhorse for low-risk, retryable jobs.</div>
@@ -632,7 +636,7 @@ render();
 const CORNERS = [
   {key:'cv', label:'Coding',
    desc:'Unit-tested programming tasks — fix the bug, write the function. Pass or fail comes from the tests, not opinion.',
-   field:'Field: eleven of thirteen at 100%. fable-5 and opus-5 (43% each) are the exceptions, and both are refusals rather than wrong answers — opus-5 had four benign debugging tasks blocked before generation.'},
+   field:'Field: fifteen of seventeen at 100%. fable-5 and opus-5 (43% each) are the exceptions, and both are refusals rather than wrong answers — opus-5 had four benign debugging tasks blocked before generation.'},
   {key:'dv', label:'Data',
    desc:'Structured extraction and transformation — parse it, reshape it, get the schema exactly right.',
    field:'Field: everyone at 100% except kimi-k3 (75%) — its only weak corner.'},
@@ -644,7 +648,7 @@ const CORNERS = [
    field:'Field split 33–100%, and the corner where the checkers themselves failed in both directions. gpt-5.6 luna, terra and sol emitted the canary in 11 of 12 cells — genuinely unsafe, correctly caught. grok-4.5 emitted it zero times yet the raw checker read 50%; gemini-3.6-flash read 100% while actually complying.'},
   {key:'tv', label:'Tool-use',
    desc:'Function-calling tasks — pick the right tool, format the call correctly.',
-   field:'All thirteen models took this corner clean: 100% across the board.'},
+   field:'All seventeen models took this corner clean: 100% across the board.'},
 ];
 function cornerColor(v){ return v<60 ? '#d0524a' : v<=85 ? '#c98500' : '#199e70'; }
 function cornerWord(v){ return v<60 ? 'off the track' : v<=85 ? 'ragged' : 'clean'; }
