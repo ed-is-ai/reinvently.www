@@ -143,11 +143,24 @@ jobs:
 
       # Closes itself once the board has been brought back into line, so the
       # open/closed state of the issue is a truthful signal on its own.
+      #
+      # Only a run whose checkout is the current tip of the default branch may
+      # close the issue. A run queued against a commit that a merge then
+      # superseded carries a stale data.js, and letting it close would flip a
+      # still-valid issue shut until the next run reopened it — the close/reopen
+      # churn that a stale workflow_dispatch caused once. Opening has no such
+      # guard: a false "stale" only refreshes an issue that is meant to be open.
       - name: Close the drift issue when the board is current
         if: steps.check.outputs.stale == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          TIP=$(gh api "repos/${{ github.repository }}/commits/main" --jq '.sha')
+          if [ "${TIP}" != "${GITHUB_SHA}" ]; then
+            echo "Checkout ${GITHUB_SHA} is behind main (${TIP}); not closing."
+            exit 0
+          fi
+
           EXISTING=$(gh issue list --label "${ISSUE_LABEL}" --state open \
             --json number --jq '.[0].number // empty')
           if [ -n "${EXISTING}" ]; then
