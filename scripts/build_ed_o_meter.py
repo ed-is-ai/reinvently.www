@@ -17,7 +17,9 @@ needs a colour and a default-panel decision from a human.
 Usage:
     build_ed_o_meter.py <summary.json> [--report PATH] [--check]
 
-``--check`` writes nothing and exits 1 if data.js is out of date, for CI.
+``--check`` writes nothing and exits 1 if the board has drifted from the
+results — a rendered value that no longer matches, or a model added or removed
+upstream — for CI to raise as an issue.
 """
 
 from __future__ import annotations
@@ -289,7 +291,10 @@ def material(before: dict[str, Any], after: dict[str, Any]) -> bool:
 
 
 def build_report(old: list[dict[str, Any]], new: dict[str, dict[str, Any]],
-                 page: str, summary: dict[str, Any]) -> str:
+                 page: str, summary: dict[str, Any]) -> tuple[str, bool]:
+    """Return the Markdown report and whether it lists a board change a person
+    must act on — a moved figure, or a model added or removed upstream. Prose
+    to re-check and rubric provenance are informational and do not set it."""
     lines = ["## Ed-o-meter data refresh", ""]
     lines.append(f"Source: featherbench `results/summary.json`, generated {summary['generated_utc']}.")
     lines.append(f"{summary['counts']['records']} records; "
@@ -390,7 +395,7 @@ def build_report(old: list[dict[str, Any]], new: dict[str, dict[str, Any]],
             lines.append("No rubric at all, `rubric` emitted as null: " + ", ".join(missing) + ".")
         lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(lines), changed
 
 
 # --------------------------------------------------------------------------
@@ -400,7 +405,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("summary", type=Path, help="path to featherbench results/summary.json")
     parser.add_argument("--report", type=Path, default=None, help="write the Markdown report here")
-    parser.add_argument("--check", action="store_true", help="exit 1 if data.js is stale; write nothing")
+    parser.add_argument("--check", action="store_true",
+                        help="exit 1 if the board has drifted from the results; write nothing")
     args = parser.parse_args()
 
     summary = json.loads(args.summary.read_text(encoding="utf-8"))
@@ -420,7 +426,7 @@ def main() -> int:
         if row["rubric"] is None and previous_rubric.get(name) is not None:
             row["rubric"] = previous_rubric[name]
 
-    report = build_report(existing, derived, page, summary)
+    report, board_changed = build_report(existing, derived, page, summary)
 
     # Merge: derived numbers onto preserved editorial fields, board order kept.
     merged: list[dict[str, Any]] = []
@@ -449,11 +455,17 @@ def main() -> int:
         args.report.write_text(report, encoding="utf-8")
 
     if args.check:
-        if board_payload(rendered) != board_payload(existing_text):
+        # Two kinds of drift, both a person's problem. A rendered value that no
+        # longer matches data.js is fixed by regenerating; a model added or
+        # removed upstream needs an editorial decision before it can be. Either
+        # way the report says what moved and this exits non-zero so CI raises it.
+        payload_stale = board_payload(rendered) != board_payload(existing_text)
+        if payload_stale or board_changed:
             print(report)
-            print("data.js is out of date — run without --check to regenerate.", file=sys.stderr)
+            print("Ed-o-meter board has drifted from featherbench — see the report above.",
+                  file=sys.stderr)
             return 1
-        print("data.js is up to date.")
+        print("Board is up to date.")
         return 0
 
     DATA_JS.write_text(rendered, encoding="utf-8")
