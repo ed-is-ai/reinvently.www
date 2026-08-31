@@ -105,6 +105,9 @@
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
 
   .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
+  .eom-header ul.verdict{list-style:none;}
+  .eom-header .verdict li{margin:0 0 6px;}
+  .eom-header .verdict li:last-child{margin-bottom:0;}
   .eom-header .verdict strong{color:var(--text);font-weight:650;}
   .eom-header .verdict a{color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
   .eom-header .verdict a:hover{border-color:var(--telemetry);opacity:1;}
@@ -297,8 +300,15 @@
 <header class="article-header eom-header">
   <div class="post-meta">Updated 31 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Same driver, same track. The LLM is the star. Eighteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts, deterministic grading — and the results go on the board.</p>
-  <p class="verdict"><strong>Short version:</strong> if you run one model, run <strong>glm-5.3</strong> — 100% pass, a 9.3 rubric, $0.28 for the lap (check with compliance first, though). <strong>glm-5.3-flash</strong> is the speedy, low-cost workhorse: 99% pass, 100% security, 2.6s TTFT and $0.031 for the lap. <a href="#verdict">The reasoning, with the caveats &#8594;</a>Opus 5 still has the edge on quality but in terms of intelligence / $ the Open Weight modesl from z.ai are suddenly laps ahead</p>
+  <p class="summary">Different driver, same track — the LLM is the star.<br>
+  Eighteen leading models driven round the identical 28-realworld task lap — one harness, same verbatim prompts — and the results go on the board.</p>
+  <ul class="verdict">
+    <li><strong>If you only want to run one model, then run glm-5.3</strong></li>
+    <li><strong>glm-5.3-flash</strong> is the best option if you want a speedy, low-cost workhorse.</li>
+    <li><strong>Opus 5</strong> still has the edge on quality, but in terms of intelligence / $, the Open Weight models from z.ai are suddenly laps ahead.</li>
+    <li><a href="#verdict">The reasoning, with the caveats &#8594;</a></li>
+    <li>These are all readily available, but check with your compliance team before you use the Chinese models.</li>
+  </ul>
   <p class="runstamp">18 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260829T191258Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
@@ -393,7 +403,7 @@
     <div class="pit">
       <div class="pit-note pick">
         <h3>If you only run one model, run glm-5.3</h3>
-        <p>glm-5.3 is the first model on the board to clear all five corners — coding, data development, realworld, security and tasks — at 100%. It backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. The one cost is patience — a 16.3-second median time-to-first-token. glm-5.3-flash is the speed-and-cost alternative: 99% pass, 2.6s TTFT and $0.031 for the lap, while giving up four points on the realworld corner. It also surpasses sonnet-4-6 on every board metric: 99% versus 96% pass, 9.2 versus 8.9 rubric, 2.6 versus 7.5 seconds TTFT, and $0.031 versus $1.84 for the lap.</p>
+        <p>glm-5.3 is the first model on the board to clear all five corners — coding, data development, realworld, security and tasks — at 100%. It backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. It is however really slow: 16.3-second median time-to-first-token.</p>
       </div>
       <div class="pit-note steward">
         <h3>Fable failed to complete a single lap</h3>
@@ -401,7 +411,7 @@
       </div>
       <div class="pit-note">
         <h3>glm-5.3-flash is the low-cost workhorse</h3>
-        <p>glm-5.3-flash costs $0.031 for the full lap, or $0.0004 per task, with a 2.6-second median TTFT. At 99% overall and 100% on security, it replaces Luna and haiku-4-5 as the low-cost default: it is better on all metrics. haiku-4-5 remains faster to first token at 0.9 seconds, but costs 10× more and has lower-quality output. Luna costs five times more per task and suffers from jailbreak vulnerabilities, so it cannot be used without extra guardrails.</p>
+        <p>glm-5.3-flash costs $0.031 for the full lap, or $0.0004 per task, with a 2.6-second median TTFT, you can code all week and it will still only cost the same as a Starbucks. At 99% overall and 100% on security, it replaces Luna and haiku-4-5 as the low-cost default: it is better on all metrics. haiku-4-5 remains faster to first token at 0.9 seconds, but costs 10× more and has lower-quality output. Luna costs five times more per task and suffers from jailbreak vulnerabilities, so it cannot be used without extra guardrails.</p>
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
