@@ -89,9 +89,13 @@
   .eom .chart-card{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top right,var(--telemetry-tint),transparent 34%),var(--bg2);padding:clamp(14px,2.5vw,24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.025);}
   .eom .modes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
   .eom .mode-btn{font-family:var(--font-nav);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;background:transparent;
-    border:1px solid var(--hairline);border-radius:999px;padding:8px 16px;cursor:pointer;color:var(--text-muted);transition:border-color .15s,color .15s,background .15s;}
+    position:relative;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--hairline);border-radius:999px;padding:8px 12px 8px 16px;cursor:pointer;color:var(--text-muted);transition:border-color .15s,color .15s,background .15s;}
   .eom .mode-btn:hover{border-color:var(--telemetry);color:var(--text);}
   .eom .mode-btn[aria-pressed="true"]{background:var(--telemetry);border-color:var(--telemetry);color:#061016;box-shadow:0 0 18px var(--telemetry-tint);}
+  .eom .metric-info{width:16px;height:16px;display:inline-grid;place-items:center;border:1px solid currentColor;border-radius:50%;font-family:var(--font-data);font-size:10px;font-weight:700;line-height:1;letter-spacing:0;}
+  .eom .mode-btn[aria-pressed="true"] .metric-info{color:#061016;}
+  .eom .metric-tooltip{position:absolute;z-index:20;top:calc(100% + 8px);left:0;width:max-content;max-width:min(280px,calc(100vw - 48px));padding:8px 10px;border:1px solid #29475a;border-radius:7px;background:#000;color:#fff;font-family:var(--font-body);font-size:12px;font-weight:400;line-height:1.4;letter-spacing:0;text-transform:none;text-align:left;box-shadow:0 6px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(-3px);transition:opacity .15s,transform .15s;}
+  .eom .metric-info:hover + .metric-tooltip,.eom .mode-btn:focus-visible .metric-tooltip{opacity:1;transform:translateY(0);}
   .eom .chart-scroll{overflow-x:auto;}
   /* Drawn at 1:1 — the SVG is sized in real pixels rather than stretched from a
      fixed viewBox, which used to scale its text 1.37x and make the chart labels
@@ -300,9 +304,9 @@
 <header class="article-header eom-header">
   <div class="post-meta">Updated 31 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Different driver, same track — the LLM is the star.  Eighteen leading models driven round the identical 28-realworld task lap and the results go on the board.</p>
+  <p class="summary">Different driver, same track — the LLM is the star.  LLMs driven round the identical 28-realworld task lap and the results go on the board.</p>
   <ul class="verdict">
-    <li><strong>If you only want to run one model, then run glm-5.3</strong></li>
+    <li><strong>If you only want to run one model, then I would run glm-5.3</strong></li>
     <li><strong>glm-5.3-flash</strong> is the best option if you want a speedy, low-cost workhorse.</li>
     <li><strong>Opus 5</strong> still has the edge on quality, but in terms of intelligence / $, the Open Weight models from z.ai are suddenly laps ahead.</li>
     <li><a href="#verdict">The reasoning, with the caveats &#8594;</a></li>
@@ -316,15 +320,18 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <h2 class="section" style="margin-top:0">Which Model Tops Our Leaderboard?</h2>
-    <p class="section-note">How the LLMs did in our realworld tests.  Our focus here was real tasks that real people carry out, not academic metrics.  We focus on single tasks to simplify the assessment. An agentic flow is ultimately a series of such tasks. Think of these like unit tests for the agent.  We made them cheap enough to run so that even the whole suite costs just $30.   <a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">See every task and each model's actual answer, or compare two models head to head &#8594;</a></p>
+    <h2 class="section" style="margin-top:0">How Does It Work?</h2>
+    <p class="section-note">Most benchmarks ask which model is most capable overall. <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Featherbench</a> asks a narrower question: are there models that are good enough to handle all our particular everyday workloads securely — and among those models, which offer the best combination of cost, speed</p>
+    <p class="section-note">We run every model through the same 28 fixed tasks covering coding, data extraction, everyday requests, tool use, and prompt-injection and jailbreak resistance. The tasks are drawn from work our founder, Ed, actually performs. A model passes a task only when a deterministic checker confirms that it produced a usable result.</p>
+    <p class="section-note">This is not a universal intelligence ranking. The benchmark is intentionally designed to identify models that clear a practical threshold; once they do, cost and speed become important differentiators. Results apply to these tasks, prompts, models and harness—and may differ for your workload.</p>
+    <p class="section-note">The tasks are deliberately inexpensive, so you can reproduce the complete benchmark with an OpenRouter account and approximately $30. <a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;"><strong>See every task and each model’s actual response, compare two models directly, or adapt Featherbench to your own workload &#8594;</strong></a></p>
 
     <div class="chart-card">
       <div class="modes" role="group" aria-label="Choose which metric the telemetry shows">
-        <button class="mode-btn" data-mode="pass" aria-pressed="true">Pass rate</button>
-        <button class="mode-btn" data-mode="rubric" aria-pressed="false">Rubric quality</button>
-        <button class="mode-btn" data-mode="costTask" aria-pressed="false">Cost / task</button>
-        <button class="mode-btn" data-mode="ttft" aria-pressed="false">Latency (TTFT)</button>
+        <button class="mode-btn" data-mode="pass" aria-pressed="true" aria-describedby="pass-tip">Pass rate <span class="metric-info" aria-hidden="true">i</span><span class="metric-tooltip" id="pass-tip" role="tooltip">The total percentage pass rate on the 28 realworld tasks.</span></button>
+        <button class="mode-btn" data-mode="rubric" aria-pressed="false" aria-describedby="rubric-tip">Rubric quality <span class="metric-info" aria-hidden="true">i</span><span class="metric-tooltip" id="rubric-tip" role="tooltip">Quality of the responses, using Fable to judge.</span></button>
+        <button class="mode-btn" data-mode="costTask" aria-pressed="false" aria-describedby="cost-tip">Cost / task <span class="metric-info" aria-hidden="true">i</span><span class="metric-tooltip" id="cost-tip" role="tooltip">Average cost per task.</span></button>
+        <button class="mode-btn" data-mode="ttft" aria-pressed="false" aria-describedby="latency-tip">Latency (TTFT) <span class="metric-info" aria-hidden="true">i</span><span class="metric-tooltip" id="latency-tip" role="tooltip">Time for the response to start coming back; a measure of responsiveness.</span></button>
       </div>
       <div class="chart-scroll"><svg id="telemetry" role="img" aria-label="Ranked chart of the selected metric for each model"></svg></div>
       <p class="axis-note" id="axisNote"></p>
