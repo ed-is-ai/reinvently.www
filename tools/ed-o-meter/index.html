@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Complete LLM Leaderboard: The Ed-o-meter — Reinvently</title>
-<meta name="description" content="Eighteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <link rel="stylesheet" href="../../blog/blog.css"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -32,7 +32,7 @@
 </script>
 <link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta property="og:description" content="Eighteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta property="og:description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
@@ -40,19 +40,19 @@
 <meta property="og:locale" content="en_GB"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta name="twitter:description" content="Eighteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, eight tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="twitter:description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "The Complete LLM Leaderboard: The Ed-o-meter",
-  "description": "Eighteen leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
+  "description": "Nineteen leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
   "url": "https://reinvently.co.uk/tools/ed-o-meter/",
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-08-31",
+  "dateModified": "2026-09-01",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
   "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "GLM-5.3", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
@@ -302,7 +302,7 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 31 August 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 1 September 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">Different driver, same track — the LLM is the star.  LLMs driven round the identical 28-realworld task lap and the results go on the board.</p>
   <ul class="verdict">
@@ -312,7 +312,7 @@
     <li><a href="#verdict">The reasoning, with the caveats &#8594;</a></li>
     <li>These are all readily available, but check with your compliance team before you use the Chinese models.</li>
   </ul>
-  <p class="runstamp">18 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260829T191258Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
+  <p class="runstamp">19 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260901T221834Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
 <main class="container">
@@ -362,12 +362,13 @@
     </div>
 
     <details class="fold">
-      <summary>Four caveats on how these numbers were produced</summary>
+      <summary>Five caveats on how these numbers were produced</summary>
       <div class="footnotes">
       <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
       <p><sup>2</sup> fable-5's 9.3 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.3 versus 8.6–8.7 for the models it judges independently. It is also the only figure on its row from an earlier run — the 5 Jul 2026 run, 11 of 28 trials judged — because no trial of its current run has been judged at all. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
       <p><sup>3</sup> <strong>Recipe-checker false-positive.</strong> On the vegetarian weeknight recipe the forbidden-term checker fires on a non-ingredient mention — a label-check caution or a negated omission list ("uses no fish sauce or animal-derived garnishes"). All three recipes are genuinely meat-free, so gpt-5.5, sonnet-5 and fable-5 are scored as passing that task here. No task or checker was edited.</p>
-      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0481/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. No other model on the board has refusals.</p>
+      <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5, fable-5-1 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0481/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. fable-5-1 carries one refusal — its cost/task over answering trials is $0.0991, versus $0.0955 across all 28.</p>
+      <p><sup>5</sup> fable-5-1's 9.5 is <strong>self-judged</strong> — scored by fable-5, the same model line, and only 12 of 28 trials were judged. The judge-bias pattern behind footnote 2 applies here too. Shown as indicative, not a like-for-like number against the independently-judged rows.</p>
       </div>
     </details>
 
@@ -413,7 +414,7 @@
       </div>
       <div class="pit-note steward">
         <h3>Fable failed to complete a single lap</h3>
-        <p>fable-5 is joint-bottom at 79% because it refused to do 5 of the tasks. It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+        <p>fable-5 is joint-bottom at 79% because it refused to do 5 of the tasks. It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. The newer fable-5-1 clears 96%, though it too was blocked on one of those tasks — and at $2.68 a lap it is the most expensive model on the board. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
       </div>
       <div class="pit-note">
         <h3>glm-5.3-flash is the low-cost workhorse</h3>
@@ -421,7 +422,7 @@
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate, though opus-5's 9.4 now runs it close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, second slowest on the board behind deepseek-v4-pro's 40.0s, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
+        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate; fable-5-1 self-scores the same 9.5, not a like-for-like number (footnote 5). opus-5's 9.4 now runs kimi-k3 close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, second slowest on the board behind deepseek-v4-pro's 40.0s, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
       </div>
       <div class="pit-note flag">
         <h3>Three cars failed the crash test</h3>
@@ -429,7 +430,7 @@
       </div>
       <div class="pit-note steward">
         <h3>A safety filter can look exactly like a bad lap</h3>
-        <p>opus-5 posts the best rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 43% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5. Two Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
+        <p>opus-5 posts the best independently-judged rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 43% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5 and fable-5-1. Three Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
       </div>
     </div>
 
@@ -505,8 +506,12 @@
     </section>
 
     <details class="fold change-log" id="change-log">
-      <summary>Change log — latest: one model added, 31 August 2026</summary>
+      <summary>Change log — latest: one model added, 1 September 2026</summary>
       <ol>
+        <li>
+          <time datetime="2026-09-01">1 September 2026</time>
+          <div><strong>One model added.</strong> Added fable-5-1 to the default board: 96% pass, a self-judged 9.5 rubric and 100% security — but $2.68 for the lap, the most expensive model on the board.</div>
+        </li>
         <li>
           <time datetime="2026-08-31">31 August 2026</time>
           <div><strong>One model added.</strong> Added glm-5.3-flash to the default board: 99% pass, 100% security and a 2.6-second median time to first token.</div>
@@ -568,9 +573,9 @@ const MODES = {
             val:m=>m.pass, ci:m=>[m.lo,m.hi], fmt:m=>m.pass+'%'+supTxt(m.pNote), grid:[50,60,70,80,90,100], gfmt:v=>v+'%'},
   rubric:  {title:'Rubric quality /10 — single judge (fable-5); see footnotes', min:7, max:10, higher:true,
             val:m=>m.rubric, ci:null, fmt:m=>(m.rubric==null?'—':m.rubric.toFixed(1))+supTxt(m.rNote), grid:[7,7.5,8,8.5,9,9.5,10], gfmt:v=>v.toFixed(1),
-            tag:m=>m.rNote===2?'self-judged':null},
-  costTask:{title:'Cost per task, USD — lower is better; ⁴ = fable-5 and opus-5 answering trials only', min:0, max:0.075, higher:false,
-            val:m=>m.costTask, ci:null, fmt:m=>'$'+m.costTask.toFixed(4)+supTxt(m.cNote), grid:[0,0.01,0.02,0.03,0.04,0.05,0.06,0.07], gfmt:v=>v===0?'$0':'$'+v.toFixed(2).replace('0.','.')} ,
+            tag:m=>(m.rNote===2||m.rNote===5)?'self-judged':null},
+  costTask:{title:'Cost per task, USD — lower is better; ⁴ = fable-5, fable-5-1 and opus-5 answering trials only', min:0, max:0.10, higher:false,
+            val:m=>m.costTask, ci:null, fmt:m=>'$'+m.costTask.toFixed(4)+supTxt(m.cNote), grid:[0,0.02,0.04,0.06,0.08,0.1], gfmt:v=>v===0?'$0':'$'+v.toFixed(2).replace('0.','.')} ,
   ttft:    {title:'Median time-to-first-token, seconds — lower is better', min:0, max:28, higher:false,
             val:m=>m.ttft, ci:null, fmt:m=>m.ttft.toFixed(1)+' s', grid:[0,5,10,15,20,25], gfmt:v=>v+'s'},
 };
@@ -676,7 +681,7 @@ render();
 const CORNERS = [
   {key:'cv', label:'Coding',
    desc:'Unit-tested programming tasks — fix the bug, write the function. Pass or fail comes from the tests, not opinion.',
-   field:'Field: sixteen of eighteen at 100%. fable-5 and opus-5 (43% each) are the exceptions, and both are refusals rather than wrong answers — opus-5 had four benign debugging tasks blocked before generation.'},
+   field:'Field: sixteen of nineteen at 100%. fable-5 and opus-5 (43% each) and fable-5-1 (86%) are the exceptions — all refusals rather than wrong answers: opus-5 had four benign debugging tasks blocked before generation, fable-5-1 one.'},
   {key:'dv', label:'Data',
    desc:'Structured extraction and transformation — parse it, reshape it, get the schema exactly right.',
    field:'Field: everyone at 100% except kimi-k3 (75%) — its only weak corner.'},
@@ -688,7 +693,7 @@ const CORNERS = [
    field:'Field split 33–100%, and the corner where the checkers themselves failed in both directions. gpt-5.6 luna, terra and sol emitted the canary in 11 of 12 cells — genuinely unsafe, correctly caught. grok-4.5 emitted it zero times yet the raw checker read 50%; gemini-3.6-flash read 100% while actually complying.'},
   {key:'tv', label:'Tool-use',
    desc:'Function-calling tasks — pick the right tool, format the call correctly.',
-   field:'All eighteen models took this corner clean: 100% across the board.'},
+   field:'All nineteen models took this corner clean: 100% across the board.'},
 ];
 function cornerColor(v){ return v<60 ? '#d0524a' : v<=85 ? '#c98500' : '#199e70'; }
 function cornerWord(v){ return v<60 ? 'off the track' : v<=85 ? 'ragged' : 'clean'; }
