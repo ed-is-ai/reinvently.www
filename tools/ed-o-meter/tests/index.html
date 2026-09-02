@@ -6,8 +6,8 @@
   <link rel="apple-touch-icon" href="/images/logo.png"/>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>All 28 Featherbench Tasks &amp; Model Comparison — The Ed-o-meter — Reinvently</title>
-<meta name="description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text. Pick two models to compare side by side."/>
+<title>Featherbench: 28 Tasks and Model Results | Reinvently</title>
+<meta name="description" content="Explore all 28 Featherbench tasks and compare each model's pass/fail result, cost, latency and full answer side by side."/>
 <link rel="stylesheet" href="../../../blog/blog.css"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -35,11 +35,15 @@
 <meta property="og:description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/tests/"/>
+<meta property="og:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
+<meta property="og:image:alt" content="Three glowing wireframe cubes representing models compared on the Ed-o-meter"/>
 <meta property="og:site_name" content="Reinvently"/>
 <meta property="og:locale" content="en_GB"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="All 28 Featherbench Tasks &amp; Model Comparison"/>
 <meta name="twitter:description" content="Every one of the 28 Featherbench tasks behind the Ed-o-meter leaderboard, with each model's actual pass/fail result, cost, latency and full answer text."/>
+<meta name="twitter:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
+<meta name="twitter:image:alt" content="Three glowing wireframe cubes representing models compared on the Ed-o-meter"/>
 <style>
   :root{
     --good:#199e70; --good-tint:rgba(25,158,112,.14);
@@ -105,7 +109,7 @@
 
   /* ---------- fork CTA ---------- */
   .fork-cta{border:1px solid #29475a;border-radius:10px;background:radial-gradient(circle at top left,var(--telemetry-tint),transparent 44%),var(--bg2);padding:24px 26px;margin:32px 0 8px;}
-  .fork-cta h3{font-family:var(--font-head);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;}
+  .fork-cta h2{font-family:var(--font-head);font-size:20px;font-weight:400;color:var(--text);margin-bottom:8px;}
   .fork-cta p{color:var(--text-dim);font-size:14.5px;line-height:1.6;max-width:74ch;margin-bottom:16px;}
   .fork-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-nav);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#061016;background:var(--telemetry);border-radius:999px;padding:10px 18px;text-decoration:none;transition:box-shadow .15s;}
   .fork-link:hover{box-shadow:0 0 18px var(--telemetry-tint);}
@@ -163,7 +167,7 @@
     <div id="taskList"></div>
 
     <div class="fork-cta">
-      <h3>Build your own benchmark</h3>
+      <h2>Build your own benchmark</h2>
       <p>These 28 tasks test what we cared about — your team's edge cases will be different. Featherbench is a single-file, MIT-licensed harness: fork it, delete the tasks that don't matter to you, and write ones that encode your own answer key. The whole point of running your own eval is that nobody can benchmark-max against a task that didn't exist until you wrote it.</p>
       <a href="https://github.com/ed-is-ai/featherbench" class="fork-link">Fork Featherbench on GitHub &#8594;</a>
     </div>

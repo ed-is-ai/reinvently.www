@@ -163,6 +163,12 @@ def parse(path: Path) -> Document:
     return parser.doc
 
 
+def is_noindex(doc: Document) -> bool:
+    robots = doc.metas.get("robots", ("", 0))[0].lower()
+    directives = {part.strip() for part in re.split(r"[,\s]+", robots) if part.strip()}
+    return "noindex" in directives
+
+
 def site_url_to_path(url: str) -> Path | None:
     """Map an on-site absolute URL to the file it should be served from."""
     if not url.startswith(SITE_URL):
@@ -196,10 +202,15 @@ def check_metadata(doc: Document, problems: list[Problem]) -> None:
 
     if not doc.title:
         error(1, "missing or empty <title>")
-    else:
+    elif not is_noindex(doc):
         low, high = TITLE_RANGE
         if not low <= len(doc.title) <= high:
             warn(doc.title_line, f"title is {len(doc.title)} chars, outside {low}-{high}")
+
+    # Search and social metadata are not required for pages that explicitly
+    # opt out of indexing, such as the 404 and staged service pages.
+    if is_noindex(doc):
+        return
 
     description = doc.metas.get("description")
     if not description or not description[0].strip():
@@ -220,7 +231,8 @@ def check_metadata(doc: Document, problems: list[Problem]) -> None:
 
 def check_canonical(doc: Document, sitemap: set[str], problems: list[Problem]) -> None:
     if doc.canonical is None:
-        problems.append(Problem(doc.path, 1, "missing rel=canonical"))
+        if not is_noindex(doc):
+            problems.append(Problem(doc.path, 1, "missing rel=canonical"))
         return
 
     href, line = doc.canonical
@@ -232,7 +244,7 @@ def check_canonical(doc: Document, sitemap: set[str], problems: list[Problem]) -
     if og_url and og_url[0] != href:
         problems.append(Problem(doc.path, og_url[1], f"og:url {og_url[0]!r} does not match canonical {href!r}"))
 
-    if sitemap and href not in sitemap:
+    if sitemap and href not in sitemap and not is_noindex(doc):
         problems.append(
             Problem(doc.path, line, f"{href} is absent from sitemap.xml — rerun scripts/build_discovery.py")
         )
@@ -254,7 +266,10 @@ def check_headings(doc: Document, problems: list[Problem]) -> None:
 
 def check_images(doc: Document, problems: list[Problem]) -> None:
     for attributes, line in doc.images:
-        if not attributes.get("alt", "").strip():
+        # Empty alt text is valid for decorative images, including card
+        # thumbnails whose link already contains the article title. Only a
+        # missing alt attribute is an accessibility defect.
+        if "alt" not in attributes:
             src = attributes.get("src", "?")
             problems.append(Problem(doc.path, line, f"<img src={src!r}> has no alt text"))
 
@@ -315,6 +330,14 @@ def check_structured_data(doc: Document, problems: list[Problem]) -> None:
             blocks.append((json.loads(raw), line))
         except json.JSONDecodeError as exc:
             problems.append(Problem(doc.path, line, f"JSON-LD block does not parse: {exc.msg} at line {exc.lineno}"))
+
+    if is_noindex(doc):
+        return
+
+    relative = doc.path.relative_to(ROOT).parts
+    is_blog_post = len(relative) == 3 and relative[0] == "blog" and relative[2] == "index.html"
+    if not is_blog_post:
+        return
 
     posting = next((block for block, _ in blocks if block.get("@type") == "BlogPosting"), None)
     if posting is None:

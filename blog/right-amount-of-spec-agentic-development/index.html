@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="32x32"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/images/logo.png"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>How Much Specification Do Coding Agents Need? — Reinvently</title>
+  <meta name="description" content="Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk."/>
+  <link rel="stylesheet" href="../../blog/blog.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window,document,"clarity","script","xzbx2iww8n");
+  </script>
+  <script>
+  (function(){
+    document.addEventListener('click',function(e){
+      var link=e.target.closest('a[href="/contact/"]');
+      if(!link||typeof gtag!=='function')return;
+      gtag('event','subscribe_click',{location:link.getAttribute('data-subscribe-location')||'nav',link_text:link.textContent.trim()});
+    });
+  })();
+  </script>
+  <link rel="canonical" href="https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"/>
+  <meta property="og:title" content="How Much Specification Do Coding Agents Need?"/>
+  <meta property="og:description" content="Coding agents write software quickly, but ambiguity returns as review and rework. Verification should increase with project risk."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"/>
+  <meta property="og:image" content="https://reinvently.co.uk/images/hero-agentic-specification-verification.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="A vague instruction expands into generated code before narrowing through verification into a production release"/>
+  <meta property="og:site_name" content="Reinvently"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-09-02T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-09-03T00:00:00+01:00"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="How Much Specification Do Coding Agents Need?"/>
+  <meta name="twitter:description" content="What research supports about specifications, bounded delegation and verification in agentic software development."/>
+  <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-agentic-specification-verification.jpg"/>
+  <meta name="twitter:image:alt" content="A vague instruction expands into generated code before narrowing through verification into a production release"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"How Much Specification Do Coding Agents Need? What the Research Actually Supports",
+    "description":"Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk.",
+    "datePublished":"2026-09-02T00:00:00+01:00",
+    "dateModified":"2026-09-03T00:00:00+01:00",
+    "image":"https://reinvently.co.uk/images/hero-agentic-specification-verification.jpg",
+    "author":{"@type":"Person","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect","worksFor":{"@type":"Organization","name":"Kerv","url":"https://kerv.com"}},
+    "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk","logo":{"@type":"ImageObject","url":"https://reinvently.co.uk/images/logo.png","width":512,"height":512}},
+    "url":"https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"},
+    "inLanguage":"en-GB",
+    "keywords":["agentic development","coding agents","spec-driven development","software specification","AI coding workflow","acceptance criteria","AI code verification"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://reinvently.co.uk/"},
+      {"@type":"ListItem","position":2,"name":"Guides","item":"https://reinvently.co.uk/guides/"},
+      {"@type":"ListItem","position":3,"name":"How Much Specification Do Coding Agents Need?","item":"https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How much specification does a coding agent need?","acceptedAnswer":{"@type":"Answer","text":"Enough to make consequential intent unambiguous, stable behaviour testable and unresolved judgement visible. Small reversible tasks may need only structured intent and acceptance checks; consequential or multi-agent work needs stronger contracts, failure handling and approval gates."}},
+      {"@type":"Question","name":"Does more specification always improve AI-generated code?","acceptedAnswer":{"@type":"Answer","text":"No. Too little specification can create correction loops, but excessive or stale prose can add cost and conflicting instructions. Research has not established a universal optimum, so teams should minimise total clarification, implementation, verification and failure cost."}},
+      {"@type":"Question","name":"What should an agent-facing specification contain?","acceptedAnswer":{"@type":"Answer","text":"For bounded feature work, define the outcome, relevant context, constraints, non-goals, acceptance checks, failure behaviour and decisions that require human input."}},
+      {"@type":"Question","name":"Which spec-driven development framework should a team use?","acceptedAnswer":{"@type":"Answer","text":"Choose according to the missing workflow control. GSD focuses on execution and context, BMAD on lifecycle and roles, OpenSpec on governed change, and GitHub Spec Kit on a portable workflow across coding tools."}}
+    ]
+  }
+  </script>
+  <style>
+    .article-body p a,.article-body li a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
+    .article-body p a:hover,.article-body li a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
+    .article-diagram{margin:42px 0}
+    .diagram-scroll{overflow-x:auto;border:1px solid #d7dde0;background:#fff}
+    .article-diagram svg{display:block;width:100%;height:auto;min-width:660px;background:#fff}
+    .article-diagram figcaption{margin-top:12px;color:rgb(185,185,185);font-size:14px;line-height:1.55}
+    .evidence-note{border-left:3px solid #55b980;padding:16px 20px;margin:30px 0;background:#141a17}
+    .evidence-note p{margin:0}
+    .verification-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:stretch;margin:18px 0 34px}
+    .verification-step{padding:17px 16px;border:1px solid #29332e;background:#111713;color:rgb(190,190,190);font-size:14px;line-height:1.5}
+    .verification-step strong{display:block;margin-bottom:6px;color:#fff;font-size:15px}
+    .verification-arrow{align-self:center;color:#55b980;font-size:24px;line-height:1}
+    .risk-table-wrap{width:100%;overflow-x:auto;margin:26px 0 18px}
+    .risk-table{width:100%;min-width:680px;border-collapse:collapse;font-size:14px}
+    .risk-table th,.risk-table td{padding:13px 12px;border:1px solid #29332e;text-align:left;vertical-align:top}
+    .risk-table th{color:#fff;background:#17201b}
+    .risk-table td{color:rgb(195,195,195)}
+    .spec-contract{margin:24px 0 32px;counter-reset:contract;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none!important;padding:0!important}
+    .spec-contract li{position:relative;margin:0;padding:15px 16px 15px 48px;border:1px solid #29332e;background:#111713}
+    .spec-contract li::before{counter-increment:contract;content:counter(contract);position:absolute;left:16px;top:15px;width:22px;height:22px;border:1px solid #55b980;border-radius:50%;color:#8fd3aa;text-align:center;line-height:20px;font:12px/20px var(--font-nav)}
+    .source-note{color:rgb(150,150,150);font-size:13px}
+    blockquote{margin:26px 0;padding:18px 22px;border-left:3px solid #55b980;background:#111713;color:#fff;font-family:var(--font-head);font-size:21px;line-height:1.5}
+    @media(max-width:640px){.spec-contract{grid-template-columns:1fr}.article-diagram{margin:34px 0}.diagram-scroll{margin-left:-20px;margin-right:-20px}.verification-flow{grid-template-columns:1fr;gap:8px}.verification-arrow{justify-self:center;transform:rotate(90deg)}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">Reinvently</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/news/">News</a>
+    <a href="/guides/" aria-current="page">Guides</a>
+    <a href="/tools/ed-o-meter/">Ed-o-meter</a>
+    <a href="/tools/">Tools</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Subscribe</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="post-meta"><time datetime="2026-09-02T00:00:00+01:00">2 September 2026</time> &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);">Ed Yau</a>, Applied AI Architect</div>
+  <h1>How Much Specification Do Coding Agents Need?</h1>
+  <p class="summary">Coding agents can write software quickly, but ambiguity comes back as review and rework. The evidence favours bounded tasks, clear acceptance criteria and verification that increases with risk.</p>
+</header>
+
+<main class="container">
+  <article class="article-body">
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+
+    <picture>
+      <source srcset="../../images/hero-agentic-specification-verification.webp" type="image/webp"/>
+      <img class="article-hero-image" src="../../images/hero-agentic-specification-verification.jpg" width="1200" height="630" fetchpriority="high" decoding="async" alt="A vague instruction expands into many branches of generated code, which narrow through a verification gate into one production-ready release"/>
+    </picture>
+
+    <aside class="key-takeaways" aria-labelledby="at-a-glance">
+      <h2 id="at-a-glance">At a glance</h2>
+      <ul>
+        <li>There is no evidence for an ideal specification length. The right amount depends on what could go wrong and how easily you would detect it.</li>
+        <li>Give the agent enough direction to finish the work, and give the reviewer enough evidence to judge it.</li>
+        <li>As work gets closer to production—or crosses more people, agents and systems—the specification needs stronger constraints, checks and ownership.</li>
+      </ul>
+    </aside>
+
+    <p>Coding agents can turn a loose goal into plausible code within minutes. That is not the same as delivering software faster. Reviewers still have to reconstruct the intended behaviour, find the missing cases and decide whether the result is safe to release.</p>
+
+    <p>A longer specification does not automatically solve this. It can contain contradictions, stale decisions and details already expressed more accurately in the code.</p>
+
+    <p>The question is:</p>
+
+    <blockquote>What does the agent need to finish the work, and what evidence will let us verify it?</blockquote>
+
+    <p>A useful specification prevents misunderstandings that would be expensive to discover in code. It also tells the agent when to stop and ask.</p>
+
+    <h2 id="evidence">What does the research establish?</h2>
+
+    <p>No controlled study tells us how many requirements, examples or acceptance criteria a coding agent needs. The “right amount” is still engineering judgement, not a measured formula.</p>
+
+    <p>The evidence supports four narrower conclusions.</p>
+
+    <h3>1. AI accelerates code production more reliably than delivery</h3>
+
+    <p>Reinvently’s <a href="/blog/ai-coding-productivity-evidence/">systematic review of 116 empirical studies</a> found that controlled studies of conventional coding assistance generally report roughly 20–30% gains at the coding stage. Larger gains appear in bounded spec-driven and agent-native cases. Those estimates carry less evidence weight and bundle the model with changes to requirements, repositories, testing, review and team practice.</p>
+
+    <p>The strongest direct study of the journey from code to delivery followed more than 100,000 developers. Commit activity rose much faster than release output as tools progressed from autocomplete to interactive and autonomous agents. The largest observed increase—180% more commits—became 30% more releases and no measured increase in application usage (<a href="https://www.nber.org/papers/w35275">NBER working paper</a>). This was an observational matched event study, not a randomised trial. It measures a more consequential outcome than code volume.</p>
+
+    <p>Specification matters in this picture because it can reduce avoidable rework and give verification a stable target. It should not be credited with the full productivity result. Most high-performing cases change several parts of the system at once.</p>
+
+    <h3>2. Clear tests can improve human judgement of generated code</h3>
+
+    <p>The most direct evidence is about executable clarification rather than long prose. In a 15-programmer study, TiCoder generated tests to clarify intent. Participants became better at judging whether generated code was correct. They also reported lower task-induced mental effort (<a href="https://doi.org/10.1109/TSE.2024.3428972">IEEE Transactions on Software Engineering</a>). The study did not estimate end-to-end delivery throughput.</p>
+
+    <p>“Handle failed payments gracefully” sounds like a requirement, but it leaves the important decisions to the reviewer. Which failures? What should the customer see? Should the payment be retried? Tests, examples and named failure states turn those decisions into something that can be checked repeatedly.</p>
+
+    <p>Not every requirement belongs in a test. Use executable checks for behaviour that is stable and important. Leave questions that genuinely require judgement with a named person.</p>
+
+    <h3>3. Bounded delegation can outperform conversational assistance</h3>
+
+    <p>In a 24-developer brownfield-onboarding experiment, Copilot Agent reduced mean completion time by 61.7% relative to Copilot Ask. It also reduced reported workload, without a statistically significant correctness improvement (<a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">PACIS 2026 paper</a>). The workflow shifted from active collaboration towards supervision.</p>
+
+    <p>Industrial cases point in the same direction but require more caution. An expert-led workflow on the 1.52-million-line PicoScenes system reported 68.3% less implementation time, lower mean cyclomatic complexity and fewer defects (<a href="https://doi.org/10.1145/3786583.3786872">ICSE 2026</a>). It is a comparison on one system using a bundled method, not a transferable estimate of what specification alone will produce.</p>
+
+    <p>These studies support giving agents bounded work and room to execute it. They do not show that writing a longer specification caused the improvement: the agent mode, tools and working practices changed as well.</p>
+
+    <p>What they provide is evidence for bounded delegation—not evidence for a particular specification template.</p>
+
+    <h3>4. Verification must scale with generation</h3>
+
+    <p>More autonomous systems produce larger changes and more review work. A study of 567 Claude Code pull requests found that 83.8% were merged. Yet 45.1% of merged changes still required human revision (<a href="https://doi.org/10.1145/3798166">On the Use of Agentic Coding</a>). Another study examined 12,433 agent-authored pull requests. Specification mismatch and logic defects were the leading visible functional reasons for rejection (<a href="https://doi.org/10.1109/access.2026.3696573">Coding Agents in the Wild</a>). These repository studies are observational. They show why merge rate is not the same as zero-cost acceptance.</p>
+
+    <p>Automated review helps, but it is not a substitute for an oracle. A year-long Atlassian evaluation covered more than 1,900 repositories. It associated an integrated review agent with a 30.8% reduction in pull-request cycle time. The tool’s developer conducted this observational study (<a href="https://arxiv.org/abs/2601.01129">ICSE 2026 paper</a>). Other review systems produce many comments that developers reject or ignore.</p>
+
+    <p>Use machines for checks they can repeat. Bring people in as the consequences or need for judgement increase:</p>
+
+    <div class="verification-flow" role="list" aria-label="Three stages of software verification">
+      <div class="verification-step" role="listitem"><strong>Tests and static analysis</strong>Reject defects that can be checked the same way every time.</div>
+      <div class="verification-arrow" aria-hidden="true">&rarr;</div>
+      <div class="verification-step" role="listitem"><strong>Automated review</strong>Catch routine issues before they consume a person’s attention.</div>
+      <div class="verification-arrow" aria-hidden="true">&rarr;</div>
+      <div class="verification-step" role="listitem"><strong>Accountable human review</strong>Own decisions where the consequences are serious or the answer depends on interpretation.</div>
+    </div>
+
+    <figure class="article-diagram" aria-labelledby="cost-caption">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 760 520" role="img" aria-labelledby="cost-title cost-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="cost-title">The useful optimum minimises total delivery cost</title>
+          <desc id="cost-desc">A conceptual U-shaped total-cost curve falls as specification reduces ambiguity and rises as specification overhead grows. A variable green band marks the minimum sufficient contract.</desc>
+          <defs>
+            <marker id="cost-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#667078"/></marker>
+            <marker id="cost-arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10 0L0 5L10 10Z" fill="#2f9d62"/></marker>
+            <marker id="cost-arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2f9d62"/></marker>
+          </defs>
+          <rect width="760" height="520" fill="#fff"/>
+          <text x="42" y="43" fill="#24282b" font-family="Arial,sans-serif" font-size="23" font-weight="700">The useful optimum minimises total delivery cost</text>
+
+          <g font-family="Arial,sans-serif" font-size="14" font-weight="700">
+            <line x1="52" y1="80" x2="92" y2="80" stroke="#c98914" stroke-width="3" stroke-dasharray="8 7"/>
+            <text x="102" y="85" fill="#a66d08">Ambiguity + rework</text>
+            <line x1="282" y1="80" x2="322" y2="80" stroke="#8d989e" stroke-width="3" stroke-dasharray="8 7"/>
+            <text x="332" y="85" fill="#667078">Specification overhead</text>
+            <line x1="530" y1="80" x2="570" y2="80" stroke="#252b2e" stroke-width="4"/>
+            <text x="580" y="85" fill="#252b2e">Total delivery cost</text>
+          </g>
+
+          <rect x="350" y="106" width="130" height="294" fill="#e6f4ec" opacity=".95"/>
+          <line x1="95" y1="400" x2="710" y2="400" stroke="#667078" stroke-width="1.5" marker-end="url(#cost-arrow)"/>
+          <line x1="95" y1="400" x2="95" y2="108" stroke="#667078" stroke-width="1.5" marker-end="url(#cost-arrow)"/>
+          <path d="M120 137 C225 192 295 275 382 330 C458 369 558 286 688 139" fill="none" stroke="#252b2e" stroke-width="4"/>
+          <path d="M120 148 C260 207 430 300 688 360" fill="none" stroke="#c98914" stroke-width="2.75" stroke-dasharray="8 7"/>
+          <path d="M120 360 C330 340 520 245 688 148" fill="none" stroke="#8d989e" stroke-width="2.75" stroke-dasharray="8 7"/>
+
+          <line x1="365" y1="126" x2="465" y2="126" stroke="#2f9d62" stroke-width="2" marker-start="url(#cost-arrow-start)" marker-end="url(#cost-arrow-end)"/>
+          <text x="415" y="153" text-anchor="middle" fill="#287e50" font-family="Arial,sans-serif" font-size="14" font-weight="700">The optimum shifts</text>
+          <text x="415" y="173" text-anchor="middle" fill="#287e50" font-family="Arial,sans-serif" font-size="14" font-weight="700">with risk and uncertainty</text>
+          <text x="415" y="371" text-anchor="middle" fill="#287e50" font-family="Arial,sans-serif" font-size="15" font-weight="700">Minimum sufficient</text>
+          <text x="415" y="390" text-anchor="middle" fill="#287e50" font-family="Arial,sans-serif" font-size="15" font-weight="700">contract</text>
+
+          <text x="402" y="460" text-anchor="middle" fill="#4d565b" font-family="Arial,sans-serif" font-size="15">Specification effort and formality →</text>
+          <text transform="translate(32 255) rotate(-90)" text-anchor="middle" fill="#4d565b" font-family="Arial,sans-serif" font-size="15">Relative total cost →</text>
+          <text x="380" y="499" text-anchor="middle" fill="#667078" font-family="Arial,sans-serif" font-size="13" font-style="italic">Conceptual model—not an experimentally estimated curve.</text>
+        </svg>
+      </div>
+      <figcaption id="cost-caption">Write enough specification to prevent expensive misunderstandings, but stop when more detail adds more work than it removes. The chart illustrates that trade-off; research has not measured a universal sweet spot.</figcaption>
+    </figure>
+
+    <h2 id="risk-allocation">The right amount of spec is a risk allocation decision</h2>
+
+    <p>An agent does not need every fact about the product. It needs the facts that would otherwise cause an expensive or dangerous misunderstanding.</p>
+
+    <p>Four variables determine what the contract needs to contain.</p>
+
+    <div class="risk-table-wrap">
+      <table class="risk-table">
+        <thead><tr><th>Variable</th><th>Less specification can work when…</th><th>More specification is justified when…</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Uncertainty</strong></td><td>The task is exploratory and the desired outcome is still being discovered.</td><td>The expected behaviour is stable and disagreement would create rework.</td></tr>
+          <tr><td><strong>Consequence of error</strong></td><td>The output is disposable, isolated and easy to reverse.</td><td>The change touches money, personal data, security, safety or regulated decisions.</td></tr>
+          <tr><td><strong>Delegation distance</strong></td><td>One engineer works with one agent in a tight feedback loop.</td><td>Work crosses sessions, people, agents, repositories or service boundaries.</td></tr>
+          <tr><td><strong>Observability</strong></td><td>A human can inspect the result cheaply and failures are obvious.</td><td>Correct-looking output can conceal logic, integration, performance or security defects.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="article-diagram" aria-labelledby="forces-caption">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 760 520" role="img" aria-labelledby="forces-title forces-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="forces-title">Turn project conditions into the right form of specification</title>
+          <desc id="forces-desc">Costly errors, more handoffs and hard-to-detect failures point to a stronger contract. Uncertain outcomes point to a boundary-led contract. Together they define the minimum sufficient contract.</desc>
+          <defs><marker id="forces-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#748087"/></marker></defs>
+          <rect width="760" height="540" fill="#fff"/>
+          <g font-family="Arial,sans-serif">
+            <text x="380" y="43" text-anchor="middle" fill="#24282b" font-size="23" font-weight="700">Match the contract to the project</text>
+            <text x="48" y="82" fill="#667078" font-size="12" font-weight="700">WHEN</text>
+            <text x="432" y="82" fill="#667078" font-size="12" font-weight="700">THEN</text>
+
+            <rect x="48" y="97" width="280" height="165" rx="7" fill="#f7f8f8" stroke="#a5adb1"/>
+            <text x="70" y="130" fill="#374047" font-size="16" font-weight="700">Production risk is higher</text>
+            <text x="70" y="164" fill="#4d565b" font-size="14">• mistakes are costly</text>
+            <text x="70" y="194" fill="#4d565b" font-size="14">• work crosses more handoffs</text>
+            <text x="70" y="224" fill="#4d565b" font-size="14">• failures are hard to detect</text>
+
+            <text x="380" y="153" text-anchor="middle" fill="#4d565b" font-size="12" font-weight="700">MORE</text>
+            <text x="380" y="171" text-anchor="middle" fill="#4d565b" font-size="12" font-weight="700">RIGOUR</text>
+            <line x1="347" y1="190" x2="414" y2="190" stroke="#748087" stroke-width="2" marker-end="url(#forces-arrow)"/>
+
+            <rect x="432" y="97" width="280" height="165" rx="7" fill="#e6f4ec" stroke="#2f9d62" stroke-width="1.5"/>
+            <text x="454" y="130" fill="#287e50" font-size="17" font-weight="700">Write a stronger contract</text>
+            <text x="454" y="164" fill="#374047" font-size="14">• tighter constraints</text>
+            <text x="454" y="194" fill="#374047" font-size="14">• executable acceptance checks</text>
+            <text x="454" y="224" fill="#374047" font-size="14">• named owners and approval gates</text>
+
+            <rect x="48" y="293" width="280" height="130" rx="7" fill="#f8f1e5" stroke="#c98914"/>
+            <text x="70" y="329" fill="#a66d08" font-size="16" font-weight="700">The outcome is uncertain</text>
+            <text x="70" y="361" fill="#4d565b" font-size="14">Do not write a falsely fixed answer.</text>
+            <text x="70" y="391" fill="#667078" font-size="13">Define the search space instead.</text>
+
+            <text x="380" y="341" text-anchor="middle" fill="#4d565b" font-size="12" font-weight="700">CLEAR</text>
+            <text x="380" y="359" text-anchor="middle" fill="#4d565b" font-size="12" font-weight="700">BOUNDARIES</text>
+            <line x1="347" y1="378" x2="414" y2="378" stroke="#748087" stroke-width="2" marker-end="url(#forces-arrow)"/>
+
+            <rect x="432" y="293" width="280" height="130" rx="7" fill="#edf5f0" stroke="#55a879" stroke-width="1.5"/>
+            <text x="454" y="329" fill="#287e50" font-size="17" font-weight="700">Write a boundary-led contract</text>
+            <text x="454" y="361" fill="#374047" font-size="14">• non-goals and constraints</text>
+            <text x="454" y="391" fill="#374047" font-size="14">• evidence and stop-and-ask points</text>
+
+            <rect x="115" y="453" width="530" height="45" rx="7" fill="#173f2b"/>
+            <text x="380" y="482" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Both belong in the minimum sufficient contract.</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption id="forces-caption">Costly, distributed or hard-to-check work needs stronger controls. Exploratory work needs clear boundaries if your agent is to know when it has finished the loop.</figcaption>
+    </figure>
+
+    <p>In short, the level of specification should rise with the level of project risk. It is perfectly acceptable for an exploratory spike to be a one-shot exercise. Work in a highly regulated domain such as financial services needs greater rigour, with specifications and approval records forming part of the required audit trail. That becomes more important as the work moves closer to production.</p>
+
+    <p>More complex production setups also call for more detailed specifications. A solo developer building small web apps in their bedroom with a single agent sits at the opposite end of the spectrum from a medical-device company developing software with an agentic swarm.</p>
+
+    <p>The practical target is a <strong>minimum sufficient contract</strong>. It gives the agent enough information to finish the job and gives you enough evidence to decide whether it succeeded.</p>
+
+    <p>“Minimum” does not mean short. A reversible prototype may need only a goal, boundaries and a few checks. Production work involving money, personal data or several agents may need schemas, failure behaviour, rollback and named approval. Every extra requirement should earn its place.</p>
+
+    <h2 id="minimum-contract">What belongs in a minimum sufficient contract?</h2>
+
+    <p>For most bounded feature work, a useful agent-facing specification has seven parts.</p>
+
+    <ol class="spec-contract">
+      <li><strong>Outcome.</strong> What observable change should exist when the work is done?</li>
+      <li><strong>Context.</strong> Which current behaviour, domain terms and repository conventions matter?</li>
+      <li><strong>Constraints.</strong> What must remain true, including security, compatibility and performance boundaries?</li>
+      <li><strong>Non-goals.</strong> What plausible adjacent work is deliberately outside scope?</li>
+      <li><strong>Acceptance checks.</strong> Which outcomes can be tested or inspected repeatably?</li>
+      <li><strong>Failure behaviour.</strong> What should happen on invalid input, partial failure, timeout, retry or rollback?</li>
+      <li><strong>Open decisions.</strong> Where must the agent stop and ask rather than infer?</li>
+    </ol>
+
+    <p>The contract fixes the outcome and its boundaries, not the implementation.</p>
+
+    <p>Put each requirement where the agent can use it and the team can maintain it. Stable behaviour belongs in tests, types and schemas. Rationale and non-goals usually belong in prose. Do not copy an interface into three documents when the code already expresses it clearly; the copies will drift.</p>
+
+    <h2 id="task-types">How should specification change by task type?</h2>
+
+    <h3>Exploratory work: specify boundaries and evidence</h3>
+
+    <p>Do not ask an exploratory agent to deliver an answer you have not yet discovered. Tell it what question to investigate, which directions are out of bounds, what evidence to collect and when to stop.</p>
+
+    <p>The output is learning. Any code it produces is a probe until it passes a separate production review.</p>
+
+    <h3>Bounded feature work: specify outcomes and checks</h3>
+
+    <p>For a small feature or familiar integration, the product requirements document (PRD) just needs to define the visible outcome, important constraints, non-functional requirements and acceptance criteria. Include examples wherever two engineers could reasonably interpret the requirement differently.</p>
+
+    <p>Keep the change small enough for a person to understand and review.</p>
+
+    <h3>Deterministic or consequential work: make the contract executable</h3>
+
+    <p>Financial transactions, migrations, security controls and data transformations justify more precision in the PRD. Specify invariants, failure handling and rollback. Alongside the PRD, start with a set of fixtures, integration tests and unit tests.</p>
+
+    <h3>Multi-agent work: specify the handoffs</h3>
+
+    <p>Once several agents are working in parallel, vague boundaries become overlapping edits, incompatible assumptions and merge conflicts.</p>
+
+    <p>Define each handoff using SIPOC: supplier, input, process, output and customer. State who provides the input, what the agent receives and does, what it returns and who consumes the result. Then define how the output will be checked and what “good” looks like, so each handoff has a strong quality gate.</p>
+
+    <h2 id="review-spec">Review the spec before paying to implement it</h2>
+
+    <p>A polished specification can still be wrong. Before an agent writes code, run a short adversarial pass:</p>
+    <ul>
+      <li>Which terms could support two reasonable implementations?</li>
+      <li>Which acceptance check could pass while the user’s intent still fails?</li>
+      <li>Which business rule exists only in someone’s memory?</li>
+      <li>Which external dependency or repository convention is assumed?</li>
+      <li>What happens on partial failure, retry and rollback?</li>
+      <li>Which requirement is not observable?</li>
+      <li>Which decision should remain human?</li>
+    </ul>
+
+    <p>An agent can look for gaps, but a person must settle any ambiguity that changes the outcome or risk. Do this before implementation, when changing the specification is cheaper than changing the code.</p>
+
+    <h2 id="retire-prose">Retire prose when stronger artefacts replace it</h2>
+
+    <p>A specification should not remain the main source of truth once a requirement exists as a test, type or schema. Keep the decision log, but remove implementation instructions that the code has made obsolete to keep your agent context clean.</p>
+
+    <p>Code is truth, but it does not explain why a constraint exists, and it can implement the wrong behaviour perfectly. Keep each fact in the place where it is easiest to maintain and hardest to misunderstand.</p>
+
+    <h2 id="measurement">Measure the whole loop, not prompt-to-code time</h2>
+
+    <p>If a team wants to discover its own right amount of specification, it should measure comparable work at different levels of structure. Useful measures include:</p>
+    <ul>
+      <li>elapsed lead time from accepted intent to production;</li>
+      <li>active human time spent clarifying, reviewing and correcting;</li>
+      <li>agent runtime and model cost;</li>
+      <li>review rounds and reviewer minutes;</li>
+      <li>automated checks passed before human review;</li>
+      <li>post-merge rework, rollbacks and incidents; and</li>
+      <li>specification defects discovered before and after implementation.</li>
+    </ul>
+
+    <p>Do not optimise for the first diff. A workflow that produces code in ten minutes and consumes two hours of review may be worse than one that spends 30 minutes clarifying intent and passes review once.</p>
+
+    <div class="evidence-note"><p><strong>Do not ask how much code the agent produced.</strong> Ask whether a verified change reached production with less effort and without causing more failures.</p></div>
+
+    <h2 id="frameworks">From principle to operating model</h2>
+
+    <p>Once you know how rigorous the contract must be, decide how much of the workflow you want the framework to control.</p>
+
+    <p>That places the four frameworks in different parts of the landscape:</p>
+    <ul>
+      <li><strong>OpenSpec</strong> keeps control focused on proposed changes. Its lightweight proposal, spec-delta, design, task and archive workflow gives developers guardrails without trying to run the entire delivery lifecycle.</li>
+      <li><strong>GSD</strong> provides an on-rails path through planning, execution and verification, while keeping engineers involved at decision and acceptance checkpoints.</li>
+      <li><strong>GitHub Spec Kit</strong> standardises the core sequence from governing principles and requirements through planning, tasks, implementation and convergence. Extensions, presets and role bundles can adapt that process across teams and coding tools.</li>
+      <li><strong>BMAD</strong> provides the broadest lifecycle control, bringing product, architecture, UX, development and testing perspectives into one right-sized delivery method.</li>
+    </ul>
+
+    <p>The question is not which framework is most comprehensive. It is which missing control you need it to provide.</p>
+
+    <figure class="article-diagram" aria-labelledby="framework-caption">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 760 500" role="img" aria-labelledby="framework-title framework-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="framework-title">Choose a framework by specification rigour and scope of control</title>
+          <desc id="framework-desc">A two-axis matrix positions OpenSpec towards focused change control, GSD towards rigorous execution control, GitHub Spec Kit towards a broader standardised workflow, and BMAD towards comprehensive lifecycle control.</desc>
+          <rect width="760" height="500" fill="#fff"/>
+          <g font-family="Arial,sans-serif">
+            <text x="380" y="39" text-anchor="middle" fill="#24282b" font-size="22" font-weight="700">Match the framework to the control you need</text>
+
+            <rect x="98" y="66" width="622" height="344" fill="#fbfcfc" stroke="#c4cacc"/>
+            <line x1="98" y1="238" x2="720" y2="238" stroke="#d7dcde" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="409" y1="66" x2="409" y2="410" stroke="#d7dcde" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="98" y1="410" x2="720" y2="410" stroke="#68747a" stroke-width="1.5"/>
+            <line x1="98" y1="410" x2="98" y2="66" stroke="#68747a" stroke-width="1.5"/>
+
+            <text transform="translate(25 238) rotate(-90)" text-anchor="middle" fill="#4d565b" font-size="13" font-weight="700">Required specification rigour</text>
+            <text x="82" y="402" text-anchor="end" fill="#697278" font-size="11">Targeted</text>
+            <text x="82" y="81" text-anchor="end" fill="#697278" font-size="11">Comprehensive</text>
+            <text x="409" y="449" text-anchor="middle" fill="#4d565b" font-size="13" font-weight="700">Desired scope of control</text>
+            <text x="98" y="430" fill="#697278" font-size="11">One part of the workflow</text>
+            <text x="720" y="430" text-anchor="end" fill="#697278" font-size="11">Requirements to release</text>
+
+            <rect x="130" y="283" width="160" height="72" rx="7" fill="#e6f4ec" stroke="#2f9d62" stroke-width="1.5"/>
+            <text x="210" y="311" text-anchor="middle" fill="#287e50" font-size="17" font-weight="700">OpenSpec</text>
+            <text x="210" y="335" text-anchor="middle" fill="#4d565b" font-size="11">Governed change record</text>
+
+            <rect x="190" y="123" width="160" height="72" rx="7" fill="#e6f4ec" stroke="#2f9d62" stroke-width="1.5"/>
+            <text x="270" y="151" text-anchor="middle" fill="#287e50" font-size="18" font-weight="700">GSD</text>
+            <text x="270" y="175" text-anchor="middle" fill="#4d565b" font-size="11">Planning and execution</text>
+
+            <rect x="440" y="206" width="176" height="72" rx="7" fill="#e6f4ec" stroke="#2f9d62" stroke-width="1.5"/>
+            <text x="528" y="234" text-anchor="middle" fill="#287e50" font-size="16" font-weight="700">GitHub Spec Kit</text>
+            <text x="528" y="258" text-anchor="middle" fill="#4d565b" font-size="11">Portable spec workflow</text>
+
+            <rect x="550" y="92" width="140" height="72" rx="7" fill="#d8eee1" stroke="#2f9d62" stroke-width="1.5"/>
+            <text x="620" y="120" text-anchor="middle" fill="#287e50" font-size="18" font-weight="700">BMAD</text>
+            <text x="620" y="144" text-anchor="middle" fill="#4d565b" font-size="11">Lifecycle and roles</text>
+
+            <text x="380" y="482" text-anchor="middle" fill="#777f84" font-size="11" font-style="italic">Editorial orientation based on framework scope—not an empirical ranking.</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption id="framework-caption">Move up the chart as project risk demands more rigorous specifications; move right as the desired control expands from one part of the coding workflow towards the full delivery lifecycle.</figcaption>
+    </figure>
+
+    <p>For the practical choice, see the full <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">comparison of GSD, BMAD, OpenSpec and GitHub Spec Kit</a>. It covers where these starting points overlap, how much ceremony they introduce, and which project settings suit each one.</p>
+
+    <h2 id="practical-rule">The practical rule</h2>
+
+    <p>Coding agents have made implementation cheaper. Deciding what to build—and proving that the result is safe to release—has not become cheaper by the same amount.</p>
+
+    <p>The agent needs enough direction to finish the loop. You need enough evidence to trust the result. That’s the sweet spot.</p>
+
+    <hr/>
+
+    <p class="source-note"><strong>Evidence note.</strong> This article draws on Reinvently’s version 1.28.2 <a href="/blog/ai-coding-productivity-evidence/">systematic review of AI-assisted software development</a>. Numerical claims retain the review’s distinctions among controlled effects, observational associations and lower-weight organisational cases. The conceptual cost curve and decision model apply that evidence. They are not validated measurement instruments. Markus Eisele’s <a href="https://www.oreilly.com/radar/the-right-amount-of-spec-for-agentic-development/">O’Reilly Radar essay on specification in agentic development</a> prompted the question.</p>
+
+    <h2 id="faq">Frequently asked questions</h2>
+
+    <h3>How much specification does a coding agent need?</h3>
+    <p>Enough to tell the agent what result to produce, what must not change, how the result will be checked and when it should ask for help. Small reversible tasks may need only a goal and acceptance checks; consequential or multi-agent work needs stronger contracts, failure handling and approval gates.</p>
+
+    <h3>Does more specification always improve AI-generated code?</h3>
+    <p>It is a classic trade-off. Too little specification can create correction loops, but excessive or stale prose can add cost and conflicting instructions. Research has not established a universal optimum, but it does give us some useful guidelines.</p>
+
+    <h3>What should an agent-facing specification contain?</h3>
+    <p>For bounded feature work, define the outcome, relevant context, constraints, non-goals, acceptance checks, failure behaviour and decisions that require human input.</p>
+
+    <h3>Which spec-driven development framework should a team use?</h3>
+    <p>Choose according to the missing workflow control. GSD focuses on execution and context, BMAD on lifecycle and roles, OpenSpec on governed change, and GitHub Spec Kit on a portable workflow across coding tools. The <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">full framework comparison</a> covers their practical trade-offs.</p>
+
+    <hr/>
+
+    <p><em>New research and engineering guides land here first. <a href="/contact/">Sign up for email updates</a>.</em></p>
+
+    <div class="related-posts">
+      <p class="related-posts-label">Continue reading</p>
+      <ul class="related-list">
+        <li><a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">GSD, BMAD, OpenSpec, or GitHub Spec Kit: Choosing the Right AI Development Framework</a></li>
+        <li><a href="/blog/ai-coding-productivity-evidence/">How Much Does AI Improve Software Development Productivity?</a></li>
+        <li><a href="/blog/multi-agent-orchestration-frameworks-compared/">Multi-Agent Orchestration Frameworks Compared</a></li>
+        <li><a href="/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/">How to Sandbox AI Agent Code</a></li>
+      </ul>
+    </div>
+
+    <a class="back-link" href="/blog/">&#8592; All posts</a>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Reinvently &nbsp;&middot;&nbsp; <a href="/research-standards/">Research standards</a></p>
+</footer>
+
+</body>
+</html>
