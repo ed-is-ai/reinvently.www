@@ -110,8 +110,8 @@
 
   .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
   .eom-header ul.verdict{list-style:none;}
-  .eom-header .verdict li{margin:0 0 6px;}
-  .eom-header .verdict li:last-child{margin-bottom:0;}
+  .eom-header .verdict li,.eom-header .verdict p{margin:0 0 9px;}
+  .eom-header .verdict li:last-child,.eom-header .verdict p:last-child{margin-bottom:0;}
   .eom-header .verdict strong{color:var(--text);font-weight:650;}
   .eom-header .verdict a{color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
   .eom-header .verdict a:hover{border-color:var(--telemetry);opacity:1;}
@@ -304,14 +304,12 @@
 <header class="article-header eom-header">
   <div class="post-meta">Updated 1 September 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
-  <p class="summary">Different driver, same track — the LLM is the star.  LLMs driven round the identical 28-realworld task lap and the results go on the board.</p>
-  <ul class="verdict">
-    <li><strong>If you only want to run one model, then I would run glm-5.3</strong></li>
-    <li><strong>glm-5.3-flash</strong> is the best option if you want a speedy, low-cost workhorse.</li>
-    <li><strong>Opus 5</strong> still has the edge on quality, but in terms of intelligence / $, the Open Weight models from z.ai are suddenly laps ahead.</li>
-    <li><a href="#verdict">The reasoning, with the caveats &#8594;</a></li>
-    <li>These are all readily available, but check with your compliance team before you use the Chinese models.</li>
-  </ul>
+  <p class="summary">The Ed-o-meter looks for one model good enough to run behind your whole agent stack: standardise on it and you get one setup to maintain and a predictable bill. Every model laps the same 28 everyday tasks, and a deterministic checker — not a judge — calls each pass. Different driver, same track; the LLM is the star.</p>
+
+  <div class="verdict">
+    <p>Most leaderboards rank raw intelligence. This one asks a blunter question — and right now the answer is <strong>glm-5.3</strong>: no weak spot in any of the five task categories, a top-three rubric, and $0.28 for the lap. It is open-weights and readily available. <a href="#verdict">The full picks and the caveats &#8594;</a></p>
+    <p>Check with your compliance team before you take on a new provider.</p>
+  </div>
   <p class="runstamp">19 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260901T221834Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
@@ -321,10 +319,12 @@
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
     <h2 class="section" style="margin-top:0">How Does It Work?</h2>
-    <p class="section-note">Most benchmarks ask which model is most capable overall. <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Featherbench</a> asks a narrower question: are there models that are good enough to handle all our particular everyday workloads securely — and among those models, which offer the best combination of cost, speed</p>
-    <p class="section-note">We run every model through the same 28 fixed tasks covering coding, data extraction, everyday requests, tool use, and prompt-injection and jailbreak resistance. The tasks are drawn from work our founder, Ed, actually performs. A model passes a task only when a deterministic checker confirms that it produced a usable result.</p>
-    <p class="section-note">This is not a universal intelligence ranking. The benchmark is intentionally designed to identify models that clear a practical threshold; once they do, cost and speed become important differentiators. Results apply to these tasks, prompts, models and harness—and may differ for your workload.</p>
-    <p class="section-note">The tasks are deliberately inexpensive, so you can reproduce the complete benchmark with an OpenRouter account and approximately $30. <a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;"><strong>See every task and each model’s actual response, compare two models directly, or adapt Featherbench to your own workload &#8594;</strong></a></p>
+    <p class="section-note">Disclaimer: if you want a universal intelligence ranking, read <a href="https://artificialanalysis.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Artificial Analysis</a> or <a href="https://lmarena.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">LMArena</a>.</p>
+    <p class="section-note">The <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Featherbench</a> question is more pragmatic: is a single model good enough to handle a full lap of everyday work — securely, quickly and cost-effectively? To answer that, we run the latest models through the same 28 fixed tasks covering coding, data extraction, everyday requests, tool use, and prompt-injection and jailbreak resistance. A model passes a task only when a deterministic checker confirms it produced a usable result.</p>
+    <p class="section-note">The tasks are deliberately simple and limited in range, drawn from the day-to-day work our founder, Ed, actually performs. That is what lets you reproduce the whole benchmark, or run a tailored version on your own tasks, with an OpenRouter account and about $30. The value is in re-running it against a new model within minutes of its announcement.</p>
+    <p class="section-note">Let's face it: you all have your favourite vibe tests you run every time a new model is announced — <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Simon Willison asks each one for an SVG of a pelican riding a bicycle</a>. This is the same idea, with more rigour and a wider net.</p>
+    <p class="section-note">Isn't routing the answer? For many enterprises, yes. But a router adds opacity, and complexity in development and observability — and it still needs a default to fall back on when the routing call is uncertain. That default is what this board is looking for. If one model clears the bar on everything you do, you may not need the router at all — one model, one set of prompts and evals to maintain. If it doesn't, you now know which tasks to route away from it.</p>
+    <p class="section-note"><a href="/tools/ed-o-meter/tests/" style="color:rgb(150,150,150);border-bottom:1px solid #444;"><strong>See every task and each model’s actual response, compare two models directly, or adapt Featherbench to your own workload &#8594;</strong></a></p>
 
     <div class="chart-card">
       <div class="modes" role="group" aria-label="Choose which metric the telemetry shows">
@@ -408,13 +408,17 @@
 
     <h2 class="section" id="verdict">What Do the Results Actually Tell You?</h2>
     <div class="pit">
+      <div class="pit-note">
+        <h3>The field is narrowing</h3>
+        <p>The board is bunching up: nine models now tie at 96%, and the pass rate no longer tells them apart. Benchmarkers call it saturation, and in my book it is no bad thing — it means more models are good enough for the single-model setup that keeps a production system consistent and its costs predictable. A Fable still earns its keep on the hard, unsolved problems, but for everyday work it is a Ferrari on the supermarket run. With speed and cost per task the main things left to separate the field, the market is commoditising.</p>
+      </div>
       <div class="pit-note pick">
         <h3>If you only run one model, run glm-5.3</h3>
         <p>glm-5.3 is the first model on the board to clear all five corners — coding, data development, realworld, security and tasks — at 100%. It backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. It is however really slow: 16.3-second median time-to-first-token.</p>
       </div>
       <div class="pit-note steward">
-        <h3>Fable failed to complete a single lap</h3>
-        <p>fable-5 is joint-bottom at 79% because it refused to do 5 of the tasks. It performed well on what it completed, but even it thought kimi-k3 was giving better answers. You'll need a fallback model if you're using Fable. opus-5 hit the same wall — four benign <code>coding-debug-*</code> tasks blocked before a token was generated, on an overlapping set of tasks — so Anthropic's classifier looks like it sits across the whole series 5 line, not just Fable. The newer fable-5-1 clears 96%, though it too was blocked on one of those tasks — and at $2.68 a lap it is the most expensive model on the board. See the <a href="/blog/glm-5-2-fable-5-gpt-5-5-eval-results/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">full refusal breakdown</a> for what's actually going on.</p>
+        <h3>Anthropic safety classifier making headlines for the wrong reasons</h3>
+        <p>fable-5-1 redeems the Fable family name, bringing it up towards the top of the leaderboard — though it still refused one of the coding tasks. Anthropic acknowledged the issue in the fable-5-1 release notes, recommending a fallback to opus-5 for biology and opus-4.8 for cybersecurity. To me that reads as Anthropic shipping a buggy classifier and making it our problem to deal with.</p>
       </div>
       <div class="pit-note">
         <h3>glm-5.3-flash is the low-cost workhorse</h3>
@@ -422,15 +426,11 @@
       </div>
       <div class="pit-note">
         <h3>The mystery guest sets the fastest quality lap</h3>
-        <p>kimi-k3 still tops the rubric at 9.5 — judged independently by fable-5 — with a 96% pass rate; fable-5-1 self-scores the same 9.5, not a like-for-like number (footnote 5). opus-5's 9.4 now runs kimi-k3 close on quality at a third of the wait. The catch is patience: a 26.4-second median time-to-first-token, second slowest on the board behind deepseek-v4-pro's 40.0s, and a 75% wobble on data development tasks, its only weak corner. Not suitable for interactive applications.</p>
+        <p>kimi-k3 still tops the rubric at 9.5, judged independently by fable-5; fable-5-1 self-scores the same 9.5 — not a like-for-like number (footnote 5). For interactive use fable-5-1 takes the head-to-head anyway: kimi-k3's 26.4-second median time-to-first-token is more than three times fable-5-1's 7.3s.</p>
       </div>
       <div class="pit-note flag">
         <h3>Three cars failed the crash test</h3>
         <p>The gpt-5.6 line is quick, but it has a safety problem.  gpt-5.6-luna, gpt-5.6-terra and gpt-5.6-sol emitted the jailbreak canary in 11 of 12 jailbreak cells (33–50% security pass) — make sure you protect in your harness, and apply more careful Red teaming if using these models. The Claude trio went 6/6 clean, as did gpt-5.5. </p>
-      </div>
-      <div class="pit-note steward">
-        <h3>A safety filter can look exactly like a bad lap</h3>
-        <p>opus-5 posts the best independently-judged rubric on the default panel at 9.4 and 100% on both realworld and security — then shows 43% on coding. That cell is not its debugging ability: four benign <code>coding-debug-*</code> tasks were blocked by a provider-side classifier before a single token was generated, on an overlapping set of tasks to the ones already blocked on fable-5 and fable-5-1. Three Anthropic-family models now hit the same filter, so treat it as a measurement hazard rather than a model quirk — and note opus-5 was also penalised twice for flagging an attack it had successfully resisted.</p>
       </div>
     </div>
 
