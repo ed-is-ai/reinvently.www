@@ -180,33 +180,47 @@
 let TASKS = [];
 let TASK_RESULTS = {};
 
-const MODELS = [
-  {id:'gemini-3.6-flash', name:'gemini-3.6-flash', hex:'#4285F4'},
-  {id:'haiku-4-5',     name:'haiku-4-5',     hex:'#7FA8E8'},
-  {id:'sonnet-4-6',    name:'sonnet-4-6',    hex:'#123A8C'},
-  {id:'gpt-5.5',       name:'gpt-5.5',       hex:'#C0392B'},
-  {id:'grok-4.5',      name:'grok-4.5',      hex:'#00C2C7'},
-  {id:'glm-5.2',       name:'glm-5.2',       hex:'#2E7D57'},
-  {id:'kimi-k3',       name:'kimi-k3',       hex:'#6B4FA0'},
-  {id:'sonnet-5',      name:'sonnet-5',      hex:'#4A78D0'},
-  {id:'gpt-5.6-terra', name:'gpt-5.6-terra', hex:'#A03A5E'},
-  {id:'opus-5',        name:'opus-5',        hex:'#D97757'},
-  {id:'gpt-5.6-sol',   name:'gpt-5.6-sol',   hex:'#C85A50'},
-  {id:'gpt-5.6-luna',  name:'gpt-5.6-luna',  hex:'#D9748A'},
-  {id:'fable-5',       name:'fable-5',       hex:'#2456E6'},
-];
-const MODEL_BY_ID = Object.fromEntries(MODELS.map(m=>[m.id,m]));
+/* Swatch colours, mirrored from the board's data.js. Any model in the data
+   without an entry here falls back to grey — the picker is still built from
+   the loaded results, never from this map, so it can't go stale. */
+const MODEL_HEX = {
+  'glm-5.3':'#2A9563', 'glm-5.3-flash':'#58C98A', 'deepseek-v4-pro':'#4D6BFE',
+  'fable-5-1':'#6E92F0', 'gemini-3.6-flash':'#4285F4', 'gpt-5.5':'#C0392B',
+  'grok-4.5':'#00C2C7', 'grok-4.6':'#00A8AC', 'haiku-4-5':'#7FA8E8',
+  'kimi-k3':'#6B4FA0', 'sonnet-4-6':'#123A8C', 'gemini-3.7-flash':'#5B9BF5',
+  'sonnet-5':'#4A78D0', 'glm-5.2':'#2E7D57', 'gpt-5.6-sol':'#C85A50',
+  'gpt-5.6-terra':'#A03A5E', 'opus-5':'#D97757', 'fable-5':'#2456E6',
+  'gpt-5.6-luna':'#D9748A',
+};
+/* Preferred display order; models not listed here are appended alphabetically. */
+const MODEL_ORDER = Object.keys(MODEL_HEX);
 const CAT_LABEL = {coding:'Coding', data:'Data', realworld:'Realworld', security:'Security', 'tool-use':'Tool-use'};
 const CAT_ORDER = ['coding','data','realworld','security','tool-use'];
 
 const modelASel = document.getElementById('modelA');
 const modelBSel = document.getElementById('modelB');
-MODELS.forEach(m=>{
-  modelASel.add(new Option(m.name, m.id));
-  modelBSel.add(new Option(m.name, m.id));
-});
-modelASel.value = 'haiku-4-5';
-modelBSel.value = 'kimi-k3';
+let MODELS = [];
+let MODEL_BY_ID = {};
+
+function buildModelPicker(results){
+  const seen = new Set();
+  Object.values(results).forEach(row => Object.keys(row).forEach(m => seen.add(m)));
+  const rank = m => { const i = MODEL_ORDER.indexOf(m); return i === -1 ? MODEL_ORDER.length : i; };
+  MODELS = [...seen]
+    .sort((a,b) => rank(a) - rank(b) || a.localeCompare(b))
+    .map(m => ({id:m, name:m, hex: MODEL_HEX[m] || '#888'}));
+  MODEL_BY_ID = Object.fromEntries(MODELS.map(m=>[m.id,m]));
+
+  const pick = (sel, want) => {
+    const prev = sel.value;
+    sel.textContent = '';
+    MODELS.forEach(m => sel.add(new Option(m.name, m.id)));
+    sel.value = MODELS.some(m=>m.id===prev) ? prev
+      : (MODELS.some(m=>m.id===want) ? want : MODELS[0].id);
+  };
+  pick(modelASel, 'haiku-4-5');
+  pick(modelBSel, 'kimi-k3');
+}
 
 let activeCat = 'all';
 const catFilters = document.getElementById('catFilters');
@@ -346,6 +360,7 @@ fetch('tests-data.json')
   .then(data => {
     TASKS = data.tasks;
     TASK_RESULTS = data.results;
+    buildModelPicker(TASK_RESULTS);
     loadStatus.remove();
     renderAll();
   })
