@@ -6,6 +6,13 @@
     <description>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</description>
     <language>en-gb</language>
     <item>
+      <title>How Much Specification Do Coding Agents Need?</title>
+      <link>https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</link>
+      <guid isPermaLink="true">https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0100</pubDate>
+      <description>Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk.</description>
+    </item>
+    <item>
       <title>How Much Does AI Improve Software Development Productivity?</title>
       <link>https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</guid>

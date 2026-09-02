@@ -13,12 +13,26 @@
   "language": "en-GB",
   "items": [
     {
+      "id": "https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/",
+      "url": "https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/",
+      "title": "How Much Specification Do Coding Agents Need?",
+      "summary": "Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk.",
+      "date_published": "2026-09-01T23:00:00Z",
+      "date_modified": "2026-09-02T23:00:00Z",
+      "authors": [
+        {
+          "name": "Ed Yau",
+          "url": "https://uk.linkedin.com/in/edmond-yau"
+        }
+      ]
+    },
+    {
       "id": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
       "url": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
       "title": "How Much Does AI Improve Software Development Productivity?",
       "summary": "A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end.",
       "date_published": "2026-07-28T22:31:06Z",
-      "date_modified": "2026-08-03T23:20:08Z",
+      "date_modified": "2026-08-22T20:35:00Z",
       "authors": [
         {
           "name": "Ed Yau",

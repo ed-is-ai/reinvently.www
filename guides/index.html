@@ -14,12 +14,45 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://reinvently.co.uk/guides/"/>
   <meta property="og:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <meta property="og:image:alt" content="Colleagues discussing an AI strategy presentation in a meeting room"/>
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="AI Engineering Guides — Reinvently"/>
   <meta name="twitter:description" content="Reproducible AI evaluations, technical comparisons and architecture decision guides."/>
   <meta name="twitter:image" content="https://reinvently.co.uk/images/hero.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "AI Engineering Guides",
+    "description": "Reproducible AI evaluations, technical comparisons and architecture decision guides.",
+    "url": "https://reinvently.co.uk/guides/",
+    "inLanguage": "en-GB",
+    "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 15,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "url": "https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"},
+        {"@type": "ListItem", "position": 2, "url": "https://reinvently.co.uk/tools/ai-cost-calculator/"},
+        {"@type": "ListItem", "position": 3, "url": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"},
+        {"@type": "ListItem", "position": 4, "url": "https://reinvently.co.uk/blog/building-the-ed-o-meter-llm-eval-harness/"},
+        {"@type": "ListItem", "position": 5, "url": "https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/"},
+        {"@type": "ListItem", "position": 6, "url": "https://reinvently.co.uk/blog/is-claude-fable-5-worth-it-for-enterprise-coding/"},
+        {"@type": "ListItem", "position": 7, "url": "https://reinvently.co.uk/blog/microvm-sandbox-options-firecracker-opensandbox-smolvm-nono/"},
+        {"@type": "ListItem", "position": 8, "url": "https://reinvently.co.uk/blog/multi-agent-orchestration-frameworks-compared/"},
+        {"@type": "ListItem", "position": 9, "url": "https://reinvently.co.uk/blog/github-copilot-vs-claude-code-vs-cursor/"},
+        {"@type": "ListItem", "position": 10, "url": "https://reinvently.co.uk/blog/claude-memory-dream-enterprise-agents/"},
+        {"@type": "ListItem", "position": 11, "url": "https://reinvently.co.uk/blog/copilot-studio-vs-azure-ai-foundry-vs-aws-bedrock/"},
+        {"@type": "ListItem", "position": 12, "url": "https://reinvently.co.uk/blog/rag-vs-graphrag/"},
+        {"@type": "ListItem", "position": 13, "url": "https://reinvently.co.uk/blog/microsoft-foundry-deep-dive/"},
+        {"@type": "ListItem", "position": 14, "url": "https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/"},
+        {"@type": "ListItem", "position": 15, "url": "https://reinvently.co.uk/blog/the-rise-of-ai-in-web-development/"}
+      ]
+    }
+  }
+  </script>
   <link rel="stylesheet" href="../blog/blog.css"/>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -66,8 +99,18 @@
 <main class="container">
   <div class="blog-grid">
 
+    <a class="post-card" href="/blog/right-amount-of-spec-agentic-development/">
+      <img class="post-card-thumb" src="/images/hero-agentic-specification-verification.jpg" alt="" loading="eager" decoding="async"/>
+      <div class="post-card-body">
+        <div class="post-meta">2 September 2026 &nbsp;·&nbsp; Guide</div>
+        <h2>How Much Specification Do Coding Agents Need?</h2>
+        <p>A research-grounded model for deciding when structured intent is enough and when agents need executable, governed contracts.</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </a>
+
     <a class="post-card" href="/tools/ai-cost-calculator/">
-      <img class="post-card-thumb" src="/images/hero-dev-tools-comparison.jpg" alt="" loading="eager" decoding="async"/>
+      <img class="post-card-thumb" src="/images/hero-dev-tools-comparison.jpg" alt="" loading="lazy" decoding="async"/>
       <div class="post-card-body">
         <div class="post-meta">31 July 2026 &nbsp;·&nbsp; Interactive Tool</div>
         <h2>AI Coding Tool Cost Calculator</h2>
