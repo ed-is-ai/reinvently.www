@@ -3,7 +3,7 @@
   <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
-  <updated>2026-09-02T23:00:00Z</updated>
+  <updated>2026-09-05T23:00:00Z</updated>
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
   <entry>
@@ -11,7 +11,7 @@
     <link href="https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"/>
     <id>https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</id>
     <published>2026-09-01T23:00:00Z</published>
-    <updated>2026-09-02T23:00:00Z</updated>
+    <updated>2026-09-05T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
     <summary>Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk.</summary>
   </entry>
@@ -70,7 +70,7 @@
     <summary>Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok, double Opus 4.8. Whether the premium is worth it, and when GLM-5.2 is enough.</summary>
   </entry>
   <entry>
-    <title>The Agent Governance Gap: $202m Budgets, 26 Percent Cost Visibility</title>
+    <title>Agent Governance: $202m Budgets, 26% Cost Visibility | Reinvently</title>
     <link href="https://reinvently.co.uk/blog/ai-agent-governance-gap/"/>
     <id>https://reinvently.co.uk/blog/ai-agent-governance-gap/</id>
     <published>2026-07-01T23:00:00Z</published>

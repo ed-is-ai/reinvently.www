@@ -39,7 +39,7 @@
   <meta property="og:site_name" content="Reinvently"/>
   <meta property="og:locale" content="en_GB"/>
   <meta property="article:published_time" content="2026-09-02T00:00:00+01:00"/>
-  <meta property="article:modified_time" content="2026-09-03T00:00:00+01:00"/>
+  <meta property="article:modified_time" content="2026-09-06T00:00:00+01:00"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How Much Specification Do Coding Agents Need?"/>
   <meta name="twitter:description" content="What research supports about specifications, bounded delegation and verification in agentic software development."/>
@@ -52,7 +52,7 @@
     "headline":"How Much Specification Do Coding Agents Need? What the Research Actually Supports",
     "description":"Evidence favours bounded coding-agent tasks, clear acceptance criteria and verification that increases with project risk.",
     "datePublished":"2026-09-02T00:00:00+01:00",
-    "dateModified":"2026-09-03T00:00:00+01:00",
+    "dateModified":"2026-09-06T00:00:00+01:00",
     "image":"https://reinvently.co.uk/images/hero-agentic-specification-verification.jpg",
     "author":{"@type":"Person","name":"Ed Yau","url":"https://reinvently.co.uk/about/#ed-yau","sameAs":["https://uk.linkedin.com/in/edmond-yau","https://github.com/ed-is-ai"],"jobTitle":"Applied AI Architect","worksFor":{"@type":"Organization","name":"Kerv","url":"https://kerv.com"}},
     "publisher":{"@type":"Organization","name":"Reinvently","url":"https://reinvently.co.uk","logo":{"@type":"ImageObject","url":"https://reinvently.co.uk/images/logo.png","width":512,"height":512}},
@@ -73,24 +73,12 @@
     ]
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"How much specification does a coding agent need?","acceptedAnswer":{"@type":"Answer","text":"Enough to make consequential intent unambiguous, stable behaviour testable and unresolved judgement visible. Small reversible tasks may need only structured intent and acceptance checks; consequential or multi-agent work needs stronger contracts, failure handling and approval gates."}},
-      {"@type":"Question","name":"Does more specification always improve AI-generated code?","acceptedAnswer":{"@type":"Answer","text":"No. Too little specification can create correction loops, but excessive or stale prose can add cost and conflicting instructions. Research has not established a universal optimum, so teams should minimise total clarification, implementation, verification and failure cost."}},
-      {"@type":"Question","name":"What should an agent-facing specification contain?","acceptedAnswer":{"@type":"Answer","text":"For bounded feature work, define the outcome, relevant context, constraints, non-goals, acceptance checks, failure behaviour and decisions that require human input."}},
-      {"@type":"Question","name":"Which spec-driven development framework should a team use?","acceptedAnswer":{"@type":"Answer","text":"Choose according to the missing workflow control. GSD focuses on execution and context, BMAD on lifecycle and roles, OpenSpec on governed change, and GitHub Spec Kit on a portable workflow across coding tools."}}
-    ]
-  }
-  </script>
   <style>
     .article-body p a,.article-body li a{color:#8fd3aa;border-bottom:1px solid rgba(143,211,170,.35)}
     .article-body p a:hover,.article-body li a:hover{color:#b8e3c8;border-color:#b8e3c8;opacity:1}
     .article-diagram{margin:42px 0}
     .diagram-scroll{overflow-x:auto;border:1px solid #d7dde0;background:#fff}
-    .article-diagram svg{display:block;width:100%;height:auto;min-width:660px;background:#fff}
+    .article-diagram svg,.article-diagram img{display:block;width:100%;height:auto;min-width:660px;background:#fff}
     .article-diagram figcaption{margin-top:12px;color:rgb(185,185,185);font-size:14px;line-height:1.55}
     .evidence-note{border-left:3px solid #55b980;padding:16px 20px;margin:30px 0;background:#141a17}
     .evidence-note p{margin:0}
@@ -158,7 +146,9 @@
 
     <blockquote>What does the agent need to finish the work, and what evidence will let us verify it?</blockquote>
 
-    <p>A useful specification prevents misunderstandings that would be expensive to discover in code. It also tells the agent when to stop and ask.</p>
+    <p>The practical target is a <strong>minimum sufficient contract</strong>: enough information for the agent to finish the job and enough evidence for you to decide whether it succeeded. It also tells the agent when to stop and ask.</p>
+
+    <p>“Minimum” does not mean short. A reversible prototype may need only a goal, boundaries and a few criteria. Production work involving money, personal data or several agents may need schemas, failure behaviour, rollback and named approval. Every extra requirement should earn its place.</p>
 
     <h2 id="evidence">What does the research establish?</h2>
 
@@ -168,35 +158,29 @@
 
     <h3>1. AI accelerates code production more reliably than delivery</h3>
 
-    <p>Reinvently’s <a href="/blog/ai-coding-productivity-evidence/">systematic review of 116 empirical studies</a> found that controlled studies of conventional coding assistance generally report roughly 20–30% gains at the coding stage. Larger gains appear in bounded spec-driven and agent-native cases. Those estimates carry less evidence weight and bundle the model with changes to requirements, repositories, testing, review and team practice.</p>
+    <p>Reinvently’s <a href="/blog/ai-coding-productivity-evidence/">systematic review of 116 empirical studies</a> found that controlled studies of conventional coding assistance generally report roughly 20–30% gains at the coding stage. Larger gains appear in bounded spec-driven and agent-native cases, but those lower-weight estimates bundle the model with changes to requirements, repositories, testing and team practice.</p>
 
-    <p>The strongest direct study of the journey from code to delivery followed more than 100,000 developers. Commit activity rose much faster than release output as tools progressed from autocomplete to interactive and autonomous agents. The largest observed increase—180% more commits—became 30% more releases and no measured increase in application usage (<a href="https://www.nber.org/papers/w35275">NBER working paper</a>). This was an observational matched event study, not a randomised trial. It measures a more consequential outcome than code volume.</p>
-
-    <p>Specification matters in this picture because it can reduce avoidable rework and give verification a stable target. It should not be credited with the full productivity result. Most high-performing cases change several parts of the system at once.</p>
+    <p>The strongest direct delivery study followed more than 100,000 developers. Its largest observed increase—180% more commits—became 30% more releases and no measured increase in application usage (<a href="https://www.nber.org/papers/w35275">NBER working paper</a>). The study was observational, not randomised. It shows why specifications should give verification a stable target, but it does not isolate specification as the cause of higher output.</p>
 
     <h3>2. Clear tests can improve human judgement of generated code</h3>
 
-    <p>The most direct evidence is about executable clarification rather than long prose. In a 15-programmer study, TiCoder generated tests to clarify intent. Participants became better at judging whether generated code was correct. They also reported lower task-induced mental effort (<a href="https://doi.org/10.1109/TSE.2024.3428972">IEEE Transactions on Software Engineering</a>). The study did not estimate end-to-end delivery throughput.</p>
+    <p>The most direct evidence concerns executable clarification rather than long prose. In a 15-programmer study, TiCoder generated tests to clarify intent. Participants became better at judging whether generated code was correct and reported lower mental effort (<a href="https://doi.org/10.1109/TSE.2024.3428972">IEEE Transactions on Software Engineering</a>). The study did not measure delivery throughput.</p>
 
     <p>“Handle failed payments gracefully” sounds like a requirement, but it leaves the important decisions to the reviewer. Which failures? What should the customer see? Should the payment be retried? Tests, examples and named failure states turn those decisions into something that can be checked repeatedly.</p>
 
-    <p>Not every requirement belongs in a test. Use executable checks for behaviour that is stable and important. Leave questions that genuinely require judgement with a named person.</p>
+    <p>Use executable criteria for behaviour that is stable and important. Leave questions that genuinely require judgement with a named person.</p>
 
     <h3>3. Bounded delegation can outperform conversational assistance</h3>
 
-    <p>In a 24-developer brownfield-onboarding experiment, Copilot Agent reduced mean completion time by 61.7% relative to Copilot Ask. It also reduced reported workload, without a statistically significant correctness improvement (<a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">PACIS 2026 paper</a>). The workflow shifted from active collaboration towards supervision.</p>
+    <p>In a 24-developer brownfield-onboarding experiment, Copilot Agent reduced mean completion time by 61.7% relative to Copilot Ask and reduced reported workload, without a statistically significant correctness improvement (<a href="https://aisel.aisnet.org/pacis2026/ai_fow/ai_fow/13/">PACIS 2026 paper</a>).</p>
 
-    <p>Industrial cases point in the same direction but require more caution. An expert-led workflow on the 1.52-million-line PicoScenes system reported 68.3% less implementation time, lower mean cyclomatic complexity and fewer defects (<a href="https://doi.org/10.1145/3786583.3786872">ICSE 2026</a>). It is a comparison on one system using a bundled method, not a transferable estimate of what specification alone will produce.</p>
-
-    <p>These studies support giving agents bounded work and room to execute it. They do not show that writing a longer specification caused the improvement: the agent mode, tools and working practices changed as well.</p>
-
-    <p>What they provide is evidence for bounded delegation—not evidence for a particular specification template.</p>
+    <p>An expert-led workflow on the 1.52-million-line PicoScenes system reported 68.3% less implementation time, lower mean cyclomatic complexity and fewer defects (<a href="https://doi.org/10.1145/3786583.3786872">ICSE 2026</a>). This single-system comparison used a bundled method. Together, the studies support bounded delegation—not longer specifications or a particular template.</p>
 
     <h3>4. Verification must scale with generation</h3>
 
-    <p>More autonomous systems produce larger changes and more review work. A study of 567 Claude Code pull requests found that 83.8% were merged. Yet 45.1% of merged changes still required human revision (<a href="https://doi.org/10.1145/3798166">On the Use of Agentic Coding</a>). Another study examined 12,433 agent-authored pull requests. Specification mismatch and logic defects were the leading visible functional reasons for rejection (<a href="https://doi.org/10.1109/access.2026.3696573">Coding Agents in the Wild</a>). These repository studies are observational. They show why merge rate is not the same as zero-cost acceptance.</p>
+    <p>More autonomous systems produce larger changes and more review work. Of 567 Claude Code pull requests, 83.8% were merged, but 45.1% of those changes still required human revision (<a href="https://doi.org/10.1145/3798166">On the Use of Agentic Coding</a>). In another 12,433 agent-authored pull requests, specification mismatch and logic defects were the leading visible functional reasons for rejection (<a href="https://doi.org/10.1109/access.2026.3696573">Coding Agents in the Wild</a>). Both studies were observational.</p>
 
-    <p>Automated review helps, but it is not a substitute for an oracle. A year-long Atlassian evaluation covered more than 1,900 repositories. It associated an integrated review agent with a 30.8% reduction in pull-request cycle time. The tool’s developer conducted this observational study (<a href="https://arxiv.org/abs/2601.01129">ICSE 2026 paper</a>). Other review systems produce many comments that developers reject or ignore.</p>
+    <p>Automated review can help. A year-long Atlassian evaluation across more than 1,900 repositories associated an integrated review agent with a 30.8% reduction in pull-request cycle time, although the tool’s developer conducted the observational study (<a href="https://arxiv.org/abs/2601.01129">ICSE 2026 paper</a>). It is still not an oracle.</p>
 
     <p>Use machines for checks they can repeat. Bring people in as the consequences or need for judgement increase:</p>
 
@@ -248,7 +232,7 @@
           <text x="380" y="499" text-anchor="middle" fill="#667078" font-family="Arial,sans-serif" font-size="13" font-style="italic">Conceptual model—not an experimentally estimated curve.</text>
         </svg>
       </div>
-      <figcaption id="cost-caption">Write enough specification to prevent expensive misunderstandings, but stop when more detail adds more work than it removes. The chart illustrates that trade-off; research has not measured a universal sweet spot.</figcaption>
+      <figcaption id="cost-caption">Every project needs a minimum sufficient contract, but its position varies with the needs and risks of the work.</figcaption>
     </figure>
 
     <h2 id="risk-allocation">The right amount of spec is a risk allocation decision</h2>
@@ -294,7 +278,7 @@
             <rect x="432" y="97" width="280" height="165" rx="7" fill="#e6f4ec" stroke="#2f9d62" stroke-width="1.5"/>
             <text x="454" y="130" fill="#287e50" font-size="17" font-weight="700">Write a stronger contract</text>
             <text x="454" y="164" fill="#374047" font-size="14">• tighter constraints</text>
-            <text x="454" y="194" fill="#374047" font-size="14">• executable acceptance checks</text>
+            <text x="454" y="194" fill="#374047" font-size="14">• executable acceptance criteria</text>
             <text x="454" y="224" fill="#374047" font-size="14">• named owners and approval gates</text>
 
             <rect x="48" y="293" width="280" height="130" rx="7" fill="#f8f1e5" stroke="#c98914"/>
@@ -319,13 +303,7 @@
       <figcaption id="forces-caption">Costly, distributed or hard-to-check work needs stronger controls. Exploratory work needs clear boundaries if your agent is to know when it has finished the loop.</figcaption>
     </figure>
 
-    <p>In short, the level of specification should rise with the level of project risk. It is perfectly acceptable for an exploratory spike to be a one-shot exercise. Work in a highly regulated domain such as financial services needs greater rigour, with specifications and approval records forming part of the required audit trail. That becomes more important as the work moves closer to production.</p>
-
-    <p>More complex production setups also call for more detailed specifications. A solo developer building small web apps in their bedroom with a single agent sits at the opposite end of the spectrum from a medical-device company developing software with an agentic swarm.</p>
-
-    <p>The practical target is a <strong>minimum sufficient contract</strong>. It gives the agent enough information to finish the job and gives you enough evidence to decide whether it succeeded.</p>
-
-    <p>“Minimum” does not mean short. A reversible prototype may need only a goal, boundaries and a few checks. Production work involving money, personal data or several agents may need schemas, failure behaviour, rollback and named approval. Every extra requirement should earn its place.</p>
+    <p>Specification should rise with project risk. An exploratory spike can be a one-shot exercise. Production work in a regulated domain such as financial services may need specifications and approvals that form part of the audit trail. A solo developer working with one agent sits at the opposite end of the spectrum from a medical-device company using an agentic swarm.</p>
 
     <h2 id="minimum-contract">What belongs in a minimum sufficient contract?</h2>
 
@@ -336,7 +314,7 @@
       <li><strong>Context.</strong> Which current behaviour, domain terms and repository conventions matter?</li>
       <li><strong>Constraints.</strong> What must remain true, including security, compatibility and performance boundaries?</li>
       <li><strong>Non-goals.</strong> What plausible adjacent work is deliberately outside scope?</li>
-      <li><strong>Acceptance checks.</strong> Which outcomes can be tested or inspected repeatably?</li>
+      <li><strong>Acceptance criteria.</strong> Which outcomes can be tested or inspected repeatably?</li>
       <li><strong>Failure behaviour.</strong> What should happen on invalid input, partial failure, timeout, retry or rollback?</li>
       <li><strong>Open decisions.</strong> Where must the agent stop and ask rather than infer?</li>
     </ol>
@@ -353,7 +331,7 @@
 
     <p>The output is learning. Any code it produces is a probe until it passes a separate production review.</p>
 
-    <h3>Bounded feature work: specify outcomes and checks</h3>
+    <h3>Bounded feature work: specify outcomes and acceptance criteria</h3>
 
     <p>For a small feature or familiar integration, the product requirements document (PRD) just needs to define the visible outcome, important constraints, non-functional requirements and acceptance criteria. Include examples wherever two engineers could reasonably interpret the requirement differently.</p>
 
@@ -369,54 +347,27 @@
 
     <p>Define each handoff using SIPOC: supplier, input, process, output and customer. State who provides the input, what the agent receives and does, what it returns and who consumes the result. Then define how the output will be checked and what “good” looks like, so each handoff has a strong quality gate.</p>
 
-    <h2 id="review-spec">Review the spec before paying to implement it</h2>
+    <h2 id="review-spec">Review the specification before implementation</h2>
 
-    <p>A polished specification can still be wrong. Before an agent writes code, run a short adversarial pass:</p>
-    <ul>
-      <li>Which terms could support two reasonable implementations?</li>
-      <li>Which acceptance check could pass while the user’s intent still fails?</li>
-      <li>Which business rule exists only in someone’s memory?</li>
-      <li>Which external dependency or repository convention is assumed?</li>
-      <li>What happens on partial failure, retry and rollback?</li>
-      <li>Which requirement is not observable?</li>
-      <li>Which decision should remain human?</li>
-    </ul>
+    <p>Treat the specification as a quality gate. Confirm that it describes the intended outcome, resolves material ambiguity and uses acceptance criteria that test the right thing. An agent can identify gaps, but a person should approve any decision that changes the outcome or risk.</p>
 
-    <p>An agent can look for gaps, but a person must settle any ambiguity that changes the outcome or risk. Do this before implementation, when changing the specification is cheaper than changing the code.</p>
+    <figure class="article-diagram" aria-labelledby="error-compounding-caption">
+      <div class="diagram-scroll">
+        <img src="diagram/error-compounding.svg" alt="Three green bars increase in height from prompt to specification to code, showing how one specification error can compound into multiple code errors."/>
+      </div>
+      <figcaption id="error-compounding-caption">An error introduced in the specification can compound into multiple errors in the code. Review the specification before implementation.</figcaption>
+    </figure>
 
-    <h2 id="retire-prose">Retire prose when stronger artefacts replace it</h2>
+    <h2 id="frameworks">The answer is spec-driven frameworks</h2>
 
-    <p>A specification should not remain the main source of truth once a requirement exists as a test, type or schema. Keep the decision log, but remove implementation instructions that the code has made obsolete to keep your agent context clean.</p>
-
-    <p>Code is truth, but it does not explain why a constraint exists, and it can implement the wrong behaviour perfectly. Keep each fact in the place where it is easiest to maintain and hardest to misunderstand.</p>
-
-    <h2 id="measurement">Measure the whole loop, not prompt-to-code time</h2>
-
-    <p>If a team wants to discover its own right amount of specification, it should measure comparable work at different levels of structure. Useful measures include:</p>
-    <ul>
-      <li>elapsed lead time from accepted intent to production;</li>
-      <li>active human time spent clarifying, reviewing and correcting;</li>
-      <li>agent runtime and model cost;</li>
-      <li>review rounds and reviewer minutes;</li>
-      <li>automated checks passed before human review;</li>
-      <li>post-merge rework, rollbacks and incidents; and</li>
-      <li>specification defects discovered before and after implementation.</li>
-    </ul>
-
-    <p>Do not optimise for the first diff. A workflow that produces code in ten minutes and consumes two hours of review may be worse than one that spends 30 minutes clarifying intent and passes review once.</p>
-
-    <div class="evidence-note"><p><strong>Do not ask how much code the agent produced.</strong> Ask whether a verified change reached production with less effort and without causing more failures.</p></div>
-
-    <h2 id="frameworks">From principle to operating model</h2>
-
-    <p>Once you know how rigorous the contract must be, decide how much of the workflow you want the framework to control.</p>
+    <p>Spec-driven frameworks help teams create the minimum sufficient contract. They also support engineers through the different stages of development. To choose one, match the rigour your specification needs with how your team prefers to work: on rails, or through a more ad hoc, individual approach. The more of the workflow you put on rails, the more repeatable the work becomes.</p>
 
     <p>That places the four frameworks in different parts of the landscape:</p>
     <ul>
-      <li><strong>OpenSpec</strong> keeps control focused on proposed changes. Its lightweight proposal, spec-delta, design, task and archive workflow gives developers guardrails without trying to run the entire delivery lifecycle.</li>
-      <li><strong>GSD</strong> provides an on-rails path through planning, execution and verification, while keeping engineers involved at decision and acceptance checkpoints.</li>
-      <li><strong>GitHub Spec Kit</strong> standardises the core sequence from governing principles and requirements through planning, tasks, implementation and convergence. Extensions, presets and role bundles can adapt that process across teams and coding tools.</li>
-      <li><strong>BMAD</strong> provides the broadest lifecycle control, bringing product, architecture, UX, development and testing perspectives into one right-sized delivery method.</li>
+      <li><strong>OpenSpec</strong> focuses on governing proposed changes without trying to run the whole lifecycle.</li>
+      <li><strong>GSD</strong> puts planning, execution and verification on rails while engineers retain the key decisions.</li>
+      <li><strong>GitHub Spec Kit</strong> standardises the path from principles and requirements through planning and implementation.</li>
+      <li><strong>BMAD</strong> provides the broadest lifecycle control across product, architecture, UX, development and testing.</li>
     </ul>
 
     <p>The question is not which framework is most comprehensive. It is which missing control you need it to provide.</p>
@@ -470,29 +421,13 @@
 
     <h2 id="practical-rule">The practical rule</h2>
 
-    <p>Coding agents have made implementation cheaper. Deciding what to build—and proving that the result is safe to release—has not become cheaper by the same amount.</p>
+    <p>Coding agents have made software cheaper. The surrounding processes have not become cheaper by the same amount. You still need to specify the software, and the more complex the domain, the more rigorous the specification needs to be.</p>
 
-    <p>The agent needs enough direction to finish the loop. You need enough evidence to trust the result. That’s the sweet spot.</p>
-
-    <hr/>
-
-    <p class="source-note"><strong>Evidence note.</strong> This article draws on Reinvently’s version 1.28.2 <a href="/blog/ai-coding-productivity-evidence/">systematic review of AI-assisted software development</a>. Numerical claims retain the review’s distinctions among controlled effects, observational associations and lower-weight organisational cases. The conceptual cost curve and decision model apply that evidence. They are not validated measurement instruments. Markus Eisele’s <a href="https://www.oreilly.com/radar/the-right-amount-of-spec-for-agentic-development/">O’Reilly Radar essay on specification in agentic development</a> prompted the question.</p>
-
-    <h2 id="faq">Frequently asked questions</h2>
-
-    <h3>How much specification does a coding agent need?</h3>
-    <p>Enough to tell the agent what result to produce, what must not change, how the result will be checked and when it should ask for help. Small reversible tasks may need only a goal and acceptance checks; consequential or multi-agent work needs stronger contracts, failure handling and approval gates.</p>
-
-    <h3>Does more specification always improve AI-generated code?</h3>
-    <p>It is a classic trade-off. Too little specification can create correction loops, but excessive or stale prose can add cost and conflicting instructions. Research has not established a universal optimum, but it does give us some useful guidelines.</p>
-
-    <h3>What should an agent-facing specification contain?</h3>
-    <p>For bounded feature work, define the outcome, relevant context, constraints, non-goals, acceptance checks, failure behaviour and decisions that require human input.</p>
-
-    <h3>Which spec-driven development framework should a team use?</h3>
-    <p>Choose according to the missing workflow control. GSD focuses on execution and context, BMAD on lifecycle and roles, OpenSpec on governed change, and GitHub Spec Kit on a portable workflow across coding tools. The <a href="/blog/ai-dev-workflow-frameworks-gsd-bmad-openspec-speckit/">full framework comparison</a> covers their practical trade-offs.</p>
+    <p>The agent needs enough direction to run and finish the loop. You need enough evidence to trust the result. That’s the sweet spot.</p>
 
     <hr/>
+
+    <p class="source-note"><strong>Evidence note.</strong> This article draws on Reinvently’s version 1.28.2 <a href="/blog/ai-coding-productivity-evidence/">systematic review of AI-assisted software development</a>. Numerical claims retain the review’s distinctions among controlled effects, observational associations and lower-weight organisational cases. The cost curve and decision model apply that evidence; they are not validated measurement instruments. Markus Eisele’s <a href="https://www.oreilly.com/radar/the-right-amount-of-spec-for-agentic-development/">O’Reilly Radar essay on specification in agentic development</a> prompted the question.</p>
 
     <p><em>New research and engineering guides land here first. <a href="/contact/">Sign up for email updates</a>.</em></p>
 
