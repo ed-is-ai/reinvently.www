@@ -140,7 +140,7 @@
   form.target = 'bd-frame';
   form.addEventListener('submit', function(){
     if (typeof gtag === 'function') {
-      gtag('event', 'sign_up', { method: 'buttondown_form' });
+      gtag('event', 'newsletter_signup_attempt', { method: 'buttondown_form' });
     }
     setTimeout(function(){
       form.style.display = 'none';
