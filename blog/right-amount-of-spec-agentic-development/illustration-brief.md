@@ -2,7 +2,7 @@
 
 **Article:** *How Much Specification Do Coding Agents Need? What the Research Actually Supports*
 **Draft:** `draft.md`
-**Visual system:** One editorial hero plus three explanatory diagrams. The visuals should clarify the argument, not imply that an unmeasured relationship has been quantified.
+**Visual system:** One editorial hero plus four explanatory diagrams. The visuals should clarify the argument, not imply that an unmeasured relationship has been quantified.
 
 ## Shared art direction
 
@@ -64,49 +64,16 @@ A vague instruction expands into many branches of generated code, which narrow t
 
 ### Purpose
 
-Make the article’s optimisation argument immediately legible: too little specification creates ambiguity and correction cost, while too much creates ceremony and stale-context cost. The preferred region minimises their total, but its position varies by task.
+Show that every project needs a minimum sufficient contract, but its position varies with the needs and risks of the work.
 
 ### Placement and format
 
-- Place after “What the evidence establishes—and what it does not,” once the four evidence conclusions have been presented.
-- Build as an accessible inline SVG with a 760 × 470 viewBox.
-- Use a white or very pale plotting area on the site’s dark article background.
-
-### Diagram
-
-Plot three conceptual curves against a shared horizontal axis:
-
-- A descending amber dashed curve: **Ambiguity, review and rework**.
-- A rising grey dashed curve: **Upfront effort, ceremony and staleness**.
-- A solid dark U-shaped curve: **Total delivery cost**.
-
-At the bottom of the U, show a soft green vertical band rather than one exact point. Label it **Minimum sufficient contract**. Add a subtle double-headed arrow over the green band labelled **Moves with task risk and uncertainty**.
-
-### Exact axis and annotation labels
-
-- Chart title: **The useful optimum minimises total delivery cost**
-- X-axis: **Specification effort and formality →**
-- Y-axis: **Relative total cost →**
-- Left region: **Correction loops dominate**
-- Centre band: **Minimum sufficient contract**
-- Right region: **Specification overhead dominates**
-- Footnote inside the figure: **Conceptual model—not an experimentally estimated curve.**
-
-Do not add numerical ticks, percentages or a fitted-looking confidence interval.
+- Place after the evidence section.
+- Use the existing accessible inline SVG with its conceptual-model disclaimer.
 
 ### Caption
 
-Write enough specification to prevent expensive misunderstandings, but stop when more detail adds more work than it removes. The chart illustrates that trade-off; research has not measured a universal sweet spot.
-
-### Alt text
-
-A conceptual U-shaped curve shows total delivery cost falling as specification reduces ambiguity, then rising as documentation effort and staleness increase. A variable middle band is labelled minimum sufficient contract.
-
-### Production cautions
-
-- The disclaimer must remain visible at mobile size.
-- Use a band, not a precise dot, so the image does not imply false measurement.
-- The component curves are explanatory, not independently measured evidence.
+Every project needs a minimum sufficient contract, but its position varies with the needs and risks of the work.
 
 ## Visual 3: Project conditions determine the contract
 
@@ -130,7 +97,7 @@ The first **When** card groups three production-risk conditions:
 - work crosses more handoffs; and
 - failures are hard to detect.
 
-Label the connecting arrow **More rigour**. It leads to the **Then** card, **Write a stronger contract**, containing tighter constraints, executable acceptance checks, and named owners and approval gates.
+Label the connecting arrow **More rigour**. It leads to the **Then** card, **Write a stronger contract**, containing tighter constraints, executable acceptance criteria, and named owners and approval gates.
 
 The second **When** card starts with **The outcome is uncertain**. Label its arrow **Clear boundaries**. It leads to **Write a boundary-led contract**, containing non-goals and constraints, evidence requirements, and stop-and-ask points.
 
@@ -158,7 +125,7 @@ Create a useful transition into the existing framework comparison without reprod
 
 ### Placement and format
 
-- Place in “From principle to operating model,” immediately before the paragraph linking to the framework comparison.
+- Place in “The answer is spec-driven frameworks,” immediately before the paragraph linking to the framework comparison.
 - Build as an accessible inline SVG with a 760 × 520 viewBox.
 - Make the whole figure or a clearly styled text link below it clickable in the final HTML.
 
@@ -199,11 +166,27 @@ Four workflow needs route to different specification frameworks: execution and c
 - Do not add volatile details such as star counts, prices or integration totals to the image.
 - Preserve the exact framework names and capitalisation.
 
+## Visual 5: Early errors compound
+
+### Purpose
+
+Show why the specification needs a review gate before implementation. One error introduced in the specification can compound into multiple errors in the code.
+
+### Placement and format
+
+- Place in “Review the specification before implementation.”
+- Use the standalone `diagram/error-compounding.svg`; retain the PNG as a preview.
+
+### Caption
+
+An error introduced in the specification can compound into multiple errors in the code. Review the specification before implementation.
+
 ## Recommended production order
 
-1. Build the cost curve first; it defines the article’s central conceptual language.
+1. Use the existing cost curve.
 2. Build the four-variable model and test it at mobile width.
 3. Build the framework bridge using the same card and arrow system.
-4. Produce the hero last so its geometry echoes the finished inline diagrams.
+4. Use the error-compounding chart at the specification review gate.
+5. Produce the hero last so its geometry echoes the finished inline diagrams.
 
-This sequence will make the set feel like one visual argument rather than four unrelated assets.
+This sequence will make the set feel like one visual argument rather than five unrelated assets.

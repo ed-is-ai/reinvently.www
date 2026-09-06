@@ -1,0 +1,34 @@
+<svg viewBox="0 0 760 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Specification errors compound in code</title>
+  <desc id="desc">Three plain green bars increase in height from prompt to specification to code, illustrating how one error introduced in the specification can compound into multiple errors in the code.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#748087"/>
+    </marker>
+    <style>
+      text{font-family:Arial,sans-serif}
+      .stage{fill:#374047;font-size:17px;font-weight:700;text-anchor:middle}
+    </style>
+  </defs>
+
+  <rect width="760" height="500" fill="#fff"/>
+  <text x="42" y="48" fill="#24282b" font-size="25" font-weight="700">Specification errors compound in code</text>
+  <text x="42" y="75" fill="#667078" font-size="14">Review the specification before implementation.</text>
+
+  <line x1="82" y1="400" x2="700" y2="400" stroke="#748087" stroke-width="1.5"/>
+
+  <rect x="100" y="280" width="140" height="120" rx="6" fill="#d8eee1" stroke="#2f9d62" stroke-width="1.5"/>
+  <text class="stage" x="170" y="434">Prompt</text>
+
+  <line x1="254" y1="260" x2="296" y2="260" stroke="#748087" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="310" y="220" width="140" height="180" rx="6" fill="#a8d8bd" stroke="#2f9d62" stroke-width="1.5"/>
+  <text class="stage" x="380" y="434">Specification</text>
+
+  <line x1="464" y1="200" x2="506" y2="200" stroke="#748087" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="520" y="160" width="140" height="240" rx="6" fill="#55a879" stroke="#287e50" stroke-width="1.5"/>
+  <text class="stage" x="590" y="434">Code</text>
+
+  <text x="380" y="476" fill="#667078" font-size="12" font-style="italic" text-anchor="middle">Conceptual illustration—not a measured error rate.</text>
+</svg>

@@ -6,6 +6,13 @@
     <description>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</description>
     <language>en-gb</language>
     <item>
+      <title>South Korea’s Sovereign AI for All Plan</title>
+      <link>https://reinvently.co.uk/blog/south-korea-ai-for-all/</link>
+      <guid isPermaLink="true">https://reinvently.co.uk/blog/south-korea-ai-for-all/</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 +0100</pubDate>
+      <description>South Korea is funding free access to domestic AI for every citizen. What its AI for All programme means for sovereign AI, adoption and public services.</description>
+    </item>
+    <item>
       <title>How Much Specification Do Coding Agents Need?</title>
       <link>https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</guid>
@@ -55,7 +62,7 @@
       <description>Claude Fable 5 tops FrontierSWE at 90 percent but costs $10/$50 per MTok, double Opus 4.8. Whether the premium is worth it, and when GLM-5.2 is enough.</description>
     </item>
     <item>
-      <title>The Agent Governance Gap: $202m Budgets, 26 Percent Cost Visibility</title>
+      <title>Agent Governance: $202m Budgets, 26% Cost Visibility | Reinvently</title>
       <link>https://reinvently.co.uk/blog/ai-agent-governance-gap/</link>
       <guid isPermaLink="true">https://reinvently.co.uk/blog/ai-agent-governance-gap/</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0100</pubDate>
