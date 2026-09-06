@@ -13,6 +13,20 @@
   "language": "en-GB",
   "items": [
     {
+      "id": "https://reinvently.co.uk/blog/south-korea-ai-for-all/",
+      "url": "https://reinvently.co.uk/blog/south-korea-ai-for-all/",
+      "title": "South Korea’s Sovereign AI for All Plan",
+      "summary": "South Korea is funding free access to domestic AI for every citizen. What its AI for All programme means for sovereign AI, adoption and public services.",
+      "date_published": "2026-09-05T23:00:00Z",
+      "date_modified": "2026-09-05T23:00:00Z",
+      "authors": [
+        {
+          "name": "Ed Yau",
+          "url": "https://uk.linkedin.com/in/edmond-yau"
+        }
+      ]
+    },
+    {
       "id": "https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/",
       "url": "https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/",
       "title": "How Much Specification Do Coding Agents Need?",

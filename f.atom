@@ -7,6 +7,15 @@
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
   <entry>
+    <title>South Korea’s Sovereign AI for All Plan</title>
+    <link href="https://reinvently.co.uk/blog/south-korea-ai-for-all/"/>
+    <id>https://reinvently.co.uk/blog/south-korea-ai-for-all/</id>
+    <published>2026-09-05T23:00:00Z</published>
+    <updated>2026-09-05T23:00:00Z</updated>
+    <author><name>Ed Yau</name></author>
+    <summary>South Korea is funding free access to domestic AI for every citizen. What its AI for All programme means for sovereign AI, adoption and public services.</summary>
+  </entry>
+  <entry>
     <title>How Much Specification Do Coding Agents Need?</title>
     <link href="https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/"/>
     <id>https://reinvently.co.uk/blog/right-amount-of-spec-agentic-development/</id>
