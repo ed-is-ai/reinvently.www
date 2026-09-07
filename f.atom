@@ -3,7 +3,7 @@
   <title>Reinvently — Independent AI Research &amp; Analysis</title>
   <link href="https://reinvently.co.uk/"/>
   <link href="https://reinvently.co.uk/f.atom" rel="self" type="application/atom+xml"/>
-  <updated>2026-09-05T23:00:00Z</updated>
+  <updated>2026-09-06T23:00:00Z</updated>
   <id>https://reinvently.co.uk/</id>
   <subtitle>Independent analysis of enterprise AI adoption, UK AI policy, model evaluation, and AI engineering tools.</subtitle>
   <entry>
@@ -29,7 +29,7 @@
     <link href="https://reinvently.co.uk/blog/ai-coding-productivity-evidence/"/>
     <id>https://reinvently.co.uk/blog/ai-coding-productivity-evidence/</id>
     <published>2026-07-28T22:31:06Z</published>
-    <updated>2026-08-22T20:35:00Z</updated>
+    <updated>2026-09-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
     <summary>A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end.</summary>
   </entry>
@@ -56,7 +56,7 @@
     <link href="https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/"/>
     <id>https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/</id>
     <published>2026-07-01T23:00:00Z</published>
-    <updated>2026-08-01T23:00:00Z</updated>
+    <updated>2026-09-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
     <summary>No UK AI Act exists. Instead: sector regulators, a £500m sovereign compute programme, AI Growth Labs and a Hardware Plan. The 2026 map for enterprise leaders.</summary>
   </entry>
@@ -178,13 +178,13 @@
     <summary>What the Linux Foundation&#x27;s A2A protocol standardises, where interoperability still stops, and how to evaluate it in enterprise architecture and procurement.</summary>
   </entry>
   <entry>
-    <title>Global AI Adoption: Attitudes and Intensity by Country</title>
+    <title>Global AI Adoption in 2026: Countries, Regions &amp; Attitudes</title>
     <link href="https://reinvently.co.uk/blog/global-ai-adoption-attitudes/"/>
     <id>https://reinvently.co.uk/blog/global-ai-adoption-attitudes/</id>
     <published>2026-04-19T23:00:00Z</published>
-    <updated>2026-08-01T23:00:00Z</updated>
+    <updated>2026-09-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
-    <summary>Global AI adoption compared: venture funding passed $100 billion in 2024 while the EU leads on regulation. How attitudes and intensity differ by country.</summary>
+    <summary>Compare how the UK, US, China, EU, India, Japan and the Middle East approach AI through investment, regulation, talent and public attitudes.</summary>
   </entry>
   <entry>
     <title>Claude Mythos and Project Glasswing: Security Evidence</title>
@@ -200,7 +200,7 @@
     <link href="https://reinvently.co.uk/blog/top-10-uk-ai-companies/"/>
     <id>https://reinvently.co.uk/blog/top-10-uk-ai-companies/</id>
     <published>2026-04-12T23:00:00Z</published>
-    <updated>2026-08-01T23:00:00Z</updated>
+    <updated>2026-09-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
     <summary>A field guide to ten UK AI organisations, from DeepMind to Quantexa, set against a UK AI sector of 5,800+ companies and £23.9bn in revenue.</summary>
   </entry>
@@ -250,13 +250,13 @@
     <summary>A guide to the UK&#x27;s public AI institutes, from the £8.8bn UKRI research engine to the world&#x27;s first national AI safety body, and what each one does.</summary>
   </entry>
   <entry>
-    <title>Generative AI Adoption by Industry: Use Cases and Data</title>
+    <title>Generative AI Adoption by Industry: 2026 Use Cases &amp; ROI</title>
     <link href="https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/"/>
     <id>https://reinvently.co.uk/blog/generative-ai-adoption-by-industry/</id>
     <published>2026-01-22T00:00:00Z</published>
-    <updated>2026-08-01T23:00:00Z</updated>
+    <updated>2026-09-06T23:00:00Z</updated>
     <author><name>Ed Yau</name></author>
-    <summary>Generative AI adoption by industry: 71 percent of organisations now use it regularly, returning $3.70 per $1 invested. The use cases and data, sector by sector.</summary>
+    <summary>Compare generative AI adoption in finance, healthcare, retail, legal and manufacturing, with 2026 use cases, adoption rates and reported ROI.</summary>
   </entry>
   <entry>
     <title>AI-Assisted Web Development: Where It Helps and Fails</title>
