@@ -47,6 +47,12 @@ jobs:
       - name: Check every blog post
         run: python3 scripts/check_seo.py --format github
 
+      - name: Check public research downloads
+        run: |
+          python3 scripts/build_ed_o_meter.py --render-only --check
+          python3 scripts/build_chart_downloads.py --check
+          python3 scripts/test_public_research.py
+
   links:
     name: Internal links
     runs-on: ubuntu-latest

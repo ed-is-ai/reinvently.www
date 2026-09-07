@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>GLM-5.2 vs Fable 5 vs GPT-5.5: 28-Task Eval Results — Reinvently</title>
-  <meta name="description" content="GPT-5.5 passed 28 of 28 tasks, GLM-5.2 passed 26, and Claude Fable 5 refused to do 5 of them. Full results, costs, and a refusal deep dive."/>
+  <meta name="description" content="GLM-5.2, Claude Fable 5 and GPT-5.5 tested on 28 tasks in July 2026. Compare original results, refusals and limitations, with links to current reruns."/>
   <link rel="stylesheet" href="../../blog/blog.css"/>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -24,7 +24,7 @@
     var link = e.target.closest('a[href="/contact/"]');
     if (!link || typeof gtag !== 'function') return;
     gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
+      location: link.getAttribute('data-subscribe-location') || (link.closest('nav') ? 'nav' : 'article'),
       link_text: link.textContent.trim()
     });
   });
@@ -131,13 +131,15 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">5 July 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">5 July 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; Technology Strategy &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Locked-Down Fable Disappoints, Cheap-as-Chips GLM-5.2 Unsafe, GPT-5.5 Wins as the All-Rounder</h1>
   <p class="summary">The pass rates — 93, 96 and 100 percent — were close. GPT-5.5 took the only clean sweep. Fable 5 scored highest on quality of response but refused perfectly valid asks. GLM-5.2 was lower on quality and we managed to jailbreak it — but it was 8x cheaper than GPT-5.5 (and 7x cheaper than Fable). We deep dive into the refusals: Anthropic's dual-use screening layer at work.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
+    <nav class="research-context" aria-label="Research context"><a href="/topics/engineering-evaluation/">AI engineering and model evaluation</a> &nbsp;·&nbsp; <a href="/research-standards/">Research and editorial standards</a></nav>
+
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
@@ -145,6 +147,8 @@
       <source srcset="../../images/hero-eval-results.webp" type="image/webp"/>
       <img class="article-hero-image" src="../../images/hero-eval-results.jpg" width="1200" height="669" fetchpriority="high" decoding="async" alt="Abstract illustration of three wireframe polyhedra, the third rendered as a broken, incomplete outline"/>
     </picture>
+
+    <p class="research-context"><strong>Historical evaluation: 5 July 2026.</strong> This article reports the original run, not today's model ranking. Later reruns and checker corrections are recorded on the <a href="/tools/ed-o-meter/#change-log">current Ed-o-meter leaderboard</a>. Compare the <a href="/blog/building-the-ed-o-meter-llm-eval-harness/">harness and methodology</a> before applying these results to another workload.</p>
 
     <div class="key-takeaways">
       <h2>Key Takeaways</h2>

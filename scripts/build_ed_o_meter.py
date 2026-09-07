@@ -26,7 +26,9 @@ upstream — for CI to raise as an issue.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
+import io
 import json
 import math
 import re
@@ -34,6 +36,7 @@ import statistics
 import sys
 import traceback
 from collections import defaultdict
+from html import escape
 from pathlib import Path
 from typing import Any
 
@@ -408,13 +411,77 @@ def build_report(old: list[dict[str, Any]], new: dict[str, dict[str, Any]],
 # --------------------------------------------------------------------------
 
 
+def render_public_results(text: str) -> dict[Path, str]:
+    """Build crawlable rows and a downloadable snapshot from the displayed data."""
+    models, source_run = parse_data_js(text)
+    if not models or not re.fullmatch(r"\d{8}T\d{6}Z", source_run):
+        raise ValueError("Expected a model roster and a dated source run")
+    models.sort(key=lambda m: -m["pass"])
+
+    def note(value: Any) -> str:
+        refs = value if isinstance(value, list) else [value]
+        return "" if value is None else "<sup>" + ", ".join(str(n) for n in refs) + "</sup>"
+
+    rows = []
+    for rank, m in enumerate(models, 1):
+        rubric = "&#8212;" if m["rubric"] is None else f'{m["rubric"]:.1f}'
+        security_class = "sec-bad" if m["sec"] < 60 else "sec-good" if m["sec"] == 100 else ""
+        precision = 3 if m["cost"] < 0.1 else 2
+        rows.append(
+            f'<tr><td class="rank">{rank}</td>'
+            f'<td class="model"><span class="swatch" style="background:{escape(m["hex"], quote=True)}"></span>{escape(m["name"])}</td>'
+            f'<td class="num">{m["pass"]}% [{m["lo"]}&#8211;{m["hi"]}]{note(m.get("pNote"))}</td>'
+            f'<td class="num">{rubric}{note(m.get("rNote"))}</td>'
+            f'<td class="num {security_class}">{escape(m["secTxt"])}{note(m.get("sNote"))}</td>'
+            f'<td class="num">{m["ttft"]:.1f} s</td><td class="num">${m["cost"]:.{precision}f}</td>'
+            f'<td class="num">${m["costTask"]:.4f}{note(m.get("cNote"))}</td></tr>'
+        )
+    page = PAGE.read_text(encoding="utf-8")
+    page, count = re.subn(r'(<tbody id="boardBody">).*?(</tbody>)',
+                         lambda m: m[1] + "\n" + "\n".join(rows) + "\n" + m[2], page, flags=re.S)
+    if count != 1:
+        raise ValueError("Expected exactly one leaderboard body")
+    fields = ["name", "tested", "pass", "lo", "hi", "rubric", "sec", "ttft", "cost", "costTask",
+              "pNote", "rNote", "sNote", "cNote"]
+    output = io.StringIO(newline="")
+    writer = csv.DictWriter(output, fieldnames=["source_run", "methodology_url", *fields], lineterminator="\n")
+    writer.writeheader()
+    for model in models:
+        writer.writerow({"source_run": source_run,
+                         "methodology_url": "https://reinvently.co.uk/tools/ed-o-meter/#scoring-title",
+                         **{key: model.get(key, "") for key in fields}})
+    snapshot = f"results-{source_run}.csv"
+    page = re.sub(r'href="results-\d{8}T\d{6}Z\.csv"', f'href="{snapshot}"', page)
+    return {PAGE: page, PAGE.parent / "results.csv": output.getvalue(),
+            PAGE.parent / snapshot: output.getvalue()}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("summary", type=Path, help="path to featherbench results/summary.json")
+    parser.add_argument("summary", type=Path, nargs="?", help="path to featherbench results/summary.json")
+    parser.add_argument("--render-only", action="store_true", help="render HTML and CSV from the existing data.js")
     parser.add_argument("--report", type=Path, default=None, help="write the Markdown report here")
     parser.add_argument("--check", action="store_true",
                         help="exit 1 if the board has drifted from the results; write nothing")
     args = parser.parse_args()
+
+    if args.render_only:
+        if args.summary or args.report:
+            parser.error("--render-only does not take a summary or report")
+        outputs = render_public_results(DATA_JS.read_text(encoding="utf-8"))
+        if args.check:
+            stale = [str(p.relative_to(ROOT)) for p, content in outputs.items()
+                     if not p.exists() or p.read_text(encoding="utf-8") != content]
+            if stale:
+                print("Stale public results: " + ", ".join(stale), file=sys.stderr)
+                return 1
+            print("Public leaderboard and CSV match data.js.")
+        else:
+            for path, content in outputs.items():
+                path.write_text(content, encoding="utf-8")
+        return 0
+    if args.summary is None:
+        parser.error("provide a summary or use --render-only")
 
     summary = json.loads(args.summary.read_text(encoding="utf-8"))
     derived = board_rows(summary)
@@ -487,6 +554,8 @@ def main() -> int:
         return 0
 
     DATA_JS.write_text(rendered, encoding="utf-8")
+    for path, content in render_public_results(rendered).items():
+        path.write_text(content, encoding="utf-8")
     print(report)
     return 0
 

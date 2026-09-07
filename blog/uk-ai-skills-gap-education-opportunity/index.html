@@ -24,7 +24,7 @@
     var link = e.target.closest('a[href="/contact/"]');
     if (!link || typeof gtag !== 'function') return;
     gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
+      location: link.getAttribute('data-subscribe-location') || (link.closest('nav') ? 'nav' : 'article'),
       link_text: link.textContent.trim()
     });
   });
@@ -131,13 +131,15 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">14 March 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">14 March 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The UK's AI Skills Gap: Why Closing It Is One of the Biggest Opportunities of the Decade</h1>
   <p class="summary">73% of UK adults have had no AI training at all. The gap between AI's potential and the UK workforce's readiness to realise it is a challenge — and an enormous opportunity.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
+    <nav class="research-context" aria-label="Research context"><a href="/topics/ai-adoption-value/">AI adoption and value</a> &nbsp;·&nbsp; <a href="/research-standards/">Research and editorial standards</a></nav>
+
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 

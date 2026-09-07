@@ -24,7 +24,7 @@
     var link = e.target.closest('a[href="/contact/"]');
     if (!link || typeof gtag !== 'function') return;
     gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
+      location: link.getAttribute('data-subscribe-location') || (link.closest('nav') ? 'nav' : 'article'),
       link_text: link.textContent.trim()
     });
   });
@@ -147,13 +147,15 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">6 June 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">6 June 2026 &nbsp;·&nbsp; Updated 2 August 2026 &nbsp;·&nbsp; <a href="/guides/" style="color:rgb(150,150,150);">Guide</a> &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>Multi-Agent Orchestration Frameworks Compared: Six Tools for Coding, Collaboration and Fleet Operations</h1>
   <p class="summary">Multica, ruflo, Aperant, Sandcastle, Mission Control and Maestro are all described as multi-agent tools, but they solve different problems. This guide compares their categories, use cases, hosting, maturity and current GitHub activity.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
+    <nav class="research-context" aria-label="Research context"><a href="/topics/engineering-evaluation/">AI engineering and model evaluation</a> &nbsp;·&nbsp; <a href="/research-standards/">Research and editorial standards</a></nav>
+
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 

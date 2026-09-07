@@ -120,12 +120,11 @@
 <div class="container" style="padding: 64px 24px;">
   <form action="https://buttondown.com/api/emails/embed-subscribe/reinvently" method="post" class="subscribe-form" id="subscribe-form">
     <label for="bd-email">Email</label>
-    <input type="email" id="bd-email" name="email" placeholder="you@example.com" required/>
+    <input type="email" id="bd-email" name="email" placeholder="you@example.com" autocomplete="email" required/>
     <input type="hidden" value="1" name="embed"/>
     <button type="submit">Subscribe</button>
   </form>
-  <p id="subscribe-success" style="display:none;font-family:'Source Sans Pro',arial,sans-serif;font-size:16px;color:rgb(226,226,226);text-align:center;max-width:420px;margin:0 auto;">Thanks — check your inbox to confirm your subscription.</p>
-  <iframe name="bd-frame" id="bd-frame" title="" style="display:none;" aria-hidden="true"></iframe>
+  <p style="text-align:center;max-width:420px;margin:24px auto;">Buttondown will show the result of your request. If a confirmation email arrives, follow its link to complete your subscription.</p>
 </div>
 
 <footer class="footer">
@@ -135,17 +134,14 @@
 <script>
 (function(){
   var form = document.getElementById('subscribe-form');
-  var success = document.getElementById('subscribe-success');
-  if (!form || !success) return;
-  form.target = 'bd-frame';
+  if (!form) return;
   form.addEventListener('submit', function(){
     if (typeof gtag === 'function') {
-      gtag('event', 'newsletter_signup_attempt', { method: 'buttondown_form' });
+      gtag('event', 'newsletter_signup_attempt', {
+        method: 'buttondown_form',
+        transport_type: 'beacon'
+      });
     }
-    setTimeout(function(){
-      form.style.display = 'none';
-      success.style.display = 'block';
-    }, 600);
   });
 })();
 </script>
