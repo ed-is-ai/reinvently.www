@@ -24,7 +24,7 @@
     var link = e.target.closest('a[href="/contact/"]');
     if (!link || typeof gtag !== 'function') return;
     gtag('event', 'subscribe_click', {
-      location: link.getAttribute('data-subscribe-location') || 'nav',
+      location: link.getAttribute('data-subscribe-location') || (link.closest('nav') ? 'nav' : 'article'),
       link_text: link.textContent.trim()
     });
   });
@@ -132,13 +132,15 @@
 </nav>
 
 <header class="article-header">
-  <div class="post-meta">13 April 2026 &nbsp;·&nbsp; Updated 7 September 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">13 April 2026 &nbsp;·&nbsp; Updated 7 September 2026 &nbsp;·&nbsp; <a href="/news/" style="color:rgb(150,150,150);">News</a> &nbsp;&middot;&nbsp; <a href="/about/#ed-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>UK AI Companies: A Field Guide to Ten Organisations</h1>
   <p class="summary">An unranked, illustrative selection across research, security, mobility, media, life sciences and enterprise software — used to examine what the UK ecosystem produces and where it remains constrained.</p>
 </header>
 
 <main class="container">
   <article class="article-body">
+    <nav class="research-context" aria-label="Research context"><a href="/topics/uk-ai-governance/">UK AI governance</a> &nbsp;·&nbsp; <a href="/research-standards/">Research and editorial standards</a></nav>
+
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
@@ -161,28 +163,7 @@
 
     <p>The evidence points to a concentrated ecosystem of companies, research institutions and technical talent. It also shows persistent constraints in growth capital, compute and retention. The government's <a href="https://www.gov.uk/government/publications/artificial-intelligence-sector-study-2024/artificial-intelligence-sector-study-2024" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">AI Sector Study 2024</a> counts more than 5,800 AI companies. Together, they generate £23.9 billion in revenue and £11.8 billion in gross value added. That makes the UK the third-largest AI market behind the US and China.</p>
 
-    <h2>Why the UK became an AI hub in the first place</h2>
-
-    <p>It starts with the universities. Cambridge, Oxford, UCL, Imperial and Edinburgh sustain large research communities in mathematics, statistics and computer science. Their researchers have helped create the talent base behind UK AI companies. AlphaFold grew from DeepMind's London organisation, whose co-founder Demis Hassabis studied at Cambridge and UCL.</p>
-
-    <p>The limits of that story matter. Stable Diffusion is often claimed for Britain because <a href="https://stability.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Stability AI</a> is headquartered in London and funded its release. The model itself came from the <a href="https://ommer-lab.com/research/latent-diffusion-models/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">CompVis group at LMU Munich</a>. The UK's role often combines research, commercialisation and talent density rather than sole authorship.</p>
-
-    <p>That research base has been the seed of the commercial ecosystem. Many of the companies on this list were founded by people who came through UK PhD programmes or postdoctoral positions before deciding to build something.</p>
-
-    <p>London's role as a financial centre has also helped. Banks, insurers and asset managers have large datasets, difficult problems and substantial technology budgets. Darktrace, PolyAI and Quantexa developed in demanding financial-services environments before expanding elsewhere.</p>
-
-    <h2>What has held the UK back</h2>
-
-    <p>Growth capital is the most significant constraint. The UK venture ecosystem can fund early stages, but very large later rounds remain harder to assemble in London. US companies can therefore hire and expand faster.</p>
-
-    <p>UK AI companies are better funded than before, but may still scale more slowly. Some rely on US investors whose priorities may not align with retaining activity in Britain.</p>
-
-    <p>Talent is the other persistent challenge. The UK produces excellent AI researchers and engineers, but keeping them is harder than training them — a gap we examine in <a href="/blog/uk-ai-skills-gap-education-opportunity/">our analysis of the UK AI skills gap</a>. US technology companies — particularly the frontier AI labs — can offer compensation that is very difficult to match from a UK base. Some of the most talented people in the country's AI ecosystem spend their careers at American companies, working remotely or relocating entirely.</p>
-
-    <p>Compute is a quieter constraint. Training large models requires substantial GPU infrastructure. The US and China have invested heavily, while UK domestic capacity remains much smaller. The <a href="/blog/uk-sovereign-ai-programme/">£500m Sovereign AI programme</a> is intended to address part of that gap.</p>
-
-    <p>UK researchers and companies often depend on US cloud providers. The infrastructure works, but leaves capital-intensive AI development exposed to American commercial terms.</p>
-
+    <h2 id="company-comparison">UK AI companies compared</h2>
     <p>The ten organisations below are an illustrative field guide, not a ranking. They were selected to span research, cybersecurity, mobility, media, life sciences and enterprise systems, with evidence of deployed technology, research contribution or commercial scale. The selection is not exhaustive and will date as ownership, funding and products change.</p>
 
     <div style="overflow-x:auto;margin:24px 0 32px;">
@@ -210,6 +191,30 @@
         </tbody>
       </table>
     </div>
+
+    <h2>Why the UK became an AI hub in the first place</h2>
+
+    <p>It starts with the universities. Cambridge, Oxford, UCL, Imperial and Edinburgh sustain large research communities in mathematics, statistics and computer science. Their researchers have helped create the talent base behind UK AI companies. AlphaFold grew from DeepMind's London organisation, whose co-founder Demis Hassabis studied at Cambridge and UCL.</p>
+
+    <p>The limits of that story matter. Stable Diffusion is often claimed for Britain because <a href="https://stability.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">Stability AI</a> is headquartered in London and funded its release. The model itself came from the <a href="https://ommer-lab.com/research/latent-diffusion-models/" style="color:rgb(150,150,150);border-bottom:1px solid #1b1b1b;">CompVis group at LMU Munich</a>. The UK's role often combines research, commercialisation and talent density rather than sole authorship.</p>
+
+    <p>That research base has been the seed of the commercial ecosystem. Many of the companies on this list were founded by people who came through UK PhD programmes or postdoctoral positions before deciding to build something.</p>
+
+    <p>London's role as a financial centre has also helped. Banks, insurers and asset managers have large datasets, difficult problems and substantial technology budgets. Darktrace, PolyAI and Quantexa developed in demanding financial-services environments before expanding elsewhere.</p>
+
+    <h2>What has held the UK back</h2>
+
+    <p>Growth capital is the most significant constraint. The UK venture ecosystem can fund early stages, but very large later rounds remain harder to assemble in London. US companies can therefore hire and expand faster.</p>
+
+    <p>UK AI companies are better funded than before, but may still scale more slowly. Some rely on US investors whose priorities may not align with retaining activity in Britain.</p>
+
+    <p>Talent is the other persistent challenge. The UK produces excellent AI researchers and engineers, but keeping them is harder than training them — a gap we examine in <a href="/blog/uk-ai-skills-gap-education-opportunity/">our analysis of the UK AI skills gap</a>. US technology companies — particularly the frontier AI labs — can offer compensation that is very difficult to match from a UK base. Some of the most talented people in the country's AI ecosystem spend their careers at American companies, working remotely or relocating entirely.</p>
+
+    <p>Compute is a quieter constraint. Training large models requires substantial GPU infrastructure. The US and China have invested heavily, while UK domestic capacity remains much smaller. The <a href="/blog/uk-sovereign-ai-programme/">£500m Sovereign AI programme</a> is intended to address part of that gap.</p>
+
+    <p>UK researchers and companies often depend on US cloud providers. The infrastructure works, but leaves capital-intensive AI development exposed to American commercial terms.</p>
+
+
 
     <hr/>
 
@@ -329,7 +334,7 @@
 
     <p>The UK will not out-spend the US or China on AI. These companies show that research quality can still produce world-class results without unlimited capital. The next test is whether the ecosystem can retain enough talent and investment to scale them.</p>
 
-    <p>If your organisation is working out where to invest, our <a href="/services/strategy/">AI strategy consulting service</a> helps turn market signals into a practical plan.</p>
+    <p>Explore our <a href="/topics/ai-adoption-value/">AI adoption and value research</a> and <a href="/contact/" data-subscribe-location="article">subscribe for new evidence and analysis</a>.</p>
 
         <h2>Frequently asked questions</h2>
 

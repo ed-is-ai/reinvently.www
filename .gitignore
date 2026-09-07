@@ -2,6 +2,7 @@
 repurposed/
 tmp/
 .DS_Store
+/research/seo-measurement-plan.md
 
 # LaTeX build artifacts
 *.aux

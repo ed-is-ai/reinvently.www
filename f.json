@@ -43,8 +43,8 @@
     {
       "id": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
       "url": "https://reinvently.co.uk/blog/ai-coding-productivity-evidence/",
-      "title": "How Much Does AI Improve Software Development Productivity?",
-      "summary": "A systematic review of 116 studies finds 10–30% higher release output. Agent-native cases report a 4.5× median and an 18× task-specific upper end.",
+      "title": "AI Coding Productivity: What 116 Studies Actually Show",
+      "summary": "A review of 116 studies separates AI coding speed gains from release output, quality and security. See the methods, conflicting results and evidence limits.",
       "date_published": "2026-07-28T22:31:06Z",
       "date_modified": "2026-09-06T23:00:00Z",
       "authors": [
@@ -72,7 +72,7 @@
       "id": "https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/",
       "url": "https://reinvently.co.uk/blog/glm-5-2-fable-5-gpt-5-5-eval-results/",
       "title": "GLM-5.2 vs Fable 5 vs GPT-5.5: 28-Task Eval Results",
-      "summary": "GPT-5.5 passed 28 of 28 tasks, GLM-5.2 passed 26, and Claude Fable 5 refused to do 5 of them. Full results, costs, and a refusal deep dive.",
+      "summary": "GLM-5.2, Claude Fable 5 and GPT-5.5 tested on 28 tasks in July 2026. Compare original results, refusals and limitations, with links to current reruns.",
       "date_published": "2026-07-04T23:00:00Z",
       "date_modified": "2026-08-01T23:00:00Z",
       "authors": [
@@ -86,7 +86,7 @@
       "id": "https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/",
       "url": "https://reinvently.co.uk/blog/uk-ai-policy-landscape-enterprise-2026/",
       "title": "UK AI Policy Landscape: What to Track in 2026",
-      "summary": "No UK AI Act exists. Instead: sector regulators, a £500m sovereign compute programme, AI Growth Labs and a Hardware Plan. The 2026 map for enterprise leaders.",
+      "summary": "Map UK AI policy in 2026: regulators, data protection, infrastructure and sandboxes. Includes an enterprise action checklist and links to primary sources.",
       "date_published": "2026-07-01T23:00:00Z",
       "date_modified": "2026-09-06T23:00:00Z",
       "authors": [
@@ -282,7 +282,7 @@
       "id": "https://reinvently.co.uk/blog/global-ai-adoption-attitudes/",
       "url": "https://reinvently.co.uk/blog/global-ai-adoption-attitudes/",
       "title": "Global AI Adoption in 2026: Countries, Regions & Attitudes",
-      "summary": "Compare how the UK, US, China, EU, India, Japan and the Middle East approach AI through investment, regulation, talent and public attitudes.",
+      "summary": "Compare AI adoption by country with Q1 2026 usage charts, workplace surveys and public attitudes. Includes sources, definitions and limits on comparisons.",
       "date_published": "2026-04-19T23:00:00Z",
       "date_modified": "2026-09-06T23:00:00Z",
       "authors": [
