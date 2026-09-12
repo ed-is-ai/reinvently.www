@@ -108,12 +108,6 @@
   .eom .row-tag{font-family:var(--font-nav);letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
   .eom .grid-label{font-family:var(--font-data);fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
-  .eom .value-teaser{margin:clamp(44px,4vw,64px) 0 8px;padding-top:18px;border-top:1px solid var(--hairline);}
-  .eom .value-kicker{font-family:var(--font-nav);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin:0 0 7px;}
-  .eom .value-teaser h2.section{margin:0 0 8px;font-size:clamp(24px,1.8vw,32px);}
-  .eom .value-teaser p{font-size:clamp(14.5px,1vw,17px);line-height:1.62;color:var(--text-muted);margin:0 0 18px;}
-  .eom .value-teaser a{font-family:var(--font-nav);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
-  .eom .value-teaser a:hover{color:var(--text);border-color:var(--telemetry);}
 
   /* ---------- entry paths ----------
      The benchmark remains the primary destination, while these explicit
@@ -291,7 +285,6 @@
     .eom .method{margin-left:20px;font-size:14px;}
     .eom .method-intro{font-size:14px;line-height:1.6;}
     .eom .change-log li{grid-template-columns:1fr;gap:5px;}
-    .eom .value-teaser{padding-top:16px;}
     .eom .start-here{padding:16px;margin-top:28px;}
     .eom .path-grid{grid-template-columns:1fr;gap:9px;}
     .eom .path-card{min-height:0;padding:14px;}
@@ -399,13 +392,6 @@
     <div class="caveat" role="note">
       The overall score is the pass rate across my 28 realworld tasks. As we only had a limited number of trials there is a wide Wilson interval — the whiskers on the chart.
     </div>
-
-    <section class="value-teaser" aria-labelledby="value-teaser-title">
-      <p class="value-kicker">Another decision lens</p>
-      <h2 class="section" id="value-teaser-title">Quality for the cost</h2>
-      <p>See rubric quality against cost per task, with the efficient trade-offs highlighted on the quality-versus-cost frontier.</p>
-      <a href="/tools/ed-o-meter/value/">Explore the Value Frontier &#8594;</a>
-    </section>
 
     <p class="section-note">Sort the table by any metric using the column headings. The full table remains available without JavaScript.</p>
     <p class="section-note"><a href="results.csv" download>Download the current results (CSV)</a> &nbsp;·&nbsp; <a href="results-20260912T185245Z.csv" download>Download the dated source-run snapshot (CSV)</a>. Pass rate and security are percentages; TTFT is measured in seconds; costs are in US dollars. Footnote markers correspond to the notes below.</p>
