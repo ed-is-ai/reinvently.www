@@ -56,6 +56,10 @@
     .value-header .post-meta{font-size:clamp(11px,.72vw,13px);}
     .value-header h1{font-size:clamp(38px,3vw,56px);max-width:1180px;}
     .value-header .summary{font-size:clamp(18px,1.25vw,22px);line-height:1.6;max-width:none;text-wrap:pretty;}
+    .value-header .runstamp{font-family:var(--font-data);font-size:clamp(12px,.8vw,14px);letter-spacing:.04em;color:var(--telemetry);border:1px solid #29475a;border-radius:999px;padding:7px 14px;display:inline-block;margin:22px 0 0;background:var(--telemetry-tint);}
+    .value-header .runstamp code{background:none;padding:0;color:inherit;font-size:1em;}
+    .value-header .runstamp a{color:inherit;border-bottom:1px solid rgba(94,214,255,.35);}
+    .value-header .runstamp a:hover{border-color:var(--telemetry);opacity:1;}
     .value-page{max-width:none;}
     .value-page h2.section{font-family:var(--font-head);font-size:clamp(26px,1.8vw,34px);font-weight:400;color:var(--text);margin:clamp(44px,4vw,64px) 0 8px;letter-spacing:-.01em;}
     .value-page h2.section .heading-anchor{opacity:0;margin-left:10px;font-family:var(--font-data);font-size:.62em;color:var(--telemetry);text-decoration:none;transition:opacity .15s;vertical-align:middle;}
@@ -93,6 +97,7 @@
       .value-page .chart-toolbar{align-items:flex-start;}
       .value-page .legend{width:100%;}
       .value-page .caveat{padding:14px 16px;font-size:14.5px;}
+      .value-header .runstamp{font-size:10px;line-height:1.55;letter-spacing:.025em;padding:5px 9px;}
     }
   </style>
 </head>
