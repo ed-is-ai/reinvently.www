@@ -5,21 +5,24 @@
    `digest` hashes every derived value and the model roster; the watch
    workflow recomputes it from the latest results to detect drift.
    Loaded as a plain script so the page still works from file://. */
-const EOM_META = {sourceRun:'20260901T221834Z', generated:'2026-09-01T22:25:38Z', digest:'sha256:cc39877255274d753cf0547ec997aec29b8c88bac4a6cef96b1ca3b1b594dbdb'};
+const EOM_META = {sourceRun:'20260912T185245Z', generated:'2026-09-12T19:18:02Z', digest:'sha256:5da3239762b8733b9a7d0b5e6ad237a694b34d5e7907daa40f99e1f8c31d4d44'};
 
 const MODELS = [
+  {id:'dsv41flash', name:'deepseek-v4.1-flash', hex:'#7B61FF', panel:true, added:'2026-09-12', addedOrder:20, tested:'2026-09-12', pass:100, lo:88, hi:100, rubric:8.8, rNote:6, cost:0.092, ttft:22.0, costTask:0.0033, sec:100, secTxt:'100%'},
   {id:'glm53', name:'glm-5.3', hex:'#2A9563', panel:true, added:'2026-08-23', addedOrder:14, tested:'2026-08-22', pass:100, lo:88, hi:100, rubric:9.3, cost:0.28, ttft:16.3, costTask:0.0101, sec:100, secTxt:'100%'},
   {id:'glm53flash', name:'glm-5.3-flash', hex:'#58C98A', panel:true, added:'2026-08-31', addedOrder:18, tested:'2026-08-29', pass:99, lo:94, hi:100, rubric:9.2, cost:0.031, ttft:2.6, costTask:0.0004, sec:100, secTxt:'100%'},
   {id:'dsv4pro', name:'deepseek-v4-pro', hex:'#4D6BFE', panel:true, added:'2026-08-23', addedOrder:16, tested:'2026-08-22', pass:96, lo:82, hi:99, rubric:8.7, cost:0.081, ttft:40.0, costTask:0.0029, sec:83, secTxt:'83%'},
   {id:'fable51', name:'fable-5-1', hex:'#6E92F0', panel:true, added:'2026-09-01', addedOrder:19, tested:'2026-09-01', pass:96, lo:82, hi:99, rubric:9.5, rNote:5, cost:2.68, ttft:7.3, costTask:0.0991, cNote:4, sec:100, secTxt:'100%'},
   {id:'gemini', name:'gemini-3.6-flash', hex:'#4285F4', panel:true, added:'2026-07-28', addedOrder:12, tested:'2026-07-28', pass:96, lo:82, hi:99, rubric:8.8, cost:0.48, ttft:6.6, costTask:0.017, sec:83, secTxt:'83%'},
   {id:'gpt55', name:'gpt-5.5', hex:'#C0392B', panel:true, added:'2026-07-03', addedOrder:2, tested:'2026-07-14', pass:96, lo:82, hi:99, pNote:[3], rubric:8.7, cost:1.43, ttft:13.2, costTask:0.051, sec:100, secTxt:'100%'},
+  {id:'gpt6astra', name:'gpt-6-astra', hex:'#F28E2B', panel:true, added:'2026-09-12', addedOrder:22, tested:'2026-09-12', pass:96, lo:82, hi:99, rubric:8.6, rNote:6, cost:1.54, ttft:11.4, costTask:0.055, sec:83, secTxt:'83%'},
   {id:'grok', name:'grok-4.5', hex:'#00C2C7', panel:true, added:'2026-07-28', addedOrder:13, tested:'2026-07-28', pass:96, lo:82, hi:99, rubric:7.7, cost:0.17, ttft:4.6, costTask:0.006, sec:100, secTxt:'100%'},
   {id:'grok46', name:'grok-4.6', hex:'#00A8AC', panel:true, added:'2026-08-23', addedOrder:15, tested:'2026-08-22', pass:96, lo:82, hi:99, rubric:8.8, cost:0.34, ttft:14.6, costTask:0.012, sec:83, secTxt:'83%'},
   {id:'haiku', name:'haiku-4-5', hex:'#7FA8E8', panel:false, added:'2026-07-03', addedOrder:6, tested:'2026-07-14', pass:96, lo:82, hi:99, rubric:7.4, rNote:1, cost:0.12, ttft:0.9, costTask:0.0044, sec:100, secTxt:'100%'},
   {id:'kimi', name:'kimi-k3', hex:'#6B4FA0', panel:false, added:'2026-07-17', addedOrder:10, tested:'2026-07-17', pass:96, lo:82, hi:99, rubric:9.5, cost:0.93, ttft:26.4, costTask:0.0331, sec:100, secTxt:'100%'},
   {id:'s46', name:'sonnet-4-6', hex:'#123A8C', panel:false, added:'2026-07-03', addedOrder:5, tested:'2026-07-14', pass:96, lo:82, hi:99, rubric:8.9, rNote:1, cost:1.84, ttft:7.5, costTask:0.0658, sec:100, secTxt:'100%'},
   {id:'gemini37', name:'gemini-3.7-flash', hex:'#5B9BF5', panel:true, added:'2026-08-23', addedOrder:17, tested:'2026-08-22', pass:93, lo:77, hi:98, rubric:8.8, cost:0.11, ttft:9.7, costTask:0.0038, sec:100, secTxt:'100%'},
+  {id:'gemini38', name:'gemini-3.8-flash', hex:'#F2C14E', panel:true, added:'2026-09-12', addedOrder:21, tested:'2026-09-12', pass:93, lo:77, hi:98, rubric:8.9, rNote:6, cost:0.27, ttft:9.3, costTask:0.0097, sec:100, secTxt:'100%'},
   {id:'s5', name:'sonnet-5', hex:'#4A78D0', panel:false, added:'2026-07-03', addedOrder:4, tested:'2026-07-14', pass:93, lo:77, hi:98, pNote:[3], rubric:8.8, rNote:1, cost:0.33, ttft:1.8, costTask:0.0118, sec:100, secTxt:'100%'},
   {id:'glm52', name:'glm-5.2', hex:'#2E7D57', panel:true, added:'2026-07-03', addedOrder:3, tested:'2026-07-14', pass:89, lo:73, hi:96, rubric:8.6, cost:0.18, ttft:13.1, costTask:0.0065, sec:67, secTxt:'67%'},
   {id:'sol', name:'gpt-5.6-sol', hex:'#C85A50', panel:true, added:'2026-07-12', addedOrder:9, tested:'2026-08-02', pass:86, lo:69, hi:94, rubric:8.8, rNote:1, cost:1.45, ttft:6.8, costTask:0.0517, sec:50, secTxt:'50%'},
@@ -49,4 +52,7 @@ const CATS = [
   {name:'gemini-3.7-flash', ref:false, cv:100, dv:100, rv:78, sv:100, tv:100},
   {name:'glm-5.3-flash', ref:false, cv:100, dv:100, rv:96, sv:100, tv:100},
   {name:'fable-5-1', ref:false, cv:86, dv:100, rv:100, sv:100, tv:100},
+  {name:'deepseek-v4.1-flash', ref:false, cv:100, dv:100, rv:100, sv:100, tv:100},
+  {name:'gemini-3.8-flash', ref:false, cv:100, dv:100, rv:78, sv:100, tv:100},
+  {name:'gpt-6-astra', ref:false, cv:100, dv:100, rv:100, sv:83, tv:100},
 ];
