@@ -113,6 +113,7 @@
      The benchmark remains the primary destination, while these explicit
      lenses help readers get to the evidence that matches their question. */
   .eom .start-here{margin:clamp(30px,3vw,46px) 0 clamp(42px,4vw,64px);padding:22px;border:1px solid #29475a;border-radius:10px;background:linear-gradient(125deg,var(--telemetry-tint),transparent 58%),var(--bg2);}
+  .eom-header .start-here{margin:clamp(28px,3vw,42px) 0 0;}
   .eom .start-here h2.section{margin:0 0 8px;font-size:clamp(24px,1.8vw,32px);}
   .eom .start-here .section-note{max-width:760px;margin-bottom:18px;}
   .eom .path-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;}
@@ -127,13 +128,13 @@
   .eom .path-link{margin-top:auto;padding-top:14px;font-family:var(--font-nav);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--telemetry);}
   .eom .path-card.primary .path-link{color:var(--podium);}
 
-  .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
-  .eom-header ul.verdict{list-style:none;}
-  .eom-header .verdict li,.eom-header .verdict p{margin:0 0 9px;}
-  .eom-header .verdict li:last-child,.eom-header .verdict p:last-child{margin-bottom:0;}
-  .eom-header .verdict strong{color:var(--text);font-weight:650;}
-  .eom-header .verdict a{color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
-  .eom-header .verdict a:hover{border-color:var(--telemetry);opacity:1;}
+  .eom .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 28px;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
+  .eom ul.verdict{list-style:none;}
+  .eom .verdict li,.eom .verdict p{margin:0 0 9px;}
+  .eom .verdict li:last-child,.eom .verdict p:last-child{margin-bottom:0;}
+  .eom .verdict strong{color:var(--text);font-weight:650;}
+  .eom .verdict a{color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
+  .eom .verdict a:hover{border-color:var(--telemetry);opacity:1;}
   .eom .fold{margin:18px 0 0;border-top:1px solid var(--hairline);padding-top:12px;}
   .eom .fold>summary{cursor:pointer;font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);}
   .eom .fold>summary:hover{color:var(--telemetry);}
@@ -286,6 +287,7 @@
     .eom .method-intro{font-size:14px;line-height:1.6;}
     .eom .change-log li{grid-template-columns:1fr;gap:5px;}
     .eom .start-here{padding:16px;margin-top:28px;}
+    .eom-header .start-here{margin-top:24px;margin-bottom:0;}
     .eom .path-grid{grid-template-columns:1fr;gap:9px;}
     .eom .path-card{min-height:0;padding:14px;}
     .eom .path-link{padding-top:11px;}
@@ -327,16 +329,38 @@
   </div>
 </nav>
 
-<header class="article-header eom-header">
+<header class="article-header eom-header eom">
   <div class="post-meta">Updated 12 September 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">The Ed-o-meter evaluates LLMs on the most important metrics for everyday use, using a bank of mundane everyday tasks. The eval is a mixture of deterministic checks and LLM-as-a-judge scoring for rubric quality.</p>
 
-  <div class="verdict">
-    <p>Most leaderboards rank raw intelligence. This one asks a blunter question — and right now the answer is <strong>glm-5.3</strong>: no weak spot in any of the five task categories, a top-three rubric, and $0.28 for the lap. It is open-weights and readily available.<br><a href="#verdict">The full picks and the caveats &#8594;</a></p>
-    <p>Check with your compliance team before you take on a new provider.</p>
-  </div>
   <p class="runstamp">22 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260912T185245Z</code> &nbsp;·&nbsp; <a href="/tools/ed-o-meter/value/">Value Frontier</a> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
+
+  <section class="start-here" aria-labelledby="start-here-title">
+    <p class="value-kicker">Start here</p>
+    <h2 class="section" id="start-here-title">Choose the question you need answered</h2>
+    <p class="section-note">The full benchmark asks the original question: can you find one model to rule them all? But choose the lens below that fits the decision you want to make.</p>
+    <div class="path-grid">
+      <a class="path-card primary" href="#verdict">
+        <span class="path-kicker">One model to rule them all</span>
+        <h3>Choose one default model</h3>
+        <p>Compare the complete 28-task lap and find the model with no weak spot across your everyday agent work.</p>
+        <span class="path-link">Read the full benchmark &#8594;</span>
+      </a>
+      <a class="path-card" href="/tools/ed-o-meter/value/">
+        <span class="path-kicker">The Value Frontier</span>
+        <h3>Find the best trade-off</h3>
+        <p>See rubric quality against cost per task and follow the efficient models on the Value Frontier.</p>
+        <span class="path-link">Pick based on quality versus cost &#8594;</span>
+      </a>
+      <a class="path-card" href="/tools/ed-o-meter/tests/">
+        <span class="path-kicker">Deep dive into the evidence</span>
+        <h3>Inspect every task</h3>
+        <p>Read the actual model responses, compare two models directly, or adapt Featherbench to your workload.</p>
+        <span class="path-link">See task-level evidence &#8594;</span>
+      </a>
+    </div>
+  </section>
 </header>
 
 <main class="container">
@@ -344,31 +368,10 @@
 
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
-    <section class="start-here" aria-labelledby="start-here-title">
-      <p class="value-kicker">Start here</p>
-      <h2 class="section" id="start-here-title">Choose the question you need answered</h2>
-      <p class="section-note">The full benchmark asks the original question: can you find one model to rule them all? But choose the lens below that fits the decision you want to make.</p>
-      <div class="path-grid">
-        <a class="path-card primary" href="#verdict">
-          <span class="path-kicker">One model to rule them all</span>
-          <h3>Choose one default model</h3>
-          <p>Compare the complete 28-task lap and find the model with no weak spot across your everyday agent work.</p>
-          <span class="path-link">Read the full benchmark &#8594;</span>
-        </a>
-        <a class="path-card" href="/tools/ed-o-meter/value/">
-          <span class="path-kicker">The Value Frontier</span>
-          <h3>Find the best trade-off</h3>
-          <p>See rubric quality against cost per task and follow the efficient models on the Value Frontier.</p>
-          <span class="path-link">Pick based on quality versus cost &#8594;</span>
-        </a>
-        <a class="path-card" href="/tools/ed-o-meter/tests/">
-          <span class="path-kicker">Deep dive into the evidence</span>
-          <h3>Inspect every task</h3>
-          <p>Read the actual model responses, compare two models directly, or adapt Featherbench to your workload.</p>
-          <span class="path-link">See task-level evidence &#8594;</span>
-        </a>
-      </div>
-    </section>
+    <div class="verdict">
+      <p>Most leaderboards rank raw intelligence. This one asks a blunter question — and right now the answer is <strong>glm-5.3</strong>: no weak spot in any of the five task categories, a top-three rubric, and $0.28 for the lap. It is open-weights and readily available.<br><a href="#verdict">The full picks and the caveats &#8594;</a></p>
+      <p>Check with your compliance team before you take on a new provider.</p>
+    </div>
 
     <h2 class="section" style="margin-top:0">How Does It Work?</h2>
     <p class="section-note">Disclaimer: if you want a universal intelligence ranking, read <a href="https://artificialanalysis.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Artificial Analysis</a> or <a href="https://lmarena.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">LMArena</a>. For software engineer workloads, <a href="https://deepswe.datacurve.ai" style="color:rgb(150,150,150);border-bottom:1px solid #444;">DeepSWE</a> is the definitive benchmark.</p>
