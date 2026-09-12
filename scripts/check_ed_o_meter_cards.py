@@ -24,6 +24,12 @@ CARDS = {
     ),
 }
 
+ENTRY_LENSES = {
+    "Choose the question you need answered": "entry heading",
+    "href=\"/tools/ed-o-meter/value/\"": "Value Frontier route",
+    "href=\"/tools/ed-o-meter/tests/\"": "task evidence route",
+}
+
 
 ONES = ("zero", "one", "two", "three", "four", "five", "six", "seven",
         "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
@@ -60,6 +66,11 @@ def main() -> int:
     expected_discovery = "value frontier"
     errors: list[str] = []
 
+    benchmark = (ROOT / "tools" / "ed-o-meter" / "index.html").read_text(encoding="utf-8")
+    for needle, label in ENTRY_LENSES.items():
+        if needle not in benchmark:
+            errors.append(f"tools/ed-o-meter/index.html: missing {label}")
+
     for relative, pattern in CARDS.items():
         path = ROOT / relative
         text = path.read_text(encoding="utf-8")
@@ -79,7 +90,7 @@ def main() -> int:
         print("Ed-o-meter card drift detected:", file=sys.stderr)
         print("\n".join(f"- {error}" for error in errors), file=sys.stderr)
         return 1
-    print(f"Ed-o-meter cards match {expected_counts[0]}, {stamp}, and Value Frontier discovery copy.")
+    print(f"Ed-o-meter cards and entry lenses match {expected_counts[0]}, {stamp}, and Value Frontier discovery copy.")
     return 0
 
 
