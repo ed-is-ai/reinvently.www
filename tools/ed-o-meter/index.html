@@ -108,10 +108,11 @@
   .eom .row-tag{font-family:var(--font-nav);letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
   .eom .grid-label{font-family:var(--font-data);fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
-  .eom .value-teaser{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:24px 0 8px;padding:16px 18px;border:1px solid #29475a;border-radius:10px;background:linear-gradient(110deg,var(--telemetry-tint),transparent 58%),var(--bg2);}
+  .eom .value-teaser{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 10px;padding:20px 22px;border:1px solid var(--podium);border-radius:10px;background:linear-gradient(110deg,var(--podium-tint),var(--telemetry-tint) 48%,var(--bg2));box-shadow:0 0 24px rgba(247,201,72,.09);}
+  .eom .value-kicker{font-family:var(--font-nav);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--podium);margin:0 0 7px;}
   .eom .value-teaser h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin:0 0 4px;}
   .eom .value-teaser p{font-size:14px;line-height:1.5;color:var(--text-muted);margin:0;}
-  .eom .value-teaser a{flex:0 0 auto;font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--telemetry);white-space:nowrap;}
+  .eom .value-teaser a{flex:0 0 auto;font-family:var(--font-nav);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--podium);white-space:nowrap;border-bottom:1px solid rgba(247,201,72,.45);}
   .eom .value-teaser a:hover{color:var(--text);}
 
   .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
@@ -321,7 +322,7 @@
     <p>Most leaderboards rank raw intelligence. This one asks a blunter question — and right now the answer is <strong>glm-5.3</strong>: no weak spot in any of the five task categories, a top-three rubric, and $0.28 for the lap. It is open-weights and readily available. <a href="#verdict">The full picks and the caveats &#8594;</a></p>
     <p>Check with your compliance team before you take on a new provider.</p>
   </div>
-  <p class="runstamp">22 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260912T185245Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
+  <p class="runstamp">22 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260912T185245Z</code> &nbsp;·&nbsp; <a href="/tools/ed-o-meter/value/">Value Frontier</a> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
 <main class="container">
@@ -330,7 +331,7 @@
     <a class="back-link" href="/blog/">&#8592; All posts</a>
 
     <h2 class="section" style="margin-top:0">How Does It Work?</h2>
-    <p class="section-note">Disclaimer: if you want a universal intelligence ranking, read <a href="https://artificialanalysis.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Artificial Analysis</a> or <a href="https://lmarena.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">LMArena</a>.</p>
+    <p class="section-note">Disclaimer: if you want a universal intelligence ranking, read <a href="https://artificialanalysis.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Artificial Analysis</a> or <a href="https://lmarena.ai/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">LMArena</a>. <a href="https://deepswe.datacurve.ai" style="color:rgb(150,150,150);border-bottom:1px solid #444;">DeepSWE</a> is the definitive software engineering benchmark.</p>
     <p class="section-note">The <a href="https://github.com/ed-is-ai/featherbench" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Featherbench</a> question is more pragmatic: is a single model good enough to handle a full lap of everyday work — securely, quickly and cost-effectively? To answer that, we run the latest models through the same 28 fixed tasks covering coding, data extraction, everyday requests, tool use, and prompt-injection and jailbreak resistance. A model passes a task only when a deterministic checker confirms it produced a usable result.</p>
     <p class="section-note">The tasks are deliberately simple and limited in range, drawn from the day-to-day work our founder, Ed, actually performs. That is what lets you reproduce the whole benchmark, or run a tailored version on your own tasks, with an OpenRouter account and about $30. The value is in re-running it against a new model within minutes of its announcement.</p>
     <p class="section-note">Let's face it: you all have your favourite vibe tests you run every time a new model is announced — <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Simon Willison asks each one for an SVG of a pelican riding a bicycle</a>. This is the same idea, with more rigour and a wider net.</p>
@@ -354,10 +355,11 @@
 
     <aside class="value-teaser" aria-labelledby="value-teaser-title">
       <div>
+        <p class="value-kicker">Value Frontier</p>
         <h3 id="value-teaser-title">Which model gives you the most for your budget?</h3>
-        <p>Explore rubric quality against cost per task on the quality-versus-cost frontier.</p>
+        <p>See rubric quality against cost per task, with the efficient trade-offs highlighted on the quality-versus-cost frontier.</p>
       </div>
-      <a href="/tools/ed-o-meter/value/">Explore the value frontier &#8594;</a>
+      <a href="/tools/ed-o-meter/value/">Open the Value Frontier &#8594;</a>
     </aside>
 
     <p class="section-note">Summary of results: click a column to sort by your chosen metric. The table is also available without JavaScript.</p>
