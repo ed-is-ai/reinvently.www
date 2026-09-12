@@ -57,6 +57,7 @@ def main() -> int:
     count, stamp = current_metadata()
     expected_counts = (f"{count} models", f"{number_words(count).capitalize()} models")
     expected_date = f"Updated {stamp}"
+    expected_discovery = "value frontier"
     errors: list[str] = []
 
     for relative, pattern in CARDS.items():
@@ -71,12 +72,14 @@ def main() -> int:
             errors.append(f"{relative}: missing current model count ({' or '.join(expected_counts)})")
         if expected_date not in card:
             errors.append(f"{relative}: missing current update date ({expected_date})")
+        if expected_discovery not in card.lower():
+            errors.append(f"{relative}: missing Value Frontier discovery copy")
 
     if errors:
         print("Ed-o-meter card drift detected:", file=sys.stderr)
         print("\n".join(f"- {error}" for error in errors), file=sys.stderr)
         return 1
-    print(f"Ed-o-meter cards match {expected_counts[0]} and {stamp}.")
+    print(f"Ed-o-meter cards match {expected_counts[0]}, {stamp}, and Value Frontier discovery copy.")
     return 0
 
 
