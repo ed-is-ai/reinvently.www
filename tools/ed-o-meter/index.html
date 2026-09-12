@@ -108,12 +108,12 @@
   .eom .row-tag{font-family:var(--font-nav);letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
   .eom .grid-label{font-family:var(--font-data);fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
-  .eom .value-teaser{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 10px;padding:20px 22px;border:1px solid var(--podium);border-radius:10px;background:linear-gradient(110deg,var(--podium-tint),var(--telemetry-tint) 48%,var(--bg2));box-shadow:0 0 24px rgba(247,201,72,.09);}
-  .eom .value-kicker{font-family:var(--font-nav);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--podium);margin:0 0 7px;}
-  .eom .value-teaser h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin:0 0 4px;}
-  .eom .value-teaser p{font-size:14px;line-height:1.5;color:var(--text-muted);margin:0;}
-  .eom .value-teaser a{flex:0 0 auto;font-family:var(--font-nav);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--podium);white-space:nowrap;border-bottom:1px solid rgba(247,201,72,.45);}
-  .eom .value-teaser a:hover{color:var(--text);}
+  .eom .value-teaser{margin:clamp(44px,4vw,64px) 0 8px;padding-top:18px;border-top:1px solid var(--hairline);}
+  .eom .value-kicker{font-family:var(--font-nav);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin:0 0 7px;}
+  .eom .value-teaser h2.section{margin:0 0 8px;font-size:clamp(24px,1.8vw,32px);}
+  .eom .value-teaser p{font-size:clamp(14.5px,1vw,17px);line-height:1.62;color:var(--text-muted);margin:0 0 18px;}
+  .eom .value-teaser a{font-family:var(--font-nav);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--telemetry);border-bottom:1px solid rgba(94,214,255,.35);}
+  .eom .value-teaser a:hover{color:var(--text);border-color:var(--telemetry);}
 
   /* ---------- entry paths ----------
      The benchmark remains the primary destination, while these explicit
@@ -291,8 +291,7 @@
     .eom .method{margin-left:20px;font-size:14px;}
     .eom .method-intro{font-size:14px;line-height:1.6;}
     .eom .change-log li{grid-template-columns:1fr;gap:5px;}
-    .eom .value-teaser{display:block;}
-    .eom .value-teaser a{display:inline-block;margin-top:11px;}
+    .eom .value-teaser{padding-top:16px;}
     .eom .start-here{padding:16px;margin-top:28px;}
     .eom .path-grid{grid-template-columns:1fr;gap:9px;}
     .eom .path-card{min-height:0;padding:14px;}
@@ -401,14 +400,12 @@
       The overall score is the pass rate across my 28 realworld tasks. As we only had a limited number of trials there is a wide Wilson interval — the whiskers on the chart.
     </div>
 
-    <aside class="value-teaser" aria-labelledby="value-teaser-title">
-      <div>
-        <p class="value-kicker">Value Frontier</p>
-        <h3 id="value-teaser-title">Which model gives you the most for your budget?</h3>
-        <p>See rubric quality against cost per task, with the efficient trade-offs highlighted on the quality-versus-cost frontier.</p>
-      </div>
-      <a href="/tools/ed-o-meter/value/">Open the Value Frontier &#8594;</a>
-    </aside>
+    <section class="value-teaser" aria-labelledby="value-teaser-title">
+      <p class="value-kicker">Another decision lens</p>
+      <h2 class="section" id="value-teaser-title">Quality for the cost</h2>
+      <p>See rubric quality against cost per task, with the efficient trade-offs highlighted on the quality-versus-cost frontier.</p>
+      <a href="/tools/ed-o-meter/value/">Explore the Value Frontier &#8594;</a>
+    </section>
 
     <p class="section-note">Summary of results: click a column to sort by your chosen metric. The table is also available without JavaScript.</p>
     <p class="section-note"><a href="results.csv" download>Download results (CSV)</a> &nbsp;·&nbsp; <a href="results-20260912T185245Z.csv" download>Dated source-run snapshot (CSV)</a>. Pass rate and security are percentages; TTFT is seconds; costs are USD. Footnote references below remain part of each result.</p>
