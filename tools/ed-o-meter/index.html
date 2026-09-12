@@ -7,7 +7,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Complete LLM Leaderboard: The Ed-o-meter — Reinvently</title>
-<meta name="description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="description" content="Twenty-two models on the Featherbench leaderboard: glm-5.3 and deepseek-v4.1-flash lead at 100%, ten tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <link rel="stylesheet" href="../../blog/blog.css"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Y8T2WZJ7M"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3Y8T2WZJ7M');</script>
@@ -32,7 +32,7 @@
 </script>
 <link rel="canonical" href="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta property="og:description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta property="og:description" content="Twenty-two models on the Featherbench leaderboard: glm-5.3 and deepseek-v4.1-flash lead at 100%, ten tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://reinvently.co.uk/tools/ed-o-meter/"/>
 <meta property="og:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
@@ -41,22 +41,22 @@
 <meta property="og:locale" content="en_GB"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The Complete LLM Leaderboard: The Ed-o-meter"/>
-<meta name="twitter:description" content="Nineteen models on the Featherbench leaderboard: glm-5.3 leads at 100%, nine tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
+<meta name="twitter:description" content="Twenty-two models on the Featherbench leaderboard: glm-5.3 and deepseek-v4.1-flash lead at 100%, ten tie at 96%, and checker errors flip the safety ranking. See who tops the board."/>
 <meta name="twitter:image" content="https://reinvently.co.uk/images/hero-ed-o-meter-leaderboard.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "The Complete LLM Leaderboard: The Ed-o-meter",
-  "description": "Nineteen leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
+  "description": "Twenty-two leading models run through the same 28-task Featherbench evaluation — identical prompts, identical harness, deterministic grading. Pass rates, rubric quality, security results, latency and cost, updated as new source runs land.",
   "url": "https://reinvently.co.uk/tools/ed-o-meter/",
   "creator": {"@type": "Person", "name": "Ed Yau", "url": "https://uk.linkedin.com/in/edmond-yau", "jobTitle": "Applied AI Architect", "worksFor": {"@type": "Organization", "name": "Kerv", "url": "https://kerv.com"}},
   "publisher": {"@type": "Organization", "name": "Reinvently", "url": "https://reinvently.co.uk"},
   "datePublished": "2026-07-14",
-  "dateModified": "2026-09-01",
+  "dateModified": "2026-09-12",
   "inLanguage": "en-GB",
   "license": "https://github.com/ed-is-ai/featherbench/blob/main/LICENSE",
-  "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "GLM-5.3", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "Kimi K3", "model refusal rate"]
+  "keywords": ["LLM leaderboard", "Featherbench", "model evaluation", "GLM-5.2", "GLM-5.3", "Claude Fable 5", "Claude Opus 5", "Gemini 3.6 Flash", "Gemini 3.8 Flash", "DeepSeek V4.1 Flash", "Grok 4.5", "GPT-5.5", "GPT-5.6", "GPT-6 Astra", "Kimi K3", "model refusal rate"]
 }
 </script>
 <style>
@@ -108,6 +108,11 @@
   .eom .row-tag{font-family:var(--font-nav);letter-spacing:.5px;text-transform:uppercase;fill:var(--amber);}
   .eom .grid-label{font-family:var(--font-data);fill:var(--text-muted);font-variant-numeric:tabular-nums;}
   .eom .axis-note{font-size:13px;color:var(--text-muted);margin-top:10px;font-family:var(--font-data);}
+  .eom .value-teaser{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:24px 0 8px;padding:16px 18px;border:1px solid #29475a;border-radius:10px;background:linear-gradient(110deg,var(--telemetry-tint),transparent 58%),var(--bg2);}
+  .eom .value-teaser h3{font-family:var(--font-head);font-size:clamp(18px,1.3vw,22px);font-weight:400;color:var(--text);margin:0 0 4px;}
+  .eom .value-teaser p{font-size:14px;line-height:1.5;color:var(--text-muted);margin:0;}
+  .eom .value-teaser a{flex:0 0 auto;font-family:var(--font-nav);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--telemetry);white-space:nowrap;}
+  .eom .value-teaser a:hover{color:var(--text);}
 
   .eom-header .verdict{max-width:none;font-size:clamp(16px,1.05vw,19px);line-height:1.6;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--podium);background:var(--podium-tint);border-radius:0 8px 8px 0;color:var(--text-dim);text-wrap:pretty;}
   .eom-header ul.verdict{list-style:none;}
@@ -267,6 +272,8 @@
     .eom .method{margin-left:20px;font-size:14px;}
     .eom .method-intro{font-size:14px;line-height:1.6;}
     .eom .change-log li{grid-template-columns:1fr;gap:5px;}
+    .eom .value-teaser{display:block;}
+    .eom .value-teaser a{display:inline-block;margin-top:11px;}
 
     /* chart: fit the plot to the screen so the data dots are not scrolled off */
     .eom svg#telemetry{min-width:0;}
@@ -306,7 +313,7 @@
 </nav>
 
 <header class="article-header eom-header">
-  <div class="post-meta">Updated 1 September 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
+  <div class="post-meta">Updated 12 September 2026 &nbsp;·&nbsp; Model Evaluation &nbsp;&middot;&nbsp; <a href="https://uk.linkedin.com/in/edmond-yau" style="color:rgb(150,150,150);border-bottom:1px solid #444;">Ed Yau</a>, Applied AI Architect, Kerv</div>
   <h1>The Ed-o-meter</h1>
   <p class="summary">The Ed-o-meter looks for one model good enough to run behind your whole agent stack: standardise on it and you get one setup to maintain and a predictable bill. Every model laps the same 28 everyday tasks, and a deterministic checker — not a judge — calls each pass. Different driver, same track; the LLM is the star.</p>
 
@@ -314,7 +321,7 @@
     <p>Most leaderboards rank raw intelligence. This one asks a blunter question — and right now the answer is <strong>glm-5.3</strong>: no weak spot in any of the five task categories, a top-three rubric, and $0.28 for the lap. It is open-weights and readily available. <a href="#verdict">The full picks and the caveats &#8594;</a></p>
     <p>Check with your compliance team before you take on a new provider.</p>
   </div>
-  <p class="runstamp">19 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260901T221834Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
+  <p class="runstamp">22 models &nbsp;·&nbsp; <a href="#tasks">28 tasks</a> &nbsp;·&nbsp; single trial &nbsp;·&nbsp; latest source run <code>20260912T185245Z</code> &nbsp;·&nbsp; <a href="#change-log">Change log</a></p>
 </header>
 
 <main class="container">
@@ -345,8 +352,16 @@
       The overall score is the pass rate across my 28 realworld tasks. As we only had a limited number of trials there is a wide Wilson interval — the whiskers on the chart.
     </div>
 
+    <aside class="value-teaser" aria-labelledby="value-teaser-title">
+      <div>
+        <h3 id="value-teaser-title">Which model gives you the most for your budget?</h3>
+        <p>Explore rubric quality against cost per task on the quality-versus-cost frontier.</p>
+      </div>
+      <a href="/tools/ed-o-meter/value/">Explore the value frontier &#8594;</a>
+    </aside>
+
     <p class="section-note">Summary of results: click a column to sort by your chosen metric. The table is also available without JavaScript.</p>
-    <p class="section-note"><a href="results.csv" download>Download results (CSV)</a> &nbsp;·&nbsp; <a href="results-20260901T221834Z.csv" download>Dated source-run snapshot (CSV)</a>. Pass rate and security are percentages; TTFT is seconds; costs are USD. Footnote references below remain part of each result.</p>
+    <p class="section-note"><a href="results.csv" download>Download results (CSV)</a> &nbsp;·&nbsp; <a href="results-20260912T185245Z.csv" download>Dated source-run snapshot (CSV)</a>. Pass rate and security are percentages; TTFT is seconds; costs are USD. Footnote references below remain part of each result.</p>
     <p class="section-note">Cite: Yau, E., <cite>The Ed-o-meter</cite>, Reinvently. Include the source run in the downloaded file, the access date and <a href="#scoring-title">scoring limitations</a>. <a href="/research-standards/#reuse">Reuse and attribution</a>.</p>
 
     <div class="table-scroll">
@@ -364,37 +379,41 @@
           </tr>
         </thead>
         <tbody id="boardBody">
-<tr><td class="rank">1</td><td class="model"><span class="swatch" style="background:#2A9563"></span>glm-5.3</td><td class="num">100% [88&#8211;100]</td><td class="num">9.3</td><td class="num sec-good">100%</td><td class="num">16.3 s</td><td class="num">$0.28</td><td class="num">$0.0101</td></tr>
-<tr><td class="rank">2</td><td class="model"><span class="swatch" style="background:#58C98A"></span>glm-5.3-flash</td><td class="num">99% [94&#8211;100]</td><td class="num">9.2</td><td class="num sec-good">100%</td><td class="num">2.6 s</td><td class="num">$0.031</td><td class="num">$0.0004</td></tr>
-<tr><td class="rank">3</td><td class="model"><span class="swatch" style="background:#4D6BFE"></span>deepseek-v4-pro</td><td class="num">96% [82&#8211;99]</td><td class="num">8.7</td><td class="num ">83%</td><td class="num">40.0 s</td><td class="num">$0.081</td><td class="num">$0.0029</td></tr>
-<tr><td class="rank">4</td><td class="model"><span class="swatch" style="background:#6E92F0"></span>fable-5-1</td><td class="num">96% [82&#8211;99]</td><td class="num">9.5<sup>5</sup></td><td class="num sec-good">100%</td><td class="num">7.3 s</td><td class="num">$2.68</td><td class="num">$0.0991<sup>4</sup></td></tr>
-<tr><td class="rank">5</td><td class="model"><span class="swatch" style="background:#4285F4"></span>gemini-3.6-flash</td><td class="num">96% [82&#8211;99]</td><td class="num">8.8</td><td class="num ">83%</td><td class="num">6.6 s</td><td class="num">$0.48</td><td class="num">$0.0170</td></tr>
-<tr><td class="rank">6</td><td class="model"><span class="swatch" style="background:#C0392B"></span>gpt-5.5</td><td class="num">96% [82&#8211;99]<sup>3</sup></td><td class="num">8.7</td><td class="num sec-good">100%</td><td class="num">13.2 s</td><td class="num">$1.43</td><td class="num">$0.0510</td></tr>
-<tr><td class="rank">7</td><td class="model"><span class="swatch" style="background:#00C2C7"></span>grok-4.5</td><td class="num">96% [82&#8211;99]</td><td class="num">7.7</td><td class="num sec-good">100%</td><td class="num">4.6 s</td><td class="num">$0.17</td><td class="num">$0.0060</td></tr>
-<tr><td class="rank">8</td><td class="model"><span class="swatch" style="background:#00A8AC"></span>grok-4.6</td><td class="num">96% [82&#8211;99]</td><td class="num">8.8</td><td class="num ">83%</td><td class="num">14.6 s</td><td class="num">$0.34</td><td class="num">$0.0120</td></tr>
-<tr><td class="rank">9</td><td class="model"><span class="swatch" style="background:#7FA8E8"></span>haiku-4-5</td><td class="num">96% [82&#8211;99]</td><td class="num">7.4<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">0.9 s</td><td class="num">$0.12</td><td class="num">$0.0044</td></tr>
-<tr><td class="rank">10</td><td class="model"><span class="swatch" style="background:#6B4FA0"></span>kimi-k3</td><td class="num">96% [82&#8211;99]</td><td class="num">9.5</td><td class="num sec-good">100%</td><td class="num">26.4 s</td><td class="num">$0.93</td><td class="num">$0.0331</td></tr>
-<tr><td class="rank">11</td><td class="model"><span class="swatch" style="background:#123A8C"></span>sonnet-4-6</td><td class="num">96% [82&#8211;99]</td><td class="num">8.9<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">7.5 s</td><td class="num">$1.84</td><td class="num">$0.0658</td></tr>
-<tr><td class="rank">12</td><td class="model"><span class="swatch" style="background:#5B9BF5"></span>gemini-3.7-flash</td><td class="num">93% [77&#8211;98]</td><td class="num">8.8</td><td class="num sec-good">100%</td><td class="num">9.7 s</td><td class="num">$0.11</td><td class="num">$0.0038</td></tr>
-<tr><td class="rank">13</td><td class="model"><span class="swatch" style="background:#4A78D0"></span>sonnet-5</td><td class="num">93% [77&#8211;98]<sup>3</sup></td><td class="num">8.8<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">1.8 s</td><td class="num">$0.33</td><td class="num">$0.0118</td></tr>
-<tr><td class="rank">14</td><td class="model"><span class="swatch" style="background:#2E7D57"></span>glm-5.2</td><td class="num">89% [73&#8211;96]</td><td class="num">8.6</td><td class="num ">67%</td><td class="num">13.1 s</td><td class="num">$0.18</td><td class="num">$0.0065</td></tr>
-<tr><td class="rank">15</td><td class="model"><span class="swatch" style="background:#C85A50"></span>gpt-5.6-sol</td><td class="num">86% [69&#8211;94]</td><td class="num">8.8<sup>1</sup></td><td class="num sec-bad">50%</td><td class="num">6.8 s</td><td class="num">$1.45</td><td class="num">$0.0517</td></tr>
-<tr><td class="rank">16</td><td class="model"><span class="swatch" style="background:#A03A5E"></span>gpt-5.6-terra</td><td class="num">86% [69&#8211;94]</td><td class="num">8.7<sup>1</sup></td><td class="num sec-bad">33%</td><td class="num">4.8 s</td><td class="num">$0.24</td><td class="num">$0.0087</td></tr>
-<tr><td class="rank">17</td><td class="model"><span class="swatch" style="background:#D97757"></span>opus-5</td><td class="num">86% [69&#8211;94]</td><td class="num">9.4</td><td class="num sec-good">100%</td><td class="num">8.3 s</td><td class="num">$1.67</td><td class="num">$0.0696<sup>4</sup></td></tr>
-<tr><td class="rank">18</td><td class="model"><span class="swatch" style="background:#2456E6"></span>fable-5</td><td class="num">79% [60&#8211;90]<sup>3</sup></td><td class="num">9.3<sup>2</sup></td><td class="num sec-good">100%</td><td class="num">7.9 s</td><td class="num">$1.35</td><td class="num">$0.0748<sup>4</sup></td></tr>
-<tr><td class="rank">19</td><td class="model"><span class="swatch" style="background:#D9748A"></span>gpt-5.6-luna</td><td class="num">79% [60&#8211;90]</td><td class="num">8.6<sup>1</sup></td><td class="num sec-bad">33%</td><td class="num">5.3 s</td><td class="num">$0.064</td><td class="num">$0.0023</td></tr>
+<tr><td class="rank">1</td><td class="model"><span class="swatch" style="background:#7B61FF"></span>deepseek-v4.1-flash</td><td class="num">100% [88&#8211;100]</td><td class="num">8.8<sup>6</sup></td><td class="num sec-good">100%</td><td class="num">22.0 s</td><td class="num">$0.092</td><td class="num">$0.0033</td></tr>
+<tr><td class="rank">2</td><td class="model"><span class="swatch" style="background:#2A9563"></span>glm-5.3</td><td class="num">100% [88&#8211;100]</td><td class="num">9.3</td><td class="num sec-good">100%</td><td class="num">16.3 s</td><td class="num">$0.28</td><td class="num">$0.0101</td></tr>
+<tr><td class="rank">3</td><td class="model"><span class="swatch" style="background:#58C98A"></span>glm-5.3-flash</td><td class="num">99% [94&#8211;100]</td><td class="num">9.2</td><td class="num sec-good">100%</td><td class="num">2.6 s</td><td class="num">$0.031</td><td class="num">$0.0004</td></tr>
+<tr><td class="rank">4</td><td class="model"><span class="swatch" style="background:#4D6BFE"></span>deepseek-v4-pro</td><td class="num">96% [82&#8211;99]</td><td class="num">8.7</td><td class="num ">83%</td><td class="num">40.0 s</td><td class="num">$0.081</td><td class="num">$0.0029</td></tr>
+<tr><td class="rank">5</td><td class="model"><span class="swatch" style="background:#6E92F0"></span>fable-5-1</td><td class="num">96% [82&#8211;99]</td><td class="num">9.5<sup>5</sup></td><td class="num sec-good">100%</td><td class="num">7.3 s</td><td class="num">$2.68</td><td class="num">$0.0991<sup>4</sup></td></tr>
+<tr><td class="rank">6</td><td class="model"><span class="swatch" style="background:#4285F4"></span>gemini-3.6-flash</td><td class="num">96% [82&#8211;99]</td><td class="num">8.8</td><td class="num ">83%</td><td class="num">6.6 s</td><td class="num">$0.48</td><td class="num">$0.0170</td></tr>
+<tr><td class="rank">7</td><td class="model"><span class="swatch" style="background:#C0392B"></span>gpt-5.5</td><td class="num">96% [82&#8211;99]<sup>3</sup></td><td class="num">8.7</td><td class="num sec-good">100%</td><td class="num">13.2 s</td><td class="num">$1.43</td><td class="num">$0.0510</td></tr>
+<tr><td class="rank">8</td><td class="model"><span class="swatch" style="background:#F28E2B"></span>gpt-6-astra</td><td class="num">96% [82&#8211;99]</td><td class="num">8.6<sup>6</sup></td><td class="num ">83%</td><td class="num">11.4 s</td><td class="num">$1.54</td><td class="num">$0.0550</td></tr>
+<tr><td class="rank">9</td><td class="model"><span class="swatch" style="background:#00C2C7"></span>grok-4.5</td><td class="num">96% [82&#8211;99]</td><td class="num">7.7</td><td class="num sec-good">100%</td><td class="num">4.6 s</td><td class="num">$0.17</td><td class="num">$0.0060</td></tr>
+<tr><td class="rank">10</td><td class="model"><span class="swatch" style="background:#00A8AC"></span>grok-4.6</td><td class="num">96% [82&#8211;99]</td><td class="num">8.8</td><td class="num ">83%</td><td class="num">14.6 s</td><td class="num">$0.34</td><td class="num">$0.0120</td></tr>
+<tr><td class="rank">11</td><td class="model"><span class="swatch" style="background:#7FA8E8"></span>haiku-4-5</td><td class="num">96% [82&#8211;99]</td><td class="num">7.4<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">0.9 s</td><td class="num">$0.12</td><td class="num">$0.0044</td></tr>
+<tr><td class="rank">12</td><td class="model"><span class="swatch" style="background:#6B4FA0"></span>kimi-k3</td><td class="num">96% [82&#8211;99]</td><td class="num">9.5</td><td class="num sec-good">100%</td><td class="num">26.4 s</td><td class="num">$0.93</td><td class="num">$0.0331</td></tr>
+<tr><td class="rank">13</td><td class="model"><span class="swatch" style="background:#123A8C"></span>sonnet-4-6</td><td class="num">96% [82&#8211;99]</td><td class="num">8.9<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">7.5 s</td><td class="num">$1.84</td><td class="num">$0.0658</td></tr>
+<tr><td class="rank">14</td><td class="model"><span class="swatch" style="background:#5B9BF5"></span>gemini-3.7-flash</td><td class="num">93% [77&#8211;98]</td><td class="num">8.8</td><td class="num sec-good">100%</td><td class="num">9.7 s</td><td class="num">$0.11</td><td class="num">$0.0038</td></tr>
+<tr><td class="rank">15</td><td class="model"><span class="swatch" style="background:#F2C14E"></span>gemini-3.8-flash</td><td class="num">93% [77&#8211;98]</td><td class="num">8.9<sup>6</sup></td><td class="num sec-good">100%</td><td class="num">9.3 s</td><td class="num">$0.27</td><td class="num">$0.0097</td></tr>
+<tr><td class="rank">16</td><td class="model"><span class="swatch" style="background:#4A78D0"></span>sonnet-5</td><td class="num">93% [77&#8211;98]<sup>3</sup></td><td class="num">8.8<sup>1</sup></td><td class="num sec-good">100%</td><td class="num">1.8 s</td><td class="num">$0.33</td><td class="num">$0.0118</td></tr>
+<tr><td class="rank">17</td><td class="model"><span class="swatch" style="background:#2E7D57"></span>glm-5.2</td><td class="num">89% [73&#8211;96]</td><td class="num">8.6</td><td class="num ">67%</td><td class="num">13.1 s</td><td class="num">$0.18</td><td class="num">$0.0065</td></tr>
+<tr><td class="rank">18</td><td class="model"><span class="swatch" style="background:#C85A50"></span>gpt-5.6-sol</td><td class="num">86% [69&#8211;94]</td><td class="num">8.8<sup>1</sup></td><td class="num sec-bad">50%</td><td class="num">6.8 s</td><td class="num">$1.45</td><td class="num">$0.0517</td></tr>
+<tr><td class="rank">19</td><td class="model"><span class="swatch" style="background:#A03A5E"></span>gpt-5.6-terra</td><td class="num">86% [69&#8211;94]</td><td class="num">8.7<sup>1</sup></td><td class="num sec-bad">33%</td><td class="num">4.8 s</td><td class="num">$0.24</td><td class="num">$0.0087</td></tr>
+<tr><td class="rank">20</td><td class="model"><span class="swatch" style="background:#D97757"></span>opus-5</td><td class="num">86% [69&#8211;94]</td><td class="num">9.4</td><td class="num sec-good">100%</td><td class="num">8.3 s</td><td class="num">$1.67</td><td class="num">$0.0696<sup>4</sup></td></tr>
+<tr><td class="rank">21</td><td class="model"><span class="swatch" style="background:#2456E6"></span>fable-5</td><td class="num">79% [60&#8211;90]<sup>3</sup></td><td class="num">9.3<sup>2</sup></td><td class="num sec-good">100%</td><td class="num">7.9 s</td><td class="num">$1.35</td><td class="num">$0.0748<sup>4</sup></td></tr>
+<tr><td class="rank">22</td><td class="model"><span class="swatch" style="background:#D9748A"></span>gpt-5.6-luna</td><td class="num">79% [60&#8211;90]</td><td class="num">8.6<sup>1</sup></td><td class="num sec-bad">33%</td><td class="num">5.3 s</td><td class="num">$0.064</td><td class="num">$0.0023</td></tr>
 </tbody>
       </table>
     </div>
 
     <details class="fold">
-      <summary>Five caveats on how these numbers were produced</summary>
+      <summary>Six caveats on how these numbers were produced</summary>
       <div class="footnotes">
       <p><sup>1</sup> Rubric scored retroactively (14 Jul 2026) by fable-5 against the saved answer text, through the harness's own <code>run_rubric</code> path — same blind prompt and criteria as every other row.</p>
       <p><sup>2</sup> fable-5's 9.3 is <strong>self-judged</strong> — the judge scoring its own answers. Its source run's judge-bias matrix shows it rating itself 9.3 versus 8.6–8.7 for the models it judges independently. It is also the only figure on its row from an earlier run — the 5 Jul 2026 run, 11 of 28 trials judged — because no trial of its current run has been judged at all. Shown for completeness, not as a like-for-like number, pending an independent re-judge.</p>
       <p><sup>3</sup> <strong>Recipe-checker false-positive.</strong> On the vegetarian weeknight recipe the forbidden-term checker fires on a non-ingredient mention — a label-check caution or a negated omission list ("uses no fish sauce or animal-derived garnishes"). All three recipes are genuinely meat-free, so gpt-5.5, sonnet-5 and fable-5 are scored as passing that task here. No task or checker was edited.</p>
       <p><sup>4</sup> Cost/task computed over <strong>answering trials only</strong> for fable-5, fable-5-1 and opus-5 — refused and blocked trials emit near-zero output at $0, and including them makes a model look artificially concise and cheap (fable-5 would read $0.0481/trial; opus-5 $0.0597). opus-5's headline run cost of $1.67 is the true all-trials total: the blocked trials were billed $0. fable-5-1 carries one refusal — its cost/task over answering trials is $0.0991, versus $0.0955 across all 28.</p>
       <p><sup>5</sup> fable-5-1's 9.5 is <strong>self-judged</strong> — scored by fable-5, the same model line, and only 12 of 28 trials were judged. The judge-bias pattern behind footnote 2 applies here too. Shown as indicative, not a like-for-like number against the independently-judged rows.</p>
+      <p><sup>6</sup> The three new rows come from two single-trial, rubric-on Featherbench runs: <strong>deepseek-v4.1-flash</strong> in <code>20260912T171101Z</code>, and <strong>gemini-3.8-flash</strong> plus <strong>gpt-6-astra</strong> in <code>20260912T185245Z</code>. All three used 28 tasks and were independently judged by fable-5 across 14 rubric-bearing tasks. DeepSeek scored 100% with an 8.8 rubric, 22.0 s median TTFT and $0.0033/task; Gemini scored 93% with an 8.9 rubric, 9.3 s TTFT and $0.0097/task; Astra scored 96% with an 8.6 rubric, 11.4 s TTFT and $0.0550/task. Costs are stated at list rate; the exact pinned routes, settings and raw source files are recorded in Featherbench footnotes 21–22.</p>
       </div>
     </details>
 
@@ -436,11 +455,11 @@
     <div class="pit">
       <div class="pit-note">
         <h3>The field is narrowing</h3>
-        <p>The board is bunching up: nine models now tie at 96%, and the pass rate no longer tells them apart. Benchmarkers call it saturation, and in my book it is no bad thing — it means more models are good enough for the single-model setup that keeps a production system consistent and its costs predictable. A Fable still earns its keep on the hard, unsolved problems, but for everyday work it is a Ferrari on the supermarket run. With speed and cost per task the main things left to separate the field, the market is commoditising.</p>
+        <p>The board is bunching up: ten models now tie at 96%, while two clear all five corners at 100%, and the pass rate no longer tells them apart. Benchmarkers call it saturation, and in my book it is no bad thing — it means more models are good enough for the single-model setup that keeps a production system consistent and its costs predictable. A Fable still earns its keep on the hard, unsolved problems, but for everyday work it is a Ferrari on the supermarket run. With speed and cost per task the main things left to separate the field, the market is commoditising.</p>
       </div>
       <div class="pit-note pick">
         <h3>If you only run one model, run glm-5.3</h3>
-        <p>glm-5.3 is the first model on the board to clear all five corners — coding, data development, realworld, security and tasks — at 100%. It backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. It is however really slow: 16.3-second median time-to-first-token.</p>
+        <p>glm-5.3 and deepseek-v4.1-flash are the board's two models to clear all five corners — coding, data development, realworld, security and tasks — at 100%. glm-5.3 remains the pick: it backs that with a 9.3 rubric, third-highest on the board, and $0.28 for the lap. It is however really slow: 16.3-second median time-to-first-token.</p>
       </div>
       <div class="pit-note steward">
         <h3>Anthropic safety classifier making headlines for the wrong reasons</h3>
@@ -532,8 +551,12 @@
     </section>
 
     <details class="fold change-log" id="change-log">
-      <summary>Change log — latest: one model added, 1 September 2026</summary>
+      <summary>Change log — latest: three models added, 12 September 2026</summary>
       <ol>
+        <li>
+          <time datetime="2026-09-12">12 September 2026</time>
+          <div><strong>Three models added.</strong> Added deepseek-v4.1-flash, gemini-3.8-flash and gpt-6-astra to the default board. DeepSeek clears all five corners at 100%; Astra scores 96% with 83% security; Gemini scores 93% with 78% realworld. All three are single-trial runs with independent rubric judging.</div>
+        </li>
         <li>
           <time datetime="2026-09-01">1 September 2026</time>
           <div><strong>One model added.</strong> Added fable-5-1 to the default board: 96% pass, a self-judged 9.5 rubric and 100% security — but $2.68 for the lap, the most expensive model on the board.</div>
@@ -707,7 +730,7 @@ render();
 const CORNERS = [
   {key:'cv', label:'Coding',
    desc:'Unit-tested programming tasks — fix the bug, write the function. Pass or fail comes from the tests, not opinion.',
-   field:'Field: sixteen of nineteen at 100%. fable-5 and opus-5 (43% each) and fable-5-1 (86%) are the exceptions — all refusals rather than wrong answers: opus-5 had four benign debugging tasks blocked before generation, fable-5-1 one.'},
+   field:'Field: nineteen of twenty-two at 100%. fable-5 and opus-5 (43% each) and fable-5-1 (86%) are the exceptions — all refusals rather than wrong answers: opus-5 had four benign debugging tasks blocked before generation, fable-5-1 one.'},
   {key:'dv', label:'Data',
    desc:'Structured extraction and transformation — parse it, reshape it, get the schema exactly right.',
    field:'Field: everyone at 100% except kimi-k3 (75%) — its only weak corner.'},
@@ -719,7 +742,7 @@ const CORNERS = [
    field:'Field split 33–100%, and the corner where the checkers themselves failed in both directions. gpt-5.6 luna, terra and sol emitted the canary in 11 of 12 cells — genuinely unsafe, correctly caught. grok-4.5 emitted it zero times yet the raw checker read 50%; gemini-3.6-flash read 100% while actually complying.'},
   {key:'tv', label:'Tool-use',
    desc:'Function-calling tasks — pick the right tool, format the call correctly.',
-   field:'All nineteen models took this corner clean: 100% across the board.'},
+   field:'All twenty-two models took this corner clean: 100% across the board.'},
 ];
 function cornerColor(v){ return v<60 ? '#d0524a' : v<=85 ? '#c98500' : '#199e70'; }
 function cornerWord(v){ return v<60 ? 'off the track' : v<=85 ? 'ragged' : 'clean'; }
